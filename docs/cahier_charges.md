@@ -2,7 +2,7 @@ Florent VASSEUR--BERLIOUX, Tom BOGAERT, Assia GOUABI, Enzo GUIGNOLLE, Matthieu F
 INF2-A
 
 <div align="center">
-<img height="95" width="400" src="/media/matthieu/TOSHIBA/!CONTENU_CLEE_USB/!!ECOLE -----------------/!IUT----------------------------------/!INF2-A/SAE/SAE_S3/ticketsV2/docs/img/IUT Velizy Villacoublay logo 2020 ecran.png" title="logo uvsq vélizy"/>
+<img height="95" width="400" src="img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3  Cahier des charges
 
@@ -166,17 +166,20 @@ système.)
 
 ### V – Autres exigences
 - <b>a) Processus de développement</b>
-  - <u>i. Qui sont les participants au projet ?</u>
+  - <u>i. Qui sont les participants au projet ?</u><br>
   - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité, rapi-
-    dité, souplesse etc... )</u>
+    dité, souplesse etc... )</u><br>
   - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
-    souhaitent-ils ?</u>
-  - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u>
-  - <u>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u>
-  - <u>vi. À quelle dépendance le projet est-il soumis ?</u>
-- <b>b) Règles métier</b>
-- <b>c) Performances</b>
-- <b>d) Opérations, sécurité, documentation</b>
+    souhaitent-ils ?</u><br>
+  - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
+  - <u>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
+  - <u>vi. À quelle dépendance le projet est-il soumis ?</u><br>
+- <b>b) Règles métier</b><br>
+- <b>c) Performances</b><br>
+- <b>d) Opérations, sécurité, documentation</b><br>
+  Parler de l'injection SQL ?<br>
+  <br>
+
 - <b>e) Utilisation et utilisabilité</b><br>
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C.<br>
   Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.<br>
