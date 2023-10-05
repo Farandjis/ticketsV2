@@ -65,7 +65,7 @@ souhaitent-ils ?</u>
 
 - <b>b) La lecture du cahier des charges </b>
 
-- i) Liste des objets, acteurs et actions
+  - i) Liste des objets, acteurs et actions
 
 
 <table>
@@ -147,8 +147,9 @@ souhaitent-ils ?</u>
 </tr>
 
 </table>
+<br>
 
-- ii) Les différents niveaux 
+- - ii) Les différents niveaux 
 
 | Niveau stratégique (au-dessus de la mer)          | Niveau utilisateur (de la mer)                  | Niveau sous-fonctions (en-dessous de la mer) |
 |---------------------------------------------------|-------------------------------------------------|----------------------------------------------|
@@ -161,8 +162,13 @@ souhaitent-ils ?</u>
 | Produire des statistiques sur les connexions      | Changer l'état d'un ticket                      |                                              |
 |                                                   | Définir un niveau d'urgence                     |                                              |
 |                                                   | Créer un compte technicien                      |                                              |
+<br>
 
-- iii) Un schéma descriptif des niveaux 
+
+- - iii) Un schéma descriptif des niveaux 
+
+![](img/schema_lecture_cahier_charges.PNG "Schema de la lecture du cahier des charges")
+
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -328,8 +334,18 @@ souhaitent-ils ?</u>
 
   <br>
 - <b>d) Quels sont les besoins en formation ?</b><br>
-  Utiliser un ordinateur ?<br>
+  Un guide d'utilisation comprennent une vidéo de présentation pour apprendre à se servir de l'application sera disponible.<br>
+  <br>
+  Les seules connaissances primordiales sont de savoir se servir d'un ordinateur et d'un navigateur internet.<br>
   <br>
 
 - <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
-  ???
+   - Nous supposons que tous les étudiants, professeurs et personnels concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
+   - De même, nous supposons que le serveur contenant l'application sera toujours en ligne.<br>
+   - Nous supposons également qu'il peut y avoir des personnes avec un handicap pouvant affecter leur utilisation de l'application.<br>
+  <br>
+   - L'application dépend de la présence des techniciens et des administrateurs au sein de l'IUT.
+  Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
+   - Celle-ci dépend par ailleurs des lois françaises et celles de l'Union Européennes.
+  Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
+   - L'application dépend aussi de l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
