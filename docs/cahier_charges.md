@@ -65,23 +65,90 @@ souhaitent-ils ?</u>
 
 - <b>b) La lecture du cahier des charges </b>
 
-- ib) Liste des objets, acteurs et actions
+- i) Liste des objets, acteurs et actions
 
-| Objets                                | Acteurs                                     | Actions                                                                                                                                                                                                                                                    |
-|---------------------------------------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Une application web (la plateforme)   | Client                                      | - Recueillir les demandes de dépannages <br/> - Accueillera quatre types d'utilisateurs                                                                                                                                                                    |
-| Le ticket (les demandes de dépannage) | Des utilisateurs (étudiants et professeurs) | - Afficher les différentes demandes (tickets) et leurs statuts <br/> - Ouvrir un ticket <br/> - Accéder à son tableau de bord et à son profil utilisateur                                                                                                  |
-| Un formulaire d'inscription           | Un visiteur                                 | - Remplir un formulaire pour devenir utilisateur <br/> - Accéder à la page d'accueil <br/> - Visualiser les 10 dernières demandes                                                                                                                          |
-| La base de données                    | Un administrateur web                       | - Se connecter <br/> - Gérer la liste des libellés affectés aux différents problèmes <br/> - Définir les statuts des tickets et leurs niveaux d'urgence <br/> - Créer les comptes des techniciens et peut leur affecter des tickets <br/> - Se déconnecter |
-| Le statut des tickets                 | Des techniciens                             | - Se connecter <br/> - S'attribuer un ticket <br/> - Changer le statut d'un ticket <br/> - Se déconnecter                                                                                                                                                  |
-| Les journaux d'activité               | Un administrateur système                   | - Accéder aux journaux d'activité <br/> - Stocker des données de connexion infructueuse                                                                                                                                                                    |
-| La page d'accueil                     |                                             | - Explique le but de la plateforme avec une vidéo de démonstration la présentant                                                                                                                                                                           |
-| Un historique                         |                                             | - Stocker les tickets fermés                                                                                                                                                                                                                               |
-| Un tableau de bord                    |                                             |                                                                                                                                                                                                                                                            |
-| La liste des libellés                 |                                             |                                                                                                                                                                                                                                                            |
-| Les niveaux d'urgence des tickets     |                                             |                                                                                                                                                                                                                                                            |
-| Le système                            |                                             |                                                                                                                                                                                                                                                            |
-| Un profil utilisateur                 |                                             |                                                                                                                                                                                                                                                            |
+
+<table>
+<colgroup>
+<col span="1" style="background-color: dimgray">
+<col span="1" style="background-color: darkslateblue">
+<col span="1" style="background-color: rebeccapurple">
+
+</colgroup>
+<tr>
+    <th>Objets</th>
+    <th>Acteurs</th>
+    <th>Actions</th>
+</tr>
+<tr>
+    <td> Une application web (la plateforme)</td>
+    <td> Client </td>
+    <td> - Recueillir les demandes de dépannages <br> - Accueillir quatre types d'utilisateurs </td>
+</tr>
+<tr>
+    <td> Le ticket (les demandes de dépannage)</td>
+    <td> Des utilisateurs (étudiants et professeurs)</td>
+    <td> - Afficher les différentes demandes (tickets) et leurs statuts <br> - Ouvrir un ticket <br> - Accéder à son tableau de bord et à son profil utilisateur </td>
+</tr>
+<tr>
+    <td> Un formulaire d'inscription </td>
+    <td> Un visiteur </td>
+    <td> - Remplir un formulaire pour devenir utilisateur <br> - Accéder à la page d'accueil <br> - Visualiser les 10 dernières demandes </td>
+</tr>
+<tr>
+    <td> La base de données </td>
+    <td> Un administrateur web </td>
+    <td> - Se connecter <br> - Gérer la liste des libellés affectés aux différents problèmes <br> - Définir les statuts des tickets et leurs niveaux d'urgence <br> - Créer les comptes des techniciens et peut leur affecter des tickets <br> - Se déconnecter </td>
+</tr>
+<tr>
+    <td> Le statut des tickets </td>
+    <td> Des techniciens </td>
+    <td> - Se connecter <br> - S'attribuer un ticket <br> - Changer le statut d'un ticket <br> - Se déconnecter </td>
+</tr>
+<tr>
+    <td> Les journaux d'activité </td>
+    <td> Un administrateur système </td>
+    <td> - Accéder aux journaux d'activité <br> - Stocker des données de connexion infructueuse </td>
+</tr>
+<tr>
+    <td> La page d'accueil </td>
+    <td></td>
+    <td> - Explique le but de la plateforme avec une vidéo de démonstration la présentant </td>
+</tr>
+<tr>
+    <td> Un historique </td>
+    <td></td>
+    <td> - Stocker les tickets fermés </td>
+</tr>
+<tr>
+    <td> Un tableau de bord </td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> La liste des libellés </td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> Les niveaux d'urgence des tickets </td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> Le système </td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> Un profil utilisateur </td>
+    <td></td>
+    <td></td>
+</tr>
+
+</table>
+
+- ii) Les différents niveaux 
 
 
 
