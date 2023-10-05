@@ -150,8 +150,19 @@ souhaitent-ils ?</u>
 
 - ii) Les différents niveaux 
 
+| Niveau stratégique (au-dessus de la mer)          | Niveau utilisateur (de la mer)                  | Niveau sous-fonctions (en-dessous de la mer) |
+|---------------------------------------------------|-------------------------------------------------|----------------------------------------------|
+| Stocker et répertorier des tickets                | Ouverture d'un ticket                           | Authentification                             |
+| Enregistrer les utilisateurs                      | Se connecter ou déconnecter                     | Identifier un utilisateur et ses droits      |
+| Gérer les profils utilisateurs                    | Modifier ou changer leur mot de passe           | Suivre leur actualité                        |
+| Gérer l'inscription des visiteurs                 | Remplir un formulaire pour créer un utilisateur | Identifier un utilisateur                    |
+| Recueillir et afficher les demandes de dépannages | Consulter les demandes faites et leurs statuts  |                                              |
+| Produire des statistiques sur les tickets         | Modification d'un libellé                       |                                              |
+| Produire des statistiques sur les connexions      | Changer l'état d'un ticket                      |                                              |
+|                                                   | Définir un niveau d'urgence                     |                                              |
+|                                                   | Créer un compte technicien                      |                                              |
 
-
+- iii) Un schéma descriptif des niveaux 
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
