@@ -17,7 +17,7 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 
 ### I – Objectif et portée
 - <b>a) Quels sont la portée et les objectifs généraux ?</b>
-- <b>b) Lecture du cahier des charges </b>
+- <b>b) La lecture du cahier des charges </b>
 - <u>ib. Liste des objets, acteurs et actions </u>
 - <u>iib. Les différents niveaux </u>
 - <u>iiib. Un schéma descriptif des niveaux </u>
@@ -63,7 +63,9 @@ souhaitent-ils ?</u>
   Le projet consiste à réaliser une application web permettant de récupérer les demandes de dépannage des utilisateurs dans les salles machines. En fonction des utilisateurs, l’application permet de voir les demandes, d’en créer ou de les gérer. Les demandes peuvent être classé en fonction de l’urgence qu’elle représente et seront archivés dans un journal.
 
 
-- b) La lecture du cahier des charges
+- <b>b) La lecture du cahier des charges </b>
+
+- ib) Liste des objets, acteurs et actions
 
 | Objets                                | Acteurs                                     | Actions                                                                                                                                                                                                                                                    |
 |---------------------------------------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
