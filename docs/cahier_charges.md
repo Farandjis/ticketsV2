@@ -197,10 +197,44 @@ système.)
 
 ### VI – Recours humain, questions juridiques, politiques, organisationnelles.
 - <b>a) Quel est le recours humain au fonctionnement du système ?</b><br>
-- <b>b) Quelles sont les exigences juridiques et politiques ?</b><br>
-  parler du RGPD ?<br>
+  Le système fonctionnera en toute autonomie sur un serveur pour pouvoir être utilisés par les différents utilisateurs.<br>
   <br>
+  Si le système peut inscrire de lui-même un visiteur, ce n'est pas le cas pour les techniciens.<br>
+  En effet, quand bien même il passe par la plateforme, l'administrateur web doit les inscrire de lui-même.<br>
+  Il en va de même pour la réinitialisation de mot de passe en cas d'oubli.<br>
+  <br>
+  L'application propose différentes actions pour les utilisateurs, qu'ils doivent actionner d'eux même. L'application ne fait que de les mettre en application.<br>
+  <br>
+- <b>b) Quelles sont les exigences juridiques et politiques ?</b><br>
+  L'application se doit de respecter la loi française « Informatique et liberté » du 6 janvier 1978, mise à jour le 1er juin 2019, relative à l'informatique, aux fichiers et aux libertés.<br>
+  L'application est également soumise au règlement européen « Règlement Général sur la Protection des Données » (RGPD) du 27 avril 2016, relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données, et abrogeant la directive 95/46/CE.<br>
+  <br>
+  A noter, la CNIL propose des recommandations vis à vis de la lois, notamment en matière de cookies.<br>
+  <br>
+  Les articles peuvent être consultés via les liens ci-dessous :
+  - <u>Loi « Informatique et liberté » :</u><br>
+    https://www.cnil.fr/fr/la-loi-informatique-et-libertes <br>
+  - <u>Règlement européen « Règlement Général sur la Protection des Données » :</u><br>
+  https://www.cnil.fr/fr/reglement-europeen-protection-donnees <br>
+  - <u>A propos des cookies :</u><br>
+  https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies <br>
+    <br>
 
 - <b>c) Quelles sont les conséquences humaines de la réalisation du système ?</b><br>
+  La conséquence est l'amélioration de la gestion des dépannages dans les salles machines.<br>
+  Les demandes seront prises en charge plus rapidement, et elles seront mieux répartie pour une résolution rapide et optimale.<br>
+  D'autant plus que l'application offre des données utilisables dans le cas d'étude statistique.<br>
+  Ce qui permettrait donc d'organiser des révisions du matériel, ou prévoir le renouvellement du parc informatique.<br>
+  <br>
+  En cela, les techniciens seront mieux sollicité et leurs plannings moins chargés.<br>
+  Concernant les utilisateurs étudiants et professeurs, ils pourront travailler dans de meilleures conditions avec du matériel fonctionnel.<br>
+  <br>
+  Grâce à l'application, il y aura un gain de productivité chez les techniciens, les professeurs et étudiants.<br>
+
+  <br>
 - <b>d) Quels sont les besoins en formation ?</b><br>
+  Utiliser un ordinateur ?<br>
+  <br>
+
 - <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
+  ???
