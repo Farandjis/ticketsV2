@@ -17,10 +17,10 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 
 ### I – Objectif et portée
 - <b>a) Quels sont la portée et les objectifs généraux ?</b>
-- <b>b) La lecture du cahier des charges </b>
-- <u>ib. Liste des objets, acteurs et actions </u>
-- <u>iib. Les différents niveaux </u>
-- <u>iiib. Un schéma descriptif des niveaux </u>
+- <b>b) Lecture du cahier des charges </b>
+  - <u>i. Liste des objets, acteurs et actions </u>
+  - <u>ii. Les différents niveaux </u>
+  - <u>iii. Un schéma descriptif des niveaux </u>
 ### II – Terminologie employée / Glossaire
 ### III – Les cas d’utilisation
 - <b>a) Les acteurs principaux et leurs objectifs généraux.</b>
