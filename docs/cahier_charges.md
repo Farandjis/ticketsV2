@@ -60,8 +60,19 @@ souhaitent-ils ?</u>
 ------------------------------------------------------------------------------------------------------------------------
 ### I – Objectif et portée
 - <b>a) Quels sont la portée et les objectifs généraux ?</b><br>
-  Le projet consiste à réaliser une application web permettant de récupérer les demandes de dépannage des utilisateurs dans les salles machines. En fonction des utilisateurs, l’application permet de voir les demandes, d’en créer ou de les gérer. Les demandes peuvent être classé en fonction de l’urgence qu’elle représente et seront archivés dans un journal.
-
+  Le projet consiste à réaliser une application web permettant de récupérer les demandes de dépannage des utilisateurs
+  dans les salles machines. En fonction des utilisateurs, l’application permet de voir les demandes,
+  d’en créer ou de les gérer. Les demandes peuvent être classées en fonction de l’urgence qu’elle représente et seront
+  archivés dans un journal.<br>
+  <br>
+  La portée de l'utilisation de l'application s'arrête au réseau internet de l'IUT.
+  L'application n'est pas utilisable en dehors de ce réseau.<br>
+  Indépendamment de la communication entre le client et le serveur, la portée de l'application s'arrête au serveur du RaspberryPi 4.
+  L'application n'a pas directement accès aux machines de l'IUT ou aux autres serveurs. Elle est indépendante.<br>
+  <br>
+  On peut donc considérer le système comme boîte noire, puisqu'il s'adresse à différents acteurs comme les professeurs et les étudiants.
+  Ce n'est pas un système purement interne ne concernant que les techniciens et les administrateurs.<br>
+  <br>
 
 - <b>b) La lecture du cahier des charges </b>
 
@@ -93,7 +104,7 @@ souhaitent-ils ?</u>
 <tr>
     <td> Un formulaire d'inscription </td>
     <td> Un visiteur </td>
-    <td> - Remplir un formulaire pour devenir utilisateur <br> - Accéder à la page d'accueil <br> - Visualiser les 10 dernières demandes </td>
+    <td> - Remplir un formulaire pour devenir utilisateur <br> - Accéder à la page d'accueil</td>
 </tr>
 <tr>
     <td> La base de données </td>
@@ -113,7 +124,9 @@ souhaitent-ils ?</u>
 <tr>
     <td> La page d'accueil </td>
     <td></td>
-    <td> - Explique le but de la plateforme avec une vidéo de démonstration la présentant </td>
+    <td> - Explique le but de la plateforme avec une vidéo de démonstration la présentant<br>
+         - Afficher les 10 dernières demandes
+    </td>
 </tr>
 <tr>
     <td> Un historique </td>
@@ -123,7 +136,7 @@ souhaitent-ils ?</u>
 <tr>
     <td> Un tableau de bord </td>
     <td></td>
-    <td></td>
+    <td> - Afficher la liste des tickets publiés et leur état</td>
 </tr>
 <tr>
     <td> La liste des libellés </td>
@@ -143,7 +156,7 @@ souhaitent-ils ?</u>
 <tr>
     <td> Un profil utilisateur </td>
     <td></td>
-    <td></td>
+    <td> - Changer son mot de passe</td>
 </tr>
 
 </table>
@@ -174,17 +187,24 @@ souhaitent-ils ?</u>
 ------------------------------------------------------------------------------------------------------------------------
 ### II – Terminologie employée / Glossaire
 
-| Mots                  | Définition                                                                                                                                                                                               |
-|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Ticket                | Enregistre une tâche effectuée (ou qui doit être effectuée) par le système de support informatique afin de rectifier les problèmes, résoudre les demandes des clients.                                   |
-| Support informatique  | L'assistance technique qui réalise la gestion des demandes d'assistance, le dépannage des problèmes techniques, la résolution des questions liées à l'informatique.                                      |
-| Scenario ?            |                                                                                                                                                                                                          |
-| Tableau de bord       | Une interface en ligne qui affiche des informations récapitulatives et des données clés pour aider les utilisateurs à surveiller et à gérer les opérations liées aux tickets et au support informatique. |
-| Demande de dépannage  | Une requête soumise par un utilisateur pour signaler un problème ou une difficulté technique qui nécessite une intervention ou une résolution (Ticket) par l'équipe de support informatique.             |
-| Libellés              | Des étiquettes ou des mots-clés attribués à un ticket informatique pour catégoriser, organiser et faciliter la recherche des problèmes similaires ou des demandes de support.                            |
-| Connexion infructeuse | L'échec d'une tentative de connexion à un système ou à un compte utilisateur en raison d'informations incorrectes ou d'un problème technique.                                                            |
-| RPi4                  | Raspberry Pi 4 un ordinateur monocarte de petite taille développé par la Fondation Raspberry Pi                                                                                                          |
-| SGBD                  | Système de Gestion de Base de Données                                                                                                                                                                    |
+| Mots                  | Définition                                                                                                                                                                                                                               |
+|:----------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ticket                | Enregistre une tâche effectuée (ou qui doit être effectuée) par le système de support informatique afin de rectifier les problèmes, résoudre les demandes des clients.                                                                   |
+| Support informatique  | L'assistance technique qui réalise la gestion des demandes d'assistance, le dépannage des problèmes techniques, la résolution des questions liées à l'informatique.                                                                      |
+| Scenario ?            |                                                                                                                                                                                                                                          |
+| Tableau de bord       | Une interface en ligne qui affiche des informations récapitulatives et des données clés pour aider les utilisateurs à surveiller et à gérer les opérations liées aux tickets et au support informatique.                                 |
+| Demande de dépannage  | Une requête soumise par un utilisateur pour signaler un problème ou une difficulté technique qui nécessite une intervention ou une résolution (Ticket) par l'équipe de support informatique.                                             |
+| Libellés              | Des étiquettes ou des mots-clés attribués à un ticket informatique pour catégoriser, organiser et faciliter la recherche des problèmes similaires ou des demandes de support.                                                            |
+| Connexion infructeuse | L'échec d'une tentative de connexion à un système ou à un compte utilisateur en raison d'informations incorrectes ou d'un problème technique.                                                                                            |
+| RPi4                  | Raspberry Pi 4 un ordinateur monocarte de petite taille développé par la Fondation Raspberry Pi.                                                                                                                                         |
+| SGBD                  | Système de Gestion de Base de Données.                                                                                                                                                                                                   |
+| RGPD                  | Règlement Général sur la Protection des Données. Texte de référence en matière de protection des données à caractère personnel. Il renforce et unifie la protection des données pour les individus au sein de l'Union européenne.        |
+| Cookie                | (en informatique) : Petit fichier stocké par un serveur dans le terminal (ordinateur, téléphone, etc.) d’un utilisateur et associé à un domaine web.                                                                                     |
+| Wave                  | Extension de navigateur internet permettant d'évaluer l'accessibilité d'une page web pour les personnes souffrant de handicap.                                                                                                           |
+| W3C                   | World Wide Web Consortium. Organisme international définissant les standards techniques liés au web et les règles à respecter pour tous les développeurs du monde.                                                                       |
+| Injection SQL         | Technique permettant d’injecter des éléments de type SQL, dans les champs des formulaires web ou dans les liens des pages afin de les envoyer au serveur web dans l'objectif de modifier des éléments présents dans une base de données. |
+| CNIL                  | Commission Nationale de l'Informatique et des Libertés. Autorité administrative indépendante française chargée de veiller notamment à ce que l’informatique soit au service du citoyen.                                                  |
+
 
 
 <br><br><br><br><br><br><br>
