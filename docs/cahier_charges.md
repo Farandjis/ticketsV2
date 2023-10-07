@@ -205,7 +205,7 @@ Par ordre alphabétique.
 | Tableau de bord       | Une interface en ligne qui affiche des informations récapitulatives et des données clés pour aider les utilisateurs à surveiller et à gérer les opérations liées aux tickets et au support informatique.                                 |
 | Ticket                | Enregistre une tâche effectuée (ou qui doit être effectuée) par le système de support informatique afin de rectifier les problèmes, résoudre les demandes des clients.                                                                   |
 | W3C                   | World Wide Web Consortium. Organisme international définissant les standards techniques liés au web et les règles à respecter pour tous les développeurs du monde.                                                                       |
-| Wave                  | Extension de navigateur internet permettant d'évaluer l'accessibilité d'une page web pour les personnes souffrant d'handicap.                                                                                                           |
+| Wave                  | Extension de navigateur internet permettant d'évaluer l'accessibilité d'une page web pour les personnes souffrant de handicap.                                                                                                           |
 
 
 <br><br><br><br><br><br><br>
@@ -293,17 +293,17 @@ Par ordre alphabétique.
 
   - <u>i. Qui sont les participants au projet ?</u><br>
 
-    Les membre de notre équipe sont les principaux participants au projet.
-    Notre équipe est donc constituée de Tom BOGAERT, Matthieu FARANDJIS, Assia GOUABI, Enzo GUIGNOLLE et Florent VASSEUR--BERLIOUX.<br>
+    Les membres de notre équipe sont les principaux participants au projet.
+    Notre équipe est constituée de Tom BOGAERT, Matthieu FARANDJIS, Assia GOUABI, Enzo GUIGNOLLE et Florent VASSEUR--BERLIOUX.<br>
     <br>
   - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
 
-    Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.<br>
+    Nous priviligerons l'efficacité de nos algorithmes mais egalement la sécurité de nos bases de données. Un point d'honneur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.<br>
     <br>
   - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
     souhaitent-ils ?</u><br>
 
-    Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communaction entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
+    Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communication entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
     <br>
   - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
 
@@ -324,15 +324,15 @@ Par ordre alphabétique.
 
 - <b>c) Performances</b><br>
 
-  Le site web se devra d'être le plus performent possible afind'en faciliter l'accés. Pour se faire, le programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme.
+  Le site web se devra d'être le plus performant possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performances de la plateforme.
 
 <br>
 
 - <b>d) Opérations, sécurité, documentation</b><br>
 
-  Tous le code étant utilisé pour mener le projet à bien se devra d'ête documenté afin d'assurer la lisibilité du programme. Toutes les fonctions générés seront accompagnées d'une Docstring.
+  Tous le code étant utilisé pour mener le projet à bien se devra d'être documenté afin d'assurer la lisibilité du programme. Toutes les fonctions générées seront accompagnées d'une Docstring.
   
-  L'ensemble du programme sera egalement rendu impermeable au attaques de type Injection SQL. Le système sera protégé et restreindra les actions des utilisateurs afin de les empêcher de se détourner des indications de la plateforme web. Les mots de passes seront egalement encryptés. 
+  L'ensemble du programme sera egalement rendu imperméable aux attaques de type Injection SQL. Le système sera protégé et restreindra les actions des utilisateurs afin de les empêcher de se détourner des indications de la plateforme web. Les mots de passes seront encryptés. 
 
 <br>
 
@@ -406,12 +406,12 @@ Par ordre alphabétique.
 
 - <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
   - Nous supposons que :<br>
-    - tous les étudiants, professeurs et personnel concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
+    - tous les étudiants, professeurs et personnels concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
     - le serveur contenant l'application sera toujours en ligne.<br>
     - l'utilisation de l'application par des personnes handicapées peut-être différente.<br>
     - l'établissement communiquera sur l'application afin de solliciter l'aide des professeurs et étudiants.<br>
   <br>
-  - L'application dépend de :<br>
+  L'application dépend de :<br>
     - la présence des techniciens et des administrateurs au sein de l'IUT.
       Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
     - des lois françaises et celles de l'Union Européenne.
