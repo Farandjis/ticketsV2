@@ -322,30 +322,42 @@ souhaitent-ils ?</u>
     <br>
 
 - <b>c) Quelles sont les conséquences humaines de la réalisation du système ?</b><br>
-  La conséquence est l'amélioration de la gestion des dépannages dans les salles machines.<br>
+  L'application permet l'amélioration de la gestion des dépannages dans les salles machines.<br>
   Les demandes seront prises en charge plus rapidement, et elles seront mieux répartie pour une résolution rapide et optimale.<br>
-  D'autant plus que l'application offre des données utilisables dans le cas d'étude statistique.<br>
-  Ce qui permettrait donc d'organiser des révisions du matériel, ou prévoir le renouvellement du parc informatique.<br>
+  Ses données sont utilisables dans le cas d'études statistiques ce qui permettrait de mieux organiser les révisions du matériel et la prévision du renouvellement du parc informatique.<br>
   <br>
-  En cela, les techniciens seront mieux sollicité et leurs plannings moins chargés.<br>
-  Concernant les utilisateurs étudiants et professeurs, ils pourront travailler dans de meilleures conditions avec du matériel fonctionnel.<br>
+  Pour cela, notre application encourage la communication entre le personnel et les utilisateurs.<br>
+  Elle encourage également l'implication des professeurs et étudiants dans la vie du parc informatique de l'établissement.<br>
   <br>
-  Grâce à l'application, il y aura un gain de productivité chez les techniciens, les professeurs et étudiants.<br>
+  Ce qui aura pour effet une meilleure sollicitation des techniciens permettant d'alléger leurs plannings.<br>
+  Grâce au matériel fonctionnel, les étudiants et professeurs pourront travailler dans de meilleures conditions et ainsi être plus joyeux et plus productif.<br>
+  Pour les personnes souffrant d'handicap, cela permettrait de les assurer qu'au moindre problème d'accessibilité, celui-ci sera résolut rapidement.<br>
+  <br>
+ 
 
   <br>
 - <b>d) Quels sont les besoins en formation ?</b><br>
-  Un guide d'utilisation comprennent une vidéo de présentation pour apprendre à se servir de l'application sera disponible.<br>
+  En général, il est nécessaire de savoir se servir d'un ordinateur et d'un navigateur internet.<br>
   <br>
-  Les seules connaissances primordiales sont de savoir se servir d'un ordinateur et d'un navigateur internet.<br>
+  Un guide d'utilisation comprennent une vidéo de présentation pour apprendre à se servir de l'application sera disponible.<br>
+  Celle-ci expliquera comment utiliser l'application comme comment our faire une demande de dépannage.<br>
+  <br>
+  On peut supposer une page web donnant des conseils pour les utilisateurs. Comme arriver à estimer un niveau d'urgence à une demande de dépannage afin de facilité la tâche des administrateurs.<br>
+  <br>
+  Dans tous les cas, l'établissement devra communiquer sur l'existence de l'application, le moyen d'y accéder et l'existence de ces aides.<br>
   <br>
 
 - <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
-   - Nous supposons que tous les étudiants, professeurs et personnels concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
-   - De même, nous supposons que le serveur contenant l'application sera toujours en ligne.<br>
-   - Nous supposons également qu'il peut y avoir des personnes avec un handicap pouvant affecter leur utilisation de l'application.<br>
+  Nous supposons que :<br>
+   - tous les étudiants, professeurs et personnels concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
+   - le serveur contenant l'application sera toujours en ligne.<br>
+   - il peut y avoir des personnes avec un handicap pouvant affecter leur utilisation de l'application.<br>
+   - l'établissement communiquera sur l'application afin de solliciter l'aide des professeurs et étudiants
   <br>
-   - L'application dépend de la présence des techniciens et des administrateurs au sein de l'IUT.
+  L'application dépend de :<br>
+   - la présence des techniciens et des administrateurs au sein de l'IUT.
   Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
-   - Celle-ci dépend par ailleurs des lois françaises et celles de l'Union Européennes.
+   - des lois françaises et celles de l'Union Européennes.
   Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
-   - L'application dépend aussi de l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
+   - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
+   - l'implication des professeurs et utilisateurs pour résoudre les pannes le plus rapidement que possible
