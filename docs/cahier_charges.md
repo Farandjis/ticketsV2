@@ -298,9 +298,10 @@ souhaitent-ils ?</u>
 
 ### VI – Recours humain, questions juridiques, politiques, organisationnelles.
 - <b>a) Quel est le recours humain au fonctionnement du système ?</b><br>
-  Le système fonctionnera en toute autonomie sur un serveur pour pouvoir être utilisés par les différents utilisateurs.<br>
+  Le système fonctionnera en toute autonomie sur un serveur pour pouvoir être utilisé par les différents utilisateurs.<br>
+  Le démarrage et la maintenance du système doivent être faits par du personnel qualifié comme l'administrateur système.<br>
   <br>
-  Si le système peut inscrire de lui-même un visiteur, ce n'est pas le cas pour les techniciens.<br>
+  Si le système est capable d'inscrire de lui-même un visiteur du moment qu'il valide le captcha, ce n'est pas le cas pour les techniciens.<br>
   En effet, quand bien même il passe par la plateforme, l'administrateur web doit les inscrire de lui-même.<br>
   Il en va de même pour la réinitialisation de mot de passe en cas d'oubli.<br>
   <br>
@@ -310,7 +311,7 @@ souhaitent-ils ?</u>
   L'application se doit de respecter la loi française « Informatique et liberté » du 6 janvier 1978, mise à jour le 1er juin 2019, relative à l'informatique, aux fichiers et aux libertés.<br>
   L'application est également soumise au règlement européen « Règlement Général sur la Protection des Données » (RGPD) du 27 avril 2016, relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données, et abrogeant la directive 95/46/CE.<br>
   <br>
-  A noter, la CNIL propose des recommandations vis à vis de la lois, notamment en matière de cookies.<br>
+  A noter, la CNIL propose des recommandations vis à vis de la loi, notamment en matière de cookies.<br>
   <br>
   Les articles peuvent être consultés via les liens ci-dessous :
   - <u>Loi « Informatique et liberté » :</u><br>
@@ -331,33 +332,31 @@ souhaitent-ils ?</u>
   <br>
   Ce qui aura pour effet une meilleure sollicitation des techniciens permettant d'alléger leurs plannings.<br>
   Grâce au matériel fonctionnel, les étudiants et professeurs pourront travailler dans de meilleures conditions et ainsi être plus joyeux et plus productif.<br>
-  Pour les personnes souffrant d'handicap, cela permettrait de les assurer qu'au moindre problème d'accessibilité, celui-ci sera résolut rapidement.<br>
+  Pour les personnes souffrant de handicap, cela permettrait de les assurer qu'au moindre problème d'accessibilité, celui-ci sera résolu rapidement.<br>
   <br>
- 
 
-  <br>
 - <b>d) Quels sont les besoins en formation ?</b><br>
   En général, il est nécessaire de savoir se servir d'un ordinateur et d'un navigateur internet.<br>
   <br>
-  Un guide d'utilisation comprennent une vidéo de présentation pour apprendre à se servir de l'application sera disponible.<br>
-  Celle-ci expliquera comment utiliser l'application comme comment our faire une demande de dépannage.<br>
+  Un guide d'utilisation comprenant une vidéo de présentation pour apprendre à se servir de l'application sera disponible.<br>
+  Celle-ci expliquera comment utiliser l'application comme pour faire une demande de dépannage.<br>
   <br>
-  On peut supposer une page web donnant des conseils pour les utilisateurs. Comme arriver à estimer un niveau d'urgence à une demande de dépannage afin de facilité la tâche des administrateurs.<br>
+  On peut supposer une page web donnant des conseils pour les utilisateurs. Comme arrivé à estimer le niveau d'urgence d'une demande de dépannage afin de faciliter la tâche des administrateurs.<br>
   <br>
   Dans tous les cas, l'établissement devra communiquer sur l'existence de l'application, le moyen d'y accéder et l'existence de ces aides.<br>
   <br>
 
 - <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
-  Nous supposons que :<br>
-   - tous les étudiants, professeurs et personnels concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
-   - le serveur contenant l'application sera toujours en ligne.<br>
-   - il peut y avoir des personnes avec un handicap pouvant affecter leur utilisation de l'application.<br>
-   - l'établissement communiquera sur l'application afin de solliciter l'aide des professeurs et étudiants
+  - Nous supposons que :<br>
+    - tous les étudiants, professeurs et personnel concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
+    - le serveur contenant l'application sera toujours en ligne.<br>
+    - l'utilisation de l'application par des personnes handicapées peut-être différente.<br>
+    - l'établissement communiquera sur l'application afin de solliciter l'aide des professeurs et étudiants.<br>
   <br>
-  L'application dépend de :<br>
-   - la présence des techniciens et des administrateurs au sein de l'IUT.
-  Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
-   - des lois françaises et celles de l'Union Européennes.
-  Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
-   - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
-   - l'implication des professeurs et utilisateurs pour résoudre les pannes le plus rapidement que possible
+  - L'application dépend de :<br>
+    - la présence des techniciens et des administrateurs au sein de l'IUT.
+      Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
+    - des lois françaises et celles de l'Union Européenne.
+      Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
+    - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
+    - l'implication et la réactivité des professeurs pour trouver et signaler des pannes.
