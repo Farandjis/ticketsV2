@@ -286,33 +286,73 @@ souhaitent-ils ?</u>
 ------------------------------------------------------------------------------------------------------------------------
 
 ### V – Autres exigences
+
+
 - <b>a) Processus de développement</b>
+
   - <u>i. Qui sont les participants au projet ?</u><br>
-  - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité, rapi-
-    dité, souplesse etc... )</u><br>
+
+    Les membre de notre équipe sont les principaux participants au projet.
+    Notre équipe est donc constituée de Tom BOGAERT, Matthieu FARDADJIS, Assia GOUABI, Enzo GUIGNOL et Florent VASSEUR--BERLIOUX.
+
+  - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
+
+    Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.
+
   - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
     souhaitent-ils ?</u><br>
+
+    Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communaction entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.
+
   - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
+
+    Le projet est de concevoir et programmer un site web de gestion de tickets. Aucun achat n'est nécessaire à la création de la plateforme web, puisque le matériel (RPi4) est pris en charge par le client.
+    Nous ne possédons pas de concurrents à proprement parlé.
+
   - <u>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
+
+    Nous pouvons noter en exigences sur le projet, l'execution d'une phase de test assurant le bon fonctionnement de l'application. On attends egalement le rendu d'annexes concernant l'organisation du travail de l'equipe ou encore la charte graphique du logo de l'application.
+
   - <u>vi. À quelle dépendance le projet est-il soumis ?</u><br>
+
+
 - <b>b) Règles métier</b><br>
+
+
+<br>
+
 - <b>c) Performances</b><br>
+
+  
+  Le site web se devra d'être le plus performent possible afind'en faciliter l'accés. Pour se faire, le programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme.
+
+<br>
+
 - <b>d) Opérations, sécurité, documentation</b><br>
-  Parler de l'injection SQL ?<br>
-  <br>
+
+  Tous le code étant utilisé pour mener le projet à bien se devra d'ête documenté afin d'assurer la lisibilité du programme. Toutes les fonctions générés seront accompagnées d'une Docstring.
+  
+  L'ensemble du programme sera egalement rendu impermeable au attaques de type Injection SQL. Le système sera protégé et restreindra les actions des utilisateurs afin de les empêcher de se détourner des indications de la plateforme web. Les mots de passes seront egalement encryptés. 
+
+
+<br>
 
 - <b>e) Utilisation et utilisabilité</b><br>
-  Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C.<br>
-  Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.<br>
-  <br>
-  Wave est une extension notamment disponible sur Google Chrome, Mozilla Firefox et Microsoft Edge.<br>
-  <br>
+
+  Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
+
+
+<br>
+
 - <b>f) Maintenance et portabilité</b><br>
-  parler du validateur W3C HTML et CSS ?<br>
-  <br>
+
+  La portabilité de l'application web sera vérifier en passant par le validateur de W3C.
+
+<br>
 
 - <b>g) Questions non résolues ou reportées à plus tard</b><br>
 
+  La présence de Javascript n'étant pas demandée, nous ne prévoyons pas d'en utiliser sur les pages web. Cependant, nous nous octroyons la possibilité d'en faire usage si nécessaire lors de nos phases de conception et de programmation.
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
