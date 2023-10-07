@@ -293,26 +293,26 @@ souhaitent-ils ?</u>
   - <u>i. Qui sont les participants au projet ?</u><br>
 
     Les membre de notre équipe sont les principaux participants au projet.
-    Notre équipe est donc constituée de Tom BOGAERT, Matthieu FARDADJIS, Assia GOUABI, Enzo GUIGNOL et Florent VASSEUR--BERLIOUX.
-
+    Notre équipe est donc constituée de Tom BOGAERT, Matthieu FARANDJIS, Assia GOUABI, Enzo GUIGNOLLE et Florent VASSEUR--BERLIOUX.<br>
+    <br>
   - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
 
-    Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.
-
+    Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.<br>
+    <br>
   - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
     souhaitent-ils ?</u><br>
 
-    Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communaction entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.
-
+    Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communaction entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
+    <br>
   - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
 
     Le projet est de concevoir et programmer un site web de gestion de tickets. Aucun achat n'est nécessaire à la création de la plateforme web, puisque le matériel (RPi4) est pris en charge par le client.
-    Nous ne possédons pas de concurrents à proprement parlé.
-
+    Nous ne possédons pas de concurrents à proprement parlé.<br>
+    <br>
   - <u>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
 
-    Nous pouvons noter en exigences sur le projet, l'execution d'une phase de test assurant le bon fonctionnement de l'application. On attends egalement le rendu d'annexes concernant l'organisation du travail de l'equipe ou encore la charte graphique du logo de l'application.
-
+    Nous pouvons noter en exigences sur le projet, l'execution d'une phase de test assurant le bon fonctionnement de l'application. On attends egalement le rendu d'annexes concernant l'organisation du travail de l'equipe ou encore la charte graphique du logo de l'application.<br>
+    <br>
   - <u>vi. À quelle dépendance le projet est-il soumis ?</u><br>
 
 
@@ -323,7 +323,6 @@ souhaitent-ils ?</u>
 
 - <b>c) Performances</b><br>
 
-  
   Le site web se devra d'être le plus performent possible afind'en faciliter l'accés. Pour se faire, le programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme.
 
 <br>
@@ -334,13 +333,11 @@ souhaitent-ils ?</u>
   
   L'ensemble du programme sera egalement rendu impermeable au attaques de type Injection SQL. Le système sera protégé et restreindra les actions des utilisateurs afin de les empêcher de se détourner des indications de la plateforme web. Les mots de passes seront egalement encryptés. 
 
-
 <br>
 
 - <b>e) Utilisation et utilisabilité</b><br>
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
-
 
 <br>
 
