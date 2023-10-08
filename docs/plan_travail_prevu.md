@@ -20,7 +20,7 @@ Ce document explique la façon dont nous pensons nous organiser dans le cadre de
 
 <br><br><br><br><br><br><br>
 
-## I – Déroulement prévu du projet 
+### I – Déroulement prévu du projet 
 
 <br><br>
 
@@ -107,7 +107,7 @@ De plus, nous aurons 2 points bilan de notre avancé sur la SAÉ.
 
 <br><br><br><br>
 
-## II - Priorités 
+### II - Priorités 
 
 <br><br>
 
@@ -137,7 +137,7 @@ Les autres tâches doivent respecter leur date de rendu, cependant elles n’int
 
 <br><br><br><br>
 
-## III - Répartition des tâches
+### III - Répartition des tâches
 
 <br><br>
 
