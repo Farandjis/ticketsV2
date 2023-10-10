@@ -163,7 +163,7 @@ Cependant, nous pensons diviser les grandes tâches pour se les répartir par gr
 
 - <u>Enzo : </u>
 
-      Blablabla 
+      Développement web (HTML, CSS, PHP), base de données (SQL)
 
 - <u>Matthieu : </u>
 
