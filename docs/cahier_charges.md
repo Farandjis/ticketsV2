@@ -15,6 +15,8 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 
 ## Plan
 
+# 🔴 /!\ RENDRE LES PARTIES, SOUS PARTIES CLIQUABLE !
+
 ### I – Objectif et portée
 - <b>a) Quels sont la portée et les objectifs généraux ?</b>
 - <b>b) Lecture du cahier des charges </b>
@@ -66,7 +68,7 @@ souhaitent-ils ?</u>
   archivés dans un journal.<br>
   <br>
 
-# RACONTER L'HISTOIRE DE L'APPLICATION (qui fait quoi, comment, qu'est ce que ça fait...)
+# 🔴 RACONTER L'HISTOIRE DE L'APPLICATION (qui fait quoi, comment, qu'est ce que ça fait...)
 
   La portée de l'utilisation de l'application s'arrête au réseau internet de l'IUT.
   L'application n'est pas utilisable en dehors de ce réseau.<br>
@@ -77,7 +79,7 @@ souhaitent-ils ?</u>
   Ce n'est pas un système purement interne ne concernant que les techniciens et les administrateurs.<br>
   <br>
 
-  # ÊTRE PLUS CLAIRE
+  # 🔴 ÊTRE PLUS CLAIRE
 
 - <b>b) La lecture du cahier des charges </b>
 
@@ -213,7 +215,7 @@ Par ordre alphabétique.
 | W3C                   | World Wide Web Consortium. Organisme international définissant les standards techniques liés au web et les règles à respecter pour tous les développeurs du monde.                                                                       |
 | Wave                  | Extension de navigateur internet permettant d'évaluer l'accessibilité d'une page web pour les personnes souffrant de handicap.                                                                                                           |
 
-# Parler de boîte noire
+# 🔴 Parler de boîte noire
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -263,9 +265,9 @@ Par ordre alphabétique.
     > - Accède et utilise les journaux d'activités
 
 - <b>b) Les cas d’utilisation métier (concepts opérationnels).</b>
-- # b) CU stratégique
+- # 🔴 b) CU stratégique
 - <b>c) Les cas d’utilisation système.</b>
-- # c) CU Utilisateur
+- # 🔴 c) CU Utilisateur
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -292,7 +294,7 @@ Par ordre alphabétique.
   La carte SD se devra de contenir un serveur web (Apache est conseillé) ainsi qu’un serveur SGBD.<br>
   Aussi, le serveur contenant l’application web sera porté sur Raspberry Pi 4 et sera accessible par connexion SSH.<br>
 
-  # La sous-partie b est un peu inutile puisque le serveur ne va pas communiquer avec d'autres serveurs pour fonctionner
+  # 🔴 La sous-partie b est un peu inutile puisque le serveur ne va pas communiquer avec d'autres serveurs pour fonctionner
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -309,7 +311,7 @@ Par ordre alphabétique.
     <br>
   - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
 
-    # ii -> favorise la communication
+    # 🔴 ii -> favorise la communication
 
     Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.<br>
 1
@@ -317,7 +319,7 @@ Par ordre alphabétique.
   - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
     souhaitent-ils ?</u><br>
 
-  # Les informations que veut le client sur l'évolution du projet (les rapports de tests, là où on en est, etc)
+  # 🔴 Les informations que veut le client sur l'évolution du projet (les rapports de tests, là où on en est, etc)
 
     Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communication entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
     <br>
@@ -331,18 +333,18 @@ Par ordre alphabétique.
     Nous pouvons noter en exigences sur le projet, l'execution d'une phase de test assurant le bon fonctionnement de l'application. On attends egalement le rendu d'annexes concernant l'organisation du travail de l'equipe ou encore la charte graphique du logo de l'application.<br>
     <br>
   - <u>vi. À quelle dépendance le projet est-il soumis ?</u><br>
-  # vi. Dire qu'on en a pas parce que on utilise PHP MySQL et que ça change pas trop...
+  # 🔴 vi. Dire qu'on en a pas parce que on utilise PHP MySQL et que ça change pas trop...
 
 - <b>b) Règles métier</b><br>
-  # b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?)
+  # 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?)
 
 <br>
 
 - <b>c) Performances</b><br>
 
   Le site web se devra d'être le plus performent possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme.
-  # Dire qu'on a pas de contrainte et qu'on est pas évalué sur la performance
-  # Dire qu'on va respecter les 4 règles en BDD (ex : pas de redondance)
+  # 🔴 Dire qu'on a pas de contrainte et qu'on est pas évalué sur la performance
+  # 🔴 Dire qu'on va respecter les 4 règles en BDD (ex : pas de redondance)
 
 <br>
 
@@ -358,14 +360,14 @@ Par ordre alphabétique.
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
 
-  # e) Le prof ne sait pas ce que c'est
+  # 🔴 e) Le prof ne sait pas ce que c'est
 <br>
 
 - <b>f) Maintenance et portabilité</b><br>
 
   La portabilité de l'application web sera vérifier en passant par le validateur de W3C.
-  # PHP MySQL etc fonctionne aussi bien sur un serveur Windows que sur un serveur Linux... N'importe quel navigateur...
-  # Validateur W3C pour s'assurer que ça marche partout (sur Firefox, Chrome, Edge, Internet Explorer
+  # 🔴 PHP MySQL etc fonctionne aussi bien sur un serveur Windows que sur un serveur Linux... N'importe quel navigateur...
+  # 🔴 Validateur W3C pour s'assurer que ça marche partout (sur Firefox, Chrome, Edge, Internet Explorer
 
 <br>
 
@@ -436,7 +438,7 @@ Par ordre alphabétique.
     - la présence des techniciens et des administrateurs au sein de l'IUT.
       Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
     - des lois françaises et celles de l'Union Européenne.
-    - # Dire RGPD directement plutôt que lois UE
+    - # 🔴 Dire RGPD directement plutôt que lois UE
       Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
     - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
     - l'implication et la réactivité des professeurs pour trouver et signaler des pannes.
