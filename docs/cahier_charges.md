@@ -311,15 +311,11 @@ Par ordre alphabétique.
     <br>
   - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
 
-    # 🔴 ii -> favorise la communication
-
-    Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main.<br>
+    Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main. Nous favoriserons au mieux la conpréhension et la communication entre les utilisateurs, techniciens et administrateurs.<br>
 1
     <br>
   - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
     souhaitent-ils ?</u><br>
-
-  # 🔴 Les informations que veut le client sur l'évolution du projet (les rapports de tests, là où on en est, etc)
 
     Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communication entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
     <br>
@@ -333,7 +329,7 @@ Par ordre alphabétique.
     Nous pouvons noter en exigences sur le projet, l'execution d'une phase de test assurant le bon fonctionnement de l'application. On attends egalement le rendu d'annexes concernant l'organisation du travail de l'equipe ou encore la charte graphique du logo de l'application.<br>
     <br>
   - <u>vi. À quelle dépendance le projet est-il soumis ?</u><br>
-  # 🔴 vi. Dire qu'on en a pas parce que on utilise PHP MySQL et que ça change pas trop...
+  Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL. 
 
 - <b>b) Règles métier</b><br>
   # 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?)
@@ -342,9 +338,7 @@ Par ordre alphabétique.
 
 - <b>c) Performances</b><br>
 
-  Le site web se devra d'être le plus performent possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme.
-  # 🔴 Dire qu'on a pas de contrainte et qu'on est pas évalué sur la performance
-  # 🔴 Dire qu'on va respecter les 4 règles en BDD (ex : pas de redondance)
+  Le site web se devra d'être le plus performent possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme. Nous ne possédons pas de réelles contraintes de performances.
 
 <br>
 
@@ -360,14 +354,13 @@ Par ordre alphabétique.
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
 
-  # 🔴 e) Le prof ne sait pas ce que c'est
+  # 🔴 e) Le prof ne sait pas ce que c'est (!?)
 <br>
 
 - <b>f) Maintenance et portabilité</b><br>
 
-  La portabilité de l'application web sera vérifier en passant par le validateur de W3C.
-  # 🔴 PHP MySQL etc fonctionne aussi bien sur un serveur Windows que sur un serveur Linux... N'importe quel navigateur...
-  # 🔴 Validateur W3C pour s'assurer que ça marche partout (sur Firefox, Chrome, Edge, Internet Explorer
+  La portabilité et la maintenance de l'application web sera notamment vérifié en passant par le validateur de W3C. Il permet de s'assurer la compatibilité de la plateforme avec tous les navigateurs, et permet de s'assurer que le code est conforme avec les exigences actuels.
+  PHP et MySQL fonctionnent aussi bien sur un serveur Windows que sur un serveur Linux.
 
 <br>
 
