@@ -155,7 +155,7 @@ Cependant, nous pensons diviser les grandes tâches pour se les répartir par gr
 
 - <u>Tom : </u>
 
-      Blablabla 
+      Développement en langage de balisage (HTML, CSS), conception (logo, maquette).
 
 - <u>Assia : </u>
 
@@ -163,7 +163,7 @@ Cependant, nous pensons diviser les grandes tâches pour se les répartir par gr
 
 - <u>Enzo : </u>
 
-      Développement web (HTML, CSS, PHP), base de données (SQL)
+      Développement web (HTML, CSS, PHP), base de données (SQL).
 
 - <u>Matthieu : </u>
 
