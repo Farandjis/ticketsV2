@@ -172,19 +172,12 @@ souhaitent-ils ?</u>
 
 - - ii) Les différents niveaux 
 
-| Niveau stratégique (au-dessus de la mer)          | Niveau utilisateur (de la mer)                  | Niveau sous-fonctions (en-dessous de la mer) |
-|---------------------------------------------------|-------------------------------------------------|----------------------------------------------|
-| Stocker et répertorier des tickets                | Ouverture d'un ticket                           | Authentification                             |
-| Enregistrer les utilisateurs                      | Se connecter ou déconnecter                     | Identifier un utilisateur                    |
-| Gérer les profils utilisateurs                    | Modifier ou changer leur mot de passe           | Suivre leur actualité                        |
-| Gérer l'inscription des visiteurs                 | Remplir un formulaire pour créer un utilisateur |                                              |
-| Recueillir et afficher les demandes de dépannages | Consulter les demandes faites et leurs statuts  |                                              |
-| Produire des statistiques sur les tickets         | Modification d'un libellé                       |                                              |
-| Produire des statistiques sur les connexions      | Changer l'état d'un ticket                      |                                              |
-|                                                   | Définir un niveau d'urgence                     |                                              |
-|                                                   | Créer un compte technicien                      |                                              |
+| Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                               | Niveau sous-fonctions (en-dessous de la mer) |
+|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                     | Authentifier (connexion et déconnexion)      |
+| Gérer les profils utilisateurs           | - Réinitialiser ou modifier leur mot de passe <br> <br> - Créer un utilisateur <br> <br> - Accéder à son tableau de bord                                                                                                     | Identifier un utilisateur                    |
+| Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br> <br> - Afficher les demandes de dépannages <br> <br> - Changer l'état d'un ticket <br> <br> - Modifier le niveau d'urgence d'un ticket <br> <br> - Modifier un libellé |                                              |
 <br>
-
 
 - - iii) Un schéma descriptif des niveaux 
 
