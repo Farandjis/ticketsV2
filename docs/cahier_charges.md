@@ -11,6 +11,8 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 
 </div>
 
+### Version en cours de rédaction. <br> Les remarques de M. DJERROUD sont marquées via un "🔴".
+
 <br><br><br><br><br><br><br>
 
 ## Plan
@@ -325,7 +327,7 @@ Par ordre alphabétique.
   Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL. 
 
 - <b>b) Règles métier</b><br>
-  # 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?)
+  # 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?). Poser les questions à M. Hoguin
 
 <br>
 
@@ -347,7 +349,7 @@ Par ordre alphabétique.
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
 
-  # 🔴 e) Le prof ne sait pas ce que c'est (!?)
+  # 🔴 e) Demander à M. Dufaud peut être
 <br>
 
 - <b>f) Maintenance et portabilité</b><br>
@@ -420,11 +422,10 @@ Par ordre alphabétique.
     - l'utilisation de l'application par des personnes handicapées peut-être différente.<br>
     - l'établissement communiquera sur l'application afin de solliciter l'aide des professeurs et étudiants.<br>
   <br>
-  L'application dépend de :<br>
+  - L'application dépend de :<br>
     - la présence des techniciens et des administrateurs au sein de l'IUT.
       Si l'un d'eux se trouve indisponible, cela peut générer des retards dans la gestion des tickets.<br>
-    - des lois françaises et celles de l'Union Européenne.
-    - # 🔴 Dire RGPD directement plutôt que lois UE
+    - de la loi "Informatique et liberté" en France, ainsi que le RGPD dans l'Union Européenne.
       Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
     - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
     - l'implication et la réactivité des professeurs pour trouver et signaler des pannes.
