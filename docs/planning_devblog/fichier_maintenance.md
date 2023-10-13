@@ -8,7 +8,7 @@ INF2-A
 
 <br><br>
 Ce document permet de récapituler la progression de chacun et de l'avancée du projet dans sa globalité.<br>
-En plus de la progression hebdomadaire, chaque semaine, il y aura un bilan expliquant ce qui fonctionne, nos problèmes, nos discussions ou encore nos prévisions.
+En plus de la progression journalière, chaque semaine, il y aura un bilan expliquant ce qui fonctionne, nos problèmes, nos discussions ou encore nos prévisions.
 </div>
 
 <br><br><br>
