@@ -20,41 +20,41 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 # 🔴 /!\ RENDRE LES PARTIES, SOUS PARTIES CLIQUABLE !
 
 ### I – Objectif et portée
-- <b>a) Quels sont la portée et les objectifs généraux ?</b>
-- <b>b) Lecture du cahier des charges </b>
-  - <u>i. Liste des objets, acteurs et actions </u>
-  - <u>ii. Les différents niveaux </u>
-  - <u>iii. Un schéma descriptif des niveaux </u>
-### II – Terminologie employée / Glossaire
-### III – Les cas d’utilisation
-- <b>a) Les acteurs principaux et leurs objectifs généraux.</b>
-- <b>b) Les cas d’utilisation métier (concepts opérationnels).</b>
-- <b>c) Les cas d’utilisation système.</b>
-### IV – La technologie employée
-- <b>a) Quelles sont les exigences technologiques pour ce système ?</b>
-- <b>b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?</b>
-### V – Autres exigences
-- <b>a) Processus de développement</b>
-  - <u>i. Qui sont les participants au projet ?</u>
-  - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité, rapi-
+- <b>[a) Quels sont la portée et les objectifs généraux ?](#p1)</b>
+- <b>[b) Lecture du cahier des charges </b>
+  - <u>[i. Liste des objets, acteurs et actions </u>
+  - <u>[ii. Les différents niveaux </u>
+  - <u>[iii. Un schéma descriptif des niveaux </u>
+### [II – Terminologie employée / Glossaire
+### [III – Les cas d’utilisation
+- <b>[a) Les acteurs principaux et leurs objectifs généraux.</b>
+- <b>[b) Les cas d’utilisation métier (concepts opérationnels).</b>
+- <b>[c) Les cas d’utilisation système.</b>
+### [IV – La technologie employée
+- <b>[a) Quelles sont les exigences technologiques pour ce système ?</b>
+- <b>[b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?</b>
+### [V – Autres exigences
+- <b>[a) Processus de développement</b>
+  - <u>[i. Qui sont les participants au projet ?</u>
+  - <u>[ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité, rapi-
 dité, souplesse etc... )</u>
-  - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
+  - <u>[iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
 souhaitent-ils ?</u>
-  - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u>
-  - <u>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u>
-  - <u>vi. À quelle dépendance le projet est-il soumis ?</u>
-- <b>b) Règles métier</b>
-- <b>c) Performances</b>
-- <b>d) Opérations, sécurité, documentation</b>
-- <b>e) Utilisation et utilisabilité</b>
-- <b>f) Maintenance et portabilité</b>
-- <b>g) Questions non résolues ou reportées à plus tard</b>
-### VI – Recours humain, questions juridiques, politiques, organisationnelles.
-- <b>a) Quel est le recours humain au fonctionnement du système ?</b>
-- <b>b) Quelles sont les exigences juridiques et politiques ?</b>
-- <b>c) Quelles sont les conséquences humaines de la réalisation du système ?</b>
-- <b>d) Quels sont les besoins en formation ?</b>
-- <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b>
+  - <u>[iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u>
+  - <u>[v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u>
+  - <u>[vi. À quelle dépendance le projet est-il soumis ?</u>
+- <b>[b) Règles métier</b>
+- <b>[c) Performances</b>
+- <b>[d) Opérations, sécurité, documentation</b>
+- <b>[e) Utilisation et utilisabilité</b>
+- <b>[f) Maintenance et portabilité</b>
+- <b>[g) Questions non résolues ou reportées à plus tard</b>
+### [VI – Recours humain, questions juridiques, politiques, organisationnelles.
+- <b>[a) Quel est le recours humain au fonctionnement du système ?</b>
+- <b>[b) Quelles sont les exigences juridiques et politiques ?</b>
+- <b>[c) Quelles sont les conséquences humaines de la réalisation du système ?</b>
+- <b>[d) Quels sont les besoins en formation ?</b>
+- <b>[e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b>
 
 
 
@@ -62,23 +62,30 @@ souhaitent-ils ?</u>
 <br><br><br><br><br><br><br>
 
 ------------------------------------------------------------------------------------------------------------------------
-### I – Objectif et portée
+### <a name="p1"></a>I – Objectif et portée
 - <b>a) Quels sont la portée et les objectifs généraux ?</b><br>
   Le projet consiste à réaliser une application web permettant de récupérer les demandes de dépannage des utilisateurs
   dans les salles machines. En fonction des utilisateurs, l’application permet de voir les demandes,
   d’en créer ou de les gérer. Les demandes peuvent être classées en fonction de l’urgence qu’elle représente et seront
   archivés dans un journal.<br>
+  Nous avons quatre types de personnes : les visiteurs, les utilisateurs, les techniciens et les administrateurs web et système.<br>
+  Si les visiteurs ne peuvent que consulter les 10 dernières demandes, les utilisateurs peuvent en voir plus et en créer.<br>
+  L'administrateur web administre la plateforme et peut modifier et répartir les tickets vers les deux techniciens.<br>
+  Les techniciens quant à eux peuvent indiquer l'état des tickets.
+  L'administrateur système surveille l'utilisation de l'application et l'utilise pour faire des statistiques.<br>
+  <br>
+  C'est une application interne à l'IUT.<br>
   <br>
 
 # 🔴 RACONTER L'HISTOIRE DE L'APPLICATION (qui fait quoi, comment, qu'est ce que ça fait...)
 
   La portée de l'utilisation de l'application s'arrête au réseau internet de l'IUT.
-  L'application n'est pas utilisable en dehors de ce réseau.<br>
-  Indépendamment de la communication entre le client et le serveur, la portée de l'application s'arrête au serveur du RaspberryPi 4.
-  L'application n'a pas directement accès aux machines de l'IUT ou aux autres serveurs. Elle est indépendante.<br>
+  Aucun utilisateur ne peut l'utiliser en dehors de ce réseau.<br>
+  Indépendamment de la communication entre le client et le serveur, l'application ne communique pas avec les autres serveurs de l'IUT.
+  On peut ainsi dire que sa portée d'exécution s'arrête au serveur du RaspberryPi 4.
   <br>
-  On peut donc considérer le système comme boîte noire, puisqu'il s'adresse à différents acteurs comme les professeurs et les étudiants.
-  Ce n'est pas un système purement interne ne concernant que les techniciens et les administrateurs.<br>
+  L'application s'adresse à différents acteurs comme les professeurs et les étudiants.
+  Ce n'est pas un système purement interne ne concernant que les techniciens et les administrateurs pour la gestion des salles machines.<br>
   <br>
 
   # 🔴 ÊTRE PLUS CLAIRE
@@ -196,21 +203,20 @@ Par ordre alphabétique.
 |:-----------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | CNIL                   | Commission Nationale de l'Informatique et des Libertés. Autorité administrative indépendante française chargée de veiller notamment à ce que l’informatique soit au service du citoyen.                                                  |
 | Connexion infructueuse | L'échec d'une tentative de connexion à un système ou à un compte utilisateur en raison d'informations incorrectes ou d'un problème technique.                                                                                            |
-| Cookie                | (en informatique) : Petit fichier stocké par un serveur dans le terminal (ordinateur, téléphone, etc.) d’un utilisateur et associé à un domaine web.                                                                                     |
-| Demande de dépannage  | Une requête soumise par un utilisateur pour signaler un problème ou une difficulté technique qui nécessite une intervention ou une résolution (Ticket) par l'équipe de support informatique.                                             |
-| Injection SQL         | Technique permettant d’injecter des éléments de type SQL dans les champs des formulaires web ou dans les liens des pages afin de les envoyer au serveur web dans l'objectif de modifier des éléments présents dans une base de données. |
-| Libellés              | Des étiquettes ou des mots-clés attribués à un ticket informatique pour catégoriser, organiser et faciliter la recherche des problèmes similaires ou des demandes de support.                                                            |
-| RGPD                  | Règlement Général sur la Protection des Données. Texte de référence en matière de protection des données à caractère personnel. Il renforce et unifie la protection des données pour les individus au sein de l'Union européenne.        |
-| RPi4                  | Raspberry Pi 4 un ordinateur monocarte de petite taille développé par la Fondation Raspberry Pi.                                                                                                                                         |
-| Scenario              | Séquence d'actions qui se déroulent dans une situation donnée ou une histoire                                                                                                                                                                                                                                        |
-| SGBD                  | Système de Gestion de Base de Données.                                                                                                                                                                                                   |
-| Support informatique  | L'assistance technique qui réalise la gestion des demandes d'assistance, le dépannage des problèmes techniques, la résolution des questions liées à l'informatique.                                                                      |
-| Tableau de bord       | Une interface en ligne qui affiche des informations récapitulatives et des données clés pour aider les utilisateurs à surveiller et à gérer les opérations liées aux tickets et au support informatique.                                 |
-| Ticket                | Enregistre une tâche effectuée (ou qui doit être effectuée) par le système de support informatique afin de rectifier les problèmes, résoudre les demandes des clients.                                                                   |
-| W3C                   | World Wide Web Consortium. Organisme international définissant les standards techniques liés au web et les règles à respecter pour tous les développeurs du monde.                                                                       |
-| Wave                  | Extension de navigateur internet permettant d'évaluer l'accessibilité d'une page web pour les personnes souffrant de handicap.                                                                                                           |
+| Cookie                 | (en informatique) : Petit fichier stocké par un serveur dans le terminal (ordinateur, téléphone, etc.) d’un utilisateur et associé à un domaine web.                                                                                     |
+| Demande de dépannage   | Une requête soumise par un utilisateur pour signaler un problème ou une difficulté technique qui nécessite une intervention ou une résolution (Ticket) par l'équipe de support informatique.                                             |
+| Injection SQL          | Technique permettant d’injecter des éléments de type SQL dans les champs des formulaires web ou dans les liens des pages afin de les envoyer au serveur web dans l'objectif de modifier des éléments présents dans une base de données. |
+| Libellés               | Des étiquettes ou des mots-clés attribués à un ticket informatique pour catégoriser, organiser et faciliter la recherche des problèmes similaires ou des demandes de support.                                                            |
+| RGPD                   | Règlement Général sur la Protection des Données. Texte de référence en matière de protection des données à caractère personnel. Il renforce et unifie la protection des données pour les individus au sein de l'Union européenne.        |
+| RPi4                   | Raspberry Pi 4 un ordinateur monocarte de petite taille développé par la Fondation Raspberry Pi.                                                                                                                                         |
+| Scenario               | Séquence d'actions qui se déroulent dans une situation donnée ou une histoire                                                                                                                                                                                                                                        |
+| SGBD                   | Système de Gestion de Base de Données.                                                                                                                                                                                                   |
+| Support informatique   | L'assistance technique qui réalise la gestion des demandes d'assistance, le dépannage des problèmes techniques, la résolution des questions liées à l'informatique.                                                                      |
+| Tableau de bord        | Une interface en ligne qui affiche des informations récapitulatives et des données clés pour aider les utilisateurs à surveiller et à gérer les opérations liées aux tickets et au support informatique.                                 |
+| Ticket                 | Enregistre une tâche effectuée (ou qui doit être effectuée) par le système de support informatique afin de rectifier les problèmes, résoudre les demandes des clients.                                                                   |
+| W3C                    | World Wide Web Consortium. Organisme international définissant les standards techniques liés au web et les règles à respecter pour tous les développeurs du monde.                                                                       |
+| Wave                   | Extension de navigateur internet permettant d'évaluer l'accessibilité d'une page web pour les personnes souffrant de handicap.                                                                                                           |
 
-# 🔴 Parler de boîte noire
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
