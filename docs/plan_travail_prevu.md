@@ -14,17 +14,17 @@ Ce document explique la façon dont nous pensons nous organiser dans le cadre de
 <br><br><br><br><br><br><br>
 
 ## Plan
-### I – Déroulement prévu du projet 
-### II - Priorités 
-### III - Répartition des tâches
+### [I – Déroulement prévu du projet](#p1)
+### [II - Priorités](#p2)
+### [III - Répartition des tâches](#p3)
 
 <br><br><br><br><br><br><br>
 
-### I – Déroulement prévu du projet 
+###  <a name="p1"></a>I – Déroulement prévu du projet 
 
 <br><br>
 
-<b>L’élaboration du projet se déroulera dans cet ordre : </b>
+<b>Voici une approximation de l'ordre du déroulement du projet : </b>
 
 - <u>Création du cahier des charges :<br></u>
   -> rendu : semaine du 2 octobre 2023?
@@ -89,10 +89,6 @@ Ce document explique la façon dont nous pensons nous organiser dans le cadre de
 
 <br><br>
 
-Tout le long de la création de la partie dynamique du site internet, il faudra concevoir des tests pour tester le programme. Cela peut se retrouver sous la forme de scénario à tester auquel on vérifie le résultat obtenu. 
-
-<br>
-
 Nous aurons des devoirs supplémentaires à rendre durant cette SAÉ. Notamment de novembre à janvier : 
 
 - Organisation de nos sprints pour la mise en place des modules de l’application.
@@ -105,13 +101,20 @@ Nous aurons des devoirs supplémentaires à rendre durant cette SAÉ. Notamment 
 
 De plus, nous aurons 2 points bilan de notre avancé sur la SAÉ.
 
+<br>
+De manière plus précise, les tâches seront réparties en semaine sur l'image planning.img de la branche planning_devblog (dans docs/planning_devblog).<br>
+Ce planning est régulièrement modifié et suit l'évolution du projet.
+Dans ce même répertoire, il y a l'organisation prévue du dépôt git ce qui permet de nous donner une idée du déroulement des tâches.
+
+<br>
+
 <br><br><br><br>
 
-### II - Priorités 
+### <a name="p2"></a>II - Priorités 
 
 <br><br>
 
-<b>Toute les tâches décrite plus tôt doivent être faite, cependant, nous pouvons leur donner un ordre d’importance :  </b>
+<b>Toutes les tâches décrite plus tôt doivent être faite, cependant, nous pouvons leur donner un ordre d’importance :  </b>
 
 <br>
 
@@ -120,16 +123,20 @@ De plus, nous aurons 2 points bilan de notre avancé sur la SAÉ.
 - Installer le serveur s'avère être la tâche la plus importante. Sans cela, il est impossible de faire un site internet dynamique avec PHP et MySQL. 
 
 - Il est également très important de concevoir ce que nous allons faire. Que ce soit la base de données, ou l’application web. 
-Non seulement cela permet de coordonnés le travail de chaque membre du groupe, mais en plus, cela permet d’être certain de l’harmonisation des données, des pages au sein de l’application. 
+Non seulement cela permet de coordonner le travail de chaque membre du groupe, mais en plus, cela permet d’être certain de l’harmonisation des données, des pages au sein de l’application. 
 
-- Pour pouvoir se lancer dans le développement en PHP, il est indispensable d’avoir une base de données fonctionnel dès le début du développement. Sans cela, il nous sera compliqué de stocker et de récupérer les données. 
+- Pour pouvoir se lancer dans le développement en PHP, il est indispensable d’avoir une base de données fonctionnelle dès le début du développement. Sans cela, il nous sera compliqué de stocker et de récupérer les données. 
 
 - Le PHP est obligatoire pour pouvoir faire une application satisfaisant notre client. La création de ces pages est une obligation absolue et une priorité dès qu’il est possible de le faire. 
 
 - Vérification que l’application est parfaitement fonctionnelle et qu’il n’y a pas de bug. 
 
 - Vérification des critères d’accessibilité. 
-Il est important de vérifier que notre application convient à tous les handicape, et ce n’est pas quelque chose à oublier. Cependant même sans l’application reste fonctionnel pour la plupart des personnes. 
+Il est important de vérifier que notre application convient à tous les handicape, et ce n’est pas quelque chose à oublier. Cependant même sans l’application reste fonctionnelle pour la plupart des personnes. 
+
+<br>
+
+Dans tous les cas, sur le planning, les fichiers à rendre et leur date de rendu est marqué en rouge, et les tâches à terminer absolument avant une certaine date sont marqués en orange.<br>
 
 <br>
 
@@ -137,14 +144,19 @@ Les autres tâches doivent respecter leur date de rendu, cependant elles n’int
 
 <br><br><br><br>
 
-### III - Répartition des tâches
+### <a name="p3"></a>III - Répartition des tâches
 
 <br><br>
 
-Nous essayons au maximum que chacun puisse s’investir dans les différentes tâches et que la quantité de travail soit égale entre nous. 
+Nous essayons au maximum que chacun puisse s’investir dans les différentes tâches et que la quantité de travail soit égale entre nous.<br>
+Cependant, nous pensons diviser les grandes tâches pour se les répartir par groupe de 2 afin de maximiser l’utilisation de nos points fort. Dans tous les cas, chaque membre se doit de s’intéresser au travail des autres membres.<br>
+<br>
+Le chef de projet prendra compte des préférences de ses collègues lors de l'assignation des tâches.<br>
+Cependant, des tâches peuvent être attribuées même si cela ne plaît pas à la personne.<br>
+Dans tous les cas, le chef de projet suit l'avancer de chaque membre et le fichier de maintenance permet d'en garder une trace.<br> 
 
-Cependant, nous pensons diviser les grandes tâches pour se les répartir par groupe de 2 afin de maximiser l’utilisation de nos points fort. Dans tous les cas, chaque membre se doit de s’intéresser au travail des autres membres. 
- 
+
+
 <br><br>
 
 <b>Qui se propose à faire quoi : </b>
