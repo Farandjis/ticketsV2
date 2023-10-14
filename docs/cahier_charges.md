@@ -11,50 +11,48 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 
 </div>
 
-### Version en cours de rédaction. <br> Les remarques de M. DJERROUD sont marquées via un "🔴".
+### Les remarques de M. DJERROUD sont marquées via un "🔴".
 
 <br><br><br><br><br><br><br>
 
 ## Plan
 
-# 🔴 /!\ RENDRE LES PARTIES, SOUS PARTIES CLIQUABLE !
-
-### I – Objectif et portée
-- <b>[a) Quels sont la portée et les objectifs généraux ?](#p1)</b>
-- <b>[b) Lecture du cahier des charges </b>
-  - <u>[i. Liste des objets, acteurs et actions </u>
-  - <u>[ii. Les différents niveaux </u>
-  - <u>[iii. Un schéma descriptif des niveaux </u>
-### [II – Terminologie employée / Glossaire
-### [III – Les cas d’utilisation
-- <b>[a) Les acteurs principaux et leurs objectifs généraux.</b>
-- <b>[b) Les cas d’utilisation métier (concepts opérationnels).</b>
-- <b>[c) Les cas d’utilisation système.</b>
-### [IV – La technologie employée
-- <b>[a) Quelles sont les exigences technologiques pour ce système ?</b>
-- <b>[b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?</b>
-### [V – Autres exigences
-- <b>[a) Processus de développement</b>
-  - <u>[i. Qui sont les participants au projet ?</u>
+### [I – Objectif et portée](#p1)
+- <b>[a) Quels sont la portée et les objectifs généraux ?](#sp1a)</b>
+- <b>[b) Lecture du cahier des charges](#sp1b) </b>
+  - <u>[i. Liste des objets, acteurs et actions](#sp1bi) </u>
+  - <u>[ii. Les différents niveaux](#sp1bii) </u>
+  - <u>[iii. Un schéma descriptif des niveaux](#sp1biii) </u>
+### [II – Terminologie employée / Glossaire](#p2)
+### [III – Les cas d’utilisation](#p3)
+- <b>[a) Les acteurs principaux et leurs objectifs généraux](#p3a).</b>
+- <b>[b) Les cas d’utilisation métier (concepts opérationnels).](#p3b)</b>
+- <b>[c) Les cas d’utilisation système.](#p3c)</b>
+### [IV – La technologie employée](#p4)
+- <b>[a) Quelles sont les exigences technologiques pour ce système ?](#p4a)</b>
+- <b>[b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?](#p4b)</b>
+### [V – Autres exigences](#p5)
+- <b>[a) Processus de développement](#p5a)</b>
+  - <u>[i. Qui sont les participants au projet ?](#p5ai)</u>
   - <u>[ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité, rapi-
-dité, souplesse etc... )</u>
+dité, souplesse etc... )](#p5aii)</u>
   - <u>[iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
-souhaitent-ils ?</u>
-  - <u>[iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u>
-  - <u>[v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u>
-  - <u>[vi. À quelle dépendance le projet est-il soumis ?</u>
-- <b>[b) Règles métier</b>
-- <b>[c) Performances</b>
-- <b>[d) Opérations, sécurité, documentation</b>
-- <b>[e) Utilisation et utilisabilité</b>
-- <b>[f) Maintenance et portabilité</b>
-- <b>[g) Questions non résolues ou reportées à plus tard</b>
-### [VI – Recours humain, questions juridiques, politiques, organisationnelles.
-- <b>[a) Quel est le recours humain au fonctionnement du système ?</b>
-- <b>[b) Quelles sont les exigences juridiques et politiques ?</b>
-- <b>[c) Quelles sont les conséquences humaines de la réalisation du système ?</b>
-- <b>[d) Quels sont les besoins en formation ?</b>
-- <b>[e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b>
+souhaitent-ils ?](#p5aiii)</u>
+  - <u>[iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?](#p5aiv)</u>
+  - <u>[v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)](#p5av)</u>
+  - <u>[vi. À quelle dépendance le projet est-il soumis ?](#p5avi)</u>
+- <b>[b) Règles métier](#p5b)</b>
+- <b>[c) Performances](#p5c)</b>
+- <b>[d) Opérations, sécurité, documentation](#p5d)</b>
+- <b>[e) Utilisation et utilisabilité](#p5e)</b>
+- <b>[f) Maintenance et portabilité](#p5f)</b>
+- <b>[g) Questions non résolues ou reportées à plus tard](#p5g)</b>
+### [VI – Recours humain, questions juridiques, politiques, organisationnelles.](#p6)
+- <b>[a) Quel est le recours humain au fonctionnement du système ?v</b>](#p6a)
+- <b>[b) Quelles sont les exigences juridiques et politiques ?](#p6b)</b>
+- <b>[c) Quelles sont les conséquences humaines de la réalisation du système ?](#p6c)</b>
+- <b>[d) Quels sont les besoins en formation ?](#p6d)</b>
+- <b>[e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?](#p6e)</b>
 
 
 
@@ -63,7 +61,7 @@ souhaitent-ils ?</u>
 
 ------------------------------------------------------------------------------------------------------------------------
 ### <a name="p1"></a>I – Objectif et portée
-- <b>a) Quels sont la portée et les objectifs généraux ?</b><br>
+- <b><a name="p1a"></a>a) Quels sont la portée et les objectifs généraux ?</b><br>
   Le projet consiste à réaliser une application web permettant de récupérer les demandes de dépannage des utilisateurs
   dans les salles machines. En fonction des utilisateurs, l’application permet de voir les demandes,
   d’en créer ou de les gérer. Les demandes peuvent être classées en fonction de l’urgence qu’elle représente et seront
@@ -77,7 +75,6 @@ souhaitent-ils ?</u>
   C'est une application interne à l'IUT.<br>
   <br>
 
-# 🔴 RACONTER L'HISTOIRE DE L'APPLICATION (qui fait quoi, comment, qu'est ce que ça fait...)
 
   La portée de l'utilisation de l'application s'arrête au réseau internet de l'IUT.
   Aucun utilisateur ne peut l'utiliser en dehors de ce réseau.<br>
@@ -88,11 +85,10 @@ souhaitent-ils ?</u>
   Ce n'est pas un système purement interne ne concernant que les techniciens et les administrateurs pour la gestion des salles machines.<br>
   <br>
 
-  # 🔴 ÊTRE PLUS CLAIRE
 
-- <b>b) La lecture du cahier des charges </b>
+- <b><a name="p1b"></a>b) La lecture du cahier des charges </b>
 
-  - i) Liste des objets, acteurs et actions
+  - i)<a name="p1bi"></a> Liste des objets, acteurs et actions
 
 
 <table>
@@ -179,7 +175,7 @@ souhaitent-ils ?</u>
 </table>
 <br>
 
-- - ii) Les différents niveaux 
+- - <a name="p1bii"></a>ii) Les différents niveaux 
 
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                               | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
@@ -188,14 +184,14 @@ souhaitent-ils ?</u>
 | Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br> <br> - Afficher les demandes de dépannages <br> <br> - Changer l'état d'un ticket <br> <br> - Modifier le niveau d'urgence d'un ticket <br> <br> - Modifier un libellé |                                              |
 <br>
 
-- - iii) Un schéma descriptif des niveaux 
+- - <a name="p1biii"></a>iii) Un schéma descriptif des niveaux 
 
 ![](img/schema_lecture_cahier_charges.PNG "Schema de la lecture du cahier des charges")
 
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
-### II – Terminologie employée / Glossaire
+### <a name="p2"></a>II – Terminologie employée / Glossaire
 
 Par ordre alphabétique.
 
@@ -220,7 +216,7 @@ Par ordre alphabétique.
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
-### III – Les cas d’utilisation
+### <a name="p3"></a>III – Les cas d’utilisation
 
 - <b>a) Les acteurs principaux et leurs objectifs généraux.</b><br>
   <br>
@@ -266,15 +262,15 @@ Par ordre alphabétique.
     > - Accède et utilise les journaux d'activités
 
 - <b>b) Les cas d’utilisation métier (concepts opérationnels).</b>
-- # 🔴 b) CU stratégique
+- #### 🔴 <a name="p3b"></a>b) CU stratégique
 - <b>c) Les cas d’utilisation système.</b>
-- # 🔴 c) CU Utilisateur
+- #### 🔴 <a name="p3c"></a>c) CU Utilisateur
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
-### IV – La technologie employée
-- <b>a) Quelles sont les exigences technologiques pour ce système ?</b>
+### <a name="p4"></a>IV – La technologie employée
+- <b><a name="p4a"></a>a) Quelles sont les exigences technologiques pour ce système ?</b>
 
   L'application devra utiliser : SQL, HTML, CSS et PHP<br>
   - SQL est le langage utilisé pour l'utilisation d'un SGBD comme MySQL<br>
@@ -288,62 +284,60 @@ Par ordre alphabétique.
   Ces outils ne sont pas contraints mais nous permettrons d’améliorer la qualité du code rendu.<br>
 <br>
 
-- <b>b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?</b>
+- <b><a name="p4b"></a>b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?</b>
 
   Afin de garantir le bon fonctionnement de l’application web finale, il faudra s’assurer que le serveur web soit prêt à l’utilisation sur une carte SD.<br>
   De plus, il sera nécessaire d’assurer le bon fonctionnement du site web sur les postes présents dans les salles machines de l’IUT de Vélizy.<br>
   La carte SD se devra de contenir un serveur web (Apache est conseillé) ainsi qu’un serveur SGBD.<br>
   Aussi, le serveur contenant l’application web sera porté sur Raspberry Pi 4 et sera accessible par connexion SSH.<br>
 
-  # 🔴 La sous-partie b est un peu inutile puisque le serveur ne va pas communiquer avec d'autres serveurs pour fonctionner
-
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
-### V – Autres exigences
+### <a name="p5"></a>V – Autres exigences
 
 
-- <b>a) Processus de développement</b>
+- <b><a name="p5a"></a>a) Processus de développement</b>
 
-  - <u>i. Qui sont les participants au projet ?</u><br>
+  - <u><a name="p5ai"></a>i. Qui sont les participants au projet ?</u><br>
 
     Les membres de notre équipe sont les principaux participants au projet.
     Notre équipe est constituée de Tom BOGAERT, Matthieu FARANDJIS, Assia GOUABI, Enzo GUIGNOLLE et Florent VASSEUR--BERLIOUX.<br>
     <br>
-  - <u>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
+  - <u><a name="p5aii"></a>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
 
     Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main. Nous favoriserons au mieux la conpréhension et la communication entre les utilisateurs, techniciens et administrateurs.<br>
 1
     <br>
-  - <u>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
+  - <u><a name="p5aiii"></a>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
     souhaitent-ils ?</u><br>
 
     Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communication entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
     <br>
-  - <u>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
+  - <u><a name="p5aiv"></a>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
 
     Le projet est de concevoir et programmer un site web de gestion de tickets. Aucun achat n'est nécessaire à la création de la plateforme web, puisque le matériel (RPi4) est pris en charge par le client.
     Nous ne possédons pas de concurrents à proprement parlé.<br>
     <br>
-  - <u>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
+  - <u><a name="p5av"></a>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
 
     Nous pouvons noter en exigences sur le projet, l'execution d'une phase de test assurant le bon fonctionnement de l'application. On attends egalement le rendu d'annexes concernant l'organisation du travail de l'equipe ou encore la charte graphique du logo de l'application.<br>
     <br>
-  - <u>vi. À quelle dépendance le projet est-il soumis ?</u><br>
+  - <u><a name="p5avi"></a>vi. À quelle dépendance le projet est-il soumis ?</u><br>
   Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL. 
 
-- <b>b) Règles métier</b><br>
-  # 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?). Poser les questions à M. Hoguin
+- <b><a name="pb"></a>b) Règles métier</b><br>
+  #### 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?). Poser les questions à M. Hoguin
 
 <br>
 
-- <b>c) Performances</b><br>
+- <b><a name="p5c"></a>c) Performances</b><br>
 
   Le site web se devra d'être le plus performent possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme. Nous ne possédons pas de réelles contraintes de performances.
 
 <br>
 
-- <b>d) Opérations, sécurité, documentation</b><br>
+- <b><a name="p5d"></a>d) Opérations, sécurité, documentation</b><br>
 
   Tous le code étant utilisé pour mener le projet à bien se devra d'être documenté afin d'assurer la lisibilité du programme. Toutes les fonctions générées seront accompagnées d'une Docstring.
   
@@ -351,28 +345,28 @@ Par ordre alphabétique.
 
 <br>
 
-- <b>e) Utilisation et utilisabilité</b><br>
+- <b><a name="p5e"></a>e) Utilisation et utilisabilité</b><br>
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
 
-  # 🔴 e) Demander à M. Dufaud peut être
+  #### 🔴 e) Demander à M. Dufaud peut être
 <br>
 
-- <b>f) Maintenance et portabilité</b><br>
+- <b><a name="p5f"></a>f) Maintenance et portabilité</b><br>
 
   La portabilité et la maintenance de l'application web sera notamment vérifié en passant par le validateur de W3C. Il permet de s'assurer la compatibilité de la plateforme avec tous les navigateurs, et permet de s'assurer que le code est conforme avec les exigences actuels.
   PHP et MySQL fonctionnent aussi bien sur un serveur Windows que sur un serveur Linux.
 
 <br>
 
-- <b>g) Questions non résolues ou reportées à plus tard</b><br>
+- <b><a name="p5g"></a>g) Questions non résolues ou reportées à plus tard</b><br>
 
   La présence de Javascript n'étant pas demandée, nous ne prévoyons pas d'en utiliser sur les pages web. Cependant, nous nous octroyons la possibilité d'en faire usage si nécessaire lors de nos phases de conception et de programmation.
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
-### VI – Recours humain, questions juridiques, politiques, organisationnelles.
-- <b>a) Quel est le recours humain au fonctionnement du système ?</b><br>
+### <a name="p6"></a>VI – Recours humain, questions juridiques, politiques, organisationnelles.
+- <b><a name="p6a"></a>a) Quel est le recours humain au fonctionnement du système ?</b><br>
   Le système fonctionnera en toute autonomie sur un serveur pour pouvoir être utilisé par les différents utilisateurs.<br>
   Le démarrage et la maintenance du système doivent être faits par du personnel qualifié comme l'administrateur système.<br>
   <br>
@@ -382,7 +376,7 @@ Par ordre alphabétique.
   <br>
   L'application propose différentes actions pour les utilisateurs, qu'ils doivent actionner d'eux même. L'application ne fait que de les mettre en application.<br>
   <br>
-- <b>b) Quelles sont les exigences juridiques et politiques ?</b><br>
+- <b><a name="p6b"></a>b) Quelles sont les exigences juridiques et politiques ?</b><br>
   L'application se doit de respecter la loi française « Informatique et liberté » du 6 janvier 1978, mise à jour le 1er juin 2019, relative à l'informatique, aux fichiers et aux libertés.<br>
   L'application est également soumise au règlement européen « Règlement Général sur la Protection des Données » (RGPD) du 27 avril 2016, relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données, et abrogeant la directive 95/46/CE.<br>
   <br>
@@ -397,7 +391,7 @@ Par ordre alphabétique.
   https://www.cnil.fr/fr/cookies-et-autres-traceurs/regles/cookies <br>
     <br>
 
-- <b>c) Quelles sont les conséquences humaines de la réalisation du système ?</b><br>
+- <b><a name="p6c"></a>c) Quelles sont les conséquences humaines de la réalisation du système ?</b><br>
   L'application permet l'amélioration de la gestion des dépannages dans les salles machines.<br>
   Les demandes seront prises en charge plus rapidement, et elles seront mieux répartie pour une résolution rapide et optimale.<br>
   Ces données sont utilisables dans le cas d'études statistiques ce qui permettrait de mieux organiser les révisions du matériel et la prévision du renouvellement du parc informatique.<br>
@@ -410,7 +404,7 @@ Par ordre alphabétique.
   Pour les personnes souffrant de handicap, cela permettrait de les assurer qu'au moindre problème d'accessibilité, celui-ci sera résolu rapidement.<br>
   <br>
 
-- <b>d) Quels sont les besoins en formation ?</b><br>
+- <b><a name="p6d"></a>d) Quels sont les besoins en formation ?</b><br>
   En général, il est nécessaire de savoir se servir d'un ordinateur et d'un navigateur internet.<br>
   <br>
   Un guide d'utilisation comprenant une vidéo de présentation pour apprendre à se servir de l'application sera disponible.<br>
@@ -421,7 +415,7 @@ Par ordre alphabétique.
   Dans tous les cas, l'établissement devra communiquer sur l'existence de l'application, le moyen d'y accéder et l'existence de ces aides.<br>
   <br>
 
-- <b>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
+- <b><a name="p6e"></a>e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?</b><br>
   - Nous supposons que :<br>
     - tous les étudiants, professeurs et personnels concernés possède une connexion internet et savent se servir d'un ordinateur et d'un navigateur internet.<br>
     - le serveur contenant l'application sera toujours en ligne.<br>
