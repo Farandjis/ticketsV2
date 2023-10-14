@@ -18,11 +18,11 @@ Ce document fait office de cahier des charges. Il rassemble toutes les informati
 ## Plan
 
 ### [I – Objectif et portée](#p1)
-- <b>[a) Quels sont la portée et les objectifs généraux ?](#sp1a)</b>
-- <b>[b) Lecture du cahier des charges](#sp1b) </b>
-  - <u>[i. Liste des objets, acteurs et actions](#sp1bi) </u>
-  - <u>[ii. Les différents niveaux](#sp1bii) </u>
-  - <u>[iii. Un schéma descriptif des niveaux](#sp1biii) </u>
+- <b>[a) Quels sont la portée et les objectifs généraux ?](#p1a)</b>
+- <b>[b) Lecture du cahier des charges](#p1b) </b>
+  - <u>[i. Liste des objets, acteurs et actions](#p1bi) </u>
+  - <u>[ii. Les différents niveaux](#p1bii) </u>
+  - <u>[iii. Un schéma descriptif des niveaux](#p1biii) </u>
 ### [II – Terminologie employée / Glossaire](#p2)
 ### [III – Les cas d’utilisation](#p3)
 - <b>[a) Les acteurs principaux et leurs objectifs généraux](#p3a).</b>
