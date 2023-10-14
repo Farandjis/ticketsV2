@@ -15,18 +15,43 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
 
 ---
 
+- ### Jour XX/XX/2023
+  - **Florent**<br>
+    - [travail effectué ce jour là]
+  - **Tom**<br>
+    - [travail effectué ce jour là]
+  - **Assia**<br>
+    - [travail effectué ce jour là]
+  - **Enzo**<br>
+    - [travail effectué ce jour là]
+  - **Matthieu (chef de projet)**<br>
+    - [travail effectué ce jour là]
+
+- ### Dimanche 15/10/2023
+  - **Florent**<br>
+    - [travail effectué ce jour là]
+  - **Tom**<br>
+    - [travail effectué ce jour là]
+  - **Assia**<br>
+    - [travail effectué ce jour là]
+  - **Enzo**<br>
+    - [travail effectué ce jour là]
+  - **Matthieu (chef de projet)**<br>
+    - [travail effectué ce jour là]
+
+
 - ### Samedi 14/10/2023
 
-  - **Florent**<br>
-    [travail effectué ce jour là]
   - **Tom**<br>
-    [travail effectué ce jour là]
+    - Fin du travail sur la maquette
   - **Assia**<br>
-    [travail effectué ce jour là]
-  - **Enzo**<br>
-    [travail effectué ce jour là]
+    - Suite de la rédaction du choix du logo (logo 1 quasi terminé, début logo 2)
   - **Matthieu (chef de projet)**<br>
-    [travail effectué ce jour là]
+    - Correction cahier des charges
+    - Finition du plan de travail prévu
+    - Modification du planning
+    - Création de l'organisation prévue du git
+    - Vérification du travail effectuer aujourd'hui
   
 <br>
 
@@ -84,7 +109,7 @@ Avec les indications de M. DUFAUD par rapport au projet, nous pouvons désormais
     - Estimation : terminé le dimanche 15 octobre
 - Enzo :
   - Création des cas d'utilisation pour le site statique, dans le cahier des charges
-    - Ce travail doit être effectué lundi dernier délai. Travail prévu pour dimanche. 
+    - terminé le dimanche 15 octobre (*màj le 14/10/2023*) 
 - Matthieu (chef de projet) :
   - Découpage des tâches du planning pour pouvoir les répartir entre les membres
     - Travail à terminer samedi, dès que possible
