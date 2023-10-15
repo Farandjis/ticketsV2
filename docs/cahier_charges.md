@@ -445,28 +445,29 @@ Précondition :
 Déclencheur :
     - le navigateur de l'utilisateur demande de charger une page
 Garantie en cas de succès :
-    - Que la page demander s'affiche dans un navigateur
+    - Que la page demander s'affiche dans le navigateur
 Scénario nominal :
     - Le système récupère la demande
-    - Le système recherche le fichier HTML correspondantet tout les autres fichiers requis pour afficher la page
-    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système recherche les autres fichiers composants la page 🟨
+    - Le système envoie les fichiers au navigateur de l'utilisateur
     - Le navigateur affiche la page
+Extension : 🟨
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système ne trouve pas un ou plusieurs fichiers composants la page 🟨
+    - Le système affiche la page avec du texte alternatif à la place des composants 🟨
 Echec :
     - L'utilisateur demande l'affichage d'une page
     - Le système récupère la demande
     - Le système recherche le fichier correspondant à la page
     - Le système ne trouve pas le fichier correspondant
     - Le système affiche une erreur dans le navigateur de l'utilisateur
-Echec 2:
-    - L'utilisateur demande l'affichage d'une page
-    - Le système récupère la demande
-    - Le système recherche le fichier correspondant à la page
-    - Le système trouve le fichier HTML correspondant mais ne trouve pas tout les fichiers requis pour afficher la page
-    - Le système affiche la page avec des problèmes de composant manquant
 ```
 
 
-- #### <a name="a1cu2"> Nom : Sélectionner une page
+- #### <a name="a1cu2"> Nom : Ouvrir une page 🟨
 ```
 Portée : Ordinateur de l'utilisateur
 Niveau : Utilisateur
@@ -474,25 +475,27 @@ Acteur principal : Utilisateur
 Précondition :
     - Le site doit être fonctionnel
 Déclencheur :
-    - Quand l'utilisateur veut afficher une page
+    - Quand l'utilisateur veut accèder à une page 🟨
 Garantie en cas de succès :
-    - le navigateur charge page
+    - le navigateur commence à charger la page
 Scénario nominal :
     - L'utilisateur clique avec la souris pour afficher une page
-    - Le logiciel affiche la page demandé
+    - Le navigateur commence à charger la page
 Extension 1:
-    - L'utilisateur clique avec le doigt pour afficher une page
-    - Le navigateur affiche la page demandé
+    - L'utilisateur appuie avec le doigt pour afficher une page
+    - Le navigateur commence à charger la page
 Extension 2:
-    - L'utilisateur navigue sur la page au clavier
-    - L'utilisateur appuie sur entrée pour ouvrir la page
+    - L'utilisateur navigue sur la page au clavier pour sélectionner le bouton
+    - L'utilisateur appuie sur entrée pour charger la page demandé
 Extension 3:
     - L'utilisateur fait la demande à son logiciel de reconnaissance vocal
     - Le logiciel lance le chargement de la page
-Echec :
-    - L'utilisateur demande l'affichage d'une page
-    - Le logiciel n'a pas affiché la page correctement
-Echec 2:
-    - L'utilisateur demande l'affichage d'une page
-    - Le logiciel n'affiche pas la page
+Echec : 🟨
+    - L'utilisateur clique/appuie sur le bouton 🟨
+    - Le navigateur ne commence pas à charger la page
+Echec 2 : 🟨
+    - L'utilisateur n'arrive pas à sélectionner le bouton au clavier
+Echec 3 :
+    - L'utilisateur demande l'affichage d'une page à son logiciel de reconnaissance vocal
+    - Le logiciel ne comprend, n'arrive pas à lancer le chargement 🟨
 ```
