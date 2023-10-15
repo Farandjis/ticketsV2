@@ -1,0 +1,30 @@
+Florent Tom Assia Enzo Matthieu
+
+le 15/10/2023
+-----
+
+=============================== Jusqu'à mercredi ===============================
+- Achat carte SD, demande SD RPi4 -> Matthieu
+- Conception BD -> Matthieu
+- Site statique -> Tom
+-  Dossier de test site statique -> Enzo, Assia (I, II, III peuvent être terminées mardi. Vérification que jusqu'à présent les pages HTML et fichiers CSS sont valides (IV et V)
+- Diagramme UML Site statique -> Florent, Matthieu
+
+===================== A partir de jeudi et jusqu'à dimanche ====================
+/!\ /!\ si possibilité de récupérer le RPi4 et la carte SD pour jeudi /!\ /!\
+- Site statique -> Tom
+- Dossier de test site statique -> Enzo (lorsque Tom termine une page/fichier css, vérification) 
+- Diagramme UML Site statique -> Florent, Enzo
+- Installation serveur -> Matthieu, Assia
+- Rapport serveur -> Matthieu, Assia
+
+
+================== A partir de Lundi 23 octobre, à réfléchir ==================
+Pour le moment c'est mon brouillon, c'est moi qui décide, j'en parlerai ce week-end
+
+- Création BD -> Enzo
+- Cas d'utilisation -> 
+- Règles métier -> Florent
+- Développement dynamique -> Tom, Florent, Enzo (partie BD)
+- UML dynamique -> Florent
+- Dossier de Test dynamique ->
