@@ -60,7 +60,7 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
   - **Tom**<br>
     - Fin du travail sur la maquette
   - **Assia**<br>
-    - Suite de la rédaction du choix du logo (logo 1 quasi terminé, début logo 2)
+    - Suite de la rédaction du choix du logo (logo 1 terminé, début logo 2)
   - **Matthieu (chef de projet)**<br>
     - Correction cahier des charges
     - Finition du plan de travail prévu
