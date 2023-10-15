@@ -47,7 +47,7 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
   - **Assia**<br>
     - Fin de la rédaction du choix du premier et second logo et la conclusion qui finalise la charte logo.
   - **Enzo**<br>
-    - [travail effectué ce jour là]
+    - Rédaction des cas d'utilisation pour le site statique
   - **Matthieu (chef de projet)**<br>
     - Répartition des tâches entre les différents membres
     - Vérification du travail effectué aujourd'hui
