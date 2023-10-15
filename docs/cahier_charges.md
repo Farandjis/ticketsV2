@@ -54,7 +54,7 @@ souhaitent-ils ?](#p5aiii)</u>
 - <b>[d) Quels sont les besoins en formation ?](#p6d)</b>
 - <b>[e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?](#p6e)</b>
 
-
+### [Annexe 1 : Cas d'utilisation](#a1)
 
 
 <br><br><br><br><br><br><br>
@@ -430,3 +430,75 @@ Par ordre alphabétique.
       Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
     - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
     - l'implication et la réactivité des professeurs pour trouver et signaler des pannes.
+
+
+### <a name="a1"></a>Annexe 1 – Cas d'utilisation
+
+- #### Nom : Afficher une page
+```
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - Le site doit être fonctionnel
+Déclencheur :
+    - Quand l'utilisateur clique pour afficher une page
+Garantie en cas de succès :
+    - Que la page demander s'affiche dans un navigateur
+Scénario nominal :
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Echec :
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système ne trouve pas le fichier correspondant
+    - Le système affiche une erreur dans le navigateur de l'utilisateur
+```
+
+
+- #### Nom : Sélectionner une page
+```
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - Le site doit être fonctionnel
+Déclencheur :
+    - Quand l'utilisateur veut afficher une page
+Garantie en cas de succès :
+    - Que la page demander s'affiche dans un navigateur
+Scénario nominal :
+    - L'utilisateur clique avec la souris pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Extension 1:
+    - L'utilisateur clique avec le doigt pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Extension 2:
+    - L'utilisateur utilise le clavier pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Extension 3:
+    - L'utilisateur utilise la reconnaissance vocal pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Echec :
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système ne trouve pas le fichier correspondant
+    - Le système affiche une erreur dans le navigateur de l'utilisateur
+```
