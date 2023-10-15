@@ -449,15 +449,15 @@ Garantie en cas de succès :
 Scénario nominal :
     - Le système récupère la demande
     - Le système recherche le fichier HTML correspondant à la page
-    - Le système recherche les autres fichiers composants la page 🟨
+    - Le système recherche les autres fichiers composants la page 
     - Le système envoie les fichiers au navigateur de l'utilisateur
     - Le navigateur affiche la page
-Extension : 🟨
+Extension : 
     - L'utilisateur demande l'affichage d'une page
     - Le système récupère la demande
     - Le système recherche le fichier HTML correspondant à la page
-    - Le système ne trouve pas un ou plusieurs fichiers composants la page 🟨
-    - Le système affiche la page avec du texte alternatif à la place des composants 🟨
+    - Le système ne trouve pas un ou plusieurs fichiers composants la page 
+    - Le système affiche la page avec du texte alternatif à la place des composants 
 Echec :
     - L'utilisateur demande l'affichage d'une page
     - Le système récupère la demande
@@ -467,7 +467,7 @@ Echec :
 ```
 
 
-- #### <a name="a1cu2"> Nom : Ouvrir une page 🟨
+- #### <a name="a1cu2"> Nom : Ouvrir une page 
 ```
 Portée : Ordinateur de l'utilisateur
 Niveau : Utilisateur
@@ -475,7 +475,7 @@ Acteur principal : Utilisateur
 Précondition :
     - Le site doit être fonctionnel
 Déclencheur :
-    - Quand l'utilisateur veut accèder à une page 🟨
+    - Quand l'utilisateur veut accèder à une page 
 Garantie en cas de succès :
     - le navigateur commence à charger la page
 Scénario nominal :
@@ -490,12 +490,12 @@ Extension 2:
 Extension 3:
     - L'utilisateur fait la demande à son logiciel de reconnaissance vocal
     - Le logiciel lance le chargement de la page
-Echec : 🟨
-    - L'utilisateur clique/appuie sur le bouton 🟨
+Echec : 
+    - L'utilisateur clique/appuie sur le bouton 
     - Le navigateur ne commence pas à charger la page
-Echec 2 : 🟨
+Echec 2 : 
     - L'utilisateur n'arrive pas à sélectionner le bouton au clavier
 Echec 3 :
     - L'utilisateur demande l'affichage d'une page à son logiciel de reconnaissance vocal
-    - Le logiciel ne comprend, n'arrive pas à lancer le chargement 🟨
+    - Le logiciel ne comprend, n'arrive pas à lancer le chargement 
 ```
