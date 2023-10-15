@@ -33,7 +33,7 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
   - **Tom**<br>
     - [travail effectué ce jour là]
   - **Assia**<br>
-    - [travail effectué ce jour là]
+    - Fin de la rédaction du choix du premier et second logo et la conclusion qui finalise la charte logo. 
   - **Enzo**<br>
     - [travail effectué ce jour là]
   - **Matthieu (chef de projet)**<br>
@@ -45,7 +45,7 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
   - **Tom**<br>
     - Fin du travail sur la maquette
   - **Assia**<br>
-    - Suite de la rédaction du choix du logo (logo 1 quasi terminé, début logo 2)
+    - Suite de la rédaction du choix du logo (logo 1 quasiment terminé, début du second)
   - **Matthieu (chef de projet)**<br>
     - Correction cahier des charges
     - Finition du plan de travail prévu
