@@ -53,7 +53,7 @@ souhaitent-ils ?](#p5aiii)</u>
 - <b>[c) Quelles sont les conséquences humaines de la réalisation du système ?](#p6c)</b>
 - <b>[d) Quels sont les besoins en formation ?](#p6d)</b>
 - <b>[e) Quelles sont les hypothèses et les dépendances affectant l’environnement humain ?](#p6e)</b>
-### [Annexe 1 : Cas d'utilisation](#p7)
+
 
 
 
@@ -431,7 +431,7 @@ Par ordre alphabétique.
     - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
     - l'implication et la réactivité des professeurs pour trouver et signaler des pannes.
 
-### <a name="p7"></a>Annexe 1 – Cas d'utilisation
+### <a name="p7"></a>I – Cas d'utilisation
 
 ```
 Nom : Afficher une page
