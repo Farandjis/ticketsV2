@@ -457,3 +457,46 @@ Echec :
     - Le système ne trouve pas le fichier correspondant
     - Le système affiche une erreur dans le navigateur de l'utilisateur
 ```
+
+```
+Nom : Sélectionner une page
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - Le site doit être fonctionnel
+Déclencheur :
+    - Quand l'utilisateur veut afficher une page
+Garantie en cas de succès :
+    - Que la page demander s'affiche dans un navigateur
+Scénario nominal :
+    - L'utilisateur clique avec la souris pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Extension 1:
+    - L'utilisateur clique avec le doigt pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Extension 2:
+    - L'utilisateur utilise le clavier pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Extension 3:
+    - L'utilisateur utilise la reconnaissance vocal pour afficher une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Echec :
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système ne trouve pas le fichier correspondant
+    - Le système affiche une erreur dans le navigateur de l'utilisateur
+```
