@@ -27,7 +27,7 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
   - **Matthieu (chef de projet)**<br>
     - [travail effectué ce jour là]
 
-- ### Dimanche 15/10/2023
+- ### Lundi 16/10/2023
   - **Florent**<br>
     - [travail effectué ce jour là]
   - **Tom**<br>
@@ -38,6 +38,21 @@ En plus de la progression journalière, chaque semaine, il y aura un bilan expli
     - [travail effectué ce jour là]
   - **Matthieu (chef de projet)**<br>
     - [travail effectué ce jour là]
+
+- ### Dimanche 15/10/2023
+  - **Florent**<br>
+    - [travail effectué ce jour là]
+  - **Tom**<br>
+    - [travail effectué ce jour là]
+  - **Assia**<br>
+    - Fin de la rédaction du choix du premier et second logo et la conclusion qui finalise la charte logo.
+  - **Enzo**<br>
+    - [travail effectué ce jour là]
+  - **Matthieu (chef de projet)**<br>
+    - Répartition des tâches entre les différents membres
+    - Vérification du travail effectué aujourd'hui
+    - Création du dossier de test pour le site statique (plus qu'à compléter)
+    - Gestion des branches du GIT
 
 
 - ### Samedi 14/10/2023
