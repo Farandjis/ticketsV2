@@ -1,0 +1,16 @@
+Tableau de bord :
+	Disposition ME + bouton créer ticket
+	Note :
+		-> Affichage ticker tout le long de la page
+		-> recherche toujours présent à l'écran
+
+Page Inscription :
+	A gauche, l'identification (long, mdp, confirmation mdp)
+	A droite, info perso (nom, prenom, email)
+	+ peut être la pdp (si on peut)
+
+
+Profil
+	- Débat sur le login (-> le login sera considérer comme un pseudo, l'utilisateur sera associé à un numéro unique dans la BDD)
+	- Nom Prénom, peut être modifier que par admin web
+	- Mot de passe ça sera une page à part
