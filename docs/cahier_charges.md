@@ -430,3 +430,30 @@ Par ordre alphabétique.
       Leur changement peut demander une réévaluation de l'application afin de s'assurer qu'elle soit toujours conforme.
     - l'évolution des navigateurs internet. L'application pouvant se retrouver obsolète.
     - l'implication et la réactivité des professeurs pour trouver et signaler des pannes.
+
+### <a name="p7"></a>I – Cas d'utilisation
+
+```
+Nom : Afficher une page
+Portée : boite noir
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - Le site doit être fonctionnel
+Déclencheur :
+    - Quand l'utilisateur clique pour afficher une page
+Garantie en cas de succès :
+    - Que la page demander s'affiche dans un navigateur
+Scénario nominal :
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système envoie le fichier au navigateur de l'utilisateur
+    - Le navigateur affiche la page
+Echec :
+    - L'utilisateur demande l'affichage d'une page
+    - Le système récupère la demande
+    - Le système recherche le fichier correspondant à la page
+    - Le système ne trouve pas le fichier correspondant
+    - Le système affiche une erreur dans le navigateur de l'utilisateur
+```
