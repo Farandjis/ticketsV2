@@ -435,7 +435,7 @@ Par ordre alphabétique.
 
 ```
 Nom : Afficher une page
-Portée : boite noir
+Portée : Serveur
 Niveau : Sous-fonction
 Acteur principal : Utilisateur  
 Précondition :
