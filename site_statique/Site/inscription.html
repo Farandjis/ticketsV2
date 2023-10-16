@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="style.css" rel="stylesheet" />
+  <style>
+    body {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="retour">
+    <a href="index.html">Retour</a>
+  </div>
+
+  <div role="form" class="formAuthentification formInscription">
+
+    <form action='' method='post'>
+      <h1>Je m'inscrit</h1><br>
+      <div class="inscription-gauche">
+          <label for='login'>Login</label><br>
+          <input id='login' type='text' name ='login'>
+          <br><br>
+          <label for='mdp'>Mot de passe</label><br>
+          <input id='mdp' type='password' name ='mdp'>
+          <br><br>
+          <label for='mdp'>Vérificaction mot de passe</label><br>
+          <input id='mdp2' type='password' name ='mdp'>
+      </div>
+      <div class="inscription-droite">
+          <label for='nom'>Nom</label><br>
+          <input id='nom' type='text' name ='nom'>
+          <br><br>
+          <label for='prenom'>Prénom</label><br>
+          <input id='prenom' type='text' name ='prenom'>
+          <br><br>
+          <label for='email'>Email</label><br>
+          <input id='email' type='text' name ='email'>
+      </div>
+      <br><br>
+      <label for='capcha'>Capcha</label><br>
+      <input id='capcha' type='text' name ='capcha'>
+      <br><br>
+      <input type='submit' name='Connexion' value='Inscription'>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
