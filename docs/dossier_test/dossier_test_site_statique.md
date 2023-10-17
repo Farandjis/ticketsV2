@@ -46,6 +46,9 @@ Ce document permet de s'assurer que les pages web statique soient conforme à ce
 
 ## <a name="I"></a>I - Introduction
 
+Le document suivant à pour but de tester les différentes pages du site HTML statique réalisé. Les pages seront chacune testées les unes après les autres afin de visualiser si elles respectent les contraintes dimensionnelles de l’écran, si elles correspondent bien aux pages de la maquette choisie au niveau conceptuel ou graphique. De plus, les pages HTML doivent respectées et vérifiées l’accessibilité avec l’outil Wave ainsi que le validateur HTML W3C installé sur les machines.  
+<br>
+
 ## <a name="II"></a>II - Description de la procédure de test
 
 ## <a name="III"></a>III - Contexte des tests
