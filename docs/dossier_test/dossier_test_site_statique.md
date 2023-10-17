@@ -53,15 +53,15 @@ Le document suivant à pour but de tester les différentes pages du site HTML st
 
 ## <a name="III"></a>III - Contexte des tests
 
-| Définition                         | Situation pour le test              |
-|------------------------------------|-------------------------------------|
-| Produit testé                      | Site statique (HTML et CSS)         |
-| Configuration logicielle           |                                     |
-| Configuration matérielle           |                                     |
-| Date de début                      |                                     |
-| Date de finalisation               |                                     |
-| Test à appliquer                   | Vérification de la validité du site |
-| Responsable de la campagne de test |                                     |
+| Définition                         | Situation pour le test                                           |
+|------------------------------------|------------------------------------------------------------------|
+| Produit testé                      | Site statique (HTML et CSS)                                      |
+| Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
+| Configuration matérielle           | Dell Optiplex 9020                                               |
+| Date de début                      | 17/10/2023                                                       |
+| Date de finalisation               | 17/10/2023                                                       |
+| Test à appliquer                   | Vérification de la validité du site                              |
+| Responsable de la campagne de test | GUIGNOLLE Enzo, Gouabi Assia                                     |
 
 <br><br><br>
 
