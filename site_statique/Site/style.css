@@ -12,7 +12,7 @@ body {
   font-family: Poppins, Arial, sans-serif;
   background: linear-gradient(#ce9ffc, #7367F0) no-repeat;
   background-size: cover;
-  height: 100%;
+  height: 100vh;
 }
 
 nav {
@@ -67,7 +67,7 @@ nav {
 
 
 .authentification button {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   min-width: 90px;
   padding: 10px 5px;
@@ -77,26 +77,25 @@ nav {
   border-radius: 5px;
   cursor: pointer;
 }
-.authentification button > a {
+.authentification a > button {
   text-decoration: none;
 }
 
-.authentification button:nth-child(2) > a {
+.authentification a:nth-child(2) {
   color: white;
-
 }
 
 
 
-.authentification button:nth-child(2) {
+.authentification a:nth-child(2) > button {
   color: white;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
 }
 
-.authentification button:nth-child(1):hover {
+.authentification a:nth-child(1) > button:hover {
   background: #808080;
 }
-.authentification button:nth-child(2):hover {
+.authentification a:nth-child(2) > button:hover {
   background: linear-gradient(84.12deg, #9271E8 139.25%, #522FCF -24.93%) ;
 }
 
@@ -219,15 +218,16 @@ nav {
   height: auto;
   padding: 10px;
 
-  border: solid 2px #34219b;
+  border: none;
   border-radius: 10px;
 
   outline: none;
-  background: linear-gradient(90deg, rgba(83,0,138,1) 0%, rgba(134,145,158,1) 100%);
+  background: #211A43FF ;
 
   color: white;
 
   font-size: 30px;
+  font-weight: 500;
 
   cursor: pointer;
 }
@@ -419,6 +419,12 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
 
 .formInscription input[type="text"], .formInscription input[type="password"], .formInscription input[type="email"]{
   width: 250px;
+}
+
+.capcha{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Disposition */
