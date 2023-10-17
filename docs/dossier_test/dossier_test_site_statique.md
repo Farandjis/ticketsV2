@@ -51,6 +51,10 @@ Le document suivant à pour but de tester les différentes pages du site HTML st
 
 ## <a name="II"></a>II - Description de la procédure de test
 
+L’application qui sera conçue nécessite de réaliser dans un premier temps des maquettes afin de visualiser et décrire ce que doit contenir et à quoi doit ressembler le site web final. Par la suite, nous nous appuierons sur les maquettes proposées pour la réalisation du site web final mais pour cela il faut que les pages HTML soient opérationnelles et ne contiennent pas d’erreurs pour éviter de les décupler. 
+Nous allons pour chaque page HTML construite, les comparer avec la maquette choisie. Il s’agit d’indiquer si les éléments de l’application sont placés au même endroit que ceux de la maquette, si elles peuvent être affichées sur n’importe quel écran d’ordinateurs et qu'elles sont validées et vérifiées par les outils HTML W3C et Wave. 
+<br>
+
 ## <a name="III"></a>III - Contexte des tests
 
 | Définition                         | Situation pour le test                                           |
