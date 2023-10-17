@@ -9,7 +9,7 @@
 
 
 body {
-  font-family: Arial, Futura b, sans-serif;
+  font-family: Poppins, Arial, sans-serif;
   background: linear-gradient(#ce9ffc, #7367F0) no-repeat;
   background-size: cover;
   height: 100%;
@@ -19,6 +19,7 @@ nav {
   position: fixed;
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
   top: 0;
@@ -34,12 +35,13 @@ nav {
 
 
 .nav-icon img {
-  width: 150px;
+  width: 75px;
 }
 
 
+
 .nav-conteneur a {
-  margin: 0 10px;
+  margin-left: 50px;
   font-size: 28px;
   font-weight: 700;
   text-decoration: none;
@@ -52,7 +54,7 @@ nav {
   position: absolute;
   bottom: -3px;
   width: 100%;
-  height: 1px;
+  height: 2px;
   transform: scale(0);
   transform-origin: left;
   background: #ffffff;
@@ -62,18 +64,15 @@ nav {
   transform: scaleX(1);
 }
 
-.nav-authentification {
-  margin-left: auto;
-}
+
 
 .authentification button {
-  font-family: Futura b, sans-serif;
   font-size: 28px;
   font-weight: 700;
   min-width: 90px;
   padding: 10px 5px;
   margin: 0 5px;
-  border: none;
+  border: solid 1px #1c1c1c;
   outline: none;
   border-radius: 5px;
   cursor: pointer;
@@ -81,8 +80,10 @@ nav {
 .authentification button > a {
   text-decoration: none;
 }
-.authentification button > a:focus {
+
+.authentification button:nth-child(2) > a {
   color: white;
+
 }
 
 
@@ -113,7 +114,7 @@ nav {
   .nav-icon{
     margin: 0 auto;
   }
-
+  /*
   .nav-conteneur {
     display: flex;
     flex-direction: column;
@@ -127,7 +128,7 @@ nav {
     padding: 15px 50px 15px 20px;
     border-right: 1px solid #c5c5c6;
   }
-
+*/
 
   .nav-conteneur {
     display: none;
@@ -163,9 +164,10 @@ nav {
 */
 
   margin: 175px;
+  margin-bottom: 100px;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
 }
@@ -193,8 +195,6 @@ nav {
 }
 
 
-
-
 /*video*/
 .video-presentation {
   max-width: 800px;
@@ -202,6 +202,7 @@ nav {
 
 .video-presentation iframe {
   margin-top: 25px;
+  box-shadow: 0 0 5px 5px #211a43;
 }
 
 
@@ -218,11 +219,11 @@ nav {
   height: auto;
   padding: 10px;
 
-  border: none;
-  border-radius: 4px;
+  border: solid 2px #34219b;
+  border-radius: 10px;
 
   outline: none;
-  background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
+  background: linear-gradient(90deg, rgba(83,0,138,1) 0%, rgba(134,145,158,1) 100%);
 
   color: white;
 
@@ -243,6 +244,15 @@ nav {
   text-decoration: none;
   color : white;
 }
+
+
+@media screen and (max-width: 1800px) {
+  .presentation{
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 
 
 /*tableau*/
@@ -300,11 +310,16 @@ footer a {
 
 /*=======================================================*/
 .retour a {
+  position: relative;
   text-decoration: none;
   color: black; font-size: 30px;
-  font-weight: 600;
-  margin: 15px;
-  padding: 15px;
+  font-weight: 900;
+  top: 15px;
+  left: 20px;
+}
+.retour img {
+  width: 30px;
+  height: 20px;
 }
 
 
@@ -321,7 +336,7 @@ footer a {
   top: 50%;
   transform: translate(-50%, -50%);
 
-  color: #f3f3f3;
+  color: #F3F3F3F3;
 
 }
 
@@ -333,14 +348,15 @@ footer a {
 }
 
 .formAuthentification a{
-  color: white;
+  color: #F3F3F3F3;
 }
 
 
 input[type="text"], input[type="email"], input[type="password"],  input[type="submit"], input[type="reset"]{
   padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
+  margin: 3px 0;
+  background: #F3F3F3F3;
+  border: 1px solid #F3F3F3F3;
   border-radius: 15px;
 }
 
@@ -357,7 +373,7 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
   cursor: pointer;
   width: 50%;
   font-weight: 700;
-  color: #f4f4f4;
+  color: #F3F3F3F3;
 
   border: none;
   outline: none;
@@ -379,7 +395,7 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
 /* Formulaire Inscription*/
 
 .formInscription{
-  width: 500px;
+  width: 700px;
 }
 
 .formInscription input[type="submit"]{
@@ -388,7 +404,7 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
   cursor: pointer;
   width: 50%;
   font-weight: 700;
-  color: #f4f4f4;
+  color: #F3F3F3F3;
 
   border: none;
   outline: none;
@@ -401,9 +417,14 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
 }
 
 
-.formInscription input[type="text"], input[type="password"], input[type="email"]{
-  width: 100%;
+.formInscription input[type="text"], .formInscription input[type="password"], .formInscription input[type="email"]{
+  width: 250px;
 }
 
-
+/* Disposition */
+.champs-inscription {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
