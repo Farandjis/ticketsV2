@@ -5,31 +5,42 @@
     <title>Accueil</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="ressources/logo_sans_texte.png" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <a href="#" class="nav-icon" aria-label="Accueil" aria-current="page">
-                <img src="ressources/logo_blanc2.png" alt="logo du site" />
-            </a>
-        </div>
-
-        <div class="nav-conteneur">
-            <a href="#" aria-current="page">Accueil</a>
-            <a href="#">Tableaud de bord</a>
-        </div>
-
-
-        <div class="nav-authentification">
-            <a href="#" class="user-icon" aria-label="Page de connexion">
-                <img src="ressources/user.svg" alt="user icon" />
-            </a>
-            <div class="authentification">
-                <a href="connexion.html"><button type="button">Connexion</button>
-                <a href="inscription.html"><button type="button">Inscription</button></a>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#" class="nav-icon" aria-label="Accueil" aria-current="page">
+                    <img src="ressources/logo_blanc.png" alt="logo du site" />
+                </a>
             </div>
-        </div>
-    </nav>
+
+            <div class="nav-conteneur">
+                <a href="#" aria-current="page">Accueil</a>
+                <!--
+                <a href="tableauBord.html">Tableaud de bord</a>
+                <a href="journalActivite.html">Journal d'activité</a>
+                <a href="historique.html">Historique</a>
+                -->
+            </div>
+
+
+            <div class="nav-authentification">
+                <a href="profile.html" class="user-icon" aria-label="Page de connexion">
+                    <img src="ressources/user.svg" alt="icone utilisateur" />
+                </a>
+                <div class="authentification">
+                    <a href="connexion.html">Connexion</a>
+                    <a href="inscription.html">Inscription</a>
+                    <!--
+                    <a href="profile.html">Mon Espace</a>
+                    -->
+
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <section class="presentation">
         <div class="texte-presentation">
@@ -47,13 +58,12 @@
 
     </section>
         <div class="inscription">
-            <button type="button"><a href="inscription.html">Je m'inscris</a></button>
+            <a href="inscription.html" >Je m'inscris</a>
         </div>
 
 
-
     <section class="affichage_ticket">
-        <table class="style-tableau">
+        <table class="table-accueil">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -99,12 +109,48 @@
                     <td>Contenu</td>
                     <td>Contenu</td>
                 </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                </tr>
+                <tr>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                    <td>Contenu</td>
+                </tr>
+
             </tbody>
         </table>
   </section>
 
   <footer>
-      <a href="#">UVSQ</a>
+      <a href="https://www.uvsq.fr/"><img src="ressources/logo-UVSQ.png" alt="redirige vers site UVSQ"> </a>
   </footer>
 
 </body>

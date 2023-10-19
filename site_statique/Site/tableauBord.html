@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html" class="nav-icon" aria-label="Accueil" aria-current="page">
+                    <img src="ressources/logo_blanc.png" alt="logo du site" />
+                </a>
+            </div>
+
+            <div class="nav-conteneur">
+                <a href="index.html" aria-current="page">Accueil</a>
+                <a href="#">Tableaud de bord</a>
+            </div>
+
+            <div class="authentification">
+                <a href="#">Déconnexion</a>
+            </div>
+            </div>
+        </nav>
+    </header>
+    <div class="tableau_bord_bouton">
+        <h1 class="titre_tableau_bord">
+            Tableau de Bord
+        </h1>
+        <div class="bouton_ticket">
+            <a href="#">Modification</a>
+            <a href="creerTicket.html">Créer un ticket</a>
+        </div>
+    </div>
+
+    <div class="tableau-bord">
+        <table class="table-tableau-bord">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Libellé</th>
+                <th>Niv. Urgence</th>
+                <th>Description</th>
+                <th>Demandeur</th>
+                <th>Etat</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="form-recherche">
+            <form action='' method='post'>
+                <label for='date'>Date</label><br>
+                <input id='date' type='date' name ='date' placeholder="jj/mm/yyyyy"><br>
+                <label for='date2'>à</label><br>
+                <input id='date2' type='date' name ='date2' placeholder="jj/mm/yyyyy"><br>
+                <br>
+                <label for='libelle'>Libellé</label><br>
+                <input id='libelle' type='text' name ='libelle'><br><br>
+
+
+                <input type='submit' name='recherche' value='Recherche'>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
