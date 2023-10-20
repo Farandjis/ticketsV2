@@ -62,19 +62,6 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
 ------------------------------------------------------------------------------------------------------------------------
 ### <a name="p1"></a>I – Objectif et portée
 - <b><a name="p1a"></a>a) Quels sont la portée et les objectifs généraux ?</b><br>
-  Le projet consiste à réaliser une application web permettant de récupérer les demandes de dépannage des utilisateurs
-  dans les salles machines. En fonction des utilisateurs, l’application permet de voir les demandes,
-  d’en créer ou de les gérer. Les demandes peuvent être classées en fonction de l’urgence qu’elle représente et seront
-  archivés dans un journal.<br>
-  Nous avons quatre types de personnes : les visiteurs, les utilisateurs, les techniciens et les administrateurs web et système.<br>
-  Si les visiteurs ne peuvent que consulter les 10 dernières demandes, les utilisateurs peuvent en voir plus et en créer.<br>
-  L'administrateur web administre la plateforme et peut modifier et répartir les tickets vers les deux techniciens.<br>
-  Les techniciens quant à eux peuvent indiquer l'état des tickets.
-  L'administrateur système surveille l'utilisation de l'application et l'utilise pour faire des statistiques.<br>
-  <br>
-  C'est une application interne à l'IUT.<br>
-  <br>
-
 
 La portée de l'utilisation de l'application s'arrête au réseau internet de l'IUT.
 Aucun utilisateur ne peut l'utiliser en dehors de ce réseau.<br>
@@ -177,11 +164,13 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 
 - - <a name="p1bii"></a>ii) Les différents niveaux
 
-| Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                               | Niveau sous-fonctions (en-dessous de la mer) |
-|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                     | Authentifier (connexion et déconnexion)      |
-| Gérer les profils utilisateurs           | - Réinitialiser ou modifier leur mot de passe <br> <br> - Créer un utilisateur <br> <br> - Accéder à son tableau de bord                                                                                                     | Identifier un utilisateur                    |
-| Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br> <br> - Afficher les demandes de dépannages <br> <br> - Changer l'état d'un ticket <br> <br> - Modifier le niveau d'urgence d'un ticket <br> <br> - Modifier un libellé |                                              |
+
+| Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentifier (connexion et déconnexion)      |
+| Gérer les profils utilisateurs           | - Réinitialiser ou modifier leur mot de passe <br><br> - Créer un utilisateur <br><br> - Accéder à son tableau de bord                                                                                                   | Identifier un utilisateur                    |
+| Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br><br> - Afficher les demandes de dépannages <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
+|                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
 
 - - <a name="p1biii"></a>iii) Un schéma descriptif des niveaux
