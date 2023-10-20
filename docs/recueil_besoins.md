@@ -4,10 +4,10 @@ INF2-A
 <div align="center">
 <img height="95" width="400" src="img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
-# SAÉ S3  Cahier des charges
+# SAÉ S3 - Recueil des besoins
 
 <br><br>
-Ce document fait office de cahier des charges. Il rassemble toutes les informations importantes que nous devrons respecter pour mener à bien ce projet.
+Ce document rassemble toutes les informations importantes que nous devrons respecter pour mener à bien ce projet.
 
 </div>
 
