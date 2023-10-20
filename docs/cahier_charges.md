@@ -24,7 +24,7 @@ Ce document fait office de cahier des charges, il décrit les attentes du client
 - ### [III - Pré-requis](#p3)
   - #### [a) Connaissances et compétences requises](#p3a)
   - #### [b) Ressources matérielles et logicielles](#p3b)
-- ### [IV - Priorités](#4)
+- ### [IV - Priorités](#p4)
 
 
 ### <a name="p1"></a> I - Introduction
