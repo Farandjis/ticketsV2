@@ -136,7 +136,16 @@
 
     <form action='' method='post' class="telechargement">
       <label for='journal'>Sélection</label><br>
-      <input id='journal' type='text' name ='journal'>   <!-- A MODIFIER EN SELECT et OPTION pour menu déroulant -->
+      <!--<input id='journal' type='text' name ='journal'>    A MODIFIER EN SELECT et OPTION pour menu déroulant -->
+
+      <div class="custom-select">
+        <select name="journal" id="journal">
+          <option value="">--Choisir une option--</option>
+          <option value="connexion_infructueuse">Connexions infructueuses</option>
+          <option value="ouverture_ticket">Ouvertures de tickets</option>
+
+        </select>
+      </div>
 
       <input type='submit' name='Telecharger' value='Télécharger'><br>
 
