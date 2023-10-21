@@ -56,6 +56,7 @@ Cette partie sera mise à jour durant la journée du samedi 21 octobre 2023.<br>
   - Suite de la création du site statique
   - Rectification de la maquette
 - **Assia**<br>
+  - écriture de la partie I et II du dossier de test
   - Suite et fin de la rédaction du choix du logo et de la conclusion qui finalise la charte logo
   - Finalisation de la charte graphique du site
   - Remplissage du (vrai...) cahier des charges
