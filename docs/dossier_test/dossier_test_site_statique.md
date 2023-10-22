@@ -2,7 +2,7 @@ Florent VASSEUR--BERLIOUX, Tom BOGAERT, Assia GOUABI, Enzo GUIGNOLLE, Matthieu F
 INF2-A
 
 <div align="center">
-<img height="95" width="400" src="img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
+<img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test
 ## Site statique
@@ -77,23 +77,102 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 
 ### <a name="a"></a>index.html
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|-----------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                |                 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges |                 |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           |                 |
-| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 |                 |
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
 
 - ### profile.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### inscription.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### connexion.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### modifmdp.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### modifemail.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### creerticket.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### maintenance.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### journalactivte.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### tableaubord.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+
 - ### historique.html
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
 
 <br><br><br>
 
@@ -104,3 +183,8 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 ## V - Fichier CSS
 
 ### <a name="1"></a>nomdufichier.css
+
+<a href="https://jigsaw.w3.org/css-validator/validator">Validateur CSS</a>
+<br/>
+<br/>
+Le validateur du CSS a trouvé aucune erreur
