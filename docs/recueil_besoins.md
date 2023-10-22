@@ -312,7 +312,8 @@ Par ordre alphabétique.
     - <u><a name="p5av"></a>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
 
       Nous pouvons noter en exigences sur le projet, l'exécution d'une phase de test assurant le bon fonctionnement de l'application. On attend également le rendu d'annexes concernant l'organisation du travail de l'équipe ou encore la charte graphique du logo de l'application.<br>
-      Le projet se fera sous forme de cycle en cascade. On commencera par la conception, puis la création pour terminer avec les tests.
+      Le projet se fera sous forme de petit cycle en cascade pour chaque élément du projet. Par exemple, des pages web statique ou encore du code PHP. On commencera par la conception, puis la création pour terminer avec les tests.
+      Les clients doivent avoir accès au dépôt Git afin de juger de l'évolution du projet et faire des critiques si nécessaire.
       <br>
     - <u><a name="p5avi"></a>vi. À quelle dépendance le projet est-il soumis ?</u><br>
       Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL.
