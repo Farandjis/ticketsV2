@@ -71,5 +71,5 @@ Les ressources matérielles et logicielles pour la réalisation de l’applicati
 <br>
 <br>
 
-### <a name="p4"></a> IV - Priorités
-
+### <a name="p4"></a> IV - Priorités<br>
+Les priorités sont abordés dans le document "plan_travail_prevu.md".
