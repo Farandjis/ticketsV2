@@ -13,64 +13,66 @@
             <a href="tableauBord.html"><img src="ressources/fleche_retour.png" alt=""> Retour</a>
         </div>
     </header>
-    <h1 class="h1Creation">Modification ticket</h1>
-    <div role="form" class="formModifTicket formAuthentification formConnexion">
+    <div class="page_cree-modif_ticket">
+        <h1 class="h1Creation">Modification ticket</h1>
+        <div role="form" class="formModifTicket formAuthentification formConnexion">
 
-        <div class="informations_ticket">
-            <div class="info-ticket-gauche">
-            <p>ID TICKET : 000000</p>
-            <p>ID TICKET : 000000</p>
-            <p>Utilisateur : NOM Prénom</p>
-            </div>
-
-            <div class="info-ticket-droite">
-            <p>ETAT_TICKET</p>
-            <p>Ouvert le XX/XX/XXXX</p>
-            <p>Modifié le XX/XX/XXXX</p>
-            </div>
-        </div>
-
-        <form action='' method='post'>
-            <div class="form-modif-ticket">
-                <div class="champs_ticket_gauche">
-                    <label for='login'>Nature du problème *</label><br>
-                    <input id='login' type='text' name ='login'>
-                    <br><br>
-
-                    <label for='explication'>Explication</label><br>
-                    <textarea id="explication" name="explication" ></textarea><br>
+            <div class="informations_ticket">
+                <div class="info-ticket-gauche">
+                <p>ID TICKET : 000000</p>
+                <p>ID TICKET : 000000</p>
+                <p>Utilisateur : NOM Prénom</p>
                 </div>
 
-                <div class="champs_ticket_droit">
+                <div class="info-ticket-droite">
+                <p>ETAT_TICKET</p>
+                <p>Ouvert le XX/XX/XXXX</p>
+                <p>Modifié le XX/XX/XXXX</p>
+                </div>
+            </div>
 
-                    <label for='nivUrgEstime'>Niveau d'urgence estimé</label><br>
-                    <p id="nivUrgEstime">non modifiable</p><br>
+            <form action='' method='post'>
+                <div class="form-modif-ticket">
+                    <div class="champs_ticket_gauche">
+                        <label for='login'>Nature du problème *</label><br>
+                        <input id='login' type='text' name ='login'>
+                        <br><br>
 
-                    <label for='nivUrg'>Niveau d'urgence définitif</label><br>
-                    <div class="custom-select">
-                        <select name="nivUrg" id="nivUrg">
-                            <option value="">--Choisir une option--</option>
-                            <option value="faible">Faible</option>
-                            <option value="moyen">Moyen</option>
-                            <option value="important">Important</option>
-                            <option value="urgent">Urgent</option>
-                        </select>
+                        <label for='explication'>Explication</label><br>
+                        <textarea id="explication" name="explication" ></textarea><br>
                     </div>
-                    <br>
-                    <label for='ch_technicien'>Technicien affecté</label><br>
-                    <div class="custom-select">
-                        <select name="ch_technicien" id="ch_technicien" >
-                            <option value="">--Choisir une option--</option>
-                            <option value="1">Technicien 1</option>
-                            <option value="2">Technicien 2</option>
-                            <option value="3">Technicien 3</option>
-                        </select>
-                    </div><br>
-                </div>
-            </div>
 
-            <input type='submit' name='modif' value='Modifier un ticket'><br>
-        </form>
+                    <div class="champs_ticket_droit">
+
+                        <label for='nivUrgEstime'>Niveau d'urgence estimé</label><br>
+                        <p id="nivUrgEstime">non modifiable</p><br>
+
+                        <label for='nivUrg'>Niveau d'urgence définitif</label><br>
+                        <div class="custom-select">
+                            <select name="nivUrg" id="nivUrg">
+                                <option value="">--Choisir une option--</option>
+                                <option value="faible">Faible</option>
+                                <option value="moyen">Moyen</option>
+                                <option value="important">Important</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                        <br>
+                        <label for='ch_technicien'>Technicien affecté</label><br>
+                        <div class="custom-select">
+                            <select name="ch_technicien" id="ch_technicien" >
+                                <option value="">--Choisir une option--</option>
+                                <option value="1">Technicien 1</option>
+                                <option value="2">Technicien 2</option>
+                                <option value="3">Technicien 3</option>
+                            </select>
+                        </div><br>
+                    </div>
+                </div>
+
+                <input type='submit' name='modif' value='Modifier un ticket'><br>
+            </form>
+        </div>
     </div>
 </body>
 </html>

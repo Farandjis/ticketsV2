@@ -1,3 +1,5 @@
+/* GENERAL */
+
 *,
 ::before,
 ::after {
@@ -6,19 +8,18 @@
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
 
 body {
   font-family: Poppins, Arial, sans-serif;
   background: #ac7ae1;
-/*
-  background-size: cover;
-*/
 }
-/*
-.maintenance, .profile {
-  height: 100vh;
-}
-*/
+
+
+/* BAR DE NAVIGATION*/
+
 nav {
   position: fixed;
   width: 100%;
@@ -30,18 +31,22 @@ nav {
   background: /*linear-gradient(to top, #C56CD6,#3425AF)*/ #211a43;
   box-shadow: inset 0 -1px 0 #c5c5c5;
 }
-.nav-icon {
+.logo {
   display: flex;
   align-items: center;
   text-decoration: none;
   margin-right: 20px;
 }
 
-
-.nav-icon img {
+.logo img {
   width: 75px;
 }
 
+.nav-conteneur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 .nav-conteneur a {
@@ -68,8 +73,7 @@ nav {
   transform: scaleX(1);
 }
 
-
-.authentification a {
+.authentification a , .deconnexion a {
   text-align: center;
   text-decoration: none;
   font-size: 24px;
@@ -106,54 +110,9 @@ nav {
 }
 
 
-@media (max-width: 1000px) {
-  nav {
-    padding: 15px 20px;
-    position: fixed;
-  }
 
-  .nav-icon{
-    margin: 0 auto;
-  }
-  /*
-  .nav-conteneur {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    background: #fafafa;
-    top: 100%;
-    left: 0;
-    transform: translate(-100%);
-    height: 100vh;
-    padding: 15px 50px 15px 20px;
-    border-right: 1px solid #c5c5c6;
-  }
-*/
 
-  .nav-conteneur {
-    display: none;
-  }
-
-  .nav-authentification {
-    margin-left: 0;
-  }
-  .authentification {
-    display: none;
-  }
-
-  .user-icon {
-    display: block;
-    cursor: pointer;
-    border: none;
-  }
-
-  .user-icon img {
-    width: 40px;
-  }
-}
-
-/* ================ */
+/* ======== PAGE D'ACCUEIL ======== */
 
 
 .presentation {
@@ -173,8 +132,6 @@ nav {
 
 }
 
-
-
 /*texte*/
 .texte-presentation {
   max-width: 700px;
@@ -185,8 +142,6 @@ nav {
   font-size: 20px;
 }
 
-
-
 .texte-presentation h1 {
   color: #211a43;
   font-size: 80px;
@@ -195,17 +150,17 @@ nav {
   color: #3a1b9f;
 }
 
-
 /*video*/
 .video-presentation {
   max-width: 1080px;
 }
 
 .video-presentation iframe {
+  width: 720px;
+  height: 405px; /* rapport  */
   margin-top: 25px;
   box-shadow: 0 0 5px 5px #211a43;
 }
-
 
 
 /*bouton*/
@@ -253,24 +208,6 @@ nav {
 
 
 
-
-@media screen and (max-width: 1800px) {
-  .presentation{
-    flex-direction: column;
-    justify-content: center;
-  }
-
-
-}
-
-@media screen and (max-width: 720px){
-  .texte-presentation > h1 {
-    font-size: 60px;
-  }
-}
-
-
-
 /*tableau*/
 .affichage_ticket{
   margin-top: auto;
@@ -282,9 +219,10 @@ nav {
   width: 1000px;
   margin: 100px auto;
   border: 2px solid #1c1c1c;
-  /*box-shadow: 0 0 75px 5px #211a43;*/
-  /*border: 2px solid black;*/
 }
+
+
+/* ======== TABLEAU EN GENERAL ======== */
 
 thead {
   background-color: #211a43;
@@ -299,11 +237,7 @@ th,td {
 td {
   font-weight: 500;
 }
-/*
-tr, td, th {
-  border: 2px solid #5c5891;
-}
-*/
+
 tbody tr:nth-child(odd) {
   background-color: #ECECEC;
 }
@@ -311,6 +245,8 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even){
   background-color: #ECECEC;
 }
+
+/* ======== FOOTER ======== */
 
 footer {
   text-align: center;
@@ -328,7 +264,7 @@ footer img {
 
 
 
-/*=======================================================*/
+/* ======== BOUTON DE RETOUR ======== */
 .retour a {
   position: relative;
   text-decoration: none;
@@ -343,7 +279,7 @@ footer img {
   height: 20px;
 }
 
-
+/* ======== FORMULAIRE D'AUTHENTIFICATION ======== */
 
 .formAuthentification{
   margin: 0 auto;
@@ -351,27 +287,23 @@ footer img {
   background-color: #211a43;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  position: absolute;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%, -50%);
-
   color: #ECECEC;
 
 }
 
-
-/* Formulaire d'authetification*/
-.logo_plein{
-  text-decoration: none;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 0);
-  background: #ECECEC;
-  border-radius: 100px;
+.page_authentification_modif_perso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.logo_plein{
+  width: 400px;
+  text-decoration: none;
+  background: #ECECEC;
+  border-radius: 100px;
+  margin-bottom: 25px;
+}
 
 .formAuthentification h1{
   text-align: center;
@@ -403,7 +335,7 @@ input[type="date"] {
 
 
 
-/* Formulaire Connexion*/
+/* ======== FORMULAIRE DE CONNEXION ======== */
 .formConnexion{
   width: 500px;
 }
@@ -432,6 +364,8 @@ input[type="date"] {
   width: 100%;
 }
 
+/* ======== LIEN VERS PAGE D'OUBLIE DE MDP ======== */
+
 .oublie {
   width: 100%;
   text-align: center;
@@ -439,7 +373,7 @@ input[type="date"] {
   padding: 5px;
 }
 
-/* Formulaire Inscription*/
+/* ======== FORMULAIRE D'INSCRIPTION ======== */
 
 .formInscription{
   width: 700px;
@@ -470,25 +404,11 @@ input[type="date"] {
 
 
 
-/* Disposition */
+/* ======== DISPOSITION DES CHAMPS DU FORMULAIRE D'INSCRIPTION ======== */
 .champs-inscription {
   display: flex;
   align-items: center;
   justify-content: space-around;
-}
-
-@media screen and (max-width: 700px) {
-  .formInscription{
-    width: 400px;
-  }
-
-  .champs-inscription {
-    flex-direction: column;
-  }
-  .inscription-droite{
-    margin-top: 25px;
-  }
-
 }
 
 
@@ -501,17 +421,17 @@ input[type="date"] {
 
 
 
-/*==========================*/
-
-
+/*======== LE TITRE DE CERTAINES PAGES ======== */
 
 .titre_page{
   text-align: center;
-  margin-top: 125px;
+  margin-top: 110px;
   margin-bottom: 25px;
   font-size: 80px;
 }
 
+
+/* ======== PAGE DE PROFIL */
 
 .info_profile{
   display: flex;
@@ -520,11 +440,8 @@ input[type="date"] {
 }
 
 
-/* Tableau d'information personnel   profile.html */
+/* ======== TABLEAU INFOS PERSONNELLES DE LA PAGE PROFIL ======== */
 .entete_profile{
-  /*
-  background-color: #211a43;
-  */
   color: #211a43;
   font-weight: 800;
 
@@ -545,7 +462,7 @@ input[type="date"] {
   border-bottom: transparent;
 }
 
-/* Tableau des demandes personnelles   profile.html */
+/* ======== TABLEAU DES DEMANDES PERSONNELLES DE LA PAGE PROFIL ======== */
 
 .table-demandes-perso{
   border-collapse: collapse;
@@ -559,18 +476,8 @@ input[type="date"] {
   border: 2px solid #1c1c1c;
 }
 
-@media screen and  (max-width: 1550px) {
-  .info_profile{
-    flex-direction: column;
-  }
-  .table-perso {
-    width: 900px;
-    margin-bottom: 50px;
-  }
-}
 
-
-/* ================ journalActivite.html =========== */
+/* ======== JOURNAL D'ACTIVITE ======== */
 
 .activite{
   display: flex;
@@ -590,14 +497,7 @@ input[type="date"] {
   border: 2px solid #555555;
 }
 
-@media screen and  (max-width: 1650px) {
-  .activite{
-    flex-direction: column;
-  }
-  .table-infructueuse {
-    margin-bottom: 50px;
-  }
-}
+/* ======== BOUTON DE TELECHARGEMENT DE TABLEAU ======== */
 
 .telechargement {
   display: flex;
@@ -624,6 +524,7 @@ input[type="date"] {
   width: 100%;
 }
 
+/* ======== HISTORIQUE ======== */
 
 .historique{
   display: flex;
@@ -640,6 +541,9 @@ input[type="date"] {
 .table-historique td {
   border: 2px solid #555555;
 }
+
+
+/* ======== TABLEAU DE BORD ======== */
 
 .tableau_bord_bouton {
   display: flex;
@@ -732,35 +636,20 @@ input[type="date"] {
   border: 2px solid #555555;
 }
 
-@media screen and (max-width: 1620px){
-  .tableau-bord {
-    flex-direction: column-reverse;
-    padding: 15px;
-  }
 
-  .tableau_bord_bouton {
-    flex-direction: column;
-  }
-  .tableau_bord_bouton > h1 {
-    font-size: 50px;
-    padding: 15px;
-  }
-}
 
+/* ======== CREATION DE TICKET ======== */
 
 .h1Creation {
-  position: absolute;
-  left: 50%;
-  top: 15%;
-  transform: translate(-50%,0);
   font-size: 60px;
+  margin-bottom: 30px;
 }
 
 .formCreeTicket {
   width: 600px;
 }
 .formModifTicket {
-  width: 800px;
+  width: 700px;
 }
 
 .formCreeTicket > select{
@@ -779,7 +668,7 @@ textarea{
   height: 150px;
 }
 
-/* SELECT OPTIONS */
+/* ======== SELECT OPTIONS ======== */
 
 select {
   appearance: none;
@@ -794,7 +683,7 @@ select {
 }
 
 
-/* ============= Modification Ticket ================ */
+/* ======== MODIFICATION DE TICKET ======== */
 .informations_ticket {
   display: flex;
   align-items: center;
@@ -821,7 +710,6 @@ select {
 }
 
 
-
 #nivUrgEstime {
   appearance: none;
   background-color: #606060;
@@ -833,4 +721,169 @@ select {
   border-radius: 15px;
 
 }
+
+
+
+/* Modification de la taille des éléments en fonction de la taille de la page */
+
+@media screen and (max-width: 700px) {
+  .formInscription{
+    width: 400px;
+  }
+
+  .champs-inscription {
+    flex-direction: column;
+  }
+  .inscription-droite{
+    margin-top: 25px;
+  }
+}
+
+
+
+@media (max-width: 750px) {
+  nav {
+    padding: 15px 20px;
+    position: fixed;
+  }
+
+  .nav-icon{
+    margin: 0 auto;
+  }
+
+  .nav-authentification {
+    margin-left: 0;
+  }
+  .authentification {
+    display: none;
+  }
+
+  .user-icon {
+    display: block;
+    cursor: pointer;
+    border: none;
+  }
+
+  .user-icon img {
+    width: 40px;
+  }
+
+  .texte-presentation > h1 {
+    font-size: 60px;
+  }
+
+  .video-presentation > iframe {
+    width: 534px;
+    height: 300px;
+  }
+}
+
+
+
+@media screen and (max-width: 920px) {
+  .titre_page {
+    font-size: 60px;
+  }
+
+  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
+    width: 600px;
+    height: 400px;
+  }
+
+  .table-accueil {
+    width: 700px;
+    height: 400px;
+  }
+
+  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1445px) {
+  .nav-conteneur{
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .nav-conteneur a{
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  .titre_page, .tableau_bord_bouton {
+    margin-top: 200px;
+  }
+}
+
+.page_cree-modif_ticket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+@media screen and  (max-width: 1550px) {
+  .info_profile{
+    flex-direction: column;
+  }
+  .table-perso {
+    width: 900px;
+    margin-bottom: 50px;
+  }
+}
+
+
+
+@media screen and (max-width: 1620px){
+  .tableau-bord {
+    flex-direction: column-reverse;
+    padding: 15px;
+  }
+
+  .tableau_bord_bouton {
+    flex-direction: column;
+  }
+  .tableau_bord_bouton > h1 {
+    font-size: 50px;
+    padding: 15px;
+  }
+
+  .tableau_bord_bouton > h1{
+    font-size: 60px;
+    margin-left: 0;
+  }
+
+  .bouton_ticket{
+    margin-right: 0;
+  }
+}
+
+
+
+@media screen and  (max-width: 1650px) {
+  .activite{
+    flex-direction: column;
+  }
+  .table-infructueuse {
+    margin-bottom: 50px;
+  }
+}
+
+
+
+@media screen and (max-width: 1800px) {
+  .presentation{
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .h1Creation {
+    margin-bottom: 0;
+  }
+}
+
+
 
