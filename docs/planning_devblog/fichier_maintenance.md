@@ -8,52 +8,75 @@ INF2-A
 
 <br><br>
 Ce document permet de récapituler la progression de chacun et de l'avancée du projet dans sa globalité.<br>
-En plus de la progression journalière, chaque semaine, il y aura un bilan expliquant ce qui fonctionne, nos problèmes, nos discussions ou encore nos prévisions.
+Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, nos discussions ou encore nos prévisions.
 </div>
 
 <br><br><br>
 
 ---
+## Samedi 21/10/2023 - Bilan du travail du 15/10/2023 au 21/10/2023
 
-- ### Jour XX/XX/2023
-  - **Florent**<br>
-    - [travail effectué ce jour là]
-  - **Tom**<br>
-    - [travail effectué ce jour là]
-  - **Assia**<br>
-    - [travail effectué ce jour là]
-  - **Enzo**<br>
-    - [travail effectué ce jour là]
-  - **Matthieu (chef de projet)**<br>
-    - [travail effectué ce jour là]
-
-- ### Dimanche 15/10/2023
-  - **Florent**<br>
-    - [travail effectué ce jour là]
-  - **Tom**<br>
-    - [travail effectué ce jour là]
-  - **Assia**<br>
-    - [travail effectué ce jour là]
-  - **Enzo**<br>
-    - [travail effectué ce jour là]
-  - **Matthieu (chef de projet)**<br>
-    - [travail effectué ce jour là]
-
-
-- ### Samedi 14/10/2023
-
-  - **Tom**<br>
-    - Fin du travail sur la maquette
-  - **Assia**<br>
-    - Suite de la rédaction du choix du logo (logo 1 quasi terminé, début logo 2)
-  - **Matthieu (chef de projet)**<br>
-    - Correction cahier des charges
-    - Finition du plan de travail prévu
-    - Modification du planning
-    - Création de l'organisation prévue du git
-    - Vérification du travail effectuer aujourd'hui
-  
+#### Changement du planning
+Au cours de cette semaine, j'ai modifié le planning (planning.png).<br>
+Premièrement, de ce lundi à ce vendredi, on a décidé de mettre un peu de côté la SAÉ pour nous concentrer sur nos contrôles (hors heures de SAÉ).<br>
+Nous profiterons du week-end du 28 octobre pour discuter de l'organisation de la SAÉ et de notre organisation durant les vacances.<br>
 <br>
+Deuxièmement, la fin de la mise en service sans ssh du RPi4 a été repoussé à aujourd'hui, samedi 21/10/2023.<br>
+Pour pouvoir utiliser le RPi4, nous devions acheter un adaptateur HDMI vers Micro HDMI. Il nous était donc impossible de l'installer jeudi.<br>
+
+#### Avancé
+- **Ce qui a été terminé :** <br>
+  - Diagramme UML
+  - Charte graphique du site web (fait sur Google Docs)
+  - Argumentaire du logo (fait sur Google Docs)
+  - Recueil des besoins (avant passage à la préparation du site dynamique)
+  - Envoi des invitations à rejoindre le dépôt à M. HOGUIN, M. DUFAUD, M. DJERROUD
+  - Récupération du RPi4 (+ alimentation et son sac) de M. HOGUIN
+
+- **Ce qui doit être avancé, terminé :**
+  - Maquette du site statique (Date limite : 22/10/23)
+  - Site statique (DL : 22/10/23)
+  - Conception architecturale du site statique (DL : 22/10/23)
+  - Cahier des charges (DL : 22/10/23)
+
+- **Ce qui a été commencé, avancé :** <br>
+  - Conception de la base de données
+  - Installation du RPi4 (sans ssh)
+
+
+Cette partie sera mise à jour durant la journée du samedi 21 octobre 2023.<br>
+<br>
+
+#### Travail effecté du jeudi 12/10/2023 au samedi 21/10/2023
+
+- **Florent**<br>
+  - Suite de la charte graphique du site
+  - Création des documents liés à la conception architecturale
+- **Tom**<br>
+  - Suite de la création du site statique
+  - Rectification de la maquette
+- **Assia**<br>
+  - écriture de la partie I et II du dossier de test
+  - Suite et fin de la rédaction du choix du logo et de la conclusion qui finalise la charte logo
+  - Finalisation de la charte graphique du site
+  - Remplissage du (vrai...) cahier des charges
+  - Conception de la base de données
+- **Enzo** :<br>
+  - Dossier de test site statique
+  - Diagramme UML du site statique
+- **Matthieu (chef de projet)**<br>
+  - Correction du recueil des besoins
+  - Modification du plan de travail prévu
+  - Modification du planning
+  - Création puis modification de l'organisation prévue du git
+  - Vérification du travail effectué
+  - Répartition des tâches entre les différents membres
+  - Création du dossier de test pour le site statique
+  - Gestion des branches du GIT
+  - Installation du RPi4 (sans ssh)
+  - Conception de la base de données
+  
+<br><br><br><br>
 
 ---
 

@@ -1,0 +1,25 @@
+Florent Tom Assia Enzo Matthieu
+
+le 21/10/2023
+-----
+
+
+===================== Samedi 21/10/2023 à dimanche 22/10/2023 ====================
+- Site statique -> Tom
+- Dossier de test site statique -> Enzo
+- Dossier conception site statique -> Florent
+- Installation serveur -> Matthieu, Assia
+- Rapport serveur -> Matthieu, Assia
+
+
+================== Mardi 24/10/2023 et Jeudi 26/10/2023 ==================
+
+Nous ferons une réunion pour discuter de l'organisation et du travail à effectuer.
+Il est possible que ça change.
+
+- Conception BD -> Matthieu
+- Préparation dossier de test PHP et BD -> Enzo, Florent
+- Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia 
+- Début création BD -> Enzo (on verra)
+- Conception et UML site dynamique -> Florent, Enzo
+
