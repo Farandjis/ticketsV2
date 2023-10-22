@@ -373,6 +373,16 @@ input[type="date"] {
   padding: 5px;
 }
 
+/* ======== MAINTENANCE ======== */
+.maintenance {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -45%);
+  font-weight: bold;
+  font-size: 80px
+}
+
 /* ======== FORMULAIRE D'INSCRIPTION ======== */
 
 .formInscription{
