@@ -12,14 +12,14 @@ le 21/10/2023
 - Rapport serveur -> Matthieu, Assia
 
 
-================== Mardi 24/10/2023 et Jeudi 26/10/2023 ==================
+================== Mardi 24/10/2023 et Jeudi 26/10/2023 voir prolongé dans les vacances ==================
 
 Nous ferons une réunion pour discuter de l'organisation et du travail à effectuer.
 Il est possible que ça change.
 
-- Conception BD -> Matthieu
-- Préparation dossier de test PHP et BD -> Enzo, Florent
+- Conception BD -> Matthieu, Tom
+- Préparation dossier de test PHP et BD -> Enzo
 - Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia 
-- Début création BD -> Enzo (on verra)
-- Conception et UML site dynamique -> Florent, Enzo
+- Début création BD -> Tom
+- Conception et UML site dynamique -> Florent
 
