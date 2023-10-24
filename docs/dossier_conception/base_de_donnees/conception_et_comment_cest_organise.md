@@ -36,8 +36,20 @@ Ce document décrit la base de données. Comme ses tables, ses utilisateurs et l
 ---------
 
 - ### <a name="p1"></a> I - Les tables
-  - #### Table 1
-    Description de la table
+  - #### Utilisateur
+    La table utilisateur comporte toute les données liés aux utilisateurs, et aux comptes des utilisateurs.
+
+  - #### Ticket
+    La table ticket comporte tous les tickets de la plateforme et leurs informations. Ceux en attente de validation par l’administrateur comme ceux en cours de traitement ou encore ceux qui ont été résolu.<br>
+    Un ticket possède un identifiant unique et possède l'identifiant du demandeur.
+
+  - #### Libelle
+    La table libelle comporte tous les libellés pouvant être assignés à un ticket.
+
+  - #### RelationTicketsLibellés et RelationTicketsLibellés
+    Tables qui permettent de faire une jointure entre deux tables. Des informations peuvent compléter la jointure.
+
+Description de la table
 
 - ### <a name="p2"></a> II - Les attributs des tables
 
