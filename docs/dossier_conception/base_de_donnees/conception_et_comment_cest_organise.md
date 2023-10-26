@@ -47,21 +47,64 @@ Ce document décrit la base de données. Comme ses tables, ses utilisateurs et l
 
 - ### <a name="p2"></a> II - Les tables
   - #### Utilisateur
-    La table utilisateur comporte toute les données liés aux utilisateurs, et aux comptes des utilisateurs.
+    La table UTILISATEUR comporte toute les données liés aux utilisateurs, et aux comptes des utilisateurs.
 
   - #### Ticket
-    La table ticket comporte tous les tickets de la plateforme et leurs informations. Ceux en attente de validation par l’administrateur comme ceux en cours de traitement ou encore ceux qui ont été résolu.<br>
+    La table TICKET comporte tous les tickets de la plateforme et leurs informations. Ceux en attente de validation par l’administrateur comme ceux en cours de traitement ou encore ceux qui ont été résolu.<br>
     Un ticket possède un identifiant unique et possède l'identifiant du demandeur.
 
   - #### Libelle
-    La table libelle comporte tous les libellés pouvant être assignés à un ticket.
+    La table LIBELLE comporte tous les libellés pouvant être assignés à un ticket.
 
-  - #### RelationTicketsLibellés et RelationTicketsLibellés
+  - #### EtatTicket
+    La table ETAT-TICKET comporte tous les états pouvant être assignés à un ticket
+
+  - ### RoleUser
+    La table ROLE-USER comporte tous les rôles pouvant être assignés à un utilisateur
+
+  - #### RelationTicketsLibellés
     Tables qui permettent de faire une jointure entre deux tables. Des informations peuvent compléter la jointure.
 
 Description de la table
 
 - ### <a name="p2"></a> III - Les attributs des tables
+
+  - #### Utilisateur
+    - **ID_USER** [INT] : Primary key, autoincrement 
+    - **LOGIN_USER** [VARCHAR 20] : UNIQUE, CHECK Taille >= 5
+    - **PRENOM_USER** [VARCHAR 30]
+    - **NOM_USER** [VARCHAR 30]
+    - **ROLE_USER** : foreign key (NOM_ROLE-USER, RoleUser)
+    - **HORODATAGE_OUVERTURE_USER ** [DATE] :
+    - **HORODATAGE_DERNIERE_CONNECTION_USER** [DATE] :
+    - **IP_DERNIERE_CONNECTION_USER** [VARCHAR] : 
+
+  - #### Ticket
+    - **ID_TICKET**
+    - **ID_USER** : foreign key (ID_USER - Utilisateur)
+    - **OBJET_TICKET**
+    - **DESCRIPTION_TICKET**
+    - **ID_TECHNICIEN** : foreign key (ID_USER - Utilisateur), default (NULL)
+    - **NIV_URGENCE_ESTIMER_TICKET**
+    - **NIV_URGENCE_DEFINITIF_TICKET**
+    - **ETAT_TICKET** : foreign key (ETAT - EtatTicket), default (en_attente)
+    - **HORODATAGE_CREATION_TICKET**
+    - **HORODATAGE_DEBUT_TRAITEMENT_TICKET**
+    - **HORODATAGE_RESOLUTION_TICKET**
+    - **HORODATAGE_DERNIERE_MODIF_TICKET**
+
+  - ### Libelle
+    - **NOM_LIBELLE** : primary key
+
+  - ### EtatTicket
+    - **VALEUR_ETAT-TICKET** : primary key   // valeurs qui seront stockés : en attente, ouvert, en cours de traitement, fermé
+
+  - ### RoleUser
+    - **NOM_ROLE-USER** : primary key   // valeurs qui seront stockés : utilisateur, admin_web, admin_sys, technicien, missingno
+
+  - ### RelationTicketsLibellés
+    - **ID_TICKET** :: primary key, foreign key (ID_TICKET - Ticket)
+    - **NOM_LIBELLE** : primary key, foreign key (NOM_LIBELLE - Libelle)
 
 - ### <a name="p3"></a> IV - Les utilisateurs MySQL
 
