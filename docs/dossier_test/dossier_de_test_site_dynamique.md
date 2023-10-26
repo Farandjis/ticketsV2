@@ -66,46 +66,42 @@ Les fonctionnalités que nous allons tester seront la connexion des utilisateurs
 
 ### <a name="a"></a>Connexion
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+| 2      |         |                  |                 |
+| 3      |         |                  |                 |
+| 4      |         |                  |                 |
 
 - ### <a name="b"></a>Inscription
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
-
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+| 2      |         |                  |                 |
+| 3      |         |                  |                 |
+| 4      |         |                  |                 |
 - ### <a name="c"></a>Déconnexion
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
-
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+| 2      |         |                  |                 |
+| 3      |         |                  |                 |
+| 4      |         |                  |                 |
 - ### <a name="d"></a>Modification Email
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
-
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+| 2      |         |                  |                 |
+| 3      |         |                  |                 |
+| 4      |         |                  |                 |
 - ### <a name="e"></a>Modification mot de passe
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 21/10/2023 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 4      | Vérification de l'accessibilité (Wave)    | Aucune erreur ou alerte                                                                                                 | OK                                         |
-
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+| 2      |         |                  |                 |
+| 3      |         |                  |                 |
+| 4      |         |                  |                 |
