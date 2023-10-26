@@ -12,20 +12,22 @@ Ce document décrit la base de données. Comme ses tables, ses utilisateurs et l
 
 <br><br><br>
 
-- ### [I - Les tables](#p1)
+- ### [I - Analyse](#p1)
+
+- ### [II - Les tables](#p2)
   - Pour chaque table
     - Nom de la table
     - Description
-- ### [II - Les attributs des tables]()
+- ### [III - Les attributs des tables]()
   - Pour chaque table
     - Liste de ses attributs
     - Options des attributs (clées primaire...)
-- ### [III - Les utilisateurs MySQL]()
+- ### [IV - Les utilisateurs MySQL]()
   - Pour chaque type d'utilisateur MySQL
     - Nom du type d'utilisateur
     - Description de l'utilisateur
     - Ses droits
-- ### [IV - Les vues]()
+- ### [V - Les vues]()
   - Pour chaque type d'utilisateur
     - Nom de la vue
     - Description de la vue
@@ -35,7 +37,15 @@ Ce document décrit la base de données. Comme ses tables, ses utilisateurs et l
 
 ---------
 
-- ### <a name="p1"></a> I - Les tables
+- ### <a name="p2"></a> I - Analyse
+  Nous avons besoin d'une base de données capable de stocker les différentes données concernant les utilisateurs et les différents tickets.<br>
+  Cette base des données permet de joindre les différents tickets à leurs créateurs et à leurs techniciens associés.<br>
+  Celle-ci doit être sécurisé, elle ne doit pas permettre l'accès ou la modification non autorisée.
+  Ainsi, un utilisateur ne doit pouvoir accéder uniquement aux données publiques et à ses données personnelles, et non aux données personnelles des autres utilisateurs.<br>
+  En cela, il est nécessaire de mettre en place des vues ainsi que la création d'utilisateurs sur la base de données.<br>
+
+
+- ### <a name="p2"></a> II - Les tables
   - #### Utilisateur
     La table utilisateur comporte toute les données liés aux utilisateurs, et aux comptes des utilisateurs.
 
@@ -51,8 +61,8 @@ Ce document décrit la base de données. Comme ses tables, ses utilisateurs et l
 
 Description de la table
 
-- ### <a name="p2"></a> II - Les attributs des tables
+- ### <a name="p2"></a> III - Les attributs des tables
 
-- ### <a name="p3"></a> III - Les utilisateurs MySQL
+- ### <a name="p3"></a> IV - Les utilisateurs MySQL
 
-- ### <a name="p4"></a> IV - Les vues
+- ### <a name="p4"></a> V - Les vues
