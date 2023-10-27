@@ -1,25 +1,20 @@
 Florent Tom Assia Enzo Matthieu
 
-le 21/10/2023
+le 27/10/2023
 -----
 
 
-===================== Samedi 21/10/2023 à dimanche 22/10/2023 ====================
-- Site statique -> Tom
-- Dossier de test site statique -> Enzo
-- Dossier conception site statique -> Florent
-- Installation serveur -> Matthieu, Assia
-- Rapport serveur -> Matthieu, Assia
-
-
-================== Mardi 24/10/2023 et Jeudi 26/10/2023 voir prolongé dans les vacances ==================
+================== Pendant les vacances ==================
 
 Nous ferons une réunion pour discuter de l'organisation et du travail à effectuer.
 Il est possible que ça change.
 
-- Conception BD -> Matthieu, Tom
-- Préparation dossier de test PHP et BD -> Enzo
+Enzo : Indisponible début des vacances
+Tom, Florent : Indisponible fin des vacances
+
+- Conception BD -> Matthieu, Tom (indisponible fin des vacances)
+- Préparation dossier de test PHP et BD -> Enzo (indisponible début des vacances)
 - Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia 
 - Début création BD -> Tom
-- Conception et UML site dynamique -> Florent
-
+- Conception et UML site dynamique -> Florent (indisponible fin des vacances)
+- Gestion du projet
