@@ -1,20 +1,36 @@
 Florent Tom Assia Enzo Matthieu
 
-le 27/10/2023
+le 30/10/2023
 -----
 
 
-================== Pendant les vacances ==================
-
-Nous ferons une réunion pour discuter de l'organisation et du travail à effectuer.
-Il est possible que ça change.
+================== Jusqu'au 2 novembre ==================
 
 Enzo : Indisponible début des vacances
 Tom, Florent : Indisponible fin des vacances
 
-- Conception BD -> Matthieu, Tom (indisponible fin des vacances)
+- Conception BD -> Tom (indisponible fin des vacances)
+	-> A TERMINER RAPIDEMENT !
 - Préparation dossier de test PHP et BD -> Enzo (indisponible début des vacances)
 - Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia 
 - Début création BD -> Tom
+	-> A COMMENCER DES QUE POSSIBLE
 - Conception et UML site dynamique -> Florent (indisponible fin des vacances)
 - Gestion du projet
+- Installation du serveur
+	-> A TERMINER
+- Mise en réseau du serveur
+	-> RESSAYER
+
+
+================== Du jeudi 02/11/23 au jeudi 09/11/2023 ==================
+
+Tom, Florent : Indisponible fin des vacances
+
+- Fin création BD (si non terminé) -> Enzo
+- Préparation dossier de test PHP et BD -> Enzo
+- Dernière tentative pour la mise en réseau du serveur -> Matthieu
+- Gestion du projet, vérification que tout soit conforme jusqu'à présent -> Matthieu
+- Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia
+
+Note : On commencera le PHP une fois la BD de prête et à la fin des vacances.
