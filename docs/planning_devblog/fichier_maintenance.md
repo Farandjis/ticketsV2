@@ -38,6 +38,7 @@ Notre travail sur la SAÉ a été perturbé par les nombreux contrôles que nous
 - **Ce qui devra être terminé pour la semaine prochaine :**
   - Conception de la base de données
   - Installation du serveur
+  - Rapport d'installation du serveur
 
 - **Ce qui devra être commencé pour la semaine prochaine :**
   - Création de la base de données
@@ -64,6 +65,8 @@ Notre travail sur la SAÉ a été perturbé par les nombreux contrôles que nous
   - Vérification des tests sur la dimension de l'écran pour le site statique
   - Transfert du Word et suite de la conception de la base de donnée
   - Tâche de gestion de projet : attribution des tâches, gestion des branches, gestion du planning
+  - Installation et tentative de mise en réseau via Hamachi du serveur
+  - Début de la rédaction de l'installation du RPi4
 
 
 ---
