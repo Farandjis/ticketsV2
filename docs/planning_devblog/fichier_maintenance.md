@@ -14,6 +14,59 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 <br><br><br>
 
 ---
+## Jeudi 26/10/2023 - Bilan du travail du 22/10/2023 au 26/10/2023
+
+#### À propos du planning
+Notre travail sur la SAÉ a été perturbé par les nombreux contrôles que nous avons eus durant cette semaine. Nous avons fait le choix d'avancer exclusivement durant les heures de SAÉ.<br>
+
+#### Avancé
+- **Ce qui a été terminé :** <br>
+  - Maquette du site statique
+  - Site statique
+  - Conception architecturale du site statique
+  - Spécification terminée pour le site statique
+  - Cahier des charges et dossier recueil des besoins
+  - Conception de la base de donnée :
+    - Transfert du document Word en Markdown
+    - Listage des tables et des attributs
+
+- **Ce qui a été commencé :**
+  - Préparation du dossier de test pour la partie dynamique et la base de données
+  - Spécifications pour la partie dynamique
+  - Cas d'utilisation pour la partie dynamique
+
+- **Ce qui devra être terminé pour la semaine prochaine :**
+  - Conception de la base de données
+  - Installation du serveur
+
+- **Ce qui devra être commencé pour la semaine prochaine :**
+  - Création de la base de données
+
+#### Travail effecté du dimanche 22/10/2023 au jeudi 26/10/2023
+- **Florent**<br>
+  - Fin de la conception est des spécifications pour le site statique
+  - Début conception et spécifications pour le site statique
+  
+- **Tom**<br>
+  - Fin du site statique et sa maquette
+  - Conception de la base de données
+  - Vérification de la conformité du site statique avec le dossier de test
+
+- **Assia**<br>
+  - Fin du cahier des charges et recueil des besoins
+  - Début des cas d'utilisations pour la partie dynamique du site
+  
+- **Enzo** :<br>
+  - Fin du dossier de test site statique
+  - Préparation du dossier de test pour la partie dynamique et la base de données 
+
+- **Matthieu (chef de projet)**<br>
+  - Vérification des tests sur la dimension de l'écran pour le site statique
+  - Transfert du Word et suite de la conception de la base de donnée
+  - Tâche de gestion de projet : attribution des tâches, gestion des branches, gestion du planning
+
+
+---
 ## Samedi 21/10/2023 - Bilan du travail du 15/10/2023 au 21/10/2023
 
 #### Changement du planning
