@@ -70,42 +70,49 @@ Description de la table
 - ### <a name="p2"></a> III - Les attributs des tables
 
   - #### Utilisateur
-    - **ID_USER** [INT] : Primary key, autoincrement 
-    - **LOGIN_USER** [VARCHAR 20] : UNIQUE, CHECK Taille >= 5
-    - **PRENOM_USER** [VARCHAR 30]
-    - **NOM_USER** [VARCHAR 30]
-    - **ROLE_USER** : foreign key (NOM_ROLE-USER, RoleUser)
-    - **HORODATAGE_OUVERTURE_USER ** [DATE] :
-    - **HORODATAGE_DERNIERE_CONNECTION_USER** [DATE] :
-    - **IP_DERNIERE_CONNECTION_USER** [VARCHAR] : 
+    - **ID_USER**                                  [INT] : Primary key, autoincrement 
+    - **LOGIN_USER**                               [VARCHAR 20] : UNIQUE, CHECK Taille >= 5
+    - **PRENOM_USER**                              [VARCHAR 30]
+    - **NOM_USER**                                 [VARCHAR 30]
+    - **ROLE_USER**                                [VARCHAR 30] : foreign key (NOM_ROLE-USER, RoleUser)
+    - **EMAIL_USER**                               [VARCHAR 100] : CHECK (email_colonne ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$'
+    - **MDP_USER**                                 [VARCHAR 250] : MD5 // pour l'instant
+    - **HORODATAGE_OUVERTURE_USER **               [DATETIME]
+    - **HORODATAGE_DERNIERE_CONNECTION_USER**      [DATETIME]
+    - **IP_DERNIERE_CONNECTION_USER**              [VARCHAR]
 
   - #### Ticket
-    - **ID_TICKET**
-    - **ID_USER** : foreign key (ID_USER - Utilisateur)
-    - **OBJET_TICKET**
-    - **DESCRIPTION_TICKET**
-    - **ID_TECHNICIEN** : foreign key (ID_USER - Utilisateur), default (NULL)
-    - **NIV_URGENCE_ESTIMER_TICKET**
-    - **NIV_URGENCE_DEFINITIF_TICKET**
-    - **ETAT_TICKET** : foreign key (ETAT - EtatTicket), default (en_attente)
-    - **HORODATAGE_CREATION_TICKET**
-    - **HORODATAGE_DEBUT_TRAITEMENT_TICKET**
-    - **HORODATAGE_RESOLUTION_TICKET**
-    - **HORODATAGE_DERNIERE_MODIF_TICKET**
+    - **ID_TICKET**                                [INT] : Primary key, autoincrement
+    - **ID_USER**                                  [INT] : foreign key (ID_USER - Utilisateur)
+    - **OBJET_TICKET**                             [VARCHAR 100]
+    - **DESCRIPTION_TICKET**                       [VARCHAR 250]
+    - **ID_TECHNICIEN**                            [INT] : foreign key (ID_USER - Utilisateur), default (NULL)
+    - **NIV_URGENCE_ESTIMER_TICKET**               [VARCHAR 50]
+    - **NIV_URGENCE_DEFINITIF_TICKET**             [VARCHAR 50]
+    - **ETAT_TICKET**                              [VARCHAR 30] : foreign key (ETAT - EtatTicket), default (en_attente)
+    - **HORODATAGE_CREATION_TICKET**               [DATETIME]
+    - **HORODATAGE_DEBUT_TRAITEMENT_TICKET**       [DATETIME]
+    - **HORODATAGE_RESOLUTION_TICKET**             [DATETIME]
+    - **HORODATAGE_DERNIERE_MODIF_TICKET**         [DATETIME]
 
   - ### Libelle
-    - **NOM_LIBELLE** : primary key
+    - **NOM_LIBELLE**                              [VARCHAR 50] : primary key
 
   - ### EtatTicket
-    - **VALEUR_ETAT-TICKET** : primary key   // valeurs qui seront stockés : en attente, ouvert, en cours de traitement, fermé
+    - **VALEUR_ETAT-TICKET**                       [VARCHAR 30] : primary key : primary key   // valeurs qui seront stockés : en attente, ouvert, en cours de traitement, fermé
 
   - ### RoleUser
-    - **NOM_ROLE-USER** : primary key   // valeurs qui seront stockés : utilisateur, admin_web, admin_sys, technicien, missingno
+    - **NOM_ROLE-USER**                            [VARCHAR 30] : primary key   // valeurs qui seront stockés : utilisateur, admin_web, admin_sys, technicien, missingno
 
   - ### RelationTicketsLibellés
-    - **ID_TICKET** :: primary key, foreign key (ID_TICKET - Ticket)
-    - **NOM_LIBELLE** : primary key, foreign key (NOM_LIBELLE - Libelle)
+    - **ID_TICKET**                                [INT] : primary key, foreign key (ID_TICKET - Ticket)
+    - **NOM_LIBELLE**                              [VARCHAR 50] : primary key, foreign key (NOM_LIBELLE - Libelle)
 
 - ### <a name="p3"></a> IV - Les utilisateurs MySQL
+  - un administrateur système
+  - un administrateur web
+  - un ou des techniciens
+  - un utilisateur inscrit
+  - un visiteur
 
 - ### <a name="p4"></a> V - Les vues
