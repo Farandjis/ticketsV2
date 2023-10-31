@@ -50,7 +50,12 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 <br><br><br>
 
 ## <a name="p1"></a> I - Préparatif
-  - #### <a name="p1a"></a> c) Matériels nécessaires
+
+  - #### <a name="p1a"></a> a) Présentation du RaspberryPi 4
+
+  - #### <a name="p1b"></a> b) Présentation de Raspberry OS Lite
+
+  - #### <a name="p1c"></a> c) Matériels nécessaires
     Pour utiliser le RPi4 sur le même écran de son ordinateur tout en l'utilisant, on peut utiliser un boitier d'acquisition.<br>
     C'est un adaptateur HDMI vers USB, permettant de récupérer le signal vidéo sur son ordinateur. Utile pour enregistrer l'écran du RPi4 par exemple.<br>
 
@@ -77,7 +82,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 
 <br>
 
-  - #### <a name="p1b"></a> d) Logiciels nécessaires
+  - #### <a name="p1d"></a> d) Logiciels nécessaires
 
     Pour installer un système sur un support dédié au RaspberryPi, le plus simple est d'utiliser le logiciel "Pi Imager".<br>
     À partir du bouton "Choisir l'OS", le logiciel propose différents systèmes pouvant être installé. On peut aussi installer son propre système.<br>
@@ -106,4 +111,4 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     </div>
 
 
-- #### <a name="p1b"></a> e) Installation de Raspberry OS Lite
+- #### <a name="p1e"></a> e) Installation de Raspberry OS Lite
