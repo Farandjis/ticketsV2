@@ -76,8 +76,7 @@ Description de la table
     - **NOM_USER**                                 [VARCHAR 30]
     - **ROLE_USER**                                [VARCHAR 30] : foreign key (NOM_ROLE-USER, RoleUser)
     - **EMAIL_USER**                               [VARCHAR 100] : CHECK (email_colonne ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$'
-    - **MDP_USER**                                 [VARCHAR 250] : MD5 // pour l'instant
-    - **HORODATAGE_OUVERTURE_USER **               [DATETIME]
+    - **HORODATAGE_OUVERTURE_USER**                [DATETIME]
     - **HORODATAGE_DERNIERE_CONNECTION_USER**      [DATETIME]
     - **IP_DERNIERE_CONNECTION_USER**              [VARCHAR]
 
