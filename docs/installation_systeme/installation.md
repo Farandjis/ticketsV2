@@ -153,8 +153,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
   - ### <a name="p2b"></a> b) Logiciels nécessaires
 
     Pour installer un système sur un support dédié au RaspberryPi, le plus simple est d'utiliser le logiciel "Pi Imager".<br>
-    À partir du bouton "Choisir l'OS", le logiciel propose différents systèmes pouvant être installé. On peut aussi installer son propre système.<br>
-    Nous avons choisi Raspberry OS Lite. 
+
     <br>
     En dehors du logiciel Pi Imager, vu que nous possédons un boitier d'acquisition, nous allons utiliser les logiciels VLC et Mirillis Action!.<br>
     VLC permettra d'afficher sur son ordinateur la sortie vidéo du boitier provenant du RPi4, et Action! permettra en même temps d'enregistrer celui-ci et même le bureau Windows.<br>
@@ -164,13 +163,41 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     <br><br>
 
     <div align="center">
-    
-    <img src="img\I_preparatif\0_piimager_menu.webp" title="Menu de Pi Imager avec les boutons choix OS, choix Stockage, écrire et un bouton paramètre" height="180"/>
-    <img src="img\I_preparatif\vlc.webp" title="VLC sur Windows 10 affichant l'écran du RPi4 installant PHPMyAdmin" height="180"/>
-
-    <i>A gauche : Menu de Pi Imager<br> A droite : VLC affichant l'écran du RPi4 sur Windows 10</i>
-
+       <img src="img\I_preparatif\vlc.webp" title="VLC sur Windows 10 affichant l'écran du RPi4 installant PHPMyAdmin" height="220"/><br>
+       <i>VLC affichant l'écran du RPi4 sur Windows 10</i>
     </div>
 
 
 - ### <a name="p2c"></a> c) Installation de Raspberry OS Lite
+
+    À partir du bouton "Choisir l'OS", Pi Imager propose différents systèmes pouvant être installé. On peut aussi installer son propre système.<br>
+    Nous avons choisi Raspberry OS Lite pour les raisons évoquer lors de la présentation de ce système.
+
+    <br><br>
+
+    <div align="center">
+        <img src="img\I_preparatif\0_piimager_menu.webp" title="Menu de Pi Imager avec les boutons choix OS, choix Stockage, écrire et un bouton paramètre" height="220"/><br>
+        <i>Menu de Pi Imager</i>
+    </div>
+  
+    <br>
+
+    Une fois avoir sélectionné le système, un petit bouton engrenage apparaît pour paramétrer l'installation de RaspberryPi OS Lite.<br>
+    On peut y donner un nom à l'ordinateur, activer SSH, modifier le login et le mot de passe de l'utilisateur par défaut, configurer le Wi-Fi, le clavier ou encore le fuseau horaire.<br>
+    Nous avons configuré l'installation par rapport à notre besoin. Il est tout à fait possible de le faire plus tard avec la commande "raspi-config".<br>
+    <br>
+    Les trois cases à cocher tout en bas ne sont pas très importante.<br>
+    La télémétrie correspond à l'envoi de pings à raspberry.org pour des fins de statiques, c'est inutile, ça ne restreint pas l'utilisation du système, nous l'avons donc désactivé pour ne pas être surveillé.<br>
+    <br><br>
+
+    <div align="center">
+        <img src="img\I_preparatif\1_piimager_option.webp" title="Les options d'installation de Pi Imager" height="220"/><br>
+        <i>Options d'installation de Pi Imager</i>
+    </div>
+
+    <br>
+
+    Une fois fait, il suffit de sélectionner le bon lecteur et de flasher la carte microSD. C'est assez rapide, et la carte microSD est immédiatement opérationnel.
+    
+    Source utilisé :
+    - https://framboise-pi.skyost.eu/article/maitriser-raspberry-pi-imager/
