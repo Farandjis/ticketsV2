@@ -201,3 +201,14 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     
     Source utilisé :
     - https://framboise-pi.skyost.eu/article/maitriser-raspberry-pi-imager/
+
+<br><br><br>
+
+---
+
+## <a name="p3"></a> III - Installation du serveur LAMP
+
+- ### <a name="p3b"></a> b) Installation d'Apache
+- ### <a name="p3c"></a> c) Installation de MariaDB
+- ### <a name="p3d"></a> d) Installation de PHP
+- ### <a name="p3e"></a> e) Installation de PHPMyAdmin
