@@ -65,13 +65,13 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Cependant, le RPi 4 comporte des différences avec les anciens modèles de RPi.<br>
     En termes de processeur, son CPU possède des cœurs plus récents (les Cortex-A72) et son GPU est 25% plus rapide que les précédents modèles :
     désormais sa résolution d'écran maximal est de la 4K UltraHD. Son port HDMI/Mini-HDMI a laissé place à deux ports micro HDMI.<br>
-    Concernant la mémoire vive passant de LPDDR2 à LPDDR4 d'ailleurs, il y a trois versions du RPi4 : une 1Go, une 2Go et une à 4Go, la nôtre.<br>
+    Concernant la mémoire vive passant de LPDDR2 à LPDDR4 d'ailleurs, il y a quatre versions du RPi4 : une 1Go, une 2Go, 8Go et une à 4Go, la nôtre.<br>
     Deux de ses ports USB 2 ont laissé place à deux ports USB 3, et en termes de connectique réseau, le RPi4 possède un meilleur port LAN, un meilleur Wi-Fi et un meilleur Bluetooth.<br>
     <br>
     Nous pouvons en apprendre plus sur les caractéristiques de notre Raspberry Pi 4 en exécutant la commande Raspberry OS : pinout<br>
     <br>
     <div align="center">
-    <img width=400px src="/media/matthieu/TOSHIBA/!CONTENU_CLEE_USB/!!ECOLE -----------------/!IUT----------------------------------/!INF2-A/SAE/SAE_S3/ticketsV2/docs/installation_systeme/img/I_preparatif/pinout.png" title="résultat de la commande pinout avec les différents ports, un dessin de la carte et une descriptions des pins"/><br>
+    <img width=350px src="img/I_preparatif/pinout.png" title="résultat de la commande pinout avec les différents ports, un dessin de la carte et une descriptions des pins"/><br>
     <i>résultat de la commande pinout</i>
     </div>
     <br>
@@ -98,8 +98,24 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     - https://fr.wikipedia.org/wiki/LPDDR
 
 
-  - ### <a name="p1b"></a> b) Présentation de Raspberry OS Lite
 
+  - ### <a name="p1b"></a> b) Présentation de RaspberryPi OS Lite
+
+    RaspberryPi OS Lite est la version de RaspberryPi OS sans interface graphique.<br>
+    Cette version permet de démarrer le RPi4 sans écran, sans clavier et sans souris. Elle pèse près de 600 Mo, c'est donc le système idéal pour notre serveur.<br>
+    Bien que nous savons utiliser le terminal, le cas échéant, il est toujours possible d'ajouter une interface graphique à Raspberry OS Lite.<br>
+    <br>
+    RaspberryPi OS est fondé sur le système d'exploitation gratuit Debian et est conçu spécialement pour le RaspberryPi.<br>
+    En effet, au lancement de Raspbian, l'ancien nom de l'OS, Debian n'était pas disponible pour la famille de processeur du RaspberryPi : l'ARMv6.<br>
+    Vu que ce système d'exploitation est dédié au RaspberryPi, il comporte des commandes dédiées au micro ordinateur comme "raspi-config" ou encore "pinout" cité plus tôt.<br>
+    Ubuntu étant aussi issu sur Debian, nous pouvons aussi bien s'aider de la documentation de Raspberry OS, que celle de Debian ou celle d'Ubuntu.<br>
+    Pour notre serveur de secours, nous utiliserons Ubuntu Server. L'installation du serveur LAMP et de LogMeIn Hamachi reste pratiquement la même.<br>
+
+    Sources :
+    - https://www.raspberrypi.com/documentation/
+    - https://raspberrytips.fr/raspberry-pi-os-versions/
+    - https://alain-michel.canoprof.fr/eleve/tutoriels/raspberry/premiers-pas-raspberrypi/activities/utiliser-raspi-config.html
+    - https://www.macg.co/ailleurs/2023/10/les-raspberry-pi-passent-bookworm-pour-le-nouvel-os-139771
 
 <br><br><br>
 
@@ -138,13 +154,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 
     Pour installer un système sur un support dédié au RaspberryPi, le plus simple est d'utiliser le logiciel "Pi Imager".<br>
     À partir du bouton "Choisir l'OS", le logiciel propose différents systèmes pouvant être installé. On peut aussi installer son propre système.<br>
-    Nous avons choisi Raspberry OS Lite. C'est la version de Raspberry OS sans interface graphique.<br>
-    Cette version permet de démarrer le RPi4 sans écran, sans clavier et sans souris. Elle pèse près de 600 Mo, c'est donc le système idéal pour notre serveur.<br>
-    Bien que nous savons utiliser le terminal, le cas échéant, il est toujours possible d'ajouter une interface graphique à Raspberry OS Lite.<br>
-    <br>
-    Raspberry OS est issu du système Debian et est prévu pour un fonctionnement sur un RaspberryPi.<br>
-    Ubuntu étant aussi issu sur Debian, nous pouvons aussi bien s'aider de la documentation de Raspberry OS, que celle de Debian ou celle d'Ubuntu.<br>
-    Cependant, il peut y avoir des légères différences.<br>
+    Nous avons choisi Raspberry OS Lite. 
     <br>
     En dehors du logiciel Pi Imager, vu que nous possédons un boitier d'acquisition, nous allons utiliser les logiciels VLC et Mirillis Action!.<br>
     VLC permettra d'afficher sur son ordinateur la sortie vidéo du boitier provenant du RPi4, et Action! permettra en même temps d'enregistrer celui-ci et même le bureau Windows.<br>
