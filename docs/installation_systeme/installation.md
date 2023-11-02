@@ -20,15 +20,15 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 
 - ### [I – Présentation](#p1)
     - [**a) Présentation du RaspberryPi 4**](#p1a)
-    - [**b) Présentation de Raspberry OS Lite**](#p1b)
+    - [**b) Présentation de RaspberryPi OS Lite**](#p1b)
 
 - ### [II – Préparatif](#p2)
   - [**a) Matériels nécessaires**](#p2a)
   - [**b) Logiciels nécessaires**](#p2b)
-  - [**c) Installation de Raspberry OS Lite**](#p2c)
+  - [**c) Installation de RaspberryPi OS Lite**](#p2c)
   
 - ### [III - Installation du serveur LAMP](#p3)
-  - [**a) Premier démarrage de Raspberry OS Lite**](#p3a)
+  - [**a) Premier démarrage de RaspberryPi OS Lite**](#p3a)
   - [**b) Installation d'Apache**](#p3b)
   - [**c) Installation de MariaDB**](#p3c)
   - [**d) Installation de PHP**](#p3d)
@@ -207,6 +207,14 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 ---
 
 ## <a name="p3"></a> III - Installation du serveur LAMP
+
+- ### <a name="p3b"></a> a) Premier démarrage de RaspberryPi OS Lite
+    Il n'y a rien de particulié qui se passe durant le premier démarrage. 
+    Il nous demande notre login et le mot de passe que nous avons précisé sur Pi Imager et on a directement accès à RaspberryPi OS Lite.<br>
+    Le cas échéant, l'utilisateur par défaut est "pi" et son mot de passe est "password".<br>
+    <br>
+    En revanche, attention !<br>
+    Vu que nous avons activé SSH via Pi Imager, celui-ci est déjà activé. Cela peut poser des soucis de sécurité notamment si on a laissé l'utilisateur par défaut !
 
 - ### <a name="p3b"></a> b) Installation d'Apache
 - ### <a name="p3c"></a> c) Installation de MariaDB
