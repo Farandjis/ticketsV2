@@ -1,17 +1,3 @@
--- Création de la table "Utilisateur"
-CREATE TABLE Utilisateur (
-    ID_USER INT PRIMARY KEY AUTOINCREMENT,
-    LOGIN_USER VARCHAR(20) UNIQUE CHECK (LENGTH(LOGIN_USER) >= 5),
-    PRENOM_USER VARCHAR(30),
-    NOM_USER VARCHAR(30),
-    ROLE_USER VARCHAR(30),
-    EMAIL_USER VARCHAR(100) CHECK (EMAIL_USER ~* '^[A-Za-z0-9._%-]+@[A-Za-z.-]+\.[A-Za-z]{2,4}$'),
-    HORODATAGE_OUVERTURE_USER DATETIME,
-    HORODATAGE_DERNIERE_CONNECTION_USER DATETIME,
-    IP_DERNIERE_CONNECTION_USER VARCHAR(15),
-    FOREIGN KEY (ROLE_USER) REFERENCES RoleUser (NOM_ROLE_USER)
-);
-
 -- Création de la table "RoleUser"
 CREATE TABLE RoleUser (
     NOM_ROLE_USER VARCHAR(30) PRIMARY KEY
@@ -25,9 +11,35 @@ INSERT INTO RoleUser (NOM_ROLE_USER) VALUES
     ('technicien'),
     ('missingno');
 
+-- Création de la table "Utilisateur"
+CREATE TABLE Utilisateur (
+    ID_USER INT AUTO_INCREMENT PRIMARY KEY,
+    LOGIN_USER VARCHAR(20) UNIQUE CHECK (LENGTH(LOGIN_USER) >= 5),
+    PRENOM_USER VARCHAR(30),
+    NOM_USER VARCHAR(30),
+    ROLE_USER VARCHAR(30),
+    EMAIL_USER VARCHAR(100) CHECK (EMAIL_USER REGEXP '^[A-Za-z0-9._%-]+@[A-Za-z.-]+\\.[A-Za-z]{2,4}$'),
+    HORODATAGE_OUVERTURE_USER DATETIME,
+    HORODATAGE_DERNIERE_CONNECTION_USER DATETIME,
+    IP_DERNIERE_CONNECTION_USER VARCHAR(15),
+    FOREIGN KEY (ROLE_USER) REFERENCES RoleUser (NOM_ROLE_USER)
+);
+
+-- Création de la table "EtatTicket"
+CREATE TABLE EtatTicket (
+    VALEUR_ETAT_TICKET VARCHAR(30) PRIMARY KEY
+);
+
+-- Insertion des états possibles
+INSERT INTO EtatTicket (VALEUR_ETAT_TICKET) VALUES
+    ('en_attente'),
+    ('ouvert'),
+    ('en_cours_de_traitement'),
+    ('ferme');
+
 -- Création de la table "Ticket"
 CREATE TABLE Ticket (
-    ID_TICKET INT PRIMARY KEY AUTOINCREMENT,
+    ID_TICKET INT AUTO_INCREMENT PRIMARY KEY,
     ID_USER INT,
     OBJET_TICKET VARCHAR(100),
     DESCRIPTION_TICKET VARCHAR(250),
@@ -44,24 +56,12 @@ CREATE TABLE Ticket (
     FOREIGN KEY (ETAT_TICKET) REFERENCES EtatTicket (VALEUR_ETAT_TICKET)
 );
 
--- Création de la table "EtatTicket"
-CREATE TABLE EtatTicket (
-    VALEUR_ETAT_TICKET VARCHAR(30) PRIMARY KEY
-);
-
--- Insertion des états possibles
-INSERT INTO EtatTicket (VALEUR_ETAT_TICKET) VALUES
-    ('en_attente'),
-    ('ouvert'),
-    ('en cours de traitement'),
-    ('fermé');
-
 -- Création de la table "Libelle"
 CREATE TABLE Libelle (
     NOM_LIBELLE VARCHAR(50) PRIMARY KEY
 );
 
--- Création de la table "RelationTicketsLibellés"
+-- Création de la table "RelationTicketsLibelles"
 CREATE TABLE RelationTicketsLibelles (
     ID_TICKET INT,
     NOM_LIBELLE VARCHAR(50),

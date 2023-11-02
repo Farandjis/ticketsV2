@@ -1,9 +1,10 @@
-CREATE USER admin_sys IDENTIFIED BY azerty; -- MDP à modifier
-CREATE USER admin_web IDENTIFIED BY azerty; -- MDP à modifier
+-- Création des utilisateurs et rôles
+CREATE USER 'admin_sys' IDENTIFIED BY 'azerty'; -- MDP à modifier
+CREATE USER 'admin_web' IDENTIFIED BY 'azerty'; -- MDP à modifier
 
-CREATE ROLE technicien_role;
-CREATE ROLE client_role;
-CREATE ROLE visiteur_role;
+CREATE ROLE 'technicien_role';
+CREATE ROLE 'client_role';
+CREATE ROLE 'visiteur_role';
 
 -- Création des vues
 
@@ -16,7 +17,8 @@ CREATE VIEW vue_Ticket_visiteur AS
 SELECT HORODATAGE_CREATION_TICKET, OBJET_TICKET, NIV_URGENCE_ESTIMER_TICKET, DESCRIPTION_TICKET
 FROM Ticket;
 
-GRANT SELECT ON vue_Utilisateur_visiteur, vue_Ticket_visiteur TO visiteur_role;
+GRANT SELECT ON vue_Utilisateur_visiteur TO 'visiteur_role';
+GRANT SELECT ON vue_Ticket_visiteur TO 'visiteur_role';
 
 -- Utilisateur
 CREATE VIEW vue_Utilisateur_client AS
@@ -26,14 +28,14 @@ FROM Utilisateur;
 CREATE VIEW vue_Utilisateur_insertion_client AS
 SELECT EMAIL_USER
 FROM Utilisateur
-WHERE LOGIN_USER = USER;  -- à vérifier
+WHERE LOGIN_USER = CURRENT_USER;
 
 CREATE VIEW vue_Ticket_client AS
 SELECT OBJET_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET, NIV_URGENCE_DEFINITIF_TICKET,
- ETAT_TICKET, HORODATAGE_CREATION_TICKET, HORODATAGE_DEBUT_TRAITEMENT_TICKET, HORODATAGE_RESOLUTION_TICKET
+ETAT_TICKET, HORODATAGE_CREATION_TICKET, HORODATAGE_DEBUT_TRAITEMENT_TICKET, HORODATAGE_RESOLUTION_TICKET
 FROM Ticket;
 
-CREATE VIEW vue_Ticket_insertion_client AS   -- peut être inutile
+CREATE VIEW vue_Ticket_insertion_client AS
 SELECT OBJET_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET
 FROM Ticket;
 
@@ -41,28 +43,58 @@ CREATE VIEW vue_RelationTicket_client AS
 SELECT NOM_LIBELLE
 FROM RelationTicketsLibelles;
 
-GRANT SELECT ON vue_Utilisateur_client, vue_Ticket_client, vue_RelationTicket_client TO client_role;
-GRANT UPDATE ON vue_Utilisateur_insertion_client, vue_Ticket_insertion_client TO client_role;
+GRANT SELECT ON vue_Utilisateur_client TO 'client_role';
+GRANT SELECT ON vue_Ticket_client TO 'client_role';
+GRANT UPDATE ON vue_Utilisateur_insertion_client TO 'client_role';
+GRANT UPDATE ON vue_Ticket_insertion_client TO 'client_role';
+
 
 -- Technicien
-
 CREATE VIEW vue_Ticket_technicien AS
 SELECT ID_TECHNICIEN, ETAT_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_Ticket_technicien;
+GRANT UPDATE ON vue_Ticket_technicien TO 'technicien_role';
 
 -- Admin_web
-
 CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_etat_update_admWeb TO admin_web;
+GRANT UPDATE ON vue_etat_update_admWeb TO 'admin_web';
 
-GRANT INSERT, UPDATE ON Libelle, RelationTicketsLibelles TO admin_web;
+-- Pour 'admin_web', autorisation d'INSERT
+GRANT INSERT ON Libelle TO 'admin_web';
+GRANT INSERT ON RelationTicketsLibelles TO 'admin_web';
+
+-- Pour 'admin_web', autorisation de UPDATE
+GRANT UPDATE ON Libelle TO 'admin_web';
+GRANT UPDATE ON RelationTicketsLibelles TO 'admin_web';
+
 
 -- Générale Techniciens/Admins
+-- Pour 'technicien_role'
+GRANT SELECT ON Utilisateur TO 'technicien_role';
+GRANT SELECT ON Ticket TO 'technicien_role';
+GRANT SELECT ON RoleUser TO 'technicien_role';
+GRANT SELECT ON EtatTicket TO 'technicien_role';
+GRANT SELECT ON RelationTicketsLibelles TO 'technicien_role';
+GRANT SELECT ON Libelle TO 'technicien_role';
 
-GRANT SELECT ON Utilisateur, Ticket, RoleUser, EtatTicket, RelationTicketsLibelles, Libelle 
-TO technicien_role, admin_web, admin_sys;
+-- Pour 'admin_web'
+GRANT SELECT ON Utilisateur TO 'admin_web';
+GRANT SELECT ON Ticket TO 'admin_web';
+GRANT SELECT ON RoleUser TO 'admin_web';
+GRANT SELECT ON EtatTicket TO 'admin_web';
+GRANT SELECT ON RelationTicketsLibelles TO 'admin_web';
+GRANT SELECT ON Libelle TO 'admin_web';
+
+-- Pour 'admin_sys'
+GRANT SELECT ON Utilisateur TO 'admin_sys';
+GRANT SELECT ON Ticket TO 'admin_sys';
+GRANT SELECT ON RoleUser TO 'admin_sys';
+GRANT SELECT ON EtatTicket TO 'admin_sys';
+GRANT SELECT ON RelationTicketsLibelles TO 'admin_sys';
+GRANT SELECT ON Libelle TO 'admin_sys';
+
+

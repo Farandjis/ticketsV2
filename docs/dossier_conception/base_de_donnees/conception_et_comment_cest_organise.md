@@ -115,3 +115,21 @@ Description de la table
   - un visiteur
 
 - ### <a name="p4"></a> V - Les vues
+  - #### vue_Utilisateur_visiteur
+    Permet au visiteur de voir les pseudo des utilisateur de la plateforme
+  - #### vue_Ticket_visiteur
+    Permet au visiteur d'avoir les infos des tickets crée dans la plateforme
+  - #### vue_Utilisateur_client
+    Permet au utilisateur d'avoir accès à ces données personnelles
+  - #### vue_Utilisateur_insertion_client
+    Permet au utilisateur de pouvoir modifier leurs adresses email    
+  - #### vue_Ticket_client
+    Permet au utilisateur d'avoir accès à leur ticket
+  - #### vue_Ticket_insertion_client
+    Permet au utilisateur de modifier les tickets qu'ils ont créé
+  - #### vue_RelationTicket_client
+    Permet au utilisateur d'avoir accès au libellé
+  - #### vue_Ticket_technicien
+    Permet au technicien d'avoir l'état et le technicien associé au ticket
+  - #### vue_etat_update_admWeb
+    Permet à l'administrateur web d'avoir l'état du ticket, le niveau d'urgence définitif du ticket  
