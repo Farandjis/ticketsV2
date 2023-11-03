@@ -236,16 +236,22 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     **Pour le démarrer, on doit utiliser la commande :** `systemctl start apache2`<br>
     **Pour le redémarrer :** `systemctl restart apache2`<br>
     **Pour l'arrêter :** `systemctl stop apache2`<br>
-    **Pour le démarrer au prochain démarrage :** `systemctl enable apache2` (par défaut)
-    **Pour l'empêcher de démarrer au prochain démarrage :** `systemctl disable apache2`
+    **Pour le démarrer au prochain démarrage :** `systemctl enable apache2` (par défaut)<br>
+    **Pour l'empêcher de démarrer au prochain démarrage :** `systemctl disable apache2`<br>
     <br>
-    🟨 Mettre ici une image du statut d'Apache2, préciser que c'est enable en plus<br>
+    <div align="center">
+        <img src="img\I_preparatif\systemctl_status_apache2.webp" title="Affiche que Apache2 est active et démarre automatique au démarrage" height="180"/><br>
+        <i>Statut d'Apache</i>
+    </div>
     <br>
     Étant donné que nous utilisons un système d'exploitation sans interface graphique, nous ne pouvons pas vérifier visuellement que la page par défaut d'Apache apparaît correctement.<br>
     Pour cela, il suffit d'utiliser un autre ordinateur du réseau local et de taper l'adresse IP local du RaspberryPi 4. Nous pouvons la connaître via la commande `ifconfig` en installant au préalable le paquet net-tools<br>
     En faisant cela, nous obtenons la page par défaut d'Apache index.html pour serveur Debian.<br>
     <br>
-    🟨 Mettre ici une image de la page par défaut d'Apache<br>
+    <div align="center">
+        <img src="img\I_preparatif\info_apache.webp" title="Page par défaut index.html d'Apache" height="220"/><br>
+        <i>index.html généré par Apache</i>
+    </div>
     <br>
     Attention !<br>
     Il est possible qu'au prochain démarrage du routeur, celui-ci change l'adresse IP local assigné Au RPi4.<br>
@@ -271,7 +277,11 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     <br>
     Tout comme Apache2, MariaDB-server est un service, nous pouvons utiliser systemctl dessus. Par défaut, une fois installé il démarre et il redémarre à chaque démarrage de RPi OS sauf si on lui interdit.<br>
     <br>
-    🟨 Mettre ici une image de MariaDB<br>
+
+    <div align="center">
+        <img src="img\I_preparatif\mariadb_test.webp" title="MariaDB sur PuTTY qui execute la commande SHOW DATABASES;" height="220"/><br>
+        <i>MariaDB exécutant la commande SHOW DATABASES;</i>
+    </div>
 
     <br><br>
     **Source :**
@@ -293,7 +303,10 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Si PHP est opérationnel, nous pourrons voir les informations liés à notre installation de PHP.<br>
     <br>
 
-    🟨 Mettre ici une image de phpinfo
+    <div align="center">
+        <img src="img\I_preparatif\phpinfo.webp" title="Page d'info de php" height="220"/><br>
+        <i>info.php affichant phpinfo()</i>
+    </div>
 
     <br>
     Pour cette SAÉ, nous allons utiliser la version 8.2 de PHP.
@@ -329,7 +342,12 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     ```
     Note : FLUSH PRIVILEGES permet d'indiquer qu'il faut recharger les privilèges des tables de droits dans la base de données système de MySQL.
 
-    🟨 Mettre ICI une image de PHP My Admin via l'utilisateur Admin
+    <br>
+
+    <div align="center">
+        <img src="img\I_preparatif\phpmyadmin_admin.webp" title="Page de PHPMyAdmin affichant un résumé de la base de données et du serveur" height="220"/><br>
+        <i>PHPMyAdmin affichant des informations sur le serveur et sa base de données</i>
+    </div>
 
   <br><br>
   **Sources :**
