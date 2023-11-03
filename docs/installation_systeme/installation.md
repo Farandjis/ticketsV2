@@ -199,7 +199,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 
     Une fois fait, il suffit de sélectionner le bon lecteur et de flasher la carte microSD. C'est assez rapide, et la carte microSD est immédiatement opérationnel.
     
-    Source utilisé :
+    Source utilisée :
     - https://framboise-pi.skyost.eu/article/maitriser-raspberry-pi-imager/
 
 <br><br><br>
@@ -217,6 +217,45 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Vu que nous avons activé SSH via Pi Imager, celui-ci est déjà activé. Cela peut poser des soucis de sécurité notamment si on a laissé l'utilisateur par défaut !
 
 - ### <a name="p3b"></a> b) Installation d'Apache
+
+    Apache est un serveur web open-source HTTP et multiplateforme populaire apparu en 1995. En 2004, il atteint un pic de 69% de parts du marché.
+    Il est activement maintenu par l’Apache Software Foundation, sa dernière version, la 2.4.58 est sorti le 19 octobre 2023.<br>
+    <br>
+    Nous n'avons pas rencontré de difficulté pour son installation, il suffit seulement d'exécuter la commande : sudo apt install apache2<br>
+    <br>
+    **Pour rappel :**<br>
+    SUDO permet de s'octroyer le temps de cette commande les droits root.<br>
+    APT pour "Advanced Packaging Tool" est, selon la documentation d'Ubuntu, un système complet et avancé de gestion de paquets permettant la recherche, l'installation et la désinstallation facile de logiciels et utilitaires.<br>
+    APACHE2 est le serveur que nous allons utiliser. Sur RedHat, son nom est HTTPD.<br>
+    <br>
+    <br>
+    Une fois installé, Apache2 est directement exécuté. Nous pouvons voir son statut en exécutant la commande : systemctl status apache2.<br>
+    Pour le démarrer, on doit utiliser la commande : systemctl start apache2<br>
+    Pour le redémarrer : systemctl restart apache2<br>
+    Pour l'arrêter : systemctl stop apache2<br>
+    <br>
+    🟨 Mettre ici une image du statut d'Apache2<br>
+    <br>
+    Étant donné que nous utilisons un système d'exploitation sans interface graphique, nous ne pouvons pas vérifier visuellement que la page par défaut d'Apache apparaît correctement.<br>
+    Pour cela, il suffit d'utiliser un autre ordinateur du réseau local et de taper l'adresse IP local du RaspberryPi 4. Nous pouvons la connaître via la commande ifconfig en installant au préalable le paquet net-tools<br>
+    En faisant cela, nous obtenons la page par défaut d'Apache index.html pour serveur Debian.<br>
+    <br>
+    🟨 Mettre ici une image de la page par défaut d'Apache<br>
+    <br>
+    Attention !<br>
+    Il est possible qu'au prochain démarrage du routeur, celui-ci change l'adresse IP local assigné Au RPi4.<br>
+    Il est possible d'assigner une adresse IP local statique au RPi4 en se connectant en tant qu'administrateur à celle-ci. La manipulation dépend du routeur.<br>
+    <br>
+    Remarque :<br>
+    Si la page index.html n'arrive pas à être chargé (chargement infini) mais que le fichier existe bien, vérifiez si le pare-feu de votre routeur ainsi que celui de RaspberryPi OS Lite autorise l'utilisation du port 80.<br>
+    Par défaut, RaspberryPi OS ne possède pas de pare-feu. Il est possible que le problème vienne d'ailleurs sinon.<br>
+
+    Sources :
+  - https://fr.wikipedia.org/wiki/Apache_HTTP_Server
+  - https://doc.ubuntu-fr.org/apache2
+  - https://doc.ubuntu-fr.org/apt
+  - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
+
 - ### <a name="p3c"></a> c) Installation de MariaDB
 - ### <a name="p3d"></a> d) Installation de PHP
 - ### <a name="p3e"></a> e) Installation de PHPMyAdmin
