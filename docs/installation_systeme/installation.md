@@ -69,7 +69,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Concernant la mémoire vive passant de LPDDR2 à LPDDR4 d'ailleurs, il y a quatre versions du RPi4 : une 1Go, une 2Go, 8Go et une à 4Go, la nôtre.<br>
     Deux de ses ports USB 2 ont laissé place à deux ports USB 3, et en termes de connectique réseau, le RPi4 possède un meilleur port LAN, un meilleur Wi-Fi et un meilleur Bluetooth.<br>
     <br>
-    Nous pouvons en apprendre plus sur les caractéristiques de notre Raspberry Pi 4 en exécutant la commande Raspberry OS : pinout<br>
+    Nous pouvons en apprendre plus sur les caractéristiques de notre Raspberry Pi 4 en exécutant la commande Raspberry OS : `pinout`<br>
     <br>
     <div align="center">
     <img width=350px src="img/I_preparatif/pinout.png" title="résultat de la commande pinout avec les différents ports, un dessin de la carte et une descriptions des pins"/><br>
@@ -186,7 +186,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 
     Une fois avoir sélectionné le système, un petit bouton engrenage apparaît pour paramétrer l'installation de RaspberryPi OS Lite.<br>
     On peut y donner un nom à l'ordinateur, activer SSH, modifier le login et le mot de passe de l'utilisateur par défaut, configurer le Wi-Fi, le clavier ou encore le fuseau horaire.<br>
-    Nous avons configuré l'installation par rapport à notre besoin. Il est tout à fait possible de le faire plus tard avec la commande "raspi-config".<br>
+    Nous avons configuré l'installation par rapport à notre besoin. Il est tout à fait possible de le faire plus tard avec la commande `raspi-config`.<br>
     <br>
     Les trois cases à cocher tout en bas ne sont pas très importante.<br>
     La télémétrie correspond à l'envoi de pings à raspberry.org pour des fins de statiques, c'est inutile, ça ne restreint pas l'utilisation du système, nous l'avons donc désactivé pour ne pas être surveillé.<br>
@@ -232,17 +232,17 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     APACHE2 est le serveur que nous allons utiliser. Sur RedHat, son nom est HTTPD.<br>
     <br>
     <br>
-    Une fois installé, Apache2 est directement exécuté. Nous pouvons voir son statut en exécutant la commande : systemctl status apache2.<br>
-    **Pour le démarrer, on doit utiliser la commande :** systemctl start apache2<br>
-    **Pour le redémarrer :** systemctl restart apache2<br>
-    **Pour l'arrêter :** systemctl stop apache2<br>
-    **Pour le démarrer au prochain démarrage :** systemctl enable apache2 (par défaut)
-    **Pour l'empêcher de démarrer au prochain démarrage :** systemctl disable apache2
+    Une fois installé, Apache2 est directement exécuté. Nous pouvons voir son statut en exécutant la commande : `systemctl status apache2`.<br>
+    **Pour le démarrer, on doit utiliser la commande :** `systemctl start apache2`<br>
+    **Pour le redémarrer :** `systemctl restart apache2`<br>
+    **Pour l'arrêter :** `systemctl stop apache2`<br>
+    **Pour le démarrer au prochain démarrage :** `systemctl enable apache2` (par défaut)
+    **Pour l'empêcher de démarrer au prochain démarrage :** `systemctl disable apache2`
     <br>
     🟨 Mettre ici une image du statut d'Apache2, préciser que c'est enable en plus<br>
     <br>
     Étant donné que nous utilisons un système d'exploitation sans interface graphique, nous ne pouvons pas vérifier visuellement que la page par défaut d'Apache apparaît correctement.<br>
-    Pour cela, il suffit d'utiliser un autre ordinateur du réseau local et de taper l'adresse IP local du RaspberryPi 4. Nous pouvons la connaître via la commande ifconfig en installant au préalable le paquet net-tools<br>
+    Pour cela, il suffit d'utiliser un autre ordinateur du réseau local et de taper l'adresse IP local du RaspberryPi 4. Nous pouvons la connaître via la commande `ifconfig` en installant au préalable le paquet net-tools<br>
     En faisant cela, nous obtenons la page par défaut d'Apache index.html pour serveur Debian.<br>
     <br>
     🟨 Mettre ici une image de la page par défaut d'Apache<br>
@@ -267,7 +267,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Il a été créé par les développeurs d'origine de MySQL après l'acquisition de MySQL par Oracle Corporation.<br>
     MariaDB est conçu pour être un remplacement direct de MySQL, en offrant une compatibilité élevée avec les applications et les outils existants utilisant MySQL.<br>
     <br>
-    **Pour l’installation de MariaDB on utilise la commande :** sudo apt install mariadb-server<br>
+    **Pour l’installation de MariaDB on utilise la commande :** `sudo apt install mariadb-server`<br>
     <br>
     Tout comme Apache2, MariaDB-server est un service, nous pouvons utiliser systemctl dessus. Par défaut, une fois installé il démarre et il redémarre à chaque démarrage de RPi OS sauf si on lui interdit.<br>
     <br>
