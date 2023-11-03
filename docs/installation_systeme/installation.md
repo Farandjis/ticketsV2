@@ -111,7 +111,8 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Ubuntu étant aussi issu sur Debian, nous pouvons aussi bien s'aider de la documentation de Raspberry OS, que celle de Debian ou celle d'Ubuntu.<br>
     Pour notre serveur de secours, nous utiliserons Ubuntu Server. L'installation du serveur LAMP et de LogMeIn Hamachi reste pratiquement la même.<br>
 
-    Sources :
+    <br><br>
+    **Sources :**
     - https://www.raspberrypi.com/documentation/
     - https://raspberrytips.fr/raspberry-pi-os-versions/
     - https://alain-michel.canoprof.fr/eleve/tutoriels/raspberry/premiers-pas-raspberrypi/activities/utiliser-raspi-config.html
@@ -198,8 +199,9 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     <br>
 
     Une fois fait, il suffit de sélectionner le bon lecteur et de flasher la carte microSD. C'est assez rapide, et la carte microSD est immédiatement opérationnel.
-    
-    Source utilisée :
+
+    <br><br>
+    **Source :**
     - https://framboise-pi.skyost.eu/article/maitriser-raspberry-pi-imager/
 
 <br><br><br>
@@ -250,7 +252,8 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Si la page index.html n'arrive pas à être chargé (chargement infini) mais que le fichier existe bien, vérifiez si le pare-feu de votre routeur ainsi que celui de RaspberryPi OS Lite autorise l'utilisation du port 80.<br>
     Par défaut, RaspberryPi OS ne possède pas de pare-feu. Il est possible que le problème vienne d'ailleurs sinon.<br>
 
-    Sources :
+    <br><br>
+    **Sources :**
   - https://fr.wikipedia.org/wiki/Apache_HTTP_Server
   - https://doc.ubuntu-fr.org/apache2
   - https://doc.ubuntu-fr.org/apt
