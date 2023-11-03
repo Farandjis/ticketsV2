@@ -277,7 +277,62 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     **Source :**
   - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
 
-
-
 - ### <a name="p3d"></a> d) Installation de PHP
+    PHP (Hypertext Preprocessor) est un langage open source de script côté serveur très populaire et largement utilisé pour le développement web, apparu en 1995.<br>
+    Il est utilisé pour la création de pages web dynamiques et interactives.<br>
+    Son site de référence où l'ont peut trouver toute sa documentation est http://www.php.net.<br>
+    <br>
+    Pour installer PHP et son module permettant l'utilisation de MariaDB, il suffit de faire la commande `sudo apt install php php-mysql`.<br>
+    <br>
+    Nous pouvons vérifier son activité avec la commande `systemctl`, mais pour vérifier qu'il fonctionne, nous pouvons créer une page `info.php`: 
+    ```php
+    <?php
+    phpinfo();
+    ?>
+    ```
+    Si PHP est opérationnel, nous pourrons voir les informations liés à notre installation de PHP.<br>
+    <br>
+
+    🟨 Mettre ici une image de phpinfo
+
+    <br>
+    Pour cette SAÉ, nous allons utiliser la version 8.2 de PHP.
+
+  <br><br>
+  **Sources :**
+  - https://doc.ubuntu-fr.org/php
+  - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
+
 - ### <a name="p3e"></a> e) Installation de PHPMyAdmin
+    D'après la page de présentation de PHPMyAdmin par Ubuntu : "phpMyAdmin est une interface web en PHP pour administrer à distance les SGBD MySQL et MariaDB".<br>
+    <br>
+    Installer PHPMyAdmin : `sudo apt install phpmyadmin`<br>
+    <br>
+    Durant l'installation, nous aurons une interface graphique sur terminale pour configurer PHPMyAdmin.<br>
+    Nous pouvons suivre le guide d'installation de la documentation d'Ubuntu à la différence qu'il ne proposera pas de créer un profil administrateur.<br>
+    <br>
+    Une fois installé, nous pouvons constater que l'onglet http://192.168.1.10/phpmyadmin (192.168.1.10 est l'IP local) est inaccessible (erreur 404).<br>
+    La raison est qu'Apache ne détecte pas PHPMyadmin.<br>
+    <br>
+    Pour résoudre ce problème, il suffit d'ajouter dans le fichier de configuration d'apache (/etc/apache2/apache2.conf) la ligne : `Include /etc/phpmyadmin/apache.conf`<br>
+    <br>
+    Nous pouvons alors accéder à cette page et nous connecter au compte PHPMyAdmin avec le mot de passe créé plus tôt.<br>
+    <br>
+    En réalité, PHPMyAdmin est un utilisateur MariaDB. Pour créer un administrateur, nous devons créer un utilisateur admin MariaDB.<br>
+    Pour créer un tel utilisateur, nous pouvons suivre le tutoriel d'Ubuntu sur la page de présentation de PHPMyAdmin en exécutant la commande `sudo mariadb` puis dans l'ordre :
+
+    ```sql
+    CREATE USER 'nom_utilisateur_choisi'@'localhost' IDENTIFIED BY 'mot_de_passe_solide';
+    GRANT ALL ON *.* TO 'nom_utilisateur_choisi'@'localhost' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;
+    QUIT;
+    ```
+    Note : FLUSH PRIVILEGES permet d'indiquer qu'il faut recharger les privilèges des tables de droits dans la base de données système de MySQL.
+
+    🟨 Mettre ICI une image de PHP My Admin via l'utilisateur Admin
+
+  <br><br>
+  **Sources :**
+  - https://www.gladir.com/CODER/MYSQL/flush.htm (requête sql flush)
+  - https://doc.ubuntu-fr.org/phpmyadmin (installation et utilisateur admin)
+  - https://help.ubuntu.com/community/ApacheMySQLPHP (pour l'Include)
