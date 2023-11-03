@@ -8,7 +8,7 @@ INF2-A
 
 <br><br>
 Ce document décrit en détail le processus d'installation du RPi4, de son serveur LAMP, de sa mise en réseau, du ssh et de sa sécurisation.<br>
-Les étapes décrites sont également appliqués au serveur de secours. Ce document aborde aussi la configuration du routeur. 
+Les étapes décrites sont également appliquées au serveur de secours. Ce document aborde aussi la configuration du routeur. 
 
 </div>
 
@@ -59,7 +59,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 ## <a name="p1"></a> I - Présentation
 
   - ### <a name="p1a"></a> a) Présentation du RaspberryPi 4
-    Le RaspberryPi est un micro ordinateur monocarte apparu en février 2012. Excepté l'alimentation et un support de stockage,
+    Le RaspberryPi est un micro-ordinateur monocarte apparu en février 2012. Excepté l'alimentation et un support de stockage,
     nous y retrouvons tout le nécessaire pour le faire fonctionner comme un processeur et de la mémoire vive.<br>
     Comme pour la majorité des ordinateurs, celui-ci propose des ports pour y brancher un écran, des périphériques, une alimentation, une caméra ou encore un câble ethernet.<br>
     <br>
@@ -78,7 +78,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     <br>
     <br>
     Comme précédemment dit, Le RPi 4 possède un processeur ARM Cortex-A72. Même si c'est un processeur 64bits, c'est un processeur faisant partie de la famille ARMv8 et non des x86 comme on le retrouve souvent sur nos PC.<br>
-    Les processeurs ARM sont principalement utilisé pour "les appareils compacts et tendent à optimiser l'autonomie, la taille, le refroidissement et surtout, les coûts" selon RedHat. Ce qui correspond aux critères du RPi 4 : être un mini ordinateur abordable<br>
+    Les processeurs ARM sont principalement utilisé pour "les appareils compacts et tendent à optimiser l'autonomie, la taille, le refroidissement et surtout, les coûts" selon RedHat. Ce qui correspond aux critères du RPi 4 : être un micro-ordinateur abordable<br>
     On remarque cependant que selon RedHat, l'architecture x86 est plutôt utilisé pour les serveurs pour leur vitesse. Ainsi, en dehors du cadre de cette SAÉ, utiliser RaspberryPi comme serveur n'est pas le mieux.<br>
     <br>
     On remarque aussi le préfixe "LP" de "LPDDR4" comme type de mémoire vive du RPi4. "LP" pour "Low Power" est une version plus petite et moins consommatrice en termes de ressources que le simple DDR "Double Data Rate".<br>
@@ -108,7 +108,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     <br>
     RaspberryPi OS est fondé sur le système d'exploitation gratuit Debian et est conçu spécialement pour le RaspberryPi.<br>
     En effet, au lancement de Raspbian, l'ancien nom de l'OS, Debian n'était pas disponible pour la famille de processeur du RaspberryPi : l'ARMv6.<br>
-    Vu que ce système d'exploitation est dédié au RaspberryPi, il comporte des commandes dédiées au micro ordinateur comme "raspi-config" ou encore "pinout" cité plus tôt.<br>
+    Vu que ce système d'exploitation est dédié au RaspberryPi, il comporte des commandes dédiées au micro-ordinateur comme "raspi-config" ou encore "pinout" cité plus tôt.<br>
     Ubuntu étant aussi issu sur Debian, nous pouvons aussi bien s'aider de la documentation de Raspberry OS, que celle de Debian ou celle d'Ubuntu.<br>
     Pour notre serveur de secours, nous utiliserons Ubuntu Server. L'installation du serveur LAMP et de LogMeIn Hamachi reste pratiquement la même.<br>
 
@@ -126,14 +126,14 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 ## <a name="p2"></a> II - Préparatif
 
   - ### <a name="p2a"></a> a) Matériels nécessaires
-    Pour utiliser le RPi4 sur le même écran de son ordinateur tout en l'utilisant, on peut utiliser un boitier d'acquisition.<br>
+    Pour utiliser le RPi4 sur le même écran de son ordinateur tout en l'utilisant, on peut utiliser un boîtier d'acquisition.<br>
     C'est un adaptateur HDMI vers USB, permettant de récupérer le signal vidéo sur son ordinateur. Utile pour enregistrer l'écran du RPi4 par exemple.<br>
 
     <br>
     Pour procéder à l'installation du système, il faut au préalable avoir :<br><br>
 
     - **Un RaspberryPi et son alimentation**<br>
-      Monsieur Hoguin nous a confié un RaspberryPi 4 modèle B. C'est un mini ordinateur à manipuler avec précaution. En effet, il n'est pas dans un boitier.<br>
+      Monsieur Hoguin nous a confié un RaspberryPi 4 modèle B. C'est un micro-ordinateur à manipuler avec précaution. En effet, il n'est pas dans un boîtier.<br>
       Son alimentation se branche au RPi4 via son port USB type C.<br><br>
     
     - **Une carte microSD**<br>
@@ -157,10 +157,10 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Pour installer un système sur un support dédié au RaspberryPi, le plus simple est d'utiliser le logiciel "Pi Imager".<br>
 
     <br>
-    En dehors du logiciel Pi Imager, vu que nous possédons un boitier d'acquisition, nous allons utiliser les logiciels VLC et Mirillis Action!.<br>
-    VLC permettra d'afficher sur son ordinateur la sortie vidéo du boitier provenant du RPi4, et Action! permettra en même temps d'enregistrer celui-ci et même le bureau Windows.<br>
+    En-dehors du logiciel Pi Imager, vu que nous possédons un boîtier d'acquisition, nous allons utiliser les logiciels VLC et Mirillis Action!.<br>
+    VLC permettra d'afficher sur son ordinateur la sortie vidéo du boîtier provenant du RPi4, et Action! permettra en même temps d'enregistrer celui-ci et même le bureau Windows.<br>
     Grâce aux vidéos, nous pouvons décrire précisément l'installation du système et la résolution des problèmes rencontrés.<br>
-    Des captures d'écran de ces vidéos illustrons ce document.<br>
+    Des captures d'écran de ces vidéos illustrent ce document.<br>
 
     <br><br>
 
@@ -173,7 +173,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 - ### <a name="p2c"></a> c) Installation de Raspberry OS Lite
 
     À partir du bouton "Choisir l'OS", Pi Imager propose différents systèmes pouvant être installé. On peut aussi installer son propre système.<br>
-    Nous avons choisi Raspberry OS Lite pour les raisons évoquer lors de la présentation de ce système.
+    Nous avons choisi Raspberry OS Lite pour les raisons évoqué lors de la présentation de ce système.
 
     <br><br>
 
@@ -189,7 +189,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Nous avons configuré l'installation par rapport à notre besoin. Il est tout à fait possible de le faire plus tard avec la commande `raspi-config`.<br>
     <br>
     Les trois cases à cocher tout en bas ne sont pas très importante.<br>
-    La télémétrie correspond à l'envoi de pings à raspberry.org pour des fins de statiques, c'est inutile, ça ne restreint pas l'utilisation du système, nous l'avons donc désactivé pour ne pas être surveillé.<br>
+    La télémétrie correspond à l'envoi de pings à raspberry.org pour des fins de statiques, c'est inutile, ça ne restreint pas l'utilisation du système, nous l'avons donc désactivé pour ne pas être surveillés.<br>
     <br><br>
 
     <div align="center">
@@ -212,7 +212,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 ## <a name="p3"></a> III - Installation du serveur LAMP
 
 - ### <a name="p3b"></a> a) Premier démarrage de RaspberryPi OS Lite
-    Il n'y a rien de particulié qui se passe durant le premier démarrage. 
+    Il n'y a rien de particulier qui se passe durant le premier démarrage. 
     Il nous demande notre login et le mot de passe que nous avons précisé sur Pi Imager et on a directement accès à RaspberryPi OS Lite.<br>
     Le cas échéant, l'utilisateur par défaut est "pi" et son mot de passe est "password".<br>
     <br>
@@ -221,7 +221,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
 
 - ### <a name="p3b"></a> b) Installation d'Apache
 
-    Apache est un serveur web open-source HTTP et multiplateforme populaire apparu en 1995. En 2004, il atteint un pic de 69% de parts du marché.
+    Apache est un serveur web open-source HTTP et multi-plateforme populaire apparu en 1995. En 2004, il atteint un pic de 69% de parts du marché.
     Il est activement maintenu par l’Apache Software Foundation, sa dernière version, la 2.4.58 est sorti le 19 octobre 2023.<br>
     <br>
     Nous n'avons pas rencontré de difficulté pour son installation, il suffit seulement d'exécuter la commande : sudo apt install apache2<br>
@@ -254,7 +254,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     </div>
     <br>
     Attention !<br>
-    Il est possible qu'au prochain démarrage du routeur, celui-ci change l'adresse IP local assigné Au RPi4.<br>
+    Il est possible qu'au prochain démarrage du routeur, celui-ci change l'adresse IP local assigné au RPi4.<br>
     Il est possible d'assigner une adresse IP local statique au RPi4 en se connectant en tant qu'administrateur à celle-ci. La manipulation dépend du routeur.<br>
     <br>
     Remarque :<br>
@@ -269,13 +269,13 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
   - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
 
 - ### <a name="p3c"></a> c) Installation de MariaDB
-    MariaDB est un système de gestion de base de données relationnelle open source qui est largement utilisé en tant qu'alternative à MySQL.<br>
+    MariaDB est un système de gestion de bases de données relationnelle open source qui est largement utilisée en tant qu'alternative à MySQL.<br>
     Il a été créé par les développeurs d'origine de MySQL après l'acquisition de MySQL par Oracle Corporation.<br>
     MariaDB est conçu pour être un remplacement direct de MySQL, en offrant une compatibilité élevée avec les applications et les outils existants utilisant MySQL.<br>
     <br>
     **Pour l’installation de MariaDB on utilise la commande :** `sudo apt install mariadb-server`<br>
     <br>
-    Tout comme Apache2, MariaDB-server est un service, nous pouvons utiliser systemctl dessus. Par défaut, une fois installé il démarre et il redémarre à chaque démarrage de RPi OS sauf si on lui interdit.<br>
+    Tout comme Apache2, MariaDB-server est un service, nous pouvons utiliser systemctl dessus. Par défaut, une fois installé, il démarre et il redémarre à chaque démarrage de RPi OS sauf si on lui interdit.<br>
     <br>
 
     <div align="center">
@@ -288,9 +288,9 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
   - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
 
 - ### <a name="p3d"></a> d) Installation de PHP
-    PHP (Hypertext Preprocessor) est un langage open source de script côté serveur très populaire et largement utilisé pour le développement web, apparu en 1995.<br>
-    Il est utilisé pour la création de pages web dynamiques et interactives.<br>
-    Son site de référence où l'ont peut trouver toute sa documentation est http://www.php.net.<br>
+    PHP (Hypertext Preprocessor) est un langage open source de script côté serveur très populaire et largement utilisés pour le développement web, apparu en 1995.<br>
+    Il est utilisé pour la création de pages web dynamique et interactif.<br>
+    Son site de référence où l'on peut trouver toute sa documentation est http://www.php.net.<br>
     <br>
     Pour installer PHP et son module permettant l'utilisation de MariaDB, il suffit de faire la commande `sudo apt install php php-mysql`.<br>
     <br>
@@ -324,7 +324,7 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     Durant l'installation, nous aurons une interface graphique sur terminale pour configurer PHPMyAdmin.<br>
     Nous pouvons suivre le guide d'installation de la documentation d'Ubuntu à la différence qu'il ne proposera pas de créer un profil administrateur.<br>
     <br>
-    Une fois installé, nous pouvons constater que l'onglet http://192.168.1.10/phpmyadmin (192.168.1.10 est l'IP local) est inaccessible (erreur 404).<br>
+    Une fois installée, nous pouvons constater que l'onglet http://192.168.1.10/phpmyadmin (192.168.1.10 est l'IP local) est inaccessible (erreur 404).<br>
     La raison est qu'Apache ne détecte pas PHPMyadmin.<br>
     <br>
     Pour résoudre ce problème, il suffit d'ajouter dans le fichier de configuration d'apache (/etc/apache2/apache2.conf) la ligne : `Include /etc/phpmyadmin/apache.conf`<br>
