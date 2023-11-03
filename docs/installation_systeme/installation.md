@@ -42,13 +42,14 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
   - [**e) Résolution des problèmes**](#p4d)
 
 - ### [V - Sécurisation](#p5)
-  - [**a) Pare feu**](#p5a)
-    - [i) Pare feu du routeur](#p5ai)
-    - [ii) Pare feu du RPi 4](#p5c5aii)
-  - [**b) Emplacement des fichiers et alias**](#p5b)
-  - [**c) Les utilisateurs et leurs droits**](#p5c)
-    - [i) Liste des utilisateurs](#p5ci)
-    - [ii) Droits des utilisateurs](#p5cii)
+  - [**a) Changement des ports**](#p5a)
+  - [**b) Pare feu**](#p5b)
+    - [i) Pare feu du routeur](#p5bi)
+    - [ii) Pare feu du RPi 4](#p5c5bii)
+  - [**c) Emplacement des fichiers et alias**](#p5c)
+  - [**c) Les utilisateurs et leurs droits**](#p5d)
+    - [i) Liste des utilisateurs](#p5di)
+    - [ii) Droits des utilisateurs](#p5dii)
 
 
 <br><br><br>
