@@ -1,36 +1,24 @@
 Florent Tom Assia Enzo Matthieu
 
-le 30/10/2023
+le 03/11/2023
 -----
 
-
-================== Jusqu'au 2 novembre ==================
-
-Enzo : Indisponible début des vacances
-Tom, Florent : Indisponible fin des vacances
-
-- Conception BD -> Tom (indisponible fin des vacances)
-	-> A TERMINER RAPIDEMENT !
-- Préparation dossier de test PHP et BD -> Enzo (indisponible début des vacances)
-- Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia 
-- Début création BD -> Tom
-	-> A COMMENCER DES QUE POSSIBLE
-- Conception et UML site dynamique -> Florent (indisponible fin des vacances)
-- Gestion du projet
-- Installation du serveur
-	-> A TERMINER
-- Mise en réseau du serveur
-	-> RESSAYER
-
-
-================== Du jeudi 02/11/23 au jeudi 09/11/2023 ==================
+================== Du jeudi 03/11/23 au vendredi 10/11/2023 ==================
 
 Tom, Florent : Indisponible fin des vacances
 
-- Fin création BD (si non terminé) -> Enzo
-- Préparation dossier de test PHP et BD -> Enzo
-- Dernière tentative pour la mise en réseau du serveur -> Matthieu
-- Gestion du projet, vérification que tout soit conforme jusqu'à présent -> Matthieu
-- Cas d'utilisation et Règles métiers (CdC, RdB) -> Assia
+- Enzo : 	Fin création BD 						!\ DATE LIMITE POUR 04/11/2023
+- Enzo : 	Fin test BD							!\ DATE LIMITE POUR 04/11/2023
+- Enzo :	Début test PHP							-> Possible dès le 05/11/2023
+- Enzo :	Page PHP							-> Possible dès le 05/11/2023
+- Matthieu :	Fin installation et mise en réseau serveur			!\ DATE LIMITE POUR 04/11/2023
+- Matthieu :	Fin rapport installation/mise en réseau serveur			!\ DATE LIMITE POUR 04/11/2023
+- Matthieu :	Gestion de projet
+- Matthieu : 	Page PHP							-> Possible dès le 05/11/2023
+- Assia :	Cas d'utilisation et Règles métiers (CdC, RdB)			!\ CONNEXION/INSCRIPT. DL POUR 04/11/2023
+- Assia :	Page PHP							-> Possible dès le 05/11/2023
+- Florent :	Commencer la conception du site					!\ URGENCE : La création du site commencera en même temps !
+- Tom :		... 								?) A discuter
+Nous allons sécuriser tous ensemble le serveur.
 
 Note : On commencera le PHP une fois la BD de prête et à la fin des vacances.
