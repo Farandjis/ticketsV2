@@ -257,5 +257,21 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
   - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
 
 - ### <a name="p3c"></a> c) Installation de MariaDB
+    MariaDB est un système de gestion de base de données relationnelle open source qui est largement utilisé en tant qu'alternative à MySQL.<br>
+    Il a été créé par les développeurs d'origine de MySQL après l'acquisition de MySQL par Oracle Corporation.<br>
+    MariaDB est conçu pour être un remplacement direct de MySQL, en offrant une compatibilité élevée avec les applications et les outils existants utilisant MySQL.<br>
+    <br>
+    **Pour l’installation de MariaDB on utilise la commande :** sudo apt install mariadb-server<br>
+    <br>
+    Tout comme Apache2, MariaDB-server est un service, nous pouvons utiliser systemctl dessus. Par défaut, une fois installé il démarre et il redémarre à chaque démarrage de RPi OS sauf si on lui interdit.<br>
+    <br>
+    🟨 Mettre ici une image de MariaDB<br>
+
+    <br><br>
+    **Source :**
+  - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
+
+
+
 - ### <a name="p3d"></a> d) Installation de PHP
 - ### <a name="p3e"></a> e) Installation de PHPMyAdmin
