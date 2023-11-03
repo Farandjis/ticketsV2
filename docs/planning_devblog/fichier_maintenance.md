@@ -14,6 +14,57 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 <br><br><br>
 
 ---
+## Jeudi 02/11/2023 - Bilan du travail du 27/10/2023 au 02/11/2023
+Nous avons assez bien avancé cette semaine.<br>
+En dehors des serveurs à réinstaller proprement, le rapport d'installation, la base de données et les tests sur celle-ci à terminer,
+on pourrait même dès à présent le développement PHP. Cependant, nous préférons attendre encore un peu, notamment vis à vis de la progression des cas d'utilisations.<br>
+Attention ! La conception du site dynamique n'a pas encore été effectué. Nous allons devoir créer le site à partir des cas d'utilisations et sans la conception.<br>
+
+#### Avancé
+- **Ce qui a été terminé :** <br>
+  - Test de mise en réseau via LogMeIn Hamachi réussite.
+
+- **Ce qui a été commencé :**
+  - Création de la base de données (table, vues, utilisateurs MariaDB)
+
+- **Ce qui devra être terminé pour la semaine prochaine :**
+  - Création de la base de données (Date limite : Samedi 4 Novembre 2023)
+  - Conception de la base de données (DL: 04/11/2023)
+  - Test sur la base de données (DL: 04/11/2023)
+  - Rapport d'installation du serveur (hors sécurisation) (DL: 04/11/2023)
+  - Réinstallation au propre du serveur (hors sécurisation) (DL: 04/11/2023)
+  - Sécurisation du serveur (qui devra être commencé)
+
+- **Ce qui devra être commencé pour la semaine prochaine :**
+  - Création du site dynamique
+  - Sécurisation du serveur (qui devra être terminé)
+  - Conception du site dynamique **EN URGENCE, RETARD A RATTRAPER : ON COMMENCE DEJA LE SITE !!**
+
+#### Travail effecté du dimanche 27/10/2023 au jeudi 02/11/2023
+- **Florent**<br>
+  - Réflexion sur la conception, rien de rédigé (Attention au retard !)
+
+- **Tom**<br>
+  - Conception de la BD (quasi terminé)
+  - Création de la BD : tables, vues et utilisateurs (quasi terminé)
+
+- **Assia**<br>
+  - Début de l'écriture de quelques cas d’utilisation
+
+- **Enzo** :<br>
+  - Correction des erreurs dans le code de la BD
+  - Description des vues dans le fichier .md
+  - Début des tests pour la BD
+
+
+- **Matthieu (chef de projet)**<br>
+  - Fin des tests de mise en réseau via LogMeIn Hamachi
+  - Suite du rapport d'installation (parties I et II terminée)
+  - Gestion du projet : planning, répartition des tâches, gestion du git (branches renommés...)
+  - Critique sur la base de données
+
+
+---
 ## Jeudi 26/10/2023 - Bilan du travail du 22/10/2023 au 26/10/2023
 
 #### À propos du planning
