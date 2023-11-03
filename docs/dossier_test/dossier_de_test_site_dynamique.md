@@ -18,15 +18,16 @@ Ce document permet de s'assurer que les pages web statique soient conforme à ce
 - ### [I - Introduction](#I)
 - ### [II - Description de la procédure de test](#II)
 - ### [III - Contexte des tests](#III)
-- ### [IV - Test](#IV)
+- ### [IV - Test PHP](#IV)
+  - #### [Connexion](#a)
+  - #### [Inscription](#b)
+  - #### [Déconnexion](#c)
+  - #### [Modification Email](#d)
+  - #### [Modification mot de passe](#e)
+- ### [V - Test base de donnée](#V)
+  - #### [Insertion utilisateur](#1)
+  - #### [Insertion ticket](#2)
 
-
-## <a name="IV"></a>Test
-- ### [Connexion](#a)
-- ### [Inscription](#b)
-- ### [Déconnexion](#c)
-- ### [Modification Email](#d)
-- ### [Modification mot de passe](#e)
 
 <br><br><br>
 
@@ -62,7 +63,7 @@ Les fonctionnalités que nous allons tester seront la connexion des utilisateurs
 
 <br><br><br>
 
-## IV - Test
+## <a name="IV"></a>IV - Test PHP
 
 ### <a name="a"></a>Connexion
 
@@ -98,6 +99,44 @@ Les fonctionnalités que nous allons tester seront la connexion des utilisateurs
 | 3      |         |                  |                 |
 | 4      |         |                  |                 |
 - ### <a name="e"></a>Modification mot de passe
+
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+| 2      |         |                  |                 |
+| 3      |         |                  |                 |
+| 4      |         |                  |                 |
+
+## <a name="V"></a>IV - Test base de données
+
+### <a name="1"></a>Insertion utilisateur
+
+- Cas n°1
+  - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DDupont', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
+  - Résultat attendu : OK
+  - Résultat obtenu : OK
+
+- Cas n°2
+    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DD', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
+    - Résultat attendu : KO
+    - Résultat obtenu : KO
+
+- Cas n°3
+    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL);
+    - Résultat attendu : OK
+    - Résultat obtenu : OK
+
+- Cas n°4
+    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont#gmail.com', current_timestamp(), NULL, NULL);
+    - Résultat attendu : KO
+    - Résultat obtenu : KO
+
+- Cas n°5
+    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.fr', current_timestamp(), NULL, NULL);
+    - Résultat attendu : OK
+    - Résultat obtenu : OK
+
+### <a name="2"></a>Insertion ticket
 
 | Cas n° | Critère | Résultat attendu | Résultat obtenu |
 |:-------|---------|------------------|-----------------|
