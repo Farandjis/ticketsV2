@@ -232,11 +232,13 @@ Les étapes décrites sont également appliqués au serveur de secours. Ce docum
     <br>
     <br>
     Une fois installé, Apache2 est directement exécuté. Nous pouvons voir son statut en exécutant la commande : systemctl status apache2.<br>
-    Pour le démarrer, on doit utiliser la commande : systemctl start apache2<br>
-    Pour le redémarrer : systemctl restart apache2<br>
-    Pour l'arrêter : systemctl stop apache2<br>
+    **Pour le démarrer, on doit utiliser la commande :** systemctl start apache2<br>
+    **Pour le redémarrer :** systemctl restart apache2<br>
+    **Pour l'arrêter :** systemctl stop apache2<br>
+    **Pour le démarrer au prochain démarrage :** systemctl enable apache2 (par défaut)
+    **Pour l'empêcher de démarrer au prochain démarrage :** systemctl disable apache2
     <br>
-    🟨 Mettre ici une image du statut d'Apache2<br>
+    🟨 Mettre ici une image du statut d'Apache2, préciser que c'est enable en plus<br>
     <br>
     Étant donné que nous utilisons un système d'exploitation sans interface graphique, nous ne pouvons pas vérifier visuellement que la page par défaut d'Apache apparaît correctement.<br>
     Pour cela, il suffit d'utiliser un autre ordinateur du réseau local et de taper l'adresse IP local du RaspberryPi 4. Nous pouvons la connaître via la commande ifconfig en installant au préalable le paquet net-tools<br>
