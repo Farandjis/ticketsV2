@@ -550,8 +550,11 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     <br>
     **Pour résoudre ce problème, il faut autoriser les connexions avec les ports TCP 12975, TCP 32976 et UDP 17771 du routeur**<br>
 
-    🟨 Mettre ici une capture d'écran du pare-feu du routeur, note : masquez les ports déjà actif, ça ne sert à rien mais mieux vaux éviter de dévoiler ce genre d'info dans le doute
-
+    <br>
+    <div align="center">
+        <img src="img\IV_Hamachi\pare-feu.webp" title="Logiciel Disques d'Ubuntu avec le menu pour créer ou restaurer une image disque" width="500"/><br>
+        <i>Logiciel "Disques" d'Ubuntu avec le menu</i>
+    </div>
 ## <a name="p6"></a> VI - Faire une sauvegarde du serveur
 - ### a) Créer et restaurer une image
     
@@ -572,7 +575,11 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     - Une fois terminé, vous pouvez retirer le lecteur avec le bouton "Éjecter ce disque"
     
   <br>
-    🟨 Mettre ici une image de Disques<br>
+    <div align="center">
+        <img src="img\VI_Sauvegarde\linux_disques_menu.webp" title="Logiciel Disques d'Ubuntu avec le menu pour créer ou restaurer une image disque" height="350"/><br>
+        <i>Logiciel "Disques" d'Ubuntu avec le menu</i>
+    </div>
+
 
   Note :
     - une image peut être restaurée sur un autre lecteur que celui d'origine.
