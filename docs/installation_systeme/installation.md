@@ -548,7 +548,35 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
     🟨 Mettre ici une capture d'écran du pare-feu du routeur, note : masquez les ports déjà actif, ça ne sert à rien mais mieux vaux éviter de dévoiler ce genre d'info dans le doute
 
-
+## <a name="p6"></a> VI - Faire une sauvegarde du serveur
+- ### a) Créer et restaurer une image
     
+    Il doit probablement exister des outils similaires sous Windows, mais voici comment faire sous Linux (Ubuntu) via interface graphique :<br>
 
+    - Insérez le lecteur auquel on veut créer ou restaurer une image.
+    - Cherchez le logiciel "Disques" dans la barre de recherche Linux.
+    - Dans la liste de lecteur à gauche, sélectionnez le lecteur inséré.
+    - En haut, cliquez sur le bouton avec les 3 points en verticale.
+    - Pour créer une image disque :
+      - Cliquez sur le bouton "Créer une image disque"
+      - Choisissez un nom et un emplacement de sauvegarde
+      - Cliquez sur "Démarrer", patientez pendant la création du fichier .img du lecteur.
+    - Pour restaurer une image disque :
+      - Cliquez sur le bouton "Restaurer une image disque"
+      - Choisissez le fichier image à restaurer. **La sauvegarde remplacera irréversiblement le contenu de la clé.**
+      - Cliquez sur "Démarrer", patientez pendant la restauration de l'image disque
+    - Une fois terminé, vous pouvez retirer le lecteur avec le bouton "Éjecter ce disque"
     
+  <br>
+    🟨 Mettre ici une image de Disques<br>
+
+  Note :
+    - une image peut être restaurée sur un autre lecteur que celui d'origine.
+    - Le lecteur avec l'image restauré sera dans le même état que le lecteur pendant la création de l'image.
+    - La création et la restauration d'une image prend ~8min sur un lecteur plutôt rapide.
+    - **Attention à ne pas confondre les lecteurs**, une erreur peut être fatale pour le projet.
+    - L'image fera la même taille que le lecteur.
+    - L'image comportera toutes les partitions du lecteur.
+
+
+- ### b) Dossiers et fichiers à sauvegarder
