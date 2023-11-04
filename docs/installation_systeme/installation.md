@@ -580,3 +580,19 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
 
 - ### b) Dossiers et fichiers à sauvegarder
+
+    Cette liste de répertoires et de fichiers peut être mise à jour.<br>
+    <br>
+    **Apache**<br>
+  - Répertoire du site dynamique : `/var/www/html`
+  - Répertoire des fichiers de configuration : `/etc/apache2`
+    <br><br>
+
+  **MariaDB**<br>
+    - Faire un dump de MariaDB à chaud : `MYSQL_PWD=[MOTDEPASSE] mysqldump --user [UTILISATEUR] --all-databases | gzip >save.mysql.sql.gz` <br>
+    - Voir : https://doc.fedora-fr.org/wiki/Installation_et_configuration_de_MariaDB
+    - Attention ! Elle n'a pas encore été testé.
+    <br><br>
+
+    **Pare-feu**<br>
+    À voir lors de la sécurisation du serveur<br>
