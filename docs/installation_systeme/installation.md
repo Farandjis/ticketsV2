@@ -8,7 +8,9 @@ INF2-A
 
 <br><br>
 Ce document décrit en détail le processus d'installation du RPi4, de son serveur LAMP, de sa mise en réseau, du ssh et de sa sécurisation.<br>
-Les étapes décrites sont également appliquées au serveur de secours. Ce document aborde aussi la configuration du routeur. 
+Les étapes décrites sont également appliquées au serveur de secours. Ce document aborde aussi la configuration du routeur.<br>
+<br>
+Rapport entièrement rédigé par Matthieu FARANDJIS.
 
 </div>
 
@@ -215,6 +217,9 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
 ---
 
 ## <a name="p3"></a> III - Installation du serveur LAMP
+
+La vidéo d'installation du serveur est disponible ici : https://www.youtube.com/watch?v=CV8lqGxK16w <br>
+Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos professeurs (comporte des informations sensibles sur le projet).<br> 
 
 - ### <a name="p3b"></a> a) Premier démarrage de RaspberryPi OS Lite
     Il n'y a rien de particulier qui se passe durant le premier démarrage. 
