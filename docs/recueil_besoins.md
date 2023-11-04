@@ -167,8 +167,8 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentifier (connexion et déconnexion)      |
-| Gérer les profils utilisateurs           | - Réinitialiser ou modifier leur mot de passe <br><br> - Créer un utilisateur <br><br> - Accéder à son tableau de bord                                                                                                   | Identifier un utilisateur                    |
+| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentification (connexion et déconnexion)      |
+| Gérer les profils utilisateurs           | - Réinitialiser ou modifier leur mot de passe <br><br> - Créer un utilisateur <br><br> - Inscrire un visiteur                                                                                                  | Identifier un utilisateur                    |
 | Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br><br> - Afficher les demandes de dépannages <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
@@ -257,6 +257,7 @@ Par ordre alphabétique.
   - [Sélectionner une page](#a1cu2)
   - [Authentification (connexion)](#a1cu3)
   - [Authentification (déconnexion)](#a1cu4)
+  - [Inscrire un visiteur](#a1cu5)
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -542,3 +543,40 @@ Echec :
     - Le système renvoie une erreur en avertissant l'utilisateur qu'une erreur de déconnexion s'est produite
 
 ```
+- #### <a name="a1cu5"> Nom : Inscrire un visiteur
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - Le visiteur ne doit pas avoir de profil utilisateur
+Déclencheur :
+    - L'utilisateur charge la page d'inscription
+Garantie en cas de succès :
+    - Que la page d'inscription renvoie vers la page tableau de bord
+Scénario nominal :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page tableau de bord
+Echec 1 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur reçoit une alerte affirmant que le format d'une donnée est incorrecte
+    - L'utilisateur est renvoyé vers la page d'inscription
+Echec 2 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur reçoit une alerte affirmant que les données sont déjà existantes
+    - L'utilisateur est renvoyé vers la page d'inscription
+Echec 3 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur reçoit une alerte affirmant que le captcha est incorrecte
+    - L'utilisateur possède de nouvelles tentatives pour s'inscrire
+
+```
+
