@@ -41,9 +41,8 @@ Rapport entièrement rédigé par Matthieu FARANDJIS.
   - [**b) Installation et utilisation**](#p4b)
     - [**i) Sur Windows**](#p4bi)
     - [**ii) Sur Linux**](#p4bii)
-  - [**c) Problèmes rencontrés**](#p4c)
-  - [**d) Hypothèse sur ces problèmes**](#p4d)
-  - [**e) Résolution des problèmes**](#p4d)
+  - [**c) Problèmes rencontrés et hypothèses**](#p4c)
+  - [**d) Résolution du problème**](#p4d)
 
 - ### [V - Sécurisation](#p5)
   - [**a) Changement des ports**](#p5a)
@@ -487,11 +486,69 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
   - https://www.clubic.com/article-283362-1-tuto-hamachi-test-hamachi-clubic.html
   - https://www.gadgeek.fr/logmein-hamachi/
   
+    
+
+- ### <a name="p4c"></a> c) Problèmes rencontrés et hypothèses
+
+    Nous avons rencontré un problème un peu étrange sous sa forme.<br>
+    Lorsque nous accédions au serveur Apache du RPi4 via le réseau local réel, nous pouvions naviguer sans aucun soucis entre les différentes pages.
+    Mais lorsque l'ordinateur accède au RPi4 depuis un autre réseau (réseau 4G par exemple), l'ordinateur recevait bien les erreurs 403 et 404, mais le navigateur n'arrivait pas à charger les pages.<br>
+    <br>
+    En premier lieu, nous avons soupçonné Apache de bloquer la connexion via Hamachi, nous avons alors vérifié les fichiers de configurations et chercher de l'aide sur internet.<br>
+    L'une des raisons évoqué d'un mauvais chargement des pages Apache, était le pare-feu du système. C'était d'ailleurs ce problème que nous avions rencontré durant la SAÉ du S2 lorsque nous avons cherché à modifier le répertoire d'Apache.<br>
+    Nous avons découvert qu'il y en avait pas de fonctionnel. Les plus populaires : Netfilter, UFW et IPtables n'étaient pas installé. AppArmor de son côté n'a pas pu être démarré au démarrage, et SELinux, le pare-feu qui nous avait posé problème, était propre à CentOS.<br>
+    Malgré une tentative d'installation et de configuration, le résultat était le même.<br>
+    En approfondissant nos recherches, on a entendu qu'il existait un petit pare-feu dans le noyau de Linux. Nous avons écarté cette possibilité de source du problème.<br>
+    <br>
+    Nous sommes alors revenu sur Apache, persuadé que le problème venait d'Apache. Peut-être que le serveur n'autorisait que les IP local de type 192.168 ?<br>
+    Aucun site n'en faisait référence lors d'une mise à disposition du serveur directement via internet. Il y avait bien des autorisations pour le réseau local, mais même en les ajustant, le résultat était le même.<br>
+    Pire encore, dans les journaux d'accès au serveur, Apache indiquait un code web 200, donc qu'il n'y avait aucun problème.<br>
+    <br>
+    En changeant le port d'écoute d'Apache, et en le relançant, on remarquait que la page par défaut index.html d'Apache était bien accessible pendant un temps très court.<br>
+    Ce moment était juste après le changement du port d'écoute, ou vers la fin du démarrage de RaspberryPi OS.<br>
+    Nous avons donc pu remarquer que le problème ne venait définitivement pas d'Apache.<br>
+    D'autant plus qu'en utilisant Hamachi via la connexion ethernet raccordé au routeur, cela fonctionnait normalement.<br>
+    Ca pouvait difficilement être un fichier de configuration, sinon jamais il y aurait eu la possibilité de charger malgré tout cette page.<br>
+    Ca aurait pu être un pare-feu qui aurait bloqué l'IP à la détection d'une connexion après coup, sauf qu'il n'y a pas de pare-feu, puis on s'était dit qu'elle aurait été bloqué dès le départ.<br>
+    <br>
+    Nous avons alors tenté SSH, le résultat était le même qu'avec Apache.<br>
+    <br>
+    Nous avons ainsi soupçonné la connexion. Nous avons remarqué que nous pouvions faire un ping au serveur, mais celui-ci n'en était pas capable lorsque nous passions par Hamachi.<br>
+    Peut-être que c'était un problème de table de routage. Peut-être la box internet renvoyait systématique sur le port ethernet de mon ordinateur les paquets du serveur.<br>
+    N'arrivant pas à accéder à la box internet en tant qu'administrateur, nous avons tenté de la relancer en déconnectant l'ordinateur et en faisant d'autres manipulations de branchement, mais le résultat était le même.<br>
+    <br>
+    Juste avant de finir de trouver la solution, nous avons remarqué que l'accès au serveur n'était pas totalement bloqué.<br>
+    Il était possible d'accéder à certaines pages du site si elle était strictement inférieur à 2,8ko. Aucune image n'arrivait à être charger, peu importe sa taille<br>
+    Concernant SSH et SFTP, le résultat était similaire qu'avec Apache.<br>
+    Pour SFTP via l'utilisateur administrateur, il n'y avait aucun problème tant qu'on était sur le réseau local réel.<br>
+    Si nous utilisions Hamachi via une autre connexion, FileZilla arrivait à lire certains répertoires et les manipulés.<br>
+    On pouvait envoyer des documents de toute taille, mais il était impossible de les télécharger.<br>
+    <br>
+    <br>
+    Nous n'arrivions pas à discerner la source du problème. D'autant plus que le problème était exactement le même en installant le serveur de secours avec Ubuntu Server.<br>
+    Cependant, ça semblait mieux fonctionner lorsque le serveur était hébergé sur Ubuntu Desktop ou Windows lors de nos essais entre Matthieu et Florent.<br>
+    C'était un véritable casse-tête où il semblait n'y avoir aucune solution au problème.<br>
+
+- ### <a name="p4d"></a> d) Résolution du problème
+
+    La seule chose dont nous ne soupçonnions pas vraiment, c'était le routeur.<br>
+    Déjà car, moi Matthieu, ne pouvait plus administrer ma box internet vu que nous avions perdu le mot de passe administrateur depuis le temps. Donc j'espérais que cela ne venait pas de là<br>
+    <br>
+    Mais surtout que ce n'était pas la première fois que j'utilisais Hamachi, et qu'avec la même configuration réseau, le logiciel était entièrement utilisable pour jouer à des jeux.<br>
+    Vu que la connexion à Apache, SSH, ou encore SFTP passait par Hamachi, il ne devait y avoir aucun problème du point de vu du routeur, vu que le logiciel fonctionnait pour d'autres utilisations.<br>
+    Pareil pour SSH par exemple, ma box internet ne m'a jamais bloqué lorsque je me connectais à distance sur le réseau de l'IUT : le serveur Titan pouvait me transmettre des fichiers et je pouvais en transmettre.<br>
+    <br>
+    La seule source de problème de connection aurait été Hamachi limitant la connexion, si ce n'est ni les serveurs, ni mon ordinateur, ni la box internet.<br>
+    Sauf que je n'ai rien trouvé affirmant une limitation des connexions par Hamachi que ce soit sur des forums ou la documentation proposée par LogMeIn.<br>
+    <br>
+    <br>
+    Étonnamment, c'était le pare-feu du routeur qui limitait la connexion par Hamachi, je n'ai pas trouvé la raison de ce problème.<br>
+    <br>
+    **Pour résoudre ce problème, il faut autoriser les connexions avec les ports TCP 12975, TCP 32976 et UDP 17771 du routeur**<br>
+
+    🟨 Mettre ici une capture d'écran du pare-feu du routeur, note : masquez les ports déjà actif, ça ne sert à rien mais mieux vaux éviter de dévoiler ce genre d'info dans le doute
 
 
+    
 
-
-
-- ### <a name="p4c"></a> c) Problèmes rencontrés
-- ### <a name="p4d"></a> d) Hypothèse sur ces problèmes
-- ### <a name="p4e"></a> e) Résolution des problèmes
+    
