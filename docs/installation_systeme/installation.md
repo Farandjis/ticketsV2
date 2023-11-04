@@ -256,6 +256,11 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
         <i>index.html généré par Apache</i>
     </div>
     <br>
+
+    Le répertoire par défaut du site est sous Linux : `/var/www/html`.<br>
+    Il est recommandé de le laisser configurer ainsi afin d'éviter qu'un utilisateur puisse accéder à tout le disque du serveur.<br>
+
+    <br>
     Attention !<br>
     Il est possible qu'au prochain démarrage du routeur, celui-ci change l'adresse IP local assigné au RPi4.<br>
     Il est possible d'assigner une adresse IP local statique au RPi4 en se connectant en tant qu'administrateur à celle-ci. La manipulation dépend du routeur.<br>
