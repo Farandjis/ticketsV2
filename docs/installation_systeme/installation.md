@@ -297,6 +297,10 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
         <i>MariaDB exécutant la commande SHOW DATABASES;</i>
     </div>
 
+    <br>
+    Site intéressant installation/sécurisation/répertoires/... : https://doc.fedora-fr.org/wiki/Installation_et_configuration_de_MariaDB
+    <br>
+
     <br><br>
     **Source :**
   - Rapport de la SAÉ 2.03 par Matthieu FARANDJIS et Tom BOGAERT
