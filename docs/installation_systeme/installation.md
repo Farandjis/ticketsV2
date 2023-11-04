@@ -438,7 +438,7 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     **Récupérer l'IP d'un hôte :** Clic droit sur l'hôte, copier l'adresse (IPv4 par ex)<br>
     **Changer son pseudo :** Système > Préférence > modifier (ligne du nom)
     <br>
-   - #### <a name="p4bi"></a> ii) Sur Linux
+   - #### <a name="p4bii"></a> ii) Sur Linux
   
      - Installer lsb et lsb-core :<br>
        1) Mettre à jour les paquets : `sudo apt-get update`<br>
