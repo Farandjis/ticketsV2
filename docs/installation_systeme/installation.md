@@ -354,3 +354,50 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
   - https://www.gladir.com/CODER/MYSQL/flush.htm (requête sql flush)
   - https://doc.ubuntu-fr.org/phpmyadmin (installation et utilisateur admin)
   - https://help.ubuntu.com/community/ApacheMySQLPHP (pour l'Include)
+
+<br><br><br>
+
+---
+
+## <a name="p4"></a> IV - Mise en réseau via Hamachi
+
+- ### a) Présentation de LogMeIn Hamachi
+    Hamachi de LogMeIn (aujourd'hui Goto) est un logiciel pair à pair permettant de connecter plusieurs ordinateurs distants dans un réseau local virtuel chiffré en AES 256 bits.<br>
+    Simple d'utilisation, un utilisateur peut ouvrir un réseau local gratuitement où les autres membres n'auront qu'à rejoindre le avec un identifiant et un mot de passe.<br>
+    Il évite de faire des configurations réseaux de son routeur et de son ordinateur, ce qui peut être rassurant si on a peur de faire une mauvaise manipulation pouvant compromettre la sécurité de notre vrai réseau.<br>
+    <br>
+    Cependant, LogMeIn Hamachi possède 4 principaux défauts :
+  - Un réseau gratuit est limité à au maximum 5 personnes (dont le propriétaire de celui-ci)
+  - Hamachi demande la création d'un compte Goto (LogMeIn) pour être utilisé. Cependant, il accepte les adresses emails temporaires comme https://temp-mail.org/fr/.
+  - Le logiciel démarre automatiquement au démarrage du système, il faut configurer Windows/Linux pour l'en empêcher.
+  - Si on oublie de se déconnecter via le bouton on/off, l'ordinateur reste connecté en réseau local aux autres machines, même avec un redémarrage.
+  
+    <br>
+
+  Si Hamachi permet d'éviter de mettre son réseau directement accessible sur internet, il peut toutefois représenter un risque de sécurité si ont oubli de se déconnecter.<br>
+    **Si un membre oubli de se déconnecter, il faut le prévenir**<br>
+    <br>
+    Une alternative préférée est Radmin (https://www.radmin-vpn.com/), logiciel mieux que Hamachi et offrant plus de possibilité que celui-ci.<br>
+    Malheureusement, il n'existe pas sous Linux. Nous ne pouvons donc pas l'utiliser.<br>
+    <br>
+    🟨 Mettre ici une image d'Hamachi sur Windows
+    🟨 Mettre ici une image d'Hamachi sous Linux
+    <br>
+    Nous allons utiliser Hamachi pour pouvoir mettre en réseau le serveur RaspberryPi mais également le serveur de secours.
+    Ainsi, sans même être installé à l'IUT, chaque membre pourra l'utiliser de chez lui et nous pourrons travailler sur les mêmes fichiers et la même base de données.<br>
+    Grâce à la mise en réseau, nous pourrons même tous ensemble configurer le serveur à l'IUT sans devoir l'emporter, via Hamachi sur nos ordinateurs portables personnel.<br>
+    Un autre avantage d'Hamachi est que la mise en réseau à l'IUT n'est plus une urgence, au contraire, cela nous permet facilement de faire des copies image de la carte microSD<br>
+    <br>
+    En cas de panne du serveur RPi4, le serveur de secours sera déjà prêt à l'emploi le temps que la situation redevienne normal.
+
+    <br><br>
+    **Sources :**
+  - https://fr.wikipedia.org/wiki/LogMeIn_Hamachi
+  - https://www.vpn.net/ (site officiel de LogMeIn Hamachi)
+  - https://www.gadgeek.fr/logmein-hamachi/
+
+
+- ### b) Installation
+- ### c) Problèmes rencontrés
+- ### d) Hypothèse sur ces problèmes
+- ### e) Résolution des problèmes
