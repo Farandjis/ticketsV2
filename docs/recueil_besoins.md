@@ -255,6 +255,8 @@ Par ordre alphabétique.
 - <b>c) Les cas d’utilisation système.</b>
   - [Afficher une page](#a1cu1)
   - [Sélectionner une page](#a1cu2)
+  - [Authentification (connexion)](#a1cu3)
+  - [Authentification (déconnexion)](#a1cu4)
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -488,4 +490,55 @@ Echec 2 :
 Echec 3 :
     - L'utilisateur demande l'affichage d'une page à son logiciel de reconnaissance vocal
     - Le logiciel ne comprend, n'arrive pas à lancer le chargement 
+```
+
+- #### <a name="a1cu3"> Nom : Authentification (connexion) 
+```
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être inscrit dans la base de données 
+Déclencheur :
+    - Le bouton connexion est séléctionné 
+Garantie en cas de succès :
+    - Que la page de connexion renvoie vers la page tableau de bord 
+Scénario nominal :
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système enregistre la dernière connexion dans la base de données
+    - Le système affiche la page tableau de bord dans le navigateur de l'utilisateur
+Echec 1 : 
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système enregistre cette tentative de connexion dans le journal d'activité
+    - Le système renvoie une erreur en avertissant l'utilisateur que les données n'existent pas  
+Echec 2 :
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système enregistre cette tentative de connexion dans le journal d'activité
+    - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
+
+```
+- #### <a name="a1cu4"> Nom : Authentification (déconnexion) 
+```
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+Déclencheur :
+    - Le bouton déconnexion est séléctionné 
+Garantie en cas de succès :
+    - Que la page de déconnexion renvoie vers la page d'accueil 
+Scénario nominal :
+    - Le système récupère la demande de l'utilisateur
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système affiche la page d'accueil dans le navigateur de l'utilisateur
+Echec :
+    - Le système récupère la demande de l'utilisateur
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système renvoie une erreur en avertissant l'utilisateur qu'une erreur de déconnexion s'est produite
+
 ```
