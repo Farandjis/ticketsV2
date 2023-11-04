@@ -36,7 +36,9 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
 
 - ### [IV - Mise en réseau via Hamachi](#p4)
   - [**a) Présentation de LogMeIn Hamachi**](#p4a)
-  - [**b) Installation**](#p4b)
+  - [**b) Installation et utilisation**](#p4b)
+    - [**i) Sur Windows**](#p4bi)
+    - [**ii) Sur Linux**](#p4bii)
   - [**c) Problèmes rencontrés**](#p4c)
   - [**d) Hypothèse sur ces problèmes**](#p4d)
   - [**e) Résolution des problèmes**](#p4d)
@@ -388,8 +390,12 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     Une alternative préférée est Radmin (https://www.radmin-vpn.com/), logiciel mieux que Hamachi et offrant plus de possibilité que celui-ci.<br>
     Malheureusement, il n'existe pas sous Linux. Nous ne pouvons donc pas l'utiliser.<br>
     <br>
-    🟨 Mettre ici une image d'Hamachi sur Windows
-    🟨 Mettre ici une image d'Hamachi sous Linux
+    <div align="center">
+        <img src="img\IV_Hamachi\h_windows.webp" title="Hamachi sur Windows" height="220"/>
+        <img src="img\IV_Hamachi\h_linux.webp" title="Info sur l'installation de Hamachi (sudo hamachi) et la liste des serveurs (sudo hamachi list)" height="220"/><br>
+        <i>A gauche : Hamachi sur Windows</i><br>
+        <i>A droite : Hamachi sur Linux</i>
+    </div>
     <br>
     Nous allons utiliser Hamachi pour pouvoir mettre en réseau le serveur RaspberryPi mais également le serveur de secours.
     Ainsi, sans même être installé à l'IUT, chaque membre pourra l'utiliser de chez lui et nous pourrons travailler sur les mêmes fichiers et la même base de données.<br>
@@ -404,7 +410,83 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
   - https://www.vpn.net/ (site officiel de LogMeIn Hamachi)
   - https://www.gadgeek.fr/logmein-hamachi/
 
-- ### <a name="p4b"></a> b) Installation
+- ### <a name="p4b"></a> b) Installation et utilisation
+  - #### <a name="p4bi"></a> i) Sur Windows
+
+      L'installation d'Hamachi est rapide et simple à faire :<br>
+    - Sur https://vpn.net/, cliquez sur "Download Now" pour télécharger l'installateur.<br><br>
+    - Démarrez LogMeIn Hamachi, celui vous demande de créer un compte. Vous pouvez utiliser une adresse email je table comme https://temp-mail.org/fr/. <br><br>
+    - Créer un réseau
+      - Bouton réseau > cliquez sur créer un réseau
+      - Renseignez un identifiant de réseau et son mot de passe
+      - Partager l'identifiant et le mot de passe aux utilisateurs à inviter<br><br>
+    - Rejoindre un réseau
+      - Bouton réseau > cliquez sur rejoindre un réseau
+      - Renseignez l'identifiant et le mot de passe partagé par le propriétaire du réseau
+      - Votre ordinateur apparaît dans la liste<br><br>
+    - Hamachi est opérationnel !
+
+    <br>
+
+    **Pour se connecter/déconnecter de Hamachi :** cliquez sur le grand bouton on/off<br>
+    **Récupérer son IP Hamachi :** Clic sur l'IP à côté du bouton on/off<br>
+    **Récupérer l'IP d'un hôte :** Clic droit sur l'hôte, copier l'adresse (IPv4 par ex)<br>
+    **Changer son pseudo :** Système > Préférence > modifier (ligne du nom)
+    <br>
+   - #### <a name="p4bi"></a> ii) Sur Linux
+  
+     - Installer lsb et lsb-core :<br>
+       1) Mettre à jour les paquets : `sudo apt-get update`<br>
+       2) Installer lsb et lsb-core : `sudo apt-get install lsb lsb-core`<br>
+       Remarque : Sur RPi4 du moins, cela fonctionne sans (impossible de les installer)
+       <br>
+
+     - Télécharger l'installeur :
+       - Avec interface graphique : https://vpn.net/linux et télécharger le fichier<br>
+         Pour Debian (Ubuntu compris) avec un processeur de type AMD64 (le plus courant) : `logmein-hamachi_2.1.0.203-1_amd64.deb`<br>
+         Pour Debian (RaspberryPi OS compris) avec un processeur de type ARMHF (RPi4 donc) : `logmein-hamachi_2.1.0.203-1_armhf.deb`<br>
+         <br>
+         Remarque, HF de "ARMHF" signifie Hard Float.<br>
+         C'est compatible avec les processeurs ARM à partir de ARMv7, cela fonctionne donc avec le RaspberryPi 4<br>
+         Cette version semble être la plus appropriée pour notre micro-ordinateur.<br>
+       - Sans interface graphique :
+         Faire : `sudo wget https://www.vpn.net/installers/fichierInstallateur.qqc` <br>
+         Pour notre RPi4 en conséquence : `sudo wget https://www.vpn.net/installers/logmein-hamachi_2.1.0.203-1_armhf.deb` <br>
+       <br>
+     - Installer Hamachi :
+       - Avec interface graphique (Debian) :
+         (sur Ubuntu du moins) : Clic droit > Ouvrir avec une autre application > Installation de l'application (cliquez sur Sélectionner) > Installer<br>
+         <br>
+       - Sans interface graphique (Debian) :
+         Faire `sudo dpkg -i logmein-hamachi_2.1.0.203-1_armhf.deb`<br>
+         Note : `dpkg` est le gestionnaire de paquet Debian. L'option `-i` signifie installer le paquet<br>
+       <br>
+     
+     **Se connecter/déconnecter :** `sudo hamachi login`, `sudo hamachi logoff`<br>
+     **Changer son pseudo Hamachi :** `sudo hamachi set-nick [nouveauPseudo]`<br>
+     **Se connecter à son compte Goto (LogMeIn) :** `sudo hamachi attach [emailDeSonCompteGoto]`<br>
+     **Créer un réseau :** `sudo hamachi create [IDENTIFIANT_NOUVEAU_RESEAU] [MDP_NOUVEAU_RESEAU]`<br>
+     **Rejoindre un réseau :** `sudo hamachi join [IDENTIFIANT_RESEAU] [MDP_RESEAU]`<br>
+     **Page d'aide :** `sudo hamachi help`<br>
+     **Liste des serveurs et de leurs membres :** `sudo hamachi list`<br>
+     **Informations sur votre installation de Hamachi :** `sudo hamachi`<br>
+     <br>
+     **Arrêter Hamachi :** `sudo systemctl stop logmein-hamachi`<br>
+     **L'empêcher de démarrer automatiquement au démarrage :** `sudo systemctl disable logmein-hamachi`<br>
+     Les autres commandes systemctl fonctionnent (comme start, restart, ou encore enable).<br>
+
+   <br><br>
+   **Sources :**
+  - https://medium.com/@KyleARector/logmein-hamachi-on-raspberry-pi-ad2ba3619f3a
+  - https://stackoverflow.com/questions/37790029/what-is-difference-between-arm64-and-armhf (signification de ARMHF. Note : commentaire d'un utilisateur semblant fiable)
+  - https://www.clubic.com/article-283362-1-tuto-hamachi-test-hamachi-clubic.html
+  - https://www.gadgeek.fr/logmein-hamachi/
+  
+
+
+
+
+
 - ### <a name="p4c"></a> c) Problèmes rencontrés
 - ### <a name="p4d"></a> d) Hypothèse sur ces problèmes
 - ### <a name="p4e"></a> e) Résolution des problèmes
