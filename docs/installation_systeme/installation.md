@@ -381,11 +381,11 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
 - ### <a name="p4a"></a> a) Présentation de LogMeIn Hamachi
     Hamachi de LogMeIn (aujourd'hui Goto) est un logiciel pair à pair permettant de connecter plusieurs ordinateurs distants dans un réseau local virtuel chiffré en AES 256 bits.<br>
-    Simple d'utilisation, un utilisateur peut ouvrir un réseau local gratuitement où les autres membres n'auront qu'à rejoindre le avec un identifiant et un mot de passe.<br>
+    Simple d'utilisation, un utilisateur peut ouvrir un réseau local gratuitement où les autres membres n'auront qu'à le rejoindre avec un identifiant et un mot de passe.<br>
     Il évite de faire des configurations réseaux de son routeur et de son ordinateur, ce qui peut être rassurant si on a peur de faire une mauvaise manipulation pouvant compromettre la sécurité de notre vrai réseau.<br>
     <br>
     Cependant, LogMeIn Hamachi possède 4 principaux défauts :
-  - Un réseau gratuit est limité à au maximum 5 personnes (dont le propriétaire de celui-ci)
+  - Un réseau gratuit est limité à au maximum 5 personnes (dont le propriétaire de celui-ci).
   - Hamachi demande la création d'un compte Goto (LogMeIn) pour être utilisé. Cependant, il accepte les adresses emails temporaires comme https://temp-mail.org/fr/.
   - Le logiciel démarre automatiquement au démarrage du système, il faut configurer Windows/Linux pour l'en empêcher.
   - Si on oublie de se déconnecter via le bouton on/off, l'ordinateur reste connecté en réseau local aux autres machines, même avec un redémarrage.
@@ -410,7 +410,7 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     Grâce à la mise en réseau, nous pourrons même tous ensemble configurer le serveur à l'IUT sans devoir l'emporter, via Hamachi sur nos ordinateurs portables personnel.<br>
     Un autre avantage d'Hamachi est que la mise en réseau à l'IUT n'est plus une urgence, au contraire, cela nous permet facilement de faire des copies image de la carte microSD<br>
     <br>
-    En cas de panne du serveur RPi4, le serveur de secours sera déjà prêt à l'emploi le temps que la situation redevienne normal.
+    En cas de panne du serveur RPi4, le serveur de secours sera déjà prêt à l'emploi le temps que la situation redevienne normale.
 
     <br><br>
     **Sources :**
@@ -423,22 +423,22 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
       L'installation d'Hamachi est rapide et simple à faire :<br>
     - Sur https://vpn.net/, cliquez sur "Download Now" pour télécharger l'installateur.<br><br>
-    - Démarrez LogMeIn Hamachi, celui vous demande de créer un compte. Vous pouvez utiliser une adresse email je table comme https://temp-mail.org/fr/. <br><br>
+    - Démarrez LogMeIn Hamachi, celui vous demande de créer un compte. Vous pouvez utiliser une adresse email temporaire comme https://temp-mail.org/fr/. <br><br>
     - Créer un réseau
-      - Bouton réseau > cliquez sur créer un réseau
-      - Renseignez un identifiant de réseau et son mot de passe
-      - Partager l'identifiant et le mot de passe aux utilisateurs à inviter<br><br>
+      - Bouton réseau > cliquez sur créer un réseau.
+      - Renseignez un identifiant de réseau et son mot de passe.
+      - Partager l'identifiant et le mot de passe aux utilisateurs à inviter.<br><br>
     - Rejoindre un réseau
-      - Bouton réseau > cliquez sur rejoindre un réseau
-      - Renseignez l'identifiant et le mot de passe partagé par le propriétaire du réseau
-      - Votre ordinateur apparaît dans la liste<br><br>
+      - Bouton réseau > cliquez sur rejoindre un réseau.
+      - Renseignez l'identifiant et le mot de passe partagé par le propriétaire du réseau.
+      - Votre ordinateur apparaît dans la liste.<br><br>
     - Hamachi est opérationnel !
 
     <br>
 
     **Pour se connecter/déconnecter de Hamachi :** cliquez sur le grand bouton on/off<br>
-    **Récupérer son IP Hamachi :** Clic sur l'IP à côté du bouton on/off<br>
-    **Récupérer l'IP d'un hôte :** Clic droit sur l'hôte, copier l'adresse (IPv4 par ex)<br>
+    **Récupérer son IP Hamachi :** clic sur l'IP à côté du bouton on/off<br>
+    **Récupérer l'IP d'un hôte :** clic droit sur l'hôte, copier l'adresse (IPv4 par ex)<br>
     **Changer son pseudo :** Système > Préférence > modifier (ligne du nom)
     <br>
    - #### <a name="p4bii"></a> ii) Sur Linux
@@ -495,12 +495,12 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 - ### <a name="p4c"></a> c) Problèmes rencontrés et hypothèses
 
     Nous avons rencontré un problème un peu étrange sous sa forme.<br>
-    Lorsque nous accédions au serveur Apache du RPi4 via le réseau local réel, nous pouvions naviguer sans aucun soucis entre les différentes pages.
+    Lorsque nous accédions au serveur Apache du RPi4 via le réseau local réel, nous pouvions naviguer sans aucun souci entre les différentes pages.
     Mais lorsque l'ordinateur accède au RPi4 depuis un autre réseau (réseau 4G par exemple), l'ordinateur recevait bien les erreurs 403 et 404, mais le navigateur n'arrivait pas à charger les pages.<br>
     <br>
     En premier lieu, nous avons soupçonné Apache de bloquer la connexion via Hamachi, nous avons alors vérifié les fichiers de configurations et chercher de l'aide sur internet.<br>
     L'une des raisons évoqué d'un mauvais chargement des pages Apache, était le pare-feu du système. C'était d'ailleurs ce problème que nous avions rencontré durant la SAÉ du S2 lorsque nous avons cherché à modifier le répertoire d'Apache.<br>
-    Nous avons découvert qu'il y en avait pas de fonctionnel. Les plus populaires : Netfilter, UFW et IPtables n'étaient pas installé. AppArmor de son côté n'a pas pu être démarré au démarrage, et SELinux, le pare-feu qui nous avait posé problème, était propre à CentOS.<br>
+    Nous avons découvert qu'il n'y en avait pas de fonctionnel. Les plus populaires : Netfilter, UFW et IPtables n'étaient pas installé. AppArmor de son côté n'a pas pu être démarré au démarrage, et SELinux, le pare-feu qui nous avait posé problème, était propre à CentOS.<br>
     Malgré une tentative d'installation et de configuration, le résultat était le même.<br>
     En approfondissant nos recherches, on a entendu qu'il existait un petit pare-feu dans le noyau de Linux. Nous avons écarté cette possibilité de source du problème.<br>
     <br>
@@ -512,8 +512,8 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     Ce moment était juste après le changement du port d'écoute, ou vers la fin du démarrage de RaspberryPi OS.<br>
     Nous avons donc pu remarquer que le problème ne venait définitivement pas d'Apache.<br>
     D'autant plus qu'en utilisant Hamachi via la connexion ethernet raccordé au routeur, cela fonctionnait normalement.<br>
-    Ca pouvait difficilement être un fichier de configuration, sinon jamais il y aurait eu la possibilité de charger malgré tout cette page.<br>
-    Ca aurait pu être un pare-feu qui aurait bloqué l'IP à la détection d'une connexion après coup, sauf qu'il n'y a pas de pare-feu, puis on s'était dit qu'elle aurait été bloqué dès le départ.<br>
+    Ça pouvait difficilement être un fichier de configuration, sinon jamais il y aurait eu la possibilité de charger malgré tout cette page.<br>
+    Ça aurait pu être un pare-feu qui aurait bloqué l'IP à la détection d'une connexion après coup, sauf qu'il n'y a pas de pare-feu, puis on s'était dit qu'elle aurait été bloqué dès le départ.<br>
     <br>
     Nous avons alors tenté SSH, le résultat était le même qu'avec Apache.<br>
     <br>
@@ -522,7 +522,7 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     N'arrivant pas à accéder à la box internet en tant qu'administrateur, nous avons tenté de la relancer en déconnectant l'ordinateur et en faisant d'autres manipulations de branchement, mais le résultat était le même.<br>
     <br>
     Juste avant de finir de trouver la solution, nous avons remarqué que l'accès au serveur n'était pas totalement bloqué.<br>
-    Il était possible d'accéder à certaines pages du site si elle était strictement inférieur à 2,8ko. Aucune image n'arrivait à être charger, peu importe sa taille<br>
+    Il était possible d'accéder à certaines pages du site si elle était strictement inférieur à 2,8ko. Aucune image n'arrivait à être charger, peu importe sa taille.<br>
     Concernant SSH et SFTP, le résultat était similaire qu'avec Apache.<br>
     Pour SFTP via l'utilisateur administrateur, il n'y avait aucun problème tant qu'on était sur le réseau local réel.<br>
     Si nous utilisions Hamachi via une autre connexion, FileZilla arrivait à lire certains répertoires et les manipulés.<br>
@@ -535,15 +535,15 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
 - ### <a name="p4d"></a> d) Résolution du problème
 
-    La seule chose dont nous ne soupçonnions pas vraiment, c'était le routeur.<br>
-    Déjà car, moi Matthieu, ne pouvait plus administrer ma box internet vu que nous avions perdu le mot de passe administrateur depuis le temps. Donc j'espérais que cela ne venait pas de là<br>
+    La seule chose que nous ne soupçonnions pas vraiment, c'était le routeur.<br>
+    Déjà car, moi Matthieu, ne pouvait plus administrer ma box internet vu que nous avions perdu le mot de passe administrateur depuis le temps. Donc j'espérais que cela ne venait pas de là.<br>
     <br>
     Mais surtout que ce n'était pas la première fois que j'utilisais Hamachi, et qu'avec la même configuration réseau, le logiciel était entièrement utilisable pour jouer à des jeux.<br>
     Vu que la connexion à Apache, SSH, ou encore SFTP passait par Hamachi, il ne devait y avoir aucun problème du point de vu du routeur, vu que le logiciel fonctionnait pour d'autres utilisations.<br>
     Pareil pour SSH par exemple, ma box internet ne m'a jamais bloqué lorsque je me connectais à distance sur le réseau de l'IUT : le serveur Titan pouvait me transmettre des fichiers et je pouvais en transmettre.<br>
     <br>
     La seule source de problème de connection aurait été Hamachi limitant la connexion, si ce n'est ni les serveurs, ni mon ordinateur, ni la box internet.<br>
-    Sauf que je n'ai rien trouvé affirmant une limitation des connexions par Hamachi que ce soit sur des forums ou la documentation proposée par LogMeIn.<br>
+    Sauf que je n'ai rien trouvé affirmant une limitation des connexions par Hamachi que ce soit sur des forums ou de la documentation proposée par LogMeIn.<br>
     <br>
     <br>
     Étonnamment, c'était le pare-feu du routeur qui limitait la connexion par Hamachi, je n'ai pas trouvé la raison de ce problème.<br>
@@ -552,15 +552,15 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
     <br>
     <div align="center">
-        <img src="img\IV_Hamachi\pare-feu.webp" title="Logiciel Disques d'Ubuntu avec le menu pour créer ou restaurer une image disque" width="500"/><br>
-        <i>Logiciel "Disques" d'Ubuntu avec le menu</i>
+        <img src="img\IV_Hamachi\pare-feu.webp" title="Pare-feu de la Livebox 2 avec les différents ports utilisés" width="500"/><br>
+        <i>Pare-feu personnalisable de la Livebox 2</i>
     </div>
 ## <a name="p6"></a> VI - Faire une sauvegarde du serveur
 - ### a) Créer et restaurer une image
     
-    Il doit probablement exister des outils similaires sous Windows, mais voici comment faire sous Linux (Ubuntu) via interface graphique :<br>
+    Il doit probablement exister des outils similaires sous Windows, mais voici comment faire sous Linux (Ubuntu) via l'interface graphique :<br>
 
-    - Insérez le lecteur auquel on veut créer ou restaurer une image.
+    - Insérez le lecteur dont on veut créer ou restaurer une image.
     - Cherchez le logiciel "Disques" dans la barre de recherche Linux.
     - Dans la liste de lecteur à gauche, sélectionnez le lecteur inséré.
     - En haut, cliquez sur le bouton avec les 3 points en verticale.
