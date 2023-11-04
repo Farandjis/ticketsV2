@@ -51,6 +51,9 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     - [i) Liste des utilisateurs](#p5di)
     - [ii) Droits des utilisateurs](#p5dii)
 
+- ### [VI - Faire une sauvegarde du serveur](#p6)
+  - [**a) Créer et restaurer une image**](#p6a)
+  - [**b) Dossiers et fichiers à sauvegarder**](#p6b)
 
 <br><br><br>
 
@@ -361,7 +364,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
 
 ## <a name="p4"></a> IV - Mise en réseau via Hamachi
 
-- ### a) Présentation de LogMeIn Hamachi
+- ### <a name="p4a"></a> a) Présentation de LogMeIn Hamachi
     Hamachi de LogMeIn (aujourd'hui Goto) est un logiciel pair à pair permettant de connecter plusieurs ordinateurs distants dans un réseau local virtuel chiffré en AES 256 bits.<br>
     Simple d'utilisation, un utilisateur peut ouvrir un réseau local gratuitement où les autres membres n'auront qu'à rejoindre le avec un identifiant et un mot de passe.<br>
     Il évite de faire des configurations réseaux de son routeur et de son ordinateur, ce qui peut être rassurant si on a peur de faire une mauvaise manipulation pouvant compromettre la sécurité de notre vrai réseau.<br>
@@ -396,8 +399,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
   - https://www.vpn.net/ (site officiel de LogMeIn Hamachi)
   - https://www.gadgeek.fr/logmein-hamachi/
 
-
-- ### b) Installation
-- ### c) Problèmes rencontrés
-- ### d) Hypothèse sur ces problèmes
-- ### e) Résolution des problèmes
+- ### <a name="p4b"></a> b) Installation
+- ### <a name="p4c"></a> c) Problèmes rencontrés
+- ### <a name="p4d"></a> d) Hypothèse sur ces problèmes
+- ### <a name="p4e"></a> e) Résolution des problèmes
