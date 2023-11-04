@@ -77,7 +77,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     Nous pouvons en apprendre plus sur les caractéristiques de notre Raspberry Pi 4 en exécutant la commande Raspberry OS : `pinout`<br>
     <br>
     <div align="center">
-    <img width=350px src="img/I_preparatif/pinout.png" title="résultat de la commande pinout avec les différents ports, un dessin de la carte et une descriptions des pins"/><br>
+    <img width=350px src="img/I_presentation/pinout.png" title="résultat de la commande pinout avec les différents ports, un dessin de la carte et une descriptions des pins"/><br>
     <i>résultat de la commande pinout</i>
     </div>
     <br>
@@ -170,7 +170,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     <br><br>
 
     <div align="center">
-       <img src="img\I_preparatif\vlc.webp" title="VLC sur Windows 10 affichant l'écran du RPi4 installant PHPMyAdmin" height="220"/><br>
+       <img src="img\II_preparatif\vlc.webp" title="VLC sur Windows 10 affichant l'écran du RPi4 installant PHPMyAdmin" height="220"/><br>
        <i>VLC affichant l'écran du RPi4 sur Windows 10</i>
     </div>
 
@@ -183,7 +183,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     <br><br>
 
     <div align="center">
-        <img src="img\I_preparatif\0_piimager_menu.webp" title="Menu de Pi Imager avec les boutons choix OS, choix Stockage, écrire et un bouton paramètre" height="220"/><br>
+        <img src="img\II_preparatif\0_piimager_menu.webp" title="Menu de Pi Imager avec les boutons choix OS, choix Stockage, écrire et un bouton paramètre" height="220"/><br>
         <i>Menu de Pi Imager</i>
     </div>
   
@@ -198,7 +198,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     <br><br>
 
     <div align="center">
-        <img src="img\I_preparatif\1_piimager_option.webp" title="Les options d'installation de Pi Imager" height="220"/><br>
+        <img src="img\II_preparatif\1_piimager_option.webp" title="Les options d'installation de Pi Imager" height="220"/><br>
         <i>Options d'installation de Pi Imager</i>
     </div>
 
@@ -245,7 +245,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     **Pour l'empêcher de démarrer au prochain démarrage :** `systemctl disable apache2`<br>
     <br>
     <div align="center">
-        <img src="img\I_preparatif\systemctl_status_apache2.webp" title="Affiche que Apache2 est active et démarre automatique au démarrage" height="180"/><br>
+        <img src="img\III_install\systemctl_status_apache2.webp" title="Affiche que Apache2 est active et démarre automatique au démarrage" height="180"/><br>
         <i>Statut d'Apache</i>
     </div>
     <br>
@@ -254,7 +254,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     En faisant cela, nous obtenons la page par défaut d'Apache index.html pour serveur Debian.<br>
     <br>
     <div align="center">
-        <img src="img\I_preparatif\info_apache.webp" title="Page par défaut index.html d'Apache" height="220"/><br>
+        <img src="img\III_install\info_apache.webp" title="Page par défaut index.html d'Apache" height="220"/><br>
         <i>index.html généré par Apache</i>
     </div>
     <br>
@@ -289,7 +289,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     <br>
 
     <div align="center">
-        <img src="img\I_preparatif\mariadb_test.webp" title="MariaDB sur PuTTY qui execute la commande SHOW DATABASES;" height="220"/><br>
+        <img src="img\III_install\mariadb_test.webp" title="MariaDB sur PuTTY qui execute la commande SHOW DATABASES;" height="220"/><br>
         <i>MariaDB exécutant la commande SHOW DATABASES;</i>
     </div>
 
@@ -314,7 +314,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     <br>
 
     <div align="center">
-        <img src="img\I_preparatif\phpinfo.webp" title="Page d'info de php" height="220"/><br>
+        <img src="img\III_install\phpinfo.webp" title="Page d'info de php" height="220"/><br>
         <i>info.php affichant phpinfo()</i>
     </div>
 
@@ -355,7 +355,7 @@ Les étapes décrites sont également appliquées au serveur de secours. Ce docu
     <br>
 
     <div align="center">
-        <img src="img\I_preparatif\phpmyadmin_admin.webp" title="Page de PHPMyAdmin affichant un résumé de la base de données et du serveur" height="220"/><br>
+        <img src="img\III_install\phpmyadmin_admin.webp" title="Page de PHPMyAdmin affichant un résumé de la base de données et du serveur" height="220"/><br>
         <i>PHPMyAdmin affichant des informations sur le serveur et sa base de données</i>
     </div>
 
