@@ -3,9 +3,6 @@ CREATE USER 'admin_sys' IDENTIFIED BY 'azerty'; -- MDP à modifier
 CREATE USER 'admin_web' IDENTIFIED BY 'azerty'; -- MDP à modifier
 CREATE USER 'visiteur' IDENTIFIED BY 'azerty'; -- MDP à modifier
 
-CREATE ROLE 'technicien_role';
-CREATE ROLE 'client_role';
-
 -- Création des vues
 
 -- Visiteur
