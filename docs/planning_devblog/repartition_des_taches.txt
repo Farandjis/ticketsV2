@@ -1,9 +1,30 @@
 Florent Tom Assia Enzo Matthieu
 
-le 03/11/2023
+le 07/11/2023
 -----
 
-================== Du jeudi 03/11/23 au vendredi 10/11/2023 ==================
+============= Du mercredi 08/11/2023 au vendredi 10/11/2023 ===============
+
+- Florent : 	Suite de la conception du site
+- Tom : 	Réorganisation fichiers du site					-> Peut être fait pour le 08/11/23
+- Tom : 	Création de profil.php et des pages modifications		-> Peut être fait dès le 08/11/23 (une fois qu'Enzo a ajouter les trucs dans BD)
+- Assia : 	Fin page de connexion, déconnexion				?) (il faut que je vérifie l'avancer)
+- Enzo : 	Correction d'un problème pour la page action (inscription PHP)	-> Peut être fait pour le 08/11/23
+- Enzo : 	Création de qq utilisateurs et tickets bidon			!\ Doit être fait pour le 08/11/23
+- Enzo : 	Création d'accueil.php						-> Peut être fait dès le 08/11/23 (dès que possible, ça serait top)
+- Matthieu :	Gestion du projet (suivis des tâches, bilan de la semaine)
+- Matthieu :	Rectification, discussion par rapport aux tâches
+- Matthieu : 	Echange avec les professeurs
+- Matthieu :	Approfondissement de certains cas d'utilisation			!\ Doit être fait pour le 08/11/23
+
+Note : Nous allons sécuriser tous ensemble le serveur vendredi. Je ramènerais le RPi4 et on utilisera à distance le serveur de secours.
+Remarque : Nous allons très vite ! Ce document sera rapidement mis à jour. On pourra prendre le temps de vérifier que tout est OK.
+
+
+
+
+
+================== Du jeudi 03/11/23 au mardi 07/11/2023 ==================
 
 Tom, Florent : Indisponible fin des vacances
 
@@ -19,6 +40,6 @@ Tom, Florent : Indisponible fin des vacances
 - Assia :	Page PHP							-> Possible dès le 05/11/2023
 - Florent :	Commencer la conception du site					!\ URGENCE : La création du site commencera en même temps !
 - Tom :		... 								?) A discuter
-Nous allons sécuriser tous ensemble le serveur.
+
 
 Note : On commencera le PHP une fois la BD de prête et à la fin des vacances.
