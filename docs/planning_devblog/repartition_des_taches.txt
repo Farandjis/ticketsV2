@@ -7,7 +7,7 @@ le 07/11/2023
 
 - Florent : 	Suite de la conception du site
 - Tom : 	Réorganisation fichiers du site					-> Peut être fait pour le 08/11/23
-- Tom : 	Création de profil.php et des pages modifications		-> Peut être fait dès le 08/11/23 (une fois qu'Enzo a ajouter les trucs dans BD)
+- Tom : 	Ajout des éléments qui manque à la maquette
 - Assia : 	Fin page de connexion, déconnexion				?) (il faut que je vérifie l'avancer)
 - Enzo : 	Correction d'un problème pour la page action (inscription PHP)	-> Peut être fait pour le 08/11/23
 - Enzo : 	Création de qq utilisateurs et tickets bidon			!\ Doit être fait pour le 08/11/23
