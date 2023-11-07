@@ -14,8 +14,8 @@ CREATE VIEW vue_Ticket_visiteur AS
 SELECT HORODATAGE_CREATION_TICKET, OBJET_TICKET, NIV_URGENCE_ESTIMER_TICKET, DESCRIPTION_TICKET
 FROM Ticket;
 
-GRANT SELECT ON vue_Utilisateur_visiteur TO 'visiteur_role';
-GRANT SELECT ON vue_Ticket_visiteur TO 'visiteur_role';
+GRANT SELECT ON vue_Utilisateur_visiteur TO 'visiteur';
+GRANT SELECT ON vue_Ticket_visiteur TO 'visiteur';
 
 -- Utilisateur
 CREATE VIEW vue_Utilisateur_client AS
