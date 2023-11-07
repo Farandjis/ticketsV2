@@ -40,12 +40,6 @@ CREATE VIEW vue_RelationTicket_client AS
 SELECT NOM_LIBELLE
 FROM RelationTicketsLibelles;
 
-GRANT SELECT ON vue_Utilisateur_client TO 'client_role';
-GRANT SELECT ON vue_Ticket_client TO 'client_role';
-GRANT UPDATE ON vue_Utilisateur_insertion_client TO 'client_role';
-GRANT UPDATE ON vue_Ticket_insertion_client TO 'client_role';
-
-
 -- Technicien
 CREATE VIEW vue_Ticket_technicien AS
 SELECT ID_TECHNICIEN, ETAT_TICKET
