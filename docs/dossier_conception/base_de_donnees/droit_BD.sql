@@ -45,8 +45,6 @@ CREATE VIEW vue_Ticket_technicien AS
 SELECT ID_TECHNICIEN, ETAT_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_Ticket_technicien TO 'technicien_role';
-
 -- Admin_web
 CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
@@ -63,15 +61,7 @@ GRANT UPDATE ON Libelle TO 'admin_web';
 GRANT UPDATE ON RelationTicketsLibelles TO 'admin_web';
 
 
--- Générale Techniciens/Admins
--- Pour 'technicien_role'
-GRANT SELECT ON Utilisateur TO 'technicien_role';
-GRANT SELECT ON Ticket TO 'technicien_role';
-GRANT SELECT ON RoleUser TO 'technicien_role';
-GRANT SELECT ON EtatTicket TO 'technicien_role';
-GRANT SELECT ON RelationTicketsLibelles TO 'technicien_role';
-GRANT SELECT ON Libelle TO 'technicien_role';
-
+-- Générale Admins
 -- Pour 'admin_web'
 GRANT SELECT ON Utilisateur TO 'admin_web';
 GRANT SELECT ON Ticket TO 'admin_web';
