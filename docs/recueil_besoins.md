@@ -506,18 +506,28 @@ Garantie en cas de succès :
     - Que la page de connexion renvoie vers la page tableau de bord 
 Scénario nominal :
     - Le système récupère les informations entrées par l'utilisateur
-    - Le système compare ses données avec celles entrées dans la base de données
-    - Le système recherche le fichier HTML correspondant à la page
+    
+    - Le système trouve l'identifiant utilisateur associé au login
+    - Le système connecte l'utilisateur à la base de donnée à l'aide de l'identifiant et du mot de passe
+    - Le système créer un cookie de connexion
     - Le système enregistre la dernière connexion dans la base de données
-    - Le système affiche la page tableau de bord dans le navigateur de l'utilisateur
+    - (BONUS) : Le système note la connexion dans un journal spécial.
+                        - Le système compare ses données avec celles entrées dans la base de données
+                        - Le système recherche le fichier HTML correspondant à la page
+    - Le système redirige l'utilisateur vers le tableau de bord
+    
 Echec 1 : 
     - Le système récupère les informations entrées par l'utilisateur
-    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système échoue lors de la récupération de l'identifiant utilisateur : mauvais login
+                    - Le système compare ses données avec celles entrées dans la base de données
     - Le système enregistre cette tentative de connexion dans le journal d'activité
-    - Le système renvoie une erreur en avertissant l'utilisateur que les données n'existent pas  
+    - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
+    
 Echec 2 :
     - Le système récupère les informations entrées par l'utilisateur
-    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système trouve l'identifiant utilisateur associé au login
+    - Le système échoue lors de la connexion de l'utilisateur à la base de donnée : mauvais mot de passe
+                    - Le système compare ses données avec celles entrées dans la base de données
     - Le système enregistre cette tentative de connexion dans le journal d'activité
     - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
 
@@ -535,11 +545,14 @@ Garantie en cas de succès :
     - Que la page de déconnexion renvoie vers la page d'accueil 
 Scénario nominal :
     - Le système récupère la demande de l'utilisateur
-    - Le système recherche le fichier HTML correspondant à la page
+    - Le système supprime le cookie de session de chez l'utilisateur
+    - (BONUS) : Le système note la déconnexion de l'utilisateur dans un journal spécial.
+                - Le système recherche le fichier HTML correspondant à la page
     - Le système affiche la page d'accueil dans le navigateur de l'utilisateur
 Echec :
     - Le système récupère la demande de l'utilisateur
-    - Le système recherche le fichier HTML correspondant à la page
+    - Le système échoue lors de la suppression du cookie de session
+                - Le système recherche le fichier HTML correspondant à la page
     - Le système renvoie une erreur en avertissant l'utilisateur qu'une erreur de déconnexion s'est produite
 
 ```
@@ -580,3 +593,4 @@ Echec 3 :
 
 ```
 
+Note du 08/11/2023 : Ajouter un niveau sous-fonction pour l'inscription peut-être ?
