@@ -11,9 +11,7 @@ INF2-A
 
 ## Plan
 
-### [I – Conception Architectural](#p1)
-- <b>[Figure 1 : Diagramme des composants ](#fg1)</b>
-### [II – Conception Détaillée](#p3)
+### [I – Conception Détaillée](#p3)
 - <b>[a) Conception de la page index.html ](#p1a)</b>
 - <b>[b) Conception de la page connexion.html ](#p1b)</b>
 - <b>[c) Conception de la page modifMdp.html ](#p1c)</b>
@@ -25,6 +23,10 @@ INF2-A
 - <b>[i) Conception de la page historique.html ](#p1i)</b>
 - <b>[j) Conception de la page tableauBord.html ](#p1j)</b>
 - <b>[k) Conception de la page modificationTicket.html ](#p1k)</b>
+- <b>[k) Recueil de fonctions ](#p1l)</b>
+
+### [II – Conception Architectural](#p1)
+- <b>[Figure 1 : Diagramme des composants ](#fg1)</b>
 
 
 <br><br><br><br><br><br><br>
@@ -53,13 +55,27 @@ La page index.html contient :
 
 
 
-- <b><a name="p1b"></a>b) Conception de la page connexion.html</b><br>
+- <b><a name="p1b"></a>b) Conception de la page connexion.php</b><br>
 <br><br>
 <pre>
 La page connexion.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
     Un 'div' représentant le logo et le formulaire de connexion. Ce 'div' contient :
         Un 'form' représentant le formulaire de connexion.
+</pre>
+<pre>
+Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_connexion.php :
+- Vérification de la provenance des valeurs et de leur non nullité
+{
+    Lancement de la requête avec la fonction insertRequest()
+    - Vérification de l'existance de l'utilisateur
+    {
+        Connexion au compte crée avec la fonction connectUser()
+        Redirection vers tableauBord.html
+    }
+    Redirection connexion.php avec un id
+}
+Redirection connexion.php avec un id
 </pre>
 <br><br>
 
@@ -77,13 +93,36 @@ La page modifMDP.html contient :
 
 
 
-- <b><a name="p1d"></a>d) Conception de la page inscription.html</b><br>
+- <b><a name="p1d"></a>d) Conception de la page inscription.php</b><br>
 <br><br>
 <pre>
 La page inscription.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
     Un 'div' représentant le logo et le formulaire d'inscription. Ce 'div' contient :
         Un 'form' représentant le formulaire d'inscription.
+</pre>
+<pre>
+Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_inscription.php :
+- Vérification de la provenance des valeurs et de leur non nullité
+{
+    - Vérification de la conformité du format du mot de passe avec la fonction valideMDP()
+    {
+        Lancement de la requête avec la fonction insertRequest()
+        - Vérification de la réussite de l'insertion de la requête
+        {
+            Création de l'utilisateur MariaDB et don de ses droits avec la fonction newUser()
+            - Vérification de la création de l'utilisateur
+            {
+                Connexion au compte crée avec la fonction connectUser()
+                Redirection vers tableauBord.html
+            }
+            Redirection inscription.php avec un id
+        }
+        Redirection inscription.php avec un id
+    }
+    Redirection inscription.php avec un id
+}
+Redirection inscription.php avec un id
 </pre>
 <br><br>
 
@@ -192,11 +231,50 @@ La page modificationTicket.html contient :
         Un 'form' représentant le formulaire de modification de tickets.
 </pre>
 <br><br>
+
+- <b><a name="p1l"></a>b) Recueil de fonctions</b><br>
+<br><br>
+
+#### <i>x = connectUser(a,b)</i>
+<pre>
+Tentative de connexion à la base de données avec l'identifiant de l'utilisateur et son mot de passe.
+Si la connexion réussit, une session est créer et x = True. Sinon x = False.
+
+x : bool (Définie l'état de la connexion à la base)
+a : str (Correspond au login entré)
+b : str (Correspond au mot de passe entré)
+</pre>
+#### <i>x = insertRequest(a,b)</i>
+<pre>
+Préparation de la requete sous la forme d'une requête préparé et envoie de cette dernière à la base de données.
+
+x : string (Retour de la requête au près de la base de données)
+a : str (Requête mySQL sous la forme d'une requête préparé avec des '?')
+b : arraylist (Tableau des valeurs à inérer dans la requête dans l'ordre)
+</pre>
+#### <i>x = newUser(a,b)</i>
+<pre>
+Création d'un nouvel utilisateur MariaDB, puis don de ses droits.
+Si la fonction s'exécute correctement x = True. Sinon x = False.
+
+x : bool (Définie l'état de la création de l'utilisateur)
+a : str (Correspond au login entré)
+b : str (Correspond au mot de passe entré)
+</pre>
+#### <i>x = valideMDP(a)</i>
+<pre>
+Vérifiaction de l'identité du mot de passe et de la confirmation du mot de passe. Vérification que le mot de passe respecte les normes de sécurité.
+Si le mot de passe respecte les conditions de sécurité x = True. Sinon x = False.
+
+x : bool (Définie la validité du mot de passe)
+a : str (Correspond au mot de passe entré)
+</pre>
+
 ------------------------------------------------------------------------------------------------------------------------
 ### <a name="p2"></a>I – Conception Architecturale
 <br><br>
 
-<img height="500" width="800" src="diagramme_composant.png" title="conception UML du site statique"/><br><br>
+<img height="1000" width="800" src="diagramme_composant.png" title="conception UML du site statique"/><br><br>
 <i><a name="fg1"></a>Figure 1 : Diagramme de composants.</i>
 
 
