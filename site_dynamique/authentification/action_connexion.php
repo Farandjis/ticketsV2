@@ -5,30 +5,36 @@ $database = 'db_tix';
 
 $connection = mysqli_connect($host, 'root', '', $database);
 
-if (isset($_POST['login'], $_POST['mdp'])) {
-    $login = htmlspecialchars($_POST['login']);
-    $mdp = htmlspecialchars($_POST['mdp']);
-    $requete = "SELECT ID_USER FROM utilisateur WHERE login_user = '$login'";
-    $reponse = mysqli_query($connection, $requete);
-    if ($row = mysqli_fetch_row($reponse)) {
-        $connexion = mysqli_connect($host, $row[0], $mdp, $database);
-        if ($connexion) {
-            session_start();
-            $_SESSION['login'] = $row[0];
-            $_SESSION['mdp'] = $mdp;
-            header('Location: tableauBord.php');
-        } else {
-            header('Location: connexion.php?id=3');
+try {
+    if (isset($_POST['login'], $_POST['mdp'])) {
+        $login = htmlspecialchars($_POST['login']);
+        $mdp = htmlspecialchars($_POST['mdp']);
+
+        if (empty($login) || empty($mdp)) {
+            throw new Exception("champ_vide");
         }
-    }else {
-        header('Location: connexion.php?id=2');
+
+        $requete = "SELECT ID_USER FROM utilisateur WHERE login_user = '$login'";
+        $reponse = mysqli_query($connection, $requete);
+
+        if ($row = mysqli_fetch_row($reponse)) {
+            $connexion = mysqli_connect($host, $row[0], $mdp, $database);
+
+            if ($connexion) {
+                $dateConnexion = date('Y-m-d H:i:s');
+                $updateRequete = "UPDATE utilisateur SET HORODATAGE_DERNIERE_CONNECTION_USER = '$dateConnexion' WHERE ID_USER = {$row[0]}";
+                mysqli_query($connection, $updateRequete);
+
+                session_start();
+                $_SESSION['login'] = $row[0];
+                $_SESSION['mdp'] = $mdp;
+                header('Location: tableauBord.php');
+            }
+        } else {
+            header('Location: connexion.php?id=2');
+        }
     }
-}else {
-    header('Location: connexion.php?id=1');
+} catch (Exception $e) {
+    header('Location: connexion.php?id=' . urlencode($e->getMessage()));
 }
-
-
-
-
-
-
+?>
