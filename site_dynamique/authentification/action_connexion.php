@@ -12,7 +12,7 @@ try {
         $mdp = htmlspecialchars($_POST['mdp']);
 
         if (empty($login) || empty($mdp)) {
-            throw new Exception("champ_vide");
+            throw new Exception("3"); // Erreur : champs vide
         }
 
         // $requete = "SELECT ID_USER FROM utilisateur WHERE login_user = '$login'";
@@ -37,10 +37,16 @@ try {
                 header('Location: tableauBord.php');
             }
         } else {
-            header('Location: connexion.php?id=2');
+            header('Location: connexion.php?id=2'); // Erreur : identifiant ou mdp incorrecte
         }
     }
 } catch (Exception $e) {
-    header('Location: connexion.php?id=' . urlencode($e->getMessage()));
+
+    $msg_erreur = $e->getMessage();
+    if ("Access denied" == substr($msg_erreur,0,13)){
+        // Si MariaDB refuse la connexion de l'utilisateur (normalement, cela signifie mauvais mot de passe
+        $msg_erreur = 2; // Erreur : login ou mdp incorrecte
+    }
+    header('Location: connexion.php?id=' . urlencode($msg_erreur));
 }
 ?>

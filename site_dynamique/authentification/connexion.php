@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="ressources/logo_sans_texte.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../ressources/logo_sans_texte.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <div class="retour">
-            <a href="index.php"><img src="ressources/fleche_retour.png" alt=""> Retour</a>
+            <a href="../index.php"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
         </div>
     </header>
     <div class="page_authentification_modif_perso">
-        <img src="ressources/logo.png" class="logo_plein" alt="logo du site">
+        <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
 
         <div role="form" class="formAuthentification formConnexion">
 
@@ -36,7 +36,13 @@
 <?php
 if(isset($_GET['id'])) {
     if ($_GET['id'] == 2) {
-        echo "Le champ login ou mdp est incorrect";
+        echo "ERREUR : Le champ login ou mot de passe est incorrect";
+    }
+    else if ($_GET['id'] == 3) {
+        echo "ERREUR : Le champ login ou mot de passe est vide";
+    }
+    else {
+        echo "ERREUR : Une erreur est survenue";
     }
 }
 ?>
