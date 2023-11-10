@@ -326,7 +326,7 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
 input[type="date"] {
   width: 150px;
   height: 50px;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 15px;
   padding: 10px;
   font-family: Poppins, Arial, sans-serif;
@@ -596,8 +596,8 @@ input[type="date"] {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
 }
+
 .form-recherche {
   display: flex;
   align-items: center;
@@ -605,7 +605,7 @@ input[type="date"] {
   flex-direction: column;
   background: #211a43;
   width: 400px;
-  height: 400px;
+  height: 550px;
   border-radius: 15px;
   margin-bottom: 25px;
 }
@@ -619,8 +619,23 @@ input[type="date"] {
   color: #f1f1f1;
 }
 .form-recherche input[type="text"] {
-  width: 100%;
+  width: 90%;
 }
+
+#conteneur_liste_libelle{
+  border-radius: 7px;
+  width: 350px;
+  height: 50px;
+  margin: 10px;
+}
+
+#liste_libelle{
+  width: 350px;
+  height: 50px;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
 
 .bouton-recherche {
   display: flex;
@@ -640,6 +655,11 @@ input[type="date"] {
   width: 1200px;
   height: 700px;
   border-collapse: collapse;
+  overflow: auto;
+}
+
+.table-tableau-bord th {
+  height: 50px;
 }
 
 .table-tableau-bord td{
@@ -668,14 +688,16 @@ input[type="date"] {
 
 textarea{
   resize: none;
-  margin-bottom: 20px;
   background: #ECECEC;
-  border-radius: 7px;
-  padding: 2px;
   font-size: 16px;
+}
 
+#explication{
+  border-radius: 7px;
   width: 555px;
   height: 150px;
+  margin-bottom: 20px;
+  padding: 2px;
 }
 
 /* ======== SELECT OPTIONS ======== */

@@ -41,60 +41,24 @@
     </div>
 
     <div class="tableau-bord">
+        <div class="conteneur_table-tableau-bord">
         <table class="table-tableau-bord">
             <thead>
             <tr>
                 <th>Date</th>
-                <th>Libellé</th>
+                <th>Titre</th>
                 <th>Niv. Urgence</th>
                 <th>Description</th>
                 <th>Demandeur</th>
-                <th>Etat</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-            </tr>
-            <tr>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-            </tr>
-            <tr>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-            </tr>
-            <tr>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-            </tr>
-            <tr>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
-                <td>Contenu</td>
+                <td colspan="5" style="text-align: center">Tableau vide</td>
             </tr>
             </tbody>
         </table>
+        </div>
         <div class="form-recherche">
             <h2>Recherche</h2>
             <form action='#' method='post'>
@@ -103,9 +67,16 @@
                 <label for='date2'> à </label>
                 <input id='date2' type='date' name ='date2'><br>
                 <br>
+                <label for='titre'>Titre</label><br>
+                <input id='titre' type='text' name ='titre'><br>
+                <br>
                 <label for='libelle'>Libellé</label><br>
                 <input id='libelle' type='text' name ='libelle'><br><br>
+                <label for="liste_libelle">Liste libellé(s) :</label>
 
+                <div id="conteneur_liste_libelle">
+                    <textarea id="liste_libelle" name="liste_libelle" readonly></textarea><br>   <!-- textArea.value = txtMem + smCode    modif textarea js  -->
+                </div>
                 <div class="bouton-recherche">
                     <input type='submit' name='recherche' value='Recherche'>
                     <input type='reset' name='resetRecherche' value='Annuler'>
