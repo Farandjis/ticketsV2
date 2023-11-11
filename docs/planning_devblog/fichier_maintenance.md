@@ -33,6 +33,15 @@ Solutions :
 Si les problèmes 1 et 3 n'affecte pas vraiment notre progression, la 2 risque de poser rapidement un problème et les problèmes 4 et 5 limite sévèrement notre progression actuel.<br>
 En ce samedi 11 novembre, il est obligatoire de résoudre ces problèmes.
 
+Certaines tâches n'ont pas été effectués :
+- Certaines pages n'ont pas été corrigés - Tom
+- Création de qq utilisateurs et tickets bidon - Enzo
+  - En conséquence, je m'en occupe, mais cela nous a accumulé du retard.
+- Email pour M Dufaud - Matthieu
+- git tag - Matthieu
+- renommage des branches terminés - Matthieu
+- Règles métiers (il faudrait demander à M Hoguin peut-être..)
+
 #### Changement de l'organisation
 Pour pallier le retard d'Enzo à suivre l'avancée du groupe et pour l'aider dans ses tâches, désormais Florent et Enzo travailleront ensemble en binôme.<br>
 Cela permettra d'améliorer la cohésion de l'équipe en évitant de nouveaux les moments pouvant sévèrement impacter l'entente au sein du groupe.........<br>
@@ -61,15 +70,21 @@ Cela permettra d'améliorer la cohésion de l'équipe en évitant de nouveaux le
 - **Ce qui devra être terminé pour la semaine prochaine :**
   - Script générant des utilisateurs et des tickets
   - Page de connexion
-  - Page de tableau de bord
+  - Page d'inscription
   - Page de déconnexion
   - Page de modification de Mot de passe
   - Page index.php
+  - Rectification du site statique
 - **Ce qui devra être commencé pour la semaine prochaine :**
   - Sécurisation du RPi4 (retardé)
   - Page index.php
   - Page profil.php
   - Page modif email (profil)
+- **Ce qui doit être continué :**
+  - tableau de bord php
+  - cas d'utilisations
+  - dossier de test
+  - conception site dynamique
 
 #### Travail effecté
 - **Florent**<br>
