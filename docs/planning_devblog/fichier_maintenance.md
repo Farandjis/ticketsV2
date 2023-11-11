@@ -34,10 +34,26 @@ Si les problèmes 1 et 3 n'affecte pas vraiment notre progression, la 2 risque d
 En ce samedi 11 novembre, il est obligatoire de résoudre ces problèmes.
 
 #### Changement de l'organisation
-Désormais, Florent et Enzo travailleront ensemble en binôme [...]
+Pour pallier le retard d'Enzo à suivre l'avancée du groupe et pour l'aider dans ses tâches, désormais Florent et Enzo travailleront ensemble en binôme.<br>
+Cela permettra d'améliorer la cohésion de l'équipe en évitant de nouveaux les moments pouvant sévèrement impacter l'entente au sein du groupe.........<br>
+<br>
+
+#### Avancé
 
 <br><br><br><br>
-
+- **Ce qui a été terminé :** <br>
+  - Fin du rapport d'installation du serveur et de ses composants. Il manque simplement la partie sécurisation.
+  - Fin de la réinstallation complète du serveur RPi4 et du serveur de secours.
+  - Fin de la mise en réseau définitive via Hamachi sur les deux serveurs.
+  - Test sur la base de données (juste ajouter une mini description des cas, peut-être qu'il faut rajouter des trucs, je n'en sais rien)
+  - Base de données V1 (il faudra la continuer suite aux problèmes cités juste au-dessus)
+- **Ce qui a été commencé :**
+  - Page d'inscription (ne peut être terminé donc...)
+  - Page de connexion (de même...)
+  - 
+- **Ce qui a été avancé :**
+- **Ce qui devra être terminé pour la semaine prochaine :**
+- **Ce qui devra être commencé pour la semaine prochaine :**
 ---
 
 ## Jeudi 02/11/2023 - Bilan du travail du 27/10/2023 au 02/11/2023
