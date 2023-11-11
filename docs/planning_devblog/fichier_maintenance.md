@@ -13,7 +13,33 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## Samedi 11/11/2023 - Bilan du travail du 03/11/2023 au 10/11/2023
+Durant cette semaine, nous avons pu commencer la création du site dynamique. Cependant, nous faisons faces à différents problèmes de différentes tailles.<br>
+
+Les problèmes par ordre croissant (gravité) :
+1. Les utilisateurs n'héritent pas des droits des rôles
+2. Il manque des éléments sur la maquette donc sur le site statique suite à la création de la base de données et à la relecture attentive du sujet.
+3. Le serveur interdit l'utilisation de root (MariaDB) dans les scripts PHP.
+4. Les scripts SQL pour créer des utilisateurs et des tickets n'ont pas été fait.
+5. Aucun moyen de modifier la base de données par les vues.
+
+Solutions :
+1. Solution temporaire : On associe les droits directement aux utilisateurs en attendant de trouver une solution avec Mme PREDA
+2. À faire le plus vite possible
+3. Création de profil MariaDB dédié à la gestion des pages (on le fait directement au lieu de tester en premier avec root)
+4. À faire en urgence
+5. Il faut faire des triggers, ATTENTION : il est possible qu'il faille créer au préalable des profils MariaDB dédié à la gestion des pages.
+
+Si les problèmes 1 et 3 n'affecte pas vraiment notre progression, la 2 risque de poser rapidement un problème et les problèmes 4 et 5 limite sévèrement notre progression actuel.<br>
+En ce samedi 11 novembre, il est obligatoire de résoudre ces problèmes.
+
+#### Changement de l'organisation
+Désormais, Florent et Enzo travailleront ensemble en binôme [...]
+
+<br><br><br><br>
+
 ---
+
 ## Jeudi 02/11/2023 - Bilan du travail du 27/10/2023 au 02/11/2023
 Nous avons assez bien avancé cette semaine.<br>
 En dehors des serveurs à réinstaller proprement, le rapport d'installation, la base de données et les tests sur celle-ci à terminer,
@@ -63,8 +89,10 @@ Attention ! La conception du site dynamique n'a pas encore été effectué. Nous
   - Gestion du projet : planning, répartition des tâches, gestion du git (branches renommés...)
   - Critique sur la base de données
 
+<br><br><br><br>
 
 ---
+
 ## Jeudi 26/10/2023 - Bilan du travail du 22/10/2023 au 26/10/2023
 
 #### À propos du planning
@@ -119,8 +147,10 @@ Notre travail sur la SAÉ a été perturbé par les nombreux contrôles que nous
   - Installation et tentative de mise en réseau via Hamachi du serveur
   - Début de la rédaction de l'installation du RPi4
 
+<br><br><br><br>
 
 ---
+
 ## Samedi 21/10/2023 - Bilan du travail du 15/10/2023 au 21/10/2023
 
 #### Changement du planning
