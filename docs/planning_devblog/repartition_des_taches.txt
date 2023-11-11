@@ -1,7 +1,44 @@
 Florent Tom Assia Enzo Matthieu
 
-le 07/11/2023
+le 11/11/2023
 -----
+
+
+============= Lundi 13/11/2023 au Vendredi 17/11/2023 ===============
+- Florent-Enzo : Terminer la page inscription 					?) si pas terminé
+- Florent-Enzo : Suite tableau de bord
+- Florent-Enzo : Suite conception						?) A voir avec Florent
+- Florent-Enzo : Débuter les tests site statique
+- Tom : Faire profil.php
+- Assia (et Enzo) : Terminer page modification de mot de passe
+- Assia : Suite cas d'utilisations
+- Matthieu : Début sécurisation RPi4
+
+(cette liste des tâches peut être modifier au cours de la semaine)
+
+
+============= Dimanche 12/11/2023 ===============
+- Florent-Enzo : Créer des profils MariaDB dédiés à certaines pages pour certaines actions ne pouvant être faite par l'utilisateur. !\ n°1 à faire URGENCE
+- Florent-Enzo : Créer des triggers pour permettre la modification des tables via les vues	!\ n°2 URGENCE
+- Florent-Enzo : Terminer la page inscription							-> Si vous en avez envie, en n°3
+- Tom : Ajouter les éléments manquants à la maquette/site statique (branche site dynamique)	!\ A faire durant la journée, dès que possible ça serait top. QUASI URGENCE
+- Tom : Faire index.php										-> Après ce que doit faire Matthieu-Assia
+- Matthieu-Assia : Créer des tickets, des libellés (script SQL + serveur secours)		!\ A terminer dimanche matin URGENCE
+
+Remarque générale : Mettez des commentaires à vos scripts
+Note sur la BD : La vue d'un utilisateur lui permet de voir toute les infos des utilisateurs, à corriger
+
+
+
+
+
+
+
+
+
+
+
+
 
 ============= Du mercredi 08/11/2023 au vendredi 10/11/2023 ===============
 
