@@ -40,20 +40,66 @@ Cela permettra d'améliorer la cohésion de l'équipe en évitant de nouveaux le
 
 #### Avancé
 
-<br><br><br><br>
 - **Ce qui a été terminé :** <br>
   - Fin du rapport d'installation du serveur et de ses composants. Il manque simplement la partie sécurisation.
   - Fin de la réinstallation complète du serveur RPi4 et du serveur de secours.
   - Fin de la mise en réseau définitive via Hamachi sur les deux serveurs.
   - Test sur la base de données (juste ajouter une mini description des cas, peut-être qu'il faut rajouter des trucs, je n'en sais rien)
-  - Base de données V1 (il faudra la continuer suite aux problèmes cités juste au-dessus)
+  - Base de données V1 (il faudra la continuer pour mettre les triggers etc)
+  - Page de déconnexion (ok)
+  - Diagramme composant (il faut demander à M Dufaud, mauvaise branche d'ailleurs)
 - **Ce qui a été commencé :**
   - Page d'inscription (ne peut être terminé donc...)
   - Page de connexion (de même...)
-  - 
+  - Page de tableau de bord (ok)
+  - Page de déconnexion (ok)
+  - Page de modification de mot de passe
+  - Script générant des utilisateurs et des tickets (qu'utilisateurs pour le moment)
 - **Ce qui a été avancé :**
+  - Correction des pages statiques
+  - Conception du site dynamique
 - **Ce qui devra être terminé pour la semaine prochaine :**
+  - Script générant des utilisateurs et des tickets
+  - Page de connexion
+  - Page de tableau de bord
+  - Page de déconnexion
+  - Page de modification de Mot de passe
+  - Page index.php
 - **Ce qui devra être commencé pour la semaine prochaine :**
+  - Sécurisation du RPi4 (retardé)
+  - Page index.php
+  - Page profil.php
+  - Page modif email (profil)
+
+#### Travail effecté
+- **Florent**<br>
+  - Début création du tableau de bord
+  - Fin diagramme des composants (normalement
+  - Conception du site dynamique
+- **Tom**<br>
+  - Début des corrections des pages statiques
+  - Rangement des fichiers du site statique
+- **Assia**<br>
+  - Début création de la page modification de mot de passe (avec Enzo)
+  - Début création de la page connexion
+  - Fin création page déconnexion
+  - Suite des cas d'utilisations
+- **Enzo** :<br>
+  - Début création de la page modification de mot de passe (avec Assia)
+  - Fin du dossier de test de la base de donnée V1
+  - Correction des problèmes liés à la base de données (erreurs dans le script, problème des roles)
+- **Matthieu (chef de projet)**<br>
+  - Aide pour la page de connexion (mise en place serveur, message d'erreur)
+  - Modification des cas d'utilisations
+  - Gestion des branches git
+  - Gestion du projet
+  - Début script générant des utilisateurs et des tickets
+  - Fin du rapport d'installation du serveur et de ses composants. 
+  - Fin de la réinstallation complète du serveur RPi4 et du serveur de secours.
+  - Fin de la mise en réseau définitive via Hamachi sur les deux serveurs.
+
+<br><br><br><br>
+
 ---
 
 ## Jeudi 02/11/2023 - Bilan du travail du 27/10/2023 au 02/11/2023
@@ -61,6 +107,9 @@ Nous avons assez bien avancé cette semaine.<br>
 En dehors des serveurs à réinstaller proprement, le rapport d'installation, la base de données et les tests sur celle-ci à terminer,
 on pourrait même dès à présent le développement PHP. Cependant, nous préférons attendre encore un peu, notamment vis à vis de la progression des cas d'utilisations.<br>
 Attention ! La conception du site dynamique n'a pas encore été effectué. Nous allons devoir créer le site à partir des cas d'utilisations et sans la conception.<br>
+<br>
+Mes remarques sur les travaux sont sur : https://discord.com/channels/1148991038761996328/1154334739638005841/1172841989054660658 <br>
+Malgré ces problèmes qui vont nous retarder, on s'en sort très bien. Je dois mieux répartir les tâches cependant.
 
 #### Avancé
 - **Ce qui a été terminé :** <br>
