@@ -8,7 +8,8 @@ le 11/11/2023
 - Florent-Enzo : Terminer la page inscription 					?) si pas terminé
 - Florent-Enzo : Suite tableau de bord
 - Florent-Enzo : Suite conception						?) A voir avec Florent
-- Florent-Enzo : Débuter les tests site statique
+- Florent-Enzo : Débuter les tests site dynamique
+- Florent-Enzo : Vérifier les tests pour le site statique 			-> Site et maquette modifiés par Tom
 - Tom : Faire profil.php
 - Assia (et Enzo) : Terminer page modification de mot de passe
 - Assia : Suite cas d'utilisations
@@ -24,6 +25,7 @@ le 11/11/2023
 - Tom : Ajouter les éléments manquants à la maquette/site statique (branche site dynamique)	!\ A faire durant la journée, dès que possible ça serait top. QUASI URGENCE
 - Tom : Faire index.php										-> Après ce que doit faire Matthieu-Assia
 - Matthieu-Assia : Créer des tickets, des libellés (script SQL + serveur secours)		!\ A terminer dimanche matin URGENCE
+- Assia : Rendre 100% fonctionnel la page de connexion						-> Dès que Florent et Enzo auront terminés.
 
 Remarque générale : Mettez des commentaires à vos scripts
 Note sur la BD : La vue d'un utilisateur lui permet de voir toute les infos des utilisateurs, à corriger
