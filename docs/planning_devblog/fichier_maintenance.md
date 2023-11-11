@@ -61,15 +61,21 @@ Cela permettra d'améliorer la cohésion de l'équipe en évitant de nouveaux le
 - **Ce qui devra être terminé pour la semaine prochaine :**
   - Script générant des utilisateurs et des tickets
   - Page de connexion
-  - Page de tableau de bord
+  - Page d'inscription
   - Page de déconnexion
   - Page de modification de Mot de passe
   - Page index.php
+  - Rectification du site statique
 - **Ce qui devra être commencé pour la semaine prochaine :**
   - Sécurisation du RPi4 (retardé)
   - Page index.php
   - Page profil.php
   - Page modif email (profil)
+- **Ce qui doit être continué :**
+  - tableau de bord php
+  - cas d'utilisations
+  - dossier de test
+  - conception site dynamique
 
 #### Travail effecté
 - **Florent**<br>
