@@ -37,5 +37,5 @@ GRANT GRANT OPTION, SELECT ON DB_TIX.* TO 'fictif_inscriptionDB'@'localhost';
 
 GRANT SELECT ON vue_UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';
 
-GRANT INSERT ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost';
+GRANT UPDATE ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost';
 
