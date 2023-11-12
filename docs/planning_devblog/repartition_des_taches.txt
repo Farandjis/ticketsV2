@@ -25,6 +25,7 @@ le 11/11/2023
 - Tom : Ajouter les éléments manquants à la maquette/site statique (branche site dynamique)	!\ A faire durant la journée, dès que possible ça serait top. QUASI URGENCE
 - Tom : Faire index.php										-> Après ce que doit faire Matthieu-Assia
 - Matthieu : Créer des tickets, des libellés (script SQL + serveur secours)		!\ A terminer dimanche matin URGENCE
+- Matthieu : Création de la table UrgenceTicket et modif de la table Ticket vu que ça n'avait pas été fait......................
 - Assia : Rendre 100% fonctionnel la page de connexion						-> Dès que Florent et Enzo auront terminés.
 
 Remarque générale : Mettez des commentaires à vos scripts
