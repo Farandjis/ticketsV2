@@ -499,8 +499,21 @@ input[type="date"] {
   border-collapse: collapse;
   border: 2px solid #1c1c1c;
   width: 800px;
-  height: 500px;
   font-size: 20px;
+}
+
+.conteneur_table-infructueuse_ouverture-tickets {
+  height: 500px;
+  overflow-y: auto;
+  background-color: white;
+  border: 2px solid #555555;
+}
+
+.table-infructueuse thead, .table-ouverture-tickets thead{
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
 }
 
 .table-infructueuse td, .table-ouverture-tickets td{
@@ -542,10 +555,23 @@ input[type="date"] {
   align-items: center;
 }
 
+.conteneur_table-historique {
+  height: 595px;
+  overflow-y: auto;
+  background-color: white;
+  border: 2px solid #555555;
+}
+
 .table-historique {
   width: 1500px;
-  height: 600px;
   border-collapse: collapse;
+}
+
+.table-historique thead{
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
 }
 
 .table-historique td {
@@ -605,7 +631,7 @@ input[type="date"] {
   flex-direction: column;
   background: #211a43;
   width: 400px;
-  height: 550px;
+  height: 450px;
   border-radius: 15px;
   margin-bottom: 25px;
 }
@@ -619,28 +645,58 @@ input[type="date"] {
   color: #f1f1f1;
 }
 .form-recherche input[type="text"] {
-  width: 90%;
+  width: 100%;
 }
 
-#conteneur_liste_libelle{
-  border-radius: 7px;
-  width: 350px;
-  height: 50px;
-  margin: 10px;
+
+.menu_libelle {
+  position: relative;
+  display: inline-block;
 }
 
-#liste_libelle{
-  width: 350px;
-  height: 50px;
-  overflow: auto;
+
+.entete_libelle {
+  display: block;
+  padding: 7px;
   border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 15px;
+  text-align: center;
+  background-color: #ECECEC;
+  color: #211a43;
+  width: 350px;
 }
+
+.option_libelle {
+  display: none;
+  position: absolute;
+  background-color: #15122d;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px;
+  z-index: 1;
+  flex-direction: column;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 7px;
+}
+
+.menu_libelle.active .option_libelle {
+  display: flex;
+}
+
+.option_libelle label {
+  margin-bottom: 8px;
+}
+
 
 
 .bouton-recherche {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 25px;
+
 }
 
 .bouton-recherche > input[type="submit"], input[type="reset"] {
@@ -649,17 +705,29 @@ input[type="date"] {
   margin-right: 15px;
   font-family: Poppins, Arial, sans-serif;
   cursor: pointer;
+  min-width: 100px;
+}
+
+.conteneur_table-tableau-bord {
+  height: 700px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #555555;
 }
 
 .table-tableau-bord {
   width: 1200px;
-  height: 700px;
   border-collapse: collapse;
-  overflow: auto;
 }
 
 .table-tableau-bord th {
   height: 50px;
+}
+.table-tableau-bord thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
 }
 
 .table-tableau-bord td{
@@ -679,11 +747,15 @@ input[type="date"] {
   width: 600px;
 }
 .formModifTicket {
-  width: 700px;
+  width: 800px;
 }
 
 .formCreeTicket > select{
   width: 100px;
+}
+
+.modif_entete_libelle {
+  width: 300px;
 }
 
 textarea{
@@ -694,8 +766,8 @@ textarea{
 
 #explication{
   border-radius: 7px;
-  width: 555px;
-  height: 150px;
+  width: 430px;
+  height: 300px;
   margin-bottom: 20px;
   padding: 2px;
 }

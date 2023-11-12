@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+    <script src="../Script/script.js"></script>
 </head>
 <body>
     <header>
@@ -53,9 +54,123 @@
             </tr>
             </thead>
             <tbody>
+            <!--
             <tr>
-                <td colspan="5" style="text-align: center">Tableau vide</td>
+                <td colspan="5" style="text-align: center; height: 639px">Tableau vide</td>
+            </tr>-->
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
             </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+
             </tbody>
         </table>
         </div>
@@ -70,13 +185,21 @@
                 <label for='titre'>Titre</label><br>
                 <input id='titre' type='text' name ='titre'><br>
                 <br>
-                <label for='libelle'>Libellé</label><br>
-                <input id='libelle' type='text' name ='libelle'><br><br>
-                <label for="liste_libelle">Liste libellé(s) :</label>
+                <span>Libellé</span><br>
+                <div class="menu_libelle" id="menu_deroulant_libelle">
+                    <span class="entete_libelle" onclick="toggleDropdown()">Sélectionnez un/des libellé(s)</span>
+                    <div class="option_libelle">
+                        <label>
+                            <input type="checkbox" name="option1"> Libellé 1
+                        </label>
+                        <label>
+                            <input type="checkbox" name="option2"> Libellé 2
+                        </label>
 
-                <div id="conteneur_liste_libelle">
-                    <textarea id="liste_libelle" name="liste_libelle" readonly></textarea><br>   <!-- textArea.value = txtMem + smCode    modif textarea js  -->
+
+                    </div>
                 </div>
+
                 <div class="bouton-recherche">
                     <input type='submit' name='recherche' value='Recherche'>
                     <input type='reset' name='resetRecherche' value='Annuler'>

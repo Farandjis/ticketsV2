@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+    <script src="../Script/script.js"></script>
 </head>
 <body>
     <header>
@@ -58,6 +59,7 @@
                             </select>
                         </div>
                         <br>
+
                         <label for='ch_technicien'>Technicien affecté</label><br>
                         <div class="custom-select">
                             <select name="ch_technicien" id="ch_technicien" >
@@ -67,6 +69,21 @@
                                 <option value="3">Technicien 3</option>
                             </select>
                         </div><br>
+
+                        <span>Libellé</span><br>
+                        <div class="menu_libelle" id="menu_deroulant_libelle">
+                            <span class="entete_libelle modif_entete_libelle" onclick="toggleDropdown()">--Liste des libellés--</span>
+                            <div class="option_libelle">
+                                <label>
+                                    <input type="checkbox" name="option1" checked> Libellé 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="option2" checked> Libellé 2
+                                </label>
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
