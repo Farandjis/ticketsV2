@@ -134,6 +134,8 @@ Description de la table
   - un visiteur
     - Celui qui consulte l'application sans avoir de compte (ou en étant déconnecté)
   - # Marquer ici les profils MariaDB pour le site
+  - fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à récupérer l'identifiant de l'utilisateur à partir du login et d'autres actions liés à la connexion d'un utilisateur.
 
 
 - ### V - Les vues
@@ -154,5 +156,8 @@ Description de la table
   - #### vue_Ticket_technicien
     Permet au technicien d'avoir l'état et le technicien associé au ticket
   - #### vue_etat_update_admWeb
-    Permet à l'administrateur web d'avoir l'état du ticket, le niveau d'urgence définitif du ticket  
+    Permet à l'administrateur web d'avoir l'état du ticket, le niveau d'urgence définitif du ticket 
+
+  - #### vue_UserFictif_connexionDB1
+    Vue n°1 pour le profil MariaDB dédié à la connexion. Cette vue montre uniquement les colonnes login et ID_USER.
 
