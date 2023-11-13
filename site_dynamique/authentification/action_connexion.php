@@ -39,11 +39,10 @@ try {
             //Vérifie si la connexion a été établie
             
             if ($connexion) {
-                /*
-                // ATTENTION : IMPOSSIBLE D'UTILISER CETTE PARTIE ACTUELLEMENT : IMPOSSIBLE DE MODIFIER LA BD (le 10/11/2023)
-                
-                //On récupère l'adresse IP du serveur
 
+
+                //On récupère l'adresse IP du serveur
+                // NOTE du 13/11/2023 par Matthieu : ERREUR !! C'est l'IP de l'user, pas du serveur qu'il faut mettre !!
                 $ip = gethostbyname($host);
                 
                 //Récupère la date et l'heure à laquelle l'utilisateur s'est connecté la dernière fois
@@ -51,9 +50,9 @@ try {
                 
                 //On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur 
                 
-                $updateRequete = "UPDATE utilisateur SET HORODATAGE_DERNIERE_CONNECTION_USER = '$dateConnexion', IP_DERNIERE_CONNECTION_USER = '$ip' WHERE ID_USER = {$row[0]}";
+                $updateRequete = "UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = '$dateConnexion', IP_DERNIERE_CONNECTION_USER = '$ip' WHERE ID_USER = {$row[0]}";
                 mysqli_query($connection, $updateRequete);
-                */
+
 
                 //On démarre la session
                 session_start();
