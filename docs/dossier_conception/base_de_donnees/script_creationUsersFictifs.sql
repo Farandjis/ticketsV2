@@ -16,18 +16,10 @@ CREATE VIEW vue_UserFictif_selectionDB1 AS
 SELECT *
 FROM Utilisateur;
 
+/*Permet de modifier les infos de connexion d'un utilisateur*/
 CREATE VIEW vue_UserFictif_updateDB1 AS 
 SELECT ID_USER, HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER 
 FROM Utilisateur;
-
-/*
-// Accès aux infos de connexion juste pour l utilisateur accueil ATTENTION IL FAUT CREER UN TRIGGER
-CREATE VIEW vue_UserFictif_connexionDB2 AS
-SELECT HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNEXION_USER
-FROM Utilisateur
-
-GRANT SELECT ON vue_UserFictif_connexionDB2 TO 'fictif_connexionDB'@'localhost';
-*/
 
 GRANT SELECT ON vue_UserFictif_connexionDB1 TO 'fictif_connexionDB'@'localhost';
 
@@ -37,5 +29,6 @@ GRANT GRANT OPTION, SELECT ON DB_TIX.* TO 'fictif_inscriptionDB'@'localhost';
 
 GRANT SELECT ON vue_UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';
 
-GRANT UPDATE ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost';
+/*GRANT UPDATE ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost';*/ // A suppr ?
+GRANT UPDATE (HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER) ON vue_UserFictif_updateDB1 TO fictif_connexionDB@localhost;
 
