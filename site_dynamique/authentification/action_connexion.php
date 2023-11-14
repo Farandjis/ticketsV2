@@ -42,15 +42,14 @@ try {
 
 
                 //On récupère l'adresse IP du serveur
-                // NOTE du 13/11/2023 par Matthieu : ERREUR !! C'est l'IP de l'user, pas du serveur qu'il faut mettre !!
-                $ip = gethostbyname($host);
+                $ipServeur = gethostbyname($_SERVER['SERVER_NAME']);
                 
                 //Récupère la date et l'heure à laquelle l'utilisateur s'est connecté la dernière fois
                 $dateConnexion = date('Y-m-d H:i:s');
                 
                 //On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur 
                 
-                $updateRequete = "UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = '$dateConnexion', IP_DERNIERE_CONNECTION_USER = '$ip' WHERE ID_USER = {$row[0]}";
+                $updateRequete = "UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = '$dateConnexion', IP_DERNIERE_CONNECTION_USER = '$ipServeur' WHERE ID_USER = {$row[0]}";
                 mysqli_query($connection, $updateRequete);
 
 
@@ -60,7 +59,7 @@ try {
                 $_SESSION['mdp'] = $mdp;
                 
                 //Redirige l'utilisateur vers le tableau bord si la connexion est réussie
-                header('Location: tableauBord.php');
+                header('Location: ../tableau_bord/tableauBord.html');
             }
         } else {
             header('Location: connexion.php?id=2'); // Erreur : identifiant ou mdp incorrecte
