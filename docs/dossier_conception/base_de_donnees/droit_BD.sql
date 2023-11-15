@@ -20,8 +20,7 @@ GRANT SELECT ON vue_Ticket_visiteur TO 'visiteur';
 -- Utilisateur
 CREATE VIEW vue_Utilisateur_client AS
 SELECT LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER
-FROM Utilisateur
-WHERE ID_USER = CURRENT_USER;
+FROM Utilisateur;
 
 CREATE VIEW vue_Utilisateur_insertion_client AS
 SELECT EMAIL_USER
