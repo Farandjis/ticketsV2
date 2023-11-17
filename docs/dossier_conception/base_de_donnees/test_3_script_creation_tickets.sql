@@ -1,11 +1,11 @@
-// Les tickets suivant ont été générés via ChatGPT et corrigés à la main
+-- Les tickets suivant ont été générés via ChatGPT et corrigés à la main
 
 INSERT INTO Ticket(id_user, objet_ticket, description_ticket, niv_urgence_estimer_ticket, NIV_URGENCE_DEFINITIF_TICKET, ETAT_TICKET) VALUES
 	(9991, "Problème d'imprimante", "Le document ne s'imprime pas correctement, besoin d'aide.", "Urgent", "Non complété !", "en_attente"),
 	(9992, "Erreur logicielle", "Rencontre des erreurs inattendues lors de l'utilisation de l'application X.", "Important", "Non complété !", "ouvert"),
 	(9993, "Besoin d'une nouvelle clé d'accès", "La clé actuelle ne fonctionne plus, nécessite une mise à jour.", "Moyen", "Non complété !", "en_cours_de_traitement"),
 	(9991, "Écran noir", "L'écran de l'ordinateur est complètement noir, aucune activité visible.", "Urgent", "Urgent", "en_attente"),
-	(9992, "Perte de données", "Certaines données importantes ont été accidentellement supprimées, besoin de récupération.", "Important", "Important", "ouvert");
+	(9992, "Perte de données", "Certaines données importantes ont été accidentellement supprimées, besoin de récupération.", "Important", "Important", "ouvert"),
 	(9993, "Impossible d'ouvrir des fichiers", "Rencontre des difficultés pour ouvrir certains fichiers, demande d'assistance.", "Moyen", "Moyen", "en_cours_de_traitement"),
 	(9994, "Lenteur du système", "L'ordinateur fonctionne lentement, nécessite une optimisation.", "Faible", "Faible", "ferme"),
 	(9991, "Problème d'accès au compte", "Impossible de se connecter au compte, demande de réinitialisation du mot de passe.", "Urgent", "Urgent", "en_attente"),
