@@ -43,7 +43,6 @@ GRANT GRANT OPTION, SELECT ON DB_TIX.* TO 'fictif_inscriptionDB'@'localhost';
 
 GRANT SELECT ON vue_UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';
 
---GRANT UPDATE ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost'; A suppr ?
 GRANT UPDATE (HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER) ON vue_UserFictif_updateDB1 TO fictif_connexionDB@localhost;
 
 GRANT UPDATE (OBJET_TICKET, DESCRIPTION_TICKET, ID_TECHNICIEN, NIV_URGENCE_DEFINITIF_TICKET) ON vue_UserFictif_updateTicketDB1 TO fictif_updateTicketDB@localhost;
