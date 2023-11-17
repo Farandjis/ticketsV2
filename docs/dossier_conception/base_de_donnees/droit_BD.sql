@@ -1,7 +1,10 @@
 -- Création des utilisateurs et rôles
-CREATE USER 'admin' IDENTIFIED BY 'Assuranc3t0ur!x'; -- note : admin_sys et toujours mdp azerty sur serveur secours 
-CREATE USER 'gestion' IDENTIFIED BY 'P0rqu3p!x'; -- note : admin_web et toujours mdp azerty sur serveur secours 
+CREATE USER '5' IDENTIFIED BY 'Assuranc3t0ur!x'; -- note : admin_sys et toujours mdp azerty sur serveur secours 
+CREATE USER '6' IDENTIFIED BY 'P0rqu3p!x'; -- note : admin_web et toujours mdp azerty sur serveur secours 
 CREATE USER 'visiteur' IDENTIFIED BY 't9t+<Q33Pe%o4woPNw\D;hNdhZ}B/z'; -- note : toujours mdp azerty sur serveur secours 
+
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(5, 'admin', 'Administrateur', 'SYSTEME', 'admin_sys', 'missing.sys@email.com');
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(6, 'gestion', 'Administrateur', 'WEB', 'admin_web', 'missing.web@email.com');
 
 -- Création des vues
 
@@ -50,32 +53,30 @@ CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_etat_update_admWeb TO 'gestion';
+GRANT UPDATE ON vue_etat_update_admWeb TO '6';
 
 -- Pour 'admin_web', autorisation d'INSERT
-GRANT INSERT ON Libelle TO 'gestion';
-GRANT INSERT ON RelationTicketsLibelles TO 'gestion';
+GRANT INSERT ON Libelle TO '6';
+GRANT INSERT ON RelationTicketsLibelles TO '6';
 
--- Pour 'gestion', autorisation de UPDATE
-GRANT UPDATE ON Libelle TO 'gestion';
-GRANT UPDATE ON RelationTicketsLibelles TO 'gestion';
+-- Pour '6', autorisation de UPDATE
+GRANT UPDATE ON Libelle TO '6';
+GRANT UPDATE ON RelationTicketsLibelles TO '6';
 
 
 -- Générale Admins
 -- Pour 'admin_web'
-GRANT SELECT ON Utilisateur TO 'gestion';
-GRANT SELECT ON Ticket TO 'gestion';
-GRANT SELECT ON RoleUser TO 'gestion';
-GRANT SELECT ON EtatTicket TO 'gestion';
-GRANT SELECT ON RelationTicketsLibelles TO 'gestion';
-GRANT SELECT ON Libelle TO 'gestion';
+GRANT SELECT ON Utilisateur TO '6';
+GRANT SELECT ON Ticket TO '6';
+GRANT SELECT ON RoleUser TO '6';
+GRANT SELECT ON EtatTicket TO '6';
+GRANT SELECT ON RelationTicketsLibelles TO '6';
+GRANT SELECT ON Libelle TO '6';
 
 -- Pour 'admin_sys'
-GRANT SELECT ON Utilisateur TO 'admin';
-GRANT SELECT ON Ticket TO 'admin';
-GRANT SELECT ON RoleUser TO 'admin';
-GRANT SELECT ON EtatTicket TO 'admin';
-GRANT SELECT ON RelationTicketsLibelles TO 'admin';
-GRANT SELECT ON Libelle TO 'admin';
-
-
+GRANT SELECT ON Utilisateur TO '5';
+GRANT SELECT ON Ticket TO '5';
+GRANT SELECT ON RoleUser TO '5';
+GRANT SELECT ON EtatTicket TO '5';
+GRANT SELECT ON RelationTicketsLibelles TO '5';
+GRANT SELECT ON Libelle TO '5';
