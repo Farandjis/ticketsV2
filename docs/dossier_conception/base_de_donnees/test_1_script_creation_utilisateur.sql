@@ -1,5 +1,5 @@
 
-// A terminer, ajout en cours sur le serveur de secours
+-- A terminer, ajout en cours sur le serveur de secours
 
 
 DROP USER '9991'@'localhost';
