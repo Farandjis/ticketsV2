@@ -1,7 +1,7 @@
 -- Création des utilisateurs et rôles
-CREATE USER 'admin_sys' IDENTIFIED BY 'azerty'; -- MDP à modifier
-CREATE USER 'admin_web' IDENTIFIED BY 'azerty'; -- MDP à modifier
-CREATE USER 'visiteur' IDENTIFIED BY 'azerty'; -- MDP à modifier
+CREATE USER 'admin' IDENTIFIED BY 'Assuranc3t0ur!x'; -- note : admin_sys et toujours mdp azerty sur serveur secours 
+CREATE USER 'gestion' IDENTIFIED BY 'P0rqu3p!x'; -- note : admin_web et toujours mdp azerty sur serveur secours 
+CREATE USER 'visiteur' IDENTIFIED BY 't9t+<Q33Pe%o4woPNw\D;hNdhZ}B/z'; -- note : toujours mdp azerty sur serveur secours 
 
 -- Création des vues
 
