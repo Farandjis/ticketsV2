@@ -50,32 +50,32 @@ CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_etat_update_admWeb TO 'admin_web';
+GRANT UPDATE ON vue_etat_update_admWeb TO 'gestion';
 
 -- Pour 'admin_web', autorisation d'INSERT
-GRANT INSERT ON Libelle TO 'admin_web';
-GRANT INSERT ON RelationTicketsLibelles TO 'admin_web';
+GRANT INSERT ON Libelle TO 'gestion';
+GRANT INSERT ON RelationTicketsLibelles TO 'gestion';
 
--- Pour 'admin_web', autorisation de UPDATE
-GRANT UPDATE ON Libelle TO 'admin_web';
-GRANT UPDATE ON RelationTicketsLibelles TO 'admin_web';
+-- Pour 'gestion', autorisation de UPDATE
+GRANT UPDATE ON Libelle TO 'gestion';
+GRANT UPDATE ON RelationTicketsLibelles TO 'gestion';
 
 
 -- Générale Admins
 -- Pour 'admin_web'
-GRANT SELECT ON Utilisateur TO 'admin_web';
-GRANT SELECT ON Ticket TO 'admin_web';
-GRANT SELECT ON RoleUser TO 'admin_web';
-GRANT SELECT ON EtatTicket TO 'admin_web';
-GRANT SELECT ON RelationTicketsLibelles TO 'admin_web';
-GRANT SELECT ON Libelle TO 'admin_web';
+GRANT SELECT ON Utilisateur TO 'gestion';
+GRANT SELECT ON Ticket TO 'gestion';
+GRANT SELECT ON RoleUser TO 'gestion';
+GRANT SELECT ON EtatTicket TO 'gestion';
+GRANT SELECT ON RelationTicketsLibelles TO 'gestion';
+GRANT SELECT ON Libelle TO 'gestion';
 
 -- Pour 'admin_sys'
-GRANT SELECT ON Utilisateur TO 'admin_sys';
-GRANT SELECT ON Ticket TO 'admin_sys';
-GRANT SELECT ON RoleUser TO 'admin_sys';
-GRANT SELECT ON EtatTicket TO 'admin_sys';
-GRANT SELECT ON RelationTicketsLibelles TO 'admin_sys';
-GRANT SELECT ON Libelle TO 'admin_sys';
+GRANT SELECT ON Utilisateur TO 'admin';
+GRANT SELECT ON Ticket TO 'admin';
+GRANT SELECT ON RoleUser TO 'admin';
+GRANT SELECT ON EtatTicket TO 'admin';
+GRANT SELECT ON RelationTicketsLibelles TO 'admin';
+GRANT SELECT ON Libelle TO 'admin';
 
 
