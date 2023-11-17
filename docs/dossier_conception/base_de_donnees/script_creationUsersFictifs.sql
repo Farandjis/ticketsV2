@@ -5,7 +5,7 @@ CREATE USER 'fictif_updateTicketDB'@'localhost' IDENTIFIED BY 't!nt1n_updateTick
 CREATE USER 'fictif_selectionTicketDB'@'localhost' IDENTIFIED BY 't!nt1n_selectionTicketDB45987645';
 CREATE USER 'fictif_insertionTicketDB'@'localhost' IDENTIFIED BY 't!nt1n_insertionTicketDB45987645';
 
-// Accès à tous les identifiants et les logins des utilisateurs
+-- Accès à tous les identifiants et les logins des utilisateurs
 CREATE VIEW vue_UserFictif_connexionDB1 AS
 SELECT ID_USER, LOGIN_USER
 FROM Utilisateur;
@@ -18,7 +18,7 @@ CREATE VIEW vue_UserFictif_selectionDB1 AS
 SELECT *
 FROM Utilisateur;
 
-/*Permet de modifier les infos de connexion d'un utilisateur*/
+-- Permet de modifier les infos de connexion d'un utilisateur
 CREATE VIEW vue_UserFictif_updateDB1 AS 
 SELECT ID_USER, HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER 
 FROM Utilisateur;
@@ -43,7 +43,7 @@ GRANT GRANT OPTION, SELECT ON DB_TIX.* TO 'fictif_inscriptionDB'@'localhost';
 
 GRANT SELECT ON vue_UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';
 
-/*GRANT UPDATE ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost';*/ // A suppr ?
+--GRANT UPDATE ON vue_UserFictif_updateDB1 TO 'fictif_updateDB'@'localhost'; -- A suppr ?
 GRANT UPDATE (HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER) ON vue_UserFictif_updateDB1 TO fictif_connexionDB@localhost;
 
 GRANT UPDATE (OBJET_TICKET, DESCRIPTION_TICKET, ID_TECHNICIEN, NIV_URGENCE_DEFINITIF_TICKET) ON vue_UserFictif_updateTicketDB1 TO fictif_updateTicketDB@localhost;
