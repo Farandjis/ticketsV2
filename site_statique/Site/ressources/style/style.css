@@ -30,6 +30,7 @@ nav {
   top: 0;
   background: /*linear-gradient(to top, #C56CD6,#3425AF)*/ #211a43;
   box-shadow: inset 0 -1px 0 #c5c5c5;
+  z-index: 500;
 }
 .logo {
   display: flex;
@@ -436,7 +437,7 @@ input[type="date"] {
 .titre_page{
   text-align: center;
   margin-top: 110px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   font-size: 80px;
 }
 
@@ -526,7 +527,7 @@ input[type="date"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
@@ -663,14 +664,15 @@ input[type="date"] {
   border-radius: 15px;
   text-align: center;
   background-color: #ECECEC;
-  color: #211a43;
+  color: #450001;
   width: 350px;
 }
 
 .option_libelle {
   display: none;
   position: absolute;
-  background-color: #15122d;
+  background-color: #ebebeb;
+  color: #000001;
   min-width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px;
@@ -678,7 +680,7 @@ input[type="date"] {
   flex-direction: column;
   max-height: 150px;
   overflow-y: auto;
-  border-radius: 7px;
+  border-radius: 3px;
 }
 
 .menu_libelle.active .option_libelle {
@@ -709,7 +711,7 @@ input[type="date"] {
 }
 
 .conteneur_table-tableau-bord {
-  height: 700px;
+  height: 650px;
   overflow-y: auto;
   background-color: white;
   border: 1px solid #555555;
@@ -766,25 +768,44 @@ textarea{
 
 #explication{
   border-radius: 7px;
-  width: 430px;
+  width: 560px;
+  height: 300px;
+  margin-bottom: 20px;
+  padding: 2px;
+}
+#explication2{
+  border-radius: 7px;
+  width: 435px;
   height: 300px;
   margin-bottom: 20px;
   padding: 2px;
 }
 
+.div_separ{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.gauche, .droite {
+  margin: 10px;
+}
+
 /* ======== SELECT OPTIONS ======== */
 
 select {
+  font-family: Poppins, Arial, sans-serif;
   appearance: none;
   background-color: #ECECEC;
   border: none;
   padding: 10px 10px;
   margin: 0;
-  width: 40%;
   font-size: 16px;
   border-radius: 15px;
   text-align: center;
+  height: 42px;
 }
+
+
 
 
 /* ======== MODIFICATION DE TICKET ======== */
@@ -802,7 +823,7 @@ select {
 }
 
 .form-modif-ticket input[type="text"], .form-modif-ticket textarea{
-  width: 100%;
+  width: 95%;
 }
 
 .form-modif-ticket select{
