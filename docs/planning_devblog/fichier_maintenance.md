@@ -11,6 +11,16 @@ Ce document permet de récapituler la progression de chacun et de l'avancée du 
 Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, nos discussions ou encore nos prévisions.
 </div>
 
+
+<br><br><br>
+
+## Vendredi 17/11/2023 - Bilan du travail du 11/11/2023 au 17/11/2023
+Cette semaine, nous avons quasiment résolu tous les problèmes cités précédemment. Nous avons pu avancer, nous ne sommes plus bloqués.<br>
+L'expérience de binôme Florent-Enzo est concluant, nous allons la poursuivre. Ils sont plus efficaces ensemble.<br>
+<br>
+Ainsi, pour le problème 2, on se demande juste comment représenter la page d'administration, actuellement ce n'est pas vraiment urgence.<br>
+Le problème 1, on donne di
+
 <br><br><br>
 
 ## Samedi 11/11/2023 - Bilan du travail du 03/11/2023 au 10/11/2023
