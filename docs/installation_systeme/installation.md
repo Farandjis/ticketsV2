@@ -563,15 +563,92 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
 
 ## <a name="p5"></a> V - Sécurisation
+Si avoir un beau projet correspondant aux attentes du client est notre objectif premier, la sécurisation du système informatique n'est pas à négliger.<br>
+Rien que depuis le moteur de recherche Google, nous pouvons accéder à des moteurs de recherches d'appareils connectés. Beaucoup de ces appareils sont peu sécurisé si ce n'est pas du tout.<br>
+Il existe des robots spécialisés dans le piratage d'appareils connectés. Certains cherchent à craquer les mots de passe SSH, d'autres à craquer les mots de passe PHPMyAdmin.<br>
+<br>
+Notre système informatique est conçus pour être utilisé sur le réseau local de l'IUT, mais cela n'épargne pas pour autant le risque de piratage.<br>
+Si le risque d'intrusion dans ce réseau par un ordinateur distant est peu probable, le piratage par l'un de nos camarades est en revanche très probable.<br>
+<br><br>
+Ainsi, cette partie explique comment nous avons sécurisé notre RaspberryPi.<br>
+Pour rappel, le RaspberryPi ne possède pas de système de sécurité outre celui du noyaux Linux.<br>
+<br><br>
+Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_content=cmp-true <br>
+
 - ### <a name="p5a"></a> a) Les utilisateurs, les groupes et leurs droits
     - #### <a name="p5ai"></a> i) Liste des utilisateurs et des groupes
+        Plutôt que d'utiliser une seule session pour tout le monde, nous avons préféré créer une session pour chacun d'entre nous et une pour notre client.<br>
+        Nous avons rassemblé nos sessions dans un groupe "FTEAM" et la session de notre client dans un groupe "PROF".<br>
+        <br>
+        Cela nous permet de limiter le risque de fuite des identifiants de la session sudoer vu que nous l'utiliserons uniquement pour la configuration du sytème.<br>
+        Nos sessions permettent uniquement de modifier le répertoire /var/www/html où est situé le site. Avec la session sudoes, il est possible de limiter davantage les accès.<br>
+        En cas de piratage, nous pouvons neutraliser le mot de passe la session infecté tout en étant assurer que le pirate a été limité dans ses actions.<br>
+        Notre client à sa propre session sudoer.<br>
+        <br><br>
+        **Remarque :**<br>
+        Une session "sudoer" est une session capable d'utiliser la commande `sudo`. Cette commande permet d'user les droits administrateurs pour exécuter une commande.<br>
+        La commande sudo est très dangereuse ! Elle permet d'avoir un contrôle total de la machine, il est donc possible de détruire toute la protection du serveur avec !<br>
+        <br>
+        **Créer un utilisateur et lui affecter un groupe :** `sudo useradd [UTILISATEUR] -G [GROUPE]`<br>
+        L'option -G précise le groupe à attribuer.<br>
+        **Créer un groupe :** `sudo groupdel [GROUPE]`<br>
+        **Supprimer un groupe :** `sudo groupadd [GROUPE]`<br>
+        **Définir le groupe principal d'un utilisateur :** `sudo usermod --gid [GROUPE] [UTILISATEUR]`<br>
+        **Afficher les groupes :** `getent group`<br>
+        **Afficher les membres d'un groupe :** `getent group [GROUPE]`<br>
+        **Afficher les utilisateurs :** `cut -d: -f1 /etc/passwd`<br>
+        **Changer le mot de passe d'un utilisateur :** `passwd [UTILISATEUR]`<br>
+        <br>
     - #### <a name="p5aii"></a> ii) Droits des utilisateurs
+        Travail d'Assia à mettre ici<br>
+        <br>
+
 - ### <a name="p5b"></a> b) Limitation des intrusions
     - #### <a name="p5bi"></a> i) Présentation de Fail2Ban
+        Fail2Ban est un programme indispensable qui analyse les journaux d'activité pour bannir les adresses IP en cas de tentative répété de connexions infructueuses.<br>
+        Avec un mot de passe fort, nous sommes protéger des attaques de type "brute-force".<br>
+        <br>
+        **Sources supplémentaires :**
+      - https://www.provya.net/?d=2019/04/04/10/24/18
+      - https://doc.ubuntu-fr.org/fail2ban
+      <br>
     - #### <a name="p5bii"></a> ii) Installation de Fail2Ban
+        **Commande :** `sudo apt install fail2ban`<br>
+        <br>
+        Le fichier de configuration principale de fail2ban est `/etc/fail2ban/jail.local`.
+        Nous avons laissé les paramètres par défaut pour le moment, on a seulement demandé à Fail2Ban d'ignorer les tentatives infructueuse de connexion sur localhost.<br>
+        Ce n'est pas la meilleure des idées, mais nous sommes assuré d'avoir accès au système en cas de mauvaise configuration.<br>
+        Par défaut, Fail2Ban banni 10 minutes l'adresse IP ayant fait 5 tentatives infructueuses dans les 10 minutes de la première tentative.<br>
+        <br>
+        Malheureusement, nous avons rencontré un problème lors du démarrage de Fail2Ban.<br>
+        Nous avons suivis les indications de https://github.com/fail2ban/fail2ban/issues/3292#issuecomment-1142503461 pour résoudre le problème.<br>
+        Il suffisait juste de préciser `backend=systemd` dans le fichier de configuration Fail2Ban jail.local.<br>
+        <br>
+        Nous n'avons pas eu l'occasion de tester l'efficacité du programme pour le moment.<br>
+    <br>
+        
 - ### <a name="p5c"></a> c) Le pare-feu
     - #### <a name="p5ci"></a> i) Présentation de UFW
+        UFW pour "Uncomplicated FireWall" est un pare-feu qui comme son nom l'indique est facile d'utilisation.<br>
+        Cela empêche que n'importe qui se connecte au serveur.<br>
+        <br>
+        Un pare-feu permet d'interdir ou autoriser l'utilisation des ports en entrées et/ou en sortir pour tout le monde ou pour certaines adresses IP.<br>
+        <br>
+        Par exemple, Apache écoute sur le port 80 (HTTP). Lorsqu'un ordinateur veut se connecter au site, il se connecte sur ce port pour communiquer avec Apache.<br>
+        Inversement, le serveur peut se connecter à un site en passant par ce port.<br>
+        Si nous ne voulons pas qu'un utilisateur accède au site, nous pouvons bannir le port 80 en entrée.<br>
+        Si nous voulons interdire le serveur d'accéder à un site en particulié, nous pouvons bannir le port 80 en sortie pour une IP en particulier.<br>
+        <br>
+
     - #### <a name="p5cii"></a> ii) Installation de UFW
+        **Commande :** `sudo apt install ufw`<br>
+        <br>
+        Par défaut, UFW bloque les connexions en entrer et autorise les connexions en sortie.<br>
+        Nous avons autorisé l'accès en entrée sur les ports 80 (HTTP), 443 (HTTPS) et 22 (SSH).<br>
+        Pour assurer la sécurité, il est possible que nous limitons l'accès au serveur à seulement quelques machines.<br>
+        <br>
+        Actuellement, le port 443 n'est pas utilisé. Nous l'enlèverons sûrement.<br>
+        Ce n'est peut-être pas une bonne idée d'autoriser l'accès de tous les ports en sorties, cependant nous craignons bloquer le système si on les interdits tous.<br>
 - ### <a name="p5d"></a> d) PHPMyAdmin
     - #### <a name="p5di"></a> i) Limitation des connexions aux comptes
     - #### <a name="p5dii"></a> ii) Changement de l'alias
