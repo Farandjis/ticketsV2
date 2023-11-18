@@ -45,18 +45,18 @@ Rapport entièrement rédigé par Matthieu FARANDJIS.
   - [**d) Résolution du problème**](#p4d)
 
 - ### [V - Sécurisation](#p5)
-  - [**a) (Linux) Les utilisateurs, les groupes et leurs droits**](#p5a)
+  - [**a) Les utilisateurs, les groupes et leurs droits**](#p5a)
       - [i) Liste des utilisateurs et des groupes](#p5ai)
       - [ii) Droits des utilisateurs](#p5aii)
   - [**b) Limitation des intrusions**](#p5b)
     - [i) Présentation de Fail2Ban](#p5bi)
-    - [ii) Installation de Fail2Ban](#p5c5bii)
-  - [**c) Le pare-feu**](#p5b)
-      - [i) Présentation de UFW](#p5bi)
-      - [ii) Installation de UFW](#p5c5bii)
-  - [**c) PHPMyAdmin**](#p5c)
-      - [i) Limitation des connexions aux comptes](#p5bi)
-      - [ii) Changement de l'alias](#p5c5bii)
+    - [ii) Installation de Fail2Ban](#p5bii)
+  - [**c) Le pare-feu**](#p5c)
+      - [i) Présentation de UFW](#p5ci)
+      - [ii) Installation de UFW](#p5cii)
+  - [**d) PHPMyAdmin**](#p5d)
+      - [i) Limitation des connexions aux comptes](#p5di)
+      - [ii) Changement de l'alias](#p5dii)
 
 
 - ### [VI - Faire une sauvegarde du serveur](#p6)
@@ -563,11 +563,22 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
 
 ## <a name="p5"></a> V - Sécurisation
-
+- ### <a name="p5a"></a> a) Les utilisateurs, les groupes et leurs droits
+    - #### <a name="p5ai"></a> i) Liste des utilisateurs et des groupes
+    - #### <a name="p5aii"></a> ii) Droits des utilisateurs
+- ### <a name="p5b"></a> b) Limitation des intrusions
+    - #### <a name="p5bi"></a> i) Présentation de Fail2Ban
+    - #### <a name="p5bii"></a> ii) Installation de Fail2Ban
+- ### <a name="p5c"></a> c) Le pare-feu
+    - #### <a name="p5ci"></a> i) Présentation de UFW
+    - #### <a name="p5cii"></a> ii) Installation de UFW
+- ### <a name="p5d"></a> d) PHPMyAdmin
+    - #### <a name="p5di"></a> i) Limitation des connexions aux comptes
+    - #### <a name="p5dii"></a> ii) Changement de l'alias
 
 
 ## <a name="p6"></a> VI - Faire une sauvegarde du serveur
-- ### a) Créer et restaurer une image
+- ### <a name="p6a"></a> a) Créer et restaurer une image
     
     Il doit probablement exister des outils similaires sous Windows, mais voici comment faire sous Linux (Ubuntu) via l'interface graphique :<br>
 
@@ -601,7 +612,7 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     - L'image comportera toutes les partitions du lecteur.
 
 
-- ### b) Dossiers et fichiers à sauvegarder
+- ### <a name="p6b"></a> b) Dossiers et fichiers à sauvegarder
 
     Cette liste de répertoires et de fichiers peut être mise à jour.<br>
     <br>
