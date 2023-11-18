@@ -11,7 +11,7 @@ SELECT ID_USER, LOGIN_USER
 FROM Utilisateur;
 
 CREATE VIEW vue_UserFictif_inscriptionDB1 AS 
-SELECT * 
+SELECT LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER, HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER 
 FROM Utilisateur;
 
 CREATE VIEW vue_UserFictif_selectionDB1 AS 
@@ -47,6 +47,6 @@ GRANT UPDATE (HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER) 
 
 GRANT UPDATE (OBJET_TICKET, DESCRIPTION_TICKET, ID_TECHNICIEN, NIV_URGENCE_DEFINITIF_TICKET) ON vue_UserFictif_updateTicketDB1 TO fictif_updateTicketDB@localhost;
 
-GRANT SELECT ON vue_UserFictif_selectionTicketDB1 TO fictif_selectionTicketDB@localhost;
+GRANT SELECT ON vue_userfictif_selectionTicketDB1 TO fictif_selectionTicketDB@localhost;
 
-GRANT INSERT ON vue_UserFictif_insertionTicketDB1 TO fictif_insetionTicketDB@localhost;
+GRANT INSERT ON vue_userfictif_insertionTicketDB1 TO fictif_insertionTicketDB@localhost;
