@@ -45,14 +45,19 @@ Rapport entièrement rédigé par Matthieu FARANDJIS.
   - [**d) Résolution du problème**](#p4d)
 
 - ### [V - Sécurisation](#p5)
-  - [**a) Changement des ports**](#p5a)
-  - [**b) Pare feu**](#p5b)
-    - [i) Pare feu du routeur](#p5bi)
-    - [ii) Pare feu du RPi 4](#p5c5bii)
-  - [**c) Emplacement des fichiers et alias**](#p5c)
-  - [**c) Les utilisateurs et leurs droits**](#p5d)
-    - [i) Liste des utilisateurs](#p5di)
-    - [ii) Droits des utilisateurs](#p5dii)
+  - [**a) (Linux) Les utilisateurs, les groupes et leurs droits**](#p5a)
+      - [i) Liste des utilisateurs et des groupes](#p5ai)
+      - [ii) Droits des utilisateurs](#p5aii)
+  - [**b) Limitation des intrusions**](#p5b)
+    - [i) Présentation de Fail2Ban](#p5bi)
+    - [ii) Installation de Fail2Ban](#p5c5bii)
+  - [**c) Le pare-feu**](#p5b)
+      - [i) Présentation de UFW](#p5bi)
+      - [ii) Installation de UFW](#p5c5bii)
+  - [**c) PHPMyAdmin**](#p5c)
+      - [i) Limitation des connexions aux comptes](#p5bi)
+      - [ii) Changement de l'alias](#p5c5bii)
+
 
 - ### [VI - Faire une sauvegarde du serveur](#p6)
   - [**a) Créer et restaurer une image**](#p6a)
@@ -555,6 +560,12 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
         <img src="img\IV_Hamachi\pare-feu.webp" title="Pare-feu de la Livebox 2 avec les différents ports utilisés" width="500"/><br>
         <i>Pare-feu personnalisable de la Livebox 2</i>
     </div>
+
+
+## <a name="p5"></a> V - Sécurisation
+
+
+
 ## <a name="p6"></a> VI - Faire une sauvegarde du serveur
 - ### a) Créer et restaurer une image
     
