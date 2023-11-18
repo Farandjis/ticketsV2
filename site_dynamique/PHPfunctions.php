@@ -2,7 +2,6 @@
 
 
 function insertRequest($a,$b,$connection){
-    $connection = mysqli_connect('localhost', $_SESSION['login'], $_SESSION['mdp'],'db_tix');
 
     $CONST_TYPE = array("integer" => 'i', "string" => 's', "boolean" => 'b', "double" => 'd');
     $parameters = array($a,'');
@@ -52,8 +51,6 @@ function newUser($login, $mdp){
 
 
 function connectUser($login, $mdp){
-    // Récupère l'ID_USER de l'utilisateur par rapport au login
-    insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($login));
 
     // Vérifie si l'utilisateur existe dans la base de données
     if ($row = mysqli_fetch_row($reponse)) {
@@ -71,7 +68,7 @@ function connectUser($login, $mdp){
             $dateConnexion = date('Y-m-d H:i:s');
 
             // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
-            insertRequest("UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",array( $dateConnexion, $ipUtilisateur, $row[0]));
+            insertRequest("UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",array( $dateConnexion, $ipUtilisateur, $row[0]),$connexion);
 
             // On démarre la session
             session_start();
