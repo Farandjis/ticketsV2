@@ -600,8 +600,24 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         **Changer le mot de passe d'un utilisateur :** `passwd [UTILISATEUR]`<br>
         <br>
     - #### <a name="p5aii"></a> ii) Droits des utilisateurs
-        Travail d'Assia à mettre ici<br>
-        <br>
+       <br> 
+Nous avons créé des utilisateurs affectés à chaque membre du groupe de travail. Ces utilisateurs appartiennent au groupe fteam. 
+<br>
+Par la suite, nous avons accordé les droits administratifs de lecture, d'écriture et d’exécution aux membres de ce groupe. Pendant que les membres du groupe pourront écrire et lire l’ensemble des fichiers du répertoire /var/www/html, les autres pourront simplement les visionner. 
+
+Pour se faire, nous avons utilisé la commande : <br> sudo chown -R :fteam /var/www/html.<br>Cette commande a permis de changer le propriétaire du répertoire et des fichiers qui le compose. Ainsi, le groupe fteam est propriétaire de /var/www/html. 
+
+Pour vérifier que le résultat de cette commande est bien celui voulu, on a effectué la commande : <br>ls -l dans /var/www. <br>On observe le résultat suivant : drwxrwxr-x
+<br>Le propriétaire et le groupe possèdent tous les droits tandis que les autres ne peuvent que lire et exécuter. 
+<br>
+Pour ajouter les droits administratifs à l’utilisateur fhoguin. Il suffit d’accéder au  fichier contenant l’accès à sudo avec la commande :<br>cat /etc/sudoers. 
+Dans ce fichier, on y ajoute la ligne suivante permettant de donner la possibilité d'exécuter toutes les commandes avec tous les privilèges sur tous les hôtes à l’utilisateur fhoguin.
+<br>
+fhoguin ALL=(ALL:ALL) ALL
+<br>
+Pour vérifier qu’il possède la permission d’exécuter n’importe quelle commande. On peut se connecter au compte fhoguin et exécuter une commande. 
+
+
 
 - ### <a name="p5b"></a> b) Limitation des intrusions
     - #### <a name="p5bi"></a> i) Présentation de Fail2Ban
