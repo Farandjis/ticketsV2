@@ -1,5 +1,5 @@
 <?php
-require(../PHPfunctions.php);
+requires("../PHPfunctions.php");
 // Définir les informations de connexion à la base de données
 $host = 'localhost';
 $database = 'DB_TIX';
