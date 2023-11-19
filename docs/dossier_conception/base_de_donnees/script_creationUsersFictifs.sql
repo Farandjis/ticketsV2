@@ -44,6 +44,7 @@ FROM Ticket;
 
 -- Ajout des droit pour l'utilisateurs fictif_inscriptionDB
 GRANT INSERT ON vue_UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
+GRANT SELECT ON vue_UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
 GRANT CREATE USER ON *.* TO 'fictif_inscriptionDB'@'localhost';
 
 -- Ajout des droit pour l'utilisateurs fictif_droitDB
