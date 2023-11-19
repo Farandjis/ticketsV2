@@ -1,35 +1,47 @@
 <?php
 
 
-function insertRequest($a,$b,$connection){
+function insertRequest($reqSQL,$params,$connection){
     /**
-    * Insère une commande SQL préparée dans la base de données.
-    *
-    * @param string $a - La requete SQL.
-    * @param array $b - La liste des paramètres de la requete.
-    * @param mysqli $connection - La connexion à la base de données.
-    * @return void
-    */
+     * Insère une commande SQL préparée dans la base de données.
+     *
+     * @param string $reqSQL - La requete SQL.
+     * @param array $params - La liste des paramètres de la requete.
+     * @param mysqli $connection - La connexion à la base de données.
+     * @return void
+     */
     $CONST_TYPE = array("integer" => 'i', "string" => 's', "boolean" => 'b', "double" => 'd');
-    $parameters = array($a,'');
-    $requete = mysqli_prepare($connection,$a);
-    for ($i=0;i<count($b);i++){
-        array_push($parameters, htmlspecialchars($b[$i]));
+    
+    $reqSQLPre = mysqli_prepare($connection,$reqSQL); // On prépare la requête
+    $argsCommandePHP = array($reqSQLPre,''); // liste des arguments de la fonction mysqli_stmt_bind_param
+    
+    $typeParams = "";
+    
+    for ($i = 0 ; $i < count($params) ; $i++){
+    	$paramProtege = htmlspecialchars($params[$i]); // On protège chaque paramètre
+	$argsCommandePHP[$i + 2] = &$paramProtege; // On l'insère à la suite des arguments pour la fonction mysqli_stmt_bind_param
 
-        $parameters[1] = $parameters[1]."".$CONST_TYPE[gettype(htmlspecialchars($b[i]))];
+        $typeParams = $typeParams . $CONST_TYPE[gettype(htmlspecialchars($params[$i]))]; // On stock le type du paramètre
     }
-    call_user_func_array('mysqli_stmt_bind_param',$parameters);
-    return mysqli_stmt_execute($requete);
+    $argsCommandePHP[1] = $typeParams; // On indique le type des paramètres précédements protégés
+    
+     
+    call_user_func_array('mysqli_stmt_bind_param',$argsCommandePHP); // On appel la fonction mysqli_stmt_bind_param avec nos arguments
+    //call_user_func_array('mysqli_stmt_bind_param',array($reqSQLPre, $typeParams, &$paramsCommandePHP[2]));
+
+    mysqli_stmt_execute($reqSQLPre); // On l'execute
+
+    return mysqli_stmt_get_result($reqSQLPre); // On renvoie le résultat de la requête SQL
 }
 
 
 function valideMDP($a){
     /**
-    * Vérifie la solidité du mot de passe.
-    *
-    * @param string $a Le mot de passe à valider.
-    * @return bool Retourne True si le mot de passe est valide. False sinon.
-    */
+     * Vérifie la solidité du mot de passe.
+     *
+     * @param string $a Le mot de passe à valider.
+     * @return bool Retourne True si le mot de passe est valide. False sinon.
+     */
     if (strlen($a) < 12 || strlen($a) > 32) {
         if (!preg_match('/[A-Z]/', $a)) {
             if (!preg_match('/[a-z]/', $a)) {
@@ -47,12 +59,12 @@ function valideMDP($a){
 
 function newUser($id, $mdp){
     /**
-    * Crée un utilisateur et lui fait don de ses droits
-    *
-    * @param string $id - L'id de l'utilisateur.
-    * @param string $mdp - Le mot de passe de l'utilisateur.
-    * @return bool - Retourne True si l'utilisateur a pu être créé. False sinon.
-    */
+     * Crée un utilisateur et lui fait don de ses droits
+     *
+     * @param string $id - L'id de l'utilisateur.
+     * @param string $mdp - Le mot de passe de l'utilisateur.
+     * @return bool - Retourne True si l'utilisateur a pu être créé. False sinon.
+     */
     $connection = mysqli_connect($host, '' . $id, $mdp, $database);
     $create_user_query = "CREATE USER '$id' IDENTIFIED BY '$mdp';";
     if(mysqli_query($connection, $create_user_query)){
@@ -72,12 +84,12 @@ function newUser($id, $mdp){
 
 function connectUser($reponse, $mdp){
     /**
-    * Connecte l'utilisateur à la base de données et lui crée sa session.
-    *
-    * @param string $reponse L'id de l'utilisateur.
-    * @param string $mdp Le mot de passe de l'utilisateur.
-    * @return bool Retourne True si la connexion réussit. False sinon.
-    */
+     * Connecte l'utilisateur à la base de données et lui crée sa session.
+     *
+     * @param string $reponse L'id de l'utilisateur.
+     * @param string $mdp Le mot de passe de l'utilisateur.
+     * @return bool Retourne True si la connexion réussit. False sinon.
+     */
     // Vérifie si l'utilisateur existe dans la base de données
     if ($reponse) {
         // Connexion à la base de données spécifique à l'utilisateur
@@ -105,3 +117,4 @@ function connectUser($reponse, $mdp){
     }
     return false;
 }
+
