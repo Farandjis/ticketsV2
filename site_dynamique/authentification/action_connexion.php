@@ -1,6 +1,7 @@
 <?php
 require("../ressources/fonctions/PHPfunctions.php");
 // Définir les informations de connexion à la base de données
+
 $host = 'localhost';
 $database = 'DB_TIX';
 
@@ -24,19 +25,21 @@ try {
         
         // Récupère l'ID_USER de l'utilisateur par rapport au login
         //$id = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
-        $test = insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection);
+        $resSQL = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connection));
 
-	$id = mysqli_fetch_row($test);
-	
-	echo $id[0];
-	/*
-        if (connectUser($id,$_POST['mdp'])){
+	if ($resSQL === null){ header('Location: connexion.php?id=2'); } // Mauvais login (la requête SQL n'a rien renvoyé)
+	else { $loginMariaDB = $resSQL[0]; } // On récupère l'ID_USER qui est le login MariaDB.
+
+
+
+
+        if (connectUser($loginMariaDB, $mdpMariaDB)){ // Si la connexion au site est possible (mdp valide)
             header('Location: ../tableau_bord/tableauBord.php');
         }
         else{
             header('Location: connexion.php?id=2');
         }
-        */
+
 
     }
 } catch (Exception $e) {

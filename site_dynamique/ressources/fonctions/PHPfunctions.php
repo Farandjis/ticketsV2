@@ -1,5 +1,8 @@
 <?php
 
+// Info BDD
+$host = 'localhost';
+$database = 'DB_TIX';
 
 function insertRequest($reqSQL,$params,$connection){
     /**
@@ -16,22 +19,27 @@ function insertRequest($reqSQL,$params,$connection){
     $argsCommandePHP = array($reqSQLPre,''); // liste des arguments de la fonction mysqli_stmt_bind_param
     
     $typeParams = "";
+
     
     for ($i = 0 ; $i < count($params) ; $i++){
-    	$paramProtege = htmlspecialchars($params[$i]); // On protège chaque paramètre
-	$argsCommandePHP[$i + 2] = &$paramProtege; // On l'insère à la suite des arguments pour la fonction mysqli_stmt_bind_param
+    	$params[$i] = htmlspecialchars($params[$i]); // On protège chaque paramètre
 
+	$argsCommandePHP[$i + 2] = &$params[$i]; // On l'insère à la suite des arguments pour la fonction mysqli_stmt_bind_param
         $typeParams = $typeParams . $CONST_TYPE[gettype(htmlspecialchars($params[$i]))]; // On stock le type du paramètre
+
     }
     $argsCommandePHP[1] = $typeParams; // On indique le type des paramètres précédements protégés
-    
-     
+
+
     call_user_func_array('mysqli_stmt_bind_param',$argsCommandePHP); // On appel la fonction mysqli_stmt_bind_param avec nos arguments
     //call_user_func_array('mysqli_stmt_bind_param',array($reqSQLPre, $typeParams, &$paramsCommandePHP[2]));
+
+
 
     mysqli_stmt_execute($reqSQLPre); // On l'execute
 
     return mysqli_stmt_get_result($reqSQLPre); // On renvoie le résultat de la requête SQL
+
 }
 
 
@@ -82,22 +90,27 @@ function newUser($id, $mdp){
 }
 
 
-function connectUser($reponse, $mdp){
+function connectUser($loginMariaDB, $mdpMariaDB){
     /**
      * Connecte l'utilisateur à la base de données et lui crée sa session.
      *
-     * @param string $reponse L'id de l'utilisateur.
-     * @param string $mdp Le mot de passe de l'utilisateur.
+     * @param string $loginMariaDB L'id de l'utilisateur.
+     * @param string $mdpMariaDB Le mot de passe de l'utilisateur.
      * @return bool Retourne True si la connexion réussit. False sinon.
      */
+    global $host, $database;
+    
+    
+    
     // Vérifie si l'utilisateur existe dans la base de données
-    if ($reponse) {
-        // Connexion à la base de données spécifique à l'utilisateur
-        $connexion = mysqli_connect($host, $reponse, $mdp, $database);
+    if ($loginMariaDB) { // true si le $loginMariaDB contient quelque chose
+        
+        // Connexion à la base de données en tant que l'utilisateur
+        $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
 
-        // Vérifie si la connexion a été établie
 
-        if ($connexion) {
+        // Vérifie si la connexion a été établie (donc que le mdp est valide (et l'id aussi, mais normalement ça c'est OK))
+        if ($connexionUtilisateur) {
 
             // On récupère l'adresse IP de l'utilisateur
             $ipUtilisateur = gethostbyname($_SERVER['REMOTE_ADDR']);
@@ -105,15 +118,24 @@ function connectUser($reponse, $mdp){
             // Récupère la date et l'heure à laquelle l'utilisateur s'est connecté la dernière fois
             $dateConnexion = date('Y-m-d H:i:s');
 
+
+	    $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', 't!nt1n_connexionDB45987645', $database);
+
+	
             // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
-            insertRequest("UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",array( $dateConnexion, $ipUtilisateur, $reponse),$connexion);
+          
+            $arguments = array($dateConnexion, $ipUtilisateur, $loginMariaDB); 
+            insertRequest("UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
 
             // On démarre la session
             session_start();
-            $_SESSION['login'] = $reponse;
-            $_SESSION['mdp'] = $mdp;
+            $_SESSION['login'] = $loginMariaDB;
+            $_SESSION['mdp'] = $mdpMariaDB;
+
+
             return true;
         }
+
     }
     return false;
 }
