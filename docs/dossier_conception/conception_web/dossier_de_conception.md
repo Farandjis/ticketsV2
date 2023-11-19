@@ -2,7 +2,7 @@ Florent VASSEUR--BERLIOUX, Tom BOGAERT, Assia GOUABI, Enzo GUIGNOLLE, Matthieu F
 INF2-A
 
 <div align="center">
-<img height="95" width="400" src="img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
+<img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3  Dossier de conception
 </div>
@@ -185,7 +185,14 @@ La page profile.html contient :
         Un 'div' représentant la liste des tickets du profil. Ce div contient :
             Un 'table' représentant le tableau des tickets.
 </pre>
+<pre>
+Lorsque le bouton de déconnexion est préssé, on active la page d'action action_inscription.php :
+Ouverture session
+Suppression des données de la session
+Fermeture de la session
+</pre>
 <br><br>
+
 
 
 
@@ -244,13 +251,14 @@ x : bool (Définie l'état de la connexion à la base)
 a : str (Correspond au login entré)
 b : str (Correspond au mot de passe entré)
 </pre>
-#### <i>x = insertRequest(a,b)</i>
+#### <i>x = insertRequest(a,b,c)</i>
 <pre>
 Préparation de la requete sous la forme d'une requête préparé et envoie de cette dernière à la base de données.
 
 x : string (Retour de la requête au près de la base de données)
 a : str (Requête mySQL sous la forme d'une requête préparé avec des '?')
 b : arraylist (Tableau des valeurs à inérer dans la requête dans l'ordre)
+c : mysqli (Objet relatif à la connexion à la base de données)
 </pre>
 #### <i>x = newUser(a,b)</i>
 <pre>
