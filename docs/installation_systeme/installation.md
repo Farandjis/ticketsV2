@@ -633,7 +633,8 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
       - https://doc.ubuntu-fr.org/fail2ban
       <br>
     - #### <a name="p5bii"></a> ii) Installation de Fail2Ban
-        **Commande :** `sudo apt install fail2ban`<br>
+        **Commande d'installation :** `sudo apt install fail2ban`<br>
+        Les commandes systemctl peuvent être utilisés.<br>
         <br>
         Le fichier de configuration principale de fail2ban est `/etc/fail2ban/jail.local`.
         Nous avons laissé les paramètres par défaut pour le moment, on a seulement demandé à Fail2Ban d'ignorer les tentatives infructueuse de connexion sur localhost.<br>
@@ -643,6 +644,11 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         Malheureusement, nous avons rencontré un problème lors du démarrage de Fail2Ban.<br>
         Nous avons suivis les indications de https://github.com/fail2ban/fail2ban/issues/3292#issuecomment-1142503461 pour résoudre le problème.<br>
         Il suffisait juste de préciser `backend=systemd` dans le fichier de configuration Fail2Ban jail.local.<br>
+        <br>
+        <div align="center">
+            <img src="img\V_Securisation\fail2ban.webp" title="Erreurs lors du démarrage de Fail2Ban" width="700"/><br>
+            <i>Erreurs lors du démarrage de Fail2Ban</i>
+        </div>
         <br>
         Nous n'avons pas eu l'occasion de tester l'efficacité du programme pour le moment.<br>
     <br>
@@ -661,7 +667,8 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         <br>
 
     - #### <a name="p5cii"></a> ii) Installation de UFW
-        **Commande :** `sudo apt install ufw`<br>
+        **Commande d'installation :** `sudo apt install ufw`<br>
+        Les commandes systemctl peuvent être utilisés.<br>
         <br>
         Par défaut, UFW bloque les connexions en entrer et autorise les connexions en sortie.<br>
         Nous avons autorisé l'accès en entrée sur les ports 80 (HTTP), 443 (HTTPS) et 22 (SSH).<br>
@@ -669,6 +676,25 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         <br>
         Actuellement, le port 443 n'est pas utilisé. Nous l'enlèverons sûrement.<br>
         Ce n'est peut-être pas une bonne idée d'autoriser l'accès de tous les ports en sorties, cependant nous craignons bloquer le système si on les interdits tous.<br>
+        <br>
+        <div align="center">
+            <img src="img\V_Securisation\ufw.webp" title="la commande sudo ufw status verbose montre les ports ouverts" width="350"/><br>
+            <i>Résultat de la commande "sudo ufw status verbose"</i>
+        </div>
+        <br>
+        **Vérifier les règles et l'activité d'UFW :** `sudo ufw status verbose`<br>
+        **Activer la protection d'UFW (désactivé par défaut) :** `sudo ufw enable`<br>
+        **Autoriser les connexions sur le port 22 (SSH) :** `sudo ufw allow 22`<br>
+        **Interdire une connexion sur le port 22 (SSH) :** `sudo ufw deny 22`<br>
+        **Interdire par défaut les connexions entrante sur tous les ports :** `sudo ufw default deny incoming`<br>
+        **Autoriser par défaut les connexions sortantes sur tous les ports :** `sudo ufw default allow outgoing`<br>
+        <br>
+        Note : "entrante" signifie Client -> Serveur, "sortante" signifie Serveur -> Client.<br>
+        <br>
+        <br>
+        **Source :**
+      - https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04
+      - https://doc.ubuntu-fr.org/ufw
 
 - ### <a name="p5d"></a> d) PHPMyAdmin
     - #### <a name="p5di"></a> i) Limitation des connexions aux comptes
@@ -713,7 +739,6 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         <i>Logiciel "Disques" d'Ubuntu avec le menu</i>
     </div>
 
-
   Note :
     - une image peut être restaurée sur un autre lecteur que celui d'origine.
     - Le lecteur avec l'image restauré sera dans le même état que le lecteur pendant la création de l'image.
@@ -738,5 +763,8 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
     - Attention ! Elle n'a pas encore été testé.
     <br><br>
 
-    **Pare-feu**<br>
-    À voir lors de la sécurisation du serveur<br>
+  **Autre**<br>
+  Les fichiers de configurations qui ont été modifiés sont :
+    - `/etc/fail2ban/jail.local` (fail2ban)
+    - `/etc/default/ufw` (UFW)
+    - `/etc/phpmyadmin/apache2.conf` (alias PHPMyAdmin)
