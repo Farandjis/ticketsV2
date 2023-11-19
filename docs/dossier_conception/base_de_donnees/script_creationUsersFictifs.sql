@@ -1,6 +1,7 @@
 CREATE USER 'fictif_connexionDB'@'localhost' IDENTIFIED BY 't!nt1n_connexionDB45987645';
 CREATE USER 'fictif_inscriptionDB'@'localhost' IDENTIFIED BY 't!nt1n_inscriptionDB45987645';
 CREATE USER 'fictif_selectionDB'@'localhost' IDENTIFIED BY 't!nt1n_selectionDB45987645';
+CREATE USER 'fictif_droitDB'@'localhost' IDENTIFIED BY 't!nt1n_droitDB45987645';
 CREATE USER 'fictif_updateTicketDB'@'localhost' IDENTIFIED BY 't!nt1n_updateTicketDB45987645';
 CREATE USER 'fictif_selectionTicketDB'@'localhost' IDENTIFIED BY 't!nt1n_selectionTicketDB45987645';
 CREATE USER 'fictif_insertionTicketDB'@'localhost' IDENTIFIED BY 't!nt1n_insertionTicketDB45987645';
@@ -39,7 +40,8 @@ GRANT SELECT ON vue_UserFictif_connexionDB1 TO 'fictif_connexionDB'@'localhost';
 
 GRANT INSERT ON vue_UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
 GRANT CREATE USER ON *.* TO 'fictif_inscriptionDB'@'localhost';
-GRANT GRANT OPTION, SELECT ON DB_TIX.* TO 'fictif_inscriptionDB'@'localhost';
+
+GRANT GRANT OPTION, SELECT ON DB_TIX.vue_Utilisateur_client, DB_TIX.vue_Ticket_client, DB_TIX.vue_Utilisateur_insertion_client, DB_TIX.vue_Ticket_insertion_client  TO 'fictif_droitDB'@'localhost';
 
 GRANT SELECT ON vue_UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';
 
