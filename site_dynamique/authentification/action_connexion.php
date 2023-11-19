@@ -22,7 +22,7 @@ try {
         // Récupère l'ID_USER de l'utilisateur par rapport au login
         id = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
         
-        if (connectUser(,$_POST['mdp'])){
+        if (connectUser($id,$_POST['mdp'])){
             header('Location: ../tableau_bord/tableauBord.php');
         }
         else{
