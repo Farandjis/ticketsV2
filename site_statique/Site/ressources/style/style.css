@@ -223,6 +223,7 @@ nav {
 }
 
 
+
 /* ======== TABLEAU EN GENERAL ======== */
 
 thead {
@@ -323,6 +324,15 @@ input[type="text"], input[type="email"], input[type="password"],  input[type="su
   border-radius: 15px;
   font-size: 16px;
 }
+
+input[type="submit"], input[type="reset"]{
+  transition: transform 0.3s;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="reset"]:focus{
+  transform: scale(1.05);
+}
+
 
 input[type="date"] {
   width: 150px;
@@ -487,6 +497,79 @@ input[type="date"] {
   border: 2px solid #1c1c1c;
 }
 
+/* ======== ADMINISTRATION ======== */
+
+.conteneur_administration{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+.conteneur_ajout_administration{
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #211a43;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  color: #ECECEC;
+  width: 500px;
+}
+
+.conteneur_ajout_administration > form > label{
+  font-size: 28px;
+}
+
+.conteneur_ajout_administration > form > input[type="submit"] {
+  color: #ffffff;
+  background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
+  margin-right: 15px;
+  font-family: Poppins, Arial, sans-serif;
+  cursor: pointer;
+  min-width: 100px;
+  transition: transform 0.3s;
+}
+
+.conteneur_ajout_administration > form > input[type="submit"]:hover, input[type="submit"]:focus{
+  transform: scale(1.05);
+}
+
+.conteneur_ajout_administration > form > select, .conteneur_ajout_administration > form > input[type="text"]{
+  margin: 10px;
+}
+
+.conteneur_administration_navigation{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.conteneur_administration_navigation > a {
+  text-align: center;
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: 700;
+
+  color: #1c1c1c;
+  background: #ECECEC;
+  width: 400px;
+  height: auto;
+  min-width: 90px;
+  padding: 10px 5px;
+  margin-top: 150px;
+  border: solid 1px #1c1c1c;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s,box-shadow 0.3s , transform 0.3s;
+}
+
+.conteneur_administration_navigation > a:hover, a:focus {
+  background-color: #dcbfbf;
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
 
 /* ======== JOURNAL D'ACTIVITE ======== */
 

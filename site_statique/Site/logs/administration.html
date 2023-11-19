@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Administration</title>
+  <link rel="stylesheet" href="../ressources/style/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="../ressources/images/logo_blanc.png" alt="logo du site">
+      </div>
+
+      <div class="nav-conteneur">
+        <a href="../index.html" aria-current="page">Accueil</a>
+        <a href="../tableau_bord">Tableau de bord</a>
+        <a href="#">Administration</a>
+      </div>
+
+
+      <div class="nav-authentification">
+        <a href="../Profil" class="user-icon" aria-label="Page de connexion">
+          <img src="../ressources/images/user.svg" alt="icone utilisateur">
+        </a>
+        <div class="authentification">
+          <a href="../Profil">Mon Espace</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class="titre_page">
+    Administration
+  </h1>
+  <div class="conteneur_administration">
+    <div class="conteneur_ajout_administration">
+        <form action='#' method='post' class="ajout">
+          <label for='ajout_technicien'>Ajout de Technicien :</label><br><br>
+
+          <select name="ajout_technicien" id="ajout_technicien">
+            <option value="">--Choisir une option--</option>
+            <option value="tec_1">Technicien 1</option>
+            <option value="tec_2">Technicien 2</option>
+          </select>
+
+          <input type='submit' name='ajout_technicien' value='Ajouter'>
+        </form>
+    </div>
+
+    <div class="conteneur_ajout_administration">
+      <form action='#' method='post' class="ajout">
+        <label for='ajout_libelle'>Ajout de Libellés :</label><br><br>
+        <input id='ajout_libelle' type='text' name ='ajout_libelle' placeholder="Écrire un libellé">
+        <input type='submit' name='ajout_libelle' value='Ajouter'>
+      </form>
+    </div>
+  </div>
+
+  <div class="conteneur_administration_navigation">
+    <a href="journalActivite.html">Journal d'activié</a>
+    <a href="historique.html">Historique</a>
+  </div>
+
+</body>
+</html>
