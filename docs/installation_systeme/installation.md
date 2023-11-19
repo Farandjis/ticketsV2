@@ -563,10 +563,10 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
 
 ## <a name="p5"></a> V - Sécurisation
 Si avoir un beau projet correspondant aux attentes du client est notre objectif premier, la sécurisation du système informatique n'est pas à négliger.<br>
-Rien que depuis le moteur de recherche Google, nous pouvons accéder à des moteurs de recherches d'appareils connectés. Beaucoup de ces appareils sont peu sécurisé si ce n'est pas du tout.<br>
+Rien que depuis le moteur de recherche Google, nous pouvons accéder à des moteurs de recherches d'appareils connectés. Beaucoup de ces appareils sont peu sécurisés si ce n'est pas du tout.<br>
 Il existe des robots spécialisés dans le piratage d'appareils connectés. Certains cherchent à craquer les mots de passe SSH, d'autres à craquer les mots de passe PHPMyAdmin.<br>
 <br>
-Notre système informatique est conçus pour être utilisé sur le réseau local de l'IUT, mais cela n'épargne pas pour autant le risque de piratage.<br>
+Notre système informatique est conçu pour être utilisé sur le réseau local de l'IUT, mais cela n'épargne pas pour autant le risque de piratage.<br>
 Si le risque d'intrusion dans ce réseau par un ordinateur distant est peu probable, le piratage par l'un de nos camarades est en revanche très probable.<br>
 <br><br>
 Ainsi, cette partie explique comment nous avons sécurisé notre RaspberryPi.<br>
@@ -579,9 +579,10 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         Plutôt que d'utiliser une seule session pour tout le monde, nous avons préféré créer une session pour chacun d'entre nous et une pour notre client.<br>
         Nous avons rassemblé nos sessions dans un groupe "FTEAM" et la session de notre client dans un groupe "PROF".<br>
         <br>
-        Cela nous permet de limiter le risque de fuite des identifiants de la session sudoer vu que nous l'utiliserons uniquement pour la configuration du sytème.<br>
-        Nos sessions permettent uniquement de modifier le répertoire /var/www/html où est situé le site. Avec la session sudoes, il est possible de limiter davantage les accès.<br>
-        En cas de piratage, nous pouvons neutraliser le mot de passe la session infecté tout en étant assurer que le pirate a été limité dans ses actions.<br>
+        Cela nous permet de limiter le risque de fuite des identifiants de la session sudoer vu que nous l'utiliserons uniquement pour la configuration du système.<br>
+        Cela nous permet de limiter le risque de fuite des identifiants de la session sudoer vu que nous l'utiliserons uniquement pour la configuration du système.<br>
+        Nos sessions permettent uniquement de modifier le répertoire /var/www/html où est situé le site. Avec la session sudoer, il est possible de limiter davantage les accès.<br>
+        En cas de piratage, nous pouvons neutraliser le mot de passe la session infectée tout en étant assurer que le pirate a été limité dans ses actions.<br>
         Notre client à sa propre session sudoer.<br>
         <br><br>
         **Remarque :**<br>
@@ -599,12 +600,12 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         **Changer le mot de passe d'un utilisateur :** `passwd [UTILISATEUR]`<br>
         <br>
     - #### <a name="p5aii"></a> ii) Droits des utilisateurs
-        Nous avons créé des utilisateurs affectés à chaque membre du groupe de travail. Ces utilisateurs appartiennent au groupe team. 
+        Nous avons créé des utilisateurs affectés à chaque membre du groupe de travail. Ces utilisateurs appartiennent au groupe fteam. 
         <br>
         <br>
         Par la suite, nous avons accordé les droits administratifs de lecture, d'écriture et d’exécution aux membres de ce groupe. Pendant que les membres du groupe pourront écrire et lire l’ensemble des fichiers du répertoire /var/www/html, les autres pourront simplement les visionner. 
         <br><br>
-        Pour se faire, nous avons utilisé la commande : `sudo chown -R :team /var/www/html`.<br>Cette commande a permis de changer le propriétaire du répertoire et des fichiers qui le compose. Ainsi, le groupe team est propriétaire de /var/www/html. 
+        Pour ce faire, nous avons utilisé la commande : `sudo chown -R :team /var/www/html`.<br>Cette commande a permis de changer le propriétaire du répertoire et des fichiers qui le compose. Ainsi, le groupe fteam est propriétaire de /var/www/html. 
         <br><br>
         Pour vérifier que le résultat de cette commande est bien celui voulu, on a effectué la commande : <br>`ls -l dans /var/www`. <br>On observe le résultat suivant : `drwxrwxr-x`
         <br>Le propriétaire et le groupe possèdent tous les droits tandis que les autres ne peuvent que lire et exécuter. Si nous voulions changer les permissions, nous aurions pu utiliser la commande `sudo chmod`.<br>
@@ -612,21 +613,21 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         `d` signifie "directory", `r` pour "read", `w` pour `write`, `x` pour exécution. `-` signifie qu'il n'y a pas de droit. Les droits sont dans l'ordre User, Group, Other.<br>
         <br>
         <br>
-        Pour ajouter les droits administratifs à l’utilisateur fhoguin. Il suffit d’accéder au fichier contenant les accès à `sudo` avec la commande : `sudo nano /etc/sudoers`.<br>
+        Pour ajouter les droits administratifs à l’utilisateur hoguin. Il suffit d’accéder au fichier contenant les accès à `sudo` avec la commande : `sudo nano /etc/sudoers`.<br>
         Dans ce fichier, on y ajoute la ligne suivante permettant de donner la possibilité d'exécuter toutes les commandes avec le privilège administrateur (root) à l’utilisateur hoguin : `hoguin ALL=(ALL:ALL) ALL`
         <br>
         <br>
         Pour vérifier qu’il possède la permission d’exécuter n’importe quelle commande. On peut se connecter au compte hoguin et exécuter une commande avec sudo.<br>
         <br>
         <br>
-        Remarque : Les groupes et utilisateurs cités sont différents de ceux sur le serveur. Nous préférons ne pas dévoiler ces informations.
+        Remarque : "hoguin" n'est pas le nom de la véritable session de Monsieur HOGUIN.
 
 
 
 - ### <a name="p5b"></a> b) Limitation des intrusions
     - #### <a name="p5bi"></a> i) Présentation de Fail2Ban
-        Fail2Ban est un programme indispensable qui analyse les journaux d'activité pour bannir les adresses IP en cas de tentative répété de connexions infructueuses.<br>
-        Avec un mot de passe fort, nous sommes protéger des attaques de type "brute-force".<br>
+        Fail2Ban est un programme indispensable qui analyse les journaux d'activité pour bannir les adresses IP en cas de tentative répété de connexions infructueuse.<br>
+        Avec un mot de passe fort, nous sommes protégés des attaques de type "brute-force".<br>
         <br>
         **Sources supplémentaires :**
       - https://www.provya.net/?d=2019/04/04/10/24/18
@@ -634,15 +635,15 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
       <br>
     - #### <a name="p5bii"></a> ii) Installation de Fail2Ban
         **Commande d'installation :** `sudo apt install fail2ban`<br>
-        Les commandes systemctl peuvent être utilisés.<br>
+        Les commandes systemctl peuvent être utilisées.<br>
         <br>
         Le fichier de configuration principale de fail2ban est `/etc/fail2ban/jail.local`.
         Nous avons laissé les paramètres par défaut pour le moment, on a seulement demandé à Fail2Ban d'ignorer les tentatives infructueuse de connexion sur localhost.<br>
-        Ce n'est pas la meilleure des idées, mais nous sommes assuré d'avoir accès au système en cas de mauvaise configuration.<br>
+        Ce n'est pas la meilleure des idées, mais nous sommes assurés d'avoir accès au système en cas de mauvaise configuration.<br>
         Par défaut, Fail2Ban banni 10 minutes l'adresse IP ayant fait 5 tentatives infructueuses dans les 10 minutes de la première tentative.<br>
         <br>
         Malheureusement, nous avons rencontré un problème lors du démarrage de Fail2Ban.<br>
-        Nous avons suivis les indications de https://github.com/fail2ban/fail2ban/issues/3292#issuecomment-1142503461 pour résoudre le problème.<br>
+        Nous avons suivi les indications de https://github.com/fail2ban/fail2ban/issues/3292#issuecomment-1142503461 pour résoudre le problème.<br>
         Il suffisait juste de préciser `backend=systemd` dans le fichier de configuration Fail2Ban jail.local.<br>
         <br>
         <div align="center">
@@ -658,30 +659,32 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         UFW pour "Uncomplicated FireWall" est un pare-feu qui comme son nom l'indique est facile d'utilisation.<br>
         Cela empêche que n'importe qui se connecte au serveur.<br>
         <br>
-        Un pare-feu permet d'interdir ou autoriser l'utilisation des ports en entrées et/ou en sortir pour tout le monde ou pour certaines adresses IP.<br>
+        Un pare-feu permet d'interdire ou autoriser l'utilisation des ports en entrées et/ou en sortir pour tout le monde ou pour certaines adresses IP.<br>
         <br>
         Par exemple, Apache écoute sur le port 80 (HTTP). Lorsqu'un ordinateur veut se connecter au site, il se connecte sur ce port pour communiquer avec Apache.<br>
         Inversement, le serveur peut se connecter à un site en passant par ce port.<br>
         Si nous ne voulons pas qu'un utilisateur accède au site, nous pouvons bannir le port 80 en entrée.<br>
-        Si nous voulons interdire le serveur d'accéder à un site en particulié, nous pouvons bannir le port 80 en sortie pour une IP en particulier.<br>
+        Si nous voulons interdire le serveur d'accéder à un site en particulier, nous pouvons bannir le port 80 en sortie pour une IP en particulier.<br>
         <br>
 
     - #### <a name="p5cii"></a> ii) Installation de UFW
         **Commande d'installation :** `sudo apt install ufw`<br>
-        Les commandes systemctl peuvent être utilisés.<br>
+        Les commandes systemctl peuvent être utilisées.<br>
         <br>
         Par défaut, UFW bloque les connexions en entrer et autorise les connexions en sortie.<br>
         Nous avons autorisé l'accès en entrée sur les ports 80 (HTTP), 443 (HTTPS) et 22 (SSH).<br>
-        Pour assurer la sécurité, il est possible que nous limitons l'accès au serveur à seulement quelques machines.<br>
+        Pour assurer la sécurité, il est possible que nous limitions l'accès au serveur à seulement quelques machines.<br>
         <br>
         Actuellement, le port 443 n'est pas utilisé. Nous l'enlèverons sûrement.<br>
-        Ce n'est peut-être pas une bonne idée d'autoriser l'accès de tous les ports en sorties, cependant nous craignons bloquer le système si on les interdits tous.<br>
+        Ce n'est peut-être pas une bonne idée d'autoriser l'accès de tous les ports en sorties, cependant nous craignons de bloquer le système si nous les interdisons tous.<br>
         <br>
+  
         <div align="center">
             <img src="img\V_Securisation\ufw.webp" title="la commande sudo ufw status verbose montre les ports ouverts" width="350"/><br>
             <i>Résultat de la commande "sudo ufw status verbose"</i>
         </div>
         <br>
+      
         **Vérifier les règles et l'activité d'UFW :** `sudo ufw status verbose`<br>
         **Activer la protection d'UFW (désactivé par défaut) :** `sudo ufw enable`<br>
         **Autoriser les connexions sur le port 22 (SSH) :** `sudo ufw allow 22`<br>
@@ -699,7 +702,7 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
 - ### <a name="p5d"></a> d) PHPMyAdmin
     - #### <a name="p5di"></a> i) Limitation des connexions aux comptes
         Depuis l'interface administrateur de PHPMyAdmin, nous pouvons interdire des connexions aux comptes utilisateur MariaDB.<br>
-        Nous avons bloquer l'accès aux comptes par défaut root et phpmyadmin qui sont les plus recherchés par les pirates.<br>
+        Nous avons bloqué l'accès aux comptes par défaut root et phpmyadmin qui sont les plus recherchés par les pirates.<br>
         <br>
     - #### <a name="p5dii"></a> ii) Changement de l'alias
         L'alias `/phpmyadmin` se situe dans le répertoire `/etc/phpmyadmin/apache2.conf`.<br>
