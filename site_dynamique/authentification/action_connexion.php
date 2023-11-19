@@ -1,5 +1,5 @@
 <?php
-requires("../PHPfunctions.php");
+require("../ressources/fonctions/PHPfunctions.php");
 // Définir les informations de connexion à la base de données
 $host = 'localhost';
 $database = 'DB_TIX';
@@ -15,19 +15,29 @@ try {
 
         // Vérifie si les champs 'login' et 'mdp' sont vides
 
-        if (empty($_POST['login']) || $_POST['mdp']) {
+	$loginSite = $_POST['login'];
+	$mdpMariaDB = $_POST['mdp'];
+
+        if (empty($loginSite) || empty($mdpMariaDB)) {
             throw new Exception("3"); // Erreur : champs vide
         }
         
         // Récupère l'ID_USER de l'utilisateur par rapport au login
-        id = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
-        
+        //$id = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
+        $test = insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection);
+
+	$id = mysqli_fetch_row($test);
+	
+	echo $id[0];
+	/*
         if (connectUser($id,$_POST['mdp'])){
             header('Location: ../tableau_bord/tableauBord.php');
         }
         else{
             header('Location: connexion.php?id=2');
         }
+        */
+
     }
 } catch (Exception $e) {
 
