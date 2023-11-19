@@ -16,10 +16,52 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 ## Vendredi 17/11/2023 - Bilan du travail du 11/11/2023 au 17/11/2023
 Cette semaine, nous avons quasiment résolu tous les problèmes cités précédemment. Nous avons pu avancer, nous ne sommes plus bloqués.<br>
-L'expérience de binôme Florent-Enzo est concluant, nous allons la poursuivre. Ils sont plus efficaces ensemble.<br>
+L'expérience de binôme Florent-Enzo est concluante, nous allons la poursuivre. Il y a une meilleure ambience au sein du groupe.<br>
 <br>
-Ainsi, pour le problème 2, on se demande juste comment représenter la page d'administration, actuellement ce n'est pas vraiment urgence.<br>
-Le problème 1, on donne di
+Les problèmes 1 et 2 sont en cours de résolution. Dans le premier cas, nous en discutons avec notre professeur de base de données, Madame PREDA.<br>
+Pour le deuxième, nous sommes en cours de réflexion concernant la page d'administration et une page du CGU. Dans tous les cas, la partie HTML des pages PHP n'est pas à jour.<br>
+<br>
+Malgré ces bonnes nouvelles, nous prenons du retard. Des pages simples à faire en quelques heures demandent plus de temps.<br>
+Ce n'est pas forcément un manque d'implication, même si c'est le cas pour la base de donnée, c'est je pense surtout la difficulté de se projeter sur comment fonctionne le système.<br>
+<br>
+En tant que chef de projet, il m'est compliqué d'être présent sur plusieurs parties du projet à la fois. Aider, nous fait perdre du temps. Cela demande à reflexion...<br>
+<br>
+Avec la fin de l'installation du RaspberryPi 4, je vais reprendre en main les tâches qui tardent trop à être terminé. Ce n'est pas possible de continuer comme ça.<br>
+<br>
+
+#### Avancé
+
+- **Ce qui a été terminé :** <br>
+  - Sécurisation du RaspberriPi 4 et son rapport d'installation
+  - Patch de la base de données : Création de la table UrgenceTicket
+  - Script de test comportant des utilisateurs et des tickets
+  - Utilisateurs fictifs MariaDB pour le fonctionnement des pages
+
+- **Ce qui a été commencé :**
+  - Adaptation des pages HTML (devenu PHP) en fonction des utilisateurs
+
+- **Ce qui a été avancé :**
+  - Fonction simplifiant l'utilisation de la base de données
+  - Correction site statique (il faut l'ajouter au code PHP maintenant...)
+
+#### Travail effecté
+- **Florent**<br>
+  - Fonction simplifiant l'utilisation de la base de données
+
+- **Tom**<br>
+  - Correction site statique (il faut l'ajouter au code PHP maintenant...)
+  
+- **Assia**<br>
+  - Sécurisation du RaspberriPi 4 et son rapport d'installation
+  
+- **Enzo** :<br>
+  - Adaptation des pages HTML (devenu PHP) en fonction des utilisateurs
+  - Utilisateurs fictifs MariaDB pour le fonctionnement des pages
+  
+- **Matthieu (chef de projet)**<br>
+  - Sécurisation du RaspberriPi 4 et son rapport d'installation
+  - Patch de la base de données : Création de la table UrgenceTicket
+  - Script de test comportant des utilisateurs et des tickets
 
 <br><br><br>
 
