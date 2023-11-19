@@ -669,11 +669,25 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         <br>
         Actuellement, le port 443 n'est pas utilisé. Nous l'enlèverons sûrement.<br>
         Ce n'est peut-être pas une bonne idée d'autoriser l'accès de tous les ports en sorties, cependant nous craignons bloquer le système si on les interdits tous.<br>
+
 - ### <a name="p5d"></a> d) PHPMyAdmin
     - #### <a name="p5di"></a> i) Limitation des connexions aux comptes
+        Depuis l'interface administrateur de PHPMyAdmin, nous pouvons interdire des connexions aux comptes utilisateur MariaDB.<br>
+        Nous avons bloquer l'accès aux comptes par défaut root et phpmyadmin qui sont les plus recherchés par les pirates.<br>
+        <br>
     - #### <a name="p5dii"></a> ii) Changement de l'alias
+        L'alias `/phpmyadmin` se situe dans le répertoire `/etc/phpmyadmin/apache2.conf`.<br>
+        A l'aide de l'éditeur de texte nano et à avec les droits administrateurs en utilisant sudo, nous pouvons modifier l'alias.<br>
+        <br>
+        Par défaut, l'alias est /phpmyadmin ([IP DU SERVEUR]/phpmyadmin).<br>
+        Il est dangereux de ne pas le changer car celui-ci mène vers la page de connexion à PHPMyAdmin. Vu qu'il est connu de tous, nous devons le changer.<br>
+        <br>
+        <br>
+        **Sources :**
+      - https://blog.seboss666.info/2018/12/quelles-methodes-pour-proteger-un-acces-phpmyadmin/
+      - https://forum.vestacp.com/viewtopic.php?t=5264
 
-
+    
 ## <a name="p6"></a> VI - Faire une sauvegarde du serveur
 - ### <a name="p6a"></a> a) Créer et restaurer une image
     
