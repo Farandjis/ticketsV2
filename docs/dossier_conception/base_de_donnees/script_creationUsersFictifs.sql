@@ -50,8 +50,8 @@ GRANT CREATE USER ON *.* TO 'fictif_inscriptionDB'@'localhost';
 -- Ajout des droit pour l'utilisateurs fictif_droitDB
 GRANT SELECT ON DB_TIX.vue_Utilisateur_client TO 'fictif_droitDB'@'localhost';
 GRANT SELECT ON DB_TIX.vue_Ticket_client TO 'fictif_droitDB'@'localhost';
-GRANT SELECT ON DB_TIX.vue_Utilisateur_insertion_client TO 'fictif_droitDB'@'localhost';
-GRANT SELECT ON DB_TIX.vue_Ticket_insertion_client TO 'fictif_droitDB'@'localhost';
+GRANT UPDATE ON DB_TIX.vue_Utilisateur_insertion_client TO 'fictif_droitDB'@'localhost';
+GRANT UPDATE ON DB_TIX.vue_Ticket_insertion_client TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.vue_Utilisateur_client TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.vue_Ticket_client TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.vue_Utilisateur_insertion_client TO 'fictif_droitDB'@'localhost';
