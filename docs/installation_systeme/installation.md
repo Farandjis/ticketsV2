@@ -10,7 +10,6 @@ INF2-A
 Ce document décrit en détail le processus d'installation du RPi4, de son serveur LAMP, de sa mise en réseau, du ssh et de sa sécurisation.<br>
 Les étapes décrites sont également appliquées au serveur de secours. Ce document aborde aussi la configuration du routeur.<br>
 <br>
-Rapport entièrement rédigé par Matthieu FARANDJIS.
 
 </div>
 
@@ -600,25 +599,27 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         **Changer le mot de passe d'un utilisateur :** `passwd [UTILISATEUR]`<br>
         <br>
     - #### <a name="p5aii"></a> ii) Droits des utilisateurs
-Nous avons créé des utilisateurs affectés à chaque membre du groupe de travail. Ces utilisateurs appartiennent au groupe fteam. 
-<br>
-<br>
-Par la suite, nous avons accordé les droits administratifs de lecture, d'écriture et d’exécution aux membres de ce groupe. Pendant que les membres du groupe pourront écrire et lire l’ensemble des fichiers du répertoire /var/www/html, les autres pourront simplement les visionner. 
-
-Pour se faire, nous avons utilisé la commande : <br> sudo chown -R :fteam /var/www/html.<br>Cette commande a permis de changer le propriétaire du répertoire et des fichiers qui le compose. Ainsi, le groupe fteam est propriétaire de /var/www/html. 
-
-Pour vérifier que le résultat de cette commande est bien celui voulu, on a effectué la commande : <br>ls -l dans /var/www. <br>On observe le résultat suivant : drwxrwxr-x
-<br>Le propriétaire et le groupe possèdent tous les droits tandis que les autres ne peuvent que lire et exécuter. 
-<br>
-<br>
-Pour ajouter les droits administratifs à l’utilisateur fhoguin. Il suffit d’accéder au  fichier contenant l’accès à sudo avec la commande :<br>cat /etc/sudoers. 
-Dans ce fichier, on y ajoute la ligne suivante permettant de donner la possibilité d'exécuter toutes les commandes avec tous les privilèges sur tous les hôtes à l’utilisateur fhoguin.
-<br>
-<br>
-fhoguin ALL=(ALL:ALL) ALL
-<br>
-<br>
-Pour vérifier qu’il possède la permission d’exécuter n’importe quelle commande. On peut se connecter au compte fhoguin et exécuter une commande. 
+        Nous avons créé des utilisateurs affectés à chaque membre du groupe de travail. Ces utilisateurs appartiennent au groupe team. 
+        <br>
+        <br>
+        Par la suite, nous avons accordé les droits administratifs de lecture, d'écriture et d’exécution aux membres de ce groupe. Pendant que les membres du groupe pourront écrire et lire l’ensemble des fichiers du répertoire /var/www/html, les autres pourront simplement les visionner. 
+        <br><br>
+        Pour se faire, nous avons utilisé la commande : `sudo chown -R :team /var/www/html`.<br>Cette commande a permis de changer le propriétaire du répertoire et des fichiers qui le compose. Ainsi, le groupe team est propriétaire de /var/www/html. 
+        <br><br>
+        Pour vérifier que le résultat de cette commande est bien celui voulu, on a effectué la commande : <br>`ls -l dans /var/www`. <br>On observe le résultat suivant : `drwxrwxr-x`
+        <br>Le propriétaire et le groupe possèdent tous les droits tandis que les autres ne peuvent que lire et exécuter. Si nous voulions changer les permissions, nous aurions pu utiliser la commande `sudo chmod`.<br>
+        <br>
+        `d` signifie "directory", `r` pour "read", `w` pour `write`, `x` pour exécution. `-` signifie qu'il n'y a pas de droit. Les droits sont dans l'ordre User, Group, Other.<br>
+        <br>
+        <br>
+        Pour ajouter les droits administratifs à l’utilisateur fhoguin. Il suffit d’accéder au fichier contenant les accès à `sudo` avec la commande : `sudo nano /etc/sudoers`.<br>
+        Dans ce fichier, on y ajoute la ligne suivante permettant de donner la possibilité d'exécuter toutes les commandes avec le privilège administrateur (root) à l’utilisateur hoguin : `hoguin ALL=(ALL:ALL) ALL`
+        <br>
+        <br>
+        Pour vérifier qu’il possède la permission d’exécuter n’importe quelle commande. On peut se connecter au compte hoguin et exécuter une commande avec sudo.<br>
+        <br>
+        <br>
+        Remarque : Les groupes et utilisateurs cités sont différents de ceux sur le serveur. Nous préférons ne pas dévoiler ces informations.
 
 
 
