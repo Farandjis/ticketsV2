@@ -39,6 +39,7 @@ INF2-A
 
 - <b><a name="p1a"></a>a) Conception de la page index.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page index.html contient :
     Un 'nav' représentant la barre de naviguation. Ce 'nav' contient :
@@ -57,17 +58,19 @@ La page index.html contient :
 
 - <b><a name="p1b"></a>b) Conception de la page connexion.php</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page connexion.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
     Un 'div' représentant le logo et le formulaire de connexion. Ce 'div' contient :
         Un 'form' représentant le formulaire de connexion.
 </pre>
+<u>Programmation PHP :</u>
 <pre>
 Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_connexion.php :
 - Vérification de la provenance des valeurs et de leur non nullité
 {
-    Lancement de la requête avec la fonction insertRequest()
+    Lancement de la requête avec la fonction executeSQL()
     - Vérification de l'existance de l'utilisateur
     {
         Connexion au compte crée avec la fonction connectUser()
@@ -83,6 +86,7 @@ Redirection connexion.php avec un id
 
 - <b><a name="p1c"></a>c) Conception de la page modifMdp.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page modifMDP.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
@@ -95,19 +99,21 @@ La page modifMDP.html contient :
 
 - <b><a name="p1d"></a>d) Conception de la page inscription.php</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page inscription.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
     Un 'div' représentant le logo et le formulaire d'inscription. Ce 'div' contient :
         Un 'form' représentant le formulaire d'inscription.
 </pre>
+<u>Programmation PHP :</u>
 <pre>
 Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_inscription.php :
 - Vérification de la provenance des valeurs et de leur non nullité
 {
     - Vérification de la conformité du format du mot de passe avec la fonction valideMDP()
     {
-        Lancement de la requête avec la fonction insertRequest()
+        Lancement de la requête avec la fonction executeSQL()
         - Vérification de la réussite de l'insertion de la requête
         {
             Création de l'utilisateur MariaDB et don de ses droits avec la fonction newUser()
@@ -130,6 +136,7 @@ Redirection inscription.php avec un id
 
 - <b><a name="p1e"></a>e) Conception de la page journalActivite.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page journalActivite.html contient :
     Un 'nav' représentant la barre de naviguation. Ce 'nav' contient :
@@ -149,6 +156,7 @@ La page journalActivite.html contient :
 
 - <b><a name="p1f"></a>f) Conception de la page modifEmail.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page modifEmail.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
@@ -161,6 +169,7 @@ La page modifEmail.html contient :
 
 - <b><a name="p1g"></a>g) Conception de la page creerTicket.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page creerTicket.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
@@ -173,6 +182,7 @@ La page creerTicket.html contient :
 
 - <b><a name="p1h"></a>h) Conception de la page profile.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page profile.html contient :
     Un 'nav' représentant la barre de naviguation. Ce 'nav' contient :
@@ -185,11 +195,41 @@ La page profile.html contient :
         Un 'div' représentant la liste des tickets du profil. Ce div contient :
             Un 'table' représentant le tableau des tickets.
 </pre>
+<u>Programmation PHP :</u>
 <pre>
 Lorsque le bouton de déconnexion est préssé, on active la page d'action action_inscription.php :
 Ouverture session
 Suppression des données de la session
 Fermeture de la session
+</pre>
+<pre>
+Le div représentant le profil contient des informations dynamiques, ce div est conçu ainsi :
+Balises 'table' et 'tbody'
+{
+    Réccupération des données à afficher avec la fonction executeSQL()
+    Boucle affichant chaque ligne du tableau (de 0 à 4)
+    Initialisation de la constante INDEX étant une array contenant les premières données des lignes.
+    {
+        Balise 'tr'
+        {
+            Balise 'td'
+            {
+                Elément d'INDEX
+            }
+            Balise 'td'
+            {
+                Elément de la requête SQL
+            }
+            - Si l'itération de la boucle est de 2 ou 4
+            {
+                Balise 'td'
+                {
+                    Bouton de modification
+                }
+            }
+        }
+    }
+}
 </pre>
 <br><br>
 
@@ -198,6 +238,7 @@ Fermeture de la session
 
 - <b><a name="p1i"></a>i) Conception de la page historique.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page historique.html contient :
     Un 'nav' représentant la barre de naviguation. Ce 'nav' contient :
@@ -214,6 +255,7 @@ La page historique.html contient :
 
 - <b><a name="p1j"></a>j) Conception de la page tableauBord.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page tableauBord.html contient :
     Un 'nav' représentant la barre de naviguation. Ce 'nav' contient :
@@ -231,6 +273,7 @@ La page tableauBord.html contient :
 
 - <b><a name="p1k"></a>k) Conception de la page modificationTicket.html</b><br>
 <br><br>
+<u>Programmation HTML :</u>
 <pre>
 La page modificationTicket.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
@@ -251,7 +294,7 @@ x : bool (Définie l'état de la connexion à la base)
 a : str (Correspond au login entré)
 b : str (Correspond au mot de passe entré)
 </pre>
-#### <i>x = insertRequest(a,b,c)</i>
+#### <i>x = executeSQL(a,b,c)</i>
 <pre>
 Préparation de la requete sous la forme d'une requête préparé et envoie de cette dernière à la base de données.
 
