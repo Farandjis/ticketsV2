@@ -14,7 +14,7 @@ FROM Utilisateur;
 
 -- Permet d'ajouter un nouvel utilsateur
 CREATE VIEW vue_UserFictif_inscriptionDB1 AS 
-SELECT LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER, HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER 
+SELECT ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER 
 FROM Utilisateur;
 
 -- Permet de récupérer les différentes infos des utilisateurs
@@ -43,7 +43,7 @@ SELECT *
 FROM Ticket;
 
 -- Ajout des droit pour l'utilisateurs fictif_inscriptionDB
-GRANT INSERT ON vue_UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
+GRANT INSERT (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) ON vue_UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
 GRANT SELECT ON vue_UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
 GRANT CREATE USER ON *.* TO 'fictif_inscriptionDB'@'localhost';
 
