@@ -19,9 +19,13 @@
         <div role="form" class="formAuthentification formConnexion">
 
             <form action='action_connexion.php' method='post'>
-                <h1 class="h1Conexion">Je me connecte</h1><br>
+                <h1 class="h1Conexion">Je me connecte</h1>
+
+
                 <?php
                 if(isset($_GET['id'])) {
+                    echo '<div class="erreur">';
+                    echo '<p>';
                     if ($_GET['id'] == 2) {
                         echo "ERREUR : Le champ login ou mot de passe est incorrect";
                     }
@@ -31,8 +35,15 @@
                     else {
                         echo "ERREUR : Une erreur est survenue";
                     }
+                    echo '</p>';
+                    echo '</div>';
                 }
                 ?>
+
+
+
+
+
                 <label for='login'>Login</label><br>
                 <input id='login' type='text' name ='login'>
                 <br><br>

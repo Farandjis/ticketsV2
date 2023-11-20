@@ -109,7 +109,15 @@ nav {
   display: none;
 }
 
-
+.erreur{
+  background: #131212;
+  border: 1px solid black;
+  color: #f62828;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
 
 /* ======== PAGE D'ACCUEIL ======== */
