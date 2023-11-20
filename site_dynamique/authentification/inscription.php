@@ -23,6 +23,9 @@
             <?php
 
             if (isset($_GET['id'])) {
+                echo '<div class="erreur">';
+                echo '<p>';
+
                 if ($_GET['id'] == 1) {
                     echo "Merci de passer par ce formulaire";
                 } else if ($_GET['id'] == 2) {
@@ -34,8 +37,14 @@
                 } else if ($_GET['id'] == 5) {
                     echo "La connexion à l'application à échouer";
                 }
+                echo '</p>';
+                echo '</div>';
             }
             ?>
+
+
+
+
             <div class="champs-inscription">
                <div class="inscription-gauche">
                   <label for='login'>Login</label><br>
