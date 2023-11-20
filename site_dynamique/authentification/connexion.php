@@ -20,6 +20,19 @@
 
             <form action='action_connexion.php' method='post'>
                 <h1 class="h1Conexion">Je me connecte</h1><br>
+                <?php
+                if(isset($_GET['id'])) {
+                    if ($_GET['id'] == 2) {
+                        echo "ERREUR : Le champ login ou mot de passe est incorrect";
+                    }
+                    else if ($_GET['id'] == 3) {
+                        echo "ERREUR : Le champ login ou mot de passe est vide";
+                    }
+                    else {
+                        echo "ERREUR : Une erreur est survenue";
+                    }
+                }
+                ?>
                 <label for='login'>Login</label><br>
                 <input id='login' type='text' name ='login'>
                 <br><br>
@@ -33,16 +46,3 @@
     </div>
 </body>
 </html>
-<?php
-if(isset($_GET['id'])) {
-    if ($_GET['id'] == 2) {
-        echo "ERREUR : Le champ login ou mot de passe est incorrect";
-    }
-    else if ($_GET['id'] == 3) {
-        echo "ERREUR : Le champ login ou mot de passe est vide";
-    }
-    else {
-        echo "ERREUR : Une erreur est survenue";
-    }
-}
-?>
