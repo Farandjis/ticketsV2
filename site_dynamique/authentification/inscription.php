@@ -10,7 +10,7 @@
 <body>
 <header>
   <div class="retour">
-    <a href="index.php"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+    <a href="../"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
   </div>
 </header>
     <div class="page_authentification_modif_perso">
@@ -20,6 +20,22 @@
 
         <form action='action_inscription.php' method='post'>
             <h1>Je m'inscris !</h1><br>
+            <?php
+
+            if (isset($_GET['id'])) {
+                if ($_GET['id'] == 1) {
+                    echo "Merci de passer par ce formulaire";
+                } else if ($_GET['id'] == 2) {
+                    echo "Un ou plusieurs n'ont pas été rempli";
+                } else if ($_GET['id'] == 3) {
+                    echo 'Les mots de passe ne sont pas équivalents';
+                } else if ($_GET['id'] == 4) {
+                    echo 'Le compte existe déjà';
+                } else if ($_GET['id'] == 5) {
+                    echo "La connexion à l'application à échouer";
+                }
+            }
+            ?>
             <div class="champs-inscription">
                <div class="inscription-gauche">
                   <label for='login'>Login</label><br>
@@ -58,20 +74,3 @@
 
 </body>
 </html>
-
-<?php
-
-if (isset($_GET['id'])) {
-    if ($_GET['id'] == 1) {
-        echo "Merci de passer par ce formulaire";
-    } else if ($_GET['id'] == 2) {
-        echo "Un ou plusieurs n'ont pas été rempli";
-    } else if ($_GET['id'] == 3) {
-        echo 'Les mots de passe ne sont pas pareils';
-    } else if ($_GET['id'] == 4) {
-        echo 'Le compte existe déjà';
-    } else if ($_GET['id'] == 5) {
-        echo "La connexion à l'application à échouer";
-    }
-}
-?>
