@@ -344,7 +344,27 @@ Si le mot de passe respecte les conditions de sécurité x = True. Sinon x = Fal
 x : bool (Définie la validité du mot de passe)
 a : str (Correspond au mot de passe entré)
 </pre>
+#### <i>x = connectUser(a,b)</i>
+<pre>
+Tentative de connexion à la base de données avec l'identifiant de l'utilisateur et son mot de passe.
+Si la connexion réussit, une session est créer et x = True. Sinon x = False.
 
+x : bool (Définie l'état de la connexion à la base)
+a : str (Correspond au login entré)
+b : str (Correspond au mot de passe entré)
+</pre>
+#### <i>x = isConnected()</i>
+<pre>
+Vérifie si l'utilisateur a une session d'ouverte.
+    
+x : bool (Définie si une session est ouverte chez l'utilisateur)
+</pre>
+#### <i>x = userRole()</i>
+<pre>
+Renvoie le rôle de l'utilisateur.
+    
+x : string (Nom du rôle de l'individu se connectant)
+</pre>
 ------------------------------------------------------------------------------------------------------------------------
 ### <a name="p2"></a>I – Conception Architecturale
 <br><br>
