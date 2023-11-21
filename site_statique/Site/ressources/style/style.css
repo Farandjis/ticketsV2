@@ -305,6 +305,13 @@ footer img {
   background: #ECECEC;
   border-radius: 100px;
   margin-bottom: 25px;
+  box-shadow: 0 0 10px #e7e7e7;
+
+  transition: transform 0.3s;
+}
+
+.logo_plein:hover{
+  transform: scale(1.1);
 }
 
 .formAuthentification h1{
@@ -539,37 +546,7 @@ input[type="date"] {
   margin: 10px;
 }
 
-.conteneur_administration_navigation{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 
-.conteneur_administration_navigation > a {
-  text-align: center;
-  text-decoration: none;
-  font-size: 32px;
-  font-weight: 700;
-
-  color: #1c1c1c;
-  background: #ECECEC;
-  width: 400px;
-  height: auto;
-  min-width: 90px;
-  padding: 10px 5px;
-  margin-top: 150px;
-  border: solid 1px #1c1c1c;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s,box-shadow 0.3s , transform 0.3s;
-}
-
-.conteneur_administration_navigation > a:hover, a:focus {
-  background-color: #dcbfbf;
-  transform: scale(1.05);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
 
 /* ======== JOURNAL D'ACTIVITE ======== */
 
