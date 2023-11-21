@@ -46,25 +46,24 @@ function executeSQL($reqSQL,$params,$connection){
 }
 
 
-function valideMDP($a){
+function valideMDP($mdp){
     /**
      * Vérifie la solidité du mot de passe.
      *
-     * @param string $a Le mot de passe à valider.
-     * @return bool Retourne True si le mot de passe est valide. False sinon.
+     * @param string $mdp Le mot de passe à valider.
+     * @return int Retourne 1 si le mot de passe est valide. 0 si pb taille, -1 à -4 si pb caractère (voir les commentaires)
      */
-    if (strlen($a) < 12 || strlen($a) > 32) {
-        if (!preg_match('/[A-Z]/', $a)) {
-            if (!preg_match('/[a-z]/', $a)) {
-                if (!preg_match('/[0-9]/', $a)) {
-                    if (!preg_match('/[^a-zA-Z0-9]/', $a)) {
-                        return true;
-                    }
-                }
-            }
-        }
-    }
-    return false;
+    if (strlen($mdp) >= 12 and strlen($mdp) <= 32) { // entre 12 et 32 caractères compris uniquement
+        if (preg_match('/[A-Z]/', $mdp)) { // doit contenir au moins une majuscule
+            if (preg_match('/[a-z]/', $mdp)) { // doit contenir au moins une minuscule
+                if (preg_match('/[0-9]/', $mdp)) { // doit contenir au moins un chiffre
+                    if (preg_match('/[^a-zA-Z0-9]/', $mdp)) { // doit contenur un caractère spécial
+                        return 1; // mdp valide
+                    } else { return -4; } // manque caractère spécial
+                } else { return -3; } // manque chiffre
+            } else { return -2; } // manque min
+        } else { return -1; } // manque maj
+    } else { return 0; } // pb taille
 }
 
 
