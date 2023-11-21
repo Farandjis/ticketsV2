@@ -16,16 +16,18 @@ try {
 
         // Vérifie si les champs 'login' et 'mdp' sont vides
 
-	$loginSite = $_POST['login'];
-	$mdpMariaDB = $_POST['mdp'];
+	$loginSite = htmlspecialchars($_POST['login']);
+	$mdpMariaDB = htmlspecialchars($_POST['mdp']);
 
         if (empty($loginSite) || empty($mdpMariaDB)) {
             throw new Exception("3"); // Erreur : champs vide
         }
         
         // Récupère l'ID_USER de l'utilisateur par rapport au login
-        //$id = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
-        $resSQL = mysqli_fetch_row(insertRequest("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connection));
+        //$id = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
+        $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connection));
+
+
 
 	if ($resSQL === null){ header('Location: connexion.php?id=2'); } // Mauvais login (la requête SQL n'a rien renvoyé)
 	else { $loginMariaDB = $resSQL[0]; } // On récupère l'ID_USER qui est le login MariaDB.
@@ -39,6 +41,7 @@ try {
         else{
             header('Location: connexion.php?id=2');
         }
+
 
 
     }
