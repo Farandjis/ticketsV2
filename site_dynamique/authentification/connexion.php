@@ -32,6 +32,9 @@
                     else if ($_GET['id'] == 3) {
                         echo "ERREUR : Le champ login ou mot de passe est vide";
                     }
+                    else if ($_GET['id'] == 4) {
+                        echo "ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté.";
+                    }
                     else {
                         echo "ERREUR : Une erreur est survenue";
                     }
