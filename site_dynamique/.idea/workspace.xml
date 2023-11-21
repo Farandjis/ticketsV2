@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d83d27ab-5111-4b73-8ac8-86bce721956d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/site_dynamique.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authentification/inscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/authentification/inscription.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ressources/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ressources/style/style.css" afterDir="false" />
     </list>
@@ -40,7 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1700507557604</updated>
       <workItem from="1700507558916" duration="2202000" />
-      <workItem from="1700509803381" duration="302000" />
+      <workItem from="1700509803381" duration="478000" />
     </task>
     <servers />
   </component>
