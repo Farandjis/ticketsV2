@@ -93,6 +93,20 @@ La page modifMDP.html contient :
     Un 'div' représentant le logo et le formulaire de modification du mot de passe. Ce 'div' contient :
         Un 'form' représentant le formulaire de modification du mot de passe.
 </pre>
+<u>Programmation PHP :</u>
+<pre>
+Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_modifMDP.php :
+- Vérification de la provenance des valeurs et de leur non nullité
+{
+    - Vérification de la conformité du format du mot de passe avec la fonction valideMDP()
+    {
+        Lancement de la requête avec la fonction executeSQL()
+        Redirection profil.php avec un id
+    }
+    Redirection profil.php avec un id
+}
+Redirection profil.php avec un id
+</pre>
 <br><br>
 
 
@@ -162,6 +176,16 @@ La page modifEmail.html contient :
     Un 'div' représenant le bouton de retour à la page précédante.
     Un 'div' représentant le logo et le formulaire de modification de l'email. Ce 'div' contient :
         Un 'form' représentant le formulaire de modification de l'email.
+</pre>
+<u>Programmation PHP :</u>
+<pre>
+Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_modifEmail.php :
+- Vérification de la provenance des valeurs et de leur non nullité
+{
+        Lancement de la requête avec la fonction executeSQL()
+        Redirection profil.php avec un id 
+}
+Redirection profil.php avec un id
 </pre>
 <br><br>
 
