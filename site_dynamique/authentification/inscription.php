@@ -27,16 +27,27 @@
                 echo '<p>';
 
                 if ($_GET['id'] == 1) {
-                    echo "Merci de passer par ce formulaire";
+                    echo "ERREUR : Merci de passer par ce formulaire";
                 } else if ($_GET['id'] == 2) {
-                    echo "Un ou plusieurs n'ont pas été rempli";
+                    echo "ERREUR : Un ou plusieurs n'ont pas été rempli";
                 } else if ($_GET['id'] == 3) {
-                    echo 'Les mots de passe ne sont pas équivalents';
+                    echo 'ERREUR : Les mots de passe ne sont pas équivalents';
                 } else if ($_GET['id'] == 4) {
-                    echo 'Le compte existe déjà';
+                    echo 'ERREUR : Le compte existe déjà';
                 } else if ($_GET['id'] == 5) {
-                    echo "La connexion à l'application à échouer";
-                }
+                    echo "ERREUR :La connexion à l'application à échouer";
+                } else if ($_GET['id'] == 6) {
+                    echo "ERREUR : Une erreur interne est survenue, votre compte n'a pas pu être créer.";
+                } else if ($_GET['id'] == 7) {
+                    echo "ERREUR : Ce login est déjà utilisé.";
+                } else if ($_GET['id'] == '8a') { echo "ERREUR : Mot de passe invalide : il doit être compris en 12 et 32 caractères compris."; }
+                else if ($_GET['id'] == '8b') { echo "ERREUR : Mot de passe invalide : il doit comporter au moins une lettre majuscule."; }
+                else if ($_GET['id'] == '8c') { echo "ERREUR : Mot de passe invalide : il doit comporter au moins une lettre minuscule."; }
+                else if ($_GET['id'] == '8d') { echo "ERREUR : Mot de passe invalide : il doit comporter au moins un chiffre."; }
+                else if ($_GET['id'] == '8e') { echo "ERREUR : Mot de passe invalide : il doit comporter au moins un caractère spécial (hors lettres et chiffres)."; }
+                else if ($_GET['id'] == '9') { echo "ERREUR : Prénom invalide : seul les caractères suivants sont valide : lettres alphabêtique, lettres avec accent, tirets"; }
+                else if ($_GET['id'] == '10') { echo "ERREUR : Nom invalide : seul les caractères suivants sont valide : lettres alphabêtique, lettres avec accent, tirets, espaces"; }
+                else { echo "ERREUR : Une erreur est survenue"; }
                 echo '</p>';
                 echo '</div>';
             }

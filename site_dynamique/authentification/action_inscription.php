@@ -11,6 +11,36 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
 
             $coUFInscription = mysqli_connect($host, 'fictif_inscriptionDB', $USER_FICTIF_MDP['fictif_inscriptionDB'], $database);
 
+            // Avant de faire quoique ce soit, on fait des vérifications
+
+            // VERIF LOGIN
+            $coUFConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
+            $res = mysqli_fetch_row(executeSQL("SELECT COUNT(LOGIN_USER) FROM vue_UserFictif_connexionDB1 WHERE LOGIN_USER = ?", array($login), $coUFConnexion))[0];
+            if ($res == 1) { // login déjà présent dans la BD
+                $coUFInscription->close(); $coUFConnexion->close();
+                header('Location: inscription.php?id=7'); // ERREUR : Le login est déjà utilisé.
+            } else { $coUFConnexion->close(); }
+
+            // VERIF MDP
+            $resvalidemdp = valideMDP($mdp);
+            if ($resvalidemdp == 0){ header('Location: inscription.php?id=8a'); } // ERREUR : Mot de passe invalide taille
+            if ($resvalidemdp == -1){ header('Location: inscription.php?id=8b'); } // manque maj
+            if ($resvalidemdp == -2){ header('Location: inscription.php?id=8c'); } // manque min
+            if ($resvalidemdp == -3){ header('Location: inscription.php?id=8d'); } // manque chiffre
+            if ($resvalidemdp == -4){ header('Location: inscription.php?id=8e'); } // manque caractère spécial
+
+            // VERIF PRENOM
+            $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$/u'; // "u" indique qu'il faut utilisé UTF-8. Il autorise uniquement les caractères alphabêtique, les accents et les tirets
+            if (! preg_match($pattern, $prenom)){ header('Location: inscription.php?id=9'); };
+
+            // VERIF NOM
+            $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]+$/u'; // de même que pour prénom mais l'espac est autorisé en plus
+            if (! preg_match($pattern, $nom)){ header('Location: inscription.php?id=10'); };
+
+
+            // VERIF EMAIL
+
+
             $coUFInscription->begin_transaction(); // On commence une transaction SQL
 
             try {
@@ -45,6 +75,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 echo "oh lalalalala il y a une erreur : $e";
                 $coUFInscription->rollback();
                 $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
+                header('Location: inscription.php?id=6'); // ERREUR : Une erreur interne est survenue, votre compte n'a pas pu être créer.
             }
  
             // A partir de là, on sait que l'utilisateur a été créer. Il peut donc se connecter
@@ -54,9 +85,9 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 connectUser($loginMariaDBProtege, $mdpProtege); // Si la connexion au site est possible (mdp valide)
                 header('Location: ../tableau_bord/tableauBord.php');
             }catch(Exception $e){
-                header('Location: connexion.php?id=4');
+                header('Location: connexion.php?id=4'); // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
             }
-            
+
 
             /*
             $login = htmlspecialchars($_POST['login']);
