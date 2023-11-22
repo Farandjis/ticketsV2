@@ -6,8 +6,8 @@ global $host, $database, $USER_FICTIF_MDP; // Viennent de connexion_db.php (impo
 if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST['prenom'], $_POST['email'])) {
     if (!empty($_POST['login']) & !empty($_POST['mdp']) & !empty($_POST['mdp2']) & !empty($_POST['nom']) & !empty($_POST['prenom']) & !empty($_POST['email'])) {
         if ($_POST['mdp'] == $_POST['mdp2']) {
-            $login = $_POST['login']; $mdp = $_POST['mdp']; $nom = $_POST['nom'];
-            $prenom = $_POST['prenom']; $email = $_POST['email'];
+            $login = htmlspecialchars($_POST['login']); $mdp = htmlspecialchars($_POST['mdp']); $nom = htmlspecialchars($_POST['nom']);
+            $prenom = htmlspecialchars($_POST['prenom']); $email = htmlspecialchars($_POST['email']);
 
             $coUFInscription = mysqli_connect($host, 'fictif_inscriptionDB', $USER_FICTIF_MDP['fictif_inscriptionDB'], $database);
 
@@ -20,27 +20,32 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 $coUFInscription->close(); $coUFConnexion->close();
                 header('Location: inscription.php?id=7'); // ERREUR : Le login est déjà utilisé.
             } else { $coUFConnexion->close(); }
+            if (! (strlen($login) >= 5 and strlen($login) <= 30)) { header('Location: inscription.php?id=14'); return;}
 
             // VERIF MDP
             $resvalidemdp = valideMDP($mdp);
             if ($resvalidemdp == 0){ header('Location: inscription.php?id=8a'); } // ERREUR : Mot de passe invalide taille
             if ($resvalidemdp == -1){ header('Location: inscription.php?id=8b'); } // manque maj
             if ($resvalidemdp == -2){ header('Location: inscription.php?id=8c'); } // manque min
-            if ($resvalidemdp == -3){ header('Location: inscription.php?id=8d'); } // manque chiffre
-            if ($resvalidemdp == -4){ header('Location: inscription.php?id=8e'); } // manque caractère spécial
+            if ($resvalidemdp == -3){ header('Location: inscription.php?id=8d'); return;} // manque chiffre
+            if ($resvalidemdp == -4){ header('Location: inscription.php?id=8e'); return;} // manque caractère spécial
 
             // VERIF PRENOM
             $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$/u'; // "u" indique qu'il faut utilisé UTF-8. Il autorise uniquement les caractères alphabêtique, les accents et les tirets
-            if (! preg_match($pattern, $prenom)){ header('Location: inscription.php?id=9'); };
+            if (! preg_match($pattern, $prenom)){ header('Location: inscription.php?id=9'); return;}
+            if (! (strlen($prenom) >= 1 and strlen($prenom) <= 30)) { header('Location: inscription.php?id=12'); return;}
 
             // VERIF NOM
             $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]+$/u'; // de même que pour prénom mais l'espace est autorisé en plus
-            if (! preg_match($pattern, $nom)){ header('Location: inscription.php?id=10'); };
+            if (! preg_match($pattern, $nom)){ header('Location: inscription.php?id=10'); return;}
+            if (! (strlen($nom) >= 1 and strlen($nom) <= 30)) { header('Location: inscription.php?id=13'); return;}
 
             // VERIF EMAIL
             if (! filter_var($email, FILTER_VALIDATE_EMAIL)) { // Fonction PHP qui vérifie si l'email est valide.
                 header('Location: inscription.php?id=11'); // Si l'email n'est pas valide
+                return;
             }
+            if (! (strlen($email) >= 5 and strlen($email) <= 100)) { header('Location: inscription.php?id=15'); return;}
 
             $coUFInscription->begin_transaction(); // On commence une transaction SQL
             // la transaction permet de ne pas prendre en compte les modifications en cas de plantage (grâce à rollback)
@@ -75,6 +80,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 $coUFInscription->rollback();
                 $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
                 header('Location: inscription.php?id=6'); // ERREUR : Une erreur interne est survenue, votre compte n'a pas pu être créer.
+                return;
             }
  
             // A partir de là, on sait que l'utilisateur a été créer. Il peut donc se connecter
@@ -86,6 +92,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 header('Location: ../tableau_bord/tableauBord.php');
             }catch(Exception $e){
                 header('Location: connexion.php?id=4'); // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
+                return;
             }
 
         } else {
