@@ -110,3 +110,6 @@ Note : nous ne considérons pas les accents comme des caractères spéciaux (sau
 <br>
 Le test des cases vides à été effectués pour toute les cases du formulaire. Le résultat KO a été obtenu à chaque fois. Tout va bien<br>
 On a testé les limites des cas (cf cas 1 pour les limites), dans l'intervalle : OK à chaque fois, sinon, KO à chaque fois. Tout va bien<br>
+<br>
+Concernant l'injection de code SQL ou JavaScript, les caractères ">" et "<" sont stockés au format HTML, pas directement ">" "<" dans la base de données.<br>
+Il a été vérifié assidûment que le code pour les requêtes préparés correspond à l'exemple de Monsieur HOGUIN.
