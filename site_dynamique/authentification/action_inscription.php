@@ -34,29 +34,28 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             if (! preg_match($pattern, $prenom)){ header('Location: inscription.php?id=9'); };
 
             // VERIF NOM
-            $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]+$/u'; // de même que pour prénom mais l'espac est autorisé en plus
+            $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]+$/u'; // de même que pour prénom mais l'espace est autorisé en plus
             if (! preg_match($pattern, $nom)){ header('Location: inscription.php?id=10'); };
 
-
             // VERIF EMAIL
-
+            if (! filter_var($email, FILTER_VALIDATE_EMAIL)) { // Fonction PHP qui vérifie si l'email est valide.
+                header('Location: inscription.php?id=11'); // Si l'email n'est pas valide
+            }
 
             $coUFInscription->begin_transaction(); // On commence une transaction SQL
+            // la transaction permet de ne pas prendre en compte les modifications en cas de plantage (grâce à rollback)
 
             try {
                 executeSQL("INSERT INTO vue_UserFictif_inscriptionDB1 (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) VALUES (?, ?, ?, 'utilisateur', ?, current_timestamp())", array($login, $prenom, $nom, $email), $coUFInscription);
 
                 // A partir de là, on considère qu'on a bien inséré le nouvel utilisateur, on peut donc créer sa session (utilisateur) MariaDB.
 
-
-                $loginMariaDBProtege = htmlspecialchars($coUFInscription->insert_id);
+                $loginMariaDBProtege = htmlspecialchars($coUFInscription->insert_id); // On protège l'ID du dernier enregistrement inséré par l'UF Inscription.
                 $mdpProtege = htmlspecialchars($mdp);
-                $create_user_query = "CREATE USER '$loginMariaDBProtege'@localhost IDENTIFIED BY '$mdpProtege';";
+                $create_user_query = "CREATE USER '$loginMariaDBProtege'@localhost IDENTIFIED BY '$mdpProtege';"; // On créer un Utilisateur MariaDB
                 mysqli_query($coUFInscription, $create_user_query);
 
 
-
-                //$coUFInscription->rollback();
                 $coUFDroit = mysqli_connect($host, 'fictif_droitDB', $USER_FICTIF_MDP['fictif_droitDB'], $database);
 
                 $requete = "GRANT SELECT ON vue_Utilisateur_client TO '$loginMariaDBProtege'@localhost;";
@@ -68,11 +67,11 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 $requete = "GRANT UPDATE ON vue_Ticket_insertion_client TO '$loginMariaDBProtege'@localhost;";
                 mysqli_query($coUFDroit, $requete);
 
-                echo "ok";
+                $coUFDroit->close();
+
                 $coUFInscription->commit(); // Si tout s'est bien passé durant la transaction, on valide les modifications
                 $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
             }catch(Exception $e){
-                echo "oh lalalalala il y a une erreur : $e";
                 $coUFInscription->rollback();
                 $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
                 header('Location: inscription.php?id=6'); // ERREUR : Une erreur interne est survenue, votre compte n'a pas pu être créer.
@@ -82,54 +81,13 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             
 
             try{
-                connectUser($loginMariaDBProtege, $mdpProtege); // Si la connexion au site est possible (mdp valide)
+                $res = connectUser($loginMariaDBProtege, $mdpProtege); // Si la connexion au site est possible (= true, false sinon) (mdp valide)
+                if(!$res) { header('Location: connexion.php?id=4'); } // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
                 header('Location: ../tableau_bord/tableauBord.php');
             }catch(Exception $e){
                 header('Location: connexion.php?id=4'); // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
             }
 
-
-            /*
-            $login = htmlspecialchars($_POST['login']);
-            $mdp = htmlspecialchars($_POST['mdp']);
-            $nom = htmlspecialchars($_POST['nom']);
-            $prenom = htmlspecialchars($_POST['prenom']);
-            $email = htmlspecialchars($_POST['email']);
-
-            $host = 'localhost';
-            $database = 'DB_TIX';
-            $connection = mysqli_connect($host, 'fictif_inscriptionDB', 't!nt1n_inscriptionDB45987645', $database);
-
-            $requete = "INSERT INTO vue_UserFictif_inscriptionDB1 (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER, HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER) VALUES (?, ?, ?, 'utilisateur', ?, current_timestamp(), current_timestamp(), NULL)";
-            $stmt = mysqli_prepare($connection, $requete);
-            mysqli_stmt_bind_param($stmt, "ssss", $login, $prenom, $nom, $email);
-
-            if (mysqli_stmt_execute($stmt)) {
-                $connection = mysqli_connect($host, 'fictif_connexionDB', 't!nt1n_connexionDB45987645', $database);
-
-                $requete = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?";
-
-                $stmt = mysqli_prepare($connection, $requete);
-                mysqli_stmt_bind_param($stmt, "s", $login);
-                mysqli_stmt_execute($stmt);
-                $row = mysqli_fetch_row(mysqli_stmt_get_result($stmt));
-
-                newUser($row[0], $mdp, $connection);
-
-                // Vérification de la connexion
-                if (connectUser($row[0], $mdp)) {
-                    session_start();
-                    $_SESSION['login'] = $row[0];
-                    $_SESSION['mdp'] = $mdp;
-
-                    header('Location: ../tableau_bord/tableauBord.php');
-                } else {
-                    header('Location: inscription.php?id=5');
-                }
-            } else {
-                header('Location: inscription.php?id=4');
-            }
-            */
         } else {
             header('Location: inscription.php?id=3');
         }
