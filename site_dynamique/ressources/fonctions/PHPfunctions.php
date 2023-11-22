@@ -53,6 +53,7 @@ function valideMDP($mdp){
      * @param string $mdp Le mot de passe à valider.
      * @return int Retourne 1 si le mot de passe est valide. 0 si pb taille, -1 à -4 si pb caractère (voir les commentaires)
      */
+    return 1;
     if (strlen($mdp) >= 12 and strlen($mdp) <= 32) { // entre 12 et 32 caractères compris uniquement
         if (preg_match('/[A-Z]/', $mdp)) { // doit contenir au moins une majuscule
             if (preg_match('/[a-z]/', $mdp)) { // doit contenir au moins une minuscule
@@ -64,37 +65,6 @@ function valideMDP($mdp){
             } else { return -2; } // manque min
         } else { return -1; } // manque maj
     } else { return 0; } // pb taille
-}
-
-
-function newUser($id, $mdp){
-    global $host, $database;
-    /**
-     * Crée un utilisateur et lui fait don de ses droits
-     *
-     * @param string $id - L'id de l'utilisateur.
-     * @param string $mdp - Le mot de passe de l'utilisateur.
-     * @return bool - Retourne True si l'utilisateur a pu être créé. False sinon.
-     */
-
-
-    // $create_user_query = "CREATE USER '$id' IDENTIFIED BY '$mdp';";
-    // $connection = mysqli_connect($host, $id, $mdp, $database);
-    echo $mdp;
-    /*
-    if(mysqli_query($connection, $create_user_query)){
-        $requete = "GRANT SELECT ON vue_Utilisateur_client TO '$id';";
-        mysqli_query($connection, $requete);
-        $requete = "GRANT SELECT ON vue_Ticket_client TO '$id';";
-        mysqli_query($connection, $requete);
-        $requete = "GRANT UPDATE ON vue_Utilisateur_insertion_client TO '$id';";
-        mysqli_query($connection, $requete);
-        $requete = "GRANT UPDATE ON vue_Ticket_insertion_client TO '$id';";
-        mysqli_query($connection, $requete);
-        return true;
-    }
-    return false;
-    */
 }
 
 
@@ -139,12 +109,9 @@ function connectUser($loginMariaDB, $mdpMariaDB){
             $_SESSION['login'] = $loginMariaDB;
             $_SESSION['mdp'] = $mdpMariaDB;
 
-
             return true;
         }
-
     }
-    //return false;
-
+    return false;
 }
 
