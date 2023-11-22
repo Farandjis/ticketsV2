@@ -8,7 +8,7 @@ INF2-A
 ## Site dynamique - Authentification : Inscription
 
 <br><br>
-Ce document permet de s'assurer que les pages web statique soient conforme à ce qui est attendu.
+Ce dossier permet de s'assurer que les pages web dynamique soient conforme à ce qui est attendu.
 
 </div>
 
@@ -30,12 +30,12 @@ Ce document permet de s'assurer que les pages web statique soient conforme à ce
 
 ## <a name="I"></a>I - Introduction
 
-Le document suivant à pour but de tester les différentes pages du site dynamique réalisé au niveau de la gestion des profils utilisateurs. Nous testerons plusieurs fonctionnalités que nous allons ajouter en rapport avec la gestion des profils des utilisateurs.
+Le document suivant à pour but de tester les différentes pages du site dynamique réalisé pour l'inscription de l'utilisateur.
 <br>
 
 ## <a name="II"></a>II - Description de la procédure de test
+En fonction des paraètres de la base de données et de la conception, nous allons tester une par une chaque case.
 
-Les fonctionnalités que nous allons tester seront la connexion des utilisateurs, l’inscription de nouveaux utilisateurs et la modification de certaines informations des utilisateurs comme l’email ou le mot de passe.
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
