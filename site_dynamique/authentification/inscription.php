@@ -47,7 +47,12 @@
                 else if ($_GET['id'] == '8e') { echo "ERREUR : Mot de passe invalide : il doit comporter au moins un caractère spécial (hors lettres et chiffres)."; }
                 else if ($_GET['id'] == '9') { echo "ERREUR : Prénom invalide : seuls les caractères suivants sont valides : lettres alphabêtiques, lettres avec accent, tirets"; }
                 else if ($_GET['id'] == '10') { echo "ERREUR : Nom invalide : seuls les caractères suivants sont valides : lettres alphabêtiques, lettres avec accent, tirets, espaces"; }
-                else if ($_GET['id'] == '11') { echo "ERREUR : Adresse email invalide"; }
+                else if ($_GET['id'] == '11') { echo "ERREUR : Adresse email invalide : mauvais format ou caractère interdit."; }
+                else if ($_GET['id'] == '12') { echo "ERREUR : Le prénom doit être compris entre 1 et 30 caractère."; }
+                else if ($_GET['id'] == '13') { echo "ERREUR : Le nom doit être compris entre 1 et 30 caractère."; }
+                else if ($_GET['id'] == '14') { echo "ERREUR : Le login doit être compris entre 5 et 20 caractère."; }
+                else if ($_GET['id'] == '15') { echo "ERREUR : L'adresse email doit être compris entre 5 et 100 caractère."; }
+
                 else { echo "ERREUR : Une erreur est survenue."; }
                 echo '</p>';
                 echo '</div>';
