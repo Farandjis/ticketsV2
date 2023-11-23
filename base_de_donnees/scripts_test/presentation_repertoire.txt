@@ -1,0 +1,2 @@
+Dossier comportant des scripts d'exemple pour la base de données.
+A executer dans l'ordre du numéro de test.

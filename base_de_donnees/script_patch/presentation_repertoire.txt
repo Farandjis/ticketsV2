@@ -1,0 +1,5 @@
+Ce dossier retrace toutes les modifications commises sur la bases de données depuis la v0.2.1.
+
+Ils sont au format "AAMMJJ_patch_BD.sql". Si le script est complexe, il doit y avoir une description des modifications effectués.
+
+A pour Année (23 par ex), M pour Mois (11 par ex) et J pour Jour (08 par ex)
