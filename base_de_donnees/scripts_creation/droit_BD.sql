@@ -1,7 +1,10 @@
 -- Création des utilisateurs et rôles
-CREATE USER 'admin_sys' IDENTIFIED BY 'azerty'; -- MDP à modifier
-CREATE USER 'admin_web' IDENTIFIED BY 'azerty'; -- MDP à modifier
-CREATE USER 'visiteur' IDENTIFIED BY 'azerty'; -- MDP à modifier
+CREATE USER '5' IDENTIFIED BY 'Assuranc3t0ur!x'; -- note : admin_sys et toujours mdp azerty sur serveur secours 
+CREATE USER '6' IDENTIFIED BY 'P0rqu3p!x'; -- note : admin_web et toujours mdp azerty sur serveur secours 
+CREATE USER 'visiteur' IDENTIFIED BY 't9t+<Q33Pe%o4woPNw\D;hNdhZ}B/z'; -- note : toujours mdp azerty sur serveur secours 
+
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(5, 'admin', 'Administrateur', 'SYSTEME', 'admin_sys', 'missing.sys@email.com');
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(6, 'gestion', 'Administrateur', 'WEB', 'admin_web', 'missing.web@email.com');
 
 -- Création des vues
 
@@ -19,13 +22,12 @@ GRANT SELECT ON vue_Ticket_visiteur TO 'visiteur';
 
 -- Utilisateur
 CREATE VIEW vue_Utilisateur_client AS
-SELECT LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER
+SELECT ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER -- A modifier : supprimer ID_USER
 FROM Utilisateur;
 
 CREATE VIEW vue_Utilisateur_insertion_client AS
-SELECT EMAIL_USER
-FROM Utilisateur
-WHERE LOGIN_USER = CURRENT_USER;
+SELECT ID_USER, EMAIL_USER
+FROM Utilisateur; -- Mettre current USER
 
 CREATE VIEW vue_Ticket_client AS
 SELECT OBJET_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET, NIV_URGENCE_DEFINITIF_TICKET,
@@ -50,32 +52,31 @@ CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_etat_update_admWeb TO 'admin_web';
+GRANT UPDATE ON vue_etat_update_admWeb TO '6';
 
 -- Pour 'admin_web', autorisation d'INSERT
-GRANT INSERT ON Libelle TO 'admin_web';
-GRANT INSERT ON RelationTicketsLibelles TO 'admin_web';
+GRANT INSERT ON Libelle TO '6';
+GRANT INSERT ON RelationTicketsLibelles TO '6';
 
--- Pour 'admin_web', autorisation de UPDATE
-GRANT UPDATE ON Libelle TO 'admin_web';
-GRANT UPDATE ON RelationTicketsLibelles TO 'admin_web';
+-- Pour '6', autorisation de UPDATE
+GRANT UPDATE ON Libelle TO '6';
+GRANT UPDATE ON RelationTicketsLibelles TO '6';
 
 
 -- Générale Admins
 -- Pour 'admin_web'
-GRANT SELECT ON Utilisateur TO 'admin_web';
-GRANT SELECT ON Ticket TO 'admin_web';
-GRANT SELECT ON RoleUser TO 'admin_web';
-GRANT SELECT ON EtatTicket TO 'admin_web';
-GRANT SELECT ON RelationTicketsLibelles TO 'admin_web';
-GRANT SELECT ON Libelle TO 'admin_web';
+GRANT SELECT ON Utilisateur TO '6';
+GRANT SELECT ON Ticket TO '6';
+GRANT SELECT ON RoleUser TO '6';
+GRANT SELECT ON EtatTicket TO '6';
+GRANT SELECT ON RelationTicketsLibelles TO '6';
+GRANT SELECT ON Libelle TO '6';
 
 -- Pour 'admin_sys'
-GRANT SELECT ON Utilisateur TO 'admin_sys';
-GRANT SELECT ON Ticket TO 'admin_sys';
-GRANT SELECT ON RoleUser TO 'admin_sys';
-GRANT SELECT ON EtatTicket TO 'admin_sys';
-GRANT SELECT ON RelationTicketsLibelles TO 'admin_sys';
-GRANT SELECT ON Libelle TO 'admin_sys';
-
-
+GRANT SELECT ON Utilisateur TO '5';
+GRANT SELECT ON Ticket TO '5';
+GRANT SELECT ON RoleUser TO '5';
+GRANT SELECT ON EtatTicket TO '5';
+GRANT SELECT ON RelationTicketsLibelles TO '5';
+GRANT SELECT ON Libelle TO '5';
+>>>>>>> 4cbf8f6a86d7857cf14b0bb65b3fe320cb05843f:docs/dossier_conception/base_de_donnees/droit_BD.sql

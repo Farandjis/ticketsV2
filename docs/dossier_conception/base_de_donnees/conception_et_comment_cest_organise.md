@@ -136,6 +136,13 @@ Description de la table
   - # Marquer ici les profils MariaDB pour le site
   - fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - Profil dédié à récupérer l'identifiant de l'utilisateur à partir du login et d'autres actions liés à la connexion d'un utilisateur.
+  - fictif_insertionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à insérer les données de l'utilisateur au moment de l'inscription dans la base de données et de donner les droits à chaque utilisateur MariaDB.
+  - fictif_sélectionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à récupérer le rôle de l'utilisateur pour afficher ce qu'il doit voir.
+  - fictif_updateDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à modifier l'horodatage et l'ip de dernière connexion du compte connecter.
+
 
 
 - ### V - Les vues
@@ -160,4 +167,14 @@ Description de la table
 
   - #### vue_UserFictif_connexionDB1
     Vue n°1 pour le profil MariaDB dédié à la connexion. Cette vue montre uniquement les colonnes login et ID_USER.
+  - #### vue_UserFictif_insertionDB1
+    Vue n°2 pour le profil MariaDB dédié à l'inscription. Cette vue permettra d'ajouter les données dans la table 
+    utilisateur quand les données seront ajouter
+  - #### vue_UserFictif_selectionDB1
+    Vue n°3 pour le profil MariaDB dédié à la récupération des données des utilisateur utile pour la vérification. 
+    Cette vue montre tout les informations d'un utilisateur.
+  - #### vue_UserFictif_updateDB1
+    Vue n°4 pour le profil MariaDB dédié à la modification de l'horodatage et l'ip de dernière connexion. 
+    Cette vue montre uniquement les colonnes ID_USER, HORODATAGE_DERNIERE_CONNECTION_USER et IP_DERNIERE_CONNECTION_USER.
+
 
