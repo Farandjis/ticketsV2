@@ -47,8 +47,12 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             }
             if (! (strlen($email) >= 5 and strlen($email) <= 100)) { header('Location: inscription.php?id=15'); return;}
 
-            $coUFInscription->begin_transaction(); // On commence une transaction SQL
-            // la transaction permet de ne pas prendre en compte les modifications en cas de plantage (grâce à rollback)
+            // Maintenant que nous sommes certain que les valeurs entrées sont correctes, nous pouvons tenter d'insérer notre utilisateur
+
+
+            $coUFDroit = mysqli_connect($host, 'fictif_droitDB', $USER_FICTIF_MDP['fictif_droitDB'], $database);
+
+            $id_nouvel_utilisateur = null; // Nous le l'avons pas encore créer
 
             try {
                 executeSQL("INSERT INTO vue_UserFictif_inscriptionDB1 (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) VALUES (?, ?, ?, 'utilisateur', ?, current_timestamp())", array($login, $prenom, $nom, $email), $coUFInscription);
@@ -60,31 +64,30 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
                 $create_user_query = "CREATE USER '$loginMariaDBProtege'@localhost IDENTIFIED BY '$mdpProtege';"; // On créer un Utilisateur MariaDB
                 mysqli_query($coUFInscription, $create_user_query);
 
+                $req = "GRANT 'role_utilisateur' TO '$loginMariaDBProtege'@'localhost';";
+                mysqli_query($coUFDroit, $req);
 
-                $coUFDroit = mysqli_connect($host, 'fictif_droitDB', $USER_FICTIF_MDP['fictif_droitDB'], $database);
 
-                $requete = "GRANT SELECT ON vue_Utilisateur_client TO '$loginMariaDBProtege'@localhost;";
-                mysqli_query($coUFDroit, $requete);
-                $requete = "GRANT SELECT ON vue_Ticket_client TO '$loginMariaDBProtege'@localhost;";
-                mysqli_query($coUFDroit, $requete);
-                $requete = "GRANT UPDATE ON vue_Utilisateur_insertion_client TO '$loginMariaDBProtege'@localhost;";
-                mysqli_query($coUFDroit, $requete);
-                $requete = "GRANT UPDATE ON vue_Ticket_insertion_client TO '$loginMariaDBProtege'@localhost;";
-                mysqli_query($coUFDroit, $requete);
+                // On va connecter temporairement l'utilisateur pour se donner l'autorisation d'activité dès sa connexion son rôle.
+                $connexionUtilisateur = mysqli_connect($host, $loginMariaDBProtege, $mdpProtege);
+                mysqli_query($connexionUtilisateur, "SET DEFAULT ROLE 'role_utilisateur' FOR CURRENT_USER();");
+                $connexionUtilisateur->close();
 
+                $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
                 $coUFDroit->close();
 
-                $coUFInscription->commit(); // Si tout s'est bien passé durant la transaction, on valide les modifications
-                $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
             }catch(Exception $e){
-                $coUFInscription->rollback();
+                echo $e;
+                // Exécution de la requête SQL pour supprimer l'utilisateur s'il existe
+                mysqli_query($coUFInscription, "DROP USER IF EXISTS '$id_nouvel_utilisateur'@'localhost';");
+                // Note : l'enregistrement dans la table Utilisateur ne peut être retiré
+
+                // Fermer les connexions
+                $coUFDroit->close();
                 $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
                 header('Location: inscription.php?id=6'); // ERREUR : Une erreur interne est survenue, votre compte n'a pas pu être créer.
                 return;
             }
- 
-            // A partir de là, on sait que l'utilisateur a été créer. Il peut donc se connecter
-            
 
             try{
                 $res = connectUser($loginMariaDBProtege, $mdpProtege); // Si la connexion au site est possible (= true, false sinon) (mdp valide)
