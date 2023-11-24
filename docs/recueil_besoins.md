@@ -629,6 +629,13 @@ Echec 2 :
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
     - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe et sa confirmation sont différents
     - L'utilisateur est renvoyé vers la page modification du mot de passe
+
+Echec 3 :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
+    - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe entré ne respecte pas le format permis
+    - L'utilisateur est renvoyé vers la page modification du mot de passe
 ```
 - #### <a name="a1cu7"> Nom : Modifier son Email
 ```
