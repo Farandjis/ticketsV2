@@ -4,7 +4,7 @@ Ce script retire les droits précédemment accordés, et ajoute les rôles
 */
 CREATE ROLE 'role_technicien';
 CREATE ROLE 'role_client';
-CREATE ROLE 'role_utilisateur';
+CREATE ROLE 'role_utilisateur' WITH ADMIN fictif_droitDB@localhost;
 CREATE ROLE 'role_admin_web';
 CREATE ROLE 'role_admin_sys';
 
@@ -37,3 +37,7 @@ SET DEFAULT ROLE 'role_utilisateur' FOR '3'@'localhost';
 SET DEFAULT ROLE 'role_utilisateur' FOR '4'@'localhost';
 */
 
+CREATE VIEW vue_UserFictifmodifLogin AS SELECT ID_USER, LOGIN_USER FROM DB_TIX.Utilisateur WHERE id_user = SUBSTRING_INDEX(CURRENT_USER(), '@', 1);
+CREATE USER 'fictif_modifLogin'@'localhost' IDENTIFIED BY 'p0pi!5555555954'; -- pas bon ! utilisateur à supprimer
+GRANT SELECT ON DB_TIX.vue_UserFictifmodifLogin TO 'fictif_modifLogin'@'localhost';
+GRANT UPDATE (LOGIN_USER) ON DB_TIX.vue_UserFictifmodifLogin TO 'fictif_modifLogin'@'localhost'; -- Note : enlever machin sécurité SQL

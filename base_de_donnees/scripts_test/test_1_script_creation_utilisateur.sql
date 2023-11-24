@@ -26,3 +26,8 @@ GRANT 'role_utilisateur' TO '2'@'localhost';
 GRANT 'role_utilisateur' TO '3'@'localhost';
 GRANT 'role_utilisateur' TO '4'@'localhost';
 
+SET DEFAULT ROLE 'role_utilisateur' FOR '1'@'localhost';
+SET DEFAULT ROLE 'role_utilisateur' FOR '2'@'localhost';
+SET DEFAULT ROLE 'role_utilisateur' FOR '3'@'localhost';
+SET DEFAULT ROLE 'role_utilisateur' FOR '4'@'localhost';
+
