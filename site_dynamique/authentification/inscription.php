@@ -10,7 +10,7 @@
 <body>
 <header>
   <div class="retour">
-    <a href="../"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+    <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
   </div>
 </header>
     <div class="page_authentification_modif_perso">
