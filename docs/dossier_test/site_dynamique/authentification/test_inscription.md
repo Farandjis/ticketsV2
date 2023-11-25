@@ -43,12 +43,14 @@ En fonction des paramètres de la base de données et de la conception, nous all
 | Définition               | Situation pour le test                                                   |
 |--------------------------|--------------------------------------------------------------------------|
 | Produit testé            | Page inscription PHP                                                     |
-| Configuration logicielle | Navigateur : Firefox 119.0.1 (64 bits)<br>OS : Ubuntu 22.04.3 LTS 64bits |
-| Configuration matérielle | Acer Nitro 50-600                                                        |
-| Date de début            | 22/11/2023                                                               |
-| Date de finalisation     | 22/11/2023                                                               |
+| Config. logicielle Enzo  | Navigateur : Firefox 118.0.1 (64 bits)<br>OS : Windows 10 22h2 64 bits)  |
+| Conf. logicielle Matthieu| Navigateur : Firefox 119.0.1 (64 bits)<br>OS : Ubuntu 22.04.3 LTS 64bits |
+| Config. matérielle Enzo  | Dell Optiplex 9020                                                       |
+| Conf. Matérielle Matthieu| Acer Nitro 50-600                                                        |
+| Date de début            | 05/11/2023                                                               |
+| Date de finalisation     | 24/11/2023                                                               |
 | Test à appliquer         | Vérification de la validité du site                                      |
-| Participant              | Matthieu FARANDJIS                                                       |
+| Participant              | Enzo GUIGNOLLE et terminé par Matthieu FARANDJIS                         |
 
 <br><br><br>
 
