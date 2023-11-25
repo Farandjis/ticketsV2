@@ -26,7 +26,7 @@
                 if(isset($_GET['id'])) {
                     echo '<div class="erreur">';
                     echo '<p>';
-                    if ($_GET['id'] == 2) { echo "ERREUR : Le champ login ou mot de passe est incorrect"; }
+                    if ($_GET['id'] == 2) { echo "ERREUR : Le champ login ou mot de passe est incorrect ou votre compte n'existe pas"; }
                     else if ($_GET['id'] == 3) { echo "ERREUR : Le champ login ou mot de passe est vide"; }
                     else if ($_GET['id'] == 4) { echo "ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté."; }
                     else if ($_GET['id'] == 5) { echo "ERREUR : Vous n'avez aucun rôle pour accéder au site."; }
