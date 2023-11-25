@@ -34,12 +34,21 @@ try {
 
 
 
+        $connexion = mysqli_connect($host, $loginMariaDB, $mdpMariaDB);
+        $verifRole = recupererRoleDe($connexion);
+        mysqli_close($connexion);
 
-        if (connectUser($loginMariaDB, $mdpMariaDB)){ // Si la connexion au site est possible (mdp valide)
+        if ($verifRole == "Rôle manquant"){ header('Location: connexion.php?id=5'); return; } // L'utilisateur n'a pas de rôle permettant l'accès au site
+        else if ($verifRole == "Rôle inconnu"){ header('Location: connexion.php?id=6'); return; } // L'utilisateur possède un rôle inconnu par le système
+
+
+        $connexion = connectUser($loginMariaDB, $mdpMariaDB);
+        if ($connexion){ // Si la connexion au site est possible (mdp valide)
             header('Location: ../tableau_bord/tableauBord.php');
         }
-        else{
+        else{ // Echec de l'authentification de l'utilisateur
             header('Location: connexion.php?id=2');
+            return;
         }
 
 
@@ -48,6 +57,7 @@ try {
 } catch (Exception $e) {
 
     $msg_erreur = $e->getMessage();
+
     if ("Access denied" == substr($msg_erreur, 0, 13)) {
         // Si MariaDB refuse la connexion de l'utilisateur (normalement, cela signifie mauvais mot de passe
         $msg_erreur = 2; // Erreur : login ou mdp incorrecte

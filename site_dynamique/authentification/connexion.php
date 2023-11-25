@@ -26,18 +26,12 @@
                 if(isset($_GET['id'])) {
                     echo '<div class="erreur">';
                     echo '<p>';
-                    if ($_GET['id'] == 2) {
-                        echo "ERREUR : Le champ login ou mot de passe est incorrect";
-                    }
-                    else if ($_GET['id'] == 3) {
-                        echo "ERREUR : Le champ login ou mot de passe est vide";
-                    }
-                    else if ($_GET['id'] == 4) {
-                        echo "ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté.";
-                    }
-                    else {
-                        echo "ERREUR : Une erreur est survenue";
-                    }
+                    if ($_GET['id'] == 2) { echo "ERREUR : Le champ login ou mot de passe est incorrect"; }
+                    else if ($_GET['id'] == 3) { echo "ERREUR : Le champ login ou mot de passe est vide"; }
+                    else if ($_GET['id'] == 4) { echo "ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté."; }
+                    else if ($_GET['id'] == 5) { echo "ERREUR : Vous n'avez aucun rôle pour accéder au site."; }
+                    else if ($_GET['id'] == 6) { echo "ERREUR : Votre rôle ne permet par la connexion."; }
+                    else { echo "ERREUR : Une erreur est survenue"; }
                     echo '</p>';
                     echo '</div>';
                 }
@@ -52,7 +46,7 @@
                 <br><br>
                 <label for='mdp'>Mdp</label><br>
                 <input id='mdp' type='password' name ='mdp'><br>
-                <a href="MdpOublie.php" class="oublie">Mot de passe oublié ?</a>
+                <a href="../erreurs/404.html" class="oublie">Mot de passe oublié ?</a>
                 <input type='submit' name='Connexion' value='Connexion'><br>
                 <a href="inscription.php" class="oublie">Pas de compte ?</a>
             </form>
