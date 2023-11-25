@@ -3,9 +3,6 @@ require("../ressources/fonctions/PHPfunctions.php");
 global $host, $database, $USER_FICTIF_MDP; // Viennent de connexion_db.php (importé grâce à PHPfunctions.php)
 // Définir les informations de connexion à la base de données
 
-$host = 'localhost';
-$database = 'DB_TIX';
-
 // Connexion à la base de données
 
 $connection = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
