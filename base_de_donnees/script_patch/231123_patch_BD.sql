@@ -37,7 +37,12 @@ SET DEFAULT ROLE 'role_utilisateur' FOR '3'@'localhost';
 SET DEFAULT ROLE 'role_utilisateur' FOR '4'@'localhost';
 */
 
+/*
 CREATE VIEW vue_UserFictifmodifLogin AS SELECT ID_USER, LOGIN_USER FROM DB_TIX.Utilisateur WHERE id_user = SUBSTRING_INDEX(CURRENT_USER(), '@', 1);
 CREATE USER 'fictif_modifLogin'@'localhost' IDENTIFIED BY 'p0pi!5555555954'; -- pas bon ! utilisateur à supprimer
 GRANT SELECT ON DB_TIX.vue_UserFictifmodifLogin TO 'fictif_modifLogin'@'localhost';
 GRANT UPDATE (LOGIN_USER) ON DB_TIX.vue_UserFictifmodifLogin TO 'fictif_modifLogin'@'localhost'; -- Note : enlever machin sécurité SQL
+*/
+
+-- GRANT role_utilisateur TO role_technicien; -- A faire avec l'utilisateur droit
+-- SELECT CURRENT_ROLE(); pour voir le role actuel de l'utilisateur
