@@ -34,21 +34,11 @@ Le document suivant à pour but de tester les différentes pages du site dynamiq
 <br>
 
 ## <a name="II"></a>II - Description de la procédure de test
-En fonction des paraètres de la base de données et de la conception, nous allons tester une par une chaque case.
+En fonction des paramètres de la base de données et de la conception, nous allons tester une par une chaque case.
 
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
-
-| Définition                         | Situation pour le test                                           |
-|------------------------------------|------------------------------------------------------------------|
-| Produit testé                      | Site dynamique (PHP)                                             |
-| Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
-| Configuration matérielle           | Dell Optiplex 9020                                               |
-| Date de début                      | 21/11/2023                                                       |
-| Date de finalisation               |                                                                  |
-| Test à appliquer                   | Vérification de la validité du site                              |
-| Responsable de la campagne de test | GUIGNOLLE Enzo                                                   |
 
 | Définition               | Situation pour le test                                                   |
 |--------------------------|--------------------------------------------------------------------------|
@@ -66,9 +56,7 @@ En fonction des paraètres de la base de données et de la conception, nous allo
 
 <br><br><br>
 
-## <a name="IV"></a>IV - Test PHP
-
-- ### Inscription
+## <a name="IV"></a>IV - Test
 
 | Cas n° | Critère                                                                                                                                                               | Résultat attendu | Résultat obtenu  | Commentaire                                                                                                                           |
 |:-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------|
