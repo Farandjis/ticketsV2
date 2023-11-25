@@ -50,7 +50,7 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | Configuration matérielle           | Dell Optiplex 9020                                               |
 | Date de début                      | 21/11/2023                                                       |
 | Date de finalisation               | 24/11/2023                                                       |
-| Test à appliquer                   | Vérification de la validité du site                              |
+| Test à appliquer                   | Vérification du bon fonctionnement des fonctions                 |
 | Responsable de la campagne de test | GUIGNOLLE Enzo, Gouabi Assia                                     |
 
 <br><br><br>
