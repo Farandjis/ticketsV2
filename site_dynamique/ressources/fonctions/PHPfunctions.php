@@ -7,6 +7,23 @@ $database = 'DB_TIX';
 require "/var/www/html/ressources/info_db/connexion_db.php";
 require "/var/www/html/ressources/info_db/user_fictif.php";
 
+function recupererRoleDe($connexion){
+    /**
+     * Récupère le rôle associé à l'utilisateur
+     * @param string $utilisateur - La connexion à la base de donnée
+     * @return string - Le rôle de l'utilisateur associé à la connexion
+     */
+
+     $rolebrute = mysqli_fetch_row(mysqli_query($connexion, "SELECT CURRENT_ROLE();"))[0];
+
+     if ($rolebrute == 'role_utilisateur') { return "Utilisateur"; }
+     else if ($rolebrute == 'role_technicien') { return "Technicien"; }
+     else if ($rolebrute == 'role_admin_web') { return "Administrateur Site"; }
+     else if ($rolebrute == 'role_admin_sys') { return "Administrateur Système"; }
+     else if ($rolebrute == NULL) { return "Rôle manquant"; }
+     else { return "Rôle inconnu"; }
+}
+
 function executeSQL($reqSQL,$params,$connection){
     /**
      * Insère une commande SQL préparée dans la base de données.
@@ -96,7 +113,7 @@ function connectUser($loginMariaDB, $mdpMariaDB){
             $dateConnexion = date('Y-m-d H:i:s');
 
 
-	    $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', 't!nt1n_connexionDB45987645', $database);
+	    $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
 
 	
             // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
