@@ -70,6 +70,9 @@ La page connexion.html contient :
 Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_connexion.php :
 - Vérification de la provenance des valeurs et de leur non nullité
 {
+    - Vérification du rôle de l'utilisateur
+    -> Redirection connexion.php avec un id si KO
+    
     Lancement de la requête avec la fonction executeSQL()
     - Vérification de l'existance de l'utilisateur
     {
@@ -125,7 +128,10 @@ La page inscription.html contient :
 Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_inscription.php :
 - Vérification de la provenance des valeurs et de leur non nullité
 {
+    - Vérification de toute les valeurs entrées
+    -> Redirection inscription.php avec un id si KO
     - Vérification de la conformité du format du mot de passe avec la fonction valideMDP()
+    -> Redirection inscription.php avec un id si KO
     {
         Lancement de la requête avec la fonction executeSQL()
         - Vérification de la réussite de l'insertion de la requête
