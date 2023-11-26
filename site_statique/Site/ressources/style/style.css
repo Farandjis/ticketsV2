@@ -14,7 +14,7 @@ html {
 
 body {
   font-family: Poppins, Arial, sans-serif;
-  background: #ac7ae1;
+  background: linear-gradient(90deg, rgba(159,68,211,1) 0%, rgba(172,122,225,1) 30%, rgba(172,122,225,1) 70%, rgba(159,68,211,1) 100%);
 }
 
 
@@ -45,8 +45,7 @@ nav {
 
 .nav-conteneur {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 50px;
 }
 
 
@@ -57,7 +56,9 @@ nav {
   text-decoration: none;
   color: #ECECEC;
   position: relative;
+  transition: transform 0.5s;
 }
+
 
 .nav-conteneur a::before {
   content: "";
@@ -103,7 +104,7 @@ nav {
   background: #808080;
 }
 .authentification a:nth-child(2):hover {
-  background: linear-gradient(84.12deg, #9271E8 139.25%, #522FCF -24.93%) ;
+  background: linear-gradient( 135deg, #cf8ae5 10%, #6018DC 100%);
 }
 
 .user-icon {
@@ -114,7 +115,19 @@ nav {
 
 
 /* ======== PAGE D'ACCUEIL ======== */
+.body_accueil{
+  background: #1a1b1c;
+}
 
+.hero{
+  background-image: url(../images/background_hero.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 .presentation {
   /*
@@ -123,17 +136,22 @@ nav {
 
   z-index: 10;
 */
+  background: radial-gradient(circle, rgba(115,103,240,1) 0%, rgba(206,159,252,1) 50%);
+  border-radius: 15px;
+  height: 600px;
+  width: 1700px;
 
   margin-top: 175px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
+  transition: width,height 0.5s;
 }
 
-/*texte*/
+/*Texte*/
 .texte-presentation {
   max-width: 700px;
 }
@@ -168,7 +186,8 @@ nav {
 .inscription{
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .inscription a {
@@ -195,9 +214,7 @@ nav {
 
 
 .inscription a:hover {
-  background: #ECECEC;
-  color: #1c1c1c;
-
+  background: #664dfd;
 }
 
 .inscription a:active {
@@ -208,23 +225,29 @@ nav {
 }
 
 
-
 /*tableau*/
 .affichage_ticket{
-  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
 }
 
 .table-accueil{;
   min-width: 400px;
-  width: 1000px;
-  margin: 100px auto;
-  border: 2px solid #1c1c1c;
+  max-height: 1000px;
 }
 
 
 
 /* ======== TABLEAU EN GENERAL ======== */
+.affichage_ticket > .titre_page {
+  color: #ECECEC;
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+
 
 thead {
   background-color: #211a43;
@@ -232,6 +255,9 @@ thead {
   text-align: left;
 }
 
+th{
+  text-align: center;
+}
 th,td {
   padding: 15px 20px;
 }
@@ -240,13 +266,34 @@ td {
   font-weight: 500;
 }
 
+tbody tr{
+  transition: 0.4s;
+  background-color: #ECECEC;
+}
+
+
 tbody tr:nth-child(odd) {
   background-color: #ECECEC;
 }
 
 tbody tr:nth-child(even){
-  background-color: #ECECEC;
+  background-color: #b9aed9;
 }
+
+/* =======modif a faire*/
+.table-ticket  td:nth-child(1),.table-ticket td:nth-child(3),.table-ticket td:nth-child(5){
+  text-align: center;
+}
+
+
+tbody tr:hover:not(.ligne_profile){
+  background-color: #3d305e;
+  color: #ECECEC;
+}
+
+
+
+
 
 /* ======== FOOTER ======== */
 
@@ -254,7 +301,7 @@ footer {
   text-align: center;
   padding: 12px 5px;
   border-top: 1px dashed #6e6e6e;
-  background: #211a43;
+  background: #8960a7;
 }
 footer a {
   color: #ECECEC;
@@ -444,7 +491,6 @@ input[type="date"] {
   display: flex;
   align-items: center;
   flex-direction: column;
-
 }
 
 
@@ -460,6 +506,15 @@ input[type="date"] {
 
 
 /* ======== PAGE DE PROFIL */
+.iconeModif{
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s;
+}
+.iconeModif:hover{
+  transform: scale(1.2);
+}
+
 
 .info_profile{
   display: flex;
@@ -477,32 +532,41 @@ input[type="date"] {
 
 .table-perso{
   border-collapse: collapse;
-  border: 2px solid #1c1c1c;
   width: 600px;
   height: 600px;
   font-size: 20px;
 }
 
-.table-perso > tbody > tr {
-  border-bottom: #1c1c1c 2px solid;
+.table-perso > tbody > tr{
+    height: 100px;
 }
-.table-perso > tbody >tr:last-child {
-  border-bottom: transparent;
-}
+
 
 /* ======== TABLEAU DES DEMANDES PERSONNELLES DE LA PAGE PROFIL ======== */
 
-.table-demandes-perso{
-  border-collapse: collapse;
-  border: 2px solid #1c1c1c;
-  width: 900px;
+.conteneur_table-demandes-perso{
   height: 600px;
-  font-size: 20px;
 }
 
-.table-demandes-perso td, th {
-  border: 2px solid #1c1c1c;
+.table-demandes-perso{
+  border-collapse: collapse;
+  width: 900px;
+  height: 600px;
+  font-size: 16px;
 }
+
+.table-demandes-perso thead{
+  height: 70px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+}
+
+.table-demandes-perso > tbody > tr{
+  height: 80px;
+}
+
 
 /* ======== ADMINISTRATION ======== */
 
@@ -554,13 +618,13 @@ input[type="date"] {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 50px;
 }
 
 .table-infructueuse, .table-ouverture-tickets{
   border-collapse: collapse;
-  border: 2px solid #1c1c1c;
   width: 800px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .conteneur_table-infructueuse_ouverture-tickets {
@@ -577,9 +641,6 @@ input[type="date"] {
   z-index: 10;
 }
 
-.table-infructueuse td, .table-ouverture-tickets td{
-  border: 2px solid #555555;
-}
 
 /* ======== BOUTON DE TELECHARGEMENT DE TABLEAU ======== */
 
@@ -624,7 +685,7 @@ input[type="date"] {
 }
 
 .table-historique {
-  width: 1500px;
+  width: 1200px;
   border-collapse: collapse;
 }
 
@@ -635,12 +696,33 @@ input[type="date"] {
   z-index: 10;
 }
 
-.table-historique td {
-  border: 2px solid #555555;
-}
+
 
 
 /* ======== TABLEAU DE BORD ======== */
+
+.conteneur_table::-webkit-scrollbar-corner{
+  background: #e2d5ef;
+}
+
+.conteneur_table::-webkit-scrollbar
+{
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.conteneur_table::-webkit-scrollbar-thumb
+{
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px ;
+
+  background-color: #31251f;
+  visibility: hidden;
+}
+
+.conteneur_table:hover::-webkit-scrollbar-thumb{
+  visibility: visible;
+}
 
 .tableau_bord_bouton {
   display: flex;
@@ -772,13 +854,28 @@ input[type="date"] {
 
 .conteneur_table-tableau-bord {
   height: 650px;
-  overflow-y: auto;
-  background-color: white;
+}
+
+/*====================*/
+.conteneur_table{
   border: 1px solid #555555;
+  overflow-y: auto;
+  background-color: #fffb;
+  border-radius: 10px;
+
+}
+
+.conteneur_table_accueil{
+  width: 90%;
+  margin-bottom: 50px;
+}
+
+.tableau{
+  border-collapse: collapse;
 }
 
 .table-tableau-bord {
-  width: 1200px;
+  width: 1300px;
   border-collapse: collapse;
 }
 
@@ -790,10 +887,6 @@ input[type="date"] {
   position: sticky;
   top: -1px;
   z-index: 10;
-}
-
-.table-tableau-bord td{
-  border: 2px solid #555555;
 }
 
 
@@ -970,15 +1063,12 @@ select {
     font-size: 60px;
   }
 
-  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
+  /*.table-tableau-bord,*/.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
     width: 600px;
     height: 400px;
   }
 
-  .table-accueil {
-    width: 700px;
-    height: 400px;
-  }
+
 
   .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
     font-size: 12px;
@@ -1012,18 +1102,40 @@ select {
   .info_profile{
     flex-direction: column;
   }
-  .table-perso {
-    width: 900px;
+  .conteneur_table{
     margin-bottom: 50px;
   }
 }
 
 
+@media screen and  (max-width: 1650px) {
+  .activite{
+    flex-direction: column;
+  }
+  .table-infructueuse {
+    margin-bottom: 50px;
+  }
+  .conteneur_table-infructueuse_ouverture-tickets{
+    width: 1200px;
+  }
 
-@media screen and (max-width: 1620px){
+  .table-infructueuse, .table-ouverture-tickets{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1720px) {
   .tableau-bord {
     flex-direction: column-reverse;
     padding: 15px;
+  }
+
+  .conteneur_table-tableau-bord{
+    width: 90%;
+  }
+
+  .table-tableau-bord{
+    width: 100%;
   }
 
   .tableau_bord_bouton {
@@ -1046,21 +1158,15 @@ select {
 
 
 
-@media screen and  (max-width: 1650px) {
-  .activite{
-    flex-direction: column;
-  }
-  .table-infructueuse {
-    margin-bottom: 50px;
-  }
-}
-
-
-
 @media screen and (max-width: 1800px) {
+
+
   .presentation{
     flex-direction: column;
     justify-content: center;
+    height: 1000px;
+    width: 900px;
+
   }
 }
 

@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="ressources/images/logo_sans_texte.png" type="image/x-icon">
 </head>
-<body>
+<body class="body_accueil">
     <header>
         <nav>
             <div class="logo">
@@ -16,132 +16,166 @@
 
             <div class="nav-conteneur">
                 <a href="#" aria-current="page">Accueil</a>
-                <a href="tableau_bord">Tableau de bord</a>
+                <a href="tableau_bord/tableauBord.html">Tableau de bord</a>
                 <a href="logs/administration.html">Administration</a>
             </div>
 
 
             <div class="nav-authentification">
-                <a href="profil" class="user-icon" aria-label="Page de connexion">
+                <a href="profil/profil.html" class="user-icon" aria-label="Page de connexion">
                     <img src="ressources/images/user.svg" alt="icone utilisateur">
                 </a>
                 <div class="authentification">
                     <a href="authentification/connexion.html">Connexion</a>
                     <a href="authentification/inscription.html">Inscription</a>
                     <!--
-                    <a href="index.html">Mon Espace</a>
+                    <a href="tableauBord.html">Mon Espace</a>
                     -->
 
                 </div>
             </div>
         </nav>
     </header>
+    <div class="hero">
+        <div class="presentation">
+            <div class="texte-presentation">
+                <h1>Présentation du <strong>Site</strong></h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.
+                </p>
+            </div>
+            <div class="video-presentation">
+                <iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
 
-    <div class="presentation">
-        <div class="texte-presentation">
-            <h1>Présentation du <strong>Site</strong></h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
-            </p>
         </div>
-        <div class="video-presentation">
-            <iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-
-    </div>
         <div class="inscription">
             <a href="authentification/inscription.html" >Je m'inscris</a>
         </div>
+    </div>
 
 
     <div class="affichage_ticket">
-        <table class="table-accueil">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Objet</th>
-                    <th>Niv. Urgence</th>
-                    <th>Description</th>
-                    <th>Utilisateur</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
+        <h1 class="titre_page">10 derniers Tickets</h1>
+        <div class="conteneur_table_accueil conteneur_table">
+            <table class="table-accueil tableau">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Objet</th>
+                        <th>Niv. Urgence</th>
+                        <th>Description</th>
+                        <th>Utilisateur</th>
+                    </tr>
+                </thead>
+                <tbody class="table-ticket">
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
   </div>
 
   <footer>
