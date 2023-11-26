@@ -14,6 +14,96 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## Dimanche 26/11/2023 - Bilan du travail du 18/11/2023 au 26/11/2023
+Exceptionnellement cette semaine, il n'y a pas eu de répartition des tâches ni d'organisation à cause du retard que nous avons accumulé.<br>
+J'ai pris la décision de terminer les 3 pages qui mettait beaucoup trop de temps d'être clôturé : inscription, connexion et déconnexion.
+3 semaines après le début de leur création, elles sont enfin terminé. Il y aura juste le captcha à intégrer dans la page inscription et modifier la requête
+d'insertion de l'utilisateur dans la BD (on indiquera plus les rôles dans la BD).<br>
+Je n'ai donc pas eu le temps de gérer le projet ni de voir l'avancer du travail des différents membres.<br>
+<br>
+Dans notre malheur, nous faisons face à 3 bonnes nouvelles !<br>
+1. J'ai réussi à faire fonctionner les droits des rôles MariaDB (il fallait le mettre comme rôle par défaut à l'utilisateur : `SET DEFAULT ROLE 'role' FOR 'user'@'localhost'`;).
+2. J'ai trouvé la requête MariaDB pour que l'utilisateur puisse changer son propre mot de passe : `SET PASSWORD = PASSWORD("monMDP");` (`PASSWORD()` permet de chiffrer le mot de passe).
+3. J'ai trouvé le moyen de désactiver la sécurité qui empêche à une vu MariaDB de prendre en compte le WHERE CURRENT_USER (sur PHPMyAdmin, pas en requête) : Sur la vu -> Structure -> Editer la vue -> Mettre SQL SECURITY sur Invoker -> Exécuter
+
+<br>
+Désormais, nous n'avons plus de raison d'avoir de nouveau du retard puisque nous pensons ne plus avoir de difficultés à affronter.<br>
+<br>
+Ce retard a été provoqué par une désorganisation générale de l'équipe. Le développement de certaines pages commençait alors que la conception n'était pas faite.<br>
+Cette désorganisation peut être expliqué par le fait que chaque membre était un peu perdu à cause du manque de communication au sein de l'équipe.<br>
+<br>
+Avec Florent, chef de la conception du projet, nous avons réfléchi à une réorganisation du dépôt git :<br>
+Fini les branches "dossier conception" et "dossier test", désormais, la conception, le développement et les tests par fonctionnalités sont sur la branche de la fonctionnalité concernée.<br>
+Cela nous permet de mieux voir là où on en est, et d'avoir tout à un même endroit.<br>
+Les branches pages sont des sous-branches de la branche représentant leur répertoire, qui sont eux-mêmes des sous branche de la branche site_dynamique.<br>
+<br>
+Avec un dépôt mieux organisé et plus simple à comprendre, il sera plus facile de voir ce qui a été fait et ce qui peut être fait.<br>
+Les fichiers sont travaillés directement depuis le serveur XAMPP, serveur de secours ou serveur RPi4. Ils sont ensuite transférés vers GitHub.<br>
+<br>
+<br>
+Les problèmes ont été résolus grâce à l'aide de Mme PREDA, M. LOYER et de M. DUFAUD (gestion du dépôt git).<br>
+<br>
+
+#### Avancé
+
+- **Ce qui a été terminé :** <br>
+  - Page connexion (les msg erreurs), action connexion, test (terminé par Matthieu)
+  - Page inscription (les msg erreurs), action inscription, test (terminé par Matthieu)
+  - Test page déconnexion (terminé par Matthieu)
+  - Fonction recupererRoleDe (manque conception je crois ? Note : ça ne serait pas l'objectif d'UserRole d'ailleurs en fait ?) (Matthieu)
+  - Fin dev connectUser, valideMDP, executeSQL (terminé par Matthieu, commencé par Florent, Enzo, Assia)
+  - Fin dossier de test des fonctions executeSQL, pages modifMdp et modifEmail (Assia, commencé par Enzo)
+  - Cas d’utilisation modifEmail et modifMdp (Assia)
+
+- **Ce qui sera à terminer la semaine prochaine :**<br>
+  - Page modif mot de passe (Assia, Enzo, Florent)
+  - Page modif adresse email (Assia, Enzo, Florent)
+  - Nouvelle version de la base de données (Enzo, Matthieu)
+  - Le devoir en Droit : utilisation des données (Assia et Tom ?)
+
+- **Ce qui a été avancé :**
+  - Nouvelle version du site statique (Tom)
+  - Page de profile (Enzo)
+
+Note : Florent s'occupe d'une fonction dédiée à la génération des tableaux HTML. Je ne suis pas allé me renseigner de son avancée.
+
+#### Travail effectué
+- **Florent**<br>
+  - Conception des pages (notamment modification mot de passe et modification adresse email)
+  - Conception et début des codes connectUser, valideMDP, executeSQL
+  - Conception des fonctions isConnected() et userRole()
+
+- **Tom**<br>
+  - Nouvelle version du site (HTML, CSS, JavaScript)
+
+- **Enzo** :<br>
+  - Début des codes connectUser, valideMDP, executeSQL
+  - Début dossier de test des fonctions executeSQL, pages modifMdp et modifEmail
+  - Page modif mot de passe et modif email (dev)
+  - Modification de la base de données, recherche par rapport aux problèmes des vues et des modifications de mot de passe
+
+- **Assia**<br>
+  - Début des codes connectUser, valideMDP, executeSQL
+  - Fin dossier de test des fonctions executeSQL, pages modifMdp et modifEmail
+  - Cas d’utilisation modifEmail et modifMdp
+  - Page modif mot de passe et modif email (dev)
+  - Suite du devoir en Droit
+  - Ajout des commentaires et certains cas pour les autres fonctions et pages
+
+
+- **Matthieu (chef de projet)**<br>
+  - Gestion des branches du dépôt Git, gestion minimale du projet
+  - Page connexion (les msg erreurs), action connexion, test
+  - Page inscription (les msg erreurs), action inscription, test
+  - Test page déconnexion
+  - Fonction recupererRoleDe (remarque : il est possible que Florent ai fait une fonction similaire)
+  - Fin dev connectUser, valideMDP, executeSQL
+  - Modification de la base de données (les rôles et leurs droits)
+
+<br><br><br>
+
+---
+
 ## Vendredi 17/11/2023 - Bilan du travail du 11/11/2023 au 17/11/2023
 Cette semaine, nous avons quasiment résolu tous les problèmes cités précédemment. Nous avons pu avancer, nous ne sommes plus bloqués.<br>
 L'expérience de binôme Florent-Enzo est concluante, nous allons la poursuivre. Il y a une meilleure ambience au sein du groupe.<br>
@@ -44,7 +134,7 @@ Avec la fin de l'installation du RaspberryPi 4, je vais reprendre en main les t�
   - Fonction simplifiant l'utilisation de la base de données
   - Correction site statique (il faut l'ajouter au code PHP maintenant...)
 
-#### Travail effecté
+#### Travail effectué
 - **Florent**<br>
   - Fonction simplifiant l'utilisation de la base de données
 
@@ -64,6 +154,8 @@ Avec la fin de l'installation du RaspberryPi 4, je vais reprendre en main les t�
   - Script de test comportant des utilisateurs et des tickets
 
 <br><br><br>
+
+---
 
 ## Samedi 11/11/2023 - Bilan du travail du 03/11/2023 au 10/11/2023
 Durant cette semaine, nous avons pu commencer la création du site dynamique. Cependant, nous faisons faces à différents problèmes de différentes tailles.<br>
@@ -138,7 +230,7 @@ Cela permettra d'améliorer la cohésion de l'équipe en évitant de nouveaux le
   - dossier de test
   - conception site dynamique
 
-#### Travail effecté
+#### Travail effectué
 - **Florent**<br>
   - Début création du tableau de bord
   - Fin diagramme des composants (normalement
@@ -198,7 +290,7 @@ Malgré ces problèmes qui vont nous retarder, on s'en sort très bien. Je dois 
   - Sécurisation du serveur (qui devra être terminé)
   - Conception du site dynamique **EN URGENCE, RETARD A RATTRAPER : ON COMMENCE DEJA LE SITE !!**
 
-#### Travail effecté du dimanche 27/10/2023 au jeudi 02/11/2023
+#### Travail effectué du dimanche 27/10/2023 au jeudi 02/11/2023
 - **Florent**<br>
   - Réflexion sur la conception, rien de rédigé (Attention au retard !)
 
@@ -254,7 +346,7 @@ Notre travail sur la SAÉ a été perturbé par les nombreux contrôles que nous
 - **Ce qui devra être commencé pour la semaine prochaine :**
   - Création de la base de données
 
-#### Travail effecté du dimanche 22/10/2023 au jeudi 26/10/2023
+#### Travail effectué du dimanche 22/10/2023 au jeudi 26/10/2023
 - **Florent**<br>
   - Fin de la conception est des spécifications pour le site statique
   - Début conception et spécifications pour le site statique
@@ -316,7 +408,7 @@ Pour pouvoir utiliser le RPi4, nous devions acheter un adaptateur HDMI vers Micr
 Cette partie sera mise à jour durant la journée du samedi 21 octobre 2023.<br>
 <br>
 
-#### Travail effecté du jeudi 12/10/2023 au samedi 21/10/2023
+#### Travail effectué du jeudi 12/10/2023 au samedi 21/10/2023
 
 - **Florent**<br>
   - Suite de la charte graphique du site
@@ -385,7 +477,7 @@ Avec les indications de M. DUFAUD par rapport au projet, nous pouvons désormais
     - Préparer le git pour l'accueil de la création du site statique et de son dossier de test
   - Préparer un dossier de test pour le site statique
 
-#### Répartion des tâches jusqu'à ce jour
+#### Répartition des tâches jusqu'à ce jour
 - Florent :
   - Fin de la rédaction de la charte graphique
     - Estimation : terminé le dimanche 15 octobre
