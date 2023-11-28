@@ -1,14 +1,3 @@
--- Création des utilisateurs et rôles
-CREATE USER '5' IDENTIFIED BY 'Assuranc3t0ur!x'; -- note : admin_sys et toujours mdp azerty sur serveur secours 
-CREATE USER '6' IDENTIFIED BY 'P0rqu3p!x'; -- note : admin_web et toujours mdp azerty sur serveur secours 
-CREATE USER 'visiteur' IDENTIFIED BY 't9t+<Q33Pe%o4woPNw\D;hNdhZ}B/z'; -- note : toujours mdp azerty sur serveur secours 
-
-INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(5, 'admin', 'Administrateur', 'SYSTEME', 'admin_sys', 'missing.sys@email.com');
-INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(6, 'gestion', 'Administrateur', 'WEB', 'admin_web', 'missing.web@email.com');
-
--- Création des vues
-
--- Visiteur
 CREATE VIEW vue_Utilisateur_visiteur AS
 SELECT LOGIN_USER
 FROM Utilisateur;
@@ -52,31 +41,38 @@ CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
 FROM Ticket;
 
-GRANT UPDATE ON vue_etat_update_admWeb TO '6';
+CREATE ROLE 'role_technicien';
+CREATE ROLE 'role_utilisateur';
+CREATE ROLE 'role_admin_web';
+CREATE ROLE 'role_admin_sys';
 
--- Pour 'admin_web', autorisation d'INSERT
-GRANT INSERT ON Libelle TO '6';
-GRANT INSERT ON RelationTicketsLibelles TO '6';
+GRANT SELECT ON DB_TIX.vue_Utilisateur_client TO 'role_utilisateur';
+GRANT SELECT ON DB_TIX.vue_Ticket_client TO 'role_utilisateur';
+GRANT UPDATE ON DB_TIX.vue_Utilisateur_insertion_client TO 'role_utilisateur';
+GRANT UPDATE ON DB_TIX.vue_Ticket_insertion_client TO 'role_utilisateur';
 
--- Pour '6', autorisation de UPDATE
-GRANT UPDATE ON Libelle TO '6';
-GRANT UPDATE ON RelationTicketsLibelles TO '6';
+GRANT 'role_utilisateur' TO 'role_technicien';
+GRANT UPDATE ON vue_Ticket_technicien TO 'role_technicien';
 
+GRANT 'role_technicien' TO 'role_admin_web';
+GRANT UPDATE ON vue_etat_update_admWeb TO 'role_admin_web';
+GRANT INSERT ON Libelle TO 'role_admin_web';
+GRANT INSERT ON RelationTicketsLibelles TO 'role_admin_web';
+GRANT UPDATE ON Libelle TO 'role_admin_web';
+GRANT UPDATE ON RelationTicketsLibelles TO 'role_admin_web';
 
--- Générale Admins
--- Pour 'admin_web'
-GRANT SELECT ON Utilisateur TO '6';
-GRANT SELECT ON Ticket TO '6';
-GRANT SELECT ON RoleUser TO '6';
-GRANT SELECT ON EtatTicket TO '6';
-GRANT SELECT ON RelationTicketsLibelles TO '6';
-GRANT SELECT ON Libelle TO '6';
+GRANT 'role_technicien' TO 'role_admin_sys';
 
--- Pour 'admin_sys'
-GRANT SELECT ON Utilisateur TO '5';
-GRANT SELECT ON Ticket TO '5';
-GRANT SELECT ON RoleUser TO '5';
-GRANT SELECT ON EtatTicket TO '5';
-GRANT SELECT ON RelationTicketsLibelles TO '5';
-GRANT SELECT ON Libelle TO '5';
->>>>>>> 4cbf8f6a86d7857cf14b0bb65b3fe320cb05843f:docs/dossier_conception/base_de_donnees/droit_BD.sql
+-- Création des utilisateurs
+CREATE USER '5' IDENTIFIED BY 'Assuranc3t0ur!x';
+CREATE USER '6' IDENTIFIED BY 'P0rqu3p!x';
+CREATE USER 'visiteur' IDENTIFIED BY 't9t+<Q33Pe%o4woPNw\D;hNdhZ}B/z';
+
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(5, 'admin', 'Administrateur', 'SYSTEME', 'admin_sys', 'missing.sys@email.com');
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(6, 'gestion', 'Administrateur', 'WEB', 'admin_web', 'missing.web@email.com');
+
+GRANT 'role_admin_sys' TO '5'@'localhost';
+GRANT 'role_admin_web' TO '5'@'localhost';
+
+SET DEFAULT ROLE 'role_admin_sys' FOR '5'@'localhost';
+SET DEFAULT ROLE 'role_admin_web' FOR '6'@'localhost';
