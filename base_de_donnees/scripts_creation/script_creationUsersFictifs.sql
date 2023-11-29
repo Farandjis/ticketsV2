@@ -48,14 +48,28 @@ GRANT SELECT ON UserFictif_inscriptionDB1 TO 'fictif_inscriptionDB'@'localhost';
 GRANT CREATE USER ON *.* TO 'fictif_inscriptionDB'@'localhost';
 
 -- Ajout des droit pour l'utilisateurs fictif_droitDB
+
 GRANT SELECT ON DB_TIX.vue_Utilisateur_client TO 'fictif_droitDB'@'localhost';
 GRANT SELECT ON DB_TIX.vue_Ticket_client TO 'fictif_droitDB'@'localhost';
 GRANT UPDATE ON DB_TIX.vue_Utilisateur_insertion_client TO 'fictif_droitDB'@'localhost';
 GRANT UPDATE ON DB_TIX.vue_Ticket_insertion_client TO 'fictif_droitDB'@'localhost';
+GRANT UPDATE ON DB_TIX.vue_Ticket_technicien TO 'fictif_droitDB'@'localhost';
+GRANT UPDATE ON DB_TIX.vue_etat_update_admWeb TO 'fictif_droitDB'@'localhost';
+GRANT INSERT ON DB_TIX.Libelle TO 'fictif_droitDB'@'localhost';
+GRANT INSERT ON DB_TIX.RelationTicketsLibelles TO 'fictif_droitDB'@'localhost';
+GRANT UPDATE ON DB_TIX.Libelle TO 'fictif_droitDB'@'localhost';
+GRANT UPDATE ON DB_TIX.RelationTicketsLibelles TO 'fictif_droitDB'@'localhost';
+
 GRANT GRANT OPTION ON DB_TIX.vue_Utilisateur_client TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.vue_Ticket_client TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.vue_Utilisateur_insertion_client TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.vue_Ticket_insertion_client TO 'fictif_droitDB'@'localhost';
+GRANT GRANT OPTION ON DB_TIX.vue_Ticket_technicien TO 'fictif_droitDB'@'localhost';
+GRANT GRANT OPTION ON DB_TIX.vue_etat_update_admWeb TO 'fictif_droitDB'@'localhost';
+GRANT GRANT OPTION ON DB_TIX.Libelle TO 'fictif_droitDB'@'localhost';
+GRANT GRANT OPTION ON DB_TIX.RelationTicketsLibelles TO 'fictif_droitDB'@'localhost';
+GRANT GRANT OPTION ON DB_TIX.Libelle TO 'fictif_droitDB'@'localhost';
+GRANT GRANT OPTION ON DB_TIX.RelationTicketsLibelles TO 'fictif_droitDB'@'localhost';
 
 -- Ajout des droit pour l'utilisateurs fictif_selectionDB
 GRANT SELECT ON UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';

@@ -41,8 +41,8 @@ CREATE VIEW vue_etat_update_admWeb AS
 SELECT ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET
 FROM Ticket;
 
-CREATE ROLE 'role_technicien';
-CREATE ROLE 'role_utilisateur';
+CREATE ROLE 'role_technicien' WITH ADMIN fictif_droitDB@localhost;
+CREATE ROLE 'role_utilisateur' WITH ADMIN fictif_droitDB@localhost;
 CREATE ROLE 'role_admin_web';
 CREATE ROLE 'role_admin_sys';
 
