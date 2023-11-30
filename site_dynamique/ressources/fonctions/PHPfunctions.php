@@ -132,3 +132,28 @@ function connectUser($loginMariaDB, $mdpMariaDB){
     return false;
 }
 
+function tableGenerate($table,$colonnes,$conditionForm = "1=1",$conditionParam = array()){
+    /**
+    * Génère un tableau contenant les données retournées par une commande SQL.
+    *
+    * @param string $table - Le nom de la table dont on veut les données.
+    * @param array $colonnes - La liste des colonnes de la table à séléctionner.
+    * @param string $conditionForm - La condition SQL de séléction des données.
+    * @param array $conditionParam - Les paramètres de la condition.
+    * @return void
+    */
+    
+    $requete = "SELECT ?";
+    for ($n = 0;$n<count($colonnes)-1;$n++){
+        $requete = $requete.",?";
+    }
+    $requete = $requete." FROM ".$table." WHERE ".$conditionForm.";";
+    $execution = insertRequest($requete,array_merge($colonnes,$conditionParam));
+    while($rows = fetch_row(mysqli_stmt_get_result($execution))){
+        echo '<tr>';
+        for ($c=0;$c<count($rows);$c++){
+            echo '<td>'.$rows[c].'</td>';
+        }
+        '</tr>'
+    }
+}
