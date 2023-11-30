@@ -132,6 +132,8 @@ function connectUser($loginMariaDB, $mdpMariaDB){
     return false;
 }
 
+
+// /!\ Fonction non-testé et non-debuggé !
 function tableGenerate($table,$colonnes,$conditionForm = "1=1",$conditionParam = array()){
     /**
     * Génère un tableau contenant les données retournées par une commande SQL.
