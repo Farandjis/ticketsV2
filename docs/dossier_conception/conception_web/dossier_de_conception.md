@@ -371,6 +371,18 @@ Renvoie le rôle de l'utilisateur.
     
 x : string (Nom du rôle de l'individu se connectant)
 </pre>
+#### <i>x = tableGenerate(a,b,c,d)</i>
+<pre>
+Génère un tableau HTML contenant les informations d'une table MySQL. 
+Ce tableau peut contenir une fraction des colonnes de la table choisis, ou leur intégralité.
+Ce tableau peut contenir une fraction des lignes de la table choisis, ou leur intégralité.
+
+a : string (Le nom de la table dont on veut les données)
+b : array (La liste des colonnes de la table à séléctionner)
+c : string (La condition SQL de séléction des données)
+d : array (Les paramètres de la condition)
+x : void
+</pre>
 ------------------------------------------------------------------------------------------------------------------------
 ### <a name="p2"></a>I – Conception Architecturale
 <br><br>
