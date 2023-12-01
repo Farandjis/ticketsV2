@@ -1,11 +1,9 @@
 <?php
 
 // Info BDD
-$host = 'localhost';
-$database = 'DB_TIX';
 
-require "/var/www/html/ressources/info_db/connexion_db.php";
-require "/var/www/html/ressources/info_db/user_fictif.php";
+require (dirname(__FILE__) . "/../info_db/connexion_db.php");
+require (dirname(__FILE__) . "/../info_db/user_fictif.php");
 
 function recupererRoleDe($connexion){
     /**
@@ -93,7 +91,7 @@ function connectUser($loginMariaDB, $mdpMariaDB){
      * @param string $mdpMariaDB Le mot de passe de l'utilisateur.
      * @return bool Retourne True si la connexion réussit. False sinon.
      */
-    global $host, $database;
+    global $host, $database, $USER_FICTIF_MDP;
     
     
     
@@ -112,14 +110,13 @@ function connectUser($loginMariaDB, $mdpMariaDB){
             // Récupère la date et l'heure à laquelle l'utilisateur s'est connecté la dernière fois
             $dateConnexion = date('Y-m-d H:i:s');
 
-
-	    $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
+	       $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
 
 	
             // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
           
             $arguments = array($dateConnexion, $ipUtilisateur, $loginMariaDB);
-            executeSQL("UPDATE vue_UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
+            executeSQL("UPDATE UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
 
             // On démarre la session
             session_start();
@@ -136,15 +133,15 @@ function connectUser($loginMariaDB, $mdpMariaDB){
 // /!\ Fonction non-testé et non-debuggé !
 function tableGenerate($table,$colonnes,$conditionForm = "1=1",$conditionParam = array()){
     /**
-    * Génère un tableau contenant les données retournées par une commande SQL.
-    *
-    * @param string $table - Le nom de la table dont on veut les données.
-    * @param array $colonnes - La liste des colonnes de la table à séléctionner.
-    * @param string $conditionForm - La condition SQL de séléction des données.
-    * @param array $conditionParam - Les paramètres de la condition.
-    * @return void
-    */
-    
+     * Génère un tableau contenant les données retournées par une commande SQL.
+     *
+     * @param string $table - Le nom de la table dont on veut les données.
+     * @param array $colonnes - La liste des colonnes de la table à séléctionner.
+     * @param string $conditionForm - La condition SQL de séléction des données.
+     * @param array $conditionParam - Les paramètres de la condition.
+     * @return void
+     */
+
     $requete = "SELECT ?";
     for ($n = 0;$n<count($colonnes)-1;$n++){
         $requete = $requete.",?";
@@ -156,6 +153,6 @@ function tableGenerate($table,$colonnes,$conditionForm = "1=1",$conditionParam =
         for ($c=0;$c<count($rows);$c++){
             echo '<td>'.$rows[c].'</td>';
         }
-        '</tr>'
+        echo '</tr>';
     }
 }
