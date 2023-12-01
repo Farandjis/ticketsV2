@@ -15,7 +15,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
 
             // VERIF LOGIN
             $coUFConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
-            $res = mysqli_fetch_row(executeSQL("SELECT COUNT(LOGIN_USER) FROM vue_UserFictif_connexionDB1 WHERE LOGIN_USER = ?", array($login), $coUFConnexion))[0];
+            $res = mysqli_fetch_row(executeSQL("SELECT COUNT(LOGIN_USER) FROM UserFictif_connexionDB1 WHERE LOGIN_USER = ?", array($login), $coUFConnexion))[0];
             if ($res == 1) { // login déjà présent dans la BD
                 $coUFInscription->close(); $coUFConnexion->close();
                 header('Location: inscription.php?id=7'); // ERREUR : Le login est déjà utilisé.
@@ -55,7 +55,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             $id_nouvel_utilisateur = null; // Nous le l'avons pas encore créer
 
             try {
-                executeSQL("INSERT INTO vue_UserFictif_inscriptionDB1 (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) VALUES (?, ?, ?, 'utilisateur', ?, current_timestamp())", array($login, $prenom, $nom, $email), $coUFInscription);
+                executeSQL("INSERT INTO UserFictif_inscriptionDB1 (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) VALUES (?, ?, ?, 'utilisateur', ?, current_timestamp())", array($login, $prenom, $nom, $email), $coUFInscription);
 
                 // A partir de là, on considère qu'on a bien inséré le nouvel utilisateur, on peut donc créer sa session (utilisateur) MariaDB.
 
