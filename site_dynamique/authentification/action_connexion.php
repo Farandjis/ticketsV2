@@ -3,6 +3,9 @@ require("../ressources/fonctions/PHPfunctions.php");
 global $host, $database, $USER_FICTIF_MDP; // Viennent de connexion_db.php (importé grâce à PHPfunctions.php)
 // Définir les informations de connexion à la base de données
 
+$host = 'localhost';
+$database = 'DB_TIX';
+
 // Connexion à la base de données
 
 $connection = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
@@ -23,7 +26,7 @@ try {
         
         // Récupère l'ID_USER de l'utilisateur par rapport au login
         //$id = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
-        $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connection));
+        $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connection));
 
 
 
@@ -55,6 +58,8 @@ try {
 } catch (Exception $e) {
 
     $msg_erreur = $e->getMessage();
+
+    echo $msg_erreur; return;
 
     if ("Access denied" == substr($msg_erreur, 0, 13)) {
         // Si MariaDB refuse la connexion de l'utilisateur (normalement, cela signifie mauvais mot de passe
