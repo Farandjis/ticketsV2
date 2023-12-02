@@ -59,8 +59,6 @@ try {
 
     $msg_erreur = $e->getMessage();
 
-    echo $msg_erreur; return;
-
     if ("Access denied" == substr($msg_erreur, 0, 13)) {
         // Si MariaDB refuse la connexion de l'utilisateur (normalement, cela signifie mauvais mot de passe
         $msg_erreur = 2; // Erreur : login ou mdp incorrecte
