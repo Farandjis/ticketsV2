@@ -53,7 +53,6 @@ function executeSQL($reqSQL,$params,$connection){
     //call_user_func_array('mysqli_stmt_bind_param',array($reqSQLPre, $typeParams, &$paramsCommandePHP[2]));
 
 
-
     mysqli_stmt_execute($reqSQLPre); // On l'execute
 
     return mysqli_stmt_get_result($reqSQLPre); // On renvoie le résultat de la requête SQL
@@ -131,28 +130,23 @@ function connectUser($loginMariaDB, $mdpMariaDB){
 
 
 // /!\ Fonction non-testé et non-debuggé !
-function tableGenerate($table,$colonnes,$conditionForm = "1=1",$conditionParam = array()){
+function tableGenerate($connexion, $getResultSQL){
     /**
      * Génère un tableau contenant les données retournées par une commande SQL.
      *
-     * @param string $table - Le nom de la table dont on veut les données.
-     * @param array $colonnes - La liste des colonnes de la table à séléctionner.
-     * @param string $conditionForm - La condition SQL de séléction des données.
-     * @param array $conditionParam - Les paramètres de la condition.
+     * @param string $connexion - La connexion à la base de données.
+     * @param string $getResultSQL - le mysqli_stmt_get_result de l'exécution de la requête, le tableau sera généré là dessus.
      * @return void
      */
 
-    $requete = "SELECT ?";
-    for ($n = 0;$n<count($colonnes)-1;$n++){
-        $requete = $requete.",?";
-    }
-    $requete = $requete." FROM ".$table." WHERE ".$conditionForm.";";
-    $execution = insertRequest($requete,array_merge($colonnes,$conditionParam));
-    while($rows = fetch_row(mysqli_stmt_get_result($execution))){
+    while($enregistrements = mysqli_fetch_row($getResultSQL)){
         echo '<tr>';
-        for ($c=0;$c<count($rows);$c++){
-            echo '<td>'.$rows[c].'</td>';
+        for ($noAttributRes = 0; $noAttributRes < count($enregistrements); $noAttributRes++){
+            echo '<td>' . $enregistrements[$noAttributRes] . '</td>';
         }
         echo '</tr>';
     }
+
+
+
 }
