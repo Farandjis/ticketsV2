@@ -132,10 +132,10 @@ function connectUser($loginMariaDB, $mdpMariaDB){
 // /!\ Fonction non-testé et non-debuggé !
 function tableGenerate($connexion, $getResultSQL){
     /**
-     * Génère un tableau contenant les données retournées par une commande SQL.
+     * Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
      *
-     * @param string $connexion - La connexion à la base de données.
-     * @param string $getResultSQL - le mysqli_stmt_get_result de l'exécution de la requête, le tableau sera généré là dessus.
+     * @param mysqli_connect $connexion - La connexion à la base de données.
+     * @param mysqli_result $getResultSQL - le mysqli_stmt_get_result de l'exécution de la requête, le tableau sera généré là dessus.
      * @return void
      */
 
