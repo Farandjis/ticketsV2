@@ -373,9 +373,7 @@ x : string (Nom du rôle de l'individu se connectant)
 </pre>
 #### <i>x = tableGenerate(a,b,c,d)</i>
 <pre>
-Génère un tableau HTML contenant les informations d'une table MySQL. 
-Ce tableau peut contenir une fraction des colonnes de la table choisis, ou leur intégralité.
-Ce tableau peut contenir une fraction des lignes de la table choisis, ou leur intégralité.
+Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
 
 a : mysqli_result (Le resultat d'un commande sql)
 x : void
