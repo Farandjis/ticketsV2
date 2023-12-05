@@ -16,7 +16,7 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 ## Samedi 02/12/2023 - Bilan du travail du 27/11/2023 au 02/12/2023
 
-Pour des infos sur l'organisation futur, voir texte sous Avancé.
+Pour des infos sur l'organisation future, voir texte sous Avancé.
 
 #### Avancé
 
