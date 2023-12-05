@@ -103,7 +103,7 @@ Les problèmes ont été résolus grâce à l'aide de Mme PREDA, M. LOYER et de 
 
 #### Avancé
 
-- **Ce qui a été terminé :** <br>
+- **Ce qui a été terminé :**
   - Page connexion (les msg erreurs), action connexion, test (terminé par Matthieu)
   - Page inscription (les msg erreurs), action inscription, test (terminé par Matthieu)
   - Test page déconnexion (terminé par Matthieu)
@@ -112,17 +112,32 @@ Les problèmes ont été résolus grâce à l'aide de Mme PREDA, M. LOYER et de 
   - Fin dossier de test des fonctions executeSQL, pages modifMdp et modifEmail (Assia, commencé par Enzo)
   - Cas d’utilisation modifEmail et modifMdp (Assia)
 
-- **Ce qui sera à terminer la semaine prochaine :**<br>
+- **Ce qui sera à terminer la semaine prochaine :**
   - Page modif mot de passe (Assia, Enzo, Florent)
   - Page modif adresse email (Assia, Enzo, Florent)
   - Nouvelle version de la base de données (Enzo, Matthieu)
-  - Le devoir en Droit : utilisation des données (Assia et Tom ?)
+  - Le devoir en Droit : utilisation des données (continué par Assia (et Tom ?) durant cette semaine)
+  - Fonction pour les tableaux (Florent)
+  - Page de profile (Enzo, Florent)
+  - Partie dynamique page d'accueil
 
 - **Ce qui a été avancé :**
   - Nouvelle version du site statique (Tom)
   - Page de profile (Enzo)
 
+- **Ce qui est a terminé dès que possible :**
+  - Nouvelle version du site (Tom)
+ 
+- **Ce qui est a continué :**
+  - Tableau de bord
+ 
+- **Ce qui est à commencé :**
+  - Création d'un ticket
+  - Modification d'un ticket
+
 Note : Florent s'occupe d'une fonction dédiée à la génération des tableaux HTML. Je ne suis pas allé me renseigner de son avancée.
+Remarque : Je vais essayer d'aller voir dès que possible M. DUFAUD et demander peut-être l'avis sur notre site à M. HOGUIN. Si possible aussi, l'avis de M. DJERROUD sur les cas d'utilisation (mais je ne suis pas certain).<br>
+<br>
 
 #### Travail effectué
 - **Florent**<br>
