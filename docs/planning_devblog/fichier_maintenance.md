@@ -14,6 +14,63 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## Samedi 02/12/2023 - Bilan du travail du 27/11/2023 au 02/12/2023
+
+Pour des infos sur l'organisation futur, voir texte sous Avancé.
+
+#### Avancé
+
+- **état des lieux qu'il faut faire pour la semaine prochaine (conception/dev/test) :** <br>
+  - pages Modif mdp, modif email, tableau de bord, profile, accueil
+
+- **Ce qui sera à terminer la semaine prochaine :**<br>
+  - pages Modif mdp, modif email (concept, dev, test, cas d'utilisation)
+  - profile, accueil (concept, dev, test, cas d'utilisation)
+  - nouvelle version BD (juste dev)
+
+- **Ce qui a été avancé :**
+  - tableau de bord
+
+- **Ce qui sera à commencer :**
+  - création ticket, modif ticket
+
+
+A noter qu'il faut mettre sur le git la nouvelle version de la maquette,<br>
+Qu'il faut retetester le site statique, tester l'affichage html du site dynamique,
+Faire la conception BD pour les vues, utilisateurs MariaDB + revoir le fichier Markdown,
+Refaire des tests pour la BD
+
+Le 17 décembre les fonctionnalités et l'affichage du site doivent être totalement terminé, ou du moins qu'il reste
+que des choses vraiment minime à faire. En prévision de la vidéo.<br>
+De plus, il faudra faire tout ce que j'ai cité au dessus, en plus du sujet de crypto et de stats.<br>
+Sans oublier le sujet de droit... Je ne parle pas non plus du cahier des charges...<br>
+
+#### Travail effectué
+- **Florent**<br>
+  - PHP : Conception et premier jet de la fonction tableGenerate.
+
+- **Tom**<br>
+  - BD : Ajout d'une condition pour certaines vues pour afficher les données uniquement liés à l'utilisateur MariaDB connecté
+
+- **Enzo** :<br>
+  - BD : Fusion des patchs BD avec le script BD.
+  - BD : Attributions des droits aux rôles et des rôles aux profils MariaDB concernés.
+  - BD : Décision de renommer les vues.
+  
+- **Assia**<br>
+  - PHP : Modification des pages actions connexion/inscription suite au changement de nom des vues par Enzo.
+
+- **Matthieu (chef de projet)**<br>
+  - Git : Gestion du dépôt git (création, suppression, merge des branches).
+  - PHP : Rectification du style.css, et de l'include des fichiers liés à la BD dans le fichier php fonction.
+  - PHP : Développement de la fonction tableGenerate suite au premier jet de Florent.
+
+Le travail effectué est fondé sur l'activité du dépôt GitHub. Toute modification extérieure n'est pas répertorié.
+
+<br><br><br>
+
+---
+
 ## Dimanche 26/11/2023 - Bilan du travail du 18/11/2023 au 26/11/2023
 Exceptionnellement cette semaine, il n'y a pas eu de répartition des tâches ni d'organisation à cause du retard que nous avons accumulé.<br>
 J'ai pris la décision de terminer les 3 pages qui mettait beaucoup trop de temps d'être clôturé : inscription, connexion et déconnexion.
