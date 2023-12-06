@@ -71,6 +71,9 @@ GRANT GRANT OPTION ON DB_TIX.RelationTicketsLibelles TO 'fictif_droitDB'@'localh
 GRANT GRANT OPTION ON DB_TIX.Libelle TO 'fictif_droitDB'@'localhost';
 GRANT GRANT OPTION ON DB_TIX.RelationTicketsLibelles TO 'fictif_droitDB'@'localhost';
 
+GRANT role_utilisateur TO 'fictif_droitDB'@'localhost' WITH GRANT OPTION;
+
+
 -- Ajout des droit pour l'utilisateurs fictif_selectionDB
 GRANT SELECT ON UserFictif_selectionDB1 TO 'fictif_selectionDB'@'localhost';
 
