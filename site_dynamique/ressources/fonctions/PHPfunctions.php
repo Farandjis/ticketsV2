@@ -5,21 +5,50 @@
 require (dirname(__FILE__) . "/../info_db/connexion_db.php");
 require (dirname(__FILE__) . "/../info_db/user_fictif.php");
 
-function recupererRoleDe($connexion){
+function connectUser($loginMariaDB, $mdpMariaDB){
     /**
-     * Récupère le rôle associé à l'utilisateur
-     * @param string $utilisateur - La connexion à la base de donnée
-     * @return string - Le rôle de l'utilisateur associé à la connexion
+     * Connecte l'utilisateur à la base de données et lui crée sa session.
+     *
+     * @param string $loginMariaDB L'id de l'utilisateur.
+     * @param string $mdpMariaDB Le mot de passe de l'utilisateur.
+     * @return bool Retourne True si la connexion réussit. False sinon.
      */
+    global $host, $database, $USER_FICTIF_MDP;
+    
+    
+    
+    // Vérifie si l'utilisateur existe dans la base de données
+    if ($loginMariaDB) { // true si le $loginMariaDB contient quelque chose
 
-     $rolebrute = mysqli_fetch_row(mysqli_query($connexion, "SELECT CURRENT_ROLE();"))[0];
+        // Connexion à la base de données en tant que l'utilisateur
+        $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
 
-     if ($rolebrute == 'role_utilisateur') { return "Utilisateur"; }
-     else if ($rolebrute == 'role_technicien') { return "Technicien"; }
-     else if ($rolebrute == 'role_admin_web') { return "Administrateur Site"; }
-     else if ($rolebrute == 'role_admin_sys') { return "Administrateur Système"; }
-     else if ($rolebrute == NULL) { return "Rôle manquant"; }
-     else { return "Rôle inconnu"; }
+        // Vérifie si la connexion a été établie (donc que le mdp est valide (et l'id aussi, mais normalement ça c'est OK))
+        if ($connexionUtilisateur) {
+
+            // On récupère l'adresse IP de l'utilisateur
+            $ipUtilisateur = gethostbyname($_SERVER['REMOTE_ADDR']);
+
+            // Récupère la date et l'heure à laquelle l'utilisateur s'est connecté la dernière fois
+            $dateConnexion = date('Y-m-d H:i:s');
+
+	       $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
+
+	
+            // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
+          
+            $arguments = array($dateConnexion, $ipUtilisateur, $loginMariaDB);
+            executeSQL("UPDATE UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
+
+            // On démarre la session
+            session_start();
+            $_SESSION['login'] = $loginMariaDB;
+            $_SESSION['mdp'] = $mdpMariaDB;
+
+            return true;
+        }
+    }
+    return false;
 }
 
 function executeSQL($reqSQL,$params,$connection){
@@ -67,7 +96,6 @@ function valideMDP($mdp){
      * @param string $mdp Le mot de passe à valider.
      * @return int Retourne 1 si le mot de passe est valide. 0 si pb taille, -1 à -4 si pb caractère (voir les commentaires)
      */
-    return 1;
     if (strlen($mdp) >= 12 and strlen($mdp) <= 32) { // entre 12 et 32 caractères compris uniquement
         if (preg_match('/[A-Z]/', $mdp)) { // doit contenir au moins une majuscule
             if (preg_match('/[a-z]/', $mdp)) { // doit contenir au moins une minuscule
@@ -81,53 +109,22 @@ function valideMDP($mdp){
     } else { return 0; } // pb taille
 }
 
-
-function connectUser($loginMariaDB, $mdpMariaDB){
+function recupererRoleDe($connexion){
     /**
-     * Connecte l'utilisateur à la base de données et lui crée sa session.
-     *
-     * @param string $loginMariaDB L'id de l'utilisateur.
-     * @param string $mdpMariaDB Le mot de passe de l'utilisateur.
-     * @return bool Retourne True si la connexion réussit. False sinon.
+     * Récupère le rôle associé à l'utilisateur
+     * @param string $utilisateur - La connexion à la base de donnée
+     * @return string - Le rôle de l'utilisateur associé à la connexion
      */
-    global $host, $database, $USER_FICTIF_MDP;
-    
-    
-    
-    // Vérifie si l'utilisateur existe dans la base de données
-    if ($loginMariaDB) { // true si le $loginMariaDB contient quelque chose
 
-        // Connexion à la base de données en tant que l'utilisateur
-        $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
+     $rolebrute = mysqli_fetch_row(mysqli_query($connexion, "SELECT CURRENT_ROLE();"))[0];
 
-        // Vérifie si la connexion a été établie (donc que le mdp est valide (et l'id aussi, mais normalement ça c'est OK))
-        if ($connexionUtilisateur) {
-
-            // On récupère l'adresse IP de l'utilisateur
-            $ipUtilisateur = gethostbyname($_SERVER['REMOTE_ADDR']);
-
-            // Récupère la date et l'heure à laquelle l'utilisateur s'est connecté la dernière fois
-            $dateConnexion = date('Y-m-d H:i:s');
-
-	       $connectionUserFictifConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
-
-	
-            // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
-          
-            $arguments = array($dateConnexion, $ipUtilisateur, $loginMariaDB);
-            executeSQL("UPDATE UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
-
-            // On démarre la session
-            session_start();
-            $_SESSION['login'] = $loginMariaDB;
-            $_SESSION['mdp'] = $mdpMariaDB;
-
-            return true;
-        }
-    }
-    return false;
+     if ($rolebrute == 'role_utilisateur') { return "Utilisateur"; }
+     else if ($rolebrute == 'role_technicien') { return "Technicien"; }
+     else if ($rolebrute == 'role_admin_web') { return "Administrateur Site"; }
+     else if ($rolebrute == 'role_admin_sys') { return "Administrateur Système"; }
+     else if ($rolebrute == NULL) { return "Rôle manquant"; }
+     else { return "Rôle inconnu"; }
 }
-
 
 // /!\ Fonction non-testé et non-debuggé !
 function tableGenerate($connexion, $getResultSQL){
