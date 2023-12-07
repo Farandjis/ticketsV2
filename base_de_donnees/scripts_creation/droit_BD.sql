@@ -33,7 +33,7 @@ ALTER ALGORITHM = UNDEFINED DEFINER=`phpmyfteam`@`localhost`
  select `DB_TIX`.`Utilisateur`.`ID_USER` AS `ID_USER`,
  `DB_TIX`.`Utilisateur`.`LOGIN_USER` AS `LOGIN_USER`,
  `DB_TIX`.`Utilisateur`.`PRENOM_USER` AS `PRENOM_USER`,
- `DB_TIX`.`Utilisateur`.`NOM_USER` AS `NOM_USER`,
+ UPPER(`DB_TIX`.`Utilisateur`.`NOM_USER`) AS `NOM_USER`,
  `DB_TIX`.`Utilisateur`.`ROLE_USER` AS `ROLE_USER`,
  `DB_TIX`.`Utilisateur`.`EMAIL_USER` AS `EMAIL_USER`
  from `DB_TIX`.`Utilisateur`
