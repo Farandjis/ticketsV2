@@ -29,6 +29,7 @@ if (isset($_POST['mdp'], $_POST['Nemail'])) {
             	$connexion = mysqli_connect($host, $login, $mdp, $database);
             } catch (Exception $e) {
                 header('Location: modifEmail.php?erreur=6'); // Erreur connexion BD
+                return;
             }
 
             // Vérifie si l'e-mail est valide
@@ -42,17 +43,22 @@ if (isset($_POST['mdp'], $_POST['Nemail'])) {
                     header('Location: profil.php');
                 } catch (Exception $e) {
                     header('Location: modifEmail.php?erreur=5'); // Erreur lors de la mise à jour
+                    return;
                 }
             } else {
                 header('Location: modifEmail.php?erreur=4'); // Adresse email invalide
+                return;
             }
         } else {
             header('Location: modifEmail.php?erreur=3'); // Mot de passe incorrect
+            return;
         }
     } else {
         header('Location: modifEmail.php?erreur=2'); // Si l'un ou les deux champs sont vides
+        return;
     }
 } else {
     header('Location: modifEmail.php?erreur=1'); // Si il manque un champ
+    return;
 }
 ?>
