@@ -383,6 +383,13 @@ Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une
 a : mysqli_result (Le resultat d'un commande sql)
 x : void
 </pre>
+#### <i>x = verifEmail(a)</i>
+<pre>
+Vérifiaction que l'email en paramètre est un email valide/possible.
+
+a : string (Email entrée par l'utilisateur)
+x : bool (Définie la validité de l'email entré)
+</pre>
 ------------------------------------------------------------------------------------------------------------------------
 ### <a name="p2"></a>I – Conception Architecturale
 <br><br>
