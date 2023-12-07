@@ -361,17 +361,22 @@ x : bool (Définie l'état de la connexion à la base)
 a : str (Correspond au login entré)
 b : str (Correspond au mot de passe entré)
 </pre>
-#### <i>x = isConnected()</i>
+#### <i>x = pageAccess(a)</i>
 <pre>
-Vérifie si l'utilisateur a une session d'ouverte.
+Vérifie le rôle de l'utilisateur, et le redirige vers une page adapté à son niveau de droit.
+Renvoie true si l'utilisateur est autorisé à accéder à cette page.
+
+a : mysqli (connexion à la base de données)
+x : bool
 </pre>
-#### <i>x = userRole()</i>
+#### <i>x = recupererRoleDe(a)</i>
 <pre>
-Renvoie le rôle de l'utilisateur.
-    
+Renvoie le rôle de l'utilisateur sous la forme d'un string.
+
+a : mysqli (connexion à la base de données)
 x : string (Nom du rôle de l'individu se connectant)
 </pre>
-#### <i>x = tableGenerate(a,b,c,d)</i>
+#### <i>x = tableGenerate(a,b)</i>
 <pre>
 Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
 
