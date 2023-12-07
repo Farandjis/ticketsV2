@@ -18,15 +18,15 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             $res = mysqli_fetch_row(executeSQL("SELECT COUNT(LOGIN_USER) FROM UserFictif_connexionDB1 WHERE LOGIN_USER = ?", array($login), $coUFConnexion))[0];
             if ($res == 1) { // login déjà présent dans la BD
                 $coUFInscription->close(); $coUFConnexion->close();
-                header('Location: inscription.php?id=7'); // ERREUR : Le login est déjà utilisé.
+                header('Location: inscription.php?id=7'); return; // ERREUR : Le login est déjà utilisé.
             } else { $coUFConnexion->close(); }
             if (! (strlen($login) >= 5 and strlen($login) <= 30)) { header('Location: inscription.php?id=14'); return;}
 
             // VERIF MDP
             $resvalidemdp = valideMDP($mdp);
-            if ($resvalidemdp == 0){ header('Location: inscription.php?id=8a'); } // ERREUR : Mot de passe invalide taille
-            if ($resvalidemdp == -1){ header('Location: inscription.php?id=8b'); } // manque maj
-            if ($resvalidemdp == -2){ header('Location: inscription.php?id=8c'); } // manque min
+            if ($resvalidemdp == 0){ header('Location: inscription.php?id=8a'); return;} // ERREUR : Mot de passe invalide taille
+            if ($resvalidemdp == -1){ header('Location: inscription.php?id=8b'); return;} // manque maj
+            if ($resvalidemdp == -2){ header('Location: inscription.php?id=8c'); return;} // manque min
             if ($resvalidemdp == -3){ header('Location: inscription.php?id=8d'); return;} // manque chiffre
             if ($resvalidemdp == -4){ header('Location: inscription.php?id=8e'); return;} // manque caractère spécial
 
@@ -91,19 +91,19 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
 
             try{
                 $res = connectUser($loginMariaDBProtege, $mdpProtege); // Si la connexion au site est possible (= true, false sinon) (mdp valide)
-                if(!$res) { header('Location: connexion.php?id=4'); } // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
-                header('Location: ../tableau_bord/tableauBord.php');
+                if(!$res) { header('Location: connexion.php?id=4'); return;} // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
+                header('Location: ../tableau_bord/tableauBord.php'); return;
             }catch(Exception $e){
                 header('Location: connexion.php?id=4'); // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
                 return;
             }
 
         } else {
-            header('Location: inscription.php?id=3');
+            header('Location: inscription.php?id=3'); return;
         }
     } else {
-        header('Location: inscription.php?id=2');
+        header('Location: inscription.php?id=2'); return;
     }
 } else {
-    header('Location: inscription.php?id=1');
+    header('Location: inscription.php?id=1'); return;
 }
