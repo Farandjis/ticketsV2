@@ -378,7 +378,7 @@ x : string (Nom du rôle de l'individu se connectant)
 </pre>
 #### <i>x = tableGenerate(a,b)</i>
 <pre>
-Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
+Présente sous forme d'un tableau HTML (sans balises 'table') le résultat d'une requête MySQL de type SELECT.
 
 a : mysqli_result (Le resultat d'un commande sql)
 x : void
