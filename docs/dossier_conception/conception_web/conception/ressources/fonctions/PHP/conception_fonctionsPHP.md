@@ -91,3 +91,9 @@ Vérifiaction que l'email en paramètre est un email valide/possible.
 a : string (Email entrée par l'utilisateur)
 x : bool (Définie la validité de l'email entré)
 </pre>
+#### <i>x = operationCAPTCHA()</i>
+<pre>
+Affiche un champs de formualire pour le captcha, indique dans ce champs un calcul aléatoire et inscrit le résultat de ce calcul dans le fichier de session.
+
+x : void
+</pre>
