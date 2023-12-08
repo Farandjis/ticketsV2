@@ -6,6 +6,7 @@ INF2-A
 
 # SAÉ S3  Dossier de conception
 </div>
+
 - <b>Conception de la page profile.html<br>
 <br><br>
 <u>Programmation HTML :</u>
