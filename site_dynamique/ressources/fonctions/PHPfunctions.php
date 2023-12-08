@@ -126,7 +126,6 @@ function recupererRoleDe($connexion){
      else { return "Rôle inconnu"; }
 }
 
-// /!\ Fonction non-testé et non-debuggé !
 function tableGenerate($connexion, $getResultSQL){
     /**
      * Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
@@ -143,7 +142,34 @@ function tableGenerate($connexion, $getResultSQL){
         }
         echo '</tr>';
     }
-
-
-
 }
+
+function valideEMAIL($email){
+    /**
+     * Test de la validité de l'adresse email
+     * @param $email -> Email dont on va vérifier sa conformité
+     * @return bool  -> True si valide, false sinon
+     */
+
+    // echo htmlspecialchars($email); echo "<br>";
+    if (! filter_var($email, FILTER_VALIDATE_EMAIL)){
+        // Fonction de base vérifiant le format
+        return false;
+    }
+    elseif (substr($email, -2, 1) == "."){
+        // S'il y a un point à l'avant dernier caractère, cela veut dire que le DNS est trop court (1 caractère)
+        return false;
+    }
+    elseif (!strpos(substr($email, -6, 6), ".")){
+        // S'il n'y a pas de point sur les 4 derniers caractères, alors le DNS est trop long (plus de 4 caractères).
+        // Remarque +2 car il doit vérifier que dans la chaîne il y ai un point et un caractère avant le point (je ne sais pas pourquoi)
+        // ex : o.frrr  ou oo.frr -> ok (il y a le . et un caractère avant)
+        // ex : .frrrr -> ko (absence de caractère avant le .)
+        // ex : frrrrr -> ko (pas de .)
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
