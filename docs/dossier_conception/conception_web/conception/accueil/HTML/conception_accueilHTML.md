@@ -3,6 +3,8 @@ INF2-A
 
 <div align="center">
 <img height="95" width="400" src="/docs/img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
+
+# SAÉ S3  Dossier de conception
 </div>
 
 - <b>Conception de la page index.html</b><br>
