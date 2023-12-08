@@ -227,10 +227,12 @@ function verifJeton(){
 function pageAccess($listeDesRolesAutoriser){
     /**
      * Récupère, déchiffre et vérifie le login et le mot de passe puis tente une connexion à la base de données avec ces informations.
-     * Il vérifie par la suite le rôle de l'utilisateur.
+     * Il vérifie le jeton puis par la suite le rôle de l'utilisateur.
      * S'il y a les informations nécessaire et les droits d'accès à la page, la fonction renvoi sa connexion mysqlMariaDB, false sinon
      *
      * Renvoie la connxion si l'utilisateur est autorisé à accéder à cette page.
+     *
+     * ATTENTION ! CETTE FONCTION UTILISE DES FONCTIONS PAS ENCORE CRÉES QUI RENVOIENT DES RÉPONSES BATEAUX (valide par défaut)
      *
      * @param array $listeDesRolesAutoriser -> Liste des rôles qui sont autorisés à accéder à la page
      * @return mysqli -> Succès de l'accès à la page
@@ -240,58 +242,65 @@ function pageAccess($listeDesRolesAutoriser){
     global $USER_FICTIF_MDP, $database, $host, $empSite;
     session_start();
 
-    if (isset($_SESSION['login'], $_SESSION['mdp'])){
-        // Vérifie que le login et le mot de passe est bien définit
+    try {
+        if (isset($_SESSION['login'], $_SESSION['mdp'])) {
+            // Vérifie que le login et le mot de passe est bien définit
 
-        if (!empty($_SESSION['login']) && !empty($_SESSION['mdp'])){
-            // Vérifie que ce n'est pas vide
-
-
-            // VÉRIFICATION DE LA VALIDITÉ DU JETON
-            if (! verifJeton()){
-                header("Location: " . $empSite . "/authentification/connexion.php?id=7"); // erreur : le jeton de connexion a expiré
-                session_abort();
-                return false;
-            }
+            if (!empty($_SESSION['login']) && !empty($_SESSION['mdp'])) {
+                // Vérifie que ce n'est pas vide
 
 
-            // RECUPERATION DES DONNEES DU COOKIE SESSION
-            $loginSite = htmlspecialchars(htmlspecialchars_decode($_SESSION['login']));
-            $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode(dechiffre($_SESSION['mdp']))); // On vire le htmlspecialchars d'avant pour le refaire (mesure de protection)
-
-
-
-            // RECUPERATION DE L'ID_USER DE L'UTILISATEUR PAR RAPPORT A SON LOGIN
-            $connexionUFConnect = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
-            $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connexionUFConnect));
-            mysqli_close($connexionUFConnect);
-
-            if ($resSQL === null){ return false; } // Mauvais login (la requête SQL n'a rien renvoyé)
-            else { $loginMariaDB = $resSQL[0]; } // On récupère l'ID_USER qui est le login MariaDB.
-
-
-
-            // TENTATIVE DE CONNEXION DE L'UTILISATEUR A LA BASE DE DONNEES
-            $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
-            if ($connexionUtilisateur){
-                // CONNEXION DE L'UTILISATEUR A LA PLATEFORME POSSIBLE
-
-
-
-                // VERIFICATION SI L'UTILISATEUR A LE DROIT D'ACCEDER A LA PAGE
-                $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
-                if (in_array($roleUtilisateur, $listeDesRolesAutoriser)){
-
-                    miseAJourJeton($loginSite, $mdpMariaDB);
+                // VÉRIFICATION DE LA VALIDITÉ DU JETON
+                if (!verifJeton()) {
+                    header("Location: " . $empSite . "/authentification/connexion.php?id=7"); // erreur : le jeton de connexion a expiré
                     session_abort();
-                    return $connexionUtilisateur;
+                    return false;
+                }
 
+
+                // RECUPERATION DES DONNEES DU COOKIE SESSION
+                $loginSite = htmlspecialchars(htmlspecialchars_decode($_SESSION['login']));
+                $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode(dechiffre($_SESSION['mdp']))); // On vire le htmlspecialchars d'avant pour le refaire (mesure de protection)
+
+
+                // RECUPERATION DE L'ID_USER DE L'UTILISATEUR PAR RAPPORT A SON LOGIN
+                $connexionUFConnect = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
+                $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connexionUFConnect));
+                mysqli_close($connexionUFConnect);
+
+                if ($resSQL === null) {
+                    return false;
+                } // Mauvais login (la requête SQL n'a rien renvoyé)
+                else {
+                    $loginMariaDB = $resSQL[0];
+                } // On récupère l'ID_USER qui est le login MariaDB.
+
+
+                // TENTATIVE DE CONNEXION DE L'UTILISATEUR A LA BASE DE DONNEES
+                $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
+                if ($connexionUtilisateur) {
+                    // CONNEXION DE L'UTILISATEUR A LA PLATEFORME POSSIBLE
+
+
+                    // VERIFICATION SI L'UTILISATEUR A LE DROIT D'ACCEDER A LA PAGE
+                    $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
+                    if (in_array($roleUtilisateur, $listeDesRolesAutoriser)) {
+
+                        miseAJourJeton($loginSite, $mdpMariaDB);
+                        session_abort();
+                        return $connexionUtilisateur;
+
+                    }
                 }
             }
         }
-    }
 
-    header("Location: " . $empSite . "/erreurs/403.html");
-    session_abort();
-    return false;
+        header("Location: " . $empSite . "/erreurs/403.html");
+        session_abort();
+        return false;
+    }
+    catch(Exception $e){
+        header("Location: " . $empSite . "/erreurs/403.html");
+        return false;
+    }
 }
