@@ -5,7 +5,7 @@ INF2-A
 <img height="95" width="400" src="/docs/img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 </div>
 
-- <b>>Conception de la page index.html</b><br>
+- <b>Conception de la page index.html</b><br>
 <br><br>
 <u>Programmation HTML :</u>
 <pre>
