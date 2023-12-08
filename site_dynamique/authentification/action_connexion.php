@@ -43,7 +43,7 @@ try {
         else if ($verifRole == "Rôle inconnu"){ header('Location: connexion.php?id=6'); return; } // L'utilisateur possède un rôle inconnu par le système
 
 
-        $connexion = connectUser($loginMariaDB, $mdpMariaDB);
+        $connexion = connectUser($loginMariaDB, $loginSite, $mdpMariaDB);
         if ($connexion){ // Si la connexion au site est possible (mdp valide)
             header('Location: ../tableau_bord/tableauBord.php');
         }
