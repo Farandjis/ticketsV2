@@ -10,11 +10,11 @@
 <body>
     <header>
         <div class="retour">
-            <a href="../index.php"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+            <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
         </div>
     </header>
     <div class="page_authentification_modif_perso">
-        <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
+        <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
 
         <div role="form" class="formAuthentification formConnexion">
 
