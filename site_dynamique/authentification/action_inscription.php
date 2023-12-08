@@ -41,7 +41,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             if (! (strlen($nom) >= 1 and strlen($nom) <= 30)) { header('Location: inscription.php?id=13'); return;}
 
             // VERIF EMAIL
-            if (! filter_var($email, FILTER_VALIDATE_EMAIL)) { // Fonction PHP qui vérifie si l'email est valide.
+            if (! valideEMAIL($email)) { // Vérification que l'email est valide.
                 header('Location: inscription.php?id=11'); // Si l'email n'est pas valide
                 return;
             }
