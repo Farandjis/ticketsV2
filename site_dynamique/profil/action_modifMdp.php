@@ -1,5 +1,6 @@
 <?php
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
+$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvoi vers e403 si la personne n'a pas accès
 
 global $database, $host;
 
@@ -17,12 +18,14 @@ if (isset($_POST['Nmdp'],$_POST['Cmdp'], $_POST['Amdp'])) {
         $confirmationMdp = htmlspecialchars($_POST['Cmdp']);
         $mdpentre = htmlspecialchars($_POST['Amdp']);
 
-        $loginMariaDB = htmlspecialchars($_SESSION['login']);
-        $mdpMariaDB = $_SESSION['mdp'];
+        $loginSite = htmlspecialchars($_SESSION['login']);
+        $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode($_SESSION['mdp']));
+
+        $loginMariaDB = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT substring_index(user(),'@',1);"))[0]; // Récupère l'ID de l'utilisateur (juste avant le @ ex pour Roberto : 3@localhost, donc 3)
 
         // Vérifie si le mot de passe entré correspond au mot de passe MariaDB
 
-        
+
         if ($mdpentre == $mdpMariaDB) {
 
             // Vérifie si le nouveau mot de passe et la confirmation de ce mdp sont similaires
@@ -51,20 +54,20 @@ if (isset($_POST['Nmdp'],$_POST['Cmdp'], $_POST['Amdp'])) {
                 else {
                     try {
                         // Connexion à la base de données
-                        $connexion = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
+                        // $connexion = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
 
                         // Utilisation de la requête UPDATE pour mettre à jour le mot de passe
                         $requete = "SET PASSWORD = PASSWORD('$nouveauMdp');";
-                        mysqli_query($connexion, $requete);
+                        mysqli_query($connexionUtilisateur, $requete);
 
                         // Fermeture de la session avec l'ancien mot de passe
-                        mysqli_close($connexion);
+                        mysqli_close($connexionUtilisateur);
 
                         // Nouvelle connexion avec le nouveau mot de passe
                         $connexion = mysqli_connect($host, $loginMariaDB, $nouveauMdp, $database);
 
                         // Vérifie la connexion avec le nouveau mot de passe
-                        if (connectUser($loginMariaDB, $nouveauMdp)) {
+                        if (connectUser($loginMariaDB, $loginSite, $nouveauMdp)) {
                             $_SESSION['mdp'] = $nouveauMdp;
                             header('Location: profil.php');
                             return;
@@ -73,7 +76,7 @@ if (isset($_POST['Nmdp'],$_POST['Cmdp'], $_POST['Amdp'])) {
                         try {
                             // On remet l'ancien mot de passe et on tente de reconnecter l'utilisateur
                             $connexion = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
-                            if (connectUser($loginMariaDB, $mdpMariaDB)) {
+                            if (connectUser($loginMariaDB, $loginSite, $mdpMariaDB)) {
                                 header('Location: modifMdp.php?id=9'); // Erreur lors de la mise à jour du mot de passe
                                 return;
                             }
