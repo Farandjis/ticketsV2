@@ -5,11 +5,12 @@
 require (dirname(__FILE__) . "/../info_db/connexion_db.php");
 require (dirname(__FILE__) . "/../info_db/user_fictif.php");
 
-function connectUser($loginMariaDB, $mdpMariaDB){
+function connectUser($loginMariaDB, $loginSite, $mdpMariaDB){
     /**
      * Connecte l'utilisateur à la base de données et lui crée sa session.
      *
      * @param string $loginMariaDB L'id de l'utilisateur.
+     * @param string $loginSite Le login utilisé lors de la correction de l'utilisateur
      * @param string $mdpMariaDB Le mot de passe de l'utilisateur.
      * @return bool Retourne True si la connexion réussit. False sinon.
      */
@@ -42,8 +43,8 @@ function connectUser($loginMariaDB, $mdpMariaDB){
 
             // On démarre la session
             session_start();
-            $_SESSION['login'] = $loginMariaDB;
-            $_SESSION['mdp'] = $mdpMariaDB;
+            $_SESSION['login'] = htmlspecialchars($loginSite);
+            $_SESSION['mdp'] = htmlspecialchars($mdpMariaDB);
 
             return true;
         }
