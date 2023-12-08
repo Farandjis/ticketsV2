@@ -7,7 +7,7 @@ INF2-A
 # SAÉ S3  Dossier de conception
 </div>
 
-- <b><a name="p1l"></a>b) Recueil de fonctions</b><br>
+- <b>Recueil de fonctions<br>
 <br><br>
 
 #### <i>x = connectUser(loginMariaDB, mdpMariaDB))</i>
@@ -79,7 +79,7 @@ x : string (Nom du rôle de l'individu se connectant)
 </pre>
 #### <i>x = tableGenerate(a,b)</i>
 <pre>
-Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
+Présente sous forme d'un tableau HTML (sans balises 'table') le résultat d'une requête MySQL de type SELECT.
 
 a : mysqli_result (Le resultat d'un commande sql)
 x : void
