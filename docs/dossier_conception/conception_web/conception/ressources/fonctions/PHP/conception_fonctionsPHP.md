@@ -10,15 +10,6 @@ INF2-A
 - <b>Recueil de fonctions<br>
 <br><br>
 
-#### <i>x = connectUser(loginMariaDB, mdpMariaDB))</i>
-<pre>
-Tentative de connexion à la base de données avec l'identifiant de l'utilisateur et son mot de passe.
-Si la connexion réussit, une session est créer et x = True. Sinon x = False.
-
-x : bool (Définie l'état de la connexion à la base)
-a : str (Correspond au login entré)
-b : str (Correspond au mot de passe entré)
-</pre>
 #### <i>x = executeSQL(reqSQL,params,connection)</i>
 <pre>
 Préparation de la requete sous la forme d'une requête préparé et envoie de cette dernière à la base de données.
@@ -77,11 +68,11 @@ Renvoie le rôle de l'utilisateur sous la forme d'un string.
 a : mysqli (connexion à la base de données)
 x : string (Nom du rôle de l'individu se connectant)
 </pre>
-#### <i>x = tableGenerate(a,b)</i>
+#### <i>x = tableGenerate(a)</i>
 <pre>
 Présente sous forme d'un tableau HTML (sans balises 'table') le résultat d'une requête MySQL de type SELECT.
 
-a : mysqli_result (Le resultat d'un commande sql)
+a : mysqli_result (Le resultat d'une commande sql)
 x : void
 </pre>
 #### <i>x = verifEmail(a)</i>
