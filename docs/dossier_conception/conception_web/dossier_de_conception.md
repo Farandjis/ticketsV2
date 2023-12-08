@@ -363,11 +363,11 @@ b : str (Correspond au mot de passe entré)
 </pre>
 #### <i>x = pageAccess(a)</i>
 <pre>
-Vérifie le rôle de l'utilisateur, et le redirige vers une page adapté à son niveau de droit.
-Renvoie true si l'utilisateur est autorisé à accéder à cette page.
+Tente une connexion à la base de données avec les informations de sessions de kl'utilisateur puis vérifie le rôle de l'utilisateur, et le redirige vers une page adapté à son niveau de droit.
+Renvoie la connxion si l'utilisateur est autorisé à accéder à cette page.
 
-a : mysqli (connexion à la base de données)
-x : bool
+a : arraylist (liste des rôles pouvant accéder à la page en question)
+x : mysqli | false (connexion à la base de données)
 </pre>
 #### <i>x = recupererRoleDe(a)</i>
 <pre>
