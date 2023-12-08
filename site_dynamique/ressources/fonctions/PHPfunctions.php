@@ -173,3 +173,21 @@ function valideEMAIL($email){
     }
 }
 
+
+function operationCAPTCHA(){
+	/**
+ 	* Affiche un champs de formulaire servant de captcha.
+  	* Ce captcha est un calcul dont le résultat est enregistré sur ...
+	*/
+	$chiffre1 = rand(-20,20);
+	$chiffre2 = rand(-20,20);
+	$operateur = array("+","*")[rand(0,1)];
+	if ($operateur=="+"){
+		$res = $chiffre1 + $chiffre2
+	}
+	else{
+		$res = $chiffre1 * $chiffre2
+	}
+	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
+	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
+}
