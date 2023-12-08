@@ -126,11 +126,10 @@ function recupererRoleDe($connexion){
      else { return "Rôle inconnu"; }
 }
 
-function tableGenerate($connexion, $getResultSQL){
+function tableGenerate($getResultSQL){
     /**
      * Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
      *
-     * @param mysqli_connect $connexion - La connexion à la base de données.
      * @param mysqli_result $getResultSQL - le mysqli_stmt_get_result de l'exécution de la requête, le tableau sera généré là dessus.
      * @return void
      */
@@ -174,19 +173,20 @@ function valideEMAIL($email){
 }
 
 
-function operationCAPTCHA(){
-	/**
- 	* Affiche un champs de formulaire servant de captcha.
-  	* Ce captcha est un calcul dont le résultat est enregistré sur ...
-	*/
-	$chiffre1 = rand(-20,20);
-	$chiffre2 = rand(-20,20);
-	$operateur = array("+","*")[rand(0,1)];
-	if ($operateur=="+"){
-		$res = $chiffre1 + $chiffre2
+function operationCAPTCHA()
+{
+    /**
+     * Affiche un champs de formulaire servant de captcha.
+     * Ce captcha est un calcul dont le résultat est enregistré sur ...
+     */
+    $chiffre1 = rand(-20, 20);
+    $chiffre2 = rand(-20, 20);
+    $operateur = array("+", "*")[rand(0, 1)];
+    if ($operateur == "+") {
+        $res = $chiffre1 + $chiffre2;
 	}
 	else{
-		$res = $chiffre1 * $chiffre2
+		$res = $chiffre1 * $chiffre2;
 	}
 	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
 	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
