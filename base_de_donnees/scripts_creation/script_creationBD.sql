@@ -44,10 +44,10 @@ CREATE TABLE EtatTicket (
 
 -- Insertion des états possibles
 INSERT INTO EtatTicket (VALEUR_ETAT_TICKET) VALUES
-    ('en_attente'),
-    ('ouvert'),
-    ('en_cours_de_traitement'),
-    ('ferme');
+    ('En attente'),
+    ('Ouvert'),
+    ('En cours de traitement'),
+    ('Fermé');
 
 -- Création de la table "Ticket"
 CREATE TABLE Ticket (
