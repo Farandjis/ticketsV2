@@ -105,38 +105,41 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     </div>
 </div>
 
+<?php
+    global $host, $database, $USER_FICTIF_MDP;
 
-<div class="affichage_ticket">
-    <h1 class="titre_page">10 derniers Tickets</h1>
-    <div class="conteneur_table_accueil conteneur_table">
-        <table class="table-accueil tableau">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Titre</th>
-                <th>Niv. Urgence</th>
-                <th>Description</th>
-                <th>Etat</th>
-            </tr>
-            </thead>
-            <tbody class="table-ticket">
-                <?php
-                global $host, $database;
+    $connexion = mysqli_connect($host, 'visiteur', $USER_FICTIF_MDP['visiteur'], $database);
 
-                $connexion = mysqli_connect($host, 'visiteur', 't9t+<Q33Pe%o4woPNwDhNdhZBz', $database);
+    $reqSQL = "SELECT ID_Ticket, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_visiteur ORDER BY HORODATAGE_CREATION_TICKET, ID_TICKET DESC LIMIT 10";
 
-                $reqSQL = "SELECT * FROM vue_Ticket_visiteur ORDER BY HORODATAGE_CREATION_TICKET DESC LIMIT 10";
-
-                $getResultSQL = mysqli_query($connexion, $reqSQL);
-
-                tableGenerate($getResultSQL);
+    $getResultSQL = mysqli_query($connexion, $reqSQL);
+    if (! (mysqli_num_rows($getResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
+        echo '
+                <div class="affichage_ticket">
+                    <h1 class="titre_page"> ' . mysqli_num_rows($getResultSQL) . ' derniers Tickets</h1>
+                    <div class="conteneur_table_accueil conteneur_table">
+                        <table class="table-accueil tableau">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Titre</th>
+                                <th>Niv. Urgence</th>
+                                <th>Description</th>
+                                <th>État</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-ticket">
+            ';
+                            tableGenerate($getResultSQL); // génère le tableau avec les tickets
+            echo '
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                ';
+                }
                 ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-
 <footer>
     <a href="https://www.uvsq.fr/" target="_blank"><img src="ressources/images/logo-UVSQ.png" alt="redirige vers site UVSQ"></a>
 </footer>
@@ -148,10 +151,10 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 
         <div class="informations_ticket_popup">
 
-            <p><strong>ID : </strong> <span id="popupId"></span></p>
+            <p><strong>Ticket n°</strong> <span id="popupId"></span></p>
             <p><strong>Date : </strong> <span id="popupDate"></span></p>
-            <p><strong>Niveau Urgence : </strong> <span id="popupNiveau"></span></p>
-            <p><strong>Etat : </strong> <span id="popupEtat"></span></p>
+            <p><strong>Niveau d'urgence : </strong> <span id="popupNiveau"></span></p>
+            <p><strong>État : </strong> <span id="popupEtat"></span></p>
             <p><strong>Objet : </strong> <span id="popupObjet"></span></p>
             <p><strong>Description : </strong> <br> <span id="popupDescription"></span></p>
         </div>
