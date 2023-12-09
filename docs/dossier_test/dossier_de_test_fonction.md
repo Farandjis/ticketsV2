@@ -112,15 +112,13 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 - ### <a name="5a"></a>tablegenerate
 
-| Cas n° | Critère | Résultat attendu | Résultat obtenu | Commentaires |
-|:-------|---------|------------------|-----------------|--------------|
-| 1      |         |                  |                 |              |
-| 2      |         |                  |                 |              |
-| 3      |         |                  |                 |              |
-| 4      |         |                  |                 |              |
-| 5      |         |                  |                 |              |
-| 6      |         |                  |                 |              |
-| 7      |         |                  |                 |              |
+| Cas n° | Critère                                                                                                                                                                    | Résultat attendu  | Résultat obtenu    | Commentaires                            |
+|:-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|--------------------|-----------------------------------------|
+| 1      | Affichage avec la requête suivante "SELECT * FROM vue_Ticket_visiteur"                                                                                                     | 4 colonne affiché | 4 colonnes affiché | Affichage de 4 colonnes dans un tableau |
+| 2      | Affichage avec la requête suivante "SELECT OBJET_TICKET NIV_URGENCE_ESTIMER_TICKET DESCRIPTION_TICKET FROM vue_Ticket_visiteur"                                            | 3 colonne affiché | 3 colonnes affiché | Affichage de 3 colonnes dans un tableau |
+| 3      | Affichage avec la requête suivante "SELECT NIV_URGENCE_ESTIMER_TICKET DESCRIPTION_TICKET FROM vue_Ticket_visiteur"                                                         | 2 colonne affiché | 2 colonnes affiché | Affichage de 3 colonnes dans un tableau |
+| 4      | Affichage avec la requête suivante "SELECT DESCRIPTION_TICKET FROM vue_Ticket_visiteur"                                                                                    | 1 colonne affiché | 1 colonne affiché  | Affichage de 1 colonne dans un tableau  |
+| 5      | Affichage avec la requête suivante "SELECT LOGIN_USER OBJET_TICKET NIV_URGENCE_ESTIMER_TICKET DESCRIPTION_TICKETFROM Ticket t JOIN Utilisateur u ON t.ID_USER = u.ID_USER" | 5 colonne affiché | 5 colonne affiché  | Affichage de 5 colonnes dans un tableau |
 
 - ### <a name="6a"></a>pageAccess
 
