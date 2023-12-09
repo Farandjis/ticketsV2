@@ -122,12 +122,11 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 - ### <a name="6a"></a>pageAccess
 
-| Cas n° | Critère | Résultat attendu | Résultat obtenu | Commentaires |
-|:-------|---------|------------------|-----------------|--------------|
-| 1      |         |                  |                 |              |
-| 2      |         |                  |                 |              |
-| 3      |         |                  |                 |              |
-| 4      |         |                  |                 |              |
-| 5      |         |                  |                 |              |
-| 6      |         |                  |                 |              |
-| 7      |         |                  |                 |              |
+| Cas n° | Critère                                         | Résultat attendu | Résultat obtenu | Commentaires |
+|:-------|-------------------------------------------------|------------------|-----------------|--------------|
+| 1      | Le fichier de session n'existe pas              | KO               | KO              |              |
+| 2      | Les valeurs du fichier de session sont vides    | KO               | KO              |              |
+| 3      | L'utilisateur n'est pas dans la base de données | KO               | KO              |              |
+| 4      | L'utilisateur n'a pas de compte                 | KO               | KO              |              |
+| 5      | L'utilisateur n'a pas de rôle                   | KO               | KO              |              |
+| 6      | Tout est valide                                 | OK               | OK              |              |
