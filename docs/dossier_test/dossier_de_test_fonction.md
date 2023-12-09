@@ -122,11 +122,12 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 - ### <a name="6a"></a>pageAccess
 
-| Cas n° | Critère                                         | Résultat attendu | Résultat obtenu | Commentaires |
-|:-------|-------------------------------------------------|------------------|-----------------|--------------|
-| 1      | Le fichier de session n'existe pas              | KO               | KO              |              |
-| 2      | Les valeurs du fichier de session sont vides    | KO               | KO              |              |
-| 3      | L'utilisateur n'est pas dans la base de données | KO               | KO              |              |
-| 4      | L'utilisateur n'a pas de compte                 | KO               | KO              |              |
-| 5      | L'utilisateur n'a pas de rôle                   | KO               | KO              |              |
-| 6      | Tout est valide                                 | OK               | OK              |              |
+| Cas n° | Critère                                         | Résultat attendu | Résultat obtenu | Commentaires                                 |
+|:-------|-------------------------------------------------|------------------|-----------------|----------------------------------------------|
+| 1      | Le fichier de session n'existe pas              | KO               | KO              | La personne ne s'est pas connecté au site    |
+| 2      | Les valeurs du fichier de session sont vides    | KO               | KO              | La session de l'utilisateur n'a aucune infos |
+| 3      | L'utilisateur n'est pas dans la base de données | KO               | KO              | La personne ne s'est pas inscrit             |
+| 4      | L'utilisateur n'a pas de compte                 | KO               | KO              | La personne ne s'est pas inscrit             |
+| 5      | La connexion de l'utilisateur à échoué          | KO               | KO              | Le mot de passe à été modifié                |
+| 6      | L'utilisateur n'a pas de rôle                   | KO               | KO              | Aucun rôle est associé à l'utilisateur       |
+| 7      | Tout est valide                                 | OK               | OK              | Aucune erreur n'a été signalé                |
