@@ -86,16 +86,19 @@ nav {
   transition: transform 0.5s;
 }
 
+.nav-conteneur a:hover{
+  color: #664dfd;
+}
 
 .nav-conteneur a::before {
   content: "";
   position: absolute;
-  bottom: -3px;
-  width: 100%;
+  bottom: 3px;
+  width: 95%;
   height: 2px;
   transform: scale(0);
   transform-origin: left;
-  background: #ECECEC;
+  background: #664dfd;
   transition: transform 0.3s ease-out;
 }
 .nav-conteneur a:hover::before {
@@ -121,6 +124,11 @@ nav {
   cursor: pointer;
 }
 
+.deconnexion a:hover{
+  background: #1c1c1c;
+  color: #ECECEC;
+}
+
 .authentification a:nth-child(2) {
   color: #ECECEC;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
@@ -137,6 +145,73 @@ nav {
 .user-icon {
   display: none;
 }
+
+
+/* ==================== HAMBURGER ================= */
+
+
+nav .hamburger-menu{
+
+  display: none;
+
+  position: absolute;
+  top: 10px;
+  right: 20px;
+
+  width: 64px;
+  height: 42px;
+
+  cursor: pointer;
+
+}
+
+nav .hamburger-menu .slice {
+
+  position: absolute;
+
+  width: 100%;
+  height: 4px;
+
+  background: #000;
+  border-radius: 4px;
+
+
+  transition: all 0.5s ease-in-out;
+
+}
+
+nav .hamburger-menu .slice:nth-child(1) {
+
+  top: 0px;
+
+}
+nav .hamburger-menu .slice:nth-child(2) {
+
+  top: 18px;
+
+}
+nav .hamburger-menu .slice:nth-child(3) {
+
+  top: 36px;
+
+}
+
+nav .hamburger-menu.active .slice:nth-child(1) {
+  top: 18px;
+  transform: rotate(135deg);
+
+}
+nav .hamburger-menu.active .slice:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+
+}
+nav .hamburger-menu.active .slice:nth-child(3) {
+  top: 18px;
+  transform: rotate(-135deg);
+
+}
+
 
 
 
@@ -261,8 +336,9 @@ nav {
 }
 
 .table-accueil{;
-  min-width: 400px;
   max-height: 1000px;
+  width: 100%;
+
 }
 
 
@@ -288,12 +364,9 @@ th{
 
 td {
   padding: 25px 15px;
-
-}
-
-td {
   font-weight: 500;
 }
+
 
 
 
@@ -312,29 +385,28 @@ tbody tr:nth-child(even){
 }
 
 /* =======modif a faire*/
-.table-ticket  td:nth-child(1),.table-ticket td:nth-child(2),.table-ticket td:nth-child(4),.table-ticket td:nth-child(6){
+
+.table-ticket{
+  width: 100%;
+}
+
+
+.table-ticket  td:nth-child(1),.table-ticket  td:nth-child(2),.table-ticket td:nth-child(4), .table-ticket td:nth-child(6){
+  width: 10%;
   text-align: center;
 }
 
-.table-ticket  td:nth-child(1),.table-ticket  td:nth-child(2),.table-ticket td:nth-child(4), .table-ticket td:nth-child(6){
-  width: 100px;
-}
-
 .table-ticket  td:nth-child(3),.table-ticket td:nth-child(5){
-  max-height: 100px;
+  max-width: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 100px;
 }
 
 .table-ticket td:nth-child(6){
   white-space: nowrap;
 }
 
-.table-accueil .table-ticket td:nth-child(3),.table-accueil .table-ticket td:nth-child(5){
-  max-width: 650px;
-}
 
 tbody tr:hover:not(.ligne_profile){
   background-color: #3d305e;
@@ -975,6 +1047,7 @@ input[type="date"] {
 
 .popupInfo {
   background: #ECECEC;
+  position: relative;
 }
 
 /* ======== CREATION DE TICKET ======== */
@@ -1102,14 +1175,21 @@ select {
 }
 
 #fermer_pop-up{
-  font-family: Poppins, Arial, sans-serif;
+  font-family: Poppins,Calibri, sans-serif;
+  font-weight: 600;
   font-size: 25px;
   position: absolute;
-  top: 16%;
-  left: 69%;
+  top: -20px;
+  right: -20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  transition: 0.3s;
+}
+
+#fermer_pop-up:hover, #fermer_pop-up:focus{
+  transform: scale(1.05);
+  background-color: #dbc1fd;
 }
 
 
@@ -1130,41 +1210,76 @@ select {
 
 
 
-@media (max-width: 750px) {
-  nav {
-    padding: 15px 20px;
-    position: fixed;
-  }
+@media (max-width: 850px) {
 
-  .nav-icon{
-    margin: 0 auto;
-  }
-
-  .nav-authentification {
-    margin-left: 0;
-  }
-  .authentification {
-    display: none;
-  }
-
-  .user-icon {
+  nav .hamburger-menu {
     display: block;
-    cursor: pointer;
+    margin: 30px;
+  }
+
+
+  nav {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: 0.2s;
+  }
+
+
+  nav .nav-conteneur,
+  nav .nav-authentification,
+  nav .deconnexion{
+    display: none;
+
+    transition: 1s;
+  }
+
+  /* On affiche le menu hamburger */
+  nav .hamburger-menu {
+    display: block;
+  }
+
+
+  /* Et si on clique dessus on décale tous les éléments de la nav sauf le bouton hamburger */
+
+  nav.active {
+    background: #ECECEC;
+  }
+
+  nav.active .logo,
+  nav.active .nav-conteneur,
+  nav.active .nav-authentification,
+  nav.active .deconnexion{
+
+    position: relative;
+
+    margin: 15px;
+
+    display: flex;
+
+    transition: 0.5s;
+  }
+
+  nav.active .logo{
+    scale: 1.1;
+  }
+
+  nav.active .nav-conteneur {
+    background: none;
     border: none;
   }
 
-  .user-icon img {
-    width: 40px;
+  .presentation {
+    margin-top: 120px;
   }
 
-  .texte-presentation > h1 {
-    font-size: 60px;
+  #fermer_pop-up{
+    right: 0px;
+
   }
 
-  .video-presentation > iframe {
-    width: 534px;
-    height: 300px;
-  }
+
 }
 
 
@@ -1188,12 +1303,12 @@ select {
 
 @media screen and (max-width: 1445px) {
   .nav-conteneur{
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+
   }
   .nav-conteneur a{
     font-size: 24px;
-    margin-left: 0;
   }
 
   .titre_page, .tableau_bord_bouton {

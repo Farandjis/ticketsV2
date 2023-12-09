@@ -56,8 +56,24 @@ function closePopup() {
     /*
     document.getElementsByClassName("formModifTicket").classList.remove("open");*/
 }
+
 window.onload = init;
+
 function init(){
+    /* HAMBURGER */
+    var nav = document.querySelector("nav");
+    var btnToggleNav = document.querySelector(".hamburger-menu");
+
+    btnToggleNav.addEventListener('click', () => {
+
+        nav.classList.toggle("active");
+        btnToggleNav.classList.toggle("active");
+
+    })
+
+    /* LIGNE */
+
+
     // Ajoutez des écouteurs d'événements aux lignes du tableau
     var table = document.querySelector("table");
     var rows = table.getElementsByTagName("tr");
@@ -87,4 +103,8 @@ function init(){
             rows[index].addEventListener('keydown', handleClickOrEnter);
         })(i);
     }
+
+
 }
+
+
