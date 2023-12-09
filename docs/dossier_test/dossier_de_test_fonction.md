@@ -145,3 +145,12 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 6      | $email = "alice@email.c"         | KO               | KO              | Il y a un accent dans l'email |
 | 7      | $email = "alice@email.coom"      | KO               | KO              | Il y a un accent dans l'email |
 | 8      | $email = "alice@.coom"           | KO               | KO              | Il y a un accent dans l'email |
+| 9      | $email = alice.avrilemail.com    | KO               | KO              | Il manque un @                |
+| 10     | $email = @email.com              | KO               | KO              | Manque de caractère avant @   |
+| 11     | $email = alice.avril@            | KO               | KO              | Manque de caractère après @   |
+| 12     | $email = alice.avril@.com        | KO               | KO              | Manque un nom de domaine      |
+| 13     | $email = alice.avril@email       | KO               | KO              | Manque le ".com" ou ".fr" etc |
+| 14     | $email = @emailalice.avril.fr    | KO               | KO              | Mauvais ordre                 |
+| 15     | $email = alice.avril@.fremail    | KO               | KO              | Mauvais ordre                 |
+| 16     | $email = avril@email.fr.de       | KO               | KO              | pas de "x.x", directement "x" |
+| 17     | $email = alice.avril@email.fr.de | KO               | KO              | sous domaine                  |
