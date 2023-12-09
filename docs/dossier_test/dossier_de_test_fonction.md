@@ -8,7 +8,7 @@ INF2-A
 ## Site statique
 
 <br><br>
-Ce document permet de s'assurer que les pages web statique soient conforme à ce qui est attendu.
+Ce document permet de s'assurer que les focntions soit bien fonctionnel comme souhaité.
 
 </div>
 
@@ -23,6 +23,9 @@ Ce document permet de s'assurer que les pages web statique soient conforme à ce
         - #### [connectUser](#1a)
         - #### [valideMDP](#2a)
         - #### [executeSQL](#3a)
+        - #### [recupererRoleDe](#4a)
+        - #### [tablegenerate](#5a)
+        - #### [pageAccess](#6a)
 
 
 <br><br><br>
@@ -96,3 +99,37 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 5      | $reqSQL = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ? " <br> $params = array() <br> $connection                                                                                                                                                     | KO               | KO              | Aucun paramètre n'est identiqué                                        |
 | 6      | $reqSQL = "UPDATE vue_utilisateur_insertion_client SET email_user= ? WHERE ID_USER = ?" <br> $params = array($nouvEmail, $login) <br> $connexion                                                                                                                              | KO               | KO              | Le paramètre nouvEmail n'existe pas                                    |
 | 7      | $reqSQL = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?" <br> $params = array("--") <br> $connection                                                                                                                                                  | KO               | KO              | Impossible de tenter une injection SQL                                 |
+
+- ### <a name="4a"></a>recupereRoleDE
+
+| Cas n° | Critère                               | Résultat attendu | Résultat obtenu  | Commentaires                            |
+|:-------|---------------------------------------|------------------|------------------|-----------------------------------------|
+| 1      | je me connecte en temps que alice     | role_utilisateur | role_utilisateur | récupération du rôle d'alice            |
+| 2      | je me connecte en temps que admin web | role_admin_web   | role_admin_web   | récupération du rôle d'admin web        |
+| 3      | je me connecte en temps que admin sys | role_admin_sys   | role_admin_sys   | récupération du rôle d'admin sys        |
+| 4      | je me connecte en temps que visiteur  | aucun rôle       | aucun rôleA      | Aucun rôle n'a été attribué au visiteur |
+| 5      | je me connecte en temps que roberto   | technicien       | technicien       | récupération du rôle de roberto         |
+
+- ### <a name="5a"></a>tablegenerate
+
+| Cas n° | Critère | Résultat attendu | Résultat obtenu | Commentaires |
+|:-------|---------|------------------|-----------------|--------------|
+| 1      |         |                  |                 |              |
+| 2      |         |                  |                 |              |
+| 3      |         |                  |                 |              |
+| 4      |         |                  |                 |              |
+| 5      |         |                  |                 |              |
+| 6      |         |                  |                 |              |
+| 7      |         |                  |                 |              |
+
+- ### <a name="6a"></a>pageAccess
+
+| Cas n° | Critère | Résultat attendu | Résultat obtenu | Commentaires |
+|:-------|---------|------------------|-----------------|--------------|
+| 1      |         |                  |                 |              |
+| 2      |         |                  |                 |              |
+| 3      |         |                  |                 |              |
+| 4      |         |                  |                 |              |
+| 5      |         |                  |                 |              |
+| 6      |         |                  |                 |              |
+| 7      |         |                  |                 |              |
