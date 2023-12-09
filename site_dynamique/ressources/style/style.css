@@ -213,6 +213,12 @@ nav {
   box-shadow: 0 0 5px 5px #211a43;
 }
 
+.video-presentation video {
+  width: 720px;
+  height: 405px; /* rapport  */
+  margin-top: 25px;
+  box-shadow: 0 0 5px 5px #211a43;
+}
 
 /*bouton*/
 .inscription{
