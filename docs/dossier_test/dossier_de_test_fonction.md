@@ -26,6 +26,7 @@ Ce document permet de s'assurer que les focntions soit bien fonctionnel comme so
         - #### [recupererRoleDe](#4a)
         - #### [tablegenerate](#5a)
         - #### [pageAccess](#6a)
+        - #### [valideEmail](#7a)
 
 
 <br><br><br>
@@ -131,3 +132,16 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 5      | La connexion de l'utilisateur à échoué          | KO               | KO              | Le mot de passe à été modifié                |
 | 6      | L'utilisateur n'a pas de rôle                   | KO               | KO              | Aucun rôle est associé à l'utilisateur       |
 | 7      | Tout est valide                                 | OK               | OK              | Aucune erreur n'a été signalé                |
+
+- ### <a name="7a"></a>valideEmail
+
+| Cas n° | Critère                          | Résultat attendu | Résultat obtenu | Commentaires                  |
+|:-------|----------------------------------|------------------|-----------------|-------------------------------|
+| 1      | $email = "alice@email.com"       | OK               | OK              | $email est conforme           |
+| 2      | $email = "alice.avril@email.com" | KO               | KO              | $email est conforme           |
+| 3      | $email = " "                     | KO               | KO              | $email est vide               |
+| 4      | $email = "alice#email.com"       | KO               | KO              | L'email n'est pas conforme    |
+| 5      | $email = "alicé@email.com"       | KO               | KO              | Il y a un accent dans l'email |
+| 6      | $email = "alice@email.c"         | KO               | KO              | Il y a un accent dans l'email |
+| 7      | $email = "alice@email.coom"      | KO               | KO              | Il y a un accent dans l'email |
+| 8      | $email = "alice@.coom"           | KO               | KO              | Il y a un accent dans l'email |
