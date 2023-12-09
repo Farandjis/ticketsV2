@@ -3,7 +3,7 @@ function toggleDropdown() {
     dropdown.classList.toggle("active");
 }
 
-
+/*
 function setupForm(buttonId, overlayId) {
     var showFormBtn = document.getElementById(buttonId);
     var overlay = document.getElementsByClassName(overlayClass);
@@ -22,3 +22,5 @@ function setupForm(buttonId, overlayId) {
 // Initialisation des formulaires
 setupForm('show-form-btn-1', 'overlay');
 setupForm('show-form-btn-2', 'overlay');
+ */
+
