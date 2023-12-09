@@ -153,7 +153,6 @@ function valideEMAIL($email){
      * @return bool  -> True si valide, false sinon
      */
 
-    // echo htmlspecialchars($email); echo "<br>";
     if (! filter_var($email, FILTER_VALIDATE_EMAIL)){
         // Fonction de base vérifiant le format
         return false;
@@ -194,7 +193,6 @@ function operationCAPTCHA()
 	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
 	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
 }
-
 
 function dechiffre($mdpchiffre){
     /**
