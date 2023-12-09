@@ -16,7 +16,7 @@ body {
   font-family: Poppins, Arial, sans-serif;
   /*background: linear-gradient(90deg, rgba(159,68,211,1) 0%, rgba(172,122,225,1) 30%, rgba(172,122,225,1) 70%, rgba(159,68,211,1) 100%);*/
 
-  background-image: url(../images/background.jpg);
+  background-image: url(../images/background_hero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -138,7 +138,15 @@ nav {
   display: none;
 }
 
-
+.erreur{
+  background: #131212;
+  border: 1px solid black;
+  color: #f62828;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
 
 /* ======== PAGE D'ACCUEIL ======== */
