@@ -59,10 +59,6 @@ INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, E
 GRANT SELECT ON vue_Utilisateur_visiteur TO 'visiteur'@'localhost';
 GRANT SELECT ON vue_Ticket_visiteur TO 'visiteur'@'localhost';
 
-GRANT 'role_utilisateur' TO 'role_technicien';
-GRANT 'role_technicien' TO 'role_admin_web';
-GRANT 'role_technicien' TO 'role_admin_sys';
-
 GRANT 'role_admin_sys' TO '5'@'localhost';
 GRANT 'role_admin_web' TO '6'@'localhost';
 
