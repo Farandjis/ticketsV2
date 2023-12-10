@@ -14,6 +14,34 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## Dimanche 10/12/2023 - Bilan du travail du 03/11/2023 au 20/12/2023
+
+Je maintiens que Dimanche, nous aurons une version présentable pour Monsieur HOGUIN qui pourra nous faire un retour sur notre travail.<br>
+Cependant, il n'y aura pas la vidéo de présentation et il est possible qu'il reste certaines retouches à faire.
+Mais nous aurions un avis de notre client, et nous pourrons l'ajuster au cours de la semaine.<br>
+
+#### Avancé
+
+- **état des lieux qu'il faut faire pour la semaine prochaine (conception/dev/test) :** <br>
+  - tableau de bord, profil, création ticket, modification ticket, administration, droits BD
+
+- **Ce qui sera à terminer la semaine prochaine :**<br>)
+  - fin de la distribution des droits pour les nouvelles vues de la base de données (juste dev)
+  - Réécrire deux vues dans le patch (voir avec Matthieu)
+  - tableau de bord, profil (développement, test)
+  - création ticket, modification ticket, administration
+
+- **Ce qui a été terminé :**
+  - accueil (il faut juste que Tom retouche au HTML)
+  - modif mdp et modif email
+  - conception pour les nouvelles vues de la BD
+
+
+
+<br><br><br>
+
+---
+
 ## Samedi 02/12/2023 - Bilan du travail du 27/11/2023 au 02/12/2023
 
 Pour des infos sur l'organisation future, voir texte sous Avancé.
@@ -33,6 +61,23 @@ Pour des infos sur l'organisation future, voir texte sous Avancé.
 
 - **Ce qui sera à commencer :**
   - création ticket, modif ticket
+
+#### Travail effectué
+- **Florent**<br>
+  - Répartition des documents de conception (vierge pour le moment) sur les différentes branches
+  - 
+
+- **Tom**<br>
+
+
+- **Enzo** :<br>
+
+  
+- **Assia**<br>
+
+
+- **Matthieu (chef de projet)**<br>
+
 
 
 A noter qu'il faut mettre sur le git la nouvelle version de la maquette,<br>
