@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="../ressources/style/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+
+  <script src="../ressources/script/confirmation.js"></script>
 </head>
 <body>
   <header>
@@ -20,7 +22,7 @@
       <div class="nav-conteneur">
         <a href="../index.html">Accueil</a>
         <a href="../tableau_bord/tableauBord.html">Tableau de bord</a>
-        <a href="#">Administration</a>
+        <a href="#" id="page_actuelle">Administration</a>
       </div>
 
 
@@ -46,7 +48,7 @@
   </h1>
   <div class="conteneur_administration">
     <div class="conteneur_ajout_administration">
-        <form action='#' method='post' class="ajout">
+        <form action='#' method='post' class="ajout" onsubmit="return confirmerAvantEnvoi_tech()">
           <label for='ajout_technicien'>Ajout de Technicien :</label><br><br>
 
           <select name="ajout_technicien" id="ajout_technicien">
@@ -60,7 +62,7 @@
     </div>
 
     <div class="conteneur_ajout_administration">
-      <form action='#' method='post' class="ajout">
+      <form action='#' method='post' class="ajout" onsubmit="return confirmerAvantEnvoi_libelle()">
         <label for='ajout_libelle'>Ajout de Libellés :</label><br><br>
         <input id='ajout_libelle' type='text' name ='ajout_libelle' placeholder="Écrire un libellé">
         <input type='submit' name='ajout_libelle' value='Ajouter'>

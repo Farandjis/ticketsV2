@@ -16,7 +16,7 @@ body {
   font-family: Poppins, Arial, sans-serif;
   /*background: linear-gradient(90deg, rgba(159,68,211,1) 0%, rgba(172,122,225,1) 30%, rgba(172,122,225,1) 70%, rgba(159,68,211,1) 100%);*/
 
-  background-image: url(../images/background.jpg);
+  background-image: url(../images/background_hero.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -136,15 +136,24 @@ nav {
 
 
 .authentification a:nth-child(1):hover {
-  background: #808080;
+  background: #1c1c1c;
+  color: #ECECEC;
 }
 .authentification a:nth-child(2):hover {
   background: linear-gradient( 135deg, #cf8ae5 10%, #6018DC 100%);
+  color: #e3e3e3;
 }
 
 .user-icon {
   display: none;
 }
+
+#page_actuelle {
+  color: #ECECEC;
+  background: #1c1c1c;
+  border-radius: 20px;
+}
+
 
 
 /* ==================== HAMBURGER ================= */
@@ -215,6 +224,17 @@ nav .hamburger-menu.active .slice:nth-child(3) {
 
 
 
+.erreur{
+  background: #131212;
+  border: 1px solid black;
+  color: #f62828;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
 
 /* ======== PAGE D'ACCUEIL ======== */
 .body_accueil{
@@ -280,6 +300,12 @@ nav .hamburger-menu.active .slice:nth-child(3) {
   box-shadow: 0 0 5px 5px #211a43;
 }
 
+.video-presentation video {
+  width: 720px;
+  height: 405px; /* rapport  */
+  margin-top: 25px;
+  box-shadow: 0 0 5px 5px #211a43;
+}
 
 /*bouton*/
 .inscription{
@@ -1298,6 +1324,17 @@ select {
 
   .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
     font-size: 12px;
+  }
+}
+
+
+@media  screen and  (max-width: 1020px){
+  .conteneur_administration {
+    flex-direction: column;
+  }
+
+  .conteneur_ajout_administration {
+    margin-bottom: 20px;
   }
 }
 
