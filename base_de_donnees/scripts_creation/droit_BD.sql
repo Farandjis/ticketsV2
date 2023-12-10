@@ -91,7 +91,7 @@ CREATE ROLE 'role_admin_sys';
 -- Création des utilisateurs
 CREATE USER '5'@'localhost' IDENTIFIED BY 'Assuranc3t0ur!x';
 CREATE USER '6'@'localhost' IDENTIFIED BY 'P0rqu3p!x';
-CREATE USER 'visiteur'@'localhost' IDENTIFIED BY 't9t+<Q33Pe%o4woPNw\D;hNdhZ}B/z';
+CREATE USER 'visiteur'@'localhost' IDENTIFIED BY 't9t+<Q33Pe%o4woPNwDhNdhZBz';
 
 -- Ajout dans la table Utilisateurs les admins pour qu'ils puissent se connecter via la page de connexion
 INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(5, 'admin', 'Administrateur', 'SYSTEME', 'admin_sys', 'missing.sys@email.com');
