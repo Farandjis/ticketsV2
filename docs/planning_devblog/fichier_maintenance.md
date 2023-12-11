@@ -14,7 +14,7 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
-## Dimanche 10/12/2023 - Bilan du travail du 03/11/2023 au 20/12/2023
+## Dimanche 10/12/2023 - Bilan du travail du 03/11/2023 au 10/12/2023
 
 Je maintiens que Dimanche, nous aurons une version présentable pour Monsieur HOGUIN qui pourra nous faire un retour sur notre travail.<br>
 Cependant, il n'y aura pas la vidéo de présentation et il est possible qu'il reste certaines retouches à faire.
@@ -25,7 +25,7 @@ Mais nous aurions un avis de notre client, et nous pourrons l'ajuster au cours d
 - **état des lieux qu'il faut faire pour la semaine prochaine (conception/dev/test) :** <br>
   - tableau de bord, profil, création ticket, modification ticket, administration, droits BD
 
-- **Ce qui sera à terminer la semaine prochaine :**<br>)
+- **Ce qui sera à terminer la semaine prochaine :**<br>
   - fin de la distribution des droits pour les nouvelles vues de la base de données (juste dev)
   - Réécrire deux vues dans le patch (voir avec Matthieu)
   - tableau de bord, profil (développement, test)
@@ -36,6 +36,30 @@ Mais nous aurions un avis de notre client, et nous pourrons l'ajuster au cours d
   - modif mdp et modif email
   - conception pour les nouvelles vues de la BD
 
+#### Travail effectué
+- **Florent**<br>
+  - HS : Répartition des documents de conception sur les différentes branches
+  - PHP : Conception fonction pageAccess
+  - PHP : Développement tableau de bord
+
+- **Tom**<br>
+  - HTML/JS : Amélioration site statique, début de correction des problèmes reportés par M Hoguin sur le site.
+
+- **Enzo** :<br>
+  - PHP :Tests sur les fonctions pageAccess, valideEMAIL, récupérerRoleDe
+  - PHP :Changement ordre des fonctions dans le fichier fonctions.php par rapport à la conception
+
+- **Assia**<br>
+  - PHP :Fin de développement page modif mdp et modif email
+  - PHP :Développement page accueil
+
+- **Matthieu (chef de projet)**<br>
+  - PHP : Fin de développement page modif mdp et modif email
+  - PHP : Fin développement page accueil
+  - PHP : Fin de développement de la fonction pageAccess
+  - PHP : Fin de développement de la fonction valideEMAIL
+  - PHP : Correction de la gestion du cookie session (on stocke le login par l'ID de l'utilisateur)
+  - PHP : Modification du code HTML (.php) connexion/inscription/modif mdp/email + ajout page erreur 403 -> logo redirigeant désormais vais l'accueil et bouton retour fonctionnel.
 
 
 <br><br><br>
@@ -61,24 +85,6 @@ Pour des infos sur l'organisation future, voir texte sous Avancé.
 
 - **Ce qui sera à commencer :**
   - création ticket, modif ticket
-
-#### Travail effectué
-- **Florent**<br>
-  - Répartition des documents de conception (vierge pour le moment) sur les différentes branches
-  - 
-
-- **Tom**<br>
-
-
-- **Enzo** :<br>
-
-  
-- **Assia**<br>
-
-
-- **Matthieu (chef de projet)**<br>
-
-
 
 A noter qu'il faut mettre sur le git la nouvelle version de la maquette,<br>
 Qu'il faut retetester le site statique, tester l'affichage html du site dynamique,
