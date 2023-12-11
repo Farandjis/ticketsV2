@@ -11,6 +11,10 @@ INF2-A
 <br><br>
 <u>Programmation PHP :</u>
 <pre>
+Lors du chargement de la page :
+Appel de la fonction pageAccess() prenant en paramètre une arraylist des rôles ayant accés à cette page (tous sauf visiteur).
+</pre>
+<pre>
 Lorsque le bouton de déconnexion est préssé, on active la page d'action action_deconnexion.php :
 Ouverture session
 Suppression des données de la session
