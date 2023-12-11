@@ -302,3 +302,31 @@ function pageAccess($listeDesRolesAutoriser){
         return false;
     }
 }
+
+
+
+function libelleGenerate($id_ticket = null){
+	if ($id_ticket==null){
+		$unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle;");
+		$checked_libelle = null;
+	}
+	else{
+		$unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle MINUS SELECT DISTINCT(nom_libelle) FROM RelationTicketsLibelles WHERE id_ticket = ?;",array($id_ticket));
+		$checked_libelle = executeSQL("SELECT DISTINCT(nom_libelle) FROM RelationTicketsLibelles WHERE id_ticket = ?;",array($id_ticket));
+	}
+	while($rows = fetch_row(mysqli_stmt_get_result($checked_libelle))){
+		echo "<label><input type='checkbox' name='libelle_option[]' checked> $rows</label>"
+	}
+	while($rows = fetch_row(mysqli_stmt_get_result($unchecked_libelle))){
+		echo "<label><input type='checkbox' name='libelle_option[]'> $rows</label>"
+	}
+}
+
+
+function libelleUpdate($id_ticket){
+	$libelle_option = $_POST["libelle_option"];
+	executeSQL("DELETE FROM RelationTicketsLibelles WHERE id_ticket = $id_ticket;");
+	for ($n=0;$n<count($libelle_option);n++){
+		executeSQL("INSERT INTO RelationTicketsLibelles VALUES(?,?);",array($id_ticket,$libelle_option[$n]));
+	}
+}
