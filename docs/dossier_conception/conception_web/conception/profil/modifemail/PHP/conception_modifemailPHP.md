@@ -11,6 +11,10 @@ INF2-A
 <br><br>
 <u>Programmation PHP :</u>
 <pre>
+Lors du chargement de la page :
+Appel de la fonction pageAccess() prenant en paramètre une arraylist des rôles ayant accés à cette page (tous sauf visiteur).
+</pre>
+<pre>
 Lors de la validation du formulaire, les données de ce dernier sont envoyés vers la page d'action action_modifEmail.php :
 - Vérification de la provenance des valeurs et de leur non nullité
 {
