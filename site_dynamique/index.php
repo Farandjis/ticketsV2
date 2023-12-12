@@ -2,7 +2,7 @@
 require (dirname(__FILE__) . "/ressources/fonctions/PHPfunctions.php");
 session_start();
 
-$estConnecter = false; // On part du principe que c'est in visiteur (donc non connecté)
+$connexionUtilisateur = null; // On part du principe que c'est in visiteur (donc non connecté)
 
 if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     // Vérifie que le login et le mot de passe est bien définit
@@ -11,7 +11,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 
         session_abort();
         $connexionUtilisateur = pageAccess(array("Utilisateur", "Technicien", "Administrateur Site", "Administrateur Système"));
-        $estConnecter = true; // La personne accède bien à la page en étant connecté
+
     }
 }
 
@@ -31,55 +31,9 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     <script src="ressources/script/infoLigneTab.js"></script>
 </head>
 <body class="body_accueil">
-<header>
-    <nav>
-        <a href="#" aria-current="page">
-            <div class="logo">
-                <img src="ressources/images/logo_blanc.png" alt="logo du site">
-                <p>TIX</p>
-            </div>
-        </a>
 
-        <?php
-        if ($estConnecter){
+<?php affichageMenuDuHaut($connexionUtilisateur);?>
 
-            echo '<div class="nav-conteneur">';
-
-                echo '<a href="#" aria-current="page">Accueil</a>';
-                echo '<a href="tableau_bord/tableauBord.php">Tableau de bord</a>';
-                // Si la personne est connecté...
-                if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
-                    // ... et que c'est l'administrateur du site
-                    echo '<a href="administration/administration.php">Administration</a>';
-                }
-                elseif (recupererRoleDe($connexionUtilisateur) == "Administrateur Système"){
-                    echo '<a href="administration/administration.php">Administration</a>';
-                }
-
-            echo '</div>';
-        }
-        ?>
-
-        <div class="nav-authentification">
-            <a href="profil/profil.php" class="user-icon" aria-label="Page de connexion">
-                <img src="ressources/images/user.svg" alt="icone utilisateur">
-            </a>
-            <div class="authentification">
-                <?php
-                if ($estConnecter) {
-                    // Si la personne est connecté...
-                    echo "<a href = 'profil/profil.php'> Mon Espace </a>";
-                }
-                else {
-                    // Sinon, c'est un visiteur
-                    echo '<a href = "authentification/connexion.php"> Connexion</a>';
-                    echo '<a href = "authentification/inscription.php"> Inscription</a>';
-                }
-                ?>
-            </div>
-        </div>
-    </nav>
-</header>
 <div class="hero">
     <div class="presentation">
         <div class="texte-presentation">
@@ -93,7 +47,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
         </div>
         <div class="video-presentation">
             <!--<iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
-            <video controls autoplay muted>
+            <video controls autoplay muted loop controlsList="nodownload">
                 <source src="ressources/video/presentation_tix.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
