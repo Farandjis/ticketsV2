@@ -6,9 +6,7 @@ FROM Ticket AS T
     LEFT OUTER JOIN Utilisateur AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
 WHERE T.ETAT_TICKET = "Ouvert"
    OR T.ETAT_TICKET = "En cours de traitement"
-   OR ((CURRENT_ROLE = "role_admin_web "
-AND T.ETAT_TICKET = "En attente")
-    OR T.ID_USER = substring_index(user(),'@',1));
+   OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR CURRENT_ROLE = "role_admin_web ");
 
 CREATE OR REPLACE VIEW vue_tdb_relation_ticket_libelle AS
 SELECT RTL.ID_TICKET, RTL.NOM_LIBELLE
