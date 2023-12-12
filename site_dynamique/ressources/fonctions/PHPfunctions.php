@@ -250,6 +250,7 @@ function pageAccess($listeDesRolesAutoriser){
 
                 // VÉRIFICATION DE LA VALIDITÉ DU JETON
                 if (!verifJeton()) {
+                    deconnexion_site();
                     header("Location: " . $empSite . "/authentification/connexion.php?id=7"); // erreur : le jeton de connexion a expiré
                     session_abort();
                     return false;
@@ -329,4 +330,24 @@ function libelleUpdate($id_ticket){
 	for ($n=0;$n<count($libelle_option);$n++){
 		executeSQL("INSERT INTO RelationTicketsLibelles VALUES(?,?);",array($id_ticket,$libelle_option[$n]));
 	}
+}
+
+
+/**
+ * @return void
+ * Déconnecte l'utilisateur du site
+ * Code venant de action_deconnexion.php
+ */
+function deconnexion_site(){
+    // Démarre une session
+        session_start();
+
+    // Vérifie si les variables de session 'login' et 'mdp' sont définies
+        if (isset($_SESSION['login'], $_SESSION['mdp'])){
+            // Supprime les variables de session 'login' et 'mdp'
+            unset($_SESSION['login'], $_SESSION['mdp']);
+        }
+
+    // Détruit toutes les données de session existantes.
+        session_destroy();
 }
