@@ -250,7 +250,7 @@ function pageAccess($listeDesRolesAutoriser){
 
                 // VÉRIFICATION DE LA VALIDITÉ DU JETON
                 if (!verifJeton()) {
-                    deconnexion_site();
+                    deconnexionSite();
                     header("Location: " . $empSite . "/authentification/connexion.php?id=7"); // erreur : le jeton de connexion a expiré
                     session_abort();
                     return false;
@@ -338,7 +338,7 @@ function libelleUpdate($id_ticket){
  * Déconnecte l'utilisateur du site
  * Code venant de action_deconnexion.php
  */
-function deconnexion_site(){
+function deconnexionSite(){
     // Démarre une session
         session_start();
 
@@ -350,4 +350,64 @@ function deconnexion_site(){
 
     // Détruit toutes les données de session existantes.
         session_destroy();
+}
+
+/**
+ * Affiche le menu en haut en fonction du rôle de l'utilisateur, ou si c'est un simple visiteur.
+ * @param $connexionUtilisateur : connexion MySQL permettant de déterminé le rôle de l'utilisateur, null si c'est un visiteur (par défaut)
+ * @return void
+ */
+function affichageMenuDuHaut($connexionUtilisateur = null){
+?>
+    <header>
+        <nav>
+            <a href="#" aria-current="page">
+                <div class="logo">
+                    <img src="ressources/images/logo_blanc.png" alt="logo du site">
+                    <p>TIX</p>
+                </div>
+            </a>
+
+            <?php
+            if ($connexionUtilisateur != null){
+
+                echo '<div class="nav-conteneur">';
+
+                echo '<a href="#" aria-current="page">Accueil</a>';
+                echo '<a href="tableau_bord/tableauBord.php">Tableau de bord</a>';
+                // Si la personne est connecté...
+                if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
+                    // ... et que c'est l'administrateur du site
+                    echo '<a href="administration/administration.php">Administration</a>';
+                }
+                elseif (recupererRoleDe($connexionUtilisateur) == "Administrateur Système"){
+                    echo '<a href="administration/administration.php">Administration</a>';
+                }
+
+                echo '</div>';
+            }
+            ?>
+
+            <div class="nav-authentification">
+                <a href="profil/profil.php" class="user-icon" aria-label="Page de connexion">
+                    <img src="ressources/images/user.svg" alt="icone utilisateur">
+                </a>
+                <div class="authentification">
+                    <?php
+                    if ($connexionUtilisateur != null) {
+                        // Si la personne est connecté...
+                        echo "<a href = 'profil/profil.php'> Mon Espace </a>";
+                    }
+                    else {
+                        // Sinon, c'est un visiteur
+                        echo '<a href = "authentification/connexion.php"> Connexion</a>';
+                        echo '<a href = "authentification/inscription.php"> Inscription</a>';
+                    }
+                    ?>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<?php
 }
