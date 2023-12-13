@@ -90,7 +90,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST[
             }
 
             try{
-                $res = connectUser($loginMariaDBProtege, $mdpProtege); // Si la connexion au site est possible (= true, false sinon) (mdp valide)
+                $res = connectUser($loginMariaDBProtege, $login, $mdpProtege); // Si la connexion au site est possible (= true, false sinon) (mdp valide)
                 if(!$res) { header('Location: connexion.php?id=4'); return;} // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
                 header('Location: ../tableau_bord/tableauBord.php'); return;
             }catch(Exception $e){
