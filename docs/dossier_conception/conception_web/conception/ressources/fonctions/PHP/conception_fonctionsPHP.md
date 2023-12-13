@@ -10,17 +10,17 @@ INF2-A
 - <b>Recueil de fonctions<br>
 <br><br>
 
-#### <i>x = executeSQL(reqSQL,params,connection)</i>
+#### <i>x = executeSQL(a, b, c)</i>
 <pre>
 Préparation de la requete sous la forme d'une requête préparé et envoie de cette dernière à la base de données.
     
-     x :  Faux -> sur une erreur
-          objet mysqli_result -> résultat de la requête (pour SELECT, SHOW, DESCRIBE or EXPLAIN)
-reqSQL : str (Requête mySQL sous la forme d'une requête préparé avec des '?')
-params : arraylist (Tableau des valeurs à inérer dans la requête dans l'ordre)
-connection : mysqli (Objet relatif à la connexion à la base de données)
+x : Faux -> sur une erreur
+    objet mysqli_result -> résultat de la requête (pour SELECT, SHOW, DESCRIBE or EXPLAIN)
+a : str (Requête mySQL sous la forme d'une requête préparé avec des '?')
+b : arraylist (Tableau des valeurs à inérer dans la requête dans l'ordre)
+c : mysqli (Objet relatif à la connexion à la base de données)
 </pre>
-#### <i>x = newUser(id, mdp)</i>
+#### <i>x = newUser(a, b)</i>
 <pre>
 Création d'un nouvel utilisateur MariaDB, puis don de ses droits.
 Si la fonction s'exécute correctement x = True. Sinon x = False.
@@ -29,14 +29,14 @@ x : bool (Définie l'état de la création de l'utilisateur)
 a : str (Correspond au login entré)
 b : str (Correspond au mot de passe entré)
 </pre>
-#### <i>x = valideMDP($mdp)</i>
+#### <i>x = valideMDP(a)</i>
 <pre>
 Vérifiaction de l'identité du mot de passe et de la confirmation du mot de passe. Vérification que le mot de passe respecte les normes de sécurité.
 Si le mot de passe respecte les conditions de sécurité x = 1 si c'est bon, une autre valeur si ce n'est pas bon.
 
 x : int (Définie la validité du mot de passe + l'erreur correspondante)
-     1 -> MDP OK
-     0 -> MDP KO : taille (inférieur à 12 ou supérieur à 32)
+    1 -> MDP OK
+    0 -> MDP KO : taille (inférieur à 12 ou supérieur à 32)
     -1 -> MDP KO : manque une majuscule
     -2 -> MDP KO : manque une minuscule
     -3 -> MDP KO : manque un chiffre
@@ -44,7 +44,7 @@ x : int (Définie la validité du mot de passe + l'erreur correspondante)
 a : str (Correspond au mot de passe entré)
 
 </pre>
-#### <i>x = connectUser(a,b)</i>
+#### <i>x = connectUser(a, b)</i>
 <pre>
 Tentative de connexion à la base de données avec l'identifiant de l'utilisateur et son mot de passe.
 Si la connexion réussit, une session est créer et x = True. Sinon x = False.
@@ -75,7 +75,7 @@ Présente sous forme d'un tableau HTML (sans balises 'table') le résultat d'une
 a : mysqli_result (Le resultat d'une commande sql)
 x : void
 </pre>
-#### <i>x = verifEmail(a)</i>
+#### <i>x = valideEMAIL(a)</i>
 <pre>
 Vérifiaction que l'email en paramètre est un email valide/possible.
 
@@ -85,6 +85,41 @@ x : bool (Définie la validité de l'email entré)
 #### <i>x = operationCAPTCHA()</i>
 <pre>
 Affiche un champs de formualire pour le captcha, indique dans ce champs un calcul aléatoire et inscrit le résultat de ce calcul dans le fichier de session.
+
+x : void
+</pre>
+#### <i>x = libelleGenerate()</i>
+<pre>
+
+x : void
+</pre>
+#### <i>x = libelleUpdate()</i>
+<pre>
+
+x : void
+</pre>
+#### <i>x = deconnexionSite()</i>
+<pre>
+
+x : void
+</pre>
+#### <i>x = affichageMenuDuHaut()</i>
+<pre>
+
+x : void
+</pre>
+#### <i>x = dechiffre()</i>
+<pre>
+
+x : void
+</pre>
+#### <i>x = miseAJourJeton()</i>
+<pre>
+
+x : void
+</pre>
+#### <i>x = vetifJeton()</i>
+<pre>
 
 x : void
 </pre>
