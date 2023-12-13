@@ -8,7 +8,7 @@ FROM Ticket;
 
 -- Utilisateur
 CREATE VIEW vue_Utilisateur_client AS
-SELECT ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER -- A modifier : supprimer ID_USER
+SELECT ID_USER, LOGIN_USER, PRENOM_USER, UPPER(NOM_USER), ROLE_USER, EMAIL_USER -- A modifier : supprimer ID_USER
 FROM Utilisateur
 WHERE ID_USER = SUBSTRING_INDEX(USER, '@', 1);
 
