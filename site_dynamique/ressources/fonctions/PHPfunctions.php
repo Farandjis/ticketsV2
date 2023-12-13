@@ -364,11 +364,12 @@ function deconnexionSite(){
         session_destroy();
 }
 
-function affichageMenuDuHaut($connexionUtilisateur = null){
+function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 	/**
 	 * Affiche le menu en haut en fonction du rôle de l'utilisateur, ou si c'est un simple visiteur.
 	 * @param $connexionUtilisateur : connexion MySQL permettant de déterminé le rôle de l'utilisateur, null si c'est un visiteur (par défaut)
-	 * @return void
+	 * @param $pageActuelle : nom de la page où est appelé cette fonction
+     * @return void
 	 */
 ?>
     <header>
@@ -385,15 +386,15 @@ function affichageMenuDuHaut($connexionUtilisateur = null){
 
                 echo '<div class="nav-conteneur">';
 
-                echo '<a href="#" aria-current="page">Accueil</a>';
-                echo '<a href="tableau_bord/tableauBord.php">Tableau de bord</a>';
+                echo '<a href="#" aria-current="page"'; if ($pageActuelle == "index") { echo 'id="page_actuelle"'; } echo '>Accueil</a>';
+                echo '<a href="tableau_bord/tableaudebord.php"'; if ($pageActuelle == "tableaudebord") { echo 'id="page_actuelle"'; } echo '>Tableau de bord</a>';
                 // Si la personne est connecté...
                 if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
                     // ... et que c'est l'administrateur du site
-                    echo '<a href="administration/administration.php">Administration</a>';
+                    echo '<a href="administration/administration.php"'; if ($pageActuelle == "administration") { echo 'id="page_actuelle"'; } echo '>Administration</a>';
                 }
                 elseif (recupererRoleDe($connexionUtilisateur) == "Administrateur Système"){
-                    echo '<a href="administration/administration.php">Administration</a>';
+                    echo '<a href="administration/administration.php"'; if ($pageActuelle == "administration") { echo 'id="page_actuelle"'; } echo '>Administration</a>';
                 }
 
                 echo '</div>';
