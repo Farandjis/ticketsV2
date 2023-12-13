@@ -45,7 +45,7 @@ try {
 
         $connexion = connectUser($loginMariaDB, $loginSite, $mdpMariaDB);
         if ($connexion){ // Si la connexion au site est possible (mdp valide)
-            header('Location: ../tableau_bord/tableauBord.php');
+            header('Location: ../tableau_bord/tableaudebord.php');
         }
         else{ // Echec de l'authentification de l'utilisateur
             header('Location: connexion.php?id=2');
