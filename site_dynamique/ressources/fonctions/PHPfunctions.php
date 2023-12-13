@@ -5,7 +5,7 @@
 require (dirname(__FILE__) . "/../info_db/connexion_db.php");
 require (dirname(__FILE__) . "/../info_db/user_fictif.php");
 
-$empSite = "/nouveau";
+$empSite = "/sitefteam";
 
 function connectUser($loginMariaDB, $loginSite, $mdpMariaDB){
     /**
@@ -371,12 +371,14 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 	 * @param $pageActuelle : nom de la page où est appelé cette fonction
      * @return void
 	 */
+
+    global $empSite;
 ?>
     <header>
         <nav>
             <a href="#" aria-current="page">
                 <div class="logo">
-                    <img src="ressources/images/logo_blanc.png" alt="logo du site">
+                    <?php echo'<img src="' . $empSite . '/ressources/images/logo_blanc.png" alt="logo du site">'; ?>
                     <p>TIX</p>
                 </div>
             </a>
@@ -386,15 +388,15 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 
                 echo '<div class="nav-conteneur">';
 
-                echo '<a href="#" aria-current="page"'; if ($pageActuelle == "index") { echo 'id="page_actuelle"'; } echo '>Accueil</a>';
-                echo '<a href="tableau_bord/tableaudebord.php"'; if ($pageActuelle == "tableaudebord") { echo 'id="page_actuelle"'; } echo '>Tableau de bord</a>';
+                if ($pageActuelle == "index") { echo '<a href="." aria-current="page" id="page_actuelle">Accueil</a>'; } else { echo '<a href="../" aria-current="page">Accueil</a>'; }
+                if ($pageActuelle == "tableaudebord") { echo '<a href="tableaudebord.php" aria-current="page" id="page_actuelle">Tableau de bord</a>'; } else { echo '<a href="' . $empSite . '/tableau_bord/tableaudebord.php" aria-current="page">Tableau de bord</a>'; }
                 // Si la personne est connecté...
                 if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
                     // ... et que c'est l'administrateur du site
-                    echo '<a href="administration/administration.php"'; if ($pageActuelle == "administration") { echo 'id="page_actuelle"'; } echo '>Administration</a>';
+                    if ($pageActuelle == "tableaudebord") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
                 }
                 elseif (recupererRoleDe($connexionUtilisateur) == "Administrateur Système"){
-                    echo '<a href="administration/administration.php"'; if ($pageActuelle == "administration") { echo 'id="page_actuelle"'; } echo '>Administration</a>';
+                    if ($pageActuelle == "tableaudebord") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
                 }
 
                 echo '</div>';
