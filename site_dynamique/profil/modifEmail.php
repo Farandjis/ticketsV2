@@ -30,10 +30,10 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
                 if(isset($_GET['id'])) {
                     echo '<div class="erreur">';
                     echo '<p>';
-                    if ($_GET['id'] == 1) { echo "ERREUR : Le champ mot de passe ou nouveau email est manquant "; }
-                    else if ($_GET['id'] == 2) { echo "ERREUR : Le mot de passe ou nouveau email ou les deux champs sont vides"; }
+                    if ($_GET['id'] == 1) { echo "ERREUR : Le champ mot de passe ou nouvel email est manquant "; }
+                    else if ($_GET['id'] == 2) { echo "ERREUR : Le mot de passe ou nouvel email ou les deux champs sont vides"; }
                     else if ($_GET['id'] == 3) { echo "ERREUR : Le champ mot de passe est incorrect"; }
-                    else if ($_GET['id'] == 4) { echo "ERREUR : Le champ nouveau email est invalide"; }
+                    else if ($_GET['id'] == 4) { echo "ERREUR : Le champ nouvel email est invalide"; }
                     else if ($_GET['id'] == 5) { echo "ERREUR : Erreur lors de la mise à jour"; }
                     else if ($_GET['id'] == 6) { echo "ERREUR : Connexion à la base de données impossible"; }
                     else { echo "ERREUR : Une erreur est survenue"; }
@@ -45,7 +45,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
                 <label for='mdp'>Mot de passe</label><br>
                 <input id='mdp' type='password' name ='mdp'>
                 <br><br>
-                <label for='Nemail'>Nouveau email</label><br>
+                <label for='Nemail'>Nouvel email</label><br>
                 <input id='Nemail' type='text' name ='Nemail'><br>
                 <br>
 
