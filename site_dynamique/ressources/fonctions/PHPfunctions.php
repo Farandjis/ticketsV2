@@ -307,6 +307,12 @@ function pageAccess($listeDesRolesAutoriser){
 
 
 function libelleGenerate($id_ticket = null){
+	/**
+ 	* Génère la liste des libéllés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
+  	* Si un id de ticket est passé en paramètre, les libéllés associés à ce ticket sont en état checked.
+   	* @param $id_ticket = null/integer - Id du ticket dont on veut voir les libéllés checkés.
+    	* @return void
+    	*/
 	if ($id_ticket==null){
 		$unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle;");
 		$checked_libelle = null;
@@ -324,8 +330,14 @@ function libelleGenerate($id_ticket = null){
 }
 
 
-function libelleUpdate($id_ticket){
-	$libelle_option = $_POST["libelle_option"];
+function libelleUpdate($id_ticket,$libelle_option){
+	/**
+ 	* Pour un ticket dont l'id est donnée :
+  	* Remplace ses libéllés en effaçant ses anciens libéllés puis en lui associant ceux dans la liste en paramètre.
+   	* @param $id_ticket - Id du ticket dont on veut remplacer les libéllés.
+       	* @param $libelle_option - Liste des libéllés du ticket.
+    	* @return void
+    	*/
 	executeSQL("DELETE FROM RelationTicketsLibelles WHERE id_ticket = $id_ticket;");
 	for ($n=0;$n<count($libelle_option);$n++){
 		executeSQL("INSERT INTO RelationTicketsLibelles VALUES(?,?);",array($id_ticket,$libelle_option[$n]));
@@ -333,12 +345,12 @@ function libelleUpdate($id_ticket){
 }
 
 
-/**
- * @return void
- * Déconnecte l'utilisateur du site
- * Code venant de action_deconnexion.php
- */
 function deconnexionSite(){
+	/**
+	 * @return void
+	 * Déconnecte l'utilisateur du site
+	 * Code venant de action_deconnexion.php
+	 */
     // Démarre une session
         session_start();
 
@@ -352,12 +364,12 @@ function deconnexionSite(){
         session_destroy();
 }
 
-/**
- * Affiche le menu en haut en fonction du rôle de l'utilisateur, ou si c'est un simple visiteur.
- * @param $connexionUtilisateur : connexion MySQL permettant de déterminé le rôle de l'utilisateur, null si c'est un visiteur (par défaut)
- * @return void
- */
 function affichageMenuDuHaut($connexionUtilisateur = null){
+	/**
+	 * Affiche le menu en haut en fonction du rôle de l'utilisateur, ou si c'est un simple visiteur.
+	 * @param $connexionUtilisateur : connexion MySQL permettant de déterminé le rôle de l'utilisateur, null si c'est un visiteur (par défaut)
+	 * @return void
+	 */
 ?>
     <header>
         <nav>
