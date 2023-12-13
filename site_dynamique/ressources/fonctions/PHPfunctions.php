@@ -422,6 +422,11 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                 </div>
             </div>
         </nav>
+        <div class="hamburger-menu">
+            <div class="slice"></div>
+            <div class="slice"></div>
+            <div class="slice"></div>
+        </div>
     </header>
 
 <?php
