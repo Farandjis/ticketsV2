@@ -1,7 +1,7 @@
 <?php
+require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
+$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvoi vers e403 si la personne n'a pas accès
 
-require "../ressources/info_db/connexion_db.php";
-require "../ressources/fonctions/PHPfunctions.php";
 
 // Vérifie que les champs 'mdp' et 'Nemail' sont définis
 if (isset($_POST['mdp'], $_POST['Nemail'])) {
@@ -16,43 +16,57 @@ if (isset($_POST['mdp'], $_POST['Nemail'])) {
         session_start();
 
         // Récupération des données de session
-        $login = $_SESSION['login'];
-        $mdp = $_SESSION['mdp'];
-        $mdpEntre = $_POST['mdp'];
-        $nouvelleEmail = $_POST['Nemail'];
+        $loginSite = htmlspecialchars($_SESSION['login']);
+        $mdp = htmlspecialchars(htmlspecialchars_decode($_SESSION['mdp']));
+        $mdpEntre = htmlspecialchars($_POST['mdp']);
+        $nouvelleEmail = htmlspecialchars($_POST['Nemail']);
+
+        $loginMariaDB = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT substring_index(user(),'@',1);"))[0]; // Récupère l'ID de l'utilisateur (juste avant le @ ex pour Roberto : 3@localhost, donc 3)
+
 
         // Vérifie si le mot de passe saisi correspond à celui entré
         if ($mdp == $mdpEntre) {
 
-            // Connexion à la base de données
+            /*
+            // Connexion à la base de données (fait par pageAcess normalement)
             try {
-            	$connexion = mysqli_connect($host, $login, $mdp, $database);
+            	$connexion = mysqli_connect($host, $loginMariaDB, $mdp, $database);
             } catch (Exception $e) {
-                header('Location: modifEmail.php?erreur=6'); // Erreur connexion BD
+                header('Location: modifEmail.php?id=6'); // Erreur connexion BD
+                return;
             }
+            */
+
 
             // Vérifie si l'e-mail est valide
-            if (filter_var($nouvelleEmail, FILTER_VALIDATE_EMAIL)) {
+            if (valideEMAIL($nouvelleEmail)) {
 
                 try {
                     // Mise à jour de l'email dans la vue
-                    executeSQL("UPDATE vue_utilisateur_insertion_client SET email_user= ? WHERE ID_USER = ?", array($nouvelleEmail, $login), $connexion);
+                    executeSQL("UPDATE vue_Utilisateur_insertion_client SET email_user= ? WHERE ID_USER = ?", array($nouvelleEmail, $loginMariaDB), $connexionUtilisateur);
 
                     // Redirection si la mise à jour réussie
                     header('Location: profil.php');
+                    return;
+
                 } catch (Exception $e) {
-                    header('Location: modifEmail.php?erreur=5'); // Erreur lors de la mise à jour
+                    header('Location: modifEmail.php?id=5'); // Erreur lors de la mise à jour
+                    return;
                 }
             } else {
-                header('Location: modifEmail.php?erreur=4'); // Adresse email invalide
+                header('Location: modifEmail.php?id=4'); // Adresse email invalide
+                return;
             }
         } else {
-            header('Location: modifEmail.php?erreur=3'); // Mot de passe incorrect
+            header('Location: modifEmail.php?id=3'); // Mot de passe incorrect
+            return;
         }
     } else {
-        header('Location: modifEmail.php?erreur=2'); // Si l'un ou les deux champs sont vides
+        header('Location: modifEmail.php?id=2'); // Si l'un ou les deux champs sont vides
+        return;
     }
 } else {
-    header('Location: modifEmail.php?erreur=1'); // Si il manque un champ
+    header('Location: modifEmail.php?id=1'); // Si il manque un champ
+    return;
 }
 ?>

@@ -59,11 +59,14 @@ La fonctionnalité que nous allons tester est le faite de vérifié que ce qui e
 
 | Cas n° | Critère                                                           | Résultat attendu | Résultat obtenu | Commentaires                                                              |
 |:-------|-------------------------------------------------------------------|------------------|-----------------|---------------------------------------------------------------------------|
-| 1      | $mdp = "Azerty!123" <br> $nouvelleEmail = "alice@email.com"       | OK               | OK              | $mdp et $nouvelleEmail sont correct                                       |
-| 2      | $mdp = "azerty!123" <br> $nouvelleEmail = "alice@email.com"       | KO               | KO              | $mdp est incorrect mais $nouvelleEmail est conforme                       |
-| 3      | $mdp = "Azerty!123" <br> $nouvelleEmail = "alice.avril@email.com" | KO               | KO              | $mdp est correct mais $nouvelleEmail correspond à l'Email actuel          |
-| 4      | $mdp = " " <br> $nouvelleEmail = "alice@email.com"                | KO               | KO              | $mdp est vide mais $nouvelleEmail est conforme                            |
-| 5      | $mdp = "Azerty!123" <br> $nouvelleEmail = " "                     | KO               | KO              | $mdp est correct mais $nouvelleEmail est vide                             |
+| 1      | $mdp = "azerty!123" <br> $nouvelleEmail = "bob@email.com"       | OK               | OK              | $mdp et $nouvelleEmail sont corrects                                       |
+| 2      | $mdp = "Azerty!123" <br> $nouvelleEmail = "bob@email.com"       | KO               | KO              | $mdp est incorrect mais $nouvelleEmail est conforme                       |
+| 3      | $mdp = "azerty!123" <br> $nouvelleEmail = "lebricoleur@castorama.com" | OK               | OK              | $mdp et $nouvelleEmail sont corrects (même si le nouveau email correspond à l'ancien)        |
+| 4      | $mdp = " " <br> $nouvelleEmail = "bob@email.com"                | KO               | KO              | $mdp est vide mais $nouvelleEmail est conforme                            |
+| 5      | $mdp = "azerty!123" <br> $nouvelleEmail = " "                     | KO               | KO              | $mdp est correct mais $nouvelleEmail est vide                             |
 | 6      | $mdp = " " <br> $nouvelleEmail = " "                              | KO               | KO              | $mdp et $nouvelleEmail sont vides                                         |
-| 7      | $mdp = "Azerty!123" <br> $nouvelleEmail = "alice#email.com"       | KO               | KO              | $mdp est correct mais le format de l'Email est incorrect                  |
-| 8      | $mdp = "Azerty!123" <br> $nouvelleEmail = "alicé@email.com"       | KO               | KO              | Les données sont valides mais le format de l'Email est incorrect (accent) |
+| 7      | $mdp = "azerty!123" <br> $nouvelleEmail = "bob#email.com"       | KO               | KO              | $mdp est correct mais le format de l'Email est incorrect                  |
+| 8      | $mdp = "azerty!123" <br> $nouvelleEmail = "bobé@email.com"       | KO               | KO              | Les données sont valides mais le format de l'Email est incorrect (accent) |
+| 9      | $mdp = "azerty!123" <br> $nouvelleEmail = "bob@email.f"       | KO               | KO              | $mdp est correct mais le format de $nouvelleEmail est non conforme |
+| 10      | $mdp = "azerty!123" <br> $nouvelleEmail = "bob@email.frrrr"       | KO               | KO              | $mdp est correct mais le format de $nouvelleEmail est non conforme |
+| 11      | $mdp = "azerty!123" <br> $nouvelleEmail = "bob@email.frrr"       | OK               | OK              | $mdp et $nouvelleEmail sont corrects |

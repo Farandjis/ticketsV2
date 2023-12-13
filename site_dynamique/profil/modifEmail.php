@@ -1,3 +1,8 @@
+<?php
+require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
+$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvoi vers e403 si la personne n'a pas accès
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,11 +15,11 @@
 <body>
     <header>
         <div class="retour">
-            <a href="profil.php"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+            <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
         </div>
     </header>
     <div class="page_authentification_modif_perso">
-        <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
+        <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
 
         <div role="form" class="formAuthentification formConnexion">
 
@@ -25,10 +30,10 @@
                 if(isset($_GET['id'])) {
                     echo '<div class="erreur">';
                     echo '<p>';
-                    if ($_GET['id'] == 1) { echo "ERREUR : Le champ mot de passe ou nouveau email manquant "; }
-                    else if ($_GET['id'] == 2) { echo "ERREUR : Le mot de passe ou nouveau email ou les deux champs sont vides"; }
-                    else if ($_GET['id'] == 3) { echo "ERREUR : Le champ mot de passe incorrect"; }
-                    else if ($_GET['id'] == 4) { echo "ERREUR : Le champ nouveau email est invalide"; }
+                    if ($_GET['id'] == 1) { echo "ERREUR : Le champ mot de passe ou nouvel email est manquant "; }
+                    else if ($_GET['id'] == 2) { echo "ERREUR : Le mot de passe ou nouvel email ou les deux champs sont vides"; }
+                    else if ($_GET['id'] == 3) { echo "ERREUR : Le champ mot de passe est incorrect"; }
+                    else if ($_GET['id'] == 4) { echo "ERREUR : Le champ nouvel email est invalide"; }
                     else if ($_GET['id'] == 5) { echo "ERREUR : Erreur lors de la mise à jour"; }
                     else if ($_GET['id'] == 6) { echo "ERREUR : Connexion à la base de données impossible"; }
                     else { echo "ERREUR : Une erreur est survenue"; }
@@ -40,7 +45,7 @@
                 <label for='mdp'>Mot de passe</label><br>
                 <input id='mdp' type='password' name ='mdp'>
                 <br><br>
-                <label for='Nemail'>Nouveau email</label><br>
+                <label for='Nemail'>Nouvel email</label><br>
                 <input id='Nemail' type='text' name ='Nemail'><br>
                 <br>
 
