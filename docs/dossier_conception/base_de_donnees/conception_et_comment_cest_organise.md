@@ -37,6 +37,10 @@ Ce document décrit la base de données. Comme ses tables, ses utilisateurs et l
 - Description de la vue
 - Ce qu'elle fait
 
+- ### [VI - Les vues des users fictifs]()
+
+- ### [VII - Les rôles]()
+
 
 ---------
 
@@ -146,6 +150,7 @@ Description de la table
 
 
 - ### V - Les vues
+
   - #### vue_Utilisateur_visiteur
     Permet au visiteur de voir les pseudos des utilisateurs de la plateforme
   - #### vue_Ticket_visiteur
@@ -165,6 +170,8 @@ Description de la table
   - #### vue_etat_update_admWeb
     Permet à l'administrateur web d'avoir l'état du ticket, le niveau d'urgence définitif du ticket 
 
+- ### VI - Les vues des users fictifs
+
   - #### vue_UserFictif_connexionDB1
     Vue n°1 pour le profil MariaDB dédié à la connexion. Cette vue montre uniquement les colonnes login et ID_USER.
   - #### vue_UserFictif_insertionDB1
@@ -176,5 +183,18 @@ Description de la table
   - #### vue_UserFictif_updateDB1
     Vue n°4 pour le profil MariaDB dédié à la modification de l'horodatage et l'ip de dernière connexion. 
     Cette vue montre uniquement les colonnes ID_USER, HORODATAGE_DERNIERE_CONNECTION_USER et IP_DERNIERE_CONNECTION_USER.
+    
+  - #### vue_UserFictif_insertionTicketDB1
+    Vue n°5 pour le profil MariaDB dédié à l'inscription.
+    Cette vue permettra d'ajouter les données dans la table Ticket quand les données seront ajouter
+  - #### vue_UserFictif_selectionTicketDB1
+    Vue n°6 pour le profil MariaDB dédié à la récupération des données des utilisateur utile pour la vérification. 
+    Cette vue montre tout les informations d'un ticket.
+  - #### vue_UserFictif_updateTicketDB1
+    Vue n°7 pour le profil MariaDB dédié à la modification de l'horodatage et l'ip de dernière connexion. 
+    Cette vue montre uniquement les colonnes ID_USER, HORODATAGE_DERNIERE_CONNECTION_USER et IP_DERNIERE_CONNECTION_USER.
 
+- ### VII - Les rôles
 
+Nous avons créer différents rôles pour permettre au utilisateur d'avoir les droits qui leur sont suffisant.
+Les différents rôles que nous avons créer sont le rôle utilisateur, techncien, admin web et admin sys.

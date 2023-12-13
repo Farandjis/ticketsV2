@@ -21,10 +21,18 @@ CREATE USER '2'@'localhost' IDENTIFIED BY 'azerty!123';
 CREATE USER '3'@'localhost' IDENTIFIED BY 'azerty!123';
 CREATE USER '4'@'localhost' IDENTIFIED BY 'azerty!123';
 
+/*
+ Les prochaines commandes ils faut les executer avec fictif_droitDB
+ */
+
 GRANT 'role_utilisateur' TO '1'@'localhost';
 GRANT 'role_utilisateur' TO '2'@'localhost';
 GRANT 'role_utilisateur' TO '3'@'localhost';
 GRANT 'role_utilisateur' TO '4'@'localhost';
+
+/*
+ Les prochaines commandes ils faut les executer avec phpmyfteam
+ */
 
 SET DEFAULT ROLE 'role_utilisateur' FOR '1'@'localhost';
 SET DEFAULT ROLE 'role_utilisateur' FOR '2'@'localhost';
