@@ -7,7 +7,7 @@ FROM Ticket AS T
     LEFT OUTER JOIN Utilisateur AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
 WHERE T.ETAT_TICKET = "Ouvert"
    OR T.ETAT_TICKET = "En cours de traitement"
-   OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR CURRENT_ROLE = "role_admin_web"));
+   OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR (SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web"));
 
 CREATE OR REPLACE VIEW vue_tdb_relation_ticket_libelle AS
 SELECT RTL.ID_TICKET, RTL.NOM_LIBELLE
@@ -27,7 +27,7 @@ AND ETAT_TICKET = 'En attente';
 CREATE OR REPLACE VIEW vue_modif_ticket_adm_tech AS
 SELECT ID_TICKET,OBJET_TICKET, DESCRIPTION_TICKET, ID_TECHNICIEN, ETAT_TICKET, NIV_URGENCE_DEFINITIF_TICKET, HORODATAGE_DERNIERE_MODIF_TICKET, HORODATAGE_RESOLUTION_TICKET
 FROM Ticket
-WHERE (ETAT_TICKET = "En cours de traitement" AND ID_TECHNICIEN = SUBSTRING_INDEX(USER(), '@', 1)) OR (CURRENT_ROLE = "role_admin_web" AND (ETAT_TICKET != "Fermé"));
+WHERE (ETAT_TICKET = "En cours de traitement" AND ID_TECHNICIEN = SUBSTRING_INDEX(USER(), '@', 1)) OR ((SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web" AND (ETAT_TICKET != "Fermé"));
 
 CREATE OR REPLACE VIEW vue_associe_ticket_tech AS
 SELECT ID_TICKET, ID_TECHNICIEN, HORODATAGE_DEBUT_TRAITEMENT_TICKET
@@ -38,8 +38,8 @@ CREATE OR REPLACE VIEW vue_modif_relation_ticket_libelle AS
 SELECT RTL.ID_TICKET, RTL.NOM_LIBELLE
 FROM RelationTicketsLibelles AS RTL
     JOIN vue_tableau_bord AS TDB ON RTL.ID_TICKET = TDB.ID_TICKET
-WHERE (CURRENT_ROLE != "role_utilisateur"
-AND CURRENT_ROLE != "role_admin_sys")
+WHERE ((SELECT role_user FROM vue_Utilisateur_client) != "role_utilisateur"
+AND (SELECT role_user FROM vue_Utilisateur_client) != "role_admin_sys")
    OR TDB.ETAT_TICKET = "En attente";
 
 CREATE OR REPLACE VIEW vue_historique AS
