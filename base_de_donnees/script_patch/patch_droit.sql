@@ -21,6 +21,12 @@ GRANT UPDATE(OBJET_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET, HOROD
 ON vue_modif_creation_ticket_utilisateur
 TO 'role_utilisateur';
 
+GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_utilisateur';
+GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_technicien';
+GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_admin_sys';
+GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_admin_web';
+
+
 -- DROITS POUR LES VUES DE MODIFICATION DE TICKET
 GRANT UPDATE(OBJET_TICKET, DESCRIPTION_TICKET, ETAT_TICKET, HORODATAGE_DERNIERE_MODIF_TICKET, HORODATAGE_RESOLUTION_TICKET)
 ON vue_modif_ticket_adm_tech
