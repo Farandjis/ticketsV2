@@ -28,6 +28,7 @@ Ce document permet de s'assurer que les focntions soit bien fonctionnel comme so
         - #### [pageAccess](#6a)
         - #### [valideEmail](#7a)
         - #### [deconnexionSite](#8a)
+        - #### [affichageMenuDuHaut](#9a)
 
 
 <br><br><br>
@@ -162,3 +163,19 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 |:-------|----------------------------------|------------------|-----------------|-------------------------------|
 | 1      | $login = "alice" <br> $mdp = "azerty!123"       | Déconnexion et suppression des données de session              | Déconnexion et suppression des données de session              | La session d'Alice a été déconnectée avec succès et les données de session ont été supprimées           |
 | 2      | Aucune session en cours | Aucune action n'est effectuée               | Aucune action n'est effectuée              | Aucune session en cours          |
+
+- ### <a name="9a"></a>affichageMenuDuHaut
+
+| Cas n° | Critère                               | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------     |------------------|-----------------|
+| 1      | $pageActuelle = "index"               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets             | 
+| 2      | $pageActuelle = "profil"              | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion               | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion              | 
+| 3      | $pageActuelle = "tableaudebord"       | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil               | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil             | 
+| 4      | $pageActuelle = "administration"      | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil               | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil              | 
+| 5      | Bouton 1 : Inscription (menu du haut) | Retourne la page inscription               | Retourne la page inscription              | 
+| 6      | Bouton 2 : Connexion                  | Retourne la page connexion               | Retourne la page connexion              | 
+| 7      | Bouton 3 : Déconnexion                | Retourne la page index                | Retourne la page index               | 
+| 8      | Bouton 4 : Profil                     | Retourne la page profil               | Retourne la page profil              | 
+
+
+  
