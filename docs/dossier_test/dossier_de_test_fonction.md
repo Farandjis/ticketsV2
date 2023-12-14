@@ -27,6 +27,7 @@ Ce document permet de s'assurer que les focntions soit bien fonctionnel comme so
         - #### [tablegenerate](#5a)
         - #### [pageAccess](#6a)
         - #### [valideEmail](#7a)
+        - #### [deconnexionSite](#8a)
 
 
 <br><br><br>
@@ -154,3 +155,10 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 15     | $email = alice.avril@.fremail    | KO               | KO              | Mauvais ordre                 |
 | 16     | $email = avril@email.fr.de       | KO               | KO              | pas de "x.x", directement "x" |
 | 17     | $email = alice.avril@email.fr.de | KO               | KO              | sous domaine                  |
+
+- ### <a name="8a"></a>deconnexionSite
+
+| Cas n° | Critère                          | Résultat attendu | Résultat obtenu | Commentaires                  |
+|:-------|----------------------------------|------------------|-----------------|-------------------------------|
+| 1      | $login = "alice" <br> $mdp = "azerty!123"       | Déconnexion et suppression des données de session              | Déconnexion et suppression des données de session              | La session d'Alice a été déconnectée avec succès et les données de session ont été supprimées           |
+| 2      | Aucune session en cours | Aucune action n'est effectuée               | Aucune action n'est effectuée              | Aucune session en cours          |
