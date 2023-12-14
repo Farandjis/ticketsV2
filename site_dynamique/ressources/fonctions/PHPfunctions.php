@@ -411,7 +411,11 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                     <?php
                     if ($connexionUtilisateur != null) {
                         // Si la personne est connecté...
-                        echo "<a href ='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
+                        echo "<a href ='" . $empSite . "/authentification/action_deconnexion.php'> Déconnexion </a>";
+
+                        if ($pageActuelle != "profil") {
+                            echo "<a href ='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
+                        }
                     }
                     else {
                         // Sinon, c'est un visiteur
