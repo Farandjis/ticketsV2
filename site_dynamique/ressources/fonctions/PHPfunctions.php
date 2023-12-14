@@ -435,3 +435,16 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 
 <?php
 }
+
+
+function menuDeroulantTousLesLibelles($connexionUtilisateur){
+    /**
+     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les libellés disponible dans la BD.
+     *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
+     */
+
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_LIBELLE FROM `Libelle` ORDER BY NOM_LIBELLE ASC;");
+    while($unLibelle = mysqli_fetch_row($resSQL)){
+        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "'> " . htmlspecialchars($unLibelle[0]) . " </label>";
+    }
+}
