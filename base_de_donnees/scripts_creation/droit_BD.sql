@@ -4,9 +4,19 @@ FROM Ticket;
 
 -- Utilisateur
 CREATE VIEW vue_Utilisateur_client AS
-SELECT ID_USER, LOGIN_USER, PRENOM_USER, UPPER(NOM_USER), ROLE_USER, EMAIL_USER -- A modifier : supprimer ID_USER
-FROM Utilisateur
-WHERE ID_USER = SUBSTRING_INDEX(USER, '@', 1);
+SELECT
+    `DB_TIX`.`Utilisateur`.`ID_USER` AS `ID_USER`,
+    `DB_TIX`.`Utilisateur`.`LOGIN_USER` AS `LOGIN_USER`,
+    `DB_TIX`.`Utilisateur`.`PRENOM_USER` AS `PRENOM_USER`,
+    UCASE(`DB_TIX`.`Utilisateur`.`NOM_USER`) AS `NOM_USER`,
+    `user`.`default_role` AS `ROLE_USER`,
+    `DB_TIX`.`Utilisateur`.`EMAIL_USER` AS `EMAIL_USER`
+FROM
+    `DB_TIX`.`Utilisateur`
+JOIN mysql.user ON
+    `user`.`User` = `DB_TIX`.`Utilisateur`.`ID_USER`
+WHERE
+    `DB_TIX`.`Utilisateur`.`ID_USER` = SUBSTRING_INDEX(USER(), '@', 1);
 
 CREATE VIEW vue_Utilisateur_insertion_client AS
 SELECT ID_USER, EMAIL_USER
