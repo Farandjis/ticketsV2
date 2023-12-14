@@ -393,10 +393,10 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                 // Si la personne est connecté...
                 if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
                     // ... et que c'est l'administrateur du site
-                    if ($pageActuelle == "tableaudebord") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
+                    if ($pageActuelle == "administration") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
                 }
                 elseif (recupererRoleDe($connexionUtilisateur) == "Administrateur Système"){
-                    if ($pageActuelle == "tableaudebord") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
+                    if ($pageActuelle == "administration") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
                 }
 
                 echo '</div>';
@@ -411,12 +411,12 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                     <?php
                     if ($connexionUtilisateur != null) {
                         // Si la personne est connecté...
-                        echo "<a href = 'profil/profil.php'> Mon Espace </a>";
+                        echo "<a href ='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
                     }
                     else {
                         // Sinon, c'est un visiteur
-                        echo '<a href = "authentification/connexion.php"> Connexion</a>';
-                        echo '<a href = "authentification/inscription.php"> Inscription</a>';
+                        echo '<a href = "' . $empSite . '/authentification/connexion.php"> Connexion</a>';
+                        echo '<a href = "' . $empSite . '/authentification/inscription.php"> Inscription</a>';
                     }
                     ?>
                 </div>
