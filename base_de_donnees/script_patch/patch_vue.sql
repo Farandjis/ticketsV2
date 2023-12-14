@@ -56,6 +56,7 @@ FROM RelationTicketsLibelles AS RTL
     JOIN vue_historique AS H ON RTL.ID_TICKET = H.ID_TICKET;
 
 CREATE OR REPLACE VIEW vue_technicien AS
-SELECT *
-FROM Utilisateur
-WHERE ROLE_USER = "technicien";
+SELECT ID_USER, PRENOM_USER, NOM_USER, EMAIL_USER
+FROM DB_TIX.Utilisateur
+JOIN mysql.user ON mysql.user.User = ID_USER
+WHERE mysql.user.default_role = "role_technicien";
