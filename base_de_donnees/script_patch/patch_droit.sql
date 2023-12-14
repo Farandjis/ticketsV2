@@ -26,6 +26,7 @@ GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_technicien';
 GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_admin_sys';
 GRANT SELECT ON vue_tdb_relation_ticket_libelle TO 'role_admin_web';
 
+GRANT SELECT ON Libelle TO 'role_utilisateur'; -- fonctionne aussi pour technicien, admin sys et web en principe
 
 -- DROITS POUR LES VUES DE MODIFICATION DE TICKET
 GRANT UPDATE(OBJET_TICKET, DESCRIPTION_TICKET, ETAT_TICKET, HORODATAGE_DERNIERE_MODIF_TICKET, HORODATAGE_RESOLUTION_TICKET)
