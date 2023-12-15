@@ -6,6 +6,7 @@ GRANT SELECT ON DB_TIX.vue_Utilisateur_client TO 'role_utilisateur';
 GRANT SELECT ON DB_TIX.vue_Ticket_client TO 'role_utilisateur';
 GRANT UPDATE ON DB_TIX.vue_Utilisateur_insertion_client TO 'role_utilisateur';
 GRANT UPDATE ON DB_TIX.vue_Ticket_insertion_client TO 'role_utilisateur';
+GRANT SELECT ON Libelle TO 'role_utilisateur';
 
 GRANT 'role_utilisateur' TO 'role_technicien';
 GRANT UPDATE ON vue_Ticket_technicien TO 'role_technicien';
