@@ -60,11 +60,15 @@ global $database, $host;
             <tbody class="table-ticket">
 
             <?php
+
+            if (isset($_GET["resetRecherche"]) and $_GET["resetRecherche"]) { header("Location: " . basename(__FILE__)); return; }
+
+
             $vueTDB = "vue_tableau_bord"; $vueRTL = "vue_tdb_relation_ticket_libelle";
             $reqSQL = "SELECT $vueTDB.ID_TICKET, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM $vueTDB";
 
 
-            $paramsReqSQL = array();
+            $paramsReqSQL = array(); $lesLibellesCoches = array();
 
             if (isset($_GET["date"]) && isset($_GET["date2"]) && isset($_GET["titre"])){
                 $valeurDejaDansWhere = false;
@@ -77,6 +81,7 @@ global $database, $host;
                         if (!$premierLibelle) {$listeSQL = $listeSQL . ","; } else { $premierLibelle = false; }
                         $listeSQL = $listeSQL . "?";
                         $paramsReqSQL[] = $unLibelle;
+                        $lesLibellesCoches[] = $unLibelle;
                     }
                     $listeSQL = $listeSQL . ")";
 
@@ -95,20 +100,20 @@ global $database, $host;
                     $reqSQL = $reqSQL . "$vueTDB.OBJET_TICKET LIKE '%" . htmlspecialchars($_GET["titre"]) . "%'";
                 }
 
-                if ($_GET["date"]){
+                if ($_GET["date"] and $_GET["date"] <= $_GET["date2"]){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
 
                     $reqSQL = $reqSQL . "$vueTDB.horodatage_creation_ticket >= ?";
-                    $paramsReqSQL[] = $_GET["date"];
+                    $paramsReqSQL[] = $_GET["date"] . " 00:00:00"; // 00:00:00 précise que c'est la journée comprise
                 }
 
-                if ($_GET["date2"]){
+                if ($_GET["date2"] and $_GET["date"] <= $_GET["date2"]){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
 
-                    $reqSQL = $reqSQL . "$vueTDB.horodatage_creation_ticket < ?";
-                    $paramsReqSQL[] = $_GET["date2"];
+                    $reqSQL = $reqSQL . "$vueTDB.horodatage_creation_ticket <= ?";
+                    $paramsReqSQL[] = $_GET["date2"] . " 23:59:59"; // 23:59:59 précise que c'est la journée comprise
                 }
             }
 
@@ -123,7 +128,7 @@ global $database, $host;
             tableGenerate($getResultSQL);
             }
             else {
-                echo '<tr><td colspan="6" style="text-align: center; height: 639px">Aucun ticket à afficher pour le moment.</td></tr>';
+                echo '<tr class="pasLigneHover"><td colspan="6" style="text-align: center; height: 639px">Aucun ticket à afficher pour le moment.</td></tr>';
             }
 
             ?>
@@ -134,29 +139,45 @@ global $database, $host;
         <div class="form-recherche">
             <h2>Recherche</h2>
             <form action='#' method='get'>
-                <label for='date'>Date</label><br>
-                <input id='date' type='date' name ='date'>
-                <label for='date2'> à </label>
-                <input id='date2' type='date' name ='date2'><br>
-                <br>
-                <label for='titre'>Titre</label><br>
-                <input id='titre' type='text' name ='titre'><br>
+                <?php
+
+                echo "<label for='date'>Date</label><br>";
+                if (isset($_GET["date"]) and $_GET["date"] and $_GET["date"] <= $_GET["date2"]) { echo "<input id='date' type='date' name ='date' value='" . htmlspecialchars($_GET["date"]) . "'>"; }
+                else { echo "<input id='date' type='date' name ='date'>"; }
+
+                echo "<label for='date2'> à </label>";
+                if (isset($_GET["date2"]) and $_GET["date2"] and $_GET["date"] <= $_GET["date2"]) { echo "<input id='date2' type='date' name ='date2' value='" . htmlspecialchars($_GET["date2"]) . "'>"; }
+                else { echo "<input id='date2' type='date' name ='date2'>"; }
+
+                echo "<br>";
+
+                echo "<label for='titre'>Titre</label><br>";
+                if (isset($_GET["titre"]) and $_GET["titre"]) { echo "<input id='titre' type='text' name ='titre' value='" . htmlspecialchars($_GET["titre"]) . "'>"; }
+                else { echo "<input id='titre' type='text' name ='titre'>"; }
+                ?>
                 <br>
                 <span>Libellé</span><br>
                 <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0">
-                    <span class="entete_libelle" onclick="toggleDropdown()" onkeydown="toggleDropdown()">Sélectionnez un/des libellé(s)</span>
+                    <?php
+                    if (count($lesLibellesCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des libellés"; }
+                    elseif (count($lesLibellesCoches) == 1) { $texteBouton = "1 libellé sélectionné";}
+                    else { $texteBouton = count($lesLibellesCoches) . " libellés sélectionnés";}
+
+                    echo "<span class='entete_libelle' onclick='toggleDropdown()' onkeydown='toggleDropdown()'>$texteBouton</span>";
+                    ?>
                     <div class="option_libelle">
                         <?php
-                        menuDeroulantTousLesLibelles($connexionUtilisateur);
+                        menuDeroulantTousLesLibelles($connexionUtilisateur, $lesLibellesCoches);
                         ?>
 
                     </div>
 
                 </div>
 
+
                 <div class="bouton-recherche">
                     <input type='submit' name='recherche' value='Recherche'>
-                    <input type='reset' name='resetRecherche' value='Annuler'>
+                    <input type='submit' name='resetRecherche' value='Annuler'>
                 </div>
             </form>
         </div>
