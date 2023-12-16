@@ -25,14 +25,15 @@ END AS PRENOM_CREA,
 
 CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.NOM_USER ELSE 'ACCÈS INTERDIT'
 END AS NOM_CREA
-
+    
 FROM Ticket AS T
     JOIN Utilisateur AS CREA ON T.ID_USER = CREA.ID_USER
     LEFT OUTER JOIN vue_technicien AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
 WHERE T.ETAT_TICKET = "Ouvert"
    OR T.ETAT_TICKET = "En cours de traitement"
-   OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR (SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web"));
+   OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR (SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web"))
 
+ORDER BY HORODATAGE_CREATION_TICKET, ID_TICKET;
 
 
 CREATE OR REPLACE VIEW vue_tdb_relation_ticket_libelle AS
