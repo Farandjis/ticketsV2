@@ -1,13 +1,39 @@
--- LES VUES LIÉES AU TABLEAU DE BORD
+/*Note pour les case : pour chaque case pour la colonne indiqué, si c'est le bon rôle alors on affiche la valeur, sinon, on affiche "ACCÈS INTERDIT" à l'emplacement de la colonne.
+On procède ainsi car à cause des JOIN, il n'est pas possible de préciser les colonnes dans le GRANT SELECT. Sauf qu'on veut cacher des informations.
+*/
 CREATE OR REPLACE VIEW vue_tableau_bord AS
-SELECT T.ID_TICKET, T.OBJET_TICKET, T.DESCRIPTION_TICKET, T.NIV_URGENCE_ESTIMER_TICKET, T.NIV_URGENCE_DEFINITIF_TICKET, T.ETAT_TICKET, T.HORODATAGE_CREATION_TICKET, T.HORODATAGE_DERNIERE_MODIF_TICKET,
-       T.ID_TECHNICIEN, T.ID_USER as ID_CREA, CREA.PRENOM_USER as PRENOM_CREA, CREA.NOM_USER as NOM_CREA, TECH.PRENOM_USER as PRENOM_TECH, TECH.NOM_USER as NOM_TECH
+SELECT
+T.ID_TICKET,
+T.OBJET_TICKET,
+T.DESCRIPTION_TICKET,
+T.NIV_URGENCE_ESTIMER_TICKET,
+T.NIV_URGENCE_DEFINITIF_TICKET,
+T.ETAT_TICKET,
+T.HORODATAGE_CREATION_TICKET,
+T.HORODATAGE_DERNIERE_MODIF_TICKET,
+TECH.PRENOM_USER as PRENOM_TECH,
+TECH.NOM_USER as NOM_TECH,
+
+CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN T.ID_TECHNICIEN ELSE 'ACCÈS INTERDIT'
+END AS ID_TECHNICIEN,
+
+CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN T.ID_USER ELSE 'ACCÈS INTERDIT'
+END AS ID_CREA,
+
+CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.PRENOM_USER ELSE 'ACCÈS INTERDIT'
+END AS PRENOM_CREA,
+
+CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.NOM_USER ELSE 'ACCÈS INTERDIT'
+END AS NOM_CREA
+
 FROM Ticket AS T
     JOIN Utilisateur AS CREA ON T.ID_USER = CREA.ID_USER
     LEFT OUTER JOIN vue_technicien AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
 WHERE T.ETAT_TICKET = "Ouvert"
    OR T.ETAT_TICKET = "En cours de traitement"
    OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR (SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web"));
+
+
 
 CREATE OR REPLACE VIEW vue_tdb_relation_ticket_libelle AS
 SELECT RTL.ID_TICKET, RTL.NOM_LIBELLE
