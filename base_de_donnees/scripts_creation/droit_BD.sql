@@ -8,7 +8,7 @@ CREATE OR REPLACE VIEW vue_Utilisateur_client AS
 SELECT
     `DB_TIX`.`Utilisateur`.`ID_USER` AS `ID_USER`,
     `DB_TIX`.`Utilisateur`.`LOGIN_USER` AS `LOGIN_USER`,
-    `DB_TIX`.`Utilisateur`.`PRENOM_USER` AS `PRENOM_USER`,
+    CONCAT(UPPER(SUBSTRING(PRENOM_USER, 1, 1)), SUBSTRING(PRENOM_USER, 2)) AS `PRENOM_USER`,
     UCASE(`DB_TIX`.`Utilisateur`.`NOM_USER`) AS `NOM_USER`,
     `user`.`default_role` AS `ROLE_USER`,
     `DB_TIX`.`Utilisateur`.`EMAIL_USER` AS `EMAIL_USER`
