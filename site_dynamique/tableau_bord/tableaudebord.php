@@ -61,7 +61,7 @@ global $database, $host;
 
             <?php
 
-            if (isset($_GET["resetRecherche"]) and $_GET["resetRecherche"]) { header("Location: " . basename(__FILE__)); return; }
+            if (isset($_POST["resetRecherche"]) and $_POST["resetRecherche"]) { header("Location: " . basename(__FILE__)); return; }
 
 
             $vueTDB = "vue_tableau_bord"; $vueRTL = "vue_tdb_relation_ticket_libelle";
@@ -70,14 +70,14 @@ global $database, $host;
 
             $paramsReqSQL = array(); $lesLibellesCoches = array();
 
-            if (isset($_GET["date"]) && isset($_GET["date2"]) && isset($_GET["titre"])){
+            if (isset($_POST["date"]) && isset($_POST["date2"]) && isset($_POST["titre"])){
                 $valeurDejaDansWhere = false;
 
-                if (isset($_GET["libelle_option"]) && $_GET["libelle_option"]){ // Si au moins 1 libellé à été coché
+                if (isset($_POST["libelle_option"]) && $_POST["libelle_option"]){ // Si au moins 1 libellé à été coché
                     $reqSQL = $reqSQL . " JOIN $vueRTL ON $vueRTL.ID_TICKET = $vueTDB.ID_TICKET ";
 
                     $listeSQL = "("; $premierLibelle = true;
-                    foreach ($_GET["libelle_option"] as $unLibelle){
+                    foreach ($_POST["libelle_option"] as $unLibelle){
                         if (!$premierLibelle) {$listeSQL = $listeSQL . ","; } else { $premierLibelle = false; }
                         $listeSQL = $listeSQL . "?";
                         $paramsReqSQL[] = $unLibelle;
@@ -93,39 +93,39 @@ global $database, $host;
                 }
 
 
-                if ($_GET["titre"]){
+                if ($_POST["titre"]){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
 
-                    $reqSQL = $reqSQL . "$vueTDB.OBJET_TICKET LIKE '%" . htmlspecialchars($_GET["titre"]) . "%'";
+                    $reqSQL = $reqSQL . "$vueTDB.OBJET_TICKET LIKE '%" . htmlspecialchars($_POST["titre"]) . "%'";
                 }
 
-                if ($_GET["date"] and $_GET["date"] <= $_GET["date2"]){
+                if ($_POST["date"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date2"])) ){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
 
                     $reqSQL = $reqSQL . "$vueTDB.horodatage_creation_ticket >= ?";
-                    $paramsReqSQL[] = $_GET["date"] . " 00:00:00"; // 00:00:00 précise que c'est la journée comprise
+                    $paramsReqSQL[] = $_POST["date"] . " 00:00:00"; // 00:00:00 précise que c'est la journée comprise
                 }
 
-                if ($_GET["date2"] and $_GET["date"] <= $_GET["date2"]){
+                if ($_POST["date2"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date"]))){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
 
                     $reqSQL = $reqSQL . "$vueTDB.horodatage_creation_ticket <= ?";
-                    $paramsReqSQL[] = $_GET["date2"] . " 23:59:59"; // 23:59:59 précise que c'est la journée comprise
+                    $paramsReqSQL[] = $_POST["date2"] . " 23:59:59"; // 23:59:59 précise que c'est la journée comprise
                 }
             }
 
 
             if ($paramsReqSQL) {
-                $getResultSQL = executeSQL($reqSQL, $paramsReqSQL, $connexionUtilisateur);
+                $POSTResultSQL = executeSQL($reqSQL, $paramsReqSQL, $connexionUtilisateur);
             }
             else {
-                $getResultSQL = mysqli_query($connexionUtilisateur, $reqSQL);
+                $POSTResultSQL = mysqli_query($connexionUtilisateur, $reqSQL);
             }
-            if (! (mysqli_num_rows($getResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
-            tableGenerate($getResultSQL);
+            if (! (mysqli_num_rows($POSTResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
+            tableGenerate($POSTResultSQL);
             }
             else {
                 echo '<tr class="pasLigneHover"><td colspan="6" style="text-align: center; height: 639px">Aucun ticket à afficher pour le moment.</td></tr>';
@@ -138,21 +138,21 @@ global $database, $host;
         </div>
         <div class="form-recherche">
             <h2>Recherche</h2>
-            <form action='#' method='get'>
+            <form action='#' method='POST'>
                 <?php
 
                 echo "<label for='date'>Date</label><br>";
-                if (isset($_GET["date"]) and $_GET["date"] and $_GET["date"] <= $_GET["date2"]) { echo "<input id='date' type='date' name ='date' value='" . htmlspecialchars($_GET["date"]) . "'>"; }
+                if (isset($_POST["date"]) and $_POST["date"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date2"]))) { echo "<input id='date' type='date' name ='date' value='" . htmlspecialchars($_POST["date"]) . "'>"; }
                 else { echo "<input id='date' type='date' name ='date'>"; }
 
                 echo "<label for='date2'> à </label>";
-                if (isset($_GET["date2"]) and $_GET["date2"] and $_GET["date"] <= $_GET["date2"]) { echo "<input id='date2' type='date' name ='date2' value='" . htmlspecialchars($_GET["date2"]) . "'>"; }
+                if (isset($_POST["date2"]) and $_POST["date2"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date"]))) { echo "<input id='date2' type='date' name ='date2' value='" . htmlspecialchars($_POST["date2"]) . "'>"; }
                 else { echo "<input id='date2' type='date' name ='date2'>"; }
 
                 echo "<br>";
 
                 echo "<label for='titre'>Titre</label><br>";
-                if (isset($_GET["titre"]) and $_GET["titre"]) { echo "<input id='titre' type='text' name ='titre' value='" . htmlspecialchars($_GET["titre"]) . "'>"; }
+                if (isset($_POST["titre"]) and $_POST["titre"]) { echo "<input id='titre' type='text' name ='titre' value='" . htmlspecialchars($_POST["titre"]) . "'>"; }
                 else { echo "<input id='titre' type='text' name ='titre'>"; }
                 ?>
                 <br>
