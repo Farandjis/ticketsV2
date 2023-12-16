@@ -124,3 +124,5 @@ TO 'role_admin_web';
 
 GRANT INSERT ON RelationTicketsLibelles TO 'role_utilisateur';
 GRANT DELETE ON vue_suppr_rtl_tdb TO 'role_utilisateur';
+
+GRANT SELECT ON vue_technicien TO 'role_utilisateur';
