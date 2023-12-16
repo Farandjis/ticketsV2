@@ -87,3 +87,6 @@ SELECT ID_USER, PRENOM_USER, NOM_USER, EMAIL_USER
 FROM DB_TIX.Utilisateur
 JOIN mysql.user ON mysql.user.User = ID_USER
 WHERE mysql.user.default_role = "role_technicien";
+
+-- Modification d'une table
+ALTER TABLE Ticket MODIFY COLUMN ID_USER INT DEFAULT (SUBSTRING_INDEX(USER(),'@',1)); -- Par défaut, l'utilisateur qui exécute la requête est le créateur du ticket.
