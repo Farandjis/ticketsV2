@@ -33,7 +33,7 @@ WHERE T.ETAT_TICKET = "Ouvert"
    OR T.ETAT_TICKET = "En cours de traitement"
    OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR (SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web"))
 
-ORDER BY HORODATAGE_CREATION_TICKET, ID_TICKET;
+ORDER BY ID_TICKET DESC;
 
 
 CREATE OR REPLACE VIEW vue_tdb_relation_ticket_libelle AS
