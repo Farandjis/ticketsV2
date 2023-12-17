@@ -171,7 +171,7 @@ global $database, $host;
                     elseif (count($lesLibellesCoches) == 1) { $texteBouton = "1 libellé sélectionné";}
                     else { $texteBouton = count($lesLibellesCoches) . " libellés sélectionnés";}
 
-                    echo "<span class="entete_libelle" onclick="toggleDropdown()">$texteBouton</span>";
+                    echo "<span class='entete_libelle' onclick='toggleDropdown()'>$texteBouton</span>";
                     ?>
                     <div class="option_libelle">
                         <?php
@@ -194,7 +194,7 @@ global $database, $host;
     <div class="overlay" id="overlay" onclick="closePopup()">
         <!-- Contenu de la pop-up -->
 
-        <div role="form" id="test" class="formModifTicket formAuthentification formConnexion popupInfo">
+        <div role="form" id="pop-up" class="formModifTicket formAuthentification formConnexion popupInfo">
 
             <div id="informations_ticket_popup">
 

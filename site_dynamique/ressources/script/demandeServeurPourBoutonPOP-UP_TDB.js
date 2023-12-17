@@ -1,3 +1,17 @@
+/*
+function includeScript(src, callback) {
+    var script = document.createElement('script');
+    script.src = src;
+    script.onload = callback;
+    document.head.appendChild(script);
+}
+// Inclure le script2.js et appeler la fonction de script2.js une fois chargé
+includeScript('../ressources/script/infoLigneTab.js', function() {
+    // La fonction de script2.js est maintenant disponible
+    // Appelez ici la fonction spécifique de script2.js que vous souhaitez utiliser
+    handleClickOrEnter();
+});
+*/
 
 function ligneTableauDeBord(idLigneDuTicket){
     // On ajoutera si possible un appel vers une fonction affichant des infos supplémentaires sur le ticket
@@ -9,7 +23,7 @@ function demandeSiCestPossibleDeModifierOuAttribuer(idLigneDuTicket) {
     /**
      * Principe :
      *      Demande au serveur s'il doit affiché le bouton (si oui, avec quel texte et pour être sur, l'ID du Ticket)
-     * @param idLigneDuTicket : Numéro de la ligne donné par la ligne directement lors du clique sur celle ci
+     * @param int idLigneDuTicket : Numéro de la ligne donné par la ligne directement lors du clique sur celle ci
      */
 
     // On récupère le tableau avec l'id "tableaudebord", on récupère toute ses lignes, et pour la ligne n°idLigneDuTicket on récupère toute ses cases afin de récupérer l'identifiant du ticket
@@ -18,9 +32,24 @@ function demandeSiCestPossibleDeModifierOuAttribuer(idLigneDuTicket) {
 
     console.log("Préparation à l'envoi de la demande de modification ou d'attribution du ticket");
     requestEnr =new XMLHttpRequest()
-    requestEnr.open("POST", "../ressources/reponseServeurPHP/reponseServeurModificationAttributionTicketTDB.php") // On indique qu'on envoi notre requête au fichier enregistrement.php
+    requestEnr.open("POST", "../ressources/reponseServeurPHP/reponseServeurModificationAttributionTicketTDB.php") // On indique qu'on envoi notre requête à ce fichier
     requestEnr.setRequestHeader("Content-Type", "application/json") // On indique le format des données envoyés (ici, les données sont en Json)
-    requestEnr.send(JSON.stringify({maListe: maListe})) // On transforme l'objet Json tabClasse en chaîne de caractère et on l'envoi au serveur
+    requestEnr.send(JSON.stringify({maListe: maListe})) // On transforme l'objet Json maListe en chaîne de caractère et on l'envoi au serveur
+    requestEnr.onreadystatechange = ajoutDuBoutonDansPOP_UP // On s'assure que tout est ok
+}
+
+function demandeServeurAttributionTicket(ID_TICKET){
+    /**
+     * Principe :
+     *      Demande d'ajouter au technicien un ticket
+     * @param int ID_TICKET : id du ticket à attribuer
+     */
+
+    console.log("Préparation à l'envoi de la demande d'attribution du ticket à l'utilisateur");
+    requestEnr =new XMLHttpRequest()
+    requestEnr.open("POST", "../ressources/reponseServeurPHP/reponseServeurSAttribuerUnTicket.php") // On indique qu'on envoi notre requête à ce fichier
+    requestEnr.setRequestHeader("Content-Type", "application/json") // On indique le format des données envoyés (ici, les données sont en Json)
+    requestEnr.send(JSON.stringify({ID_TICKET:[ID_TICKET]})) // On transforme l'objet Json tabClasse en chaîne de caractère et on l'envoi au serveur
     requestEnr.onreadystatechange = ajoutDuBoutonDansPOP_UP // On s'assure que tout est ok
 }
 
@@ -41,13 +70,18 @@ function ajoutDuBoutonDansPOP_UP(){
             lePOP_UP.removeChild(lePOP_UP.lastChild); // On les supprimes
         }
 
+        console.log(requestEnr.responseText);
         let $infoBouton = JSON.parse(requestEnr.responseText); // On récupère la liste au format [txt_bouton, ID_TICKET]
 
         // On créer le formulaire + un bouton contenant juste l'id du ticket + le bouton apparant de redirection
         if ($infoBouton[0] != null) { // null si le bouton ne doit pas apparaître (aucun texte)
             console.log("(demandeServeurPourBoutonPOP-UP) Une action est possible");
             let leFormulaireDuBouton = document.createElement("form");
-            leFormulaireDuBouton.setAttribute("action", "modificationTicket.php");
+
+            if ($infoBouton[0] != "S'attribuer ce ticket"){
+                leFormulaireDuBouton.setAttribute("action", "modificationTicket.php");
+            }
+
             leFormulaireDuBouton.setAttribute("method", "post");
             leFormulaireDuBouton.nodeValue = "d";
             lePOP_UP.appendChild(leFormulaireDuBouton);
@@ -59,9 +93,13 @@ function ajoutDuBoutonDansPOP_UP(){
             leFormulaireDuBouton.appendChild(leBoutonCacherContenantIDTicket);
 
             let leBouton = document.createElement("input");
-            leBouton.setAttribute("type", "submit");
+            if ($infoBouton[0] != "S'attribuer ce ticket"){ leBouton.setAttribute("type", "submit"); }
             leBouton.setAttribute("name", "boutonEnvoi");
             leBouton.setAttribute("value", $infoBouton[0]);
+            if ($infoBouton[0] == "S'attribuer ce ticket"){
+                // Permet d'exécuter la fonction avec un arg pas au moment de la lecture de la ligne
+                leBouton.onclick = function() { demandeServeurAttributionTicket($infoBouton[1]); };
+            }
             leFormulaireDuBouton.appendChild(leBouton);
 
             console.log("(demandeServeurPourBoutonPOP-UP) Fin de la génération du bouton");
