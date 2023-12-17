@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/logo_sans_texte.png" type="image/x-icon">
+
+    <script src="../ressources/script/afficheMDP.js"></script>
 </head>
 <body>
     <header>
@@ -14,7 +16,7 @@
         </div>
     </header>
     <div class="page_authentification_modif_perso">
-        <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
+        <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
 
         <div role="form" class="formAuthentification formConnexion">
 
@@ -45,7 +47,16 @@
                 <input id='login' type='text' name ='login'>
                 <br><br>
                 <label for='mdp'>Mdp</label><br>
-                <input id='mdp' type='password' name ='mdp'><br>
+                <div class="champs-password">
+                    <input id='mdp' type='password' name ='mdp'><br>
+                    <div class="password-show" onclick="showPassword(this)">
+                        <img src="../ressources/images/visible.png">
+                    </div>
+                    <div class="password-hide" onclick="hidePassword(this)">
+                        <img src="../ressources/images/hidden.png">
+                    </div>
+                </div>
+                
                 <a href="../erreurs/404.html" class="oublie">Mot de passe oublié ?</a>
                 <input type='submit' name='Connexion' value='Connexion'><br>
                 <a href="inscription.php" class="oublie">Pas de compte ?</a>
