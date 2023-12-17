@@ -434,7 +434,7 @@ tbody tr:nth-child(even){
 }
 
 
-tbody tr:hover:not(.ligne_profile){
+tbody tr:hover:not(.pasLigneHover){
   background-color: #3d305e;
   color: #ECECEC;
 }
@@ -520,9 +520,9 @@ footer img {
 
 input[type="text"], input[type="email"], input[type="password"],  input[type="submit"], input[type="reset"] {
   padding: 10px;
-  margin: 3px 0;
+  margin: 3px 0;/*
   background: #ECECEC;
-  border: 1px solid #ECECEC;
+  border: 1px solid #ECECEC;*/
   border-radius: 15px;
   font-size: 16px;
 }
@@ -546,6 +546,14 @@ input[type="date"] {
   cursor: pointer;
 }
 
+.champInvalide{
+  border: 2px solid #ff3c3c;
+  background: #ffcaca;
+}
+.champValide{
+  border: 2px solid #00b01d;
+  background: #d1ffd8;
+}
 
 
 /* ======== FORMULAIRE DE CONNEXION ======== */
@@ -573,9 +581,11 @@ input[type="date"] {
 
 
 
-.formConnexion input[type="text"], input[type="password"], input[type="email"]{
+.formConnexion input[type="text"], .formConnexion input[type="password"],  input[type="email"]{
   width: 100%;
 }
+
+
 
 /* ======== LIEN VERS PAGE D'OUBLIE DE MDP ======== */
 
@@ -584,6 +594,7 @@ input[type="date"] {
   text-align: center;
   display: block;
   padding: 5px;
+  margin: 5px;
 }
 
 /* ======== MAINTENANCE ======== */
@@ -639,6 +650,79 @@ input[type="date"] {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+
+/* ======== CHAMPS INPUT PASSWORD ======= */
+
+.champs-password{
+  position: relative;
+}
+
+.champs-password .password-show, .champs-password .password-hide{
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.champs-password input {
+  width: calc(100% - 40px);
+  padding-right: 40px;
+}
+
+.champs-password .password-show svg, .champs-password .password-hide svg {
+  width: 35px;
+  height: 30px;
+  color: #1c1c1c;
+}
+
+.champs-password .password-hide{
+  display: none;
+}
+
+
+.infosChamps{
+  font-weight: 500;
+  float: right;
+  text-decoration: underline;
+}
+
+#conteneur_infoChamps {
+  position: relative;
+  background: #f8fffa;
+  border: 1px solid black;
+  color: #232323;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 550;
+  display: none;
+  animation: fadeIn 0.5s ease;
+  padding-left: 30px;
+}
+
+#conteneur_infoChamps::before {
+  content: url("../images/info.png");
+  border-radius: 10px;
+
+  width: 32px;
+  height: 100%;
+  position: absolute;
+  top: 3px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
@@ -877,7 +961,7 @@ input[type="date"] {
   scrollbar-width: thin; /* Largeur de la scrollbar (peut être 'thin', 'auto', ou 'none') */
 }
 
-.informations_ticket_popup > span {
+#informations_ticket_popup > span {
   color: #2c2c2c;
 }
 
@@ -1057,7 +1141,7 @@ input[type="date"] {
   z-index: 10;
 }
 
-.informations_ticket_popup {
+#informations_ticket_popup {
   background: #ddc3ff;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -1065,7 +1149,7 @@ input[type="date"] {
   box-shadow: 0 0px 10px #FFC5C5FF;
 }
 
-.informations_ticket_popup > p{
+#informations_ticket_popup > p{
   padding: 5px;
   font-weight: 600;
   color: #4b2655;
@@ -1173,7 +1257,7 @@ select {
 }
 
 
-#nivUrgEstime {
+#champLocked {
   appearance: none;
   background-color: #606060;
   border: none;
@@ -1374,8 +1458,9 @@ select {
 @media screen and  (max-width: 1650px) {
   .activite{
     flex-direction: column;
+    margin-bottom: 0;
   }
-  .table-infructueuse {
+  .conteneur_table-infructueuse_ouverture-tickets {
     margin-bottom: 50px;
   }
   .conteneur_table-infructueuse_ouverture-tickets{
@@ -1427,7 +1512,7 @@ select {
   .presentation{
     flex-direction: column;
     justify-content: center;
-    height: 1000px;
+    height: 1100px;
     width: 900px;
 
   }
@@ -1440,4 +1525,6 @@ select {
 }
 
 
-
+.ligneCacher {
+  display: none;
+}

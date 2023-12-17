@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
 
-    <script src="../Script/infoLigneTab.js"></script>
+    <script src="../ressources/script/infoLigneTab.js"></script>
+    <script src="../ressources/script/hamburger.js"></script>
 </head>
 <body class="profile">
   <header>
@@ -29,7 +30,7 @@
               <a href="#">Déconnexion</a>
           </div>
 
-          <div class="hamburger-menu">
+          <div class="hamburger-menu" onclick="hamburger()">
               <div class="slice"></div>
               <div class="slice"></div>
               <div class="slice"></div>
@@ -46,27 +47,27 @@
             <div class="conteneur_table">
                 <table class="table-perso">
                     <tbody>
-                        <tr class="ligne_profile">
+                        <tr class="ligne_profile pasLigneHover">
                             <td class="entete_profile">Login</td>
                             <td>(de l'utilisateur)</td>
                             <td></td>
                         </tr>
-                        <tr class="ligne_profile">
+                        <tr class="ligne_profile pasLigneHover">
                             <td class="entete_profile">Nom Complet</td>
                             <td>(de l'utilisateur)</td>
                             <td></td>
                         </tr>
-                        <tr class="ligne_profile">
+                        <tr class="ligne_profile pasLigneHover">
                             <td class="entete_profile">Email</td>
                             <td>(de l'utilisateur)</td>
                             <td><a href="modifEmail.html"><img src="../ressources/images/icone_modif.svg" class="iconeModif"></a></td>
                         </tr>
-                        <tr class="ligne_profile">
+                        <tr class="ligne_profile pasLigneHover">
                             <td class="entete_profile">Role</td>
                             <td>(de l'utilisateur)</td>
                             <td></td>
                         </tr>
-                        <tr class="ligne_profile">
+                        <tr class="ligne_profile pasLigneHover">
                             <td class="entete_profile">Mot de passe</td>
                             <td>************</td>
                             <td><a href="modifMdp.html"><img src="../ressources/images/icone_modif.svg" class="iconeModif"></a></td>
@@ -84,7 +85,8 @@
                     <tr>
                         <th>Date</th>
                         <th>Objet</th>
-                        <th>Niv. Urgence</th>
+                        <th>Niv. Urgence est.</th>
+                        <th>Niv. Urgence def.</th>
                         <th>Description</th>
                         <th>Etat</th>
                     </tr>
@@ -96,22 +98,10 @@
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
-                    </tr>
-                    <tr>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
                         <td>Contenu</td>
                     </tr>
                     <tr>
                         <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                    </tr>
-                    <tr>
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
@@ -124,22 +114,10 @@
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
-                    </tr>
-                    <tr>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
                         <td>Contenu</td>
                     </tr>
                     <tr>
                         <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                    </tr>
-                    <tr>
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
@@ -152,8 +130,42 @@
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
+                        <td>Contenu</td>
                     </tr>
                     <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
