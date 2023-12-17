@@ -16,33 +16,42 @@ if (! array_key_exists("Content-Type", $headers)){ // Cas où on accède à la p
     return;
 }
 
+try {
+    if ($headers["Content-Type"] == "application/json") { // Si le fichier reçu est bien de type JSON (?)
+        $_POST = ["ok"]; // ???
+        $data = json_decode($recup, true);
 
-if ($headers["Content-Type"] == "application/json") { // Si le fichier reçu est bien de type JSON (?)
-    $_POST = ["ok"]; // ???
-    $data = json_decode($recup, true);
+        if (isset($data['ID_TICKET'])) {
+            $ID_TICKET = $data["ID_TICKET"][0];
+            if (json_last_error() == JSON_ERROR_NONE) { // ???
+                if (in_array(recupererRoleDe($connexionUtilisateur), array("Technicien"))) {
+                    // (TECH / ADMIN SITE) : TRUE si le ticket peut être attribué à un technicien (ticket ouvert)
+                    $attributionPossible = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_associe_ticket_tech WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
 
-    if (isset($data['ID_TICKET'])) {
-        $ID_TICKET = $data["ID_TICKET"][0];
-        if (json_last_error() == JSON_ERROR_NONE) { // ???
-            if (in_array(recupererRoleDe($connexionUtilisateur), array("Technicien"))) {
-                // (TECH / ADMIN SITE) : TRUE si le ticket peut être attribué à un technicien (ticket ouvert)
-                $attributionPossible = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_associe_ticket_tech WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
+                    if ($attributionPossible and (recupererRoleDe($connexionUtilisateur) == "Technicien")) {
+                        // Uniquement attribuable
+                        //$infoBouton[0] = "S'attribuer ce ticket";
 
-                if ($attributionPossible and (recupererRoleDe($connexionUtilisateur) == "Technicien")) {
-                    // Uniquement attribuable
-                    //$infoBouton[0] = "S'attribuer ce ticket";
+                        $ID_USER = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_Utilisateur_client;"))[0];
+                        executeSQL("UPDATE vue_associe_ticket_tech SET ID_TECHNICIEN = ?, HORODATAGE_DEBUT_TRAITEMENT_TICKET = current_timestamp() WHERE ID_TICKET = ?", array($ID_USER, $ID_TICKET), $connexionUtilisateur);
 
-                    $ID_USER = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_Utilisateur_client;"))[0];
-                    executeSQL("UPDATE vue_associe_ticket_tech SET ID_TECHNICIEN = ?, HORODATAGE_DEBUT_TRAITEMENT_TICKET = current_timestamp() WHERE ID_TICKET = ?", array($ID_USER, $ID_TICKET), $connexionUtilisateur);
+                        header('Content-Type: application/json');
+                        echo json_encode(array("Modifier ce ticket", $ID_TICKET));
+                        return;
+                    }
 
-                    header('Content-Type: application/json');
-                    echo json_encode(array("Modifier ce ticket", $ID_TICKET));
-                    return;
+
                 }
 
-
             }
-
         }
+        header('Content-Type: application/json');
+        echo json_encode(array("Une erreur s'est produite", $ID_TICKET));
+        return;
     }
+}
+catch(Exception $e){
+    header('Content-Type: application/json');
+    echo json_encode(array("Une erreur s'est produite", $ID_TICKET));
+    return;
 }
