@@ -64,10 +64,9 @@ WHERE (ETAT_TICKET = "Ouvert");
 CREATE OR REPLACE VIEW vue_suppr_rtl_tdb AS
 SELECT RTL.ID_TICKET, RTL.NOM_LIBELLE
 FROM RelationTicketsLibelles AS RTL
-    JOIN vue_tableau_bord AS TDB ON RTL.ID_TICKET = TDB.ID_TICKET
-WHERE ((SELECT role_user FROM vue_Utilisateur_client) != "role_utilisateur"
-AND (SELECT role_user FROM vue_Utilisateur_client) != "role_admin_sys")
-   OR TDB.ETAT_TICKET = "En attente";
+WHERE verifier_id_ticket_dans_vue_tdb(RTL.ID_TICKET) = 1 AND (((ObtenirRoleUtilisateur() != ('role_utilisateur' COLLATE utf8mb4_unicode_ci))
+AND (ObtenirRoleUtilisateur() != ('role_admin_sys' COLLATE utf8mb4_unicode_ci)))
+   OR (recup_etat_ticket_tdb(RTL.ID_TICKET) = ("En attente" COLLATE utf8mb4_unicode_ci)));
 
 CREATE OR REPLACE VIEW vue_historique AS
 SELECT T.ID_TICKET, T.OBJET_TICKET, T.DESCRIPTION_TICKET, T.NIV_URGENCE_DEFINITIF_TICKET, T.ETAT_TICKET, T.HORODATAGE_CREATION_TICKET, T.HORODATAGE_DERNIERE_MODIF_TICKET, T.ID_TECHNICIEN, T.ID_USER, CREA.PRENOM_USER, CREA.NOM_USER, TECH.PRENOM_USER as PRENOM_TECH, TECH.NOM_USER as NOM_TECH
