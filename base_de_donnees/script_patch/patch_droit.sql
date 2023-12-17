@@ -59,12 +59,19 @@ GRANT SELECT(ID_TICKET)
 ON vue_modif_ticket_adm_tech
 TO 'role_admin_web';
 
+
+-- DROITS POUR VUE ASSOCIE TICKET TECH
+GRANT SELECT(ID_TICKET) ON vue_associe_ticket_tech TO 'role_technicien';
+GRANT SELECT(ID_TICKET) ON vue_associe_ticket_tech TO 'role_admin_web';
+
 GRANT UPDATE(ID_TECHNICIEN, HORODATAGE_DEBUT_TRAITEMENT_TICKET)
 ON vue_associe_ticket_tech
 TO 'role_technicien';
 GRANT UPDATE(ID_TECHNICIEN, HORODATAGE_DEBUT_TRAITEMENT_TICKET)
 ON vue_associe_ticket_tech
 TO 'role_admin_web';
+
+
 
 GRANT SELECT
 ON vue_tdb_relation_ticket_libelle
