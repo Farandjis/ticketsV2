@@ -53,7 +53,7 @@ global $database, $host;
 
     <div class="tableau-bord">
         <div class="conteneur_table-tableau-bord conteneur_table">
-        <table class="table-tableau-bord" id="tableaudebord">
+        <table class="table-tableau-bord table-popup" id="tableaudebord">
             <thead>
             <tr>
                 <th>Id</th>
@@ -165,13 +165,13 @@ global $database, $host;
                 ?>
                 <br>
                 <span>Libellé</span><br>
-                <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0">
+                <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown()">
                     <?php
                     if (count($lesLibellesCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des libellés"; }
                     elseif (count($lesLibellesCoches) == 1) { $texteBouton = "1 libellé sélectionné";}
                     else { $texteBouton = count($lesLibellesCoches) . " libellés sélectionnés";}
 
-                    echo "<span class='entete_libelle' onclick='toggleDropdown()' onkeydown='toggleDropdown()'>$texteBouton</span>";
+                    echo "<span class="entete_libelle" onclick="toggleDropdown()">$texteBouton</span>";
                     ?>
                     <div class="option_libelle">
                         <?php
@@ -194,22 +194,18 @@ global $database, $host;
     <div class="overlay" id="overlay" onclick="closePopup()">
         <!-- Contenu de la pop-up -->
 
-        <div role="form" id="pop-up" class="formModifTicket formAuthentification formConnexion popupInfo">
+        <div role="form" id="test" class="formModifTicket formAuthentification formConnexion popupInfo">
 
-            <div class="informations_ticket_popup">
-
-                <p><strong>ID : </strong> <span id="popupId"></span></p>
-                <p><strong>Date : </strong> <span id="popupDate"></span></p>
-                <p><strong>Niveau Urgence : </strong> <span id="popupNiveau"></span></p>
-                <p><strong>Etat : </strong> <span id="popupEtat"></span></p>
-                <p><strong>Objet : </strong> <span id="popupObjet"></span></p>
-                <p><strong>Description : </strong> <br> <span id="popupDescription"></span></p>
-
+            <div id="informations_ticket_popup">
 
             </div>
 
+            <form action='modificationTicket.html' method='post'>
 
-            <button id="fermer_pop-up" onclick="closePopup()">x</button>
+                <input type='submit' name='modif' value='Modifier le ticket'><br>
+            </form>
+
+            <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
         </div>
 
 
