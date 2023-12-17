@@ -86,16 +86,19 @@ nav {
   transition: transform 0.5s;
 }
 
+.nav-conteneur a:hover{
+  color: #664dfd;
+}
 
 .nav-conteneur a::before {
   content: "";
   position: absolute;
-  bottom: -3px;
-  width: 100%;
+  bottom: 3px;
+  width: 95%;
   height: 2px;
   transform: scale(0);
   transform-origin: left;
-  background: #ECECEC;
+  background: #664dfd;
   transition: transform 0.3s ease-out;
 }
 .nav-conteneur a:hover::before {
@@ -121,6 +124,11 @@ nav {
   cursor: pointer;
 }
 
+.deconnexion a:hover{
+  background: #1c1c1c;
+  color: #ECECEC;
+}
+
 .authentification a:nth-child(2) {
   color: #ECECEC;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
@@ -128,15 +136,93 @@ nav {
 
 
 .authentification a:nth-child(1):hover {
-  background: #808080;
+  background: #1c1c1c;
+  color: #ECECEC;
 }
 .authentification a:nth-child(2):hover {
   background: linear-gradient( 135deg, #cf8ae5 10%, #6018DC 100%);
+  color: #e3e3e3;
 }
 
 .user-icon {
   display: none;
 }
+
+#page_actuelle {
+  color: #ECECEC;
+  background: #1c1c1c;
+  border-radius: 20px;
+}
+
+
+
+/* ==================== HAMBURGER ================= */
+
+
+nav .hamburger-menu{
+
+  display: none;
+
+  position: absolute;
+  top: 10px;
+  right: 20px;
+
+  width: 64px;
+  height: 42px;
+
+  cursor: pointer;
+
+}
+
+nav .hamburger-menu .slice {
+
+  position: absolute;
+
+  width: 100%;
+  height: 4px;
+
+  background: #000;
+  border-radius: 4px;
+
+
+  transition: all 0.5s ease-in-out;
+
+}
+
+nav .hamburger-menu .slice:nth-child(1) {
+
+  top: 0px;
+
+}
+nav .hamburger-menu .slice:nth-child(2) {
+
+  top: 18px;
+
+}
+nav .hamburger-menu .slice:nth-child(3) {
+
+  top: 36px;
+
+}
+
+nav .hamburger-menu.active .slice:nth-child(1) {
+  top: 18px;
+  transform: rotate(135deg);
+
+}
+nav .hamburger-menu.active .slice:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+
+}
+nav .hamburger-menu.active .slice:nth-child(3) {
+  top: 18px;
+  transform: rotate(-135deg);
+
+}
+
+
+
 
 .erreur{
   background: #131212;
@@ -147,6 +233,7 @@ nav {
   margin-bottom: 10px;
   text-align: center;
 }
+
 
 
 /* ======== PAGE D'ACCUEIL ======== */
@@ -275,8 +362,9 @@ nav {
 }
 
 .table-accueil{;
-  min-width: 400px;
   max-height: 1000px;
+  width: 100%;
+
 }
 
 
@@ -302,12 +390,9 @@ th{
 
 td {
   padding: 25px 15px;
-
-}
-
-td {
   font-weight: 500;
 }
+
 
 
 
@@ -326,31 +411,30 @@ tbody tr:nth-child(even){
 }
 
 /* =======modif a faire*/
-.table-ticket  td:nth-child(1),.table-ticket td:nth-child(2),.table-ticket td:nth-child(4),.table-ticket td:nth-child(6){
+
+.table-ticket{
+  width: 100%;
+}
+
+
+.table-ticket  td:nth-child(1),.table-ticket  td:nth-child(2),.table-ticket td:nth-child(4), .table-ticket td:nth-child(6){
+  width: 10%;
   text-align: center;
 }
 
-.table-ticket  td:nth-child(1),.table-ticket  td:nth-child(2),.table-ticket td:nth-child(4), .table-ticket td:nth-child(6){
-  width: 100px;
-}
-
 .table-ticket  td:nth-child(3),.table-ticket td:nth-child(5){
-  max-height: 100px;
+  max-width: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 100px;
 }
 
 .table-ticket td:nth-child(6){
   white-space: nowrap;
 }
 
-.table-accueil .table-ticket td:nth-child(3),.table-accueil .table-ticket td:nth-child(5){
-  max-width: 650px;
-}
 
-tbody tr:hover:not(.ligne_profile){
+tbody tr:hover:not(.pasLigneHover){
   background-color: #3d305e;
   color: #ECECEC;
 }
@@ -436,9 +520,9 @@ footer img {
 
 input[type="text"], input[type="email"], input[type="password"],  input[type="submit"], input[type="reset"] {
   padding: 10px;
-  margin: 3px 0;
+  margin: 3px 0;/*
   background: #ECECEC;
-  border: 1px solid #ECECEC;
+  border: 1px solid #ECECEC;*/
   border-radius: 15px;
   font-size: 16px;
 }
@@ -462,6 +546,14 @@ input[type="date"] {
   cursor: pointer;
 }
 
+.champInvalide{
+  border: 2px solid #ff3c3c;
+  background: #ffcaca;
+}
+.champValide{
+  border: 2px solid #00b01d;
+  background: #d1ffd8;
+}
 
 
 /* ======== FORMULAIRE DE CONNEXION ======== */
@@ -489,9 +581,11 @@ input[type="date"] {
 
 
 
-.formConnexion input[type="text"], input[type="password"], input[type="email"]{
+.formConnexion input[type="text"], .formConnexion input[type="password"],  input[type="email"]{
   width: 100%;
 }
+
+
 
 /* ======== LIEN VERS PAGE D'OUBLIE DE MDP ======== */
 
@@ -500,6 +594,7 @@ input[type="date"] {
   text-align: center;
   display: block;
   padding: 5px;
+  margin: 5px;
 }
 
 /* ======== MAINTENANCE ======== */
@@ -555,6 +650,87 @@ input[type="date"] {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+
+/* ======== CHAMPS INPUT PASSWORD ======= */
+
+.champs-password{
+  position: relative;
+}
+
+.champs-password .password-show, .champs-password .password-hide{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.champs-password input {
+  width: calc(100% - 40px);
+  padding-right: 45px;
+}
+
+.champs-password .password-show img, .champs-password .password-hide img {
+  width: 30px;
+  color: #1c1c1c;
+}
+
+.champs-password .password-show img{
+  height: 30px;
+}
+.champs-password .password-hide img {
+  height: 31px;
+}
+
+
+
+.champs-password .password-hide{
+  display: none;
+}
+
+
+.infosChamps{
+  font-weight: 500;
+  float: right;
+  text-decoration: underline;
+}
+
+#conteneur_infoChamps {
+  position: relative;
+  background: #f8fffa;
+  border: 1px solid black;
+  color: #232323;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 550;
+  display: none;
+  animation: fadeIn 0.5s ease;
+  padding-left: 30px;
+}
+
+#conteneur_infoChamps::before {
+  content: url("../images/info.png");
+  border-radius: 10px;
+
+  width: 32px;
+  height: 100%;
+  position: absolute;
+  top: 3px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 
@@ -793,7 +969,7 @@ input[type="date"] {
   scrollbar-width: thin; /* Largeur de la scrollbar (peut être 'thin', 'auto', ou 'none') */
 }
 
-.informations_ticket_popup > span {
+#informations_ticket_popup > span {
   color: #2c2c2c;
 }
 
@@ -973,7 +1149,7 @@ input[type="date"] {
   z-index: 10;
 }
 
-.informations_ticket_popup {
+#informations_ticket_popup {
   background: #ddc3ff;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -981,7 +1157,7 @@ input[type="date"] {
   box-shadow: 0 0px 10px #FFC5C5FF;
 }
 
-.informations_ticket_popup > p{
+#informations_ticket_popup > p{
   padding: 5px;
   font-weight: 600;
   color: #4b2655;
@@ -989,6 +1165,7 @@ input[type="date"] {
 
 .popupInfo {
   background: #ECECEC;
+  position: relative;
 }
 
 /* ======== CREATION DE TICKET ======== */
@@ -1088,7 +1265,7 @@ select {
 }
 
 
-#nivUrgEstime {
+#champLocked {
   appearance: none;
   background-color: #606060;
   border: none;
@@ -1116,14 +1293,21 @@ select {
 }
 
 #fermer_pop-up{
-  font-family: Poppins, Arial, sans-serif;
+  font-family: Poppins,Calibri, sans-serif;
+  font-weight: 600;
   font-size: 25px;
   position: absolute;
-  top: 16%;
-  left: 69%;
+  top: -20px;
+  right: -20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  transition: 0.3s;
+}
+
+#fermer_pop-up:hover, #fermer_pop-up:focus{
+  transform: scale(1.05);
+  background-color: #dbc1fd;
 }
 
 
@@ -1144,41 +1328,76 @@ select {
 
 
 
-@media (max-width: 750px) {
-  nav {
-    padding: 15px 20px;
-    position: fixed;
-  }
+@media (max-width: 850px) {
 
-  .nav-icon{
-    margin: 0 auto;
-  }
-
-  .nav-authentification {
-    margin-left: 0;
-  }
-  .authentification {
-    display: none;
-  }
-
-  .user-icon {
+  nav .hamburger-menu {
     display: block;
-    cursor: pointer;
+    margin: 30px;
+  }
+
+
+  nav {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: 0.2s;
+  }
+
+
+  nav .nav-conteneur,
+  nav .nav-authentification,
+  nav .deconnexion{
+    display: none;
+
+    transition: 1s;
+  }
+
+  /* On affiche le menu hamburger */
+  nav .hamburger-menu {
+    display: block;
+  }
+
+
+  /* Et si on clique dessus on décale tous les éléments de la nav sauf le bouton hamburger */
+
+  nav.active {
+    background: #ECECEC;
+  }
+
+  nav.active .logo,
+  nav.active .nav-conteneur,
+  nav.active .nav-authentification,
+  nav.active .deconnexion{
+
+    position: relative;
+
+    margin: 15px;
+
+    display: flex;
+
+    transition: 0.5s;
+  }
+
+  nav.active .logo{
+    scale: 1.1;
+  }
+
+  nav.active .nav-conteneur {
+    background: none;
     border: none;
   }
 
-  .user-icon img {
-    width: 40px;
+  .presentation {
+    margin-top: 120px;
   }
 
-  .texte-presentation > h1 {
-    font-size: 60px;
+  #fermer_pop-up{
+    right: 0px;
+
   }
 
-  .video-presentation > iframe {
-    width: 534px;
-    height: 300px;
-  }
+
 }
 
 
@@ -1200,14 +1419,25 @@ select {
   }
 }
 
+
+@media  screen and  (max-width: 1020px){
+  .conteneur_administration {
+    flex-direction: column;
+  }
+
+  .conteneur_ajout_administration {
+    margin-bottom: 20px;
+  }
+}
+
 @media screen and (max-width: 1445px) {
   .nav-conteneur{
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+
   }
   .nav-conteneur a{
     font-size: 24px;
-    margin-left: 0;
   }
 
   .titre_page, .tableau_bord_bouton {
@@ -1236,8 +1466,9 @@ select {
 @media screen and  (max-width: 1650px) {
   .activite{
     flex-direction: column;
+    margin-bottom: 0;
   }
-  .table-infructueuse {
+  .conteneur_table-infructueuse_ouverture-tickets {
     margin-bottom: 50px;
   }
   .conteneur_table-infructueuse_ouverture-tickets{
@@ -1289,7 +1520,7 @@ select {
   .presentation{
     flex-direction: column;
     justify-content: center;
-    height: 1000px;
+    height: 1100px;
     width: 900px;
 
   }
@@ -1302,4 +1533,6 @@ select {
 }
 
 
-
+.ligneCacher {
+  display: none;
+}
