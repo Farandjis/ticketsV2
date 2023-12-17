@@ -434,14 +434,23 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 }
 
 
-function menuDeroulantTousLesLibelles($connexionUtilisateur){
+function menuDeroulantTousLesLibelles($connexionUtilisateur, $libellesACocher = array()){
     /**
      * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les libellés disponible dans la BD.
      *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
+     * @param array libellesACocher -> les libellés à cocher par défaut
      */
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_LIBELLE FROM `Libelle` ORDER BY NOM_LIBELLE ASC;");
     while($unLibelle = mysqli_fetch_row($resSQL)){
-        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "'> " . htmlspecialchars($unLibelle[0]) . " </label>";
+        if (in_array($unLibelle[0], $libellesACocher)){ $cestCocher = "checked"; }
+        else { $cestCocher = ""; }
+        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[0]) . " </label>";
     }
+}
+
+function isSelected($value,$comp){
+	if ($comp == $value){
+		return "selected";
+	}
 }
