@@ -11,6 +11,8 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+
+    <script src="../ressources/script/afficheMDP.js"></script>
 </head>
 <body>
     <header>
@@ -19,7 +21,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
         </div>
     </header>
     <div class="page_authentification_modif_perso">
-        <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
+        <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
 
         <div role="form" class="formAuthentification formConnexion">
 
@@ -48,13 +50,42 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
                 ?>
 
                 <label for='Amdp'>Mot de passe</label><br>
-                <input id='Amdp' type='password' name ='Amdp'>
-                <br><br>
+                <br>
+                <div class="champs-password">
+                    <input id='Amdp' type='password' name ='Amdp'>
+
+                    <div class="password-show" onclick="showPassword(this)">
+                        <img src="../ressources/images/visible.png">
+                    </div>
+                    <div class="password-hide" onclick="hidePassword(this)">
+                        <img src="../ressources/images/hidden.png">
+                    </div>
+                </div>
+                <br>
                 <label for='Nmdp'>Nouveau mot de passe</label><br>
-                <input id='Nmdp' type='password' name ='Nmdp'><br>
+                <div class="champs-password">
+                    <input id='Nmdp' type='password' name ='Nmdp'>
+
+                    <div class="password-show" onclick="showPassword(this)">
+                        <img src="../ressources/images/visible.png">
+                    </div>
+                    <div class="password-hide" onclick="hidePassword(this)">
+                        <img src="../ressources/images/hidden.png">
+                    </div>
+                </div>
                 <br>
                 <label for='Cmdp'>Confirmation mot de passe</label><br>
-                <input id='Cmdp' type='password' name ='Cmdp'><br><br>
+                <div class="champs-password">
+                    <input id='Cmdp' type='password' name ='Cmdp'>
+
+                    <div class="password-show" onclick="showPassword(this)">
+                        <img src="../ressources/images/visible.png">
+                    </div>
+                    <div class="password-hide" onclick="hidePassword(this)">
+                        <img src="../ressources/images/hidden.png">
+                    </div>
+                </div>
+                <br>
 
                 <input type='submit' name='Modification' value='Modification'><br>
 
