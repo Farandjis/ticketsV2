@@ -130,6 +130,9 @@ ON vue_technicien
 TO 'role_admin_web';
 
 GRANT INSERT ON RelationTicketsLibelles TO 'role_utilisateur';
+
+-- Vue de la suppression des couples ID_TICKET LIBELLE du tableau de bord de l'utilisateur faisant appel à la fonction
 GRANT DELETE ON vue_suppr_rtl_tdb TO 'role_utilisateur';
+GRANT SELECT ON vue_suppr_rtl_tdb TO 'role_utilisateur';
 
 GRANT SELECT ON vue_technicien TO 'role_utilisateur';
