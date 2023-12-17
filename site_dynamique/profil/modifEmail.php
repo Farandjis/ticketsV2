@@ -45,8 +45,6 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
                 ?>
 
                 <label for='mdp'>Mot de passe</label><br>
-                <input id='mdp' type='password' name ='mdp'>
-                <br>
                 <div class="champs-password">
                     <input id='mdp' type='password' name ='mdp'>
 
