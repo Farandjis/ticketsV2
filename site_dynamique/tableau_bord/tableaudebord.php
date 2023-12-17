@@ -165,13 +165,13 @@ global $database, $host;
                 ?>
                 <br>
                 <span>Libellé</span><br>
-                <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0">
+                <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown()">
                     <?php
                     if (count($lesLibellesCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des libellés"; }
                     elseif (count($lesLibellesCoches) == 1) { $texteBouton = "1 libellé sélectionné";}
                     else { $texteBouton = count($lesLibellesCoches) . " libellés sélectionnés";}
 
-                    echo "<span class='entete_libelle' onclick='toggleDropdown()' onkeydown='toggleDropdown()'>$texteBouton</span>";
+                    echo "<span class="entete_libelle" onclick="toggleDropdown()">$texteBouton</span>";
                     ?>
                     <div class="option_libelle">
                         <?php
