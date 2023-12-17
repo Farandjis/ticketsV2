@@ -6,6 +6,10 @@
       <link href="../ressources/style/style.css" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
       <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+
+      <script src="../ressources/script/afficheMDP.js"></script>
+      <script src="../ressources/script/verifChamp.js"></script>
+      <script src="../ressources/script/infoChamps.js"></script>
 </head>
 <body>
 <header>
@@ -14,7 +18,7 @@
   </div>
 </header>
     <div class="page_authentification_modif_perso">
-        <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
+        <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
 
       <div role="form" class="formAuthentification formInscription">
 
@@ -58,36 +62,60 @@
                 echo '</div>';
             }
             ?>
+            <div id="conteneur_infoChamps">
+            </div>
 
             <div class="champs-inscription">
                <div class="inscription-gauche">
-                  <label for='login'>Login</label><br>
-                  <input id='login' type='text' name ='login'>
-                  <br><br>
-                  <label for='mdp'>Mot de passe</label><br>
-                  <input id='mdp' type='password' name ='mdp'>
-                  <br><br>
-                  <label for='mdp2'>Vérificaction mot de passe</label><br>
-                  <input id='mdp2' type='password' name ='mdp2'>
+                  <label for='login'>Login</label> <span id="infoLogin" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
+                  <input id='login' type='text' name ='login' ><br>
+                  <br>
+                  <label for='mdp'>Mot de passe</label> <span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+                   <div class="champs-password">
+                        <input id='mdp' type='password' name ='mdp'>
+
+                       <div class="password-show" onclick="showPassword(this)">
+                           <img src="../ressources/images/visible.png">
+                       </div>
+                       <div class="password-hide" onclick="hidePassword(this)">
+                           <img src="../ressources/images/hidden.png">
+                       </div>
+                   </div>
+                  <br>
+                  <label for='verifMdp'>Vérificaction mot de passe</label> <span id="infoVerifMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+
+                   <div class="champs-password">
+                       <input id="verifMdp" type='password' name ='verifMdp'>
+
+                       <div class="password-show" onclick="showPassword(this)">
+                           <img src="../ressources/images/visible.png">
+                       </div>
+                       <div class="password-hide" onclick="hidePassword(this)">
+                           <img src="../ressources/images/hidden.png">
+                       </div>
+                   </div>
+
                </div>
 
                <div class="inscription-droite">
-                  <label for='nom'>Nom</label><br>
+                  <label for='nom'>Nom</label> <span id="infoNom" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
                   <input id='nom' type='text' name ='nom'>
                   <br><br>
-                  <label for='prenom'>Prénom</label><br>
+                   <label for='prenom'>Prénom</label> <span id="infoPrenom" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
                   <input id='prenom' type='text' name ='prenom'>
+
                   <br><br>
-                  <label for='email'>Email</label><br>
+                  <label for='email'>Email</label> <span id="infoEmail" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
                   <input id='email' type='text' name ='email'>
                </div>
            </div>
           <br>
             <div class ="capcha">
-              <label for='capcha'>Captcha non fonctionnel !</label>
-              <input id='capcha' type='text' name ='capcha'>
+              <label for='capcha'>Capcha</label>
+              <input id='capcha' type='text' name ='capcha' placeholder="3*5">
             </div>
-          <br>
+            <a href="connexion.php" class="oublie">Déjà un compte ?</a>
+
           <input type='submit' name='Connexion' value='Inscription'>
 
         </form>
