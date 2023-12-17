@@ -129,20 +129,23 @@ function recupererRoleDe($connexion){
      else { return "Rôle inconnu"; }
 }
 
-function tableGenerate($getResultSQL){
+function tableGenerate($getResultSQL, $attributEnPlusPourLesLignes = ""){
     /**
      * Présente sous forme d'un tableau HTML (sans balises <table>) le résultat d'une requête MySQL de type SELECT.
      *
      * @param mysqli_result $getResultSQL - le mysqli_stmt_get_result de l'exécution de la requête, le tableau sera généré là dessus.
+     * @param string $attributEnPlusPourLesLignes - (optionnel) attributs supplémentaire pour les balises <tr>
      * @return void
      */
 
+    $id = 1;
     while($enregistrements = mysqli_fetch_row($getResultSQL)){
-        echo '<tr>';
+        echo "<tr id=$id $attributEnPlusPourLesLignes>";
         for ($noAttributRes = 0; $noAttributRes < count($enregistrements); $noAttributRes++){
             echo '<td>' . $enregistrements[$noAttributRes] . '</td>';
         }
         echo '</tr>';
+        $id++;
     }
 }
 
@@ -221,7 +224,6 @@ function verifJeton(){
     return true;
 }
 
-// A TERMINER + MANQUE TRY
 function pageAccess($listeDesRolesAutoriser){
     /**
      * Récupère, déchiffre et vérifie le login et le mot de passe puis tente une connexion à la base de données avec ces informations.
@@ -304,43 +306,38 @@ function pageAccess($listeDesRolesAutoriser){
     }
 }
 
+function libelleGenerate($id_ticket, $connexion) {
+    /**
+     * Génère la liste des libellés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
+     * Si un id de ticket est passé en paramètre, les libellés associés à ce ticket sont en état checked.
+     * @param $id_ticket = null/integer - Id du ticket dont on veut voir les libellés checkés.
+     * @return void
+     */
+    $unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle WHERE nom_libelle NOT IN (SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?);", array($id_ticket), $connexion);
+    $checked_libelle = executeSQL("SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?;", array($id_ticket), $connexion);
 
+    while ($row = mysqli_fetch_row($checked_libelle)) {
+        echo "<label><input type='checkbox' name='libelle_option[]' checked> $row[0]</label>";
+    }
 
-function libelleGenerate($id_ticket = null){
-	/**
- 	* Génère la liste des libéllés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
-  	* Si un id de ticket est passé en paramètre, les libéllés associés à ce ticket sont en état checked.
-   	* @param $id_ticket = null/integer - Id du ticket dont on veut voir les libéllés checkés.
-    	* @return void
-    	*/
-	if ($id_ticket==null){
-		$unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle;");
-		$checked_libelle = null;
-	}
-	else{
-		$unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle MINUS SELECT DISTINCT(nom_libelle) FROM RelationTicketsLibelles WHERE id_ticket = ?;",array($id_ticket));
-		$checked_libelle = executeSQL("SELECT DISTINCT(nom_libelle) FROM RelationTicketsLibelles WHERE id_ticket = ?;",array($id_ticket));
-	}
-	while($rows = fetch_row(mysqli_stmt_get_result($checked_libelle))){
-		echo "<label><input type='checkbox' name='libelle_option[]' checked> $rows</label>";
-	}
-	while($rows = fetch_row(mysqli_stmt_get_result($unchecked_libelle))){
-		echo "<label><input type='checkbox' name='libelle_option[]'> $rows</label>";
-	}
+    while ($row = mysqli_fetch_row($unchecked_libelle)) {
+        echo "<label><input type='checkbox' name='libelle_option[]'> $row[0] </label>";
+    }
 }
 
 
-function libelleUpdate($id_ticket,$libelle_option){
+
+function libelleUpdate($id_ticket,$libelle_option, $connexion){
 	/**
  	* Pour un ticket dont l'id est donnée :
-  	* Remplace ses libéllés en effaçant ses anciens libéllés puis en lui associant ceux dans la liste en paramètre.
+  	* Remplace ses libellés en effaçant ses anciens libéllés puis en lui associant ceux dans la liste en paramètre.
    	* @param $id_ticket - Id du ticket dont on veut remplacer les libéllés.
        	* @param $libelle_option - Liste des libéllés du ticket.
     	* @return void
     	*/
-	executeSQL("DELETE FROM RelationTicketsLibelles WHERE id_ticket = $id_ticket;");
+	executeSQL("DELETE FROM vue_suppr_rtl_tdb WHERE id_ticket = ?;", array($id_ticket), $connexion);
 	for ($n=0;$n<count($libelle_option);$n++){
-		executeSQL("INSERT INTO RelationTicketsLibelles VALUES(?,?);",array($id_ticket,$libelle_option[$n]));
+		executeSQL("INSERT INTO RelationTicketsLibelles (ID_TICKET, NOM_LIBELLE) VALUES (?,?);",array($id_ticket,$libelle_option[$n]), array($id_ticket, $libelle_option[$n]));
 	}
 }
 
@@ -437,17 +434,14 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 }
 
 
-function menuDeroulantTousLesLibelles($connexionUtilisateur, $libellesACocher = array()){
+function menuDeroulantTousLesLibelles($connexionUtilisateur){
     /**
      * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les libellés disponible dans la BD.
      *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     * @param
      */
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_LIBELLE FROM `Libelle` ORDER BY NOM_LIBELLE ASC;");
     while($unLibelle = mysqli_fetch_row($resSQL)){
-        if (in_array($unLibelle[0], $libellesACocher)){ $cestCocher = "checked"; }
-        else { $cestCocher = ""; }
-        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[0]) . " </label>";
+        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "'> " . htmlspecialchars($unLibelle[0]) . " </label>";
     }
 }
