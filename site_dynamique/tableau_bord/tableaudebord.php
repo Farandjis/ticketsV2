@@ -5,11 +5,20 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
 global $database, $host;
 
 /*
- *            <div class="hamburger-menu">
-                <div class="slice"></div>
-                <div class="slice"></div>
-                <div class="slice"></div>
-            </div>
+ * Par rapport à au bouton modifier :
+ *
+ * Etape 1 :
+ *      Lors de la génération du tableau, j'associe ma fonction JavaScript à chaque ligne qui récupéra l'identifiant de la ligne du tableau.
+ * Etape 2 :
+ *      La fonction JS va récupérer l'ID du ticket :
+ *              On récupère le tableau avec l'id "tableaudebord", on récupère toute ses lignes,
+ *              et pour la ligne n°idLigneDuTicket on récupère toute ses cases afin de récupérer l'identifiant du ticket
+ * Etape 3 :
+ *      On envoi l'ID Ticket au serveur, qui à l'aide des infos du cookie SESSION, va vérifier si l'utilisateur
+ *      peut modifier (ou s'attribuer) le ticket.
+ * Etape 4 :
+ *      Le serveur répond, si c'est possible, on affiche le bouton, sinon, on ne l'affiche pas.
+ *      Le serveur revérifie les informations liés à la session en cours.
  */
 ?>
 
@@ -22,10 +31,8 @@ global $database, $host;
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
     <script src="../ressources/script/libelle.js"></script>
-
     <script src="../ressources/script/infoLigneTab.js"></script>
-
-
+    <script src="../ressources/script/demandeServeurPourBoutonPOP-UP.js"></script>
 
 
 </head>
@@ -46,7 +53,7 @@ global $database, $host;
 
     <div class="tableau-bord">
         <div class="conteneur_table-tableau-bord conteneur_table">
-        <table class="table-tableau-bord">
+        <table class="table-tableau-bord" id="tableaudebord">
             <thead>
             <tr>
                 <th>Id</th>
@@ -125,7 +132,8 @@ global $database, $host;
                 $POSTResultSQL = mysqli_query($connexionUtilisateur, $reqSQL);
             }
             if (! (mysqli_num_rows($POSTResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
-            tableGenerate($POSTResultSQL);
+                $attributsLignes = 'onclick="ligneTableauDeBord(this.id)"';
+                tableGenerate($POSTResultSQL, $attributsLignes);
             }
             else {
                 echo '<tr class="pasLigneHover"><td colspan="6" style="text-align: center; height: 639px">Aucun ticket à afficher pour le moment.</td></tr>';
@@ -186,7 +194,7 @@ global $database, $host;
     <div class="overlay" id="overlay" onclick="closePopup()">
         <!-- Contenu de la pop-up -->
 
-        <div role="form" id="test" class="formModifTicket formAuthentification formConnexion popupInfo">
+        <div role="form" id="pop-up" class="formModifTicket formAuthentification formConnexion popupInfo">
 
             <div class="informations_ticket_popup">
 
@@ -200,10 +208,6 @@ global $database, $host;
 
             </div>
 
-            <form action='modificationTicket.php' method='post'>
-
-                <input type='submit' name='modif' value='Modifier le ticket'><br>
-            </form>
 
             <button id="fermer_pop-up" onclick="closePopup()">x</button>
         </div>
