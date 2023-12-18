@@ -22,7 +22,7 @@
 
       <div role="form" class="formAuthentification formInscription">
 
-        <form action='action_inscription.php' method='post'>
+        <form action='action_inscription.php' method='post' id='inscriptionForm'>
             <h1>Je m'inscris !</h1><br>
             <?php
 
