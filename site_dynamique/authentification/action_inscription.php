@@ -3,9 +3,9 @@
 require '../ressources/fonctions/PHPfunctions.php';
 global $host, $database, $USER_FICTIF_MDP; // Viennent de connexion_db.php (importé grâce à PHPfunctions.php)
 
-if (isset($_POST['login'], $_POST['mdp'], $_POST['mdp2'], $_POST['nom'], $_POST['prenom'], $_POST['email'])) {
-    if (!empty($_POST['login']) & !empty($_POST['mdp']) & !empty($_POST['mdp2']) & !empty($_POST['nom']) & !empty($_POST['prenom']) & !empty($_POST['email'])) {
-        if ($_POST['mdp'] == $_POST['mdp2']) {
+if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_POST['prenom'], $_POST['email'])) {
+    if (!empty($_POST['login']) & !empty($_POST['mdp']) & !empty($_POST['verifMdp']) & !empty($_POST['nom']) & !empty($_POST['prenom']) & !empty($_POST['email'])) {
+        if ($_POST['mdp'] == $_POST['verifMdp']) {
             $login = htmlspecialchars($_POST['login']); $mdp = htmlspecialchars($_POST['mdp']); $nom = htmlspecialchars($_POST['nom']);
             $prenom = htmlspecialchars($_POST['prenom']); $email = htmlspecialchars($_POST['email']);
 
