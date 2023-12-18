@@ -168,8 +168,8 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentification (connexion et déconnexion)      |
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Créer un utilisateur <br><br> - Inscrire un visiteur                                                                                                  | Identifier un utilisateur                    |
-| Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br><br> - Afficher les demandes de dépannages <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur                                                                                                  | Identifier un utilisateur                    |
+| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
 
@@ -260,6 +260,7 @@ Par ordre alphabétique.
   - [Inscrire un visiteur](#a1cu5)
   - [Modifier son mot de passe](#a1cu6)
   - [Modifier son Email](#a1cu7)
+  - [Consulter ses demandes](#a1cu8)
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -668,3 +669,29 @@ Echec 2 :
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
     - L'utilisateur reçoit une alerte affirmant que l'Email ne respecte pas le format permis
     - L'utilisateur est renvoyé vers la page modification de l'Email
+```
+- #### <a name="a1cu8"> Nom : Consulter ses demandes 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit avoir inscrit (créer) des tickets pour les consulter
+Déclencheur :
+    - Le bouton "Mon espace" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Mon espace" renvoie vers la page de profil
+
+Scénario nominal :
+    - L'utilisateur se connecte à la plateforme
+    - L'utilisateur appuie sur le bouton "Mon espace"
+    - L'utilisateur est renvoyé vers la page de profil
+    - L'utilisateur peut consulter ses demandes
+
+Extension :
+    - L'utilisateur se connecte à la plateforme
+    - L'utilisateur appuie sur le bouton "Mon espace"
+    - L'utilisateur est renvoyé vers la page de profil
+    - L'utilisateur remarque que le tableau de ses demandes est vide
