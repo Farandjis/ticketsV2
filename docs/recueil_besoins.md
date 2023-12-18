@@ -169,7 +169,7 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentification (connexion et déconnexion)      |
 | Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur                                                                                                  | Identifier un utilisateur                    |
-| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
+| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> - Créer un ticket <br><br> -Rechercher un ticket <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
 
@@ -261,7 +261,9 @@ Par ordre alphabétique.
   - [Modifier son mot de passe](#a1cu6)
   - [Modifier son Email](#a1cu7)
   - [Consulter ses demandes](#a1cu8)
-
+  - [Créer un ticket](#a1cu9)
+  - [Rechercher un ticket](#a1cu10)
+    
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -695,3 +697,101 @@ Extension :
     - L'utilisateur appuie sur le bouton "Mon espace"
     - L'utilisateur est renvoyé vers la page de profil
     - L'utilisateur remarque que le tableau de ses demandes est vide
+```
+- #### <a name="a1cu9"> Nom : Créer un ticket 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+Déclencheur :
+    - Le bouton "Créer" est sélectionné
+
+Garantie en cas de succès :
+    - Que la page de création de ticket renvoie la page tableau de bord 
+
+Scénario nominal :
+    - L'utilisateur entre la nature du problème 
+    - L'utilisateur définit le niveau d'urgence du problème
+    - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
+    - L'utilisateur rédige une explication détaillée du problème survenu
+    - L'utilisateur appuie sur le bouton "Créer"
+    - L'utilisateur est renvoyé vers la page du tableau de bord
+
+Echec :
+    - L'utilisateur entre la nature du problème 
+    - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
+    - L'utilisateur rédige une explication détaillée du problème survenu
+    - L'utilisateur appuie sur le bouton "Créer"
+    - L'utilisateur reçoit une alerte lui affirmant que des données essentielles sont manquantes
+    - L'utilisateur est renvoyé vers la page de création ticket
+
+```
+- #### <a name="a1cu10"> Nom : Rechercher un ticket
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide 
+Déclencheur :
+    - Le bouton "Recherche" est sélectionné
+
+Garantie en cas de succès :
+    - Que le tableau des demandes affiche les tickets selon les spécifications qui ont été donné 
+
+Scénario nominal :
+    - L'utilisateur entre les dates d'intervalles des tickets  
+    - L'utilisateur entre le titre du ticket 
+    - L'utilisateur sélectionne le ou les libellés
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient dans le tableau, les tickets selon les caractéristiques entrées dans le formulaire de recherche
+
+Extension 1 :
+    - L'utilisateur entre les dates d'intervalles des tickets  
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon les dates entrées dans le formulaire de recherche
+
+Extension 2 :
+    - L'utilisateur entre le titre du ticket 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon le titre entré dans le formulaire de recherche
+
+Extension 3 :
+    - L'utilisateur sélectionne le ou les libellés  
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon le ou les libellés entrés dans le formulaire de recherche
+
+Echec 1 :
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient le même tableau qu'avant l'exécution du bouton puisqu'aucune recherche n'a été effectué 
+
+Echec 2 :
+    - L'utilisateur entre les dates d'intervalles des tickets
+    - L'utilisateur entre le titre du ticket
+    - L'utilisateur sélectionne le ou les libellés 
+    - L'utilisateur appuie sur le bouton "Annuler"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient le même tableau qu'avant l'exécution du bouton puisqu'aucune recherche n'a été effectué 
+
+Echec 3 :
+    - L'utilisateur entre les dates d'intervalles des tickets
+    - L'utilisateur entre le titre du ticket
+    - L'utilisateur sélectionne le ou les libellés 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient un tableau vide puisque les données entrées sont inexistantes
+
+Echec 4 :
+    - L'utilisateur entre les dates d'intervalles des tickets
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient un tableau vide puisque aucuns ticket n'a été formulé à ses dates là
+
