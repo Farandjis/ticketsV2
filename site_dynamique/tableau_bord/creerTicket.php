@@ -44,10 +44,10 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                         <div class="custom-select">
                             <select name="nivUrg" id="nivUrg" class="creer_select" required>
                                 <option value="">--Choisir une option--</option>
-                                <option value="faible">Faible</option>
-                                <option value="moyen">Moyen</option>
-                                <option value="important">Important</option>
-                                <option value="urgent">Urgent</option>
+                                <option value="Faible">Faible</option>
+                                <option value="Moyen">Moyen</option>
+                                <option value="Important">Important</option>
+                                <option value="Urgent">Urgent</option>
                             </select>
                         </div>
                     </div>
