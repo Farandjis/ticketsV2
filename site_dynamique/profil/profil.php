@@ -38,13 +38,13 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
             echo "<table class='table-perso'>
                 <tbody>";
                     for($i=0 ;$i<count($row); $i++) {
-                        echo " <tr class="ligne_profile pasLigneHover">
+                        echo " <tr class='ligne_profile pasLigneHover'>
                                     <td class='entete_profile' >$entete_profile[$i]</td >
                                     <td > $row[$i]</td >";
                         if ($i == 2){
-                            echo "<td><a href='modifEmail.php'><img src="../ressources/images/icone_modif.svg" class="iconeModif"></a></td>";
+                            echo "<td><a href='modifEmail.php'><img src='../ressources/images/icone_modif.svg' class='iconeModif'></a></td>";
                         }else if ($i == 4){
-                            echo "<td><a href='modifMdp.php'><img src="../ressources/images/icone_modif.svg" class="iconeModif"></a></td>";
+                            echo "<td><a href='modifMdp.php'><img src='../ressources/images/icone_modif.svg' class='iconeModif'></a></td>";
                         }else{
                             echo "<td></td>";
                         }
