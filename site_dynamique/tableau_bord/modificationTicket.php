@@ -22,9 +22,28 @@
 													
 													FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connection));
 	
+	// (TOUT LE MONDE) TRUE si ticket en attente de l'utilisateur
+        $modifPossible = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
+
+        if (in_array(recupererRoleDe($connection), array("Technicien", "Administrateur Site"))) {
+        	$modifPossibleAdmTech = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
+
+        	// (TECH / ADMIN SITE) : TRUE s'il est modifiable par le technicien ou l'administrateur faisant la demande
+        	$modifPossible = ($modifPossible or $modifPossibleAdmTech);
+	}
+	if(! $modifPossible){
+		pageAccess(array()); // A remplacer par un vrai truc au propre mais c'est juste pour que ça fonctionne
+	}
+
+	
+
+
+/*
 	$user_id = mysqli_fetch_array($connection->query("SELECT substring_index(user(),'@',1);"));
-	if ($user_id[0] == $info_ticket[0]){
-		$connection = pageAccess(array('Utilisateur','Administrateur Système'));
+	// $echo var_dump(array($info_ticket[0],$user_id[0]));
+	// return;
+	if ($info_ticket[0] == $user_id[0] && $info_ticket[1] == "En attente"){
+		$connection = pageAccess(array('Utilisateur','Administrateur Système','Technicien','Administrateur Site'));
 	}
 	elseif($user_id[0] == $info_ticket[10]){
 		$connection = pageAccess(array('Technicien','Administrateur Site'));
@@ -32,6 +51,7 @@
 	else{
 		$connection = pageAccess(array('Administrateur Site'));
 	}
+*/
 ?>
 
 <!DOCTYPE html>
@@ -71,26 +91,10 @@
 			";
 ?>
             <form action='action_modificationTicket.php' method='post'>
-			    <?php
-                if(isset($_GET['id'])) {
-                    echo '<div class="erreur"> <p>';
-                    if ($_GET['id'] == 1) {
-						echo "ERREUR : Des données du formulaire sont manquantes";
-						}
-                    else if ($_GET['id'] == 2) {
-						echo "ERREUR : Veuillez remplir ce formulaire pour modifier un ticket";
-					}
-                    else { 
-						echo "ERREUR : Une erreur est survenue";
-					}
-                    echo '/p> </div>';
-                }
-                ?>
-
                 <div class="form-modif-ticket">
                     <div class="champs_ticket_gauche">
                         <label for='login'>Nature du problème *</label><br>
-                        <input id='nature' type='text' name='nature' value='<?php echo $info_ticket[6];?>'>
+                        <input id='nature' type='text' name='nature' value="<?php echo htmlspecialchars($info_ticket[6]);?>">
 
                         <br><br>
 
@@ -133,7 +137,7 @@
 						}
 						else{
 							echo '<input type="hidden" name="nivUrg" value="<?php echo $info_ticket[8]; ?>">';
-							echo "<p id='nivUrgEstime'>$info_ticket[8]</p>";
+							echo "<p id='champLocked'>$info_ticket[8]</p>";
 						}
 						?>
 						<br>
@@ -169,7 +173,7 @@
 						}
 						else{
 							echo '<input type="hidden" name="nivUrg2" value="<?php echo $info_ticket[9]; ?>">';
-							echo "<p id='nivUrgEstime'>$info_ticket[9]</p>";
+							echo "<p id='champLocked'>$info_ticket[9]</p>";
 						}
 						?>
 
@@ -197,10 +201,10 @@
 						else {
 							echo '<input type="hidden" name="ch_technicien" value="<?php echo $info_ticket[10]; ?>">';
 							if ($info_ticket[10] == null){
-								echo "<p id='nivUrgEstime'>Aucun</p>";
+								echo "<p id='champLocked'>Aucun</p>";
 							}
 							else{
-								echo "<p id='nivUrgEstime'>$info_ticket[10] $info_ticket[11] $info_ticket[12]</p>";
+								echo "<p id='champLocked'>$info_ticket[10] $info_ticket[11] $info_ticket[12]</p>";
 							}
 						}
 						?>
