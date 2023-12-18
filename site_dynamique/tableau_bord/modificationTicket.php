@@ -19,7 +19,6 @@
 													id_technicien,
 													prenom_tech,
 													nom_tech
-													
 													FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connection));
 	
 	// (TOUT LE MONDE) TRUE si ticket en attente de l'utilisateur
@@ -39,7 +38,6 @@
 
 
 /*
-	$user_id = mysqli_fetch_array($connection->query("SELECT substring_index(user(),'@',1);"));
 	// $echo var_dump(array($info_ticket[0],$user_id[0]));
 	// return;
 	if ($info_ticket[0] == $user_id[0] && $info_ticket[1] == "En attente"){
@@ -52,6 +50,7 @@
 		$connection = pageAccess(array('Administrateur Site'));
 	}
 */
+$user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_index(user(),'@',1);")),mysqli_fetch_array($connection->query("SELECT prenom_user, nom_user FROM vue_Utilisateur_client;")));
 ?>
 
 <!DOCTYPE html>
@@ -74,18 +73,27 @@
         <h1 class="h1Creation">Modification ticket</h1>
         <div role="form" class="formModifTicket formAuthentification formConnexion">
 <?php
-		echo"
+		echo "
             <div class='informations_ticket'>
                 <div class='info-ticket-gauche'>
-                <p>ID TICKET : $id_ticket</p>
-                <p>ID USER : $info_ticket[0]</p>
-                <p>Utilisateur : $info_ticket[2] $info_ticket[3]</p>
+                <p>ID TICKET : $id_ticket</p>";
+				if (recupererRoleDe($connection) == 'Utilisateur' || recupererRoleDe($connection) == 'Administrateur Système'){
+					echo "
+					<p>ID USER : $user_id[0]</p>
+					<p>Utilisateur : $user_id[1] $user_id[2]</p>";
+				}
+				else{
+					echo "
+					<p>ID USER : $info_ticket[0]</p>
+					<p>Utilisateur : $info_ticket[2] $info_ticket[3]</p>";
+				}
+				echo "
                 </div>
 
                 <div class='info-ticket-droite'>
                 <p>$info_ticket[1]</p>
                 <p>Crée le $info_ticket[4]</p>
-                <p>Modifié le </p>
+                <p>Modifié le $info_ticket[5]</p>
                 </div>
             </div>
 			";
@@ -184,14 +192,14 @@
 							$liste_technicien = $connection->query('SELECT id_user,prenom_user,nom_user FROM vue_technicien;');
 							echo "
 							<div class='custom-select'>
-								<select name='ch_technicien' id='ch_technicien' required>
+								<select name='ch_technicien' id='ch_technicien'>
 									<option value=''>--Choisir une option--</option>
 									";
 									while ($row = mysqli_fetch_row($liste_technicien)){
 										echo "<option value='$row[0]'";
 										echo isSelected($row[0],$info_ticket[10]);
 										echo "
-										>$row[0] $row[1] $row[2]</option>";
+										>$row[1] $row[2]</option>";
 									}
 									echo "
 								</select>
@@ -199,13 +207,7 @@
 							";
 						}
 						else {
-							echo '<input type="hidden" name="ch_technicien" value="<?php echo $info_ticket[10]; ?>">';
-							if ($info_ticket[10] == null){
-								echo "<p id='champLocked'>Aucun</p>";
-							}
-							else{
-								echo "<p id='champLocked'>$info_ticket[10] $info_ticket[11] $info_ticket[12]</p>";
-							}
+							echo "<p id='champLocked'>Aucun</p>";
 						}
 						?>
 						<br>
