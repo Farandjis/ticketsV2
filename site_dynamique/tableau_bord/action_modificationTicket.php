@@ -5,7 +5,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
 
 session_start();
 
-if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"], $_POST["ch_technicien"])){
+if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
     if (!empty($_SESSION['login']) && !empty($_SESSION['mdp']) && !empty($_POST['nature'])) {
         global $host, $database, $USER_FICTIF_MDP;
 
@@ -15,20 +15,26 @@ if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"], $_POST["ch
         $explication = $_POST['explication2'];
 		
 		if (recupererRoleDe($connexionUtilisateur) == 'Technicien' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
-			$technicien = $_POST['ch_technicien'];
-			$nom_tech = mysqli_fetch_array(executeSQL("SELECT prenom_user,nom_user FROM vue_technicien WHERE id_user = ?;",array($technicien),$connexionUtilisateur));
 			if (isset($_POST['nivUrg2']) && !empty($_POST['nivUrg2'])){
 				$niveauUrgence2 = $_POST['nivUrg2'];
+				if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien'])){
+					$technicien = $_POST['ch_technicien'];
+					$etatTicket = "En cours de traitement";
+					executeSQL("UPDATE vue_associe_ticket_tech SET id_technicien = ?,horodatage_debut_traitement_ticket = current_timestamp() WHERE ID_TICKET  = ?;", array($technicien,$id_ticket), $connexionUtilisateur);
+				}
+				else{
+					$etatTicket = "Ouvert";
+				}
 			}
 			else {
 				$niveauUrgence2 = "Non complété !";
+				$etatTicket = "En attente";
 			}
-			executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, niv_urgence_definitif_ticket = ? WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $id_ticket), $connexionUtilisateur);
-			executeSQL("UPDATE vue_associe_ticket_tech SET id_technicien = ?,horodatage_debut_traitement_ticket = current_timestamp() WHERE ID_TICKET  = ?;", array($technicien,$id_ticket), $connexionUtilisateur);
+			executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $etatTicket, $id_ticket), $connexionUtilisateur);
 		}
 		
 		if (recupererRoleDe($connexionUtilisateur) == 'Utilisateur' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Système'){
-			executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ? WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
+			executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ?, HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
 		}
 		
 		executeSQL("DELETE FROM vue_suppr_rtl_tdb WHERE id_ticket = ?;", array($id_ticket), $connexionUtilisateur);
