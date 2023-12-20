@@ -14,6 +14,102 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## Mercredi 20/12/2023 - Bilan du travail du 11/11/2023 au 17/12/2023, J-21 fin de TIX
+
+Comme promis, nous avons rendu une version présentable pour Monsieur HOGUIN.<br>
+Malheureusement, cette version ne comporte pas la page Administration et les fonctionnalités du journal d'activité.<br>
+Cela était dû au temps que demandaient les pages Tableau de Bord (Matthieu), Modification Ticket (Florent), les corrections HTML/CSS/JS (Tom) et la page création ticket (Assia/Enzo).<br>
+Il reste des corrections à faire, vendredi 22 décembre, une version complète et fonctionnelle (hors chiffrage et captcha) sera disponible.
+
+#### Avancé
+
+- **Ce qui sera à terminer la semaine prochaine (objectif : terminer vendredi):**<br>
+  - PHP Florent : Page administration : développement, test
+  - PHP Florent : Journal d'activité : conception, développement, test
+  - PHP Florent : Finition de la fonction libellée de Florent : Conception, développement, test
+  - PHP Tom : Vérification JavaScript des entrées pour les pages : modification mot de passe et email, création ticket
+  - PHP Tom : Modification Ticket Manque un bouton "fermer le ticket"
+  - PHP Tom et Enzo : Manque la possibilité de supprimer son compte
+  - PHP Enzo : Correction du tableau de bord : Placer un DISTINCT dans la requête SQL pour la recherche : développement, test
+  - PHP Enzo : Correction du problème de fuseau horaire dans connectUser (dernière déconnexion utilisateur) : développement, test
+  - PHP Enzo : Test de modification Ticket
+  - PHP Enzo : Test d'Administration
+  - PHP Enzo : Test fonction libellé de Florent
+  - PHP Assia : Modification Ticket : Impossible de changer de technicien (développement, test)
+  - PHP Assia : Rendre accessible une version WEB de notre travail de droit
+  - Assia : Terminer les CU
+  - BD Matthieu : Trie dans la base de données (suppression des lignes SQL inutiles)
+  - BD Matthieu : Correction des droits des utilisateurs
+
+
+Remarque : les tests doivent être effectués par Enzo, la conception par Florent
+
+- **A continuer :**
+  - BD : Trigger, automatiser le changement d'état des tickets
+  - BD : Trigger, empêcher qu'un technicien puisse attribuer un ticket à un autre technicien
+  - BD : Trigger, supprimer des utilisateurs 3 ans après leur dernière connexion
+  - BD : Trigger, automatiser les horodatages
+
+- **Ajout que je propose :**
+  - PHP Tom : Tableau de bord : Bouton de recherche par Etat Ticket et un Mes tickets (qui inclura mes tickets crées et attribués) ?
+  - PHP Tom : Administration : Possibilité de supprimer les libellés ?
+  - PHP Tom et Matthieu : Tableau de bord : Afficher davantage d'information dans le POP-UP
+
+- **Ce qu'on commencera dès samedi (semaine suivante, attribution non définitive) :**
+  - Florent et Matthieu : Sujet Crypto (-> Implique gestion des jetons... Une nouvelle BD ?)
+  - Tom et ? : Sujet Proba-Stat
+  - Florent et Matthieu : Captcha
+  - Matthieu et ? : Vidéo de présentation
+  - Enzo et ? : Conception, tests de la base de données
+  - TOUT LE MONDE : 1ère/3 vérification de A à Z de la plateforme : conception, développemet, tests, cahier des charges
+
+- **Ce qu'on commencera dès mercredi 10 janvier, ou plus tôt :**
+  - TOUT LE MONDE : Préparation de la présentation de TIX face au Jury
+
+#### Travail effectué
+- **Florent**<br>
+  - PHP/HTML : Conception creerTicket
+  - PHP/HTML : Finition conception Tableau de Bord
+  - PHP : Création et finition de modification Ticket
+  - PHP : Ajout de la conception de modif email et mdp
+
+- **Tom**<br>
+  - HTML/CSS : Mise à jour des pages avec la dernière version du code HTML et CSS
+  -  JS : Création et finition d'un code pour un bouton permettant de voir le mot de passe en clair (lorsque l'on le tape)
+  -  JS : Création et finition d'un code JavaScript vérifiant les entrées du formulaire d'inscription avant de l'envoyer
+
+- **Enzo** :<br>
+  - PHP : Finition de la page profile
+  - PHP : Test pour Tableau de Bord
+  - PHP : Création et finition de la page création Ticket (avec Assia)
+  - PHP : Test pour création Ticket
+  -  BD : Ajout des droits sur la BD
+
+- **Assia**<br>
+  - PHP : Test pour la fonction deconnexionSite
+  - PHP : Test pour affichageMenuHaut
+  - PHP : Test pour la page Profile, accueil
+  - PHP : Finition test pour la page Modification MDP et email
+  - PHP : Création et finition de la page création Ticket (avec Enzo)
+  - CDC : Création et finition des Cas d'Utilisation pour : consulter, créé et rechercher des tickets.
+  - Droit : Finition du travail de Droit
+
+- **Matthieu (chef de projet)**<br>
+  - GIT : Fusion, suppression des branches
+  - PHP : Finition d'Accueil
+  - PHP : Finition de Tableau de bord (suite du début du travail de Florent)
+  - PHP : Finition fonction affichageMenuHaut
+  - PHP : Contribution débuggage de modification Ticket (avec Florent)
+  -  BD : Correction des droits de la BD
+  -  BD : Correction des tables et des vues
+  -  BD : Création Fonctions SQL : renvoi Role Utilisateur, 
+  -  BD : Finition de menuDeroulantTousLesLibelles
+  -  BD : Trigger pour passer de "En attente" à "En cours" lorsque le technicien change (ou remplacer par Null)
+  - Droit : Finition du travail de Droit (aide pour Assia)
+<br><br><br>
+
+---
+
 ## Dimanche 10/12/2023 - Bilan du travail du 03/11/2023 au 10/12/2023
 
 Je maintiens que Dimanche, nous aurons une version présentable pour Monsieur HOGUIN qui pourra nous faire un retour sur notre travail.<br>
