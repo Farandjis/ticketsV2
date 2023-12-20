@@ -50,7 +50,7 @@
   </h1>
   <div class="conteneur_administration">
     <div class="conteneur_ajout_administration">
-        <form action='#' method='post' class="ajout" onsubmit="return confirmerAvantEnvoi_tech()">
+        <form action='#' method='post' name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
           <label for='ajout_technicien'>Ajout de Technicien :</label><br><br>
 
           <select name="ajout_technicien" id="ajout_technicien">
@@ -64,7 +64,7 @@
     </div>
 
     <div class="conteneur_ajout_administration">
-      <form action='#' method='post' class="ajout" onsubmit="return confirmerAvantEnvoi_libelle()">
+      <form action='#' method='post' name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
         <label for='ajout_libelle'>Ajout de Libellés :</label><br><br>
         <input id='ajout_libelle' type='text' name ='ajout_libelle' placeholder="Écrire un libellé">
         <input type='submit' name='ajout_libelle' value='Ajouter'>

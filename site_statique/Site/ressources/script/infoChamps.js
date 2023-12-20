@@ -26,7 +26,7 @@ function afficheInfo(el) {
         info.innerHTML = 'Le Prénom ne doit contenir que des lettres ou le caractère "-" et posséder entre 2 et 50 caractères.'
     }
     if (element === "infoEmail"){
-        info.innerHTML = 'Format d\'email invalide'
+        info.innerHTML = 'L\'email doit avoir un format standard (ex: etudiant@ens.uvsq.fr)'
     }
 
     conteneur.appendChild(info)

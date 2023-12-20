@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
     <script src="../ressources/script/libelle.js"></script>
+    <script src="../ressources/script/confirmation.js"></script>
+
 </head>
 <body>
     <header>
@@ -16,7 +18,7 @@
     </header>
     <div class="page_cree-modif_ticket">
         <h1 class="h1Creation">Modification ticket</h1>
-        <div role="form" class="formModifTicket formAuthentification formConnexion">
+        <div role="form" class="formModifTicket formAuthentification">
 
             <div class="informations_ticket">
                 <div class="info-ticket-gauche">
@@ -32,7 +34,7 @@
                 </div>
             </div>
 
-            <form action='#' method='post'>
+            <form action='#' method='post' name="Modifier le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
                 <div class="form-modif-ticket">
                     <div class="champs_ticket_gauche">
                         <label for='login'>Nature du problème *</label><br>
@@ -86,8 +88,10 @@
                         </div>
                     </div>
                 </div>
-
-                <input type='submit' name='modif' value='Modifier le ticket'><br>
+                <input type='submit' name='modif' value='Modifier le ticket' id="boutonModifierTicket"><br>
+            </form>
+            <form action='#' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+                <input type='submit' name='modif' value='Fermeture du Ticket' id="boutonFermerTicket"><br>
             </form>
         </div>
     </div>

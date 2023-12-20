@@ -478,15 +478,29 @@ footer img {
 
 /* ======== FORMULAIRE D'AUTHENTIFICATION ======== */
 
+
 .formAuthentification{
   margin: 0 auto;
   padding: 20px;
   background-color: #211a43;
   border-radius: 15px;
-  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
   color: #ECECEC;
   box-shadow: 0 0 20px #211a43;
 }
+
+.formAuthentification input[type="submit"]{
+  position: relative;
+  left: 25%;
+  cursor: pointer;
+  width: 50%;
+  font-weight: 700;
+}
+
+.formAuthentification input[type="submit"]:hover{
+  color: #1c1c1c;
+  background: linear-gradient(84.12deg, #9271E8 139.25%, #522FCF -24.93%) ;
+}
+
 
 .page_authentification_modif_perso {
   display: flex;
@@ -520,9 +534,7 @@ footer img {
 
 input[type="text"], input[type="email"], input[type="password"],  input[type="submit"], input[type="reset"] {
   padding: 10px;
-  margin: 3px 0;/*
-  background: #ECECEC;
-  border: 1px solid #ECECEC;*/
+  margin: 3px 0;
   border-radius: 15px;
   font-size: 16px;
 }
@@ -562,22 +574,12 @@ input[type="date"] {
 }
 
 .formConnexion input[type="submit"]{
-  position: relative;
-  left: 25%;
-  cursor: pointer;
-  width: 50%;
-  font-weight: 700;
   color: #ECECEC;
-
   border: none;
   outline: none;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
 }
 
-.formConnexion input[type="submit"]:hover{
-  color: #1c1c1c;
-  background: linear-gradient(84.12deg, #9271E8 139.25%, #522FCF -24.93%) ;
-}
 
 
 
@@ -614,21 +616,10 @@ input[type="date"] {
 }
 
 .formInscription input[type="submit"]{
-  position: relative;
-  left: 25%;
-  cursor: pointer;
-  width: 50%;
-  font-weight: 700;
   color: #F3F3F3F3;
-
   border: none;
   outline: none;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
-}
-
-.formInscription input[type="submit"]:hover{
-  color: #1c1c1c;
-  background: linear-gradient(84.12deg, #9271E8 139.25%, #522FCF -24.93%) ;
 }
 
 
@@ -1231,6 +1222,8 @@ select {
 
 
 /* ======== MODIFICATION DE TICKET ======== */
+
+
 .informations_ticket {
   display: flex;
   align-items: center;
@@ -1268,6 +1261,16 @@ select {
   border-radius: 15px;
 
 }
+
+#boutonModifierTicket {
+  color: #ECECEC;
+  background: linear-gradient(84.12deg, #522FCF 0%, #9271E8 100%);
+}
+#boutonFermerTicket {
+  color: #ECECEC;
+  background: linear-gradient(90deg, rgb(53 51 67) 0%, rgb(99 84 171) 100%)
+}
+
 
 
 /* ######### POP UP ######### */
