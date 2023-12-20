@@ -22,13 +22,15 @@
 													FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connection));
 	
 	// (TOUT LE MONDE) TRUE si ticket en attente de l'utilisateur
-        $modifPossibleUti = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
+        $modifPossible = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
 
         if (in_array(recupererRoleDe($connection), array("Technicien", "Administrateur Site"))) {
         	$modifPossibleAdmTech = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
-        	
+
+        	// (TECH / ADMIN SITE) : TRUE s'il est modifiable par le technicien ou l'administrateur faisant la demande
+        	$modifPossible = ($modifPossible or $modifPossibleAdmTech);
 	}
-	if(! ($modifPossibleUti or $modifPossibleAdmTech)){ // TRUE (avec ! -> False) s'il est modifiable par le technicien, l'utilisateur ou l'administrateur faisant la demande
+	if(! $modifPossible){
 		pageAccess(array()); // A remplacer par un vrai truc au propre mais c'est juste pour que ça fonctionne
 	}
 
@@ -115,9 +117,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         <p>Niveau d'urgence estimé</p>
 						<?php
 						// recupererRoleDe($connection) == 'Utilisateur'
-						// $user_id[0] == $info_ticket[0] && $info_ticket[1] == "En attente" 
-		
-						if ($modifPossibleUti){
+						if ($user_id[0] == $info_ticket[0] && $info_ticket[1] == "En attente"){
 							echo "
 							<div class='custom-select'>
 							<select name='nivUrg' id='nivUrg' required>
@@ -151,7 +151,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 						}
 						?>
 						<br>
-                        <label for='nivUrg2'>Niveau d'urgence définitif</label><br>
+                        <label for='nivUrg2'>Niveau d'urgence</label><br>
 						<?php
 						if (recupererRoleDe($connection) == 'Administrateur Site'){
 							echo "
@@ -209,8 +209,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							";
 						}
 						else {
-							if ((!empty($info_ticket[11])) and (!empty($info_ticket[12]))){
-								echo '<input type="hidden" name="ch_technicien">'; // value="< ?php echo $info_ticket[10]; ? >"
+							if (!empty($info_ticket[10])){
+								echo '<input type="hidden" name="ch_technicien" value="<?php echo $info_ticket[10]; ?>">';
 								echo "<p id='champLocked'>$info_ticket[11] $info_ticket[12]</p>";
 							}
 							else{

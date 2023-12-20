@@ -26,14 +26,18 @@ if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
 		if (recupererRoleDe($connexionUtilisateur) == 'Technicien' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
 			if (isset($_POST['nivUrg2']) && !empty($_POST['nivUrg2']) && recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
 				$niveauUrgence2 = $_POST['nivUrg2'];
+                if ($etatDuTicket == 'En attente') {
+                    $etatDuTicket = "Ouvert";
+                }
+                executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+                $technicien = $_POST['ch_technicien'];
+                if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien']) && $technicien != $infoTicket[1]){
+                    if ($etatDuTicket == 'Ouvert')
+					    executeSQL("UPDATE vue_associe_ticket_tech SET id_technicien = ?,horodatage_debut_traitement_ticket = current_timestamp() WHERE ID_TICKET = ?;", array($technicien,$id_ticket), $connexionUtilisateur);
+				    else
+                        executeSQL("UPDATE vue_modif_ticket_adm_tech SET ID_TECHNICIEN = ?, HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($technicien, $id_ticket), $connexionUtilisateur);
 
-				executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $etatDuTicket, $id_ticket), $connexionUtilisateur);
-
-				$technicien = $_POST['ch_technicien'];
-				if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien']) && $technicien != $infoTicket[1]){
-					$etatDuTicket = "Ouvert";
-					executeSQL("UPDATE vue_associe_ticket_tech SET id_technicien = ?,horodatage_debut_traitement_ticket = current_timestamp() WHERE ID_TICKET = ?;", array($technicien,$id_ticket), $connexionUtilisateur);
-				}		 
+                }
 			}
 			else {
 				executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $etatDuTicket, $id_ticket), $connexionUtilisateur);
