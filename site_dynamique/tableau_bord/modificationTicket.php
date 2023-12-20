@@ -10,8 +10,8 @@
 													etat_ticket,
 													prenom_crea,
 													nom_crea,
-													horodatage_creation_ticket,
-													horodatage_derniere_modif_ticket,
+													DATE_FORMAT(HORODATAGE_CREATION_TICKET, ' %d/%m/%Y à %Hh%i'),
+													DATE_FORMAT(horodatage_derniere_modif_ticket, ' %d/%m/%Y à %Hh%i'),
 													objet_ticket,
 													description_ticket,
 													niv_urgence_estimer_ticket,
@@ -22,15 +22,13 @@
 													FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connection));
 	
 	// (TOUT LE MONDE) TRUE si ticket en attente de l'utilisateur
-        $modifPossible = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
+        $modifPossibleUti = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
 
         if (in_array(recupererRoleDe($connection), array("Technicien", "Administrateur Site"))) {
         	$modifPossibleAdmTech = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = ?;", array($id_ticket), $connection))[0];
-
-        	// (TECH / ADMIN SITE) : TRUE s'il est modifiable par le technicien ou l'administrateur faisant la demande
-        	$modifPossible = ($modifPossible or $modifPossibleAdmTech);
+        	
 	}
-	if(! $modifPossible){
+	if(! ($modifPossibleUti or $modifPossibleAdmTech)){ // TRUE (avec ! -> False) s'il est modifiable par le technicien, l'utilisateur ou l'administrateur faisant la demande
 		pageAccess(array()); // A remplacer par un vrai truc au propre mais c'est juste pour que ça fonctionne
 	}
 
@@ -50,7 +48,8 @@
 		$connection = pageAccess(array('Administrateur Site'));
 	}
 */
-$user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_index(user(),'@',1);")),mysqli_fetch_array($connection->query("SELECT prenom_user, nom_user FROM vue_Utilisateur_client;")));
+//$user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_index(user(),'@',1);")),mysqli_fetch_array($connection->query("SELECT prenom_user, nom_user FROM vue_Utilisateur_client;")));
+$user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, nom_user FROM vue_Utilisateur_client;"));
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +69,7 @@ $user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_i
         </div>
     </header>
     <div class="page_cree-modif_ticket">
-        <h1 class="h1Creation">Modification ticket</h1>
+        <h1 class="h1Creation">Modification de Ticket (le 19/12 à 09h53 : tout fonctionne)</h1>
         <div role="form" class="formModifTicket formAuthentification formConnexion">
 <?php
 		echo "
@@ -102,7 +101,7 @@ $user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_i
                 <div class="form-modif-ticket">
                     <div class="champs_ticket_gauche">
                         <label for='login'>Nature du problème *</label><br>
-                        <input id='nature' type='text' name='nature' value="<?php echo htmlspecialchars($info_ticket[6]);?>">
+                        <input id='nature' type='text' name='nature' value="<?php echo htmlspecialchars(htmlspecialchars_decode($info_ticket[6]));?>">
 
                         <br><br>
 
@@ -115,7 +114,10 @@ $user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_i
                     <div class="champs_ticket_droit">
                         <p>Niveau d'urgence estimé</p>
 						<?php
-						if (recupererRoleDe($connection) == 'Utilisateur'){
+						// recupererRoleDe($connection) == 'Utilisateur'
+						// $user_id[0] == $info_ticket[0] && $info_ticket[1] == "En attente" 
+		
+						if ($modifPossibleUti){
 							echo "
 							<div class='custom-select'>
 							<select name='nivUrg' id='nivUrg' required>
@@ -207,7 +209,13 @@ $user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_i
 							";
 						}
 						else {
-							echo "<p id='champLocked'>Aucun</p>";
+							if ((!empty($info_ticket[11])) and (!empty($info_ticket[12]))){
+								echo '<input type="hidden" name="ch_technicien">'; // value="< ?php echo $info_ticket[10]; ? >"
+								echo "<p id='champLocked'>$info_ticket[11] $info_ticket[12]</p>";
+							}
+							else{
+								echo "<p id='champLocked'>Aucun</p>";
+							}
 						}
 						?>
 						<br>

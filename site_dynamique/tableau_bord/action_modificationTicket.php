@@ -14,27 +14,30 @@ if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
         $niveauUrgence = $_POST['nivUrg'];
         $explication = $_POST['explication2'];
 		
-		if (recupererRoleDe($connexionUtilisateur) == 'Technicien' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
-			if (isset($_POST['nivUrg2']) && !empty($_POST['nivUrg2'])){
-				$niveauUrgence2 = $_POST['nivUrg2'];
-				if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien'])){
-					$technicien = $_POST['ch_technicien'];
-					$etatTicket = "En cours de traitement";
-					executeSQL("UPDATE vue_associe_ticket_tech SET id_technicien = ?,horodatage_debut_traitement_ticket = current_timestamp() WHERE ID_TICKET  = ?;", array($technicien,$id_ticket), $connexionUtilisateur);
-				}
-				else{
-					$etatTicket = "Ouvert";
-				}
-			}
-			else {
-				$niveauUrgence2 = "Non complété !";
-				$etatTicket = "En attente";
-			}
-			executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $etatTicket, $id_ticket), $connexionUtilisateur);
+		$infoTicket = mysqli_fetch_array(executeSQL("SELECT etat_ticket, id_technicien FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connexionUtilisateur));
+		$etatDuTicket = $infoTicket[0];
+		
+		// recupererRoleDe($connexionUtilisateur) == 'Utilisateur' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Système' ||
+
+		if (($etatDuTicket == "En attente") && (recupererRoleDe($connexionUtilisateur) != 'Administrateur Site')){
+			executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ?, HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
 		}
 		
-		if (recupererRoleDe($connexionUtilisateur) == 'Utilisateur' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Système'){
-			executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ?, HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
+		if (recupererRoleDe($connexionUtilisateur) == 'Technicien' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
+			if (isset($_POST['nivUrg2']) && !empty($_POST['nivUrg2']) && recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
+				$niveauUrgence2 = $_POST['nivUrg2'];
+
+				executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+
+				$technicien = $_POST['ch_technicien'];
+				if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien']) && $technicien != $infoTicket[1]){
+					$etatDuTicket = "Ouvert";
+					executeSQL("UPDATE vue_associe_ticket_tech SET id_technicien = ?,horodatage_debut_traitement_ticket = current_timestamp() WHERE ID_TICKET = ?;", array($technicien,$id_ticket), $connexionUtilisateur);
+				}		 
+			}
+			else {
+				executeSQL("UPDATE vue_modif_ticket_adm_tech SET OBJET_TICKET = ?,DESCRIPTION_TICKET = ?, ETAT_TICKET = ?,HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET  = ?;", array($nature, $explication, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+			}
 		}
 		
 		executeSQL("DELETE FROM vue_suppr_rtl_tdb WHERE id_ticket = ?;", array($id_ticket), $connexionUtilisateur);
