@@ -89,3 +89,8 @@ WHERE mysql.user.default_role = "role_technicien";
 
 -- Modification d'une table
 ALTER TABLE Ticket MODIFY COLUMN ID_USER INT DEFAULT (SUBSTRING_INDEX(USER(),'@',1)); -- Par défaut, l'utilisateur qui exécute la requête est le créateur du ticket.
+
+
+
+-- Pour adm web (donner le rôle tech)
+CREATE VIEW affiche_utilisateurs_pour_adm_web AS SELECT ID_USER, PRENOM_USER, NOM_USER FROM Utilisateur;
