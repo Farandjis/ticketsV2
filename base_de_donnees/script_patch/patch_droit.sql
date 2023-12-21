@@ -135,4 +135,8 @@ GRANT INSERT ON RelationTicketsLibelles TO 'role_utilisateur';
 GRANT DELETE ON vue_suppr_rtl_tdb TO 'role_utilisateur';
 GRANT SELECT ON vue_suppr_rtl_tdb TO 'role_utilisateur';
 
+
+-- Droit adm liste des utilisateurs pour donner rôle tech
+GRANT SELECT ON affiche_utilisateurs_pour_adm_web TO 'role_admin_web'
+
 GRANT SELECT ON vue_technicien TO 'role_utilisateur';
