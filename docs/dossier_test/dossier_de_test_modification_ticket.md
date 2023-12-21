@@ -68,101 +68,215 @@ La page tester est la page tableau de bord, nous testerons que chaque utilisateu
 
 #### Ticket en attente
 
-| Cas n° | Critère                                                                                                  | Résultat attendu              | Résultat obtenu               | Commentaires |
-|:-------|----------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|--------------|
-| 1      | Ajout d'un niveau d'urgence et un technicien à un ticket sans rien modifier d'autre                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 2      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la description                 | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 3      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la nature                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 4      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la description et de la nature | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 5      | Ajout d'un niveau d'urgence à un ticket sans rien modifier d'autre                                       | Ticket ouvert                 | Ticket ouvert                 |              |
-| 6      | Ajout d'un niveau d'urgence + modification de la description                                             | Ticket ouvert                 | Ticket ouvert                 |              |
-| 7      | Ajout d'un niveau d'urgence + modification de la nature                                                  | Ticket ouvert                 | Ticket ouvert                 |              |
-| 8      | Ajout d'un niveau d'urgence + modification de la description et de la nature                             | Ticket ouvert                 | Ticket ouvert                 |              |
-| 9      | Modification de la description                                                                           | Ticket en attente             | Ticket en attente             |              |
-| 10     | Modification de la nature                                                                                | Ticket en attente             | Ticket en attente             |              |
-| 11     | Modification de la description et de la nature                                                           | Ticket en attente             | Ticket en attente             |              |
-| 12     | Ajout d'un technicien sans niveau d'urgence                                                              | KO                            | KO                            |              |
+| Cas n° | Critère                                                                                                                | Résultat attendu              | Résultat obtenu               | Commentaires |
+|:-------|------------------------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|--------------|
+| 1      | Ajout d'un niveau d'urgence et un technicien à un ticket sans rien modifier d'autre                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 2      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la description                               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 2      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification des libellé                                     | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 3      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la description et des libellés               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 4      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la nature                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 5      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la nature et des libellés                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 6      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la description et de la nature               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 7      | Ajout d'un niveau d'urgence + un technicien à un ticket + modification de la description, de la nature et des libellés | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 8      | Ajout d'un niveau d'urgence à un ticket sans rien modifier d'autre                                                     | Ticket ouvert                 | Ticket ouvert                 |              |
+| 9      | Ajout d'un niveau d'urgence + modification de la description                                                           | Ticket ouvert                 | Ticket ouvert                 |              |
+| 9      | Ajout d'un niveau d'urgence + modification des libellés                                                                | Ticket ouvert                 | Ticket ouvert                 |              |
+| 10     | Ajout d'un niveau d'urgence + modification de la description et des libellés                                           | Ticket ouvert                 | Ticket ouvert                 |              |
+| 11     | Ajout d'un niveau d'urgence + modification de la nature                                                                | Ticket ouvert                 | Ticket ouvert                 |              |
+| 12     | Ajout d'un niveau d'urgence + modification de la nature et des libellés                                                | Ticket ouvert                 | Ticket ouvert                 |              |
+| 13     | Ajout d'un niveau d'urgence + modification de la description et de la nature                                           | Ticket ouvert                 | Ticket ouvert                 |              |
+| 14     | Ajout d'un niveau d'urgence + modification de la description, de la nature et des libellés                             | Ticket ouvert                 | Ticket ouvert                 |              |
+| 15     | Modification de la description                                                                                         | Ticket en attente             | Ticket en attente             |              |
+| 16     | Modification de la nature                                                                                              | Ticket en attente             | Ticket en attente             |              |
+| 17     | Modification des libellés                                                                                              | Ticket en attente             | Ticket en attente             |              |
+| 18     | Modification de la description et de la nature                                                                         | Ticket en attente             | Ticket en attente             |              |
+| 19     | Modification de la description et des libellés                                                                         | Ticket en attente             | Ticket en attente             |              |
+| 20     | Modification de la nature et des libellés                                                                              | Ticket en attente             | Ticket en attente             |              |
+| 21     | Modification de la description, de la nature et des libellés                                                           | Ticket en attente             | Ticket en attente             |              |
+| 22     | Ajout d'un technicien sans niveau d'urgence                                                                            | KO                            | KO                            |              |
 
 <br>
 
 #### Ticket ouvert
 
-| Cas n° | Critère                                                                                                 | Résultat attendu              | Résultat obtenu               | Commentaires |
-|:-------|---------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|--------------|
-| 1      | Ajout d'un technicien à un ticket sans rien modifier d'autre                                            | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 2      | Ajout d'un technicien à un ticket + modification de la description                                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 3      | Ajout d'un technicien à un ticket + modification de la nature                                           | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 4      | Ajout d'un technicien à un ticket + modification de la description et de la nature                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 5      | Ajout d'un technicien à un ticket + modification du niveau d'urgence                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 5      | Ajout d'un technicien à un ticket + modification de la nature et du niveau d'urgence                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 5      | Ajout d'un technicien à un ticket + modification de la description, de la nature et du niveau d'urgence | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 6      | modification de la description                                                                          | Ticket ouvert                 | Ticket ouvert                 |              |
-| 7      | modification de la nature                                                                               | Ticket ouvert                 | Ticket ouvert                 |              |
-| 8      | modification de la description et de la nature                                                          | Ticket ouvert                 | Ticket ouvert                 |              |
-| 9      | Modification du niveau d'urgence                                                                        | Ticket ouvert                 | Ticket ouvert                 |              |
-| 10     | Modification de la nature et du niveau d'urgence                                                        | Ticket ouvert                 | Ticket ouvert                 |              |
-| 11     | Modification de la description et du niveau d'urgence                                                   | Ticket ouvert                 | Ticket ouvert                 |              |
-| 12     | modification de la description, de la nature et du niveau d'urgence                                     | Ticket ouvert                 | Ticket ouvert                 |              |
+| Cas n° | Critère                                                                                                                 | Résultat attendu              | Résultat obtenu               | Commentaires |
+|:-------|-------------------------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|--------------|
+| 1      | Ajout d'un technicien à un ticket sans rien modifier d'autre                                                            | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 2      | Ajout d'un technicien à un ticket + modification de la description                                                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 3      | Ajout d'un technicien à un ticket + modification des libellés                                                           | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 4      | Ajout d'un technicien à un ticket + modification de la description et des libellés                                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 5      | Ajout d'un technicien à un ticket + modification de la nature                                                           | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 6      | Ajout d'un technicien à un ticket + modification de la nature et des libellés                                           | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 7      | Ajout d'un technicien à un ticket + modification de la description et de la nature                                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 8      | Ajout d'un technicien à un ticket + modification de la description, de la nature et des libellés                        | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 9      | Ajout d'un technicien à un ticket + modification du niveau d'urgence                                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 10     | Ajout d'un technicien à un ticket + modification du niveau d'urgence et des libellés                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 11     | Ajout d'un technicien à un ticket + modification de la nature et du niveau d'urgence                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 12     | Ajout d'un technicien à un ticket + modification de la nature et du niveau d'urgence et des libellés                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 13     | Ajout d'un technicien à un ticket + modification de la description et du niveau d'urgence                               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 14     | Ajout d'un technicien à un ticket + modification de la description et du niveau d'urgence et des libellés               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 15     | Ajout d'un technicien à un ticket + modification de la description, de la nature et du niveau d'urgence                 | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 16     | Ajout d'un technicien à un ticket + modification de la description, de la nature et du niveau d'urgence et des libellés | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 17     | modification de la description                                                                                          | Ticket ouvert                 | Ticket ouvert                 |              |
+| 18     | modification des libellés                                                                                               | Ticket ouvert                 | Ticket ouvert                 |              |
+| 19     | modification de la nature                                                                                               | Ticket ouvert                 | Ticket ouvert                 |              |
+| 20     | modification de la description et de la nature                                                                          | Ticket ouvert                 | Ticket ouvert                 |              |
+| 21     | modification de la description et des libellés                                                                          | Ticket ouvert                 | Ticket ouvert                 |              |
+| 22     | modification de la nature et des libellés                                                                               | Ticket ouvert                 | Ticket ouvert                 |              |
+| 23     | modification de la description et de la nature et des libellés                                                          | Ticket ouvert                 | Ticket ouvert                 |              |
+| 24     | Modification du niveau d'urgence                                                                                        | Ticket ouvert                 | Ticket ouvert                 |              |
+| 25     | Modification de la nature et du niveau d'urgence                                                                        | Ticket ouvert                 | Ticket ouvert                 |              |
+| 26     | Modification de la description et du niveau d'urgence                                                                   | Ticket ouvert                 | Ticket ouvert                 |              |
+| 27     | modification de la description, de la nature et du niveau d'urgence                                                     | Ticket ouvert                 | Ticket ouvert                 |              |
+| 28     | Modification de la nature et du niveau d'urgence et des libellés                                                        | Ticket ouvert                 | Ticket ouvert                 |              |
+| 29     | Modification de la description et du niveau d'urgence et des libellé                                                    | Ticket ouvert                 | Ticket ouvert                 |              |
+| 30     | modification de la description, de la nature et du niveau d'urgence et des libellés                                     | Ticket ouvert                 | Ticket ouvert                 |              |
 
 <br>
 
 #### Ticket en cours de traitement
 
-| Cas n° | Critère                                                                                                        | Résultat attendu              | Résultat obtenu               | Commentaires |
-|:-------|----------------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|--------------|
-| 1      | modification d'un technicien                                                                                   | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 2      | modification d'un technicien et de la description                                                              | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 3      | modification d'un technicien et de la nature                                                                   | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 4      | modification d'un technicien, de la description et de la nature                                                | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 5      | modification d'un technicien et du niveau d'urgence                                                            | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 6      | modification d'un technicien, de la nature et du niveau d'urgence                                              | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 7      | modification d'un technicien, de la description et du niveau d'urgence                                         | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 8      | modification d'un technicien à un ticket + modification de la description, de la nature et du niveau d'urgence | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 9      | modification de la description                                                                                 | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 10     | modification de la description et de la nature                                                                 | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 11     | modification de la description et du niveau d'urgence                                                          | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 12     | Modification de la nature                                                                                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 13     | Modification du niveau d'urgence                                                                               | Ticket en cours de traitement | Ticket en cours de traitement |              |
-| 14     | modification de la nature et du niveau d'urgence                                                               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| Cas n° | Critère                                                                                              | Résultat attendu              | Résultat obtenu               | Commentaires |
+|:-------|------------------------------------------------------------------------------------------------------|-------------------------------|-------------------------------|--------------|
+| 1      | modification d'un technicien                                                                         | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 2      | modification d'un technicien et de libellés                                                          | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 3      | modification d'un technicien et de la description                                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 4      | modification d'un technicien et de la description et des libellés                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 5      | modification d'un technicien et de la nature                                                         | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 6      | modification d'un technicien et de la nature et des libellés                                         | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 7      | modification d'un technicien, de la description et de la nature                                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 8      | modification d'un technicien, de la description et de la nature et des libellés                      | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 9      | modification d'un technicien et du niveau d'urgence                                                  | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 10     | modification d'un technicien et du niveau d'urgence et des libellés                                  | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 11     | modification d'un technicien, de la nature et du niveau d'urgence                                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 12     | modification d'un technicien, de la nature et du niveau d'urgence et des libellés                    | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 13     | modification d'un technicien, de la description et du niveau d'urgence                               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 14     | modification d'un technicien, de la description et du niveau d'urgence et des libellés               | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 15     | modification d'un technicien, de la description, de la nature et du niveau d'urgence                 | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 16     | modification d'un technicien, de la description, de la nature et du niveau d'urgence et des libellés | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 17     | modification de la description                                                                       | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 18     | modification de la description et des libellés                                                       | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 19     | modification de la description et de la nature                                                       | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 20     | modification de la description et de la nature et des libellés                                       | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 21     | modification de la description et du niveau d'urgence                                                | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 22     | modification de la description et du niveau d'urgence et des libellés                                | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 23     | Modification de la nature                                                                            | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 24     | Modification de la nature et des libellés                                                            | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 25     | Modification du niveau d'urgence                                                                     | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 26     | Modification du niveau d'urgence et des libellés                                                     | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 27     | modification de la nature et du niveau d'urgence                                                     | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 28     | modification de la nature et du niveau d'urgence et des libellés                                     | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 29     | modification de la description, de la  nature, du niveau d'urgence et des libellés                   | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 30     | modification de la description, de la  nature et du niveau d'urgence                                 | Ticket en cours de traitement | Ticket en cours de traitement |              |
+| 31     | modification des libellés                                                                            | Ticket en cours de traitement | Ticket en cours de traitement |              |
 
 <br>
 
 ### <a name="b"></a>Administrateur Système
 
+<br>
+
 #### Ticket en attente
 
-| Cas n° | Critère                                                                    | Résultat attendu  | Résultat obtenu   | Commentaires |
-|:-------|----------------------------------------------------------------------------|-------------------|-------------------|--------------|
-| 1      | modification de la description                                             | Ticket en attente | Ticket en attente |              |
-| 2      | modification de la nature                                                  | Ticket en attente | Ticket en attente |              |
-| 3      | modification de la description et de la nature                             | Ticket en attente | Ticket en attente |              |
-| 4      | modification du niveau d'urgence estimé                                    | Ticket en attente | Ticket en attente |              |
-| 5      | modification de la description et du niveau d'urgence estimé               | Ticket en attente | Ticket en attente |              |
-| 6      | modification de la nature et du niveau d'urgence estimé                    | Ticket en attente | Ticket en attente |              |
-| 7      | modification de la nature, de la description et du niveau d'urgence estimé | Ticket en attente | Ticket en attente |              |
+| Cas n° | Critère                                                                                    | Résultat attendu  | Résultat obtenu   | Commentaires |
+|:-------|--------------------------------------------------------------------------------------------|-------------------|-------------------|--------------|
+| 1      | modification de la description                                                             | Ticket en attente | Ticket en attente |              |
+| 2      | modification de la nature                                                                  | Ticket en attente | Ticket en attente |              |
+| 3      | modification de la description et de la nature                                             | Ticket en attente | Ticket en attente |              |
+| 4      | modification du niveau d'urgence estimé                                                    | Ticket en attente | Ticket en attente |              |
+| 5      | modification de la description et du niveau d'urgence estimé                               | Ticket en attente | Ticket en attente |              |
+| 6      | modification de la nature et du niveau d'urgence estimé                                    | Ticket en attente | Ticket en attente |              |
+| 7      | modification de la nature, de la description et du niveau d'urgence estimé                 | Ticket en attente | Ticket en attente |              |
+| 8      | modification de la description et des libellés                                             | Ticket en attente | Ticket en attente |              |
+| 9      | modification de la nature et des libellés                                                  | Ticket en attente | Ticket en attente |              |
+| 10     | modification de la description, de la nature et des libellés                               | Ticket en attente | Ticket en attente |              |
+| 11     | modification du niveau d'urgence estimé et des libellés                                    | Ticket en attente | Ticket en attente |              |
+| 12     | modification de la description et du niveau d'urgence estimé et des libellés               | Ticket en attente | Ticket en attente |              |
+| 13     | modification de la nature et du niveau d'urgence estimé et des libellés                    | Ticket en attente | Ticket en attente |              |
+| 14     | modification de la nature, de la description et du niveau d'urgence estimé et des libellés | Ticket en attente | Ticket en attente |              |
+| 15     | modification des libellés                                                                  | Ticket en attente | Ticket en attente |              |
 
 <br>
 
 ### <a name="c"></a>Utilisateur
 
+<br>
+
 #### Ticket en attente
 
-| Cas n° | Critère                                                                    | Résultat attendu  | Résultat obtenu   | Commentaires |
-|:-------|----------------------------------------------------------------------------|-------------------|-------------------|--------------|
-| 1      | modification de la description                                             | Ticket en attente | Ticket en attente |              |
-| 2      | modification de la nature                                                  | Ticket en attente | Ticket en attente |              |
-| 3      | modification de la description et de la nature                             | Ticket en attente | Ticket en attente |              |
-| 4      | modification du niveau d'urgence estimé                                    | Ticket en attente | Ticket en attente |              |
-| 5      | modification de la description et du niveau d'urgence estimé               | Ticket en attente | Ticket en attente |              |
-| 6      | modification de la nature et du niveau d'urgence estimé                    | Ticket en attente | Ticket en attente |              |
-| 7      | modification de la nature, de la description et du niveau d'urgence estimé | Ticket en attente | Ticket en attente |              |
+| Cas n° | Critère                                                                                    | Résultat attendu  | Résultat obtenu   | Commentaires |
+|:-------|--------------------------------------------------------------------------------------------|-------------------|-------------------|--------------|
+| 1      | modification de la description                                                             | Ticket en attente | Ticket en attente |              |
+| 2      | modification de la nature                                                                  | Ticket en attente | Ticket en attente |              |
+| 3      | modification de la description et de la nature                                             | Ticket en attente | Ticket en attente |              |
+| 4      | modification du niveau d'urgence estimé                                                    | Ticket en attente | Ticket en attente |              |
+| 5      | modification de la description et du niveau d'urgence estimé                               | Ticket en attente | Ticket en attente |              |
+| 6      | modification de la nature et du niveau d'urgence estimé                                    | Ticket en attente | Ticket en attente |              |
+| 7      | modification de la nature, de la description et du niveau d'urgence estimé                 | Ticket en attente | Ticket en attente |              |
+| 8      | modification de la description et des libellés                                             | Ticket en attente | Ticket en attente |              |
+| 9      | modification de la nature et des libellés                                                  | Ticket en attente | Ticket en attente |              |
+| 10     | modification de la description, de la nature et des libellés                               | Ticket en attente | Ticket en attente |              |
+| 11     | modification du niveau d'urgence estimé et des libellés                                    | Ticket en attente | Ticket en attente |              |
+| 12     | modification de la description et du niveau d'urgence estimé et des libellés               | Ticket en attente | Ticket en attente |              |
+| 13     | modification de la nature et du niveau d'urgence estimé et des libellés                    | Ticket en attente | Ticket en attente |              |
+| 14     | modification de la nature, de la description et du niveau d'urgence estimé et des libellés | Ticket en attente | Ticket en attente |              |
+| 15     | modification des libellés                                                                  | Ticket en attente | Ticket en attente |              |
 
 <br>
 
 ### <a name="d"></a>Technicien
+
+<br>
+
+#### Ticket en attente
+
+| Cas n° | Critère                                                                                    | Résultat attendu  | Résultat obtenu   | Commentaires |
+|:-------|--------------------------------------------------------------------------------------------|-------------------|-------------------|--------------|
+| 1      | modification de la description                                                             | Ticket en attente | Ticket en attente |              |
+| 2      | modification de la nature                                                                  | Ticket en attente | Ticket en attente |              |
+| 3      | modification de la description et de la nature                                             | Ticket en attente | Ticket en attente |              |
+| 4      | modification du niveau d'urgence estimé                                                    | Ticket en attente | Ticket en attente |              |
+| 5      | modification de la description et du niveau d'urgence estimé                               | Ticket en attente | Ticket en attente |              |
+| 6      | modification de la nature et du niveau d'urgence estimé                                    | Ticket en attente | Ticket en attente |              |
+| 7      | modification de la nature, de la description et du niveau d'urgence estimé                 | Ticket en attente | Ticket en attente |              |
+| 8      | modification de la description et des libellés                                             | Ticket en attente | Ticket en attente |              |
+| 9      | modification de la nature et des libellés                                                  | Ticket en attente | Ticket en attente |              |
+| 10     | modification de la description, de la nature et des libellés                               | Ticket en attente | Ticket en attente |              |
+| 11     | modification du niveau d'urgence estimé et des libellés                                    | Ticket en attente | Ticket en attente |              |
+| 12     | modification de la description et du niveau d'urgence estimé et des libellés               | Ticket en attente | Ticket en attente |              |
+| 13     | modification de la nature et du niveau d'urgence estimé et des libellés                    | Ticket en attente | Ticket en attente |              |
+| 14     | modification de la nature, de la description et du niveau d'urgence estimé et des libellés | Ticket en attente | Ticket en attente |              |
+| 15     | modification des libellés                                                                  | Ticket en attente | Ticket en attente |              |
+
+<br>
+
+#### Ticket ouvert
 
 | Cas n° | Critère | Résultat attendu | Résultat obtenu | Commentaires |
 |:-------|---------|------------------|-----------------|--------------|
 | 1      |         |                  |                 |              |
 | 2      |         |                  |                 |              |
 | 3      |         |                  |                 |              |
+
+<br>
+
+#### Ticket en cours de traitement
+#### Si le ticket lui a été aussi attribué
+
+| Cas n° | Critère                                                                                    | Résultat attendu  | Résultat obtenu   | Commentaires |
+|:-------|--------------------------------------------------------------------------------------------|-------------------|-------------------|--------------|
+| 1      | modification de la description                                                             | Ticket en attente | Ticket en attente |              |
+| 2      | modification de la nature                                                                  | Ticket en attente | Ticket en attente |              |
+| 3      | modification de la description et de la nature                                             | Ticket en attente | Ticket en attente |              |
+| 4      | modification du niveau d'urgence estimé                                                    | Ticket en attente | Ticket en attente |              |
+| 5      | modification de la description et du niveau d'urgence estimé                               | Ticket en attente | Ticket en attente |              |
+| 6      | modification de la nature et du niveau d'urgence estimé                                    | Ticket en attente | Ticket en attente |              |
+| 7      | modification de la nature, de la description et du niveau d'urgence estimé                 | Ticket en attente | Ticket en attente |              |
+| 8      | modification de la description et des libellés                                             | Ticket en attente | Ticket en attente |              |
+| 9      | modification de la nature et des libellés                                                  | Ticket en attente | Ticket en attente |              |
+| 10     | modification de la description, de la nature et des libellés                               | Ticket en attente | Ticket en attente |              |
+| 11     | modification du niveau d'urgence estimé et des libellés                                    | Ticket en attente | Ticket en attente |              |
+| 12     | modification de la description et du niveau d'urgence estimé et des libellés               | Ticket en attente | Ticket en attente |              |
+| 13     | modification de la nature et du niveau d'urgence estimé et des libellés                    | Ticket en attente | Ticket en attente |              |
+| 14     | modification de la nature, de la description et du niveau d'urgence estimé et des libellés | Ticket en attente | Ticket en attente |              |
+| 15     | modification des libellés                                                                  | Ticket en attente | Ticket en attente |              |
