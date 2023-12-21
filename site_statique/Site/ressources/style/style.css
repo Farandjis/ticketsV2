@@ -410,8 +410,6 @@ tbody tr:nth-child(even){
   background-color: #b9aed9;
 }
 
-/* =======modif a faire*/
-
 .table-ticket{
   width: 100%;
 }
@@ -438,7 +436,6 @@ tbody tr:hover:not(.pasLigneHover){
   background-color: #3d305e;
   color: #ECECEC;
 }
-
 
 
 
@@ -952,6 +949,8 @@ input[type="date"] {
   scrollbar-width: thin; /* Largeur de la scrollbar (peut être 'thin', 'auto', ou 'none') */
 }
 
+
+
 #informations_ticket_popup > span {
   color: #2c2c2c;
 }
@@ -1147,9 +1146,54 @@ input[type="date"] {
 }
 
 .popupInfo {
-  background: #ECECEC;
+  background: #e8e8e8;
   position: relative;
+
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  color: #ECECEC;
+  box-shadow: 0 0 20px #211a43;
 }
+
+.popupInfo input{
+  padding: 10px;
+  margin: 3px 0;
+  border-radius: 15px;
+  font-size: 16px;
+
+  text-align: center;
+  position: relative;
+  left: 25%;
+  cursor: pointer;
+  width: 50%;
+  font-weight: 700;
+}
+
+.popupInfo input{
+  color: #ECECEC;
+  outline: none;
+  background: linear-gradient(90deg, rgb(41, 32, 82) 0%, rgb(72, 17, 166) 100%);
+  transition: transform 0.3s;
+}
+.popupInfo input[type="submit"]{
+  color: #ECECEC;
+  outline: none;
+  background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
+}
+
+
+.popupInfo input[type="submit"]:hover, .popupInfo input[type="submit"]:focus{
+
+  background: linear-gradient(90deg, rgb(41, 32, 82) 0%, rgb(72, 17, 166) 100%);
+}
+
+.popupInfo input:hover, .popupInfo input:focus{
+  transform: scale(1.05);
+  background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
+}
+
+
 
 /* ======== CREATION DE TICKET ======== */
 
