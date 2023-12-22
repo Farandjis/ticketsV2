@@ -105,7 +105,7 @@ nav {
   transform: scaleX(1);
 }
 
-.authentification a , .deconnexion-suppresion a  {
+.authentification a , .deconnexion-desinscription a  {
   text-align: center;
   text-decoration: none;
   font-size: 24px;
@@ -121,24 +121,22 @@ nav {
   border-radius: 5px;
   cursor: pointer;
 }
-.authentification a, .deconnexion-suppresion a:nth-child(2){
+.authentification a, .deconnexion-desinscription a:nth-child(2){
   color: #1c1c1c;
   background: #ECECEC;
 }
-.deconnexion-suppresion a:nth-child(1){
+.deconnexion-desinscription a:nth-child(1){
   background: #ff4e4e;
   color: #1c1c1c;
 
 }
 
-test
-
-.deconnexion-suppresion a:nth-child(1):hover{
+.deconnexion-desinscription a:nth-child(1):hover{
   background: #cc1717;
   color: #ECECEC;
 }
 
-.deconnexion-suppresion a:nth-child(2):hover{
+.deconnexion-desinscription a:nth-child(2):hover{
   background: #1c1c1c;
   color: #ECECEC;
 }
@@ -429,8 +427,13 @@ tbody tr:nth-child(even){
 }
 
 
-.table-ticket  td:nth-child(1),.table-ticket  td:nth-child(2),.table-ticket td:nth-child(4), .table-ticket td:nth-child(6){
+.table-ticket  td:nth-child(1),.table-ticket td:nth-child(4), .table-ticket td:nth-child(6){
   width: 10%;
+  text-align: center;
+}
+
+.table-ticket td:nth-child(2){
+  width: 4%;
   text-align: center;
 }
 
@@ -442,6 +445,28 @@ tbody tr:nth-child(even){
 }
 
 .table-ticket td:nth-child(6){
+  white-space: nowrap;
+}
+
+
+.table-ticket-profil{
+  width: 100%;
+}
+
+
+.table-ticket-profil  td:nth-child(1),.table-ticket-profil  td:nth-child(3),.table-ticket-profil td:nth-child(4), .table-ticket-profil td:nth-child(6){
+  width: 10%;
+  text-align: center;
+}
+
+.table-ticket-profil  td:nth-child(2),.table-ticket-profil td:nth-child(5){
+  max-width: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-ticket-profil td:nth-child(6){
   white-space: nowrap;
 }
 
@@ -791,7 +816,7 @@ input[type="date"] {
 
 .table-demandes-perso{
   border-collapse: collapse;
-  width: 900px;
+  width: 1100px;
   font-size: 16px;
 }
 
@@ -1409,8 +1434,7 @@ select {
 
   nav .nav-conteneur,
   nav .nav-authentification,
-  nav .suppresion,
-  nav .deconnexion{
+  nav .deconnexion-desinscription{
     display: none;
 
     transition: 1s;
@@ -1431,8 +1455,7 @@ select {
   nav.active .logo,
   nav.active .nav-conteneur,
   nav.active .nav-authentification,
-  nav.active .suppresion,
-  nav.active .deconnexion{
+  nav.active .deconnexion-desinscription{
 
     position: relative;
 

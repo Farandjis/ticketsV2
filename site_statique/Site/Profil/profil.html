@@ -27,8 +27,8 @@
           </div>
 
 
-          <div class="deconnexion-suppresion">
-              <a href="#">Suppresion</a>
+          <div class="deconnexion-desinscription">
+              <a href="#">Désinscription</a>
               <a href="#">Déconnexion</a>
           </div>
 
@@ -83,7 +83,7 @@
         <div class="demandes">
             <h2>Mes demandes</h2>
             <div class="conteneur_table-demandes-perso conteneur_table">
-                <table class="table-demandes-perso">
+                <table class="table-demandes-perso table-popup">
                     <thead>
                     <tr>
                         <th>Date</th>
@@ -94,8 +94,8 @@
                         <th>Etat</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <!--
+                    <tbody class="table-ticket-profil">
+<!--
                     <tr>
                         <td>Contenu</td>
                         <td>Contenu</td>
@@ -167,20 +167,42 @@
                         <td>Contenu</td>
                         <td>Contenu</td>
                         <td>Contenu</td>
-                    </tr>
+                    </tr>-->
                     <tr>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                        <td>Contenu</td>
-                    </tr> -->
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+  <div class="overlay" id="overlay" onclick="closePopup()">
+      <!-- Contenu de la pop-up -->
+
+      <div role="form" id="test" class="formModifTicket popupInfo">
+
+          <div id="informations_ticket_popup">
+
+          </div>
+
+          <form action='modificationTicket.html' method='post'>
+              <input type='submit' name='modif' value='Modifier le ticket'><br>
+          </form>
+
+
+          <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
+      </div>
+
+
+  </div>
 
 
 
