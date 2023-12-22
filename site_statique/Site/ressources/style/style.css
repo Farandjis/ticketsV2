@@ -105,14 +105,12 @@ nav {
   transform: scaleX(1);
 }
 
-.authentification a , .deconnexion a {
+.authentification a , .deconnexion-suppresion a  {
   text-align: center;
   text-decoration: none;
   font-size: 24px;
   font-weight: 700;
 
-  color: #1c1c1c;
-  background: #ECECEC;
   width: 300px;
   height: auto;
   min-width: 90px;
@@ -123,8 +121,24 @@ nav {
   border-radius: 5px;
   cursor: pointer;
 }
+.authentification a, .deconnexion-suppresion a:nth-child(2){
+  color: #1c1c1c;
+  background: #ECECEC;
+}
+.deconnexion-suppresion a:nth-child(1){
+  background: #ff4e4e;
+  color: #1c1c1c;
 
-.deconnexion a:hover{
+}
+
+test
+
+.deconnexion-suppresion a:nth-child(1):hover{
+  background: #cc1717;
+  color: #ECECEC;
+}
+
+.deconnexion-suppresion a:nth-child(2):hover{
   background: #1c1c1c;
   color: #ECECEC;
 }
@@ -529,6 +543,10 @@ footer img {
 }
 
 
+input{
+  border: 2px solid #ECECEC;
+}
+
 input[type="text"], input[type="email"], input[type="password"],  input[type="submit"], input[type="reset"] {
   padding: 10px;
   margin: 3px 0;
@@ -767,16 +785,17 @@ input[type="date"] {
 .conteneur_table-demandes-perso{
   height: 600px;
 }
+.conteneur_table-demandes-perso thead{
+  height: 50px;
+}
 
 .table-demandes-perso{
   border-collapse: collapse;
   width: 900px;
-  height: 600px;
   font-size: 16px;
 }
 
 .table-demandes-perso thead{
-  height: 70px;
   position: -webkit-sticky;
   position: sticky;
   top: -1px;
@@ -1016,7 +1035,7 @@ input[type="date"] {
   flex-direction: column;
   background: #211a43;
   width: 400px;
-  height: 450px;
+  height: 500px;
   border-radius: 15px;
   margin-bottom: 25px;
 }
@@ -1129,6 +1148,10 @@ input[type="date"] {
   position: sticky;
   top: -1px;
   z-index: 10;
+}
+
+.form-recherche #selectionPossible {
+  width: 100%;
 }
 
 #informations_ticket_popup {
@@ -1386,6 +1409,7 @@ select {
 
   nav .nav-conteneur,
   nav .nav-authentification,
+  nav .suppresion,
   nav .deconnexion{
     display: none;
 
@@ -1407,6 +1431,7 @@ select {
   nav.active .logo,
   nav.active .nav-conteneur,
   nav.active .nav-authentification,
+  nav.active .suppresion,
   nav.active .deconnexion{
 
     position: relative;
