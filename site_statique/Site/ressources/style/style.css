@@ -608,6 +608,40 @@ input[type="date"] {
 }
 
 
+.info-bulle {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.info-bulle .text-info-bulle {
+  visibility: hidden;
+  width: 250px;
+  background-color: #1c1c1c;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 75%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.info-bulle:hover .text-info-bulle,
+.info-bulle:focus-within .text-info-bulle {
+  visibility: visible;
+  opacity: 1;
+}
+
+.text-info-bulle span{
+  color: #d09cf7;
+}
+
+
 /* ======== FORMULAIRE DE CONNEXION ======== */
 .formConnexion{
   width: 500px;
@@ -692,8 +726,8 @@ input[type="date"] {
 
 .champs-password .password-show, .champs-password .password-hide{
   position: absolute;
-  top: 10px;
-  right: 5px;
+  top: 32px;
+  right: 15px;
 }
 
 .champs-password input {

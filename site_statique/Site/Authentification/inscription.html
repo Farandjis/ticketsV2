@@ -28,56 +28,82 @@
             </div>
             <div class="champs-inscription">
                <div class="inscription-gauche">
-                  <label for='login'>Login</label> <span id="infoLogin" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
-                  <input id='login' type='text' name ='login' ><br>
+
+
+                   <div class="info-bulle">
+                       <label for='login'>Login <br>
+                           <input id='login' type='text' name ='login'>
+                           <span class="text-info-bulle">Le login doit contenir<br> entre <span>5 et 32 caractères</span>.</span>
+                       </label>
+                   </div><span id="infoLogin" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+
                   <br>
-                  <label for='mdp'>Mot de passe</label> <span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+
                    <div class="champs-password">
-                        <input id='mdp' type='password' name ='mdp'>
+                       <div class="info-bulle">
+                           <label for='mdp'>Mot de passe <br>
+                               <input id='mdp' type='password' name ='mdp'>
+                               <span class="text-info-bulle">Le mot de passe doit contenir entre <span>12 et 32 caractères</span> et au moins une <span>minuscule</span>, <br>une <span>majuscule</span>, un <span>chiffre</span>, <br>un <span> spécial</span>.</span>
+                           </label>
+                       </div><span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+
 
                        <div class="password-show" onclick="showPassword(this)">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                           </svg>
+                           <img src="../ressources/images/visible.png">
                        </div>
                        <div class="password-hide" onclick="hidePassword(this)">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-                           </svg>
+                           <img src="../ressources/images/hidden.png">
                        </div>
                    </div>
                   <br>
-                  <label for='verifMdp'>Vérificaction mot de passe</label> <span id="infoVerifMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
 
                    <div class="champs-password">
-                       <input id="verifMdp" type='password' name ='verifMdp'>
+
+                       <div class="info-bulle">
+                           <label for='verifMdp'>Vérificaction mot de passe <br>
+                               <input id="verifMdp" type='password' name ='verifMdp'>
+                               <span class="text-info-bulle">La vérification du mot de passe <span>doit être identique au mot de passe</span>.</span>
+                           </label>
+                       </div> <span id="infoVerifMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
 
                        <div class="password-show" onclick="showPassword(this)">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                           </svg>
+                           <img src="../ressources/images/visible.png">
                        </div>
                        <div class="password-hide" onclick="hidePassword(this)">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-                           </svg>
+                           <img src="../ressources/images/hidden.png">
                        </div>
                    </div>
 
                </div>
 
                <div class="inscription-droite">
-                  <label for='nom'>Nom</label> <span id="infoNom" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
-                  <input id='nom' type='text' name ='nom'>
-                  <br><br>
-                   <label for='prenom'>Prénom</label> <span id="infoPrenom" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
-                  <input id='prenom' type='text' name ='prenom'>
 
-                  <br><br>
-                  <label for='email'>Email</label> <span id="infoEmail" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
-                  <input id='email' type='text' name ='email'>
+
+                   <div class="info-bulle">
+                       <label for='nom'>Nom <br>
+                           <input id='nom' type='text' name ='nom'>
+                           <span class="text-info-bulle">Le Nom ne doit contenir <span><br>que des lettres ou le caractère "-"</span> et posséder entre <span>2 et 50 caractères</span>.</span>
+                       </label>
+                   </div> <span id="infoNom" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+                  <br>
+
+
+                   <div class="info-bulle">
+                       <label for='prenom'>Prénom <br>
+                           <input id='prenom' type='text' name ='prenom'>
+                           <span class="text-info-bulle">Le Prénom ne doit contenir <span>que des lettres ou le caractère "-"</span> et posséder entre <span>2 et 50 caractères</span>.</span>
+                       </label>
+                   </div> <span id="infoPrenom" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
+
+                  <br>
+
+
+                   <div class="info-bulle">
+                       <label for='email'>Email <br>
+                           <input id='email' type='text' name ='email'>
+                           <span class="text-info-bulle">L'email doit avoir<br>un <span>format standard</span><br>(ex: etudiant@ens.uvsq.fr)</span>
+                       </label>
+                   </div> <span id="infoEmail" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
                </div>
            </div>
           <br>
