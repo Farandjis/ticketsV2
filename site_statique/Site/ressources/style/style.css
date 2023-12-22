@@ -631,8 +631,8 @@ input[type="date"] {
   transition: opacity 0.3s;
 }
 
-.info-bulle:hover .text-info-bulle,
-.info-bulle:focus-within .text-info-bulle {
+.info-bulle:hover .text-info-bulle/*,
+.info-bulle:focus-within .text-info-bulle*/ {
   visibility: visible;
   opacity: 1;
 }
