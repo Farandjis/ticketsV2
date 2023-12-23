@@ -1,5 +1,5 @@
 function toggleDropdown() {
-    var dropdown = document.getElementById("menu_deroulant_libelle");
+    var dropdown = document.getElementById("menu_deroulant_checkbox");
     if (event.type === 'click' ||(event.type === 'keydown' && event.keyCode === 13)){
         dropdown.classList.toggle("active");
     }

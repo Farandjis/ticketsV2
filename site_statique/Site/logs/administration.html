@@ -10,6 +10,7 @@
   <script src="../ressources/script/infoLigneTab.js"></script>
   <script src="../ressources/script/hamburger.js"></script>
   <script src="../ressources/script/confirmation.js"></script>
+  <script src="../ressources/script/menuCheckbox.js"></script>
 </head>
 <body>
   <header>
@@ -52,14 +53,24 @@
     <div class="conteneur_ajout_administration">
         <form action='#' method='post' name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
           <label for='ajout_technicien'>Ajout de Technicien :</label><br><br>
+          <div class="conteneur_ajout_technicien">
+          <div class="menu_checkbox" id="menu_deroulant_checkbox">
+            <span class="entete_menu_checkbox modif_entete_checkbox" onclick="toggleDropdown()">--Liste des Utilisateurs--</span>
+            <div class="option_checkbox" id="ajout_technicien">
+              <label>
+                <input type="checkbox" name="option1"> Utilisateur 1
+              </label>
+              <label>
+                <input type="checkbox" name="option2"> Utilisateur 2
+              </label>
+              <label>
+                <input type="checkbox" name="option3"> Utilisateur 3
+              </label>
 
-          <select name="ajout_technicien" id="ajout_technicien">
-            <option value="">--Choisir une option--</option>
-            <option value="tec_1">Technicien 1</option>
-            <option value="tec_2">Technicien 2</option>
-          </select>
-
+            </div>
+          </div>
           <input type='submit' name='ajout_technicien' value='Ajouter'>
+          </div>
         </form>
     </div>
 

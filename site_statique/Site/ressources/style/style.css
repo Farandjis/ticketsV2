@@ -631,8 +631,8 @@ input[type="date"] {
   transition: opacity 0.3s;
 }
 
-.info-bulle:hover .text-info-bulle,
-.info-bulle:focus-within .text-info-bulle {
+.info-bulle:hover .text-info-bulle/*,
+.info-bulle:focus-within .text-info-bulle*/{
   visibility: visible;
   opacity: 1;
 }
@@ -890,10 +890,10 @@ input[type="date"] {
   font-size: 28px;
 }
 
-.conteneur_ajout_administration > form > input[type="submit"] {
+.conteneur_ajout_administration input[type="submit"] {
   color: #ffffff;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
-  margin-right: 15px;
+  margin: 15px;
   font-family: Poppins, Arial, sans-serif;
   cursor: pointer;
   min-width: 100px;
@@ -905,9 +905,15 @@ input[type="date"] {
 }
 
 .conteneur_ajout_administration > form > select, .conteneur_ajout_administration > form > input[type="text"]{
-  margin: 10px;
+  width: 260px;
 }
 
+
+.conteneur_ajout_technicien {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 /* ======== JOURNAL D'ACTIVITE ======== */
@@ -1112,13 +1118,13 @@ input[type="date"] {
 }
 
 
-.menu_libelle {
+.menu_checkbox {
   position: relative;
   display: inline-block;
 }
 
 
-.entete_libelle {
+.entete_menu_checkbox {
   display: block;
   padding: 7px;
   border: 1px solid #ccc;
@@ -1130,7 +1136,7 @@ input[type="date"] {
   width: 350px;
 }
 
-.option_libelle {
+.option_checkbox {
   display: none;
   position: absolute;
   background-color: #ebebeb;
@@ -1145,11 +1151,11 @@ input[type="date"] {
   border-radius: 3px;
 }
 
-.menu_libelle.active .option_libelle {
+.menu_checkbox.active .option_checkbox {
   display: flex;
 }
 
-.option_libelle label {
+.option_checkbox label {
   margin-bottom: 8px;
 }
 
@@ -1295,7 +1301,7 @@ input[type="date"] {
   width: 100px;
 }
 
-.modif_entete_libelle {
+.modif_entete_checkbox {
   width: 300px;
 }
 
