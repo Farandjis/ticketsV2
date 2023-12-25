@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require (dirname(__FILE__) . "/ressources/fonctions/PHPfunctions.php");
 session_start();
@@ -120,3 +121,4 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 </div>
 </body>
 </html>
+
