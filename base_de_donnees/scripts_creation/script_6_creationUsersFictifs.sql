@@ -14,7 +14,7 @@ FROM Utilisateur;
 -- Permet d'ajouter un nouvel utilsateur
 -- ABCDEF UserFictif_inscriptionDB1
 CREATE OR REPLACE VIEW UserFictif_inscription AS
-SELECT ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER 
+SELECT ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER
 FROM Utilisateur;
 
 -- Permet de modifier les infos de connexion d'un utilisateur
@@ -25,7 +25,7 @@ FROM Utilisateur;
 
 
 -- Ajout des droit pour l'utilisateurs fictif_inscriptionDB
-GRANT INSERT (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) ON UserFictif_inscription TO 'fictif_inscriptionDB'@'localhost';
+GRANT INSERT (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) ON UserFictif_inscription TO 'fictif_inscriptionDB'@'localhost';
 GRANT SELECT ON UserFictif_inscription TO 'fictif_inscriptionDB'@'localhost';
 GRANT CREATE USER ON *.* TO 'fictif_inscriptionDB'@'localhost';
 
