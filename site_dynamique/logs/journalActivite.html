@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Journal d'activité</title>
+  <link href="../ressources/style/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="../ressources/images/logo_blanc.png" alt="logo du site">
+        </div>
+
+        <div class="nav-conteneur">
+          <a href="../" aria-current="page">Accueil</a>
+          <a href="../tableau_bord/tableauBord.php">Tableau de bord</a>
+          <a href="">Journal d'activité</a>
+          <a href="../logs/Historique.html">Historique</a>
+        </div>
+
+
+        <div class="nav-authentification">
+          <a href="../profil/profil.php" class="user-icon" aria-label="Page de connexion">
+            <img src="ressources/user.svg" alt="icone utilisateur">
+          </a>
+          <div class="authentification">
+            <a href="../profil/profil.php">Mon Espace</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <h1 class="titre_page">
+      Journal d'activité
+    </h1>
+    <div class="activite">
+      <div class="connexInfructeurse">
+        <h2>Connexions infructueuses</h2>
+        <table class="table-infructueuse">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Tentative</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ouvertureTickets">
+        <h2>Ouvertures de tickets</h2>
+        <table class="table-ouverture-tickets">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Niv.Urgence</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <form action='#' method='post' class="telechargement">
+      <label for='journal'>Sélection</label><br>
+
+      <div class="custom-select">
+        <select name="journal" id="journal">
+          <option value="">--Choisir une option--</option>
+          <option value="connexion_infructueuse">Connexions infructueuses</option>
+          <option value="ouverture_ticket">Ouvertures de tickets</option>
+
+        </select>
+      </div>
+
+      <input type='submit' name='Telecharger' value='Télécharger'><br>
+
+    </form>
+
+</body>
+</html>
