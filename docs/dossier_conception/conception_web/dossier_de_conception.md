@@ -52,6 +52,13 @@ La page index.html contient :
     Un 'section' représentant la liste des dix derniers tickets. Ce 'section' contient :
         Un 'table' représentant le tableau contenant le tableau des tickets.
 </pre>
+<u>Programmation PHP :</u>
+<pre>
+Le 'div' contenant les 10 derniers tickets est constitué ainsi :
+Appel de la fonction executeSQL(), de façon à réccupérer les 10 derniers tickets avec les informations.
+Une balise 'table'.
+Appel de la fonction tableGenerate(), prenant en paramètre le résultat d'executeSQL().
+</pre>
 <br><br>
 
 
