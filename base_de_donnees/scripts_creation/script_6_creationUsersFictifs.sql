@@ -58,6 +58,9 @@ GRANT GRANT OPTION ON DB_TIX.RelationTicketsMotscles TO 'fictif_droitDB'@'localh
 -- UF droitDB peut est considéré comme un utilisateur de la plateforme pour pouvoir transmettre le rôle à qui il veut.
 GRANT role_utilisateur TO 'fictif_droitDB'@'localhost' WITH ADMIN OPTION;
 
+-- UF droitBD peut voir la structure de la BD (pour s'y connecter), mais ne peut absolument rien faire avec (pas de SELECT, UPDATE...)
+GRANT SHOW VIEW ON DB_TIX.* TO 'fictif_droitDB'@'localhost';
+
 
 
 -- Ajout des droit pour l'utilisateurs fictif_connexionDB
