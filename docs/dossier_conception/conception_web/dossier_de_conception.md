@@ -240,7 +240,7 @@ Suppression des données de la session
 Fermeture de la session
 </pre>
 <pre>
-Le div représentant le profil contient des informations dynamiques, ce div est conçu ainsi :
+Le 'div' représentant le profil contient des informations dynamiques, ce div est conçu ainsi :
 Balises 'table' et 'tbody'
 {
     Réccupération des données à afficher avec la fonction executeSQL()
@@ -267,6 +267,12 @@ Balises 'table' et 'tbody'
         }
     }
 }
+</pre>
+<pre>
+Le 'div' contenant les tickets de l'utilisateur est constitué ainsi :
+Appel de la fonction executeSQL(), de façon à réccupérer les tickets de l'utilisateur avec les informations (Date, Titre, Description, Etat).
+Une balise 'table'.
+Appel de la fonction tableGenerate(), prenant en paramètre le résultat d'executeSQL().
 </pre>
 <br><br>
 
