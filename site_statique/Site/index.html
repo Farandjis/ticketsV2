@@ -3,151 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="ressources/logo_sans_texte.png" type="image/x-icon">
+    <link rel="shortcut icon" href="ressources/images/logo_sans_texte.png" type="image/x-icon">
+
+    <script src="ressources/script/infoLigneTab.js"></script>
+    <script src="ressources/script/hamburger.js"></script>
 </head>
-<body>
+<body class="body_accueil">
     <header>
         <nav>
-            <div class="logo">
-                    <img src="ressources/logo_blanc.png" alt="logo du site">
+            <a href="#" aria-current="page">
+            <div class="logo" tabindex="0">
+                <img src="ressources/images/logo_blanc.png" alt="logo du site">
+                <p>TIX</p>
             </div>
+            </a>
 
             <div class="nav-conteneur">
-                <a href="#" aria-current="page">Accueil</a>
-                <a href="tableauBord.html">Tableau de bord</a>
-                <a href="journalActivite.html">Journal d'activité</a>
-                <a href="historique.html">Historique</a>
+                <a href="#" aria-current="page" id="page_actuelle">Accueil</a>
+                <a href="tableau_bord/tableauBord.html">Tableau de bord</a>
+                <a href="logs/administration.html">Administration</a>
             </div>
 
 
             <div class="nav-authentification">
-                <a href="profil.html" class="user-icon" aria-label="Page de connexion">
-                    <img src="ressources/user.svg" alt="icone utilisateur">
+                <a href="profil/profil.html" class="user-icon" aria-label="Page de connexion">
+                    <img src="ressources/images/user.svg" alt="icone utilisateur">
                 </a>
                 <div class="authentification">
-                    <a href="connexion.html">Connexion</a>
-                    <a href="inscription.html">Inscription</a>
+                    <a href="authentification/connexion.html">Connexion</a>
+                    <a href="authentification/inscription.html">Inscription</a>
                     <!--
-                    <a href="profil.html">Mon Espace</a>
+                    <a href="tableauBord.html">Mon Espace</a>
                     -->
 
                 </div>
             </div>
+
+            <div class="hamburger-menu" tabindex="0" onclick="hamburger()">
+                <div class="slice"></div>
+                <div class="slice"></div>
+                <div class="slice"></div>
+            </div>
         </nav>
     </header>
+    <div class="hero">
+        <div class="presentation">
+            <div class="texte-presentation">
+                <h1>Présentation <br>du <strong>Site</strong></h1>
+                <p>Bienvenue sur <strong>Tix</strong>, un ambitieux projet de site de ticketing !</p>
+                <p>La plateforme <strong>Tix</strong> vous propose la création de tickets sur le site de l'UVSQ.</p>
+                <p>Signalez les problèmes que vous rencontrez aux techniciens de votre parc avec facilité, puis constatez leur résolution par le tableau de bord.</p>
+                <p>La vidéo ci-contre vous expliquera cette application web dans les moindres détails.</p>
+                </p>
+            </div>
+            <div class="video-presentation">
+                <iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
 
-    <div class="presentation">
-        <div class="texte-presentation">
-            <h1>Présentation du <strong>Site</strong></h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
-            </p>
         </div>
-        <div class="video-presentation">
-            <iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-
-    </div>
         <div class="inscription">
-            <a href="inscription.html" >Je m'inscris</a>
+            <a href="authentification/inscription.html" >Je m'inscris</a>
         </div>
+    </div>
 
 
     <div class="affichage_ticket">
-        <table class="table-accueil">
-            <thead>
+        <h1 class="titre_page">10 derniers Tickets</h1>
+        <div class="conteneur_table_accueil conteneur_table">
+            <table class="table-accueil tableau table-popup">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Titre</th>
+                        <th>Niv. Urgence</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                    </tr>
+                </thead>
+                <tbody class="table-ticket">
                 <tr>
-                    <th>Date</th>
-                    <th>Libellé</th>
-                    <th>Niv. Urgence</th>
-                    <th>Description</th>
-                    <th>Utilisateur</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                </tr>
-                <tr>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
-                    <td>Contenu</td>
+                    <td>15</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>En cours</td>
                 </tr>
 
-            </tbody>
-        </table>
+                <tr>
+                    <td>18</td>
+                    <td>18/01/2024</td>
+                    <td>Proin gravida nibh vel velit auctor aliquet.</td>
+                    <td>Normal</td>
+                    <td>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</td>
+                    <td>En cours</td>
+                </tr>
+
+                <!-- Ligne 2 -->
+                <tr>
+                    <td>5</td>
+                    <td>05/06/2023</td>
+                    <td>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</td>
+                    <td>Urgent</td>
+                    <td>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</td>
+                    <td>En cours</td>
+                </tr>
+
+                <!-- Ligne 3 -->
+                <tr>
+                    <td>3</td>
+                    <td>22/09/2023</td>
+                    <td>Nullam dictum felis eu pede mollis pretium.</td>
+                    <td>Normal</td>
+                    <td>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.</td>
+                    <td>En cours</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>En cours</td>
+                </tr>
+                <tr>
+                    <td>39</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>En cours</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>En cours</td>
+                </tr>
+                <tr>
+                    <td>59</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>En cours</td>
+                </tr>
+                <tr>
+                    <td>50</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>En cours</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>15/12/2023</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                    <td>Urgent</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat.</td>
+                    <td>Fermé</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
   </div>
 
   <footer>
-      <a href="https://www.uvsq.fr/"><img src="ressources/logo-UVSQ.png" alt="redirige vers site UVSQ"></a>
+      <a href="https://www.uvsq.fr/"><img src="ressources/images/logo-UVSQ.png" alt="redirige vers site UVSQ"></a>
   </footer>
 
+    <div class="overlay" id="overlay" onclick="closePopup()">
+        <!-- Contenu de la pop-up -->
+
+        <div id="test" class="formModifTicket formAuthentification formConnexion popupInfo">
+
+            <div id="informations_ticket_popup">
+
+
+            </div>
+
+            <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
+        </div>
+
+
+    </div>
 </body>
 </html>

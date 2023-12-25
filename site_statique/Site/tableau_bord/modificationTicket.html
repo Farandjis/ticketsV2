@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modification de Ticket</title>
+    <link rel="stylesheet" href="../ressources/style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+    <script src="../ressources/script/menuCheckbox.js"></script>
+    <script src="../ressources/script/confirmation.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="retour">
+            <a href="tableauBord.html"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+        </div>
+    </header>
+    <div class="page_cree-modif_ticket">
+        <h1 class="h1Creation">Modification ticket</h1>
+        <div role="form" class="formModifTicket formAuthentification">
+
+            <div class="informations_ticket">
+                <div class="info-ticket-gauche">
+                <p>ID TICKET : 000000</p>
+                <p>ID USER : 000000</p>
+                <p>Utilisateur : </p>
+                </div>
+
+                <div class="info-ticket-droite">
+                <p>ETAT_TICKET</p>
+                <p>Ouvert le XX/XX/XXXX</p>
+                <p>Modifié le XX/XX/XXXX</p>
+                </div>
+            </div>
+
+            <form action='#' method='post' name="Modifier le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+                <div class="form-modif-ticket">
+                    <div class="champs_ticket_gauche">
+                        <label for='login'>Nature du problème *</label><br>
+                        <input id='login' type='text' name ='login'>
+                        <br><br>
+
+                        <label for='explication2'>Explication</label><br>
+                        <textarea id="explication2" name="explication" ></textarea><br>
+                    </div>
+
+                    <div class="champs_ticket_droit">
+
+                        <p>Niveau d'urgence estimé</p>
+                        <p id="champLocked">Aucun</p><br>
+                        <label for='nivUrg'>Niveau d'urgence définitif</label><br>
+                        <div class="custom-select">
+                            <select name="nivUrg" id="nivUrg" required>
+                                <option value="">--Choisir une option--</option>
+                                <option value="faible">Faible</option>
+                                <option value="moyen">Moyen</option>
+                                <option value="important">Important</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+
+                        <br>
+
+                        <label for='ch_technicien'>Technicien affecté</label><br>
+                        <div class="custom-select">
+                            <select name="ch_technicien" id="ch_technicien" >
+                                <option value="">--Choisir une option--</option>
+                                <option value="1">Technicien 1</option>
+                                <option value="2">Technicien 2</option>
+                                <option value="3">Technicien 3</option>
+                            </select>
+                        </div><br>
+
+                        <span>Libellé</span><br>
+                        <div class="menu_checkbox" id="menu_deroulant_libelle">
+                            <span class="entete_menu_checkbox modif_entete_checkbox" onclick="toggleDropdown()">--Liste des libellés--</span>
+                            <div class="option_checkbox">
+                                <label>
+                                    <input type="checkbox" name="option1" checked> Libellé 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="option2" checked> Libellé 2
+                                </label>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type='submit' name='modif' value='Modifier le ticket' id="boutonModifierTicket"><br>
+            </form>
+            <form action='#' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+                <input type='submit' name='modif' value='Fermeture du Ticket' id="boutonFermerTicket"><br>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

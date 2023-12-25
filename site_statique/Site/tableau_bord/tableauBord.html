@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="../ressources/style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+    <script src="../ressources/script/menuCheckbox.js"></script>
+
+    <script src="../ressources/script/infoLigneTab.js"></script>
+
+
+
+
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" aria-current="page">
+                <div class="logo">
+                    <img src="../ressources/images/logo_blanc.png" alt="logo du site">
+                    <p>TIX</p>
+                </div>
+            </a>
+
+            <div class="nav-conteneur">
+                <a href="../index.html" aria-current="page">Accueil</a>
+                <a href="#" id="page_actuelle">Tableau de bord</a>
+                <a href="../logs/administration.html">Administration</a>
+            </div>
+            <div class="nav-authentification">
+
+                <div class="authentification">
+                    <a href="../Profil/profil.html">Mon Espace</a>
+                    <a href="#">Deconnexion</a>
+                </div>
+            </div>
+
+            <div class="hamburger-menu">
+                <div class="slice"></div>
+                <div class="slice"></div>
+                <div class="slice"></div>
+            </div>
+        </nav>
+    </header>
+    <div class="tableau_bord_bouton">
+        <h1 class="titre_tableau_bord">
+            Tableau de Bord
+        </h1>
+        <div class="bouton_ticket">
+            <a href="creerTicket.html">Créer un ticket</a>
+        </div>
+    </div>
+
+    <div class="tableau-bord">
+        <div class="conteneur_table-tableau-bord conteneur_table">
+        <table class="table-tableau-bord table-popup">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Niv. Urgence</th>
+                <th>Description</th>
+                <th>Etat</th>
+            </tr>
+            </thead>
+            <tbody class="table-ticket">
+            <!--
+            <tr>
+                <td colspan="5" style="text-align: center; height: 639px">Tableau vide</td>
+            </tr>-->
+            <tr>
+                <td>15</td>
+                <td>11/11/2111 à 15h23</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+
+            <tr>
+                <td>18</td>
+                <td>18/01/2024</td>
+                <td>Proin gravida nibh vel velit auctor aliquet.</td>
+                <td>Normal</td>
+                <td>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</td>
+                <td>Alice Smith</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>05/06/2023</td>
+                <td>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</td>
+                <td>Urgent</td>
+                <td>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</td>
+                <td>John Doe</td>
+            </tr>
+
+
+            <tr>
+                <td>3</td>
+                <td>22/09/2023</td>
+                <td>Nullam dictum felis eu pede mollis pretium.</td>
+                <td>Normal</td>
+                <td>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.</td>
+                <td>Emily Johnson</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+                <td>Contenu</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>15/12/2023</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+            <tr>
+                <td>39</td>
+                <td>15/12/2023</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+            <tr>
+                <td>45</td>
+                <td>15/12/2023</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+            <tr>
+                <td>59</td>
+                <td>15/12/2023</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td>15/12/2023</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>15/12/2023</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                <td>Urgent</td>
+                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat.</td>
+                <td>Philippe Europe</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        </div>
+        <div class="form-recherche">
+            <h2>Recherche</h2>
+            <br>
+            <form action='#' method='post'>
+                <div class="custom-select">
+                    <label for='selectionPossible'>Selection Possible</label><br>
+                    <select name="selectionPossible" id="selectionPossible">
+                        <option value="">-- Choisir une Selection --</option>
+                        <option value="personnels">Ticket(s) Personnel(s)</option>
+                        <option value="attribuabe">Ticket(s) Attribuable(s)</option>
+                        <option value="gerer">Ticket(s) à Gérer</option>
+                        <option value="Urgence">Urgence à Définir</option>
+                    </select>
+                </div><br>
+
+                <label for='date'>Date</label><br>
+                <input id='date' type='date' name ='date'>
+                <label for='date2'> à </label>
+                <input id='date2' type='date' name ='date2'><br>
+                <br>
+                <label for='titre'>Titre</label><br>
+                <input id='titre' type='text' name ='titre'><br>
+                <br>
+                <span>Libellé</span><br>
+                <div class="menu_checkbox" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown()">
+                    <span class="entete_menu_checkbox" onclick="toggleDropdown()">Sélectionnez un/des libellé(s)</span>
+                    <div class="option_checkbox">
+                        <label>
+                            <input type="checkbox" name="option1"> Libellé 1
+                        </label>
+                        <label>
+                            <input type="checkbox" name="option2"> Libellé 2
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="bouton-recherche">
+                    <input type='submit' name='recherche' value='Recherche'>
+                    <input type='reset' name='resetRecherche' value='Annuler'>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePopup()">
+        <!-- Contenu de la pop-up -->
+
+        <div role="form" id="test" class="formModifTicket popupInfo">
+
+            <div id="informations_ticket_popup">
+
+            </div>
+
+            <form action='modificationTicket.html' method='post'>
+                <input type='submit' name='modif' value='Modifier le ticket'><br>
+            </form>
+
+
+            <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
+        </div>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Administration</title>
+  <link rel="stylesheet" href="../ressources/style/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+
+  <script src="../ressources/script/infoLigneTab.js"></script>
+  <script src="../ressources/script/hamburger.js"></script>
+  <script src="../ressources/script/confirmation.js"></script>
+  <script src="../ressources/script/menuCheckbox.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html" aria-current="page">
+        <div class="logo">
+          <img src="../ressources/images/logo_blanc.png" alt="logo du site">
+          <p>TIX</p>
+        </div>
+      </a>
+
+      <div class="nav-conteneur">
+        <a href="../index.html">Accueil</a>
+        <a href="../tableau_bord/tableauBord.html">Tableau de bord</a>
+        <a href="#" id="page_actuelle">Administration</a>
+      </div>
+
+
+      <div class="nav-authentification">
+        <a href="../Profil/profil.html" class="user-icon" aria-label="Page de connexion">
+          <img src="../ressources/images/user.svg" alt="icone utilisateur">
+        </a>
+        <div class="authentification">
+          <a href="../Profil/profil.html">Mon Espace</a>
+        </div>
+      </div>
+
+      <div class="hamburger-menu" onclick="hamburger()">
+        <div class="slice"></div>
+        <div class="slice"></div>
+        <div class="slice"></div>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class="titre_page">
+    Administration
+  </h1>
+  <div class="conteneur_administration">
+    <div class="conteneur_ajout_administration">
+        <form action='#' method='post' name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+          <label for='ajout_technicien'>Ajout de Technicien :</label><br><br>
+          <div class="conteneur_ajout_technicien">
+          <div class="menu_checkbox" id="menu_deroulant_checkbox">
+            <span class="entete_menu_checkbox modif_entete_checkbox" onclick="toggleDropdown()">--Liste des Utilisateurs--</span>
+            <div class="option_checkbox" id="ajout_technicien">
+              <label>
+                <input type="checkbox" name="option1"> Utilisateur 1
+              </label>
+              <label>
+                <input type="checkbox" name="option2"> Utilisateur 2
+              </label>
+              <label>
+                <input type="checkbox" name="option3"> Utilisateur 3
+              </label>
+
+            </div>
+          </div>
+          <input type='submit' name='ajout_technicien' value='Ajouter'>
+          </div>
+        </form>
+    </div>
+
+    <div class="conteneur_ajout_administration">
+      <form action='#' method='post' name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+        <label for='ajout_libelle'>Ajout de Libellés :</label><br><br>
+        <input id='ajout_libelle' type='text' name ='ajout_libelle' placeholder="Écrire un libellé">
+        <input type='submit' name='ajout_libelle' value='Ajouter'>
+      </form>
+    </div>
+  </div>
+
+
+
+  <h1 class="titre_page">
+    Historique
+  </h1>
+  <div class="historique">
+    <div class="conteneur_table conteneur_table-historique">
+      <table class="table-historique table-popup">
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Date Résolution</th>
+          <th>Objet</th>
+          <th>Niv.Urgence</th>
+          <th>Description</th>
+          <th>ID Utilisateur</th>
+          <th>Technicien</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>15/03/2006</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>30/02/2006</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        <tr>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+          <td>Contenu</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <h1 class="titre_page">
+    Journal d'activité
+  </h1>
+  <div class="activite">
+    <div class="connexInfructeurse">
+      <h2>Connexions infructueuses</h2>
+      <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
+        <table class="table-infructueuse table-popup">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Tentative</th>
+            <th class="ligneCacher">Test</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td class="ligneCacher">15/15/15</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">7</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">6</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">5</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">4</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">3</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">2</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">1</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td class="ligneCacher">1</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ouvertureTickets">
+      <h2>Ouvertures de tickets</h2>
+      <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
+        <table class="table-ouverture-tickets table-popup">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Niv.Urgence</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>09/10/2023</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          <tr>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+            <td>Contenu</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <form action='#' method='post' class="telechargement">
+    <label for='journal'>Sélection</label><br>
+
+    <div class="custom-select">
+      <select name="journal" id="journal">
+        <option value="">--Choisir une option--</option>
+        <option value="historique">Historique</option>
+        <option value="connexion_infructueuse">Connexions infructueuses</option>
+        <option value="ouverture_ticket">Ouvertures de tickets</option>
+
+      </select>
+    </div>
+
+    <input type='submit' name='Telecharger' value='Télécharger'><br>
+
+  </form>
+
+  <div class="overlay" id="overlay" onclick="closePopup()">
+    <!-- Contenu de la pop-up -->
+
+    <div role="form" id="test" class="formAuthentification formConnexion popupInfo">
+
+      <div id="informations_ticket_popup">
+
+      </div>
+
+      <form action='modificationTicket.html' method='post'>
+
+        <input type='submit' name='modif' value='Modifier le ticket'><br>
+      </form>
+
+      <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
+    </div>
+
+
+  </div>
+
+
+</body>
+</html>

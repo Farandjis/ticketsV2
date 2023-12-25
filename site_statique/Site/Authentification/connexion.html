@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="../ressources/style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+    <script src="../ressources/script/afficheMDP.js"></script>
+</head>
+<body>
+<header>
+    <div class="retour">
+        <a href="../index.html"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+    </div>
+</header>
+<div class="page_authentification_modif_perso">
+    <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
+
+    <div role="form" class="formAuthentification formConnexion">
+
+        <form action='#' method='post'>
+            <h1 class="h1Conexion">Je me connecte</h1><br>
+
+            <label for='login'>Login</label><br>
+            <input id='login' type='text' name ='login'>
+            <br><br>
+
+            <label for='mdp'>Mdp</label><br>
+
+            <div class="champs-password">
+                <input id='mdp' type='password' name ='mdp'><br>
+
+                <div class="password-show" onclick="showPassword(this)">
+                    <img src="../ressources/images/visible.png">
+                </div>
+                <div class="password-hide" onclick="hidePassword(this)">
+                    <img src="../ressources/images/hidden.png">
+                </div>
+            </div>
+
+
+            <a href="MdpOublie.html" class="oublie">Mot de passe oublié ?</a>
+            <input type='submit' name='Connexion' value='Connexion'><br>
+            <a href="inscription.html" class="oublie">Pas de compte ?</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

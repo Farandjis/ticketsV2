@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../ressources/style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+
+    <script src="../ressources/script/infoLigneTab.js"></script>
+    <script src="../ressources/script/hamburger.js"></script>
+</head>
+<body class="profile">
+  <header>
+      <nav>
+          <a href="../index.html" aria-current="page">
+              <div class="logo">
+                  <img src="../ressources/images/logo_blanc.png" alt="logo du site">
+                  <p>TIX</p>
+              </div>
+          </a>
+
+          <div class="nav-conteneur">
+              <a href="../index.html" aria-current="page">Accueil</a>
+              <a href="../tableau_bord/tableauBord.html">Tableau de bord</a>
+              <a href="../logs/administration.html">Administration</a>
+          </div>
+
+
+          <div class="deconnexion-desinscription">
+              <a href="#">Désinscription</a>
+              <a href="#">Déconnexion</a>
+          </div>
+
+
+          <div class="hamburger-menu" onclick="hamburger()">
+              <div class="slice"></div>
+              <div class="slice"></div>
+              <div class="slice"></div>
+          </div>
+      </nav>
+  </header>
+
+  <h1 class="titre_page">
+      Mon compte
+  </h1>
+    <div class="info_profile">
+        <div class="info_perso">
+            <h2>Informations Personnelles</h2>
+            <div class="conteneur_table">
+                <table class="table-perso">
+                    <tbody>
+                        <tr class="ligne_profile pasLigneHover">
+                            <td class="entete_profile">Login</td>
+                            <td>(de l'utilisateur)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="ligne_profile pasLigneHover">
+                            <td class="entete_profile">Nom Complet</td>
+                            <td>(de l'utilisateur)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="ligne_profile pasLigneHover">
+                            <td class="entete_profile">Email</td>
+                            <td>(de l'utilisateur)</td>
+                            <td><a href="modifEmail.html"><img src="../ressources/images/icone_modif.svg" class="iconeModif"></a></td>
+                        </tr>
+                        <tr class="ligne_profile pasLigneHover">
+                            <td class="entete_profile">Role</td>
+                            <td>(de l'utilisateur)</td>
+                            <td></td>
+                        </tr>
+                        <tr class="ligne_profile pasLigneHover">
+                            <td class="entete_profile">Mot de passe</td>
+                            <td>************</td>
+                            <td><a href="modifMdp.html"><img src="../ressources/images/icone_modif.svg" class="iconeModif"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="demandes">
+            <h2>Mes demandes</h2>
+            <div class="conteneur_table-demandes-perso conteneur_table">
+                <table class="table-demandes-perso table-popup">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Objet</th>
+                        <th>Niv. Urgence est.</th>
+                        <th>Niv. Urgence def.</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-ticket-profil">
+<!--
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>
+                    <tr>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                        <td>Contenu</td>
+                    </tr>-->
+                    <tr>
+                        <td>15/12/2023</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td>
+                        <td>Urgent</td>
+                        <td>Urgent</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</td>
+                        <td>Philippe Europe</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  <div class="overlay" id="overlay" onclick="closePopup()">
+      <!-- Contenu de la pop-up -->
+
+      <div role="form" id="test" class="formModifTicket popupInfo">
+
+          <div id="informations_ticket_popup">
+
+          </div>
+
+          <form action='modificationTicket.html' method='post'>
+              <input type='submit' name='modif' value='Modifier le ticket'><br>
+          </form>
+
+
+          <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
+      </div>
+
+
+  </div>
+
+
+
+</body>
+</html>
