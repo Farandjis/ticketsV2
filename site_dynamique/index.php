@@ -29,20 +29,37 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     <link rel="shortcut icon" href="ressources/images/logo_sans_texte.png" type="image/x-icon">
 
     <script src="ressources/script/infoLigneTab.js"></script>
+    <script src="ressources/script/hamburger.js"></script>
 </head>
 <body class="body_accueil">
 
-<?php affichageMenuDuHaut($connexionUtilisateur);?>
+<?php affichageMenuDuHaut("index", $connexionUtilisateur);?>
 
 <div class="hero">
     <div class="presentation">
         <div class="texte-presentation">
-            <h1>Présentation du <strong>Site</strong></h1>
+            <?php
+
+            if ( 8 <= date( "H", time()) and date( "Hi", time()) <= 1730){ $salutation = "Bonjour"; }
+            elseif (1730 <= date( "Hi", time()) and date( "H", time()) < 21) { $salutation = "Bonsoir"; }
+            else{ $salutation = "Bonne nuit"; }
+
+            if ($connexionUtilisateur == null){ echo "<h1>Bienvenue sur <strong>TIX</strong> !</h1>"; }
+            else {
+                $prenomUtilisateur = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT PRENOM_USER FROM vue_Utilisateur_client;"))[0];
+
+                if (strlen($prenomUtilisateur) > 10) {
+                    $prenomUtilisateur = substr($prenomUtilisateur, 0, 10) . "...";
+                }
+
+                echo "<h1>$salutation <strong>$prenomUtilisateur</strong>&nbsp;!</h1>";
+            }
+            ?>
+
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
+            La plateforme <strong>TIX</strong> vous permet de reporter les problèmes des salles machines de l'IUT de Vélizy-Villacoublay.<br><br>
+            Signalez avec facilité les problèmes que vous rencontrez aux techniciens de votre parc, puis constatez leur résolution à l'aide du tableau de bord.<br><br>
+            La vidéo ci-contre vous présente <strong>TIX</strong> dans les moindres détails.<br><br>
             </p>
         </div>
         <div class="video-presentation">
@@ -54,9 +71,12 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
         </div>
 
     </div>
-    <div class="inscription">
-        <a href="authentification/inscription.php" >Je m'inscris</a>
+    <div class='inscription'>
+        <?php if ($connexionUtilisateur == null){ echo "<a href='authentification/inscription.php' >Je m'inscris</a>"; }
+        else { echo "<a href='profil/profil.php' >Mon espace</a>"; }
+        ?>
     </div>
+
 </div>
 
 <?php
@@ -64,7 +84,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 
     $connexion = mysqli_connect($host, 'visiteur', $USER_FICTIF_MDP['visiteur'], $database);
 
-    $reqSQL = "SELECT ID_Ticket, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_visiteur ORDER BY HORODATAGE_CREATION_TICKET, ID_TICKET DESC LIMIT 10";
+    $reqSQL = "SELECT ID_Ticket, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_visiteur";
 
     $getResultSQL = mysqli_query($connexion, $reqSQL);
     if (! (mysqli_num_rows($getResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
@@ -72,7 +92,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                 <div class="affichage_ticket">
                     <h1 class="titre_page"> ' . mysqli_num_rows($getResultSQL) . ' derniers Tickets</h1>
                     <div class="conteneur_table_accueil conteneur_table">
-                        <table class="table-accueil tableau">
+                        <table class="table-accueil tableau table-popup">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -99,25 +119,16 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 </footer>
 
 <div class="overlay" id="overlay" onclick="closePopup()">
-    <!-- Contenu de la pop-up -->
+        <!-- Contenu de la pop-up -->
 
-    <div id="test" class="formModifTicket formAuthentification formConnexion popupInfo">
+        <div id="test" class="formModifTicket formAuthentification formConnexion popupInfo">
 
-        <div class="informations_ticket_popup">
+            <div id="informations_ticket_popup">
+            </div>
 
-            <p><strong>Ticket n°</strong> <span id="popupId"></span></p>
-            <p><strong>Date : </strong> <span id="popupDate"></span></p>
-            <p><strong>Niveau d'urgence : </strong> <span id="popupNiveau"></span></p>
-            <p><strong>État : </strong> <span id="popupEtat"></span></p>
-            <p><strong>Objet : </strong> <span id="popupObjet"></span></p>
-            <p><strong>Description : </strong> <br> <span id="popupDescription"></span></p>
+            <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
         </div>
-
-        <button id="fermer_pop-up" onclick="closePopup()">x</button>
     </div>
 
-
-</div>
 </body>
 </html>
-
