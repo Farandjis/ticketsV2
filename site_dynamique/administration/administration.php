@@ -50,10 +50,10 @@ function tableCSV($filename,$colonnes){
 	  <div class="conteneur_administration">
 		<div class="conteneur_ajout_administration">
 			<form action="#" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-                <span class="entete_libelle modif_entete_libelle" onclick="toggleDropdown()">-- Liste des utilisateurs --</span>
+                <span class="entete_motcle modif_entete_motcle" onclick="toggleDropdown()">-- Liste des utilisateurs --</span>
                 <div class="option_technicien">';
 				
-				menuDeroulantTousLesLibelles($connection);
+				menuDeroulantTousLesMotcleTickets($connection);
 				
 			echo '
             <option value="tec_1">Technicien 1</option>
@@ -70,9 +70,9 @@ function tableCSV($filename,$colonnes){
 	if (recupererRoleDe($connection) == 'Administrateur Site'){
 		echo ' 
 		<div class="conteneur_ajout_administration">
-		  <form action="action_ajoutlibelle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-			<label for="ajout_libelle">Ajout de Libellés :</label><br><br>
-			<input id="ajout_libelle" type="text" name ="ajout_libelle" placeholder="Écrire un libellé">
+		  <form action="action_ajoutmotcle.php" method="post" name="Ajout MotcleTicket" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+			<label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
+			<input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un Mot-clé">
 			<input type="submit" name="ajout" value="Ajouter">
 		  </form>
 		</div>
@@ -101,7 +101,7 @@ function tableCSV($filename,$colonnes){
 				</thead>
 				<tbody>
 				';
-				$historique_res = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,OBJET_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
+				$historique_res = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
 				tableGenerate($historique_res);
 				echo '
 				</tbody>

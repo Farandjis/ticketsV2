@@ -41,7 +41,7 @@ function connectUser($loginMariaDB, $loginSite, $mdpMariaDB){
             // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
           
             $arguments = array($dateConnexion, $ipUtilisateur, $loginMariaDB);
-            executeSQL("UPDATE UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
+            executeSQL("UPDATE UserFictif_maj_derniere_co SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
 
             // On démarre la session
             session_start();
@@ -266,7 +266,7 @@ function pageAccess($listeDesRolesAutoriser){
 
                 // RECUPERATION DE L'ID_USER DE L'UTILISATEUR PAR RAPPORT A SON LOGIN
                 $connexionUFConnect = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
-                $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connexionUFConnect));
+                $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?", array($loginSite), $connexionUFConnect));
                 mysqli_close($connexionUFConnect);
 
                 if ($resSQL === null) {
@@ -306,38 +306,38 @@ function pageAccess($listeDesRolesAutoriser){
     }
 }
 
-function libelleGenerate($id_ticket, $connexion) {
+function motcleGenerate($id_ticket, $connexion) {
     /**
-     * Génère la liste des libellés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
-     * Si un id de ticket est passé en paramètre, les libellés associés à ce ticket sont en état checked.
-     * @param $id_ticket = null/integer - Id du ticket dont on veut voir les libellés checkés.
+     * Génère la liste des mots-clés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
+     * Si un id de ticket est passé en paramètre, les mots-clés associés à ce ticket sont en état checked.
+     * @param $id_ticket = null/integer - Id du ticket dont on veut voir les mots-clés checkés.
      * @return void
      */
-    $unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle WHERE nom_libelle NOT IN (SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?);", array($id_ticket), $connexion);
-    $checked_libelle = executeSQL("SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?;", array($id_ticket), $connexion);
+    $unchecked_motcle = executeSQL("SELECT nom_motcle FROM MotcleTicket WHERE nom_motcle NOT IN (SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?);", array($id_ticket), $connexion);
+    $checked_motcle = executeSQL("SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?;", array($id_ticket), $connexion);
 
-    while ($row = mysqli_fetch_row($checked_libelle)) {
-        echo "<label><input type='checkbox' name='libelle_option[]' checked> $row[0]</label>";
+    while ($row = mysqli_fetch_row($checked_motcle)) {
+        echo "<label><input type='checkbox' name='motcle_option[]' checked> $row[0]</label>";
     }
 
-    while ($row = mysqli_fetch_row($unchecked_libelle)) {
-        echo "<label><input type='checkbox' name='libelle_option[]'> $row[0] </label>";
+    while ($row = mysqli_fetch_row($unchecked_motcle)) {
+        echo "<label><input type='checkbox' name='motcle_option[]'> $row[0] </label>";
     }
 }
 
 
 
-function libelleUpdate($id_ticket,$libelle_option, $connexion){
+function motcleUpdate($id_ticket,$motcle_option, $connexion){
 	/**
  	* Pour un ticket dont l'id est donnée :
-  	* Remplace ses libellés en effaçant ses anciens libéllés puis en lui associant ceux dans la liste en paramètre.
-   	* @param $id_ticket - Id du ticket dont on veut remplacer les libéllés.
-       	* @param $libelle_option - Liste des libéllés du ticket.
+  	* Remplace ses mots-clés en effaçant ses anciens mots-clés puis en lui associant ceux dans la liste en paramètre.
+   	* @param $id_ticket - Id du ticket dont on veut remplacer les mots-clés.
+       	* @param $motcle_option - Liste des mots-clés du ticket.
     	* @return void
     	*/
-	executeSQL("DELETE FROM vue_suppr_rtl_tdb WHERE id_ticket = ?;", array($id_ticket), $connexion);
-	for ($n=0;$n<count($libelle_option);$n++){
-		executeSQL("INSERT INTO RelationTicketsLibelles (ID_TICKET, NOM_LIBELLE) VALUES (?,?);",array($id_ticket,$libelle_option[$n]), array($id_ticket, $libelle_option[$n]));
+	executeSQL("DELETE FROM vue_suppr_RTM_tdb WHERE id_ticket = ?;", array($id_ticket), $connexion);
+	for ($n=0;$n<count($motcle_option);$n++){
+		executeSQL("INSERT INTO RelationTicketsMotscles (ID_TICKET, NOM_MOTCLE) VALUES (?,?);",array($id_ticket,$motcle_option[$n]), array($id_ticket, $motcle_option[$n]));
 	}
 }
 
@@ -434,18 +434,18 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 }
 
 
-function menuDeroulantTousLesLibelles($connexionUtilisateur, $libellesACocher = array()){
+function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACocher = array()){
     /**
-     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les libellés disponible dans la BD.
+     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les mots-clés disponible dans la BD.
      *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     * @param array libellesACocher -> les libellés à cocher par défaut
+     * @param array motclesACocher -> les mots-clés à cocher par défaut
      */
 
-    $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_LIBELLE FROM `Libelle` ORDER BY NOM_LIBELLE ASC;");
-    while($unLibelle = mysqli_fetch_row($resSQL)){
-        if (in_array($unLibelle[0], $libellesACocher)){ $cestCocher = "checked"; }
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+    while($unMotcleTicket = mysqli_fetch_row($resSQL)){
+        if (in_array($unMotcleTicket[0], $motclesACocher)){ $cestCocher = "checked"; }
         else { $cestCocher = ""; }
-        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[0]) . " </label>";
+        echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unMotcleTicket[0]) . "' $cestCocher> " . htmlspecialchars($unMotcleTicket[0]) . " </label>";
     }
 }
 

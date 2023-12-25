@@ -12,7 +12,7 @@ $info_ticket = mysqli_fetch_array(executeSQL("	SELECT id_crea,
 													nom_crea,
 													DATE_FORMAT(HORODATAGE_CREATION_TICKET, ' %d/%m/%Y à %Hh%i'),
 													DATE_FORMAT(horodatage_derniere_modif_ticket, ' %d/%m/%Y à %Hh%i'),
-													objet_ticket,
+													TITRE_TICKET,
 													description_ticket,
 													niv_urgence_estimer_ticket,
 													niv_urgence_definitif_ticket,
@@ -60,7 +60,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/libelle.js"></script>
+    <script src="../ressources/script/motcle.js"></script>
 </head>
 <body>
 <header>
@@ -220,17 +220,17 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     ?>
                     <br>
 
-                    <span>Libellé</span><br>
-                    <div class="menu_libelle" id="menu_deroulant_libelle">
-                        <span class="entete_libelle modif_entete_libelle" onclick="toggleDropdown()">--Liste des libellés--</span>
-                        <div class="option_libelle">
+                    <span>Mot-clé</span><br>
+                    <div class="menu_motcle" id="menu_deroulant_motcle">
+                        <span class="entete_motcle modif_entete_motcle" onclick="toggleDropdown()">--Liste des mots-clés--</span>
+                        <div class="option_motcle">
                             <?php
-                            $listeLibelle = array();
-                            $result = executeSQL("SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?",array($id_ticket),$connection);
+                            $listeMotcleTicket = array();
+                            $result = executeSQL("SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?",array($id_ticket),$connection);
                             while($row = mysqli_fetch_array($result)){
-                                array_push($listeLibelle,$row[0]);
+                                array_push($listeMotcleTicket,$row[0]);
                             }
-                            menuDeroulantTousLesLibelles($connection,$listeLibelle);
+                            menuDeroulantTousLesMotcleTickets($connection,$listeMotcleTicket);
                             ?>
 
 

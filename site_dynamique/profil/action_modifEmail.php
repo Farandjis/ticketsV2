@@ -43,7 +43,7 @@ if (isset($_POST['mdp'], $_POST['Nemail'])) {
 
                 try {
                     // Mise à jour de l'email dans la vue
-                    executeSQL("UPDATE vue_Utilisateur_insertion_client SET email_user= ? WHERE ID_USER = ?", array($nouvelleEmail, $loginMariaDB), $connexionUtilisateur);
+                    executeSQL("UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?", array($nouvelleEmail, $loginMariaDB), $connexionUtilisateur);
 
                     // Redirection si la mise à jour réussie
                     header('Location: profil.php');

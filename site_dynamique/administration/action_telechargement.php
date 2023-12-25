@@ -12,7 +12,7 @@ if (isset($_POST["journal"]) && !empty($_POST["journal"])){
 			header('Location: journauxActvCoInf.csv');
 		}
 		if ($_POST["journal"] == "historique"){
-			$result = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,OBJET_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
+			$result = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
 
 			$csvFileName = "logs/temp_historique.csv";
 			$csvFile = fopen($csvFileName, 'w');

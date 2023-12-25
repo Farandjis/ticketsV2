@@ -25,8 +25,8 @@ try {
         }
         
         // Récupère l'ID_USER de l'utilisateur par rapport au login
-        //$id = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?",array($_POST['login']),$connection))[0];
-        $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connection));
+        //$id = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM vue_UserFictif_connexion WHERE login_user = ?",array($_POST['login']),$connection))[0];
+        $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?", array($loginSite), $connection));
 
 
 

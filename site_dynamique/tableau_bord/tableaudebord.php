@@ -30,7 +30,7 @@ global $database, $host;
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/libelle.js"></script>
+    <script src="../ressources/script/motcle.js"></script>
     <script src="../ressources/script/infoLigneTab.js"></script>
     <script src="../ressources/script/demandeServeurPourBoutonPOP-UP_TDB.js"></script>
 
@@ -71,28 +71,28 @@ global $database, $host;
             if (isset($_POST["resetRecherche"]) and $_POST["resetRecherche"]) { header("Location: " . basename(__FILE__)); return; }
 
 
-            $vueTDB = "vue_tableau_bord"; $vueRTL = "vue_tdb_relation_ticket_libelle";
-            $reqSQL = "SELECT $vueTDB.ID_TICKET, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM $vueTDB";
+            $vueTDB = "vue_tableau_bord"; $vueRTM = "vue_tdb_relation_ticket_motcle";
+            $reqSQL = "SELECT $vueTDB.ID_TICKET, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), TITRE_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM $vueTDB";
 
 
-            $paramsReqSQL = array(); $lesLibellesCoches = array();
+            $paramsReqSQL = array(); $lesMotcleTicketsCoches = array();
 
             if (isset($_POST["date"]) && isset($_POST["date2"]) && isset($_POST["titre"])){
                 $valeurDejaDansWhere = false;
 
-                if (isset($_POST["libelle_option"]) && $_POST["libelle_option"]){ // Si au moins 1 libellé à été coché
-                    $reqSQL = $reqSQL . " JOIN $vueRTL ON $vueRTL.ID_TICKET = $vueTDB.ID_TICKET ";
+                if (isset($_POST["motcle_option"]) && $_POST["motcle_option"]){ // Si au moins 1 Mot-clé à été coché
+                    $reqSQL = $reqSQL . " JOIN $vueRTM ON $vueRTM.ID_TICKET = $vueTDB.ID_TICKET ";
 
-                    $listeSQL = "("; $premierLibelle = true;
-                    foreach ($_POST["libelle_option"] as $unLibelle){
-                        if (!$premierLibelle) {$listeSQL = $listeSQL . ","; } else { $premierLibelle = false; }
+                    $listeSQL = "("; $premierMotcleTicket = true;
+                    foreach ($_POST["motcle_option"] as $unMotcleTicket){
+                        if (!$premierMotcleTicket) {$listeSQL = $listeSQL . ","; } else { $premierMotcleTicket = false; }
                         $listeSQL = $listeSQL . "?";
-                        $paramsReqSQL[] = $unLibelle;
-                        $lesLibellesCoches[] = $unLibelle;
+                        $paramsReqSQL[] = $unMotcleTicket;
+                        $lesMotcleTicketsCoches[] = $unMotcleTicket;
                     }
                     $listeSQL = $listeSQL . ")";
 
-                    $reqSQL = $reqSQL . " WHERE $vueRTL.NOM_LIBELLE IN " . $listeSQL;
+                    $reqSQL = $reqSQL . " WHERE $vueRTM.NOM_MOTCLE IN " . $listeSQL;
                     $valeurDejaDansWhere = true; // Indique qu'après le WHERE, il y a bien une valeur
 
 
@@ -104,7 +104,7 @@ global $database, $host;
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
 
-                    $reqSQL = $reqSQL . "$vueTDB.OBJET_TICKET LIKE '%" . htmlspecialchars($_POST["titre"]) . "%'";
+                    $reqSQL = $reqSQL . "$vueTDB.TITRE_TICKET LIKE '%" . htmlspecialchars($_POST["titre"]) . "%'";
                 }
 
                 if ($_POST["date"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date2"])) ){
@@ -164,18 +164,18 @@ global $database, $host;
                 else { echo "<input id='titre' type='text' name ='titre'>"; }
                 ?>
                 <br>
-                <span>Libellé</span><br>
-                <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown()">
+                <span>Mot-clé</span><br>
+                <div class="menu_motcle" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
                     <?php
-                    if (count($lesLibellesCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des libellés"; }
-                    elseif (count($lesLibellesCoches) == 1) { $texteBouton = "1 libellé sélectionné";}
-                    else { $texteBouton = count($lesLibellesCoches) . " libellés sélectionnés";}
+                    if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des mots-clés"; }
+                    elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 Mot-clé sélectionné";}
+                    else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
 
-                    echo "<span class='entete_libelle' onclick='toggleDropdown()'>$texteBouton</span>";
+                    echo "<span class='entete_motcle' onclick='toggleDropdown()'>$texteBouton</span>";
                     ?>
-                    <div class="option_libelle">
+                    <div class="option_motcle">
                         <?php
-                        menuDeroulantTousLesLibelles($connexionUtilisateur, $lesLibellesCoches);
+                        menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $lesMotcleTicketsCoches);
                         ?>
 
                     </div>

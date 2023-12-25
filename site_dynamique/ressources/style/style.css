@@ -1052,13 +1052,13 @@ input[type="date"] {
 }
 
 
-.menu_libelle {
+.menu_motcle {
   position: relative;
   display: inline-block;
 }
 
 
-.entete_libelle {
+.entete_motcle {
   display: block;
   padding: 7px;
   border: 1px solid #ccc;
@@ -1070,7 +1070,7 @@ input[type="date"] {
   width: 350px;
 }
 
-.option_libelle {
+.option_motcle {
   display: none;
   position: absolute;
   background-color: #ebebeb;
@@ -1085,11 +1085,11 @@ input[type="date"] {
   border-radius: 3px;
 }
 
-.menu_libelle.active .option_libelle {
+.menu_motcle.active .option_motcle {
   display: flex;
 }
 
-.option_libelle label {
+.option_motcle label {
   margin-bottom: 8px;
 }
 
@@ -1186,7 +1186,7 @@ input[type="date"] {
   width: 100px;
 }
 
-.modif_entete_libelle {
+.modif_entete_motcle {
   width: 300px;
 }
 

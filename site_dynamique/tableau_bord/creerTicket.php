@@ -12,7 +12,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/libelle.js"></script>
+    <script src="../ressources/script/motcle.js"></script>
 </head>
 <body>
     <header>
@@ -53,12 +53,12 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                     </div>
 
                     <div class="droite">
-                        <span>Libellé</span><br>
-                        <div class="menu_libelle" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown()">
-                            <span class="entete_libelle" onclick="toggleDropdown()">Sélectionnez un/des libellé(s) ↓</span>
-                            <div class="option_libelle">
+                        <span>Mot-clé</span><br>
+                        <div class="menu_motcle" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
+                            <span class="entete_motcle" onclick="toggleDropdown()">Sélectionnez un/des Mot-clé(s) ↓</span>
+                            <div class="option_motcle">
                                 <?php
-                                menuDeroulantTousLesLibelles($connexionUtilisateur);
+                                menuDeroulantTousLesMotcleTickets($connexionUtilisateur);
                                 ?>
                             </div>
                         </div>

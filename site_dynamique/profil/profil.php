@@ -71,7 +71,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                     </thead>
                     <tbody>
                     <?php
-                        $reqSQL = "SELECT DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_ESTIMER_TICKET,NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_client ORDER BY HORODATAGE_CREATION_TICKET DESC";
+                        $reqSQL = "SELECT DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), TITRE_TICKET, NIV_URGENCE_ESTIMER_TICKET,NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_client ORDER BY HORODATAGE_CREATION_TICKET DESC";
     
                     $getResultSQL = mysqli_query($connexionUtilisateur, $reqSQL);
     

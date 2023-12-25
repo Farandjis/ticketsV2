@@ -5,9 +5,9 @@ function confirmerAvantEnvoi_tech() {
     return confirmation;
 }
 
-function confirmerAvantEnvoi_libelle() {
+function confirmerAvantEnvoi_motcle() {
 
-    var confirmation = window.confirm("Êtes-vous sûr de vouloir ajouter ce libellé ?");
+    var confirmation = window.confirm("Êtes-vous sûr de vouloir ajouter ce Mot-clé ?");
 
     return confirmation;
 }
