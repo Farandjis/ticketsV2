@@ -1,0 +1,17 @@
+Florent VASSEUR--BERLIOUX, Tom BOGAERT, Assia GOUABI, Enzo GUIGNOLLE, Matthieu FARANDJIS<br>
+INF2-A
+
+<div align="center">
+<img height="95" width="400" src="/docs/img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
+
+# SAÉ S3  Dossier de conception
+</div>
+
+<br><br><br><br><br><br><br>
+
+- <b>Conception de la page modifTicket.html</b><br>
+<br><br>
+<u>Programmation PHP :</u>
+<pre>
+
+</pre>

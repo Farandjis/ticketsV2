@@ -309,6 +309,23 @@ La page tableauBord.html contient :
     Un 'div' représentant la liste des tickets. Ce 'div' contient :
         Un 'table' représentant le tableau de bord.
     Un 'form' représentant le formulaire de recherche de tickets dans le tableau de bord.
+        Un 'button' renvoyant vers action_tableauBord.php.
+</pre>
+<u>Programmation PHP :</u>
+<pre>
+Lorsque le formulaire est validé :
+- Vérification de la provenance des données du formulaire
+    {
+    Initialisation d'une arraylist et d'une requête SQL vide (string)
+    - Pour chaque information du formulaire, vérification de la non-nullité des données du formulaire
+        {
+            Adaptation de la requête SQL pour la donnée en question
+            Ajout dans une arraylist des paramètres concernant la donnée en question
+        }
+    Ajout dans le string représentant la requête SQL de la projection n'incluant que des tickets non-fermés.
+    Execution de la requête préparée en utilisant la fonction executeSQL() avec pour paramètre l'arraylist et le string.
+    Appel de la fonction tableGenerate() prenant en argument l'execution de la fonction executeSQL
+    }
 </pre>
 <br><br>
 
