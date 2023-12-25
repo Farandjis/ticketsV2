@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require (dirname(__FILE__) . "/ressources/fonctions/PHPfunctions.php");
 session_start();
