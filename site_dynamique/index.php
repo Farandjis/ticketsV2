@@ -84,7 +84,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 
     $connexion = mysqli_connect($host, 'visiteur', $USER_FICTIF_MDP['visiteur'], $database);
 
-    $reqSQL = "SELECT ID_Ticket, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), OBJET_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_visiteur";
+    $reqSQL = "SELECT ID_Ticket, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), TITRE_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_visiteur";
 
     $getResultSQL = mysqli_query($connexion, $reqSQL);
     if (! (mysqli_num_rows($getResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
