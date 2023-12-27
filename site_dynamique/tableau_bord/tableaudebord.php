@@ -147,6 +147,16 @@ global $database, $host;
         <div class="form-recherche">
             <h2>Recherche</h2>
             <form action='#' method='POST'>
+                <div class="custom-select">
+                    <label for='selectionPossible'>Type de ticket</label><br>
+                    <select name="selectionPossible" id="selectionPossible">
+                        <option value="">-- Choisir un type de ticket --</option>
+                        <option value="personnels">Tickets personnels</option>
+                        <option value="attribuabe">Tickets attribuables</option>
+                        <option value="gerer">Tickets à gérer</option>
+                        <option value="Urgence">Urgence à définir</option>
+                    </select>
+                </div><br>
                 <?php
 
                 echo "<label for='date'>Date</label><br>";
@@ -157,17 +167,17 @@ global $database, $host;
                 if (isset($_POST["date2"]) and $_POST["date2"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date"]))) { echo "<input id='date2' type='date' name ='date2' value='" . htmlspecialchars($_POST["date2"]) . "'>"; }
                 else { echo "<input id='date2' type='date' name ='date2'>"; }
 
-                echo "<br>";
+                echo "<br><br>";
 
                 echo "<label for='titre'>Titre</label><br>";
                 if (isset($_POST["titre"]) and $_POST["titre"]) { echo "<input id='titre' type='text' name ='titre' value='" . htmlspecialchars($_POST["titre"]) . "'>"; }
                 else { echo "<input id='titre' type='text' name ='titre'>"; }
                 ?>
-                <br>
+                <br><br>
                 <span>Mots-clés</span><br>
                 <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
                     <?php
-                    if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des mots-clés"; }
+                    if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Sélectionner des mots-clés --"; }
                     elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
                     else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
 
