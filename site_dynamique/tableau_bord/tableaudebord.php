@@ -164,16 +164,16 @@ global $database, $host;
                 else { echo "<input id='titre' type='text' name ='titre'>"; }
                 ?>
                 <br>
-                <span>Mot-clé</span><br>
-                <div class="menu_motcle" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
+                <span>Mots-clés</span><br>
+                <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
                     <?php
                     if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "Cliquez pour sélectionner des mots-clés"; }
-                    elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 Mot-clé sélectionné";}
+                    elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
                     else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
 
-                    echo "<span class='entete_motcle' onclick='toggleDropdown()'>$texteBouton</span>";
+                    echo "<span class='entete_menu_checkbox' onclick='toggleDropdown()'>$texteBouton</span>";
                     ?>
-                    <div class="option_motcle">
+                    <div class="option_checkbox">
                         <?php
                         menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $lesMotcleTicketsCoches);
                         ?>
