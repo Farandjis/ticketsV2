@@ -13,6 +13,103 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 
 <br><br><br>
+## Mardi 26/12/2023 - Bilan du travail du 18/11/2023 au 25/12/2023, J-15 fin de TIX
+
+Mercredi 20 décembre, Monsieur HOGUIN a pu découvrir un peu plus notre plateforme avec la page de création de ticket.<br>
+Vendredi, il nous a pu faire un retour sur notre travail :
+  - Pour la page d'inscription et semblables, il nous recommande vivement d'utiliser les titles HTML plutôt que le bouton d'information que nous avions mis en place.
+  - Pour les tickets, il nous recommande vivement d'imposer à l'utilisateur une sélection de titre "libellé" pré-préparé par l'administrateur WEB.
+
+Pour les titres, jusqu'à présent l'utilisateur était libre de donner un titre au problème dont il reporte.<br>
+Il avait la possibilité d'associer un ou plusieurs libellés pour faciliter la tâche des techniciens et de l'administrateur web.<br>
+Cet échange souligne 2 problèmes :
+  - Une transformation de notre système de ticket à faire, qui par chance, ne devrait pas être complexe à mettre en place.
+  - Une confusion sur la définition de ce qu'est un libellé (pour M. HOGUIN : un titre, pour nous : plutôt des mots-clés).
+
+Par conséquent, cela implique une revue de la base de données (qui s'imposait déjà dans tous les cas) mais également des différentes pages.<br>
+Cela implique aussi un changement de nom : libellé devient mot-clé, titre sera l'unique nom désignant le nom d'un problème (il n'y aura plus "objet ticket", "nature du problème" etc).
+
+
+Une autre difficulté concernant l'organisation en cette fin de semaine et celle de la semaine prochaine : les vacances et fêtes de fin d'année.<br>
+Tom ne sera pas disponible durant la première semaine, Florent durant le premier Week-end et Enzo de samedi à mardi inclut pour des raisons non communiquées.<br>
+De même de mon côté, je ne serais pas disponible certains jours des vacances.<br>
+<br>
+<br>
+Nous sommes à 15 jours de la fin de TIX si nous voulons avoir assez de temps de faire les dernières vérifications et préparer notre présentation.<br>
+Nous avons une plateforme non terminée comme convenu, ce qui provoque un retard important sur la création de la vidéo et les tests finaux.<br>
+<br>
+<br>
+**ATTENTION : LA BASE DE DONNEES A ÉTÉ RADICALEMENT CHANGÉE, ELLE N'EST PLUS COMPATIBLE AVEC LA V2.2 DU SITE.**
+
+
+#### Avancé
+
+- **Ce qui sera à terminer cette semaine :**<br>
+  - PHP Florent : Page administration : développement, test
+  - PHP Florent : Journal d'activité : développement, test
+  - PHP Florent : Finition de la fonction libellée de Florent : Conception, développement, test
+  - PHP Tom : Vérification JavaScript des entrées pour les pages : modification mot de passe et email, création ticket
+  - PHP Tom : Modification Ticket Manque un bouton "fermer le ticket"
+  - PHP : Manque la possibilité de supprimer son compte : développement, test (SQL ok via sa fonction - Matthieu)
+  - PHP Enzo : Test de modification et création Ticket v2
+  - PHP Enzo : Test d'Administration
+  - PHP Enzo : Test fonction libellé de Florent
+  - PHP Enzo : Test intégrale de la BD (vues, tables, fonctions, triggers, procédures)
+  - PHP Assia : Rendre accessible une version WEB de notre travail de droit -> Ah intégrer sur le dépôt !
+  - PHP Assia : Peut être revoir les CU pour la v2 et faire CU page Administration
+  - BD Matthieu : Suppr auto du compte
+  - BD Matthieu : BD pour la gestion des jetons
+  - PHP Matthieu : Intégration bouton recherche "Mes Tickets, Mes tickets bidules" sur tableau de bord
+  - PHP Matthieu : Intégration info supplémentaire dans pop up
+
+
+Assia est en charge d'intégrer les modifications HTML sur les pages PHP et l'intégration du nouveau système de titre.<br>
+Enzo s'occupe que des tests pour le moment.<br>
+Florent s'occupe en priorité d'Administration, mais peut travailler (demander de l'aide, aider) avec Assia.<br>
+Tom n'est pas encore disponible en ce mercredi 27 dec.<br>
+Je m'occupe de la DB, tdb et de la vidéo de mon côté.<br>
+
+
+Remarque : les tests doivent être effectués par Enzo, la conception par Florent
+
+- **A continuer :**
+  - La vidéo de présentation ne peut être continuer du moment que le site n'est pas terminée visuellement.
+
+- **Ajout que je propose :**
+  - PHP Tom : Administration : Possibilité de supprimer les mots-clés, titres ?
+
+
+
+#### Travail effectué
+- **Florent**<br>
+  - PHP : Administration - Développement en cours
+  - PHP : modifTicket - Développement v1
+
+- **Tom**<br>
+  -  JS : Administration Statique - Bouton de confirmation d'ajout de technicien
+  - CSS : Tableau de Bord Statique - Style pour bouton attribution
+  - CSS : Inscrption etc Statique - Info bulle (comme demandé par M Hoguin)
+
+- **Enzo** :<br>
+  - PHP : ModifTicket - Test v1
+  - PHP : CreerTicket - Test v1
+  - PHP : Connexion - Résolution pb horodatage dernière connexion
+  - PHP : ModifTicket - Résolution pb : Impossible de mettre un autre technicien pour un ticket
+
+- **Assia**<br>
+  - PHP : Cas d'utilisation pour : consulter ses demandes, créer ticket, rechercher des tickets, 
+
+- **Matthieu (chef de projet)**<br>
+  - PHP : Page modifTicket - Correction d'un problème d'affichage
+  - SQL : Correction BD avant la V2
+  - GIT : Fusion des branches pour la V2.2
+  - SQL : Revue intégrale de la BD : trie des vues, Utilisateurs Fictif, tables... (notamment suite à la demande de M Hoguin)
+  - SQL : Création des dernières fonctions, procédures et triggers (note : manque suppr auto comptes utilisateurs)
+
+
+<br><br><br>
+
+---
 
 ## Mercredi 20/12/2023 - Bilan du travail du 11/11/2023 au 17/12/2023, J-21 fin de TIX
 
@@ -106,6 +203,8 @@ Remarque : les tests doivent être effectués par Enzo, la conception par Floren
   -  BD : Finition de menuDeroulantTousLesLibelles
   -  BD : Trigger pour passer de "En attente" à "En cours" lorsque le technicien change (ou remplacer par Null)
   - Droit : Finition du travail de Droit (aide pour Assia)
+
+
 <br><br><br>
 
 ---
