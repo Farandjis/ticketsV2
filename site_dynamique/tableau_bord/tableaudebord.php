@@ -71,15 +71,16 @@ global $database, $host;
             if (isset($_POST["resetRecherche"]) and $_POST["resetRecherche"]) { header("Location: " . basename(__FILE__)); return; }
 
 
-            $vueTDB = "vue_tableau_bord"; $vueRTM = "vue_tdb_relation_ticket_motcle";
-            $reqSQL = "SELECT $vueTDB.ID_TICKET, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), TITRE_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM $vueTDB";
+            $vueTDB = "vue_tableau_bord"; $vueRTM = "vue_tdb_relation_ticket_motcle"; $vueATM = "vue_modif_ticket_adm_tech"; $vueTC = "vue_Ticket_client";
+            $reqSQL = "SELECT $vueTDB.ID_TICKET, DATE_FORMAT($vueTDB.HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), $vueTDB.TITRE_TICKET, $vueTDB.NIV_URGENCE_DEFINITIF_TICKET, $vueTDB.DESCRIPTION_TICKET, $vueTDB.ETAT_TICKET FROM $vueTDB";
 
 
             $paramsReqSQL = array(); $lesMotcleTicketsCoches = array();
 
-            if (isset($_POST["date"]) && isset($_POST["date2"]) && isset($_POST["titre"])){
+            if (isset($_POST["date"]) && isset($_POST["date2"]) && isset($_POST["titre"]) && isset($_POST["selectionPossible"])){
                 $valeurDejaDansWhere = false;
 
+                // ======================================= LES MOTS-CLÉS =======================================
                 if (isset($_POST["motcle_option"]) && $_POST["motcle_option"]){ // Si au moins 1 Mot-clé à été coché
                     $reqSQL = $reqSQL . " JOIN $vueRTM ON $vueRTM.ID_TICKET = $vueTDB.ID_TICKET ";
 
@@ -94,12 +95,47 @@ global $database, $host;
 
                     $reqSQL = $reqSQL . " WHERE $vueRTM.NOM_MOTCLE IN " . $listeSQL;
                     $valeurDejaDansWhere = true; // Indique qu'après le WHERE, il y a bien une valeur
-
-
-
                 }
 
+                // ======================================= LE TYPE DE TICKET =======================================
+                if ($_POST["selectionPossible"]){
 
+                    if ($_POST["selectionPossible"] == "ticketsPerso"){
+                        $reqSQL = $reqSQL . " JOIN $vueTC ON $vueTC.ID_TICKET = $vueTDB.ID_TICKET ";
+                    }
+
+                    // Catégories uniquement accessible aux techniciens et à l'administrateur web
+                    if (recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
+
+                        // Les tickets en cours de traitant pouvant être modifier par l'usager du site
+                        if ($_POST["selectionPossible"] == "ticketsEnCours"){
+                            $reqSQL = $reqSQL . " JOIN $vueATM ON $vueATM.ID_TICKET = $vueTDB.ID_TICKET ";
+
+                            if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
+                            else{ $reqSQL = $reqSQL . " AND ";}
+
+                            $reqSQL = $reqSQL . "$vueTDB.ETAT_TICKET = 'En cours de traitement' ";
+                        }
+
+                        if ($_POST["selectionPossible"] == "ticketsOuvert"){
+                            if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
+                            else{ $reqSQL = $reqSQL . " AND ";}
+
+                            $reqSQL = $reqSQL . "$vueTDB.ETAT_TICKET = 'Ouvert' ";
+                        }
+                    }
+
+                    if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
+                        if ($_POST["selectionPossible"] == "ticketsAttente"){
+                            if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
+                            else{ $reqSQL = $reqSQL . " AND ";}
+
+                            $reqSQL = $reqSQL . "$vueTDB.ETAT_TICKET = 'En attente' ";
+                        }
+                    }
+                }
+
+                // ======================================= LE TITRE =======================================
                 if ($_POST["titre"]){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
@@ -107,6 +143,7 @@ global $database, $host;
                     $reqSQL = $reqSQL . "$vueTDB.TITRE_TICKET LIKE '%" . htmlspecialchars($_POST["titre"]) . "%'";
                 }
 
+                // ======================================= DATE APRÈS LE =======================================
                 if ($_POST["date"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date2"])) ){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
@@ -115,6 +152,7 @@ global $database, $host;
                     $paramsReqSQL[] = $_POST["date"] . " 00:00:00"; // 00:00:00 précise que c'est la journée comprise
                 }
 
+                // ======================================= DATE AVANT LE =======================================
                 if ($_POST["date2"] and ($_POST["date"] <= $_POST["date2"] or (!$_POST["date"]))){
                     if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                     else{ $reqSQL = $reqSQL . " AND ";}
@@ -149,12 +187,12 @@ global $database, $host;
             <form action='#' method='POST'>
                 <div class="custom-select">
                     <label for='selectionPossible'>Type de ticket</label><br>
-                    <select name="selectionPossible" id="selectionPossible">
+                    <select name="selectionPossible" id="">
 
                         <?php
                         echo "<option value=''>-- Choisir un type de ticket --</option>"; // tt
-                        if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsPerso"){ echo "<option value='ticketsPerso' selected>Mes tickets</option>"; }
-                        else { echo "<option value='ticketsPerso'>Mes tickets</option>"; }
+                        if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsPerso"){ echo "<option value='ticketsPerso' selected>Mes demandes actuelles</option>"; }
+                        else { echo "<option value='ticketsPerso'>Mes demandes actuelles</option>"; }
 
                         if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
                             if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsAttente") {
