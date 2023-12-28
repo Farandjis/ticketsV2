@@ -32,6 +32,11 @@ GRANT SELECT(ID_TICKET)
     ON DB_TIX.vue_modif_creation_ticket_utilisateur
     TO 'role_utilisateur';
 
+-- Ajouter un ticket
+GRANT INSERT(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET)
+    ON DB_TIX.vue_modif_creation_ticket_utilisateur
+    TO 'role_utilisateur';
+
 -- Modifier un de ses tickets
 GRANT UPDATE(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET)
     ON DB_TIX.vue_modif_creation_ticket_utilisateur
