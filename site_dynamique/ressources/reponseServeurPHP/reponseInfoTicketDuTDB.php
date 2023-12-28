@@ -37,6 +37,7 @@ try {
                 // Dictionnaire au format : clé -> le nom du texte (ex : Titre), valeur -> le contenu du texte (ex: Le 28/12/2023 à 18h16)
                 $dicoDesInfosSupplementaires = array(); // Envoi le texte du bouton (case 1) et l'ID TICKET correspondant (case 2)
 
+
                 // ===================== DATE DE CRÉATION DU TICKET (tout le monde)
                 $dateDerniereModifTicket = mysqli_fetch_row(executeSQL("SELECT DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i') FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
                 $dicoDesInfosSupplementaires["Dernière modification effectuée"] = $dateDerniereModifTicket;
@@ -56,9 +57,29 @@ try {
 
                 // ===================== PRÉNOM ET NOM DU TECHNICIEN ASSOCIÉ (tout le monde)
                 $technicienDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_TECH, NOM_TECH FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
-                if ($technicienDuTicket[0] != null) { // si un technicien est affecté au ticket
+                if ($technicienDuTicket[0] != NULL) { // si un technicien est affecté au ticket
                     $dicoDesInfosSupplementaires["Technicien affecté"] = "$technicienDuTicket[0] $technicienDuTicket[1]"; // Prénom et nom du technicien
                 }
+
+
+                // ===================== LES MOTS-CLÉS DU TICKET (tout le monde)
+                $tousLesMotsClesDuTicket = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur);
+                if ( mysqli_num_rows($tousLesMotsClesDuTicket) != 0) {
+                    $ensembleDesMotsCles = "";
+                    while ($unMotCle = mysqli_fetch_row($tousLesMotsClesDuTicket)) {
+                        if ($ensembleDesMotsCles != "") {
+                            $ensembleDesMotsCles = $ensembleDesMotsCles . ", ";
+                        }
+                        $ensembleDesMotsCles = $ensembleDesMotsCles . $unMotCle[0];
+                    }
+
+                    if (strlen($ensembleDesMotsCles) > 300) { // Cas où les mots-clés risquent de prendre beaucoup trop de place pour la pop-up
+                        $ensembleDesMotsCles = substr($ensembleDesMotsCles, 0, 300) . "...";
+                    }
+
+                    $dicoDesInfosSupplementaires["Mots-clés associés"] = $ensembleDesMotsCles;
+                }
+
 
                 header('Content-Type: application/json');
                 echo json_encode($dicoDesInfosSupplementaires);
