@@ -150,11 +150,35 @@ global $database, $host;
                 <div class="custom-select">
                     <label for='selectionPossible'>Type de ticket</label><br>
                     <select name="selectionPossible" id="selectionPossible">
-                        <option value="">-- Choisir un type de ticket --</option>
-                        <option value="personnels">Tickets personnels</option>
-                        <option value="attribuabe">Tickets attribuables</option>
-                        <option value="gerer">Tickets à gérer</option>
-                        <option value="Urgence">Urgence à définir</option>
+
+                        <?php
+                        echo "<option value=''>-- Choisir un type de ticket --</option>"; // tt
+                        if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsPerso"){ echo "<option value='ticketsPerso' selected>Mes tickets</option>"; }
+                        else { echo "<option value='ticketsPerso'>Mes tickets</option>"; }
+
+                        if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
+                            if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsAttente") {
+                                echo "<option value='ticketsAttente' selected>Tickets en attente</option>";
+                            } else {
+                                echo "<option value='ticketsAttente'>Tickets en attente</option>";
+                            }
+                        }
+
+                        if (recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
+                            if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsOuvert") {
+                                echo "<option value='ticketsOuvert' selected>Tickets ouvert</option>";
+                            } else {
+                                echo "<option value='ticketsOuvert'>Tickets ouvert</option>";
+                            }
+
+                            if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsEnCours") {
+                                echo "<option value='ticketsEnCours' selected>Tickets en cours à gérer</option>";
+                            } else {
+                                echo "<option value='ticketsEnCours'>Tickets en cours à gérer</option>";
+                            }
+                        }
+                        ?>
+
                     </select>
                 </div><br>
                 <?php
