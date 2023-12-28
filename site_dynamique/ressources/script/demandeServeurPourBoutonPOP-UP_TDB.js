@@ -140,7 +140,7 @@ function ajoutDesInfosDansPOP_UP(){
     if (requestInfoTicket.readyState == 4 && requestInfoTicket.status == 200) { // Si c'est ok
         console.log("(ajoutDesInfosDansPOP_UP) Réponse valide");
 
-        // On récupère la le dictionnaire au format : clé -> le nom du texte (ex : Titre), valeur -> le contenu du texte (ex: Le 28/12/2023 à 18h16)
+        // On récupère le dictionnaire au format : clé -> le nom du texte (ex : Titre), valeur -> le contenu du texte (ex: Le 28/12/2023 à 18h16)
         let dicoDesInfosSupplementaires = JSON.parse(requestInfoTicket.responseText);
         // On récupère les clés du dictionnaire
         let listeDesClesDuDicoInfosSupp = Object.keys(dicoDesInfosSupplementaires);
