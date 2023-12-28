@@ -47,7 +47,7 @@ JOIN mysql.user ON mysql.user.User = ID_USER
 WHERE mysql.user.default_role = "role_technicien";
 
 -- LISTE DE TOUS LES UTILISATEURS DE TIX POUR L'ADMINISTRATEUR WEB
-CREATE VIEW affiche_utilisateurs_pour_adm_web AS SELECT ID_USER, PRENOM_USER, NOM_USER FROM Utilisateur WHERE login_user != NULL;
+CREATE VIEW affiche_utilisateurs_pour_adm_web AS SELECT ID_USER, PRENOM_USER, NOM_USER FROM Utilisateur WHERE login_user IS NOT NULL;
 
 -- LE TABLEAU DE BORD
 
