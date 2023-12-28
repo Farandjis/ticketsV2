@@ -76,7 +76,9 @@ CREATE OR REPLACE VIEW vue_tableau_bord AS
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.PRENOM_USER ELSE 'ACCÈS INTERDIT'
     END AS PRENOM_CREA,
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.NOM_USER ELSE 'ACCÈS INTERDIT'
-    END AS NOM_CREA
+    END AS NOM_CREA,
+    CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.EMAIL_USER ELSE 'ACCÈS INTERDIT'
+    END AS EMAIL_CREA
     FROM Ticket AS T
         JOIN Utilisateur AS CREA ON T.ID_USER = CREA.ID_USER
         LEFT OUTER JOIN vue_technicien AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
