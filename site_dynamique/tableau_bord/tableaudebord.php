@@ -56,12 +56,12 @@ global $database, $host;
         <table class="table-tableau-bord table-popup" id="tableaudebord">
             <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Date</th>
                 <th>Titre</th>
                 <th>Niv. Urgence</th>
                 <th>Description</th>
-                <th>Etat</th>
+                <th>État</th>
             </tr>
             </thead>
             <tbody class="table-ticket">
