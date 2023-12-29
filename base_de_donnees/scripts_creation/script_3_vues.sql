@@ -69,6 +69,7 @@ CREATE OR REPLACE VIEW vue_tableau_bord AS
     T.HORODATAGE_DERNIERE_MODIF_TICKET,
     TECH.PRENOM_USER as PRENOM_TECH,
     TECH.NOM_USER as NOM_TECH,
+    TECH.EMAIL_USER as EMAIL_TECH,
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN T.ID_TECHNICIEN ELSE 'ACCÈS INTERDIT' -- On affiche la valeur que si la personne est un tech ou adm web
     END AS ID_TECHNICIEN,
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN T.ID_USER ELSE 'ACCÈS INTERDIT'
@@ -79,6 +80,7 @@ CREATE OR REPLACE VIEW vue_tableau_bord AS
     END AS NOM_CREA,
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.EMAIL_USER ELSE 'ACCÈS INTERDIT'
     END AS EMAIL_CREA
+    
     FROM Ticket AS T
         JOIN Utilisateur AS CREA ON T.ID_USER = CREA.ID_USER
         LEFT OUTER JOIN vue_technicien AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
