@@ -167,9 +167,9 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentification (connexion et déconnexion)      |
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur                                                                                                  | Identifier un utilisateur                    |
-| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> - Créer un ticket <br><br> -Rechercher un ticket <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
+| Stocker et répertorier des tickets       | Créer un ticket                                                                                                                                                                                                 |      |
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur                                                                                                  | Authentifier (connexion et déconnexion)                     |
+| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> -Rechercher un ticket |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
 
@@ -255,8 +255,8 @@ Par ordre alphabétique.
 - <b>c) Les cas d’utilisation système.</b>
   - [Afficher une page](#a1cu1)
   - [Sélectionner une page](#a1cu2)
-  - [Authentification (connexion)](#a1cu3)
-  - [Authentification (déconnexion)](#a1cu4)
+  - [Authentifier(connexion)](#a1cu3)
+  - [Authentifier(déconnexion)](#a1cu4)
   - [Inscrire un visiteur](#a1cu5)
   - [Modifier son mot de passe](#a1cu6)
   - [Modifier son Email](#a1cu7)
@@ -498,7 +498,7 @@ Echec 3 :
     - Le logiciel ne comprend, n'arrive pas à lancer le chargement 
 ```
 
-- #### <a name="a1cu3"> Nom : Authentification (connexion) 
+- #### <a name="a1cu3"> Nom : Authentifier (connexion) 
 ```
 Portée : Serveur
 Niveau : Sous-fonction
@@ -536,7 +536,7 @@ Echec 2 :
     - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
 
 ```
-- #### <a name="a1cu4"> Nom : Authentification (déconnexion) 
+- #### <a name="a1cu4"> Nom : Authentifier (déconnexion) 
 ```
 Portée : Serveur
 Niveau : Sous-fonction
