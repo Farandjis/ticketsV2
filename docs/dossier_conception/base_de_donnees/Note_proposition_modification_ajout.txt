@@ -1,3 +1,0 @@
-Faudrait-il pas mettre une vue pour que l'utilisateur est accès qu'à ces propre données
-Faudrait-il pas mettre une vue pour que l'utilisateur est accès qu'à ces propre ticket et qu'il puissent les modifiés
-
