@@ -106,6 +106,12 @@ GRANT UPDATE(TITRE_TICKET, ID_TECHNICIEN, DESCRIPTION_TICKET, NIV_URGENCE_DEFINI
     ON vue_modif_ticket_adm_tech
     TO 'role_admin_web';
 
+-- Ajouter un titre
+GRANT INSERT ON TitreTicket TO 'role_admin_web'
+
+-- Supprimer un titre
+GRANT DELETE ON TitreTicket TO 'role_admin_web'
+
 -- Ajouter un mot clé
 GRANT INSERT ON DB_TIX.MotcleTicket TO 'role_admin_web';
 
