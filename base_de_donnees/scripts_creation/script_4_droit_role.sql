@@ -21,6 +21,9 @@ GRANT UPDATE(EMAIL_USER) ON DB_TIX.vue_Utilisateur_maj_email TO 'role_utilisateu
 -- Voir les différents mots-clés disponibles pour un ticket
 GRANT SELECT ON DB_TIX.MotcleTicket TO 'role_utilisateur';
 
+-- Voir les différents titres disponibles pour un ticket
+GRANT SELECT ON TitreTicket TO 'role_utilisateur';
+
 -- Voir les tickets de son tableau de bord
 GRANT SELECT ON DB_TIX.vue_tableau_bord TO 'role_utilisateur'; -- A cause des JOIN, on doit donner l'accès SELECT intégrale (mais la vu limite)
 
