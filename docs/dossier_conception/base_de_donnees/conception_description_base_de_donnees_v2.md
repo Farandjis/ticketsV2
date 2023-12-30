@@ -26,17 +26,17 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - Liste de ses attributs
   - Options des attributs (clées primaire...)
 
-- ### [IV - Les utilisateurs MySQL]()
-  - Pour chaque type d'utilisateur MySQL
-  - Nom du type d'utilisateur
-  - Description de l'utilisateur
-  - Ses droits
-
-- ### [V - Les vues]()
+- ### [IV - Les vues]()
   - Pour chaque type d'utilisateur
   - Nom de la vue
   - Description de la vue
   - Ce qu'elle fait
+
+- ### [V - Les rôles et utilisateurs MariaDB]()
+  - Pour chaque type d'utilisateur MySQL
+  - Nom du type d'utilisateur
+  - Description de l'utilisateur
+  - Ses droits
 
 - ### [VI - Les vues des users fictifs]()
 
@@ -133,3 +133,117 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - ### RelationTicketsMotscles
     - **ID_TICKET** [INT] : primary key, foreign key (Ticket.ID_TICKET) NOT NULL
     - **NOM_MOTCLE** [VARCHAR 30] : primary key, foreign key (MotcleTicket.NOM_MOTCLE) NOT NULL
+
+
+
+- ### V - Les rôles et utilisateurs MariaDB
+  - Rôle Utilisateur `role_utilisateur`
+    - **Présentation**
+      - Est une personne inscrite sur la plateforme et ayant le droit d'y accéder et de l'utiliser.
+    - **Actions**
+      - Peut consulter ses informations personnelles.
+      - Peut se connecter, se déconnecter, supprimer son compte.
+      - Peut changer son mot de passe et son adresse email.
+      - Peut créer un ticket.
+      - Peut modifier son ticket s'il est encore dans l'état "En attente" de la validation.
+      - Peut consulter l'ensemble de ses tickets, y compris ceux fermés.
+      - Peut avoir un aperçu des tickets en cours de traitement ou ouvert des autres utilisateurs.
+      - Ne peut voir que le nom, prénom et adresse email des autres utilisateurs que s'ils sont techniciens. 
+    - **Droits**
+      - SELECT
+        - DB_TIX.vue_Utilisateur_client
+        - DB_TIX.vue_Ticket_client
+        - DB_TIX.MotcleTicket
+        - DB_TIX.vue_tableau_bord
+        - DB_TIX.vue_tdb_relation_ticket_motcle
+        - (ID_TICKET) DB_TIX.vue_modif_creation_ticket_utilisateur
+        - DB_TIX.vue_suppr_rtm_tdb
+        - DB_TIX.vue_technicien
+      - INSERT
+        - (TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) DB_TIX.vue_modif_creation_ticket_utilisateur
+        - DB_TIX.RelationTicketsMotscles
+      - UPDATE
+        - (EMAIL_USER) ON DB_TIX.vue_Utilisateur_maj_email
+        - (TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) DB_TIX.vue_modif_creation_ticket_utilisateur
+      - DELETE
+        - DB_TIX.vue_suppr_rtm_tdb
+  - Rôle technicien `role_technicien`
+    - **Présentation**
+      - Est un utilisateur capable de prendre en charge un ticket (se l'attribuer) afin de le modifier et de fermer.
+    - **Actions**
+      - Possède les droits d'un utilisateur.
+      - Peut s'attribuer un ticket ouvert.
+      - Peut modifier un ticket dont il en a la charge (donc en cours de traitement).
+      - Peut fermer un ticket (si le problème a été résolu).
+      - Peut avoir accès au prénom, nom et adresse email du créateur du ticket.
+    - **Droits**
+      - SELECT
+        - (ID_TICKET) vue_modif_ticket_adm_tech
+        - (ID_TICKET) vue_associe_ticket_tech
+      - UPDATE
+        - (TITRE_TICKET, DESCRIPTION_TICKET) vue_modif_ticket_adm_tech
+        - (ID_TECHNICIEN) vue_associe_ticket_tech
+  - Rôle technicien `role_admin_web`
+    - **Présentation**
+      - Est un utilisateur capable de gérer les tickets et les utilisateurs ainsi que de valider un ticket en attente,
+    - **Actions**
+      - Possède les droits d'un utilisateur excepté :
+        - Ne peut pas supprimer son compte
+      - Peut attribuer un ticket à un technicien
+      - Peut changer de technicien la prise en charge d'un ticket
+      - Peut modifier à tout moment n'importe quel ticket tant qu'il n'est pas fermé.
+      - Peut ajouter et supprimer des mots-clés
+      - Peut ajouter et supprimer des titres
+      - Peut définir un utilisateur comme technicien
+      - Peut redéfinir un technicien comme utilisateur
+      - A accès aux prénoms, noms et adresse email de tout le monde
+    - **Droits**
+      - SELECT
+        - (ID_TICKET) vue_modif_ticket_adm_tech
+        - affiche_utilisateurs_pour_adm_web
+      - INSERT
+        - DB_TIX.MotcleTicket
+        - DB_TIX.RelationTicketsMotscles
+      - DELETE
+        - DB_TIX.MotcleTicket
+        - DB_TIX.RelationTicketsMotscles
+  - Rôle administrateur système `role_admin_sys`
+    - **Présentation**
+      - Est un utilisateur capable d'accéder au journal d'activité de la plateforme et de suivre l'activité de connexion des utilisateurs.
+    - **Actions**
+      - Possède les droits d'un utilisateur excepté :
+        - Ne peut pas supprimer son compte
+      - Peut voir l'historique des tickets (les tickets fermés)
+      - Peut voir les informations de connexions des utilisateurs (date de création du compte, dernière connexion et IP dernière connexion)
+      - Peut voir l'activité sur la plateforme (journal d'activité)
+    - **Droits**
+      - SELECT
+        - vue_historique
+        - vue_historique_relation_ticket_motcle
+        - ...
+    
+
+
+
+
+
+
+  - un administrateur système
+    - S'occupe du site plutôt journaux d'activité
+  - un administrateur web
+    - S'occupe des utilisateurs et des tickets
+  - un ou des techniciens
+    - Ceux qui réparent les pannes, ils consultent les tickets et se les attributs
+  - un utilisateur inscrit
+    - L'utilisateur de la plateforme, connecté et pouvant posté des tickets
+  - un visiteur
+    - Celui qui consulte l'application sans avoir de compte (ou en étant déconnecté)
+  - # Marquer ici les profils MariaDB pour le site
+  - fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à récupérer l'identifiant de l'utilisateur à partir du login et d'autres actions liés à la connexion d'un utilisateur.
+  - fictif_insertionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à insérer les données de l'utilisateur au moment de l'inscription dans la base de données et de donner les droits à chaque utilisateur MariaDB.
+  - fictif_sélectionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à récupérer le rôle de l'utilisateur pour afficher ce qu'il doit voir.
+  - fictif_updateDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - Profil dédié à modifier l'horodatage et l'ip de dernière connexion du compte connecter.
