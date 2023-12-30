@@ -5,10 +5,10 @@ INF2-A
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test
-## Site statique
+## Base de données
 
 <br><br>
-Ce document permet de s'assurer que les pages web statique soient conforme à ce qui est attendu.
+Ce document permet de s'assurer que la base de données soit conforme à ce qui à été conçu.
 
 </div>
 
@@ -19,14 +19,13 @@ Ce document permet de s'assurer que les pages web statique soient conforme à ce
 - ### [II - Description de la procédure de test](#II)
 - ### [III - Contexte des tests](#III)
 - ### [IV - Test PHP](#IV)
-  - #### [Connexion](#a)
-  - #### [Inscription](#b)
-  - #### [Déconnexion](#c)
-  - #### [Modification Email](#d)
-  - #### [Modification mot de passe](#e)
-- ### [V - Test base de donnée](#V)
-  - #### [Insertion utilisateur](#1)
-  - #### [Insertion ticket](#2)
+- ### [V - Test](#V)
+  - #### [Table Utilisateur](#1)
+  - #### [Table Ticket](#2)
+  - #### [role_utilisateur](#3)
+  - #### [role_technicien](#4)
+  - #### [role_admin_sys](#5)
+  - #### [role_admin_web](#6)
 
 
 <br><br><br>
@@ -37,24 +36,24 @@ Ce document permet de s'assurer que les pages web statique soient conforme à ce
 
 ## <a name="I"></a>I - Introduction
 
-Le document suivant à pour but de tester les différentes pages du site dynamique réalisé au niveau de la gestion des profils utilisateurs. Nous testerons plusieurs fonctionnalités que nous allons ajouter en rapport avec la gestion des profils des utilisateurs.
+Le document suivant à pour but de tester la base de données du site dynamique.
 <br>
 
 ## <a name="II"></a>II - Description de la procédure de test
 
-Les fonctionnalités que nous allons tester seront la connexion des utilisateurs, l’inscription de nouveaux utilisateurs, la déconnexion des utilisateurs et la modification de certaines informations des utilisateurs comme l’email ou le mot de passe.
+Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi que les différents droit des rôles au niveau des vues
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
 
 | Définition                         | Situation pour le test                                           |
 |------------------------------------|------------------------------------------------------------------|
-| Produit testé                      | Site dynamique (PHP)                                             |
+| Produit testé                      | Base de données                                                  |
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                               |
-| Date de début                      |                                                                  |
+| Date de début                      | 29/12/2023                                                       |
 | Date de finalisation               |                                                                  |
-| Test à appliquer                   | Vérification de la validité du site                              |
+| Test à appliquer                   | Vérification de la conformité de la base de données              |
 | Responsable de la campagne de test | GUIGNOLLE Enzo                                                   |
 
 <br><br><br>
@@ -63,92 +62,525 @@ Les fonctionnalités que nous allons tester seront la connexion des utilisateurs
 
 <br><br><br>
 
-## <a name="IV"></a>IV - Test PHP
+## <a name="V"></a>IV - Test
 
-### <a name="a"></a>Connexion
-
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
-| 2      |         |                  |                 |
-| 3      |         |                  |                 |
-| 4      |         |                  |                 |
-
-- ### <a name="b"></a>Inscription
-
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
-| 2      |         |                  |                 |
-| 3      |         |                  |                 |
-| 4      |         |                  |                 |
-- ### <a name="c"></a>Déconnexion
-
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
-| 2      |         |                  |                 |
-| 3      |         |                  |                 |
-| 4      |         |                  |                 |
-- ### <a name="d"></a>Modification Email
-
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
-| 2      |         |                  |                 |
-| 3      |         |                  |                 |
-| 4      |         |                  |                 |
-- ### <a name="e"></a>Modification mot de passe
-
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
-| 2      |         |                  |                 |
-| 3      |         |                  |                 |
-| 4      |         |                  |                 |
-
-## <a name="V"></a>IV - Test base de données
-
-### <a name="1"></a>Insertion utilisateur
+### <a name="1"></a>Table Utilisateur
 
 - Cas n°1
-  - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DDupont', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
+  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DDupont', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
   - Résultat attendu : OK
   - Résultat obtenu : OK
 
 - Cas n°2
-    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DD', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
-    - Résultat attendu : KO
-    - Résultat obtenu : KO
+  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DD', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
+  - Résultat attendu : KO
+  - Résultat obtenu : KO
 
 - Cas n°3
-    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL);
-    - Résultat attendu : OK
-    - Résultat obtenu : OK
+  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL);
+  - Résultat attendu : OK
+  - Résultat obtenu : OK
 
 - Cas n°4
-    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont#gmail.com', current_timestamp(), NULL, NULL);
-    - Résultat attendu : KO
-    - Résultat obtenu : KO
+  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont#gmail.com', current_timestamp(), NULL, NULL);
+  - Résultat attendu : KO
+  - Résultat obtenu : KO
 
 - Cas n°5
-    - INSERT INTO `utilisateur` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.fr', current_timestamp(), NULL, NULL);
-    - Résultat attendu : OK
-    - Résultat obtenu : OK
+  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.fr', current_timestamp(), NULL, NULL);
+  - Résultat attendu : OK
+  - Résultat obtenu : OK
 
-### <a name="2"></a>Insertion ticket
+### <a name="2"></a>Table Ticket
 
 - Cas n°1
-  - INSERT INTO `ticket` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
+  - INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
   - Résultat attendu : OK
   - Résultat obtenu : OK
 
 - Cas n°2
-  - INSERT INTO `ticket` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'L\'ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
+  - INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'L\'ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
   - Résultat attendu : OK
   - Résultat obtenu : OK
 
 - Cas n°3
-  - INSERT INTO `ticket` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Problème de connexion', 'Personne ne peut se connecter sur les PC de la salle G23', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
+  - INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Problème de connexion', 'Personne ne peut se connecter sur les PC de la salle G23', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
   - Résultat attendu : OK
   - Résultat obtenu : OK
+
+### <a name="3"></a>role_utilisateur
+
+#### vue_Utilisateur_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Ticket_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Utilisateur_maj_email
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### MotcleTicket
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tableau_bord
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tdb_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_creation_ticket_utilisateur
+
+| Cas n° | Critère                                                                                                | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                                                    | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                                               | KO               | KO              |
+
+#### RelationTicketsMotscles
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_suppr_rtm_tdb
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
+
+#### vue_technicien
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+
+### <a name="4"></a>role_technicien
+
+#### vue_Utilisateur_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Ticket_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Utilisateur_maj_email
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### MotcleTicket
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tableau_bord
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tdb_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_creation_ticket_utilisateur
+
+| Cas n° | Critère                                                                                                | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                                                    | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                                               | KO               | KO              |
+
+#### RelationTicketsMotscles
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_suppr_rtm_tdb
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
+
+#### vue_technicien
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_ticket_adm_tech
+
+| Cas n° | Critère                                                                    | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                        | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                                   | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET) sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                   | KO               | KO              |
+
+#### vue_associe_ticket_tech
+
+| Cas n° | Critère                                                 | Résultat attendu | Résultat obtenu |
+|:-------|---------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue     | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(ID_TECHNICIEN) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                | KO               | KO              |
+
+#### vue_historique
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_historique_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+### <a name="5"></a>role_admin_sys
+
+#### vue_Utilisateur_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Ticket_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Utilisateur_maj_email
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### MotcleTicket
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tableau_bord
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tdb_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_creation_ticket_utilisateur
+
+| Cas n° | Critère                                                                                                | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                                                    | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                                               | KO               | KO              |
+
+#### RelationTicketsMotscles
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_suppr_rtm_tdb
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
+
+#### vue_technicien
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_ticket_adm_tech
+
+| Cas n° | Critère                                                                    | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                        | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                                   | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET) sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                   | KO               | KO              |
+
+#### vue_associe_ticket_tech
+
+| Cas n° | Critère                                                 | Résultat attendu | Résultat obtenu |
+|:-------|---------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue     | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(ID_TECHNICIEN) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                | KO               | KO              |
+
+### <a name="6"></a>role_admin_web
+
+#### vue_Utilisateur_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Ticket_client
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_Utilisateur_maj_email
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### MotcleTicket
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tableau_bord
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tdb_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_creation_ticket_utilisateur
+
+| Cas n° | Critère                                                                                                | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                                                    | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                                               | KO               | KO              |
+
+#### RelationTicketsMotscles
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_suppr_rtm_tdb
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
+
+#### vue_technicien
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_modif_ticket_adm_tech
+
+| Cas n° | Critère                                                                    | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                        | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                                   | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, DESCRIPTION_TICKET) sur la vue | OK               | OK              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                   | KO               | KO              |
+
+#### vue_associe_ticket_tech
+
+| Cas n° | Critère                                                 | Résultat attendu | Résultat obtenu |
+|:-------|---------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue     | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(ID_TECHNICIEN) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                | KO               | KO              |
+
+#### vue_modif_ticket_adm_tech
+
+| Cas n° | Critère                                                                                                                 | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT(ID_TICKET) sur la vue                                                                     | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue                                                                                | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE(TITRE_TICKET, ID_TECHNICIEN, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET) sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue                                                                                | KO               | KO              |
+
+#### MotcleTicket
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
+
+#### RelationTicketsMotscles
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | KO               | KO              |
+| 2      | L'utilisateur tente un INSERT sur la vue | OK               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
+
+#### affiche_utilisateurs_pour_adm_web
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | OK              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | OK              |
