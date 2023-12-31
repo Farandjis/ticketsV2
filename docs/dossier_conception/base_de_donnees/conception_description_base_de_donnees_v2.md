@@ -224,29 +224,50 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - vue_historique
         - vue_historique_relation_ticket_motcle
         - ...
-    
-
-
-
-
-
-
-  - un administrateur système
-    - S'occupe du site plutôt journaux d'activité
-  - un administrateur web
-    - S'occupe des utilisateurs et des tickets
-  - un ou des techniciens
-    - Ceux qui réparent les pannes, ils consultent les tickets et se les attributs
-  - un utilisateur inscrit
-    - L'utilisateur de la plateforme, connecté et pouvant posté des tickets
-  - un visiteur
-    - Celui qui consulte l'application sans avoir de compte (ou en étant déconnecté)
-  - # Marquer ici les profils MariaDB pour le site
-  - fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
-    - Profil dédié à récupérer l'identifiant de l'utilisateur à partir du login et d'autres actions liés à la connexion d'un utilisateur.
-  - fictif_insertionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
-    - Profil dédié à insérer les données de l'utilisateur au moment de l'inscription dans la base de données et de donner les droits à chaque utilisateur MariaDB.
-  - fictif_sélectionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
-    - Profil dédié à récupérer le rôle de l'utilisateur pour afficher ce qu'il doit voir.
-  - fictif_updateDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
-    - Profil dédié à modifier l'horodatage et l'ip de dernière connexion du compte connecter.
+  - Utilisateur MariaDB : Visiteur
+    - **Présentation**
+      - Consulte l'application sans avoir de compte (ou en étant déconnecté)
+    - **Actions**
+      - Ne peut que voir les 10 derniers tickets ouverts ou en cours de traitement
+    - **Droits**
+      - SELECT
+        - vue_Ticket_visiteur
+  - Utilisateur MariaDB : fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - **Présentation**
+      - Dédié à la connexion d'un utilisateur à la plateforme
+    - **Actions**
+      - Peut retrouver l'ID USER d'un utililisateur MariaDB à partir d'un login
+      - Gère les jetons
+    - **Droits**
+      - SELECT
+        - DB_TIX.UserFictif_connexion
+        - DB_JETONS_TIX.stockage_jeton
+      - INSERT
+        - (JETON_LOGIN_USER, JETON_IP_USER, JETON_VALEUR) ON DB_JETONS_TIX.stockage_jeton
+      - UPDATE
+        - (JETON_HORODATAGE_USER) ON DB_JETONS_TIX.stockage_jeton
+      - DELETE
+        - DB_JETONS_TIX.stockage_jeton
+  - Utilisateur MariaDB : fictif_inscriptionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - **Présentation**
+      - Dédié à l'inscription d'un utilisateur à la plateforme mais n'attribue pas les droits
+    - **Actions**
+      - Créer un utilisateur MariaDB
+      - Insère un utilisateur dans la table Utilisateur
+      - Peut voir les identifiants de tous les utilisateurs (sinon, on ne peut pas récupéré l'identifiant du dernier enregistrement...)
+    - **Droits**
+      - SELECT
+        - (ID_USER) ON UserFictif_inscription
+      - INSERT
+        - (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) ON UserFictif_inscription
+      - CREATE USER
+        - Partout !
+  - Utilisateur MariaDB : fictif_droitDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+    - **Présentation**
+      - Dédié à la distribution du rôle Utilisateur
+    - **Actions**
+      - Distribuer le rôle utilisateur à un utilisateur MariaDB
+      - Voir la structure de DB_TIX
+    - **Droits**
+      - SHOW VIEW ON DB_TIX.*
+      - GRANT role_utilisateur ... WITH ADMIN OPTION;
