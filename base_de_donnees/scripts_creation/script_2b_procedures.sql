@@ -48,3 +48,84 @@ GRANT EXECUTE ON PROCEDURE ATTENTION_SupprimerSonCompte TO role_utilisateur;
 
 
 
+
+
+
+
+-- ===================================================== SUPPRESSION DE TOUS LES COMPTES INUTILISÉS
+/*
+Procédure qui supprime tous les comptes utilisateurs et techniciens inactifs depuis au moins 36 mois.
+
+ATTENTION ! CETTE PROCÉDURE N'UTILISE PAS ATTENTION_SupprimerSonCompte !!
+Si le système de suppression de compte est modifié sur l'une des deux, il faut également le modifier sur l'autre !
+*/
+
+DROP PROCEDURE IF EXISTS ATTENTION_SupprimerTousLesComptesInutilises;
+
+DELIMITER //
+CREATE PROCEDURE ATTENTION_SupprimerTousLesComptesInutilises()
+BEGIN
+
+    -- Variable pour stocker l'ID User de l'utilisateur qu'on va supprimer
+    DECLARE unIDUtilisateur INT;
+
+    -- Déclarer une condition pour continuer ou non
+    DECLARE cestFinit INT DEFAULT FALSE;
+
+
+
+    -- On récupère tous les identifiants des comptes qui ne se sont pas connecté depuis au moins 36 mois.
+    DECLARE lesIDUtilisateurs CURSOR FOR
+        SELECT ID_USER
+        FROM Utilisateur
+        JOIN mysql.user ON user.User = Utilisateur.ID_USER AND (default_role = 'role_utilisateur' OR default_role = 'role_technicien')
+        WHERE DATEDIFF(CURDATE(), HORODATAGE_DERNIERE_CONNECTION_USER) >= 1095 AND LOGIN_USER IS NOT NULL; -- DATEDIFF : nombre de jours de différence
+
+
+    -- Lorsqu'il n'y a plus de ligne à traiter dans le curseur, CONTINUE HANDLER est appelé.
+    -- Ici, lorsqu'on a plus rien à a traiter, on marque la variable comme True. Hors True dans le if de la boucle signifie quitter la boucle.
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET cestFinit = TRUE;
+
+    OPEN lesIDUtilisateurs;
+
+    -- Parcourir les utilisateurs concernés
+    read_loop: LOOP
+        FETCH lesIDUtilisateurs INTO unIDUtilisateur; -- On récupère l'ID de l'utilisateur sélectionné dans la liste des ID
+
+        -- Sortir de la boucle s'il n'y a plus d'enregistrements
+        IF cestFinit THEN
+            LEAVE read_loop;
+        END IF;
+
+        
+        -- Même fonctionnement que la procédure qui permet à l'utilisateur de supprimer de lui même son compte
+        
+        START TRANSACTION;
+        
+        -- On retire l'utilisateur de la liste des utilisateurs de la plateforme TIX.
+        UPDATE DB_TIX.Utilisateur SET login_user = NULL, prenom_user = 'Utilisateur', nom_user = 'SUPPRIMÉ AUTO', email_user = 'supprimer.automatiquement@tix.fr', IP_DERNIERE_CONNECTION_USER = '0.0.0.0' WHERE ID_USER = unIDUtilisateur;
+        
+        -- On retire l'intégralité des droits au compte MariaDB de l'utilisateur.
+	SET @suppression_droits = CONCAT('REVOKE ALL ON *.* FROM ', QUOTE(unIDUtilisateur),'@',QUOTE('localhost'));
+        PREPARE suppression_droits2 FROM @suppression_droits;
+        EXECUTE suppression_droits2;
+        DEALLOCATE PREPARE suppression_droits2;
+        
+	-- On supprime le compte MariaDB.
+        SET @suppression_compte = CONCAT('DROP USER ', QUOTE(unIDUtilisateur),'@',QUOTE('localhost'));
+        PREPARE suppression_compte2 FROM @suppression_compte;
+        EXECUTE suppression_compte2;
+        DEALLOCATE PREPARE suppression_compte2;
+        
+        COMMIT;
+        -- Le compte TIX et MariaDB ont été effacés, la plateforme ne possède plus ses données personnelles et l'utilisateur ne peut plus se connecter.
+
+    END LOOP;
+
+    CLOSE lesIDUtilisateurs;
+END //
+DELIMITER ;
+
+
+
+
