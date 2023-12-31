@@ -153,6 +153,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - SELECT
         - DB_TIX.vue_Utilisateur_client
         - DB_TIX.vue_Ticket_client
+        - DB_TIX.TitreTicket
         - DB_TIX.MotcleTicket
         - DB_TIX.vue_tableau_bord
         - DB_TIX.vue_tdb_relation_ticket_motcle
@@ -202,9 +203,11 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - (ID_TICKET) vue_modif_ticket_adm_tech
         - affiche_utilisateurs_pour_adm_web
       - INSERT
+        - DB_TIX.TitreTicket
         - DB_TIX.MotcleTicket
         - DB_TIX.RelationTicketsMotscles
       - DELETE
+        - DB_TIX.TitreTicket
         - DB_TIX.MotcleTicket
         - DB_TIX.RelationTicketsMotscles
   - Rôle administrateur système `role_admin_sys`
