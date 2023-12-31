@@ -136,6 +136,48 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
+- ### IV - Les vues
+  - #### vue_Ticket_visiteur
+    Permet au visiteur de voir les 10 derniers tickets postés sur la plateforme (tous sauf ceux en attente)
+    - Sélectionne les 10 derniers tickets(ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET, ETAT_TICKET, HORODATAGE_CREATION_TICKET)
+    - Triés par HORODATAGE_CREATION_TICKET DESC
+    - Qui ne sont pas en attente
+  - #### vue_Utilisateur_client
+    Permet à l'utilisateur d'avoir accès à ses données personnelles
+  - #### vue_Utilisateur_maj_email
+    Permet à l'utilisateur de pouvoir modifier leurs adresses email
+  - #### vue_Ticket_client
+    Permet à l'utilisateur de voir tous leurs tickets qu'ils soient en attentes, ouverts, en cours ou fermés.
+  - #### vue_technicien
+    Liste les techniciens de la plateforme
+  - #### affiche_utilisateurs_pour_adm_web
+    Liste tous les utilisateurs de la plateforme
+  - #### vue_tableau_bord
+    Les tickets affichés dans le tableau de bord de l'usager
+  - #### vue_tdb_relation_ticket_motcle
+    Les mots clés associés aux tickets du tableau de bord de l'usager
+  - #### vue_suppr_rtm_tdb
+    Permet la suppression des mots clés associés aux tickets du tableau de bord de l'usager, s'il a le droit de modifier son ticket bien sur
+  - #### vue_modif_creation_ticket_utilisateur
+    Permet la création d'un ticket ainsi que sa modification s'il est en attente (modification uniquement des valeurs du formulaire de création de ticket)
+  - #### vue_modif_ticket_adm_tech
+    Permet la modification avancé d'un ticket pour un technicien ou l'administrateur web
+  - #### vue_associe_ticket_tech
+    Permet à un technicien de s'attribuer un ticket ouvert
+  - #### vue_historique
+    Liste tous les tickets fermés de la plateforme
+  - #### vue_historique_relation_ticket_motcle
+    Les mots clés associés aux tickets de l'historique
+  - #### UserFictif_connexion
+    Liste tous les identifiants ID USER et les logins pour l'Utilisateur Fictif connexion
+  - #### UserFictif_inscription
+    Permet l'insertion d'un utilisateur dans la table Utilisateur pour UF inscription
+  - #### UserFictif_maj_derniere_co
+    Permet la mise à jour des informations de connexion de la table Utilisateur pour UF connexion
+
+
+
+
 - ### V - Les rôles et utilisateurs MariaDB
   - Rôle Utilisateur `role_utilisateur`
     - **Présentation**
@@ -228,7 +270,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **Présentation**
       - Consulte l'application sans avoir de compte (ou en étant déconnecté)
     - **Actions**
-      - Ne peut que voir les 10 derniers tickets ouverts ou en cours de traitement
+      - Ne peut que voir les 10 derniers tickets de la plateforme excepté ceux qui sont fermés
     - **Droits**
       - SELECT
         - vue_Ticket_visiteur
