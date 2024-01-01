@@ -272,11 +272,6 @@ global $database, $host;
 
             </div>
 
-            <form action='modificationTicket.html' method='post'>
-
-                <input type='submit' name='modif' value='Modifier le ticket'><br>
-            </form>
-
             <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
         </div>
 

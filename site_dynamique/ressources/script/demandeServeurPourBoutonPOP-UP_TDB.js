@@ -51,6 +51,12 @@ function demandeSiCestPossibleDeModifierOuAttribuer(idLigneDuTicket) {
     let idTicket = document.getElementById("tableaudebord").getElementsByTagName("tr").item(idLigneDuTicket).getElementsByTagName("td")[0];
     let maListe = [idTicket.innerText];
 
+    let lePOP_UP = document.getElementById("pop-up"); // On récupère le pop-up
+    let lesInputDuPOP_UP = lePOP_UP.getElementsByTagName("input");
+    while (lesInputDuPOP_UP.length > 0){ // Tant que le pop-up contient des boutons de type input (ceux pour aller vers la page modif)
+        lesInputDuPOP_UP.item(0).remove(); // On les supprimes
+    }
+
     console.log("Préparation à l'envoi de la demande de modification ou d'attribution du ticket");
     requestEnr =new XMLHttpRequest()
     requestEnr.open("POST", "../ressources/reponseServeurPHP/reponseServeurModificationAttributionTicketTDB.php") // On indique qu'on envoi notre requête à ce fichier
@@ -86,10 +92,6 @@ function ajoutDuBoutonDansPOP_UP(){
     if (requestEnr.readyState == 4 && requestEnr.status == 200){ // Si c'est ok
         console.log("(demandeServeurPourBoutonPOP-UP) Réponse valide");
         let lePOP_UP = document.getElementById("pop-up"); // On récupère le pop-up
-
-        while (lePOP_UP.getElementsByTagName("input").length > 0){ // Tant que le pop-up contient des boutons de type input (ceux pour aller vers la page modif)
-            lePOP_UP.removeChild(lePOP_UP.lastChild); // On les supprimes
-        }
 
         console.log(requestEnr.responseText);
         let $infoBouton = JSON.parse(requestEnr.responseText); // On récupère la liste au format [txt_bouton, ID_TICKET]
