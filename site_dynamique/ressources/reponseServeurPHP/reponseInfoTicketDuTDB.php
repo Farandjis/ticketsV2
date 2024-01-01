@@ -6,8 +6,8 @@
  *      Il lui envoi des informations supplémentaires concernant le ticket demandé.
  *
  *      Les informations envoyées sont :
- *          - Administrateur WEB et Technicien uniquement : prénom + nom du créateur, Adresse email du créateur
- *          - Tout le monde : Date de la dernière modification du ticket, prénom et nom du technicien, mots-clés associés au ticket
+ *          - Administrateur WEB et Technicien uniquement : prénom + nom du créateur + Adresse email du créateur
+ *          - Tout le monde : Date de la dernière modification du ticket, prénom + nom + email du technicien, mots-clés associés au ticket
  */
 
 require(dirname(__FILE__) . "/../../ressources/fonctions/PHPfunctions.php");
@@ -40,27 +40,21 @@ try {
 
                 // ===================== DATE DE CRÉATION DU TICKET (tout le monde)
                 $dateDerniereModifTicket = mysqli_fetch_row(executeSQL("SELECT DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i') FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
-                $dicoDesInfosSupplementaires["Dernière modification effectuée"] = $dateDerniereModifTicket;
+                $dicoDesInfosSupplementaires["Dernière modification"] = $dateDerniereModifTicket;
 
 
                 if (recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
-                    // ===================== ADRESSE EMAIL DU CREATEUR (tech et adm w uniquement)
-                    $createurDuTicket = mysqli_fetch_row(executeSQL("SELECT EMAIL_CREA FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
-                    $dicoDesInfosSupplementaires["Adresse email du créateur"] = "$createurDuTicket[0]"; // Prénom et nom du technicien
-
-
                     // ===================== PRÉNOM ET NOM DU CREATEUR (tech et adm w uniquement)
-                    $createurDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_CREA, NOM_CREA FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
-                    $dicoDesInfosSupplementaires["Créateur"] = "$createurDuTicket[0] $createurDuTicket[1]"; // Prénom et nom du technicien
+                    $createurDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_CREA, NOM_CREA, EMAIL_CREA FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
+                    $dicoDesInfosSupplementaires["Créateur"] = "$createurDuTicket[0] $createurDuTicket[1] ($createurDuTicket[2])"; // Prénom et nom du technicien
                 }
 
 
                 // ===================== PRÉNOM ET NOM DU TECHNICIEN ASSOCIÉ (tout le monde)
-                $technicienDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_TECH, NOM_TECH FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
+                $technicienDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_TECH, NOM_TECH, EMAIL_TECH FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
                 if ($technicienDuTicket[0] != NULL) { // si un technicien est affecté au ticket
-                    $dicoDesInfosSupplementaires["Technicien affecté"] = "$technicienDuTicket[0] $technicienDuTicket[1]"; // Prénom et nom du technicien
+                    $dicoDesInfosSupplementaires["Technicien"] = "$technicienDuTicket[0] $technicienDuTicket[1] ($technicienDuTicket[2])"; // Prénom et nom du technicien
                 }
-
 
                 // ===================== LES MOTS-CLÉS DU TICKET (tout le monde)
                 $tousLesMotsClesDuTicket = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur);
