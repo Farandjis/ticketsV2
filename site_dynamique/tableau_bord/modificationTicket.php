@@ -1,6 +1,4 @@
 <?php
-global $lesMotcleTicketsCoches;
-$lesMotcleTicketsCoches = array();
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
@@ -230,9 +228,18 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     <span>Mots-clés</span><br>
                     <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
                         <?php
+
+                        $lesMotcleTicketsCoches = array();
+                        $resSQL = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?", array($id_ticket), $connection);
+                        while($unMotcleTicket = mysqli_fetch_row($resSQL)){
+                            $lesMotcleTicketsCoches[] = $unMotcleTicket[0];
+                        }
+
+
                         if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Listes des mots-clés --"; }
-                        elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
-                        else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
+                        elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné à l'origine";}
+                        else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés à l'origine";}
+
 
                         echo "<span class='entete_menu_checkbox' onclick='toggleDropdown()'>$texteBouton</span>";
                         ?>
@@ -249,6 +256,9 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
             </div>
             <input type="hidden" name="id_ticket" value='<?php echo $id_ticket; ?>'>
             <input type='submit' name='modif' value='Modifier le ticket'><br>
+        </form>
+        <form action='#' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+            <input type='submit' name='modif' value='Fermeture du Ticket' id="boutonFermerTicket"><br>
         </form>
     </div>
 </div>
