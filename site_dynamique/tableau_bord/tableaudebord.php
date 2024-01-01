@@ -80,9 +80,28 @@ global $database, $host;
             if (isset($_POST["date"]) && isset($_POST["date2"]) && isset($_POST["titre"]) && isset($_POST["selectionPossible"])){
                 $valeurDejaDansWhere = false;
 
-                // ======================================= LES MOTS-CLÉS =======================================
-                if (isset($_POST["motcle_option"]) && $_POST["motcle_option"]){ // Si au moins 1 Mot-clé à été coché
+                // ______________________ LES JOINTURES
+                // On sépare les jointures des wheres sinon ça ne marche pas trop ..
+
+                // JOIN POUR LES MOTS-CLES
+                if (isset($_POST["motcle_option"]) && $_POST["motcle_option"]) { // Si au moins 1 Mot-clé à été coché
                     $reqSQL = $reqSQL . " JOIN $vueRTM ON $vueRTM.ID_TICKET = $vueTDB.ID_TICKET ";
+                }
+
+                // JOIN POUR TYPE DE TICKET
+                if ($_POST["selectionPossible"]) {
+                    if ($_POST["selectionPossible"] == "ticketsPerso") {
+                        $reqSQL = $reqSQL . " JOIN $vueTC ON $vueTC.ID_TICKET = $vueTDB.ID_TICKET ";
+                    }
+                    elseif ($_POST["selectionPossible"] == "ticketsEnCours") {
+                        $reqSQL = $reqSQL . " JOIN $vueATM ON $vueATM.ID_TICKET = $vueTDB.ID_TICKET ";
+                    }
+                }
+
+
+                // ======================================= LES MOTS-CLÉS =======================================
+                // ATTENTION ! Les joins sont séparés de cette partie.
+                if (isset($_POST["motcle_option"]) && $_POST["motcle_option"]){ // Si au moins 1 Mot-clé à été coché
 
                     $listeSQL = "("; $premierMotcleTicket = true;
                     foreach ($_POST["motcle_option"] as $unMotcleTicket){
@@ -98,18 +117,14 @@ global $database, $host;
                 }
 
                 // ======================================= LE TYPE DE TICKET =======================================
+                // ATTENTION ! Les joins sont séparés de cette partie.
                 if ($_POST["selectionPossible"]){
-
-                    if ($_POST["selectionPossible"] == "ticketsPerso"){
-                        $reqSQL = $reqSQL . " JOIN $vueTC ON $vueTC.ID_TICKET = $vueTDB.ID_TICKET ";
-                    }
 
                     // Catégories uniquement accessible aux techniciens et à l'administrateur web
                     if (recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
 
                         // Les tickets en cours de traitant pouvant être modifier par l'usager du site
                         if ($_POST["selectionPossible"] == "ticketsEnCours"){
-                            $reqSQL = $reqSQL . " JOIN $vueATM ON $vueATM.ID_TICKET = $vueTDB.ID_TICKET ";
 
                             if (!$valeurDejaDansWhere) { $reqSQL = $reqSQL . " WHERE "; $valeurDejaDansWhere = true;}
                             else{ $reqSQL = $reqSQL . " AND ";}
