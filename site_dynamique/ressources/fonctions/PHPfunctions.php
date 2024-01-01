@@ -407,20 +407,27 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                 <div class="authentification">
                     <?php
                     if ($connexionUtilisateur != null) {
-                        // Si la personne est connecté...
-                        echo "<a href ='" . $empSite . "/authentification/action_deconnexion.php'> Déconnexion </a>";
+                        // Si la personne est connectée...
+                        $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
+
+                        if ($pageActuelle == "profil" && $roleUtilisateur != "Administrateur Site" && $roleUtilisateur != "Administrateur Système") {
+                            echo "<a href='" . $empSite . "/authentification/action_desinscription.php' class='deconnexion-desinscription'> Désinscription </a>";
+                        }
+
+                        echo "<a href='" . $empSite . "/authentification/action_deconnexion.php' class='deconnexion-desinscription'> Déconnexion </a>";
 
                         if ($pageActuelle != "profil") {
-                            echo "<a href ='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
+                            echo "<a href='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
                         }
-                    }
-                    else {
+                    } else {
                         // Sinon, c'est un visiteur
-                        echo '<a href = "' . $empSite . '/authentification/connexion.php"> Connexion</a>';
-                        echo '<a href = "' . $empSite . '/authentification/inscription.php"> Inscription</a>';
+                        echo '<a href="' . $empSite . '/authentification/connexion.php"> Connexion</a>';
+                        echo '<a href="' . $empSite . '/authentification/inscription.php"> Inscription</a>';
                     }
                     ?>
                 </div>
+
+
             </div>
         </nav>
         <div class="hamburger-menu">
@@ -446,6 +453,33 @@ function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACoche
         if (in_array($unMotcleTicket[0], $motclesACocher)){ $cestCocher = "checked"; }
         else { $cestCocher = ""; }
         echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unMotcleTicket[0]) . "' $cestCocher> " . htmlspecialchars($unMotcleTicket[0]) . " </label>";
+    }
+}
+
+function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
+	$libellesACocher = array();
+	/*while($n = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_technicien;"))){
+		array_push($libellesACocher,$n[0]);
+	}*/
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT ID_USER, NOM_USER, PRENOM_USER FROM affiche_utilisateurs_pour_adm_web;");
+    while($unLibelle = mysqli_fetch_row($resSQL)){
+        if (in_array($unLibelle[0], $libellesACocher)){ $cestCocher = "checked"; }
+        else { $cestCocher = ""; }
+		echo "<label><input type='checkbox' name='tech_option[]' value='1'>AAAAA</label>";
+        echo "<label><input type='checkbox' name='tech_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[1]) . " " . htmlspecialchars($unLibelle[2]) . " </label>";
+    }
+	echo "<label><input type='checkbox' name='tech_option[]' value='1'>AAAAA</label>";
+}
+
+function menuDeroulantTousLesTitres($connexionUtilisateur){
+    /**
+     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant) avec TOUS les titres disponibles dans la BD.
+     *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
+     */
+
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
+    while($unTitre = mysqli_fetch_row($resSQL)[0]){
+        echo "<option value='$unTitre'>$unTitre</option>";
     }
 }
 
