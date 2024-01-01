@@ -13,6 +13,156 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 
 <br><br><br>
+
+## Lundi 01/01/2024 - Bilan du travail du 26/12/2023 au 31/12/2023, J-9 fin de TIX
+
+Bonne année !<br>
+Malheureusement, à 9 jours du 10 janvier, nous sommes très loin de pouvoir se dire "good job".<br>
+<br>
+Nous avons accumulé un retard trop important au cours de cette semaine. Il va être très compliqué de tenir les délais dans ces conditions.<br>
+Cependant, **nous devons les tenirs**. Les enjeux de cette SAÉ sont beaucoup trop important pour qu'on puisse prendre la situation à la légère.<br>
+Mais si chacun donne du sien et qu'on trouve la bonne organisation, nous pouvons réussir.<br>
+Nous avons des pages non terminées dont certaines pouvant demander un certain temps.<br>
+En parallèle, pour la semaine du 1er janvier, nous devons absolument commencer le sujet de cryptographie et celui de proba-stat. Nous devons vérifier l'intégralité du site, corriger les imperfections,
+vérifier l'accessibilité, faire la vidéo, et d'autres choses. Sachant qu'à la rentrée... Nous avons les contrôles, et que nous sommes en période de recherche de stage.<br>
+A son retour, Tom devra ce charger des problèmes liés au CSS...
+<br>
+<br>
+En ce matin du nouvel an, voici le bilan de l'état du travail (note : il n'est pas exhaustif...):<br>
+
+#### Etat des lieux
+- **Pages web**
+  - Accueil OK (sauf icône travail de droit à changer)
+  - Tableau de bord
+    - Problème de CSS POP-UP (bouton refermer le pop up manquant)
+    - Plantage de la page lors de la sélection d'un type de ticket et d'un mot clé
+    - Problème taille bouton de la liste type ticket
+  - Administration
+    - Impossible d'attribuer/retirer le rôle technicien
+    - Impossible de supprimer un mot-clé (BD concerné aussi)
+    - Impossible de créer et de supprimé un titre
+    - Problème JavaScript historique
+    - Manque les tests donc...
+  - Création Ticket
+    - Système de choix de titre demandé par M. Hoguin non développé, il y a toujours l'ancien
+    - Je soupçonne sûrement à tort que les données ne sont pas vraiment vérifiées (genre taille des entrées) côté PHP...
+    - Manque la revérification par tests donc...
+  - Modification Ticket
+    - Système de choix de titre demandé par M. Hoguin non développé, il y a toujours l'ancien
+    - Comme une petite odeur de roussi puisqu'il est très probable qu'il y a des bugs causés par des morceaux de codes obsolètes.
+    - Manque les tests de vérifications du formulaire côté JS
+    - Je soupçonne sûrement à tort que les données ne sont pas vraiment vérifiées (genre taille des entrées) côté PHP...
+    - Manque la revérification par tests donc...
+  - Connexion / changement mdp, email:
+    - Pb bouton oeil mdp
+  - Inscription
+    - Captcha non fonctionnel... Mais est ce qu'on aura le temps de s'en occuper en cette nouvelle semaine ?
+  - Profil
+    - Le pop-up d'info ticket n'apparaît pas...
+    - A noter mais il pourrait être pas mal de cacher les sections "mot de passe" et "email" pour les admnistrateurs vu qu'ils n'y ont pas accès...
+- **Conception**
+  - Je ne suis pas allé voir, mais il y a sûrement...
+  - Des retouches à faire
+  - Des diagrammes UML à faire sûrement aussi
+- **Base de donnée**
+  - La conception n'est pas terminé
+  - Les tests pour la V2 de la BD viennent tout juste d'être commencé, il manque les fonctions, la vérification que le contenu des vues est bien conforme etc etc
+  - Dans les bugs à corriger, mettre ".." dans une adresse email fonctinne (JS compris)
+- **Cahier des charges**
+  - Je ne suis pas allé voir
+- **Test**
+  - Manque tests BD (excepté les vues, tables à corriger)
+  - Manque tests accessibilité
+  - Manque tests rendu HTML des pages générés par PHP (valisateur HTML/CSS)
+
+
+Voici ce qui était prévu et qui est toujours prévu de ce 1er au 10 janvier :
+#### Tâches à terminer pour le 10 janvier.
+  - La vidéo
+    - -> Pour cela le site doit visuellement être entièrement terminé
+  - Le sujet de cryptographie
+    - Implique le chiffrement des mots de passes (et l'élaboration d'un jeton pour la session de l'utilisateur, si on veut faire les choses bien n'est ce pas)
+  - Le sujet proba-stat
+    - Apparemment, l'installation de Shiny sur le RPi4 est compliqué.
+  - Le captcha
+  - Une vérification ENTIÈRE de la SAÉ
+    - Un test de l'intégralité de la plateforme (BD, site dynamique (côté fonctionnel, rendu HTML, accessibilité), CSS et JavaScript) (2 au moins, 1 avant et 1 après les corrections)
+    - La correction des bugs qui vont être trouvé
+    - Vérification de l'intégralité de la conception
+    - Vérification de l'intégralité du cahier des charges
+    - Vérification de l'intégralité du code (rajout de commentaire, amélioration du code ?)
+
+Dans mes prévisions, pour le 31 décembre, nous devions avoir une préversion finale avant test globale du site.<br>
+Ca aurait été une version exploitable et pouvant même être présenté au jury dans l'état (excepté le captcha, et des petits problèmes mineurs à corriger).<br>
+Cette seconde partie nous permettrait, en plus d'ajouter les fonctionnalités et travaux manquants, de nous assurer de la qualité de notre travail ainsi qu'une connaissance entière de l'état de celui-ci.<br>
+<br>
+<br>
+Il y a donc du travail...
+
+#### Avancé
+
+- **Ce qui sera à terminer cette semaine :**<br>
+  - Ce que j'ai décris plus haut
+
+#### Travail effectué
+- **Florent**<br>
+  - (rappel) Indisponibilité du 23/24 au 25, je ne sais plus exactement
+  - Développement de la page administration et implémentation de ses fonctionnalités (journal d'activité...)
+  
+- **Tom**<br>
+  - (rappel) Vacances
+
+- **Enzo** :<br>
+  - (rappel) Indisponibilité du 24 au 26, du 31 décembre au 2 janvier.
+  - Test des droits sur les vues
+
+- **Assia**<br>
+  - (rappel) Indisponibilité 1 ou 2 jours dans la semaine
+  - Correction problèmes CSS pages création et modification ticket
+  - Désormais le bouton désinscription ne s'affiche plus pour les admins
+  - Importation du travail de droit sur le site
+  
+- **Matthieu (chef de projet)**<br>
+  - (rappel) Indisponibilité 1 ou 2 jours dans la semaine
+  - Implémentation des nouvelles fonctionnalités du tableau de bord, correction du problème de css du formulaire de recherche
+    - Choix du type de ticket à afficher
+    - Informations supplémentaires dans le pop up
+  - Création de script de test pour les tickets
+  - Début de la vidéo de présentation (juste l'animation du logo au début)
+  - Début de la conception (et revu des documents déjà présent) pour la base de données
+  - Création d'une BD pour la gestion des jetons de session, et mise en place de la suppression auto des comptes inactifs
+
+#### Organisation
+La création de la vidéo doit se faire dès que possible. Nous allons donc nous fonder en partie dessus.<br>
+L'objectif est de terminer la SAÉ le 10, afin qu'on puisse réviser et préparer calmement notre présentation face au jury.
+
+
+
+Dans l'ordre des priorités, même si cela peut paraître quelque peu dangereux :<br>
+1. Finition/Correction des pages création/modification ticket, tableau de bord et d'administration
+   - Pour le 02/01/2024 midi dernier délai
+2. Commencer le sujet de cryptographie, de proba-stat, terminer la conception (tout, BD compris), corriger la page de profil, CSS
+   - Page profil : Pour le mardi 02/01/2023 soir dernier délai
+   - CSS : Cela dépend du retour de Tom. Sinon, nous serons obligés de nous consacrer du temps dessus en urgence.
+   - Conception BD (Matthieu) : le mercredi 03/01/2024 midi sûrement possible
+   - Conception (Florent) : le vendredi 05/01 midi dernier délai
+   - Cryptographie : mercredi 10/01 soir prêt pour impression.
+3. La vidéo, Le captcha
+   - Les deux seront fait en parallèle d'une partie du 2.
+   - Vidéo : je ne peux pas m'avancer dessus.
+   - Captcha : Pour samedi 06/01 dernier délai
+4. Vérification global
+   - On vérifie l'ensemble de nos travaux dimanche 7 janvier (on fait le bilan des problèmes à résoudre, ce qui est d'important et qui manque)
+5. Correction et finalisation de nos travaux
+   - Mercredi 10 janvier 14h dernier délai
+6. Tests définitifs
+   - Mercredi 10 janvier à partir de 14h, tout problème doit être reporté et résolut dans l'après midi pour pouvoir être retesté.
+
+
+<br><br><br>
+
+---
+
 ## Mardi 26/12/2023 - Bilan du travail du 18/11/2023 au 25/12/2023, J-15 fin de TIX
 
 Mercredi 20 décembre, Monsieur HOGUIN a pu découvrir un peu plus notre plateforme avec la page de création de ticket.<br>
