@@ -102,9 +102,15 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
         <form action='action_modificationTicket.php' method='post'>
             <div class="form-modif-ticket">
                 <div class="champs_ticket_gauche">
-                    <label for='login'>Titre du problème</label><br>
-                    <input id='titre' type='text' name='titre' value="<?php echo htmlspecialchars(htmlspecialchars_decode($info_ticket[6]));?>">
-
+                    <label for='titre'>Titre du problème</label><br>
+                    <div class="custom-select">
+                        <select name="titre" id="titre" class="creer_select" required>
+                            <?php
+                            echo "<option value=''>--Choisir une option--</option>";
+                            menuDeroulantTousLesTitres($connection);
+                            ?>
+                        </select>
+                    </div>
                     <br><br>
 
                     <label for='explication2'>Explication</label><br>
