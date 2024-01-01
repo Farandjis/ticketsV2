@@ -107,7 +107,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         <select name="titre" id="titre" class="creer_select" required>
                             <?php
                             echo "<option value=''>--Choisir une option--</option>";
-                            menuDeroulantTousLesTitres($connection);
+                            menuDeroulantTousLesTitres($connection, array($info_ticket[6]));
                             ?>
                         </select>
                     </div>
