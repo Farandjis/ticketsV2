@@ -144,18 +144,54 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Qui ne sont pas en attente
   - #### vue_Utilisateur_client
     Permet à l'utilisateur d'avoir accès à ses données personnelles
+    - Sélectionne ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER de la table Utilisateur
+    - Sélectionne default_role de la vue user de la DB MySQL -> Jointure user.User = DB_TIX.Utilisateur.ID_USER
+    - Où ID_USER correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
   - #### vue_Utilisateur_maj_email
     Permet à l'utilisateur de pouvoir modifier leurs adresses email
+    - Sélectionne l'ID_USER et EMAIL_USER de la table Utilisateur
+    - Où ID_USER correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
   - #### vue_Ticket_client
     Permet à l'utilisateur de voir tous leurs tickets qu'ils soient en attentes, ouverts, en cours ou fermés.
+    - Sélectionne ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET, NIV_URGENCE_DEFINITIF_TICKET,
+      ETAT_TICKET, HORODATAGE_CREATION_TICKET, HORODATAGE_DEBUT_TRAITEMENT_TICKET, HORODATAGE_RESOLUTION_TICKET de Ticket
+    - Trié par ID_TICKET DESC
+    - Où ID_USER des tickets correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
   - #### vue_technicien
     Liste les techniciens de la plateforme
+    - Sélectionne ID_USER, PRENOM_USER, NOM_USER, EMAIL_USER de la table Utilisateur
+    - Où mysql.user.default_role = "role_technicien" -> JOIN mysql.user ON mysql.user.User = ID_USER
   - #### affiche_utilisateurs_pour_adm_web
     Liste tous les utilisateurs de la plateforme
+    - Sélectionne ID_USER, PRENOM_USER, NOM_USER de la table Utilisateur
+    - Où LOGIN_USER n'est pas nul
   - #### vue_tableau_bord
-    Les tickets affichés dans le tableau de bord de l'usager
+    Les tickets affichés dans le tableau de bord de l'usager. Le contenu de la vue varie en fonction de l'utilisateur, et du rôle de l'utilisateur.
+    - SELECT Ticket pour les utilisateurs (tableau de bord)
+      - Tickets : -> ID Ticket, Objet Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, horodatage modification
+      - Utilisateurs : -> Prénom et nom du technicien
+      - Affiche uniquement les tickets ouverts et en cours <br>
+        -> Valeurs "Ouvert" et "En cours de traitement"
+      - Affiche ses propres tickets en attente
+
+    - SELECT Ticket pour les techniciens (tableau de bord)
+      - Tickets : -> ID Ticket, Objet Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, Horodatage modification
+      - Utilisateurs : -> Prénom et nom du technicien, ID Technicien, ID Créateur, Prénom et nom du créateur
+      - Affiche uniquement les tickets ouverts et en cours <br>
+        -> Valeurs "Ouvert" et "En cours de traitement"
+      - Affiche ses propres tickets en attente
+
+    - SELECT Ticket pour l'admin web (tableau de bord)
+      - Tickets : -> ID Ticket, Objet Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, Horodatage modification
+      - Utilisateurs : -> Prénom et nom du technicien, ID Technicien, ID Créateur, Prénom et nom du créateur
+      - Affiche uniquement les tickets ouverts, en cours et en attente <br>
+        -> Valeurs "Ouvert" et "En cours de traitement", "En attente"
+
   - #### vue_tdb_relation_ticket_motcle
-    Les mots clés associés aux tickets du tableau de bord de l'usager
+    Les mots clés associés aux tickets du tableau de bord de l'usager. Le contenu de la vue varie en fonction des tickets disponibles dans la vue tableau de bord.
+    - RelationTicketsLibelles : *
+    - Où les tickets sont présents dans le tableau de bord
+
   - #### vue_suppr_rtm_tdb
     Permet la suppression des mots clés associés aux tickets du tableau de bord de l'usager, s'il a le droit de modifier son ticket bien sur
   - #### vue_modif_creation_ticket_utilisateur
