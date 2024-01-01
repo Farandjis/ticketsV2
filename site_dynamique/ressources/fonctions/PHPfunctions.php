@@ -445,7 +445,7 @@ function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACoche
     /**
      * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les mots-clés disponible dans la BD.
      *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     * @param array motclesACocher -> les mots-clés à cocher par défaut
+     *  @param array motclesACocher -> les mots-clés à cocher par défaut
      */
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
@@ -471,15 +471,20 @@ function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
 	echo "<label><input type='checkbox' name='tech_option[]' value='1'>AAAAA</label>";
 }
 
-function menuDeroulantTousLesTitres($connexionUtilisateur){
+function menuDeroulantTousLesTitres($connexionUtilisateur, $titreACocher = array()){
     /**
      * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant) avec TOUS les titres disponibles dans la BD.
      *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
+     *  @param array motclesACocher -> les mots-clés à cocher par défaut
+     *
+     * Remarque : nous utilisons une liste pour titreACocher en prévision d'une fusion des 3 fonctions menuDeroulantTousLes
      */
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
     while($unTitre = mysqli_fetch_row($resSQL)[0]){
-        echo "<option value='$unTitre'>$unTitre</option>";
+        if (count($titreACocher) == 1 and $unTitre == $titreACocher[0]){ $cestCocher = "selected"; }
+        else { $cestCocher = ""; }
+        echo "<option value='$unTitre' $cestCocher>$unTitre</option>";
     }
 }
 
