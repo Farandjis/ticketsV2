@@ -74,11 +74,11 @@ CREATE OR REPLACE VIEW vue_tableau_bord AS
     END AS ID_TECHNICIEN,
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN T.ID_USER ELSE 'ACCÈS INTERDIT'
     END AS ID_CREA,
-    CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.PRENOM_USER ELSE 'ACCÈS INTERDIT'
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.PRENOM_USER ELSE 'ACCÈS INTERDIT'
     END AS PRENOM_CREA,
-    CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.NOM_USER ELSE 'ACCÈS INTERDIT'
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.NOM_USER ELSE 'ACCÈS INTERDIT'
     END AS NOM_CREA,
-    CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.EMAIL_USER ELSE 'ACCÈS INTERDIT'
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.EMAIL_USER ELSE 'ACCÈS INTERDIT'
     END AS EMAIL_CREA
     
     FROM Ticket AS T
