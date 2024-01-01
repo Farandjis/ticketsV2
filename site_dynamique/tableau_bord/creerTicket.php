@@ -39,7 +39,15 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
             }
             ?>
             <label for='titre'>Titre du problème</label><br>
-            <input id='titre' type='text' name ='titre'>
+            <div class="custom-select">
+                <select name="titre" id="titre" class="creer_select" required>
+                    <?php
+                    echo "<option value=''>--Choisir une option--</option>";
+                    menuDeroulantTousLesTitres($connexionUtilisateur);
+                    ?>
+                </select>
+            </div>
+
             <br><br>
             <div class="div_separ">
                 <div class="gauche">

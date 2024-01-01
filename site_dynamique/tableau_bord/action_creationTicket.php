@@ -65,5 +65,5 @@ try {
 } catch (Exception $ex) {
     // Affichage de l'erreur générale
     echo "Erreur générale : " . $ex->getMessage();
-    header('Location: creerTicket.php?id=3'); // Erreur générale
+    header('Location: creerTicket.php?id=-1'); // Erreur générale
 }
