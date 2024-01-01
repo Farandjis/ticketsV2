@@ -6,7 +6,7 @@
  *      Il lui envoi des informations supplémentaires concernant le ticket demandé.
  *
  *      Les informations envoyées sont :
- *          - Administrateur WEB et Technicien uniquement : prénom + nom du créateur + Adresse email du créateur
+ *          - Administrateur WEB, Technicien uniquement et le créateur lui même : prénom + nom du créateur + Adresse email du créateur
  *          - Tout le monde : Date de la dernière modification du ticket, prénom + nom + email du technicien, mots-clés associés au ticket
  */
 
@@ -43,7 +43,13 @@ try {
                 $dicoDesInfosSupplementaires["Dernière modification"] = $dateDerniereModifTicket;
 
 
-                if (recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
+                // On regarde si c'est le créateur du ticket (et donc que le ticket fait parti de sa liste de ticket)
+                // Si 0, alors non -> FALSE
+                // Si 1, alors oui -> TRUE
+                // rappel ID_TICKET est une clé primaire, donc elle est forcément unique
+                $cestLeCreateur = (bool) mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_Ticket_client WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
+
+                if ($cestLeCreateur or recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
                     // ===================== PRÉNOM ET NOM DU CREATEUR (tech et adm w uniquement)
                     $createurDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_CREA, NOM_CREA, EMAIL_CREA FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
                     $dicoDesInfosSupplementaires["Créateur"] = "$createurDuTicket[0] $createurDuTicket[1] ($createurDuTicket[2])"; // Prénom et nom du technicien
