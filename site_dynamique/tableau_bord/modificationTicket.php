@@ -1,4 +1,6 @@
 <?php
+global $lesMotcleTicketsCoches;
+$lesMotcleTicketsCoches = array();
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
@@ -100,8 +102,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
         <form action='action_modificationTicket.php' method='post'>
             <div class="form-modif-ticket">
                 <div class="champs_ticket_gauche">
-                    <label for='login'>Nature du problème *</label><br>
-                    <input id='nature' type='text' name='nature' value="<?php echo htmlspecialchars(htmlspecialchars_decode($info_ticket[6]));?>">
+                    <label for='login'>Titre du problème</label><br>
+                    <input id='titre' type='text' name='titre' value="<?php echo htmlspecialchars(htmlspecialchars_decode($info_ticket[6]));?>">
 
                     <br><br>
 
@@ -219,23 +221,25 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     }
                     ?>
                     <br>
+                    <div class="droite"
+                    <span>Mots-clés</span><br>
+                    <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
+                        <?php
+                        if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Listes des mots-clés --"; }
+                        elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
+                        else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
 
-                    <span>Mot-clé</span><br>
-                    <div class="menu_motcle" id="menu_deroulant_motcle">
-                        <span class="entete_motcle modif_entete_motcle" onclick="toggleDropdown()">--Liste des mots-clés--</span>
-                        <div class="option_motcle">
+                        echo "<span class='entete_menu_checkbox' onclick='toggleDropdown()'>$texteBouton</span>";
+                        ?>
+                        <div class="option_checkbox">
                             <?php
-                            $listeMotcleTicket = array();
-                            $result = executeSQL("SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?",array($id_ticket),$connection);
-                            while($row = mysqli_fetch_array($result)){
-                                array_push($listeMotcleTicket,$row[0]);
-                            }
-                            menuDeroulantTousLesMotcleTickets($connection,$listeMotcleTicket);
+                            menuDeroulantTousLesMotcleTickets($connection, $lesMotcleTicketsCoches);
                             ?>
 
-
                         </div>
+
                     </div>
+                </div>
                 </div>
             </div>
             <input type="hidden" name="id_ticket" value='<?php echo $id_ticket; ?>'>

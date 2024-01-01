@@ -5,22 +5,28 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
 
 session_start();
 
-if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
-    if (!empty($_SESSION['login']) && !empty($_SESSION['mdp']) && !empty($_POST['nature'])) {
+if (isset($_POST['titre'], $_POST['nivUrg'], $_POST["explication2"])){
+    if (!empty($_SESSION['login']) && !empty($_SESSION['mdp']) && !empty($_POST['titre'])) {
         global $host, $database, $USER_FICTIF_MDP;
 
 		$id_ticket = $_POST['id_ticket'];
-        $nature = $_POST['nature'];
+        $titre = $_POST['titre'];
         $niveauUrgence = $_POST['nivUrg'];
         $explication = $_POST['explication2'];
-		
-		$infoTicket = mysqli_fetch_array(executeSQL("SELECT etat_ticket, id_technicien FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connexionUtilisateur));
+
+        $requeteVerifTitre = 'SELECT titre_ticket FROM TitreTicket WHERE titre_ticket = ?';
+        $resultVerifTitre = executeSQL($requeteVerifTitre, array($titre), $connexionUtilisateur);
+        $existingTitre = mysqli_fetch_assoc($resultVerifTitre);
+
+
+        if($existingTitre){
+        $infoTicket = mysqli_fetch_array(executeSQL("SELECT etat_ticket, id_technicien FROM vue_tableau_bord WHERE id_ticket = ?;",array($id_ticket),$connexionUtilisateur));
 		$etatDuTicket = $infoTicket[0];
 		
 		// recupererRoleDe($connexionUtilisateur) == 'Utilisateur' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Système' ||
 
 		if (($etatDuTicket == "En attente") && (recupererRoleDe($connexionUtilisateur) != 'Administrateur Site')){
-			executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ? WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
+			executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
 		}
 		
 		if (recupererRoleDe($connexionUtilisateur) == 'Technicien' || recupererRoleDe($connexionUtilisateur) == 'Administrateur Site'){
@@ -29,7 +35,7 @@ if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
                 if ($etatDuTicket == 'En attente') {
                     $etatDuTicket = "Ouvert";
                 }
-                executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ? WHERE ID_TICKET  = ?;", array($nature, $explication, $niveauUrgence2, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+                executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $niveauUrgence2, $etatDuTicket, $id_ticket), $connexionUtilisateur);
                 $technicien = $_POST['ch_technicien'];
                 if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien']) && $technicien != $infoTicket[1]){
                     if ($etatDuTicket == 'Ouvert')
@@ -40,7 +46,7 @@ if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
                 }
 			}
 			else {
-				executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ? WHERE ID_TICKET  = ?;", array($nature, $explication, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+				executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $etatDuTicket, $id_ticket), $connexionUtilisateur);
 			}
 		}
 		
@@ -52,13 +58,15 @@ if (isset($_POST['nature'], $_POST['nivUrg'], $_POST["explication2"])){
 			}
 		}
 
-        header('Location: tableaudebord.php');
-    }
-    else{
-        header('Location: modificationTicket.php?id=1');
-    }
-}else{
-    header('Location: modificationTicket.php?id=2');
-}
+            header('Location: tableaudebord.php');
+        } else {
+            header('Location: modificationTicket.php?id=3'); // Titre n'existe pas  
+        }
 
+    } else {
+        header('Location: modificationTicket.php?id=1'); // Données essentielles ne sont pas fournies ou incohérentes
+    }
+} else {
+    header('Location: modificationTicket.php?id=2'); // Données manquantes
+}
 
