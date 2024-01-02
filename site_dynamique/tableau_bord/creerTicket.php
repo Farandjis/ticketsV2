@@ -86,8 +86,8 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
             </div>
 
             <br>
-            <label for='explication'>Explication</label><br>
-            <textarea id="explication" name="explication" ></textarea><br>
+            <label for='explication'>Description du problème</label><br>
+            <textarea id="explication" name="explication" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer des mots-clés à votre ticket si besoin."></textarea><br>
 
             <input type='submit' name='cree' value='Créer'><br>
         </form>
