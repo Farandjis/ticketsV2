@@ -127,5 +127,53 @@ END //
 DELIMITER ;
 
 
+-- ===================================================== ACTIVATION ROLE UTILISATEUR OU TECHNICIEN PAR L'ADMIN WEB
+
+DROP PROCEDURE IF EXISTS activerUnRoleTechOuUtiParAdminWeb;
+DELIMITER //
+
+/*
+Créer pour l'admin web, même si n'importe qui ayant les droits de grant et ayant accès en écriture à la DB mysql peut l'utiliser.
+Au préalable, la personne doit posséder le rôle à activer. Cette fonction active le rôle tech si c'est un utilisateur, utilisateur si c'est un tech.
+Si c'est un tech qui devient un utilisateur, on lui supprime son rôle de technicien. Il faudra le GRANT à nouveau s'il redevient un technicien
+
+parID -> STRING de l'id de l'utilisateur
+parLeRole -> STRING du rôle qu'on veut activer (tech ou uti)
+*/
+CREATE PROCEDURE activerUnRoleTechOuUtiParAdminWeb(parID_USER VARCHAR(11), parLeRole VARCHAR(50))
+BEGIN
+	
+    DECLARE sonRole VARCHAR(30); -- On déclare une variable au formatage utf8mb4_general_ci
+    SELECT default_role INTO sonRole FROM mysql.user WHERE User = parID_USER LIMIT 1;
+
+    -- Si c'est un vrai utilisateur de la plateforme, il possède un rôle.
+    IF (sonRole IS NOT NULL) THEN
+	IF (sonRole = "role_utilisateur" AND parLeRole = "role_technicien") THEN
+		START TRANSACTION;
+
+	    	-- On active le rôle technicien
+	    	SET @activeRole = CONCAT('SET DEFAULT ROLE "role_technicien" FOR ', QUOTE(parID_USER),'@',QUOTE("localhost"));
+        	PREPARE activeRole2 FROM @activeRole; EXECUTE activeRole2; DEALLOCATE PREPARE activeRole2;
+
+		COMMIT;
+	END IF;
+	IF (sonRole = "role_technicien" AND parLeRole = "role_utilisateur") THEN
+		START TRANSACTION;
+
+	    	-- On active le rôle utilisateur
+	    	SET @activeRole = CONCAT('SET DEFAULT ROLE "role_utilisateur" FOR ', QUOTE(parID_USER),'@',QUOTE("localhost"));
+        	PREPARE activeRole2 FROM @activeRole; EXECUTE activeRole2; DEALLOCATE PREPARE activeRole2;
+
+		-- On retire le rôle technicien
+	    	SET @supprRole = CONCAT('REVOKE "role_technicien" FROM ', QUOTE(parID_USER),'@',QUOTE("localhost"));
+        	PREPARE supprRole2 FROM @supprRole; EXECUTE supprRole2; DEALLOCATE PREPARE supprRole2;
+		COMMIT;
+	END IF;
+    END IF;
+
+END //
+
+DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
+
 
 
