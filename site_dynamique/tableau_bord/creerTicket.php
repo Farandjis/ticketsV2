@@ -43,7 +43,8 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                 <select name="titre" id="titre" class="creer_select" required>
                     <?php
                     echo "<option value=''>--Choisir une option--</option>";
-                    menuDeroulantTousLesTitres($connexionUtilisateur);
+                    $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
+                    menuDeroulant($resSQL, "selected");
                     ?>
                 </select>
             </div>
@@ -74,7 +75,8 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                     ?>
                     <div class="option_checkbox">
                         <?php
-                        menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $lesMotcleTicketsCoches);
+                        $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+                        menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
                         ?>
 
                     </div>
