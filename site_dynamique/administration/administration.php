@@ -104,7 +104,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				  </tr>
 				  </thead>
 				  <tbody>';
-					tableCSV("logs/journauxActvCoInf.csv",array(1,2,3,4));
+					csvToHtmlTable("logs/journauxActvCoInf.csv");
 					echo '
 				  </tr>
 				  </tbody>
@@ -126,7 +126,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				  </thead>
 				  <tbody>';
 					
-					tableCSV("logs/journauxActvCreTck.csv",array(1,2,3,4));
+					csvToHtmlTable("logs/journauxActvCreTck.csv");
 					echo '
 				  </tbody>
 				</table>
