@@ -262,7 +262,8 @@ global $database, $host;
                     ?>
                     <div class="option_checkbox">
                         <?php
-                        menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $lesMotcleTicketsCoches);
+                        $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+                        menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
                         ?>
 
                     </div>
