@@ -1,15 +1,14 @@
+-- Supprimer l'utilisateur s'il existe
+DROP USER IF EXISTS '1'@'localhost';
+DROP USER IF EXISTS '2'@'localhost';
+DROP USER IF EXISTS '3'@'localhost';
+DROP USER IF EXISTS '4'@'localhost';
 
-/*
-DROP USER '1'@'localhost';
-DROP USER '2'@'localhost';
-DROP USER '3'@'localhost';
-DROP USER '4'@'localhost';
-
+-- Supprimer les enregistrements de la table Utilisateur s'ils existent
 DELETE FROM Utilisateur WHERE ID_USER = '1';
 DELETE FROM Utilisateur WHERE ID_USER = '2';
 DELETE FROM Utilisateur WHERE ID_USER = '3';
 DELETE FROM Utilisateur WHERE ID_USER = '4';
-*/
 
 -- On créer les utilisateurs TIX
 INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES(1, "alice", "Alice", "AVRIL", "alice.avril@email.com");
