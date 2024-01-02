@@ -2,27 +2,6 @@
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Administrateur Site', 'Administrateur Système'));
-	
-	
-function tableCSV($filename,$colonnes){
-	$fp = fopen($filename,"r",True);
-	$notHeader = False;
-	while($data = fgetcsv($fp,1024,";")){
-		if ($notHeader){
-			echo "<tr>";
-			$n = 0;
-			foreach ($data as $cell){
-				$n++;
-				if (in_array($n,$colonnes)){
-					echo "<td>$cell</td>";
-				}
-			}
-			echo "</tr>";
-		}
-		$notHeader = True;
-	}
-	fclose($fp);
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,6 +15,7 @@ function tableCSV($filename,$colonnes){
   <script src="../ressources/script/infoLigneTab.js"></script>
   <script src="../ressources/script/hamburger.js"></script>
   <script src="../ressources/script/confirmation.js"></script>
+  <script src="../ressources/script/menuCheckbox.js"></script>
 </head>
 <body>
 <?php affichageMenuDuHaut("administration", $connection);?>
@@ -44,39 +24,36 @@ function tableCSV($filename,$colonnes){
     Administration
   </h1>
    <?php
-	/*
+
 	if (recupererRoleDe($connection) == 'Administrateur Site'){
 	  echo '
-	  <div class="conteneur_administration">
-		<div class="conteneur_ajout_administration">
-			<form action="#" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-                <span class="entete_motcle modif_entete_motcle" onclick="toggleDropdown()">-- Liste des utilisateurs --</span>
-                <div class="option_technicien">';
+<div class="conteneur_administration">
+    <div class="conteneur_ajout_administration">
+        <form action="action_ajouttechnicien.php" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+          <label for="ajout_technicien">Ajout de Technicien :</label><br><br>
+          <div class="conteneur_ajout_technicien">
+          <div class="menu_checkbox" id="menu_deroulant_checkbox">
+            <span class="entete_menu_checkbox modif_entete_checkbox" onclick="toggleDropdown()">--Liste des Utilisateurs--</span>
+            <div class="option_checkbox" id="ajout_technicien">';
 				
-				menuDeroulantTousLesMotcleTickets($connection);
+				menuDeroulantTousLesUtilisateurs($connection);
 				
 			echo '
-            <option value="tec_1">Technicien 1</option>
-            <option value="tec_2">Technicien 2</option>
-          </select>
-
-          <input type="submit" name="ajout_technicien" value="Ajouter">
+             </div>
+          </div>
+          <input type="submit" name="submit_ajout_technicien" value="Ajouter">
+          </div>
         </form>
-		</div>
 		</div>';
-	}
-	*/
-
-	if (recupererRoleDe($connection) == 'Administrateur Site'){
-		echo ' 
-		<div class="conteneur_ajout_administration">
-		  <form action="action_ajoutmotcle.php" method="post" name="Ajout MotcleTicket" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-			<label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
-			<input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un Mot-clé">
-			<input type="submit" name="ajout" value="Ajouter">
-		  </form>
-		</div>
-	  </div>';
+			echo ' 
+		    <div class="conteneur_ajout_administration">
+      <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+        <label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
+        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé">
+        <input type="submit" name="submit_ajout_motcle" value="Ajouter">
+      </form>
+    </div>
+  </div>';
 	}
 
 
@@ -108,10 +85,7 @@ function tableCSV($filename,$colonnes){
 			  </table>
 			</div>
 		  </div>';
-	}
-
-	if (recupererRoleDe($connection) == 'Administrateur Système'){
-		echo ' 
+		  echo ' 
 		  <h1 class="titre_page">
 			Journal d\'activité
 		  </h1>
@@ -159,10 +133,9 @@ function tableCSV($filename,$colonnes){
 			  </div>
 			</div>
 		  </div>';
-	}
-?>
-  <form action='action_telechargement.php' method='post' class="telechargement">
-    <label for='journal'>Sélection</label><br>
+		  
+		    echo '<form action="action_telechargement.php" method="post" class="telechargement">
+    <label for="journal">Sélection</label><br>
 
     <div class="custom-select">
       <select name="journal" id="journal">
@@ -174,7 +147,7 @@ function tableCSV($filename,$colonnes){
       </select>
     </div>
 
-    <input type='submit' name='Telecharger' value='Télécharger'><br>
+    <input type="submit" name="Telecharger" value="Télécharger"><br>
 
   </form>
 
@@ -187,17 +160,18 @@ function tableCSV($filename,$colonnes){
 
       </div>
 
-      <form action='modificationTicket.html' method='post'>
+      <form action="modificationTicket.html" method="post">
 
-        <input type='submit' name='modif' value='Modifier le ticket'><br>
+        <input type="submit" name="modif" value="Modifier le ticket"><br>
       </form>
 
       <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
     </div>
 
 
-  </div>
-
+  </div>';
+	}
+?>
 
 </body>
 </html>
