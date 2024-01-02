@@ -150,8 +150,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         echo "
 							<div class='custom-select'>
 							<select name='nivUrg2' id='nivUrg2' required>
-								<option value=''>--Choisir une option--</option>
 							";
+                        if ($info_ticket[9] == Null) { echo "<option value=''>--Choisir une option--</option>"; }
                         $resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
                         menuDeroulant($resSQL, "selected", array($info_ticket[9]));
                         echo "
@@ -173,8 +173,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         echo "
 							<div class='custom-select'>
 								<select name='ch_technicien' id='ch_technicien'>
-									<option value=''>--Choisir une option--</option>
-									";
+						";
+                        if ($info_ticket[10] == Null) { echo "<option value=''>--Choisir une option--</option>"; }
                         while ($row = mysqli_fetch_row($liste_technicien)){
                             echo "<option value='$row[0]'";
                             echo isSelected($row[0],$info_ticket[10]);
