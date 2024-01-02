@@ -35,7 +35,7 @@ if (isset($_POST['titre'], $_POST['nivUrg'], $_POST["explication2"])){
                 if ($etatDuTicket == 'En attente') {
                     $etatDuTicket = "Ouvert";
                 }
-                executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $niveauUrgence2, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+                executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_DEFINITIF_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $niveauUrgence2, $id_ticket), $connexionUtilisateur);
                 $technicien = $_POST['ch_technicien'];
                 if (isset($_POST['ch_technicien']) && !empty($_POST['ch_technicien']) && $technicien != $infoTicket[1]){
                     if ($etatDuTicket == 'Ouvert')
@@ -46,11 +46,11 @@ if (isset($_POST['titre'], $_POST['nivUrg'], $_POST["explication2"])){
                 }
 			}
 			else {
-				executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $etatDuTicket, $id_ticket), $connexionUtilisateur);
+				executeSQL("UPDATE vue_modif_ticket_adm_tech SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $id_ticket), $connexionUtilisateur);
 			}
 		}
 		
-		executeSQL("DELETE FROM vue_suppr_RTM_tdb WHERE id_ticket = ?;", array($id_ticket), $connexionUtilisateur);
+		executeSQL("DELETE FROM vue_suppr_rtm_tdb WHERE id_ticket = ?;", array($id_ticket), $connexionUtilisateur);
 		if (!empty($_POST['motcle_option'])){
 			foreach ($_POST["motcle_option"] as $unMotcleTicket){
 				executeSQL('INSERT INTO RelationTicketsMotscles (ID_TICKET, NOM_MOTCLE) VALUES (?, ?)', array($id_ticket, $unMotcleTicket), $connexionUtilisateur);
@@ -60,13 +60,13 @@ if (isset($_POST['titre'], $_POST['nivUrg'], $_POST["explication2"])){
 
             header('Location: tableaudebord.php');
         } else {
-            header('Location: modificationTicket.php?id=3'); // Titre n'existe pas  
+            header('Location: modificationTicketBis.php?id=3'); // Titre n'existe pas
         }
 
     } else {
-        header('Location: modificationTicket.php?id=1'); // Données essentielles ne sont pas fournies ou incohérentes
+        header('Location: modificationTicketBis.php?id=1'); // Données essentielles ne sont pas fournies ou incohérentes
     }
 } else {
-    header('Location: modificationTicket.php?id=2'); // Données manquantes
+    header('Location: modificationTicketBis.php?id=2'); // Données manquantes
 }
 
