@@ -21,6 +21,12 @@ GRANT UPDATE(EMAIL_USER) ON DB_TIX.vue_Utilisateur_maj_email TO 'role_utilisateu
 -- Voir les différents mots-clés disponibles pour un ticket
 GRANT SELECT ON DB_TIX.MotcleTicket TO 'role_utilisateur';
 
+-- Voir les différents titres disponibles pour un ticket
+GRANT SELECT ON TitreTicket TO 'role_utilisateur';
+
+-- Voir les différentes urgences disponibles pour un ticket;
+GRANT SELECT ON UrgenceTicket TO 'role_utilisateur';
+
 -- Voir les tickets de son tableau de bord
 GRANT SELECT ON DB_TIX.vue_tableau_bord TO 'role_utilisateur'; -- A cause des JOIN, on doit donner l'accès SELECT intégrale (mais la vu limite)
 
@@ -102,6 +108,12 @@ GRANT SELECT(ID_TICKET)
 GRANT UPDATE(TITRE_TICKET, ID_TECHNICIEN, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET)
     ON vue_modif_ticket_adm_tech
     TO 'role_admin_web';
+
+-- Ajouter un titre
+GRANT INSERT ON TitreTicket TO 'role_admin_web';
+
+-- Supprimer un titre
+GRANT DELETE ON TitreTicket TO 'role_admin_web';
 
 -- Ajouter un mot clé
 GRANT INSERT ON DB_TIX.MotcleTicket TO 'role_admin_web';
