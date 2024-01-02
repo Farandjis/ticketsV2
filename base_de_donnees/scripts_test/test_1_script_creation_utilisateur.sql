@@ -12,10 +12,10 @@ DELETE FROM Utilisateur WHERE ID_USER = '4';
 */
 
 -- On créer les utilisateurs TIX
-INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(1, "alice", "Alice", "AVRIL", "utilisateur", "alice.avril@email.com");
-INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(2, "boblebricoleur", "Bob", "LEBRICOLEUR", "utilisateur", "lebricoleur@castorama.com");
-INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(3, "roberto", "Roberto", "HONGO", "utilisateur", "roberto.hongo@email.com");
-INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER) VALUES(4, "gordon", "Gordon", "SHUMWAY", "utilisateur", "alf@melmac.cat");
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES(1, "alice", "Alice", "AVRIL", "alice.avril@email.com");
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES(2, "boblebricoleur", "Bob", "LEBRICOLEUR", "lebricoleur@castorama.com");
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES(3, "roberto", "Roberto", "HONGO", "roberto.hongo@email.com");
+INSERT INTO Utilisateur(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES(4, "gordon", "Gordon", "SHUMWAY", "alf@melmac.cat");
 
 -- On créer les utilisateurs MariaDB
 CREATE USER '1'@'localhost' IDENTIFIED BY 'azerty!123';
