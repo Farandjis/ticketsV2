@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS DB_TIX;
-CREATE DATABASE DB_TIX:
+CREATE DATABASE DB_TIX;
 
 -- Création de la table "Utilisateur"
 CREATE OR REPLACE TABLE Utilisateur (
