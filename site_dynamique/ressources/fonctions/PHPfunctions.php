@@ -456,6 +456,31 @@ function isSelected($value,$comp){
 }
 
 
+function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
+    $libellesACocher = array();
+    
+    $resultLibellesACocher = mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_technicien");
+
+    if ($resultLibellesACocher) {
+        while ($n = mysqli_fetch_row($resultLibellesACocher)) {
+            array_push($libellesACocher, $n[0]);
+        }
+    } else {
+        die("Erreur lors de l'exécution de la requête : " . mysqli_error($connexionUtilisateur));
+    }
+
+    $resultUtilisateurs = mysqli_query($connexionUtilisateur, "SELECT ID_USER, NOM_USER, PRENOM_USER FROM affiche_utilisateurs_pour_adm_web");
+    if ($resultUtilisateurs) {
+        while ($unLibelle = mysqli_fetch_row($resultUtilisateurs)) {
+            $cestCocher = (in_array($unLibelle[0], $libellesACocher)) ? "checked" : "";
+
+            echo "<label><input type='checkbox' name='tech_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[1]) . " " . htmlspecialchars($unLibelle[2]) . " </label>";
+        }
+    } else {
+        die("Erreur lors de l'exécution de la requête : " . mysqli_error($connexionUtilisateur));
+    }
+}
+
 function appendToCSV($filename, $data) {
     $file = fopen($filename, 'a');
 	flock($file, LOCK_EX);
