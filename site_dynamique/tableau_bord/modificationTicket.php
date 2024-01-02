@@ -1,4 +1,7 @@
 <?php
+global $technicien;
+global $infoTicket;
+global $etatDuTicket;
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
@@ -104,7 +107,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     <div class="custom-select">
                         <select name="titre" id="titre" class="creer_select" required>
                             <?php
-                            menuDeroulantTousLesTitres($connection, array($info_ticket[6]));
+                            $resSQL = mysqli_query($connection, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
+                            menuDeroulant($resSQL, "selected", array($info_ticket[6]))
                             ?>
                         </select>
                     </div>
@@ -245,7 +249,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         ?>
                         <div class="option_checkbox">
                             <?php
-                            menuDeroulantTousLesMotcleTickets($connection, $lesMotcleTicketsCoches);
+                            $resSQL = mysqli_query($connection, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+                            menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
                             ?>
 
                         </div>
@@ -257,9 +262,26 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
             <input type="hidden" name="id_ticket" value='<?php echo $id_ticket; ?>'>
             <input type='submit' name='modif' value='Modifier le ticket'><br>
         </form>
-        <form action='#' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
-            <input type='submit' name='modif' value='Fermeture du Ticket' id="boutonFermerTicket"><br>
-        </form>
+    <form action='#' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+        <?php
+        $adminWeb = (recupererRoleDe($connection) == 'Administrateur Site');
+
+        // Assurez-vous que $infoTicket et $etatDuTicket sont définis
+        if (isset($infoTicket, $etatDuTicket)) {
+            // Vérifie si le ticket est affecté à un technicien
+            $ticketAffecte = isset($infoTicket['id_technicien']);
+
+            // Vérifie si l'utilisateur est le technicien affecté au ticket
+            $technicienAffecte = $ticketAffecte && ($infoTicket == $technicien);
+
+            // Affiche le bouton si l'utilisateur est adminWeb ou technicienAffecte
+            if ($adminWeb || $technicienAffecte) {
+                echo '<input type="submit" name="modif" value="Fermeture du Ticket" id="boutonFermerTicket"><br>';
+            }
+        }
+        ?>
+
+    </form>
     </div>
 </div>
 </body>
