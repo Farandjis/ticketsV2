@@ -187,14 +187,25 @@ function operationCAPTCHA()
     $chiffre1 = rand(-20, 20);
     $chiffre2 = rand(-20, 20);
     $operateur = array("+", "*")[rand(0, 1)];
-    if ($operateur == "+") {
-        $res = $chiffre1 + $chiffre2;
-	}
-	else{
-		$res = $chiffre1 * $chiffre2;
-	}
+
+    $_SESSION['chiffre1'] = $chiffre1;
+    $_SESSION['chiffre2'] = $chiffre2;
+    $_SESSION['operateur'] = $operateur;
+
 	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
 	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
+}
+function verifyCAPTCHA($userAnswer)
+{
+    // Vous pouvez ajuster la logique de vérification en fonction de la réponse attendue
+    // Par exemple, si la réponse attendue est le résultat du calcul, vous pouvez le recalculer et le comparer à la réponse de l'utilisateur.
+    $chiffre1 = $_SESSION['chiffre1'];
+    $chiffre2 = $_SESSION['chiffre2'];
+    $operateur = $_SESSION['operateur'];
+
+    $expectedResult = ($operateur == "+") ? $chiffre1 + $chiffre2 : $chiffre1 * $chiffre2;
+
+    return $userAnswer == $expectedResult;
 }
 
 function dechiffre($mdpchiffre){
@@ -440,13 +451,9 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 <?php
 }
 
-
+/*
 function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACocher = array()){
-    /**
-     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les mots-clés disponible dans la BD.
-     *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     *  @param array motclesACocher -> les mots-clés à cocher par défaut
-     */
+
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
     while($unMotcleTicket = mysqli_fetch_row($resSQL)){
@@ -455,6 +462,7 @@ function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACoche
         echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unMotcleTicket[0]) . "' $cestCocher> " . htmlspecialchars($unMotcleTicket[0]) . " </label>";
     }
 }
+*/
 
 function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
 	$libellesACocher = array();
@@ -470,21 +478,49 @@ function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
     }
 	echo "<label><input type='checkbox' name='tech_option[]' value='1'>AAAAA</label>";
 }
-
+/*
 function menuDeroulantTousLesTitres($connexionUtilisateur, $titreACocher = array()){
-    /**
-     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant) avec TOUS les titres disponibles dans la BD.
-     *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     *  @param array motclesACocher -> les mots-clés à cocher par défaut
-     *
-     * Remarque : nous utilisons une liste pour titreACocher en prévision d'une fusion des 3 fonctions menuDeroulantTousLes
-     */
+
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
     while($unTitre = mysqli_fetch_row($resSQL)[0]){
         if (count($titreACocher) == 1 and $unTitre == $titreACocher[0]){ $cestCocher = "selected"; }
         else { $cestCocher = ""; }
         echo "<option value='$unTitre' $cestCocher>$unTitre</option>";
+    }
+}
+*/
+function menuDeroulant($resultatSQL, $attributListe, $elementsACocher = array()){
+    /**
+     *  Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant sélectionnable ou cochable).
+     *  Elle récupère le resultat de la requête SQL, génère la liste déroulante cochable (si $attribut == "checked") ou sélectionnable (si $attribut == "selected").
+     *  Elle cochera tous les éléments contenus dans la liste ou sélectionnera le premier élément de celle-ci.
+     *  Le contenu de la liste correspondra à la première valeur du SELECT.
+     *  @param mysqli $resultatSQL -> Le résultat de la requête SQL (mysqli_result d'une requête SELECT attention !)
+     *  @param string $attributListe -> L'attribut de la liste (selected, checked)
+     *  @param array $elementsACocher -> L'élement à sélectionner, les éléments à cochers (par défaut : aucun)
+     *
+     * Remarque : nous utilisons une liste pour titreACocher en prévision d'une fusion des 3 fonctions menuDeroulantTousLes
+     */
+
+    // Si $attributListe == "selected" sans prendre compte de la casse
+    if (strcasecmp($attributListe, "selected") == 0) {
+
+        // Tant qu'il y a des éléments dans le résultat SQL (donc à mettre dans la liste
+        while ($unElement = mysqli_fetch_row($resultatSQL)[0]) {
+
+            // On vérifie qu'il y a bien un seul élément et on le prend pour le sélectionner
+            if (count($elementsACocher) == 1 and $unElement == $elementsACocher[0]) { $cestCocher = "selected"; }
+            else { $cestCocher = ""; } // Il n'y en a pas, ou ce n'est pas possible d'en sélectionner qu'un
+            echo "<option value='$unElement' $cestCocher>$unElement</option>"; // On ajoute l'élément à la liste
+        }
+    }
+    elseif (strcasecmp($attributListe, "checked") == 0) {
+        while ($unElement = mysqli_fetch_row($resultatSQL)) {
+            if (in_array($unElement[0], $elementsACocher)){ $cestCocher = "checked"; }
+            else { $cestCocher = ""; }
+            echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unElement[0]) . "' $cestCocher> " . htmlspecialchars($unElement[0]) . " </label>";
+        }
     }
 }
 
