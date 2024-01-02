@@ -454,3 +454,32 @@ function isSelected($value,$comp){
 		return "selected";
 	}
 }
+
+
+function appendToCSV($filename, $data) {
+    $file = fopen($filename, 'a');
+	flock($file, LOCK_EX);
+	fputcsv($file, $data);
+	flock($file, LOCK_UN);
+	fclose($file);
+}
+
+
+function csvToHtmlTable($filename) {
+    $file = fopen($filename, 'r');
+
+	$isHeader = True;
+	while (($data = fgetcsv($file,2048,';')) !== false) {
+		if ($isHeader){
+			$isHeader = False;
+			continue;
+		}
+		echo '<tr>';
+		foreach ($data as $cell) {
+			echo '<td>' . htmlspecialchars($cell) . '</td>';
+		}
+		echo '</tr>';
+	}
+
+	fclose($file);
+}
