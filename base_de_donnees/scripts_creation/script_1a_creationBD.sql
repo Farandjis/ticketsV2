@@ -11,7 +11,8 @@ CREATE OR REPLACE TABLE Utilisateur (
 );
 
 CREATE OR REPLACE TABLE UrgenceTicket(
-	VALEUR_URGENCE_TICKET VARCHAR(15) PRIMARY KEY
+	VALEUR_URGENCE_TICKET VARCHAR(15) PRIMARY KEY, 
+	IMPORTANCE_URGENCE INT UNIQUE
 	);
 
 
@@ -65,11 +66,11 @@ CREATE OR REPLACE TABLE RelationTicketsMotscles (
 
 
 INSERT INTO UrgenceTicket (VALEUR_URGENCE_TICKET) VALUES
-	    ('Non complété !'),
-	    ('Faible'),
-	    ('Moyen'),
-	    ('Important'),
-	    ('Urgent');
+	    ('Non complété !', 999),
+	    ('Faible', 4),
+	    ('Moyen', 3),
+	    ('Important', 2),
+	    ('Urgent', 1);
 
 
 -- Insertion des états possibles
