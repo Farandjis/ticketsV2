@@ -56,10 +56,10 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                     <div class="custom-select">
                         <select name="nivUrg" id="nivUrg" class="creer_select" required>
                             <option value="">--Choisir une option--</option>
-                            <option value="Faible">Faible</option>
-                            <option value="Moyen">Moyen</option>
-                            <option value="Important">Important</option>
-                            <option value="Urgent">Urgent</option>
+                            <?php
+                            $resSQL = mysqli_query($connexionUtilisateur, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
+                            menuDeroulant($resSQL, "selected");
+                            ?>
                         </select>
                     </div>
                 </div>
