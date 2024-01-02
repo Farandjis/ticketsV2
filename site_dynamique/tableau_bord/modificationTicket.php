@@ -114,8 +114,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     </div>
                     <br><br>
 
-                    <label for='explication2'>Explication</label><br>
-                    <textarea id="explication2" name="explication2" ><?php
+                    <label for='explication2'>Description du problème</label><br>
+                    <textarea id="explication2" name="explication2" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer des mots-clés à votre ticket si besoin."><?php
                         echo "$info_ticket[7]";
                         ?></textarea><br>
                 </div>
@@ -151,7 +151,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							<div class='custom-select'>
 							<select name='nivUrg2' id='nivUrg2' required>
 							";
-                        if ($info_ticket[9] == Null) { echo "<option value=''>--Choisir une option--</option>"; }
+                        if ($info_ticket[9] == "Non complété !") { echo "<option value=''>--Choisir une option--</option>"; }
                         $resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
                         menuDeroulant($resSQL, "selected", array($info_ticket[9]));
                         echo "
