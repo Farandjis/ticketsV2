@@ -72,7 +72,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     </div>
 </header>
 <div class="page_cree-modif_ticket">
-    <h1 class="h1Creation">Modification de Ticket (le 19/12 à 09h53 : tout fonctionne)</h1>
+    <h1 class="h1Creation">Modification du Ticket</h1>
     <div role="form" class="formModifTicket formAuthentification formConnexion">
         <?php
         echo "
@@ -130,26 +130,10 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         echo "
 							<div class='custom-select'>
 							<select name='nivUrg' id='nivUrg' required>
-								<option value=''>--Choisir une option--</option>
-								<option value='Faible'";
-                        echo isSelected('Faible',$info_ticket[8]);
-                        echo " 
-								>Faible</option>
-								<option value='Moyen'
-								";
-                        echo isSelected('Moyen',$info_ticket[8]);
-                        echo " 
-								>Moyen</option>
-								<option value='Important'
-								";
-                        echo isSelected('Important',$info_ticket[8]);
+							";
+						$resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
+                        menuDeroulant($resSQL, "selected", array($info_ticket[8]));
                         echo "
-								>Important</option>
-								<option value='Urgent'
-								";
-                        echo isSelected('Urgent',$info_ticket[8]);
-                        echo " 
-								>Urgent</option>
 							</select>
 							</div>
 							";
@@ -167,25 +151,10 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							<div class='custom-select'>
 							<select name='nivUrg2' id='nivUrg2' required>
 								<option value=''>--Choisir une option--</option>
-								<option value='Faible'";
-                        echo isSelected('Faible',$info_ticket[9]);
-                        echo " 
-								>Faible</option>
-								<option value='Moyen'
-								";
-                        echo isSelected('Moyen',$info_ticket[9]);
-                        echo " 
-								>Moyen</option>
-								<option value='Important'
-								";
-                        echo isSelected('Important',$info_ticket[9]);
+							";
+                        $resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
+                        menuDeroulant($resSQL, "selected", array($info_ticket[9]));
                         echo "
-								>Important</option>
-								<option value='Urgent'
-								";
-                        echo isSelected('Urgent',$info_ticket[9]);
-                        echo " 
-								>Urgent</option>
 							</select>
 							</div>
 							";
