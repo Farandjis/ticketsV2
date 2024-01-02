@@ -175,5 +175,6 @@ END //
 
 DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
 
-
+-- On autorise son utilisation par l'admin du Site
+GRANT EXECUTE ON PROCEDURE activerUnRoleTechOuUtiParAdminWeb TO 'role_admin_web';
 
