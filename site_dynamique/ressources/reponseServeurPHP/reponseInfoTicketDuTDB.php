@@ -6,7 +6,7 @@
  *      Il lui envoi des informations supplémentaires concernant le ticket demandé.
  *
  *      Les informations envoyées sont :
- *          - Administrateur WEB, Technicien uniquement et le créateur lui même : prénom + nom du créateur + Adresse email du créateur
+ *          - Administrateur WEB, Technicien uniquement et le créateur lui même : prénom + nom du créateur + Adresse email du créateur, prénom + nom + email de celui qui a modifi le ticket en dernier
  *          - Tout le monde : Date de la dernière modification du ticket, prénom + nom + email du technicien, mots-clés associés au ticket
  */
 
@@ -37,22 +37,31 @@ try {
                 // Dictionnaire au format : clé -> le nom du texte (ex : Titre), valeur -> le contenu du texte (ex: Le 28/12/2023 à 18h16)
                 $dicoDesInfosSupplementaires = array(); // Envoi le texte du bouton (case 1) et l'ID TICKET correspondant (case 2)
 
-
-                // ===================== DATE DE CRÉATION DU TICKET (tout le monde)
-                $dateDerniereModifTicket = mysqli_fetch_row(executeSQL("SELECT DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i') FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
-                $dicoDesInfosSupplementaires["Dernière modification"] = $dateDerniereModifTicket;
-
-
                 // On regarde si c'est le créateur du ticket (et donc que le ticket fait parti de sa liste de ticket)
                 // Si 0, alors non -> FALSE
                 // Si 1, alors oui -> TRUE
                 // rappel ID_TICKET est une clé primaire, donc elle est forcément unique
                 $cestLeCreateur = (bool) mysqli_fetch_row(executeSQL("SELECT COUNT(ID_TICKET) FROM vue_Ticket_client WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
 
+                $personneAyantModifierLeTicket = ""; // Par défaut, on affiche par d'information sur celui qui a modifié le ticket.
+                if ($cestLeCreateur or recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
+                    // ===================== PRÉNOM ET NOM DE LA DERNIERE PERSONNE A MODIFIER LE TICKET (tech, adm w, créateur uniquement)
+                    $dernierePersonneModifDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_MODIFIEUR, NOM_MODIFIEUR, EMAIL_MODIFIEUR FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
+                    $personneAyantModifierLeTicket = " par $dernierePersonneModifDuTicket[0] $dernierePersonneModifDuTicket[1] ($dernierePersonneModifDuTicket[2])"; // Prénom et nom du technicien
+                }
+
+                // ===================== DATE DE LA DERNIÈRE MODIFICATION DU TICKET (tout le monde)
+                $dateDerniereModifTicket = mysqli_fetch_row(executeSQL("SELECT DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i') FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
+                $dicoDesInfosSupplementaires["Dernière modification"] = $dateDerniereModifTicket . $personneAyantModifierLeTicket;
+
+
+
                 if ($cestLeCreateur or recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
-                    // ===================== PRÉNOM ET NOM DU CREATEUR (tech et adm w uniquement)
+                    // ===================== PRÉNOM ET NOM DU CREATEUR (tech, adm w, créateur uniquement)
                     $createurDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_CREA, NOM_CREA, EMAIL_CREA FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
                     $dicoDesInfosSupplementaires["Créateur"] = "$createurDuTicket[0] $createurDuTicket[1] ($createurDuTicket[2])"; // Prénom et nom du technicien
+
+                    // ===================== PRÉNOM ET NOM DE LA DERNIERE PERSONNE A MODIFIER LE TICKET (tech, adm w, créateur uniquement)
                 }
 
 
