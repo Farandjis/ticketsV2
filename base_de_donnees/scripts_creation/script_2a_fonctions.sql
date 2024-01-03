@@ -77,7 +77,7 @@ BEGIN
 
     -- Si le ticket est présent la liste des tickets pouvant être modifié par l'admin web ou le technicien, on peut le fermer
     IF (ticketPeutEtreFermer = 1) THEN
-        UPDATE DB_TIX.vue_modif_ticket_adm_tech SET etat_ticket = 'Fermé' WHERE ID_TICKET = id_ticket_param;
+        UPDATE DB_TIX.Ticket SET DB_TIX.Ticket.ETAT_TICKET = 'Fermé' WHERE DB_TIX.Ticket.ID_TICKET = id_ticket_param;
         RETURN True;
     ELSE
         RETURN False; -- Le ticket n'a pas été fermé
