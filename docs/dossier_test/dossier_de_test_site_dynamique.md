@@ -20,12 +20,18 @@ Ce document permet de s'assurer que la base de données soit conforme à ce qui 
 - ### [III - Contexte des tests](#III)
 - ### [IV - Test PHP](#IV)
 - ### [V - Test](#V)
-  - #### [Table Utilisateur](#1)
-  - #### [Table Ticket](#2)
-  - #### [role_utilisateur](#3)
-  - #### [role_technicien](#4)
-  - #### [role_admin_sys](#5)
-  - #### [role_admin_web](#6)
+  - #### [Table](#1)
+    - #### [Table Utilisateur](#1a)
+    - #### [Table Ticket](#1b)
+  - #### [Role](#2)
+    - #### [role_utilisateur](#2a)
+    - #### [role_technicien](#2b)
+    - #### [role_admin_sys](#2c)
+    - #### [role_admin_web](#2d)
+  - #### [Fonction](#3)
+    - #### [ObtenirRoleUtilisateur](#3a)
+  - #### [Procédure](#4)
+  - #### [Trigger](#5)
 
 
 <br><br><br>
@@ -64,51 +70,30 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ## <a name="V"></a>IV - Test
 
-### <a name="1"></a>Table Utilisateur
+## <a name="1"></a>Table
 
-- Cas n°1
-  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DDupont', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
-  - Résultat attendu : OK
-  - Résultat obtenu : OK
+### <a name="1a"></a>Table Utilisateur
 
-- Cas n°2
-  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DD', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);
-  - Résultat attendu : KO
-  - Résultat obtenu : KO
+| Cas n° | Critère                                                                                                                                                                                                                                                                                                                           | Résultat attendu | Résultat obtenu |
+|:-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DDupont', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);   | OK               | OK              |
+| 2      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DD', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);        | KO               | KO              |
+| 3      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL); | OK               | OK              |
+| 4      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL); | KO               | KO              |
+| 5      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont#gmail.com', current_timestamp(), NULL, NULL); | KO               | KO              |
+| 6      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.fr', current_timestamp(), NULL, NULL);  | OK               | OK              |
 
-- Cas n°3
-  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL);
-  - Résultat attendu : OK
-  - Résultat obtenu : OK
+### <a name="1b"></a>Table Ticket
 
-- Cas n°4
-  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont#gmail.com', current_timestamp(), NULL, NULL);
-  - Résultat attendu : KO
-  - Résultat obtenu : KO
+| Cas n° | Critère                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);                      | OK               | OK              |
+| 2      | INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'L\'ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);                                     | OK               | OK              |
+| 3      | INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Problème de connexion', 'Personne ne peut se connecter sur les PC de la salle G23', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL); | OK               | OK              |
 
-- Cas n°5
-  - INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.fr', current_timestamp(), NULL, NULL);
-  - Résultat attendu : OK
-  - Résultat obtenu : OK
+## <a name="2"></a>Role
 
-### <a name="2"></a>Table Ticket
-
-- Cas n°1
-  - INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
-  - Résultat attendu : OK
-  - Résultat obtenu : OK
-
-- Cas n°2
-  - INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'L\'ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
-  - Résultat attendu : OK
-  - Résultat obtenu : OK
-
-- Cas n°3
-  - INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Problème de connexion', 'Personne ne peut se connecter sur les PC de la salle G23', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);
-  - Résultat attendu : OK
-  - Résultat obtenu : OK
-
-### <a name="3"></a>role_utilisateur
+### <a name="2a"></a>role_utilisateur
 
 #### vue_Utilisateur_client
 
@@ -201,7 +186,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
 
 
-### <a name="4"></a>role_technicien
+### <a name="2b"></a>role_technicien
 
 #### vue_Utilisateur_client
 
@@ -329,7 +314,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
 
-### <a name="5"></a>role_admin_sys
+### <a name="2c"></a>role_admin_sys
 
 #### vue_Utilisateur_client
 
@@ -439,7 +424,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE(ID_TECHNICIEN) sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue                | KO               | KO              |
 
-### <a name="6"></a>role_admin_web
+### <a name="2d"></a>role_admin_web
 
 #### vue_Utilisateur_client
 
@@ -584,3 +569,86 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 2      | L'utilisateur tente un INSERT sur la vue | KO               | OK              |
 | 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | OK              |
+
+## <a name="3"></a>Fonction
+
+### <a name="3a"></a>ObtenirRoleUtilisateur
+
+| Cas n° | Critère                                                  | Résultat attendu | Résultat obtenu  |
+|:-------|----------------------------------------------------------|------------------|------------------|
+| 1      | On se connecte en temps que alice à la base de données   | role_utilisateur | role_utilisateur |
+| 2      | On se connecte en temps que gordon à la base de données  | role_technicien  | role_technicien  |
+| 3      | On se connecte en temps que gestion à la base de données | role_admin_web   | role_admin_web   |
+| 4      | On se connecte en temps que admin à la base de données   | role_admin_sys   | role_admin_sys   |
+
+### <a name="3b"></a>verifier_id_ticket_dans_vue_tdb
+
+| Cas n° | Critère                                                             | Résultat attendu | Résultat obtenu |
+|:-------|---------------------------------------------------------------------|------------------|-----------------|
+| 1      | Le ticket se trouve dans le tableau de bord d'un utilisateur        | 1                | 1               |
+| 2      | Le ticket ne se trouve pas dans le tableau de bord d'un utilisateur | 0                | 0               |
+| 3      | Le ticket se trouve dans le tableau de bord d'un technicien         | 1                | 1               |
+| 4      | Le ticket ne se trouve pas dans le tableau de bord d'un technicien  | 0                | 0               |
+| 5      | Le ticket se trouve dans le tableau de bord d'un admin Web          | 1                | 1               |
+| 6      | Le ticket ne se trouve pas dans le tableau de bord d'un admin Web   | 0                | 0               |
+| 7      | Le ticket se trouve dans le tableau de bord d'un admin sys          | 1                | 1               |
+| 8      | Le ticket ne se trouve pas dans le tableau de bord d'un admin Sys   | 0                | 0               |
+
+### <a name="3c"></a>recup_etat_ticket_tdb
+
+| Cas n° | Critère                                             | Résultat attendu       | Résultat obtenu        |
+|:-------|-----------------------------------------------------|------------------------|------------------------|
+| 1      | Demande l'état d'un ticket `en attente`             | en attente             | en attente             |
+| 2      | Demande l'état d'un ticket `ouvert`                 | ouvert                 | ouvert                 |
+| 3      | Demande l'état d'un ticket `en cours de traitement` | en cours de traitement | en cours de traitement |
+| 4      | Demande l'état d'un ticket `fermé`                  | fermé                  | fermé                  |
+
+### <a name="3d"></a>FermerUnTicket
+
+| Cas n° | Critère                                                            | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------|------------------|-----------------|
+| 1      | Le ticket se trouve dans la vue `vue_modif_ticket_adm_tech`        | True             | True            |
+| 2      | Le ticket ne se trouve pas dans la vue `vue_modif_ticket_adm_tech` | False            | False           |
+
+## <a name="4"></a>Procédure
+
+### <a name="4a"></a>ATTENTION_SupprimerSonCompte
+
+| Cas n° | Critère                                                  | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------------------------------|------------------|-----------------|
+| 1      | On se connecte en temps que alice à la base de données   | OK               | OK              |
+| 2      | On se connecte en temps que gordon à la base de données  | OK               | OK              |
+| 3      | On se connecte en temps que gestion à la base de données | KO               | KO              |
+| 4      | On se connecte en temps que admin à la base de données   | KO               | KO              |
+
+## <a name="5"></a>Trigger
+
+### <a name="5a"></a>PasseTicketAEnCours
+
+| Cas n° | Critère                                                      | Résultat attendu                       | Résultat obtenu                        |
+|:-------|--------------------------------------------------------------|----------------------------------------|----------------------------------------|
+| 1      | Le ticket est ouvert                                         | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
+| 2      | Le ticket est en attente et un niv d'urgence est défini      | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
+| 3      | Le ticket est en attente mais aucun niv d'urgence est défini | Le ticket reste en attente             | Le ticket reste en attente             |
+
+### <a name="5b"></a>PasseTicketAOuvert
+
+| Cas n° | Critère                                                      | Résultat attendu                       | Résultat obtenu                        |
+|:-------|--------------------------------------------------------------|----------------------------------------|----------------------------------------|
+| 1      | Le ticket est en attente et un niv d'urgence est défini      | Le ticket passe ouvert                 | Le ticket passe ouvert                 |
+
+### <a name="5c"></a>VerifQuiCestLeTechDuTicket
+
+| Cas n° | Critère                                               | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------|------------------|-----------------|
+| 1      | Si l'admin web veut changer le technicien             | OK               | OK              |
+| 1      | Si le technien veut changer le technicien d'un ticket | KO               | KO              |
+| 1      | Si le technicien veut s'attribuer un ticket           | OK               | OK              |
+
+### <a name="5c"></a>VerifQuiCestLeTechDuTicket
+
+| Cas n° | Critère                                               | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------|------------------|-----------------|
+| 1      | Si l'admin web veut changer le technicien             | OK               | OK              |
+| 1      | Si le technien veut changer le technicien d'un ticket | KO               | KO              |
+| 1      | Si le technicien veut s'attribuer un ticket           | OK               | OK              |

@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS DB_TIX;
+CREATE DATABASE DB_TIX;
+
 -- Création de la table "Utilisateur"
 CREATE OR REPLACE TABLE Utilisateur (
     ID_USER INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,7 +14,8 @@ CREATE OR REPLACE TABLE Utilisateur (
 );
 
 CREATE OR REPLACE TABLE UrgenceTicket(
-	VALEUR_URGENCE_TICKET VARCHAR(15) PRIMARY KEY
+	VALEUR_URGENCE_TICKET VARCHAR(15) PRIMARY KEY, 
+	IMPORTANCE_URGENCE INT UNIQUE
 	);
 
 
@@ -64,12 +68,12 @@ CREATE OR REPLACE TABLE RelationTicketsMotscles (
 
 
 
-INSERT INTO UrgenceTicket (VALEUR_URGENCE_TICKET) VALUES
-	    ('Non complété !'),
-	    ('Faible'),
-	    ('Moyen'),
-	    ('Important'),
-	    ('Urgent');
+INSERT INTO UrgenceTicket (VALEUR_URGENCE_TICKET, IMPORTANCE_URGENCE) VALUES
+	    ('Non complété !', 999),
+	    ('Faible', 4),
+	    ('Moyen', 3),
+	    ('Important', 2),
+	    ('Urgent', 1);
 
 
 -- Insertion des états possibles
