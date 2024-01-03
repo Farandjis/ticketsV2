@@ -143,6 +143,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **HORODATAGE_DEBUT_TRAITEMENT_TICKET** [DATETIME]
     - **HORODATAGE_RESOLUTION_TICKET** [DATETIME]
     - **HORODATAGE_DERNIERE_MODIF_TICKET** [DATETIME] DEFAULT CURRENT_TIMESTAMP NOT NULL
+    - **ID_USER_DERNIERE_MODIF_TICKET** foreign key (Utilisateur.ID_USER), NOT NULL, DEFAULT (SUBSTRING_INDEX(USER(),'@',1))
 
   - ### TitreTicket
     - **TitreTicket** [VARCHAR 60] Primary Key
@@ -401,7 +402,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     Si un changement a été effectué sur un ticket, on met à jour l'horodatage de dernière modification
     - BEFORE UPDATE ON Ticket<br>
       FOR EACH ROW
-    - S'il y a un UPDATE pour une quelconque valeur d'un quelconque attribut (sauf horodatage modif), on met à jour l'horodatage modif
+    - S'il y a un UPDATE pour une quelconque valeur d'un quelconque attribut (sauf horodatage modif), on met à jour l'horodatage modif et l'ID de celui qui le modifie 
     
   - ### EMPECHE_modifUtilisateurQuelquesInfos
     En cas de modification de certaines infos d'un Utilisateur, on remplace les nouvelles valeurs par les anciennes pour annuler l'effet du changement
