@@ -213,17 +213,7 @@ CREATE TRIGGER EMPECHE_InsertionMotsclesTicket
 BEFORE INSERT ON RelationTicketsMotscles
 FOR EACH ROW
 BEGIN
-    DECLARE presentVueModifAdmTech INT DEFAULT 0;
-    DECLARE presentVueModifUtilisateur INT DEFAULT 0;
-    IF ObtenirRoleUtilisateur() = ("role_admin_web" COLLATE utf8mb4_general_ci) OR ObtenirRoleUtilisateur() = ("role_technicien" COLLATE utf8mb4_general_ci) THEN
-        -- 1 s'il est présent, 0 sinon
-        SELECT COUNT(*) INTO presentVueModifAdmTech FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = NEW.ID_TICKET LIMIT 1;
-    END IF;
-
-    -- 1 s'il est présent, 0 sinon
-    SELECT COUNT(*) INTO presentVueModifUtilisateur FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = NEW.ID_TICKET LIMIT 1;
-
-    IF presentVueModifAdmTech = 0 AND presentVueModifUtilisateur = 0 THEN
+    IF verifTicketPeutEtreModif(NEW.ID_TICKET) = 0 THEN
         -- S'il est ni dans la vue modif pour Admin et Technicien, ni dans la vue modif pour Utilisateur,
         -- Alors il n'est pas possible d'ajouter un mot-clé, on génère une erreur SQL
         SIGNAL SQLSTATE '45000'
