@@ -232,7 +232,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Où les tickets sont présents dans le tableau de bord
 
   - ### vue_suppr_rtm_tdb
-    Permet la suppression des mots clés associés aux tickets du tableau de bord de l'usager, s'il a le droit de modifier son ticket bien sur
+    Permet la suppression des mots clés associés aux tickets du tableau de bord de l'usager, s'il a le droit de modifier son ticket bien sûr
     - DELETE Ticket pour l'utilisateur
     - Ticket : RTM.ID_TICKET, RTM.NOM_MOTCLE
     - Où le ticket est présent dans le tableau de bord
@@ -405,19 +405,42 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - On annule le changement
       
   - ### EMPECHE_modifTicketQuelquesInfos
-  En cas de modification de certaines infos d'un ticket, on remplace les nouvelles valeurs par les anciennes
+    En cas de modification de certaines infos d'un ticket, on remplace les nouvelles valeurs par les anciennes
     - BEFORE UPDATE ON Ticket<br>
       FOR EACH ROW
-    - ### S'il y a un changement pour : ID_TICKET, ID_USER ou HORODATAGE_CREATION_TICKET
+    - S'il y a un changement pour : ID_TICKET, ID_USER ou HORODATAGE_CREATION_TICKET
       - On annule le changement
     
   - ### EMPECHE_modifTicketFermer
-  En cas de modification d'un ticket fermé, on remplace les nouvelles valeurs par les anciennes
-  - BEFORE UPDATE ON Ticket<br>
-    FOR EACH ROW
-  - S'il y a un quelconque changement de valeur pour une ou plusieurs valeurs d'un ticket fermé
-    - On annule le changement
+    En cas de modification d'un ticket fermé, on remplace les nouvelles valeurs par les anciennes
+    - BEFORE UPDATE ON Ticket<br>
+      FOR EACH ROW
+    - S'il y a un quelconque changement de valeur pour une ou plusieurs valeurs d'un ticket fermé
+      - On annule le changement
 
+  - ### MajHorodatageModifMotsclesTicket_INSERT
+    Met à jour l'horodatage de modification du ticket dont on lui a associé un ou plusieurs mots clés
+    - AFTER INSERT ON RelationTicketsMotscles<br>
+      FOR EACH ROW
+    - Met à jour l'horodatage du ticket
+
+  - ### MajHorodatageModifMotsclesTicket_DELETE
+    Met à jour l'horodatage de modification du ticket dont on lui a retiré un ou plusieurs mots clés
+    - AFTER DELETE ON RelationTicketsMotscles<br>
+      FOR EACH ROW
+    - Met à jour l'horodatage du ticket
+  
+  - ### VerifAutorisationInsertionTicket_INSERT
+    Annule l'insertion d'un mot clé si l'utilisateur MariaDB n'a pas la permission de modifier ce ticket.
+    - BERFORE INSERT ON RelationTicketsMotscles<br>
+      FOR EACH ROW
+    - Si c'est un technicien ou l'administrateur web
+      - On vérifie si le ticket est dans la vue modif ticket adm tech
+        - Oui : La valeur de presentVueModifAdmTech est True
+        - Non : La valeur de presentVueModifAdmTech est Non
+    - On vérifie si le ticket est présent dans modif ticket utilisateur
+      - S'il n'y est pas et que presentVueModifAdmTech est False
+        - Bloque le changement
 
 
 ## <a name="p8"></a> VIII - Les Évènements
