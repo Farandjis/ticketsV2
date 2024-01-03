@@ -21,26 +21,47 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Nom de la table
     - Description
 
-- ### [III - Les attributs des tables]()
+- ### [III - Les attributs des tables](#p3)
   - Pour chaque table
+    - Nom de la table 
     - Liste de ses attributs
     - Options des attributs (clées primaire...)
 
-- ### [IV - Les vues]()
-  - Nom de la vue
+- ### [IV - Les vues](#p4)
+  - Pour chaque vue
+    - Nom de la vue
     - Présentation de la vue
     - Description de ses attributs, jointure
     - Comportement par rapport aux rôles, aux utilisateurs
 
-- ### [V - Les Fonctions]()
+- ### [V - Les Fonctions](#p5)
+  - Pour chaque fonction
+    - Nom
+    - Valeurs renvoyés
+    - Fonctionnement
+    - Effets sur la base de données
+    
+- ### [VI - Les Procédures](#p6)
+  - Pour chaque procédure
+    - Nom
+    - Fonctionnement
+    - Effets sur la base de données
+    
+- ### [VII - Les Déclencheurs](#p7)
+  - Pour chaque déclencheur
+    - Nom
+    - Moment du déclenchement
+    - Fonctionnement
+    - Effets sur la base de données
 
-- ### [VI - Les Procédures]()
-
-- ### [VII - Les Déclencheurs]()
-
-- ### [VIII - Les Évènements]()
-
-- ### [IX - Les rôles et utilisateurs fictifs MariaDB]()
+- ### [VIII - Les Évènements](#p8)
+  - Pour chaque évènement
+    - Nom
+    - Date et heure de l'exécution
+    - Fonctionnement
+    - Effets sur la base de données
+    
+- ### [IX - Les rôles et utilisateurs fictifs MariaDB](#p9)
   - Pour chaque Rôle, Utilisateur Fictif
     - Nom
     - Présentation
@@ -50,7 +71,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 ---------
 
-- ## I - Analyse
+## <a name="p1"></a> I - Analyse
   Nous avons besoin d'une base de données capable de stocker les différentes données concernant les utilisateurs et les différents tickets.
   
   Cette base des données permet de joindre les différents tickets à leur créateur et à leur technicien associé.
@@ -62,7 +83,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## II - Les tables
+## <a name="p2"></a> II - Les tables
   - ### Utilisateur
     La table UTILISATEUR comporte toutes les données liées aux utilisateurs et à leur compte.
 
@@ -86,7 +107,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## III - Les attributs des tables
+## <a name="p3"></a> III - Les attributs des tables
 
   - ### Utilisateur
     - **ID_USER** [INT 11] : Primary key, autoincrement
@@ -141,7 +162,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## IV - Les vues
+## <a name="p4"></a> IV - Les vues
   - ### vue_Ticket_visiteur
     Permet au visiteur de voir les 10 derniers tickets postés sur la plateforme (tous sauf ceux en attente)
     - Sélectionne les 10 derniers tickets(ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET, ETAT_TICKET, HORODATAGE_CREATION_TICKET)
@@ -275,7 +296,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## V - Les Fonctions
+## <a name="p5"></a> V - Les Fonctions
   - ### ObtenirRoleUtilisateur() RETURNS LONGTEXT
     Renvoi le rôle de l'utilisateur MariaDB appelant la fonction
     - L'utilisateur MariaDB doit être un utilisateur, technicien, admin web ou admin système de TIX.
@@ -300,7 +321,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## VI - Les Procédures
+## <a name="p6"></a> VI - Les Procédures
 
   - ### ATTENTION_SupprimerSonCompte()
     Supprime un compte TIX et l'utilisateur MariaDB associé
@@ -347,7 +368,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## VII - Les Déclencheurs
+## <a name="p7"></a> VII - Les Déclencheurs
   - ### PasseTicketAEnCours
     Si un technicien est définie, alors on passe le ticket à En cours
     - BEFORE UPDATE ON Ticket<br>
@@ -397,11 +418,18 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - S'il y a un quelconque changement de valeur pour une ou plusieurs valeurs d'un ticket fermé
     - On annule le changement
 
-- ## VIII - Les Évènements
+
+
+## <a name="p8"></a> VIII - Les Évènements
+  - ### SUPPRESSION_AUTO_COMPTES_INACTIFS
+    Supprime automatiquement les comptes inactifs
+    - A partir du lendemain de la création de l'évènement, à 1h du matin
+    - Pour tous les jours à 1h du matin
+    - Exécution de la procédure ATTENTION_SupprimerTousLesComptesInutilises()
 
 
 
-- ## IX - Les rôles et utilisateurs MariaDB
+## <a name="p9"></a> IX - Les rôles et utilisateurs MariaDB
   - ### Rôle Utilisateur `role_utilisateur`
     - **Présentation**
       - Est une personne inscrite sur la plateforme et ayant le droit d'y accéder et de l'utiliser.
