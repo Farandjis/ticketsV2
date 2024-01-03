@@ -116,6 +116,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                 ?>
 <footer>
     <a href="https://www.uvsq.fr/" target="_blank"><img src="ressources/images/logo-UVSQ.png" alt="redirige vers site UVSQ"></a>
+    <a href="ressources/documents/SAE_droit.pdf" target="_blank"><img src="ressources/images/donnee.png" alt="redirige vers travail Droit"></a>
 </footer>
 
 <div class="overlay" id="overlay" onclick="closePopup()">
