@@ -100,9 +100,7 @@ FROM RelationTicketsMotscles AS RTM
 CREATE OR REPLACE VIEW vue_suppr_rtm_tdb AS
 SELECT RTM.ID_TICKET, RTM.NOM_MOTCLE
 FROM RelationTicketsMotscles AS RTM
-WHERE verifier_id_ticket_dans_vue_tdb(RTM.ID_TICKET) = 1 AND (((ObtenirRoleUtilisateur() != ('role_utilisateur' COLLATE utf8mb4_unicode_ci))
-AND (ObtenirRoleUtilisateur() != ('role_admin_sys' COLLATE utf8mb4_unicode_ci)))
-   OR (recup_etat_ticket_tdb(RTM.ID_TICKET) = ("En attente" COLLATE utf8mb4_unicode_ci)));
+WHERE verifTicketPeutEtreModif(RTM.ID_TICKET) = 1;
 
 
 -- LES VUES LIÉES AUX MODIFICATIONS DES TICKETS

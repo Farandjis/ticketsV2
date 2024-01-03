@@ -16,21 +16,31 @@ DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
 
 
 
-DROP FUNCTION IF EXISTS verifier_id_ticket_dans_vue_tdb;
+DROP FUNCTION IF EXISTS verifTicketPeutEtreModif;
 DELIMITER //
 
 -- Fonction qui vérifie qu'un ticket est présent dans le tableau de bord de l'utilisateur
-CREATE FUNCTION verifier_id_ticket_dans_vue_tdb(id_ticket_param INT) RETURNS INT
+-- ABCDEF anciennement
+verifier_id_ticket_dans_vue_tdb
+CREATE FUNCTION verifTicketPeutEtreModif(id_ticket_param INT) RETURNS INT
 BEGIN
-    DECLARE ticket_exists INT;
+    DECLARE presentVueModifAdmTech INT DEFAULT 0;
+    DECLARE presentVueModifUtilisateur INT DEFAULT 0;
+    IF ObtenirRoleUtilisateur() = ("role_admin_web" COLLATE utf8mb4_general_ci) OR ObtenirRoleUtilisateur() = ("role_technicien" COLLATE utf8mb4_general_ci) THEN
+        -- 1 s'il est présent, 0 sinon
+        SELECT COUNT(*) INTO presentVueModifAdmTech FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = id_ticket_param LIMIT 1;
+    END IF;
 
-    -- Vérifier si l'id_ticket se trouve dans la vue_tableau_bord
-    SELECT COUNT(*) INTO ticket_exists
-    FROM vue_tableau_bord
-    WHERE id_ticket = id_ticket_param;
+    -- 1 s'il est présent, 0 sinon
+    SELECT COUNT(*) INTO presentVueModifUtilisateur FROM vue_modif_creation_ticket_utilisateur WHERE ID_TICKET = id_ticket_param LIMIT 1;
 
-    -- Retourner 1 si l'id_ticket existe dans la vue, sinon retourner 0
-    RETURN IF(ticket_exists > 0, 1, 0);
+    IF presentVueModifAdmTech = 1 OR presentVueModifUtilisateur = 1 THEN
+        -- S'il est dans la vue modif pour Admin et Technicien ou dans la vue modif pour Utilisateur,
+        RETURN 1;
+    END IF;
+
+    -- Il ne peut être modifié
+    RETURN 0;
 END //
 
 DELIMITER ;
