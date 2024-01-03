@@ -276,6 +276,29 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 - ## [V - Les Fonctions]()
+  - ### ObtenirRoleUtilisateur() RETURNS LONGTEXT
+    Renvoi le rôle de l'utilisateur MariaDB appelant la fonction
+    - L'utilisateur MariaDB doit être un utilisateur, technicien, admin web ou admin système de TIX.
+    - Renvoi la valeur ROLE_USER de la vue vue_Utilisateur_client
+    
+  - ### verifier_id_ticket_dans_vue_tdb(id_ticket_param INT) RETURNS INT
+    Fonction qui vérifie qu'un ticket est présent dans le tableau de bord de l'utilisateur
+    - Le ticket doit être dans vue_tableau_bord
+    - Renvoi 1 s'il est présent
+    - Renvoi 0 sinon
+    
+  - ### recup_etat_ticket_tdb(id_ticket_param INT) RETURNS VARCHAR(30)
+    Fonction qui récupère du tableau de bord l'état d'un ticket demandé par l'utilisateur
+    - Le ticket doit être dans vue_tableau_bord
+    - Renvoi l'état du ticket du tableau de bord demandé
+    
+  - ### FermerUnTicket(id_ticket_param INT) RETURNS BOOLEAN
+    Fonction qui ferme un ticket (une demande de dépannage)
+    - Le ticket doit être dans vue_modif_ticket_adm_tech
+    - Renvoi True s'il a pu changer l'état du Ticket en fermé
+    - Renvoi False sinon
+
+
 
 - ## [VI - Les Procédures]()
 
