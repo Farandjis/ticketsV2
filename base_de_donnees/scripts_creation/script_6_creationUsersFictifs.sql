@@ -9,7 +9,8 @@ CREATE USER 'fictif_droitDB'@'localhost' IDENTIFIED BY 't!nt1n_droitDB45987645';
 -- ABCDEF UserFictif_connexionDB1
 CREATE OR REPLACE VIEW UserFictif_connexion AS
 SELECT ID_USER, LOGIN_USER
-FROM Utilisateur;
+FROM Utilisateur
+WHERE LOGIN_USER IS NOT NULL;
 
 -- Permet d'ajouter un nouvel utilsateur
 -- ABCDEF UserFictif_inscriptionDB1
