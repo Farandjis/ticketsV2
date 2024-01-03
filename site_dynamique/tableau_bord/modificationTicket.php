@@ -231,24 +231,19 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
             <input type="hidden" name="id_ticket" value='<?php echo $id_ticket; ?>'>
             <input type='submit' name='modif' value='Modifier le ticket'><br>
         </form>
-    <form action='#' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+    <form action='action_modificationTicket.php' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
         <?php
-        $adminWeb = (recupererRoleDe($connection) == 'Administrateur Site');
+            $estAdmin = (recupererRoleDe($connection) == 'Administrateur Site');
+            $estTech = (recupererRoleDe($connection) == 'Technicien');
+            if($estAdmin || $estTech){
+                // True si le ticket peut être fermé (il peut user de ses privilèges de technicien/administrateur pour le fermer)
+                $ticketPeutEtreFermer = (bool) mysqli_fetch_row(executeSQL("SELECT COUNT(*) FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = ?", array($id_ticket), $connection))[0];
 
-        // Assurez-vous que $infoTicket et $etatDuTicket sont définis
-        if (isset($infoTicket, $etatDuTicket)) {
-            // Vérifie si le ticket est affecté à un technicien
-            $ticketAffecte = isset($infoTicket['id_technicien']);
-
-            // Vérifie si l'utilisateur est le technicien affecté au ticket
-            $technicienAffecte = $ticketAffecte && ($infoTicket == $technicien);
-
-            // Affiche le bouton si l'utilisateur est adminWeb ou technicienAffecte
-            if ($adminWeb || $technicienAffecte) {
-                echo '<input type="submit" name="modif" value="Fermeture du Ticket" id="boutonFermerTicket"><br>';
+                if ($ticketPeutEtreFermer) {
+                    echo '<input type="submit" name="fermer_ticket" value="Fermeture du Ticket" id="boutonFermerTicket"><br>';
+                }
             }
-        }
-        ?>
+            ?>
 
     </form>
     </div>
