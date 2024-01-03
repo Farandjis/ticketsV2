@@ -303,6 +303,9 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - (TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET) DB_TIX.vue_modif_creation_ticket_utilisateur
       - DELETE
         - DB_TIX.vue_suppr_rtm_tdb
+      - PROCÉDURES
+        - ATTENTION_SupprimerSonCompte
+        
   - Rôle technicien `role_technicien`
     - **Présentation**
       - Est un utilisateur capable de prendre en charge un ticket (se l'attribuer) afin de le modifier et de fermer.
@@ -319,6 +322,9 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - UPDATE
         - (TITRE_TICKET, DESCRIPTION_TICKET) vue_modif_ticket_adm_tech
         - (ID_TECHNICIEN) vue_associe_ticket_tech
+      - FONCTIONS
+        - FermerUnTicket
+        
   - Rôle technicien `role_admin_web`
     - **Présentation**
       - Est un utilisateur capable de gérer les tickets et les utilisateurs ainsi que de valider un ticket en attente,
@@ -345,6 +351,9 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - DB_TIX.TitreTicket
         - DB_TIX.MotcleTicket
         - DB_TIX.RelationTicketsMotscles
+      - PROCÉDURES
+        - activerUnRoleTechOuUtiParAdminWeb
+        
   - Rôle administrateur système `role_admin_sys`
     - **Présentation**
       - Est un utilisateur capable d'accéder au journal d'activité de la plateforme et de suivre l'activité de connexion des utilisateurs.
@@ -359,6 +368,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - vue_historique
         - vue_historique_relation_ticket_motcle
         - ...
+        
   - Utilisateur MariaDB : Visiteur
     - **Présentation**
       - Consulte l'application sans avoir de compte (ou en étant déconnecté)
@@ -367,6 +377,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **Droits**
       - SELECT
         - vue_Ticket_visiteur
+        
   - Utilisateur MariaDB : fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - **Présentation**
       - Dédié à la connexion d'un utilisateur à la plateforme
@@ -383,6 +394,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - (JETON_HORODATAGE_USER) ON DB_JETONS_TIX.stockage_jeton
       - DELETE
         - DB_JETONS_TIX.stockage_jeton
+        
   - Utilisateur MariaDB : fictif_inscriptionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - **Présentation**
       - Dédié à l'inscription d'un utilisateur à la plateforme mais n'attribue pas les droits
@@ -397,6 +409,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) ON UserFictif_inscription
       - CREATE USER
         - Partout !
+        
   - Utilisateur MariaDB : fictif_droitDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - **Présentation**
       - Dédié à la distribution du rôle Utilisateur
