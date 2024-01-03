@@ -165,3 +165,38 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
+
+
+
+-- ========= [RELATIONTICKETSMOTCLES] : MODIF HORODATAGE TICKET APRÈS INSERT =========
+-- Met à jour l'horodatage de modification du ticket dont on lui a associé un ou plusieurs mots clés
+
+DROP TRIGGER IF EXISTS MajHorodatageModifMotsclesTicket_INSERT;
+
+DELIMITER //
+
+CREATE TRIGGER MajHorodatageModifMotsclesTicket_INSERT
+AFTER INSERT ON RelationTicketsMotscles
+FOR EACH ROW
+BEGIN
+    UPDATE Ticket SET HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET = NEW.ID_TICKET;
+
+END //
+DELIMITER ;
+
+
+-- ========= [RELATIONTICKETSMOTCLES] : MODIF HORODATAGE TICKET APRÈS DELETE =========
+-- Met à jour l'horodatage de modification du ticket dont on lui a retiré un ou plusieurs mots clés
+
+DROP TRIGGER IF EXISTS MajHorodatageModifMotsclesTicket_DELETE;
+
+DELIMITER //
+
+CREATE TRIGGER MajHorodatageModifMotsclesTicket_DELETE
+AFTER DELETE ON RelationTicketsMotscles
+FOR EACH ROW
+BEGIN
+    UPDATE Ticket SET HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET = OLD.ID_TICKET;
+
+END //
+DELIMITER ;
