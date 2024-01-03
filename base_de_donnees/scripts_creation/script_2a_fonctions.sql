@@ -20,8 +20,7 @@ DROP FUNCTION IF EXISTS verifTicketPeutEtreModif;
 DELIMITER //
 
 -- Fonction qui vérifie qu'un ticket est présent dans le tableau de bord de l'utilisateur
--- ABCDEF anciennement
-verifier_id_ticket_dans_vue_tdb
+-- ABCDEF anciennement verifier_id_ticket_dans_vue_tdb
 CREATE FUNCTION verifTicketPeutEtreModif(id_ticket_param INT) RETURNS INT
 BEGIN
     DECLARE presentVueModifAdmTech INT DEFAULT 0;

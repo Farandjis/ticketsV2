@@ -302,11 +302,17 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - L'utilisateur MariaDB doit être un utilisateur, technicien, admin web ou admin système de TIX.
     - Renvoi la valeur ROLE_USER de la vue vue_Utilisateur_client
     
-  - ### verifier_id_ticket_dans_vue_tdb(id_ticket_param INT) RETURNS INT
-    Fonction qui vérifie qu'un ticket est présent dans le tableau de bord de l'utilisateur
-    - Le ticket doit être dans vue_tableau_bord
-    - Renvoi 1 s'il est présent
-    - Renvoi 0 sinon
+  - ### verifTicketPeutEtreModif(id_ticket_param INT) RETURNS INT
+    Fonction qui vérifie si le ticket peut être modifié par l'utilisateur
+      - Si c'est un technicien ou l'administrateur web
+          - On vérifie si le ticket est dans la vue modif ticket adm tech
+              - Oui : La valeur de presentVueModifAdmTech est True
+              - Non : La valeur de presentVueModifAdmTech est Non
+      - On vérifie si le ticket est présent dans modif ticket utilisateur
+          - S'il y est et que presentVueModifAdmTech est True
+              - Renvoi 1
+          - Sinon
+              - Renvoi 0
     
   - ### recup_etat_ticket_tdb(id_ticket_param INT) RETURNS VARCHAR(30)
     Fonction qui récupère du tableau de bord l'état d'un ticket demandé par l'utilisateur
@@ -434,12 +440,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     Annule l'insertion d'un mot clé si l'utilisateur MariaDB n'a pas la permission de modifier ce ticket.
     - BERFORE INSERT ON RelationTicketsMotscles<br>
       FOR EACH ROW
-    - Si c'est un technicien ou l'administrateur web
-      - On vérifie si le ticket est dans la vue modif ticket adm tech
-        - Oui : La valeur de presentVueModifAdmTech est True
-        - Non : La valeur de presentVueModifAdmTech est Non
-    - On vérifie si le ticket est présent dans modif ticket utilisateur
-      - S'il n'y est pas et que presentVueModifAdmTech est False
+    - Si l'utilisateur MariaDB ne peut modifier ce ticket
         - Bloque le changement
 
 
