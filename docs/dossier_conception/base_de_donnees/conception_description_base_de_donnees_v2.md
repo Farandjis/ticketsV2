@@ -18,34 +18,39 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 - ### [II - Les tables](#p2)
   - Pour chaque table
-  - Nom de la table
-  - Description
+    - Nom de la table
+    - Description
 
 - ### [III - Les attributs des tables]()
   - Pour chaque table
-  - Liste de ses attributs
-  - Options des attributs (clées primaire...)
+    - Liste de ses attributs
+    - Options des attributs (clées primaire...)
 
 - ### [IV - Les vues]()
-  - Pour chaque type d'utilisateur
   - Nom de la vue
-  - Description de la vue
-  - Ce qu'elle fait
+    - Présentation de la vue
+    - Description de ses attributs, jointure
+    - Comportement par rapport aux rôles, aux utilisateurs
 
-- ### [V - Les rôles et utilisateurs MariaDB]()
-  - Pour chaque type d'utilisateur MySQL
-  - Nom du type d'utilisateur
-  - Description de l'utilisateur
-  - Ses droits
+- ### [V - Les Fonctions]()
 
-- ### [VI - Les vues des users fictifs]()
+- ### [VI - Les Procédures]()
 
-- ### [VII - Les rôles]()
+- ### [VII - Les Déclencheurs]()
+
+- ### [VIII - Les Évènements]()
+
+- ### [IX - Les rôles et utilisateurs fictifs MariaDB]()
+  - Pour chaque Rôle, Utilisateur Fictif
+    - Nom
+    - Présentation
+    - Actions
+    - Droits
 
 
 ---------
 
-- ### I - Analyse
+- ## I - Analyse
   Nous avons besoin d'une base de données capable de stocker les différentes données concernant les utilisateurs et les différents tickets.
   
   Cette base des données permet de joindre les différents tickets à leur créateur et à leur technicien associé.
@@ -57,33 +62,33 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ### II - Les tables
-  - #### Utilisateur
+- ## II - Les tables
+  - ### Utilisateur
     La table UTILISATEUR comporte toutes les données liées aux utilisateurs et à leur compte.
 
-  - #### Ticket
+  - ### Ticket
     La table TICKET comporte tous les tickets de la plateforme avec leur description complète et les informations relatives à leurs gestions.
 
-  - #### TitreTicket
+  - ### TitreTicket
     La table TITRETICKET comporte tous les titres pouvant être assignés à un ticket.
 
-  - #### EtatTicket
+  - ### EtatTicket
     La table ETATTICKET comporte tous les états pouvant être assignés à un ticket.
 
-  - #### UrgenceTicket
+  - ### UrgenceTicket
     La table URGENCE-TICKET regroupe l'ensemble des niveaux d'urgences pouvant être attribué à un ticket.
 
-  - #### MotcleTicket
+  - ### MotcleTicket
     La table MOTCLETICKET comporte tous les mots-clés pouvant être associés à un ticket.
 
-  - #### RelationTicketMotscles
+  - ### RelationTicketMotscles
     La table RELATIONTICKETMOTSCLES permet de faire le lien entre les mots-clés et les tickets.
 
 
 
-- ### III - Les attributs des tables
+- ## III - Les attributs des tables
 
-  - #### Utilisateur
+  - ### Utilisateur
     - **ID_USER** [INT 11] : Primary key, autoincrement
     - **LOGIN_USER** [VARCHAR 20] : UNIQUE, CHECK Taille >= 5
     - **PRENOM_USER** [VARCHAR 30] : CHECK caractères autorisés : majuscules, minuscules, accents, tirets
@@ -103,7 +108,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **HORODATAGE_DERNIERE_CONNECTION_USER** [DATETIME] : DEFAULT CURRENT_TIMESTAMP NOT NULL
     - **IP_DERNIERE_CONNECTION_USER** [VARCHAR 15]
 
-  - #### Ticket
+  - ### Ticket
     - **ID_TICKET** [INT 11] : Primary key, autoincrement
     - **ID_USER** [INT 11] : foreign key (Utilisateur.ID_USER), NOT NULL, DEFAULT (SUBSTRING_INDEX(USER(),'@',1))
       - Par défaut, l'utilisateur exécutant la requête est le créateur du ticket ex : utilisateur "3" si c'est 3@localhost (on récupère que le nom avant l'arobase). 
@@ -136,42 +141,42 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ### IV - Les vues
-  - #### vue_Ticket_visiteur
+- ## IV - Les vues
+  - ### vue_Ticket_visiteur
     Permet au visiteur de voir les 10 derniers tickets postés sur la plateforme (tous sauf ceux en attente)
     - Sélectionne les 10 derniers tickets(ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET, ETAT_TICKET, HORODATAGE_CREATION_TICKET)
     - Triés par HORODATAGE_CREATION_TICKET DESC
     - Qui ne sont pas en attente
     
-  - #### vue_Utilisateur_client
+  - ### vue_Utilisateur_client
     Permet à l'utilisateur d'avoir accès à ses données personnelles
     - Sélectionne ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER de la table Utilisateur
     - Sélectionne default_role de la vue user de la DB MySQL -> Jointure user.User = DB_TIX.Utilisateur.ID_USER
     - Où ID_USER correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
     
-  - #### vue_Utilisateur_maj_email
+  - ### vue_Utilisateur_maj_email
     Permet à l'utilisateur de pouvoir modifier leurs adresses email
     - Sélectionne l'ID_USER et EMAIL_USER de la table Utilisateur
     - Où ID_USER correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
     
-  - #### vue_Ticket_client
+  - ### vue_Ticket_client
     Permet à l'utilisateur de voir tous leurs tickets qu'ils soient en attentes, ouverts, en cours ou fermés.
     - Sélectionne ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET, NIV_URGENCE_DEFINITIF_TICKET,
       ETAT_TICKET, HORODATAGE_CREATION_TICKET, HORODATAGE_DEBUT_TRAITEMENT_TICKET, HORODATAGE_RESOLUTION_TICKET de Ticket
     - Trié par ID_TICKET DESC
     - Où ID_USER des tickets correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
     
-  - #### vue_technicien
+  - ### vue_technicien
     Liste les techniciens de la plateforme
     - Sélectionne ID_USER, PRENOM_USER, NOM_USER, EMAIL_USER de la table Utilisateur
     - Où mysql.user.default_role = "role_technicien" -> JOIN mysql.user ON mysql.user.User = ID_USER
     
-  - #### affiche_utilisateurs_pour_adm_web
+  - ### affiche_utilisateurs_pour_adm_web
     Liste tous les utilisateurs de la plateforme
     - Sélectionne ID_USER, PRENOM_USER, NOM_USER de la table Utilisateur
     - Où LOGIN_USER n'est pas nul
     
-  - #### vue_tableau_bord
+  - ### vue_tableau_bord
     Les tickets affichés dans le tableau de bord de l'usager. Le contenu de la vue varie en fonction de l'utilisateur, et du rôle de l'utilisateur.<br>
     Vu que la vue utilise des jointures, on ne peut pas préciser les attributs accessibles via SELECT.<br>
     Les rôles admins et techs possèdent déjà les droits d'un utilisateur. Ils n'ont juste que des permissions un peu plus poussées.
@@ -200,12 +205,12 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - Affiche uniquement les tickets ouverts, en cours et en attente <br>
         -> Valeurs "Ouvert" et "En cours de traitement", "En attente"
 
-  - #### vue_tdb_relation_ticket_motcle
+  - ### vue_tdb_relation_ticket_motcle
     Les mots clés associés aux tickets du tableau de bord de l'usager. Le contenu de la vue varie en fonction des tickets disponibles dans la vue tableau de bord.
     - RelationTicketsMotscles : *
     - Où les tickets sont présents dans le tableau de bord
 
-  - #### vue_suppr_rtm_tdb
+  - ### vue_suppr_rtm_tdb
     Permet la suppression des mots clés associés aux tickets du tableau de bord de l'usager, s'il a le droit de modifier son ticket bien sur
     - DELETE Ticket pour l'utilisateur
     - Ticket : RTM.ID_TICKET, RTM.NOM_MOTCLE
@@ -213,7 +218,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - Soit le ticket en attente
       - Soit l'utilisateur MariaDB est un admin web ou bien le technicien affecté au ticket
 
-  - #### vue_modif_creation_ticket_utilisateur
+  - ### vue_modif_creation_ticket_utilisateur
     Permet la création d'un ticket ainsi que sa modification s'il est en attente (modification uniquement des valeurs du formulaire de création de ticket)
     - UPDATE, INSERT Ticket pour l'utilisateur (modif/création ticket 1/2)
     - Ticket : titre ticket, description ticket, urgence ticket estimé
@@ -222,7 +227,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     -> Valeurs "En attente"
     -> Note : ce sont tous les tickets en attente de son tableau de bord (donc tous ses tickets en attente de la BD en général)
     
-  - #### vue_modif_ticket_adm_tech
+  - ### vue_modif_ticket_adm_tech
     Permet la modification avancée d'un ticket pour un technicien ou l'administrateur web
     - Technicien
       - Ticket : ID Ticket, Titre ticket, description ticket, ID Technicien
@@ -237,42 +242,51 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - UPDATE Titre ticket, description ticket, urgence def
        - Tous les tickets non fermés de son tableau de bord
       
-  - #### vue_associe_ticket_tech
+  - ### vue_associe_ticket_tech
     Permet à un technicien de s'attribuer un ticket ouvert
     - Ticket : ID_TICKET, ID_TECHNICIEN
     - S'ils sont ouvert
     
-  - #### vue_historique
+  - ### vue_historique
     Liste tous les tickets fermés de la plateforme
     - Ticket T : T.ID_TICKET, T.TITRE_TICKET, T.DESCRIPTION_TICKET, T.NIV_URGENCE_DEFINITIF_TICKET, T.ETAT_TICKET, T.HORODATAGE_CREATION_TICKET, T.HORODATAGE_DERNIERE_MODIF_TICKET, T.ID_TECHNICIEN, T.ID_USER
     - Utilisateur CREA : CREA.PRENOM_USER, CREA.NOM_USER --- Join
     - Utilisateur TECH : PRENOM_TECH, NOM_TECH  --- left outer join
     - Si les tickets sont fermés
     
-  - #### vue_historique_relation_ticket_motcle
+  - ### vue_historique_relation_ticket_motcle
     Les mots clés associés aux tickets de l'historique
     - RelationTicketsMotscles : RTM.ID_TICKET, RTM.NOM_MOTCLE
     - S'il est dans l'historique
     
-  - #### UserFictif_connexion
+  - ### UserFictif_connexion
     Liste tous les identifiants ID USER et les logins pour l'Utilisateur Fictif connexion
     - Utilisateur : ID_USER, LOGIN_USER
     - Si LOGIN_USER n'est pas null
 
-  - #### UserFictif_inscription
+  - ### UserFictif_inscription
     Permet l'insertion d'un utilisateur dans la table Utilisateur pour UF inscription
     - Utilisateur : ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER
     - Attention ! La vue ne permet pas de définir un ID_USER.
     
-  - #### UserFictif_maj_derniere_co
+  - ### UserFictif_maj_derniere_co
     Permet la mise à jour des informations de connexion de la table Utilisateur pour UF connexion
     - Utilisateur : ID_USER, HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER
 
 
 
+- ## [V - Les Fonctions]()
 
-- ### V - Les rôles et utilisateurs MariaDB
-  - Rôle Utilisateur `role_utilisateur`
+- ## [VI - Les Procédures]()
+
+- ## [VII - Les Déclencheurs]()
+
+- ## [VIII - Les Évènements]()
+
+
+
+- ## IX - Les rôles et utilisateurs MariaDB
+  - ### Rôle Utilisateur `role_utilisateur`
     - **Présentation**
       - Est une personne inscrite sur la plateforme et ayant le droit d'y accéder et de l'utiliser.
     - **Actions**
@@ -306,7 +320,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - PROCÉDURES
         - ATTENTION_SupprimerSonCompte
         
-  - Rôle technicien `role_technicien`
+  - ### Rôle technicien `role_technicien`
     - **Présentation**
       - Est un utilisateur capable de prendre en charge un ticket (se l'attribuer) afin de le modifier et de fermer.
     - **Actions**
@@ -325,7 +339,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - FONCTIONS
         - FermerUnTicket
         
-  - Rôle technicien `role_admin_web`
+  - ### Rôle technicien `role_admin_web`
     - **Présentation**
       - Est un utilisateur capable de gérer les tickets et les utilisateurs ainsi que de valider un ticket en attente,
     - **Actions**
@@ -354,7 +368,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - PROCÉDURES
         - activerUnRoleTechOuUtiParAdminWeb
         
-  - Rôle administrateur système `role_admin_sys`
+  - ### Rôle administrateur système `role_admin_sys`
     - **Présentation**
       - Est un utilisateur capable d'accéder au journal d'activité de la plateforme et de suivre l'activité de connexion des utilisateurs.
     - **Actions**
@@ -369,7 +383,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
         - vue_historique_relation_ticket_motcle
         - ...
         
-  - Utilisateur MariaDB : Visiteur
+  - ### Utilisateur MariaDB : Visiteur
     - **Présentation**
       - Consulte l'application sans avoir de compte (ou en étant déconnecté)
     - **Actions**
@@ -378,7 +392,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - SELECT
         - vue_Ticket_visiteur
         
-  - Utilisateur MariaDB : fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+  - ### Utilisateur MariaDB : fictif_connexionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - **Présentation**
       - Dédié à la connexion d'un utilisateur à la plateforme
     - **Actions**
@@ -395,7 +409,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - DELETE
         - DB_JETONS_TIX.stockage_jeton
         
-  - Utilisateur MariaDB : fictif_inscriptionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+  - ### Utilisateur MariaDB : fictif_inscriptionDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - **Présentation**
       - Dédié à l'inscription d'un utilisateur à la plateforme mais n'attribue pas les droits
     - **Actions**
@@ -410,7 +424,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - CREATE USER
         - Partout !
         
-  - Utilisateur MariaDB : fictif_droitDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
+  - ### Utilisateur MariaDB : fictif_droitDB [POUR FONCTIONNEMENT SITE WEB UNIQUEMENT]:
     - **Présentation**
       - Dédié à la distribution du rôle Utilisateur
     - **Actions**
