@@ -207,7 +207,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - SELECT Ticket pour les utilisateurs (tableau de bord)
       - Tickets : -> ID Ticket, Titre Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, horodatage modification
       - (1) Utilisateurs : -> Prénom, nom et adresse email du technicien
-      - (2) Utilisateurs : Nom, prénom et adresse email de créateur, uniquement si l'utilisateur est le créateur de ce ticket
+      - (2) Utilisateurs : Nom, prénom et adresse email du créateur et de la personne ayant modifié le ticket, uniquement si l'utilisateur est le créateur de ce ticket
       - Affiche uniquement tous les tickets ouverts et en cours <br>
         -> Valeurs "Ouvert" et "En cours de traitement"
       - Affiche ses propres tickets en attente en plus
@@ -215,7 +215,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Technicien
       - SELECT Ticket pour les techniciens (tableau de bord)
       - Tickets : -> ID Ticket, Titre Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, Horodatage modification
-      - Utilisateurs : -> Prénom, nom et adresse email du technicien, ID Technicien, ID Créateur, Prénom et nom du créateur, email du créateur
+      - Utilisateurs : -> Prénom, nom et adresse email du technicien, ID Technicien, ID Créateur, Prénom et nom du créateur, email du créateur, Prénom/Nom/Email de la personne ayant modifié le ticket
       - Affiche uniquement les tickets ouverts et en cours <br>
         -> Valeurs "Ouvert" et "En cours de traitement"
       - Affiche ses propres tickets en attente
@@ -223,7 +223,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Administrateur Web
       - SELECT Ticket pour l'admin web (tableau de bord)
       - Tickets : -> ID Ticket, Titre Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, Horodatage modification
-      - Utilisateurs : -> Prénom, nom et adresse email du technicien, ID Technicien, ID Créateur, Prénom et nom du créateur, email du créateur
+      - Utilisateurs : -> Prénom, nom et adresse email du technicien, ID Technicien, ID Créateur, Prénom et nom du créateur, email du créateur, Prénom/Nom/Email de la personne ayant modifié le ticket
       - Affiche uniquement les tickets ouverts, en cours et en attente <br>
         -> Valeurs "Ouvert" et "En cours de traitement", "En attente"
 

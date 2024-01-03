@@ -67,11 +67,13 @@ CREATE OR REPLACE VIEW vue_tableau_bord AS
     T.ETAT_TICKET,
     T.HORODATAGE_CREATION_TICKET,
     T.HORODATAGE_DERNIERE_MODIF_TICKET, 
+
     CONCAT(UPPER(SUBSTRING(TECH.PRENOM_USER, 1, 1)), LOWER(SUBSTRING(TECH.PRENOM_USER, 2))) as PRENOM_TECH,
     UCASE(TECH.NOM_USER) AS `NOM_TECH`,
     TECH.EMAIL_USER as EMAIL_TECH,
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))THEN T.ID_TECHNICIEN ELSE 'ACCÈS INTERDIT' -- On affiche la valeur que si la personne est un tech ou adm web
     END AS ID_TECHNICIEN,
+
     CASE WHEN (ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN T.ID_USER ELSE 'ACCÈS INTERDIT'
     END AS ID_CREA,   
     CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))
@@ -80,11 +82,24 @@ CREATE OR REPLACE VIEW vue_tableau_bord AS
     CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))
     THEN UCASE(CREA.NOM_USER) ELSE 'ACCÈS INTERDIT'
     END AS NOM_CREA,
-    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci)) THEN CREA.EMAIL_USER ELSE 'ACCÈS INTERDIT'
-    END AS EMAIL_CREA
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))
+    THEN CREA.EMAIL_USER ELSE 'ACCÈS INTERDIT'
+    END AS EMAIL_CREA,
+
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))
+    THEN CONCAT(UPPER(SUBSTRING(MODIFIEUR.PRENOM_USER, 1, 1)), LOWER(SUBSTRING(MODIFIEUR.PRENOM_USER, 2))) ELSE 'ACCÈS INTERDIT'
+    END AS PRENOM_MODIFIEUR,
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))
+    THEN UCASE(MODIFIEUR.NOM_USER) ELSE 'ACCÈS INTERDIT'
+    END AS NOM_MODIFIEUR,
+    CASE WHEN (T.ID_USER = substring_index(user(),'@',1) OR ObtenirRoleUtilisateur() = ('role_technicien' COLLATE utf8mb4_unicode_ci) OR ObtenirRoleUtilisateur() = ('role_admin_web' COLLATE utf8mb4_unicode_ci))
+    THEN MODIFIEUR.EMAIL_USER ELSE 'ACCÈS INTERDIT'
+    END AS EMAIL_MODIFIEUR
+
     FROM Ticket AS T
         JOIN Utilisateur AS CREA ON T.ID_USER = CREA.ID_USER
         LEFT OUTER JOIN vue_technicien AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
+        LEFT OUTER JOIN Utilisateur AS MODIFIEUR ON T.ID_USER_DERNIERE_MODIF_TICKET = MODIFIEUR.ID_USER
     WHERE T.ETAT_TICKET = "Ouvert"
        OR T.ETAT_TICKET = "En cours de traitement"
        OR (T.ETAT_TICKET = "En attente" AND (T.ID_USER = substring_index(user(),'@',1) OR (SELECT role_user FROM vue_Utilisateur_client) = "role_admin_web"))
