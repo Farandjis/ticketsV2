@@ -275,7 +275,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## [V - Les Fonctions]()
+- ## V - Les Fonctions
   - ### ObtenirRoleUtilisateur() RETURNS LONGTEXT
     Renvoi le rôle de l'utilisateur MariaDB appelant la fonction
     - L'utilisateur MariaDB doit être un utilisateur, technicien, admin web ou admin système de TIX.
@@ -300,11 +300,55 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
 
 
-- ## [VI - Les Procédures]()
+- ## VI - Les Procédures
 
-- ## [VII - Les Déclencheurs]()
+  - ### ATTENTION_SupprimerSonCompte()
+    Supprime un compte TIX et l'utilisateur MariaDB associé
+    - L'utilisateur à supprimer est soit un utilisateur, soit un technicien obligatoirement
+    - Début de la transaction
+    - On retire les données personnel de l'utilisateur de la liste des utilisateurs de la plateforme TIX.
+      - login -> NULL, prénom -> 'Utilisateur', nom -> 'SUPPRIMÉ', email -> 'supprimer@tix.fr'
+      - HORODATAGE_DERNIERE_CONNECTION_USER -> date et heure de la suppressin du compte
+    - On retire l'intégralité des droits au compte MariaDB de l'utilisateur
+    - On supprime le compte MariaDB.
+    - Validation de la transaction
 
-- ## [VIII - Les Évènements]()
+  - ### ATTENTION_SupprimerTousLesComptesInutilises()
+    Procédure qui supprime tous les comptes utilisateurs et techniciens inactifs depuis au moins 36 mois.<br>
+    ATTENTION ! CETTE PROCÉDURE N'UTILISE PAS ATTENTION_SupprimerSonCompte !!<br>
+    Si le système de suppression de compte est modifié sur l'une des deux, il faut également le modifier sur l'autre !<br>
+    - On récupère tous les identifiants des comptes qui ne se sont pas connecté depuis au moins 36 mois (et qui sont soit des utilisateurs, soit des techniciens).
+    - Pour chaque utilisateur
+      - Début de la transaction
+      - On retire l'utilisateur de la liste des utilisateurs de la plateforme TIX.
+        - login -> NULL, prénom -> 'Utilisateur', nom -> 'SUPPRIMÉ', email -> 'supprimer@tix.fr'
+        - IP_DERNIERE_CONNECTION_USER -> '0.0.0.0' (car suppression automatique du compte après 36 mois)
+      - On retire l'intégralité des droits au compte MariaDB de l'utilisateur.
+      - On supprime le compte MariaDB.
+      - Validation de la transaction
+      
+  - ### activerUnRoleTechOuUtiParAdminWeb(parID_USER VARCHAR(11), parLeRole VARCHAR(50))
+    Créer pour l'admin web, même si n'importe qui ayant les droits de grant et ayant accès en écriture à la DB mysql peut l'utiliser.<br>
+    Au préalable, la personne doit posséder le rôle à activer. Cette fonction active le rôle tech si c'est un utilisateur, utilisateur si c'est un tech.<br>
+    Si c'est un tech qui devient un utilisateur, on lui supprime son rôle de technicien. Il faudra le GRANT à nouveau s'il redevient un technicien<br>
+    <br>
+    parID -> STRING de l'id de l'utilisateur<br>
+    parLeRole -> STRING du rôle qu'on veut activer (tech ou uti)<br>
+    - Si l'utilisateur possède un rôle MariaDB (mysql.user.default_role IS NOT NULL)
+    - Si son rôle est utilisateur, et qu'on veut activer son nouveau rôle technicien (GRANT avant l'appel de la procédure)
+      - Début transaction
+      - SET DEFAULT ROLE role_technicien
+      - Validation transaction
+    - Si son rôle est techncien, et qu'on veut le dégrader en utilisateur (pas besoin de GRANT le rôle juste avant l'appel de la procédure)
+      - Début transaction
+      - SET DEFAULT ROLE role_utilisateur
+      - REVOKE role_technicien
+      - Validation transaction
+
+
+- ## VII - Les Déclencheurs
+
+- ## VIII - Les Évènements
 
 
 

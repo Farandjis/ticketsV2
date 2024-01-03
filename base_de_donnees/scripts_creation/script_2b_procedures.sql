@@ -22,7 +22,7 @@ BEGIN
         START TRANSACTION;
 
 	    -- On retire l'utilisateur de la liste des utilisateurs de la plateforme TIX.
-        UPDATE DB_TIX.Utilisateur SET login_user = NULL, prenom_user = 'Utilisateur', nom_user = 'SUPPRIMÉ', email_user = 'supprimer@tix.fr', HORODATAGE_DERNIERE_CONNECTION_USER = current_timestamp(), IP_DERNIERE_CONNECTION_USER = '0.0.0.0' WHERE ID_USER = SUBSTRING_INDEX(USER(), '@', 1);
+        UPDATE DB_TIX.Utilisateur SET login_user = NULL, prenom_user = 'Utilisateur', nom_user = 'SUPPRIMÉ', email_user = 'supprimer@tix.fr', HORODATAGE_DERNIERE_CONNECTION_USER = current_timestamp() WHERE ID_USER = SUBSTRING_INDEX(USER(), '@', 1);
 
 	    -- On retire l'intégralité des droits au compte MariaDB de l'utilisateur.
 	    SET @suppression_droits = CONCAT('REVOKE ALL ON *.* FROM ', QUOTE(SUBSTRING_INDEX(USER(), '@', 1)),'@',QUOTE(SUBSTRING_INDEX(USER(), '@', -1)));
