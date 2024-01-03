@@ -346,7 +346,56 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - Validation transaction
 
 
+
 - ## VII - Les Déclencheurs
+  - ### PasseTicketAEnCours
+    Si un technicien est définie, alors on passe le ticket à En cours
+    - BEFORE UPDATE ON Ticket<br>
+      FOR EACH ROW
+    - Mettre à jour l'attribut ETAT_TICKET à "En cours de traitement" quand l'ID_TECHNICIEN change si:
+      - le ticket est Ouvert
+      - le ticket est En attente MAIS qu'un niveau d'urgence est indiqué dans l'update.
+      
+  - ### PasseTicketAOuvert
+    Si l'urgence définitive est définie et que le ticket est en attente, on le passe alors à ouvert
+    - BEFORE UPDATE ON Ticket<br>
+      FOR EACH ROW
+    - Mettre à jour l'attribut ETAT_TICKET à "En cours de traitement" si l'ID_TECHNICIEN change
+    
+  - ### VerifQuiCestLeTechDuTicket
+    On vérifie si l'utilisateur MariaDB est autorisé à mettre à jour le technicien
+    - BEFORE UPDATE ON Ticket<br>
+      FOR EACH ROW
+    - Si un technicien est définie et que l'utilisateur exécutant la commande c'est l'admin web ou le technicien définie,
+      alors on autorise le changement de technicien, sinon, on garde comment c'était avant.
+      Le technicien ne peut que s'attribuer un ticket Ouvert.
+    
+  - ### MajHorodatageModifTicket
+    Si un changement a été effectué sur un ticket, on met à jour l'horodatage de dernière modification
+    - BEFORE UPDATE ON Ticket<br>
+      FOR EACH ROW
+    - S'il y a un UPDATE pour une quelconque valeur d'un quelconque attribut (sauf horodatage modif), on met à jour l'horodatage modif
+    
+  - ### EMPECHE_modifUtilisateurQuelquesInfos
+    En cas de modification de certaines infos d'un Utilisateur, on remplace les nouvelles valeurs par les anciennes pour annuler l'effet du changement
+    - BEFORE UPDATE ON Utilisateur<br>
+      FOR EACH ROW
+    - S'il y a un changement pour : ID_USER ou HORODATAGE OUVERTURE USER
+      - On annule le changement
+      
+  - ### EMPECHE_modifTicketQuelquesInfos
+  En cas de modification de certaines infos d'un ticket, on remplace les nouvelles valeurs par les anciennes
+    - BEFORE UPDATE ON Ticket<br>
+      FOR EACH ROW
+    - ### S'il y a un changement pour : ID_TICKET, ID_USER ou HORODATAGE_CREATION_TICKET
+      - On annule le changement
+    
+  - ### EMPECHE_modifTicketFermer
+  En cas de modification d'un ticket fermé, on remplace les nouvelles valeurs par les anciennes
+  - BEFORE UPDATE ON Ticket<br>
+    FOR EACH ROW
+  - S'il y a un quelconque changement de valeur pour une ou plusieurs valeurs d'un ticket fermé
+    - On annule le changement
 
 - ## VIII - Les Évènements
 
