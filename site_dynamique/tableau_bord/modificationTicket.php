@@ -75,6 +75,18 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     <h1 class="h1Creation">Modification du Ticket</h1>
     <div role="form" class="formModifTicket formAuthentification formConnexion">
         <?php
+        if(isset($_POST['id'])) {
+            echo '<div class="erreur">';
+            echo '<p>';
+            if ($_POST['id'] == 1) { echo "ERREUR : Des données du formulaire sont manquantes"; }
+            else if ($_POST['id'] == 2) { echo "ERREUR : Des données essentielles du formulaire sont manquantes ou incohérentes"; }
+            else if ($_POST['id'] == 99) { echo "ERREUR : Impossible de fermer le ticket, vous n'avez pas les droits ou il est déjà fermé."; }
+            else { echo "ERREUR : Une erreur est survenue"; }
+            echo '</p>';
+            echo '</div>';
+        }
+        ?>
+        <?php
         echo "
             <div class='informations_ticket'>
                 <div class='info-ticket-gauche'>
@@ -240,6 +252,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                 $ticketPeutEtreFermer = (bool) mysqli_fetch_row(executeSQL("SELECT COUNT(*) FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = ?", array($id_ticket), $connection))[0];
 
                 if ($ticketPeutEtreFermer) {
+                    echo "<input type='hidden' name='id_ticket' value=$id_ticket>";
                     echo '<input type="submit" name="fermer_ticket" value="Fermeture du Ticket" id="boutonFermerTicket"><br>';
                 }
             }
