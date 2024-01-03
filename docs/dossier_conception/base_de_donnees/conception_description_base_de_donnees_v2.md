@@ -430,7 +430,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       FOR EACH ROW
     - Met à jour l'horodatage du ticket
   
-  - ### VerifAutorisationInsertionTicket_INSERT
+  - ### EMPECHE_InsertionMotclesTicket
     Annule l'insertion d'un mot clé si l'utilisateur MariaDB n'a pas la permission de modifier ce ticket.
     - BERFORE INSERT ON RelationTicketsMotscles<br>
       FOR EACH ROW
@@ -446,7 +446,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 ## <a name="p8"></a> VIII - Les Évènements
   - ### SUPPRESSION_AUTO_COMPTES_INACTIFS
     Supprime automatiquement les comptes inactifs
-    - A partir du lendemain de la création de l'évènement, à 1h du matin
+    - À partir du lendemain de la création de l'évènement, à 1h du matin
     - Pour tous les jours à 1h du matin
     - Exécution de la procédure ATTENTION_SupprimerTousLesComptesInutilises()
 
