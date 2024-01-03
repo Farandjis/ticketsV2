@@ -49,9 +49,10 @@ DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
 
 
 
--- ========= [TICKET] : UN TECH NE PEUT PAS ATTRIBUER À UN AUTRE UN TICKET" =========
--- Si un technicien est définie, si l'utilisateur exécutant la commande est l'admin web ou le technicien définie.
--- Alors on autorise le changement de technicien, sinon, on garde comme c'était avant.
+-- ========= [TICKET] : UN TECH NE PEUT PAS ATTRIBUER À UN AUTRE TECH UN TICKET =========
+-- Si un technicien est définie, on s'assure que l'utilisateur exécutant la commande est soit l'admin web soit, le technicien défini.
+-- Si c'est un technicien qui s'attribue le ticket, on vérifie que le ticket est Ouvert.
+-- Sinon, il n'est pas autorisé à attribuer le ticket.
 
 DROP TRIGGER IF EXISTS VerifQuiCestLeTechDuTicket;
 
@@ -61,7 +62,7 @@ BEFORE UPDATE ON Ticket
 FOR EACH ROW
 BEGIN
     IF (IFNULL(NEW.ID_TECHNICIEN, 0) <> IFNULL(OLD.ID_TECHNICIEN, 0)) THEN
-        IF ((ObtenirRoleUtilisateur() = ("role_admin_web" COLLATE utf8mb4_general_ci)) OR NEW.ID_TECHNICIEN = substring_index(user(),'@',1)) THEN
+        IF ((ObtenirRoleUtilisateur() = ("role_admin_web" COLLATE utf8mb4_general_ci)) OR (NEW.ID_TECHNICIEN = substring_index(user(),'@',1) AND (ObtenirRoleUtilisateur() = ("role_technicien" COLLATE utf8mb4_general_ci) AND OLD.ETAT_TICKET = 'Ouvert'))) THEN
             SET NEW.ID_TECHNICIEN = NEW.ID_TECHNICIEN;
         ELSE
             SET NEW.ID_TECHNICIEN = OLD.ID_TECHNICIEN;

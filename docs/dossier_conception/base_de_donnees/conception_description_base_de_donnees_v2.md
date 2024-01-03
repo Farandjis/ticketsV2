@@ -393,9 +393,9 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     On vérifie si l'utilisateur MariaDB est autorisé à mettre à jour le technicien
     - BEFORE UPDATE ON Ticket<br>
       FOR EACH ROW
-    - Si un technicien est définie et que l'utilisateur exécutant la commande c'est l'admin web ou le technicien définie,
-      alors on autorise le changement de technicien, sinon, on garde comment c'était avant.
-      Le technicien ne peut que s'attribuer un ticket Ouvert.
+    - Si un technicien est définie, on s'assure que l'utilisateur exécutant la commande est soit l'admin web, soit le technicien défini.
+      Si c'est un technicien qui s'attribue le ticket, on vérifie que le ticket est Ouvert.
+      Sinon, il n'est pas autorisé à attribuer le ticket, on annule le changement
     
   - ### MajHorodatageModifTicket
     Si un changement a été effectué sur un ticket, on met à jour l'horodatage de dernière modification
