@@ -120,11 +120,12 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - `A-Za-z` -> lettres majuscules et minuscules
       - `À-ÖØ-öø-ÿ` -> lettres accentuées majuscules et minuscules
       - `\\-` -> tiret, `\\s` -> espace
-    - **EMAIL_USER** [VARCHAR 100] : CHECK (email_colonne ~* '^[A-Za-z0-9._%-]+@[A-Za-z.-]+\\.[A-Za-z]{2,4}$'
+    - **EMAIL_USER** [VARCHAR 100] : CHECK (EMAIL_USER NOT LIKE '%..%' AND EMAIL_USER REGEXP '^[A-Za-z0-9._%-]+@[A-Za-z.-]+\\.[A-Za-z]{2,4}$')
       - `^[A-Za-z0-9._%-]+@` -> Lettres majuscules ou minuscules non accentuées, chiffres, points, tirets du bas et pourcentages acceptés entre le début et l'arobase (ex : `al..ice_DU-%78@`)
       - `@[A-Za-z.-]+\\.` -> Lettres majuscules ou minuscules non accentuées, points acceptés entre l'arobase et le point (ex : `@moi..Ens-uvsq.`)
       - `\\.[A-Za-z]{2,4}$` -> 2 à 4 lettres majuscules ou minuscules non accentuées comprises entre le point et la fin (ex : `.Com`)
-      - Une adresse email comme `al..ice_DU-%78@moi..Ens-uvsq.cOm` serait donc accepté par la base de données. À noter que côté code php, un caractère doit obligatoirement séparer deux points.
+      - EMAIL_USER NOT LIKE '%..%' -> La présence de ".." dans l'adresse email n'est pas autorisé, ainsi `al..ice_DU-%78@` (premier tiret) n'est plus valide.
+      - Une adresse email comme `al.ice_DU-%78@moi.Ens-uvsq.cOm` serait donc accepté par la base de données.
     - **HORODATAGE_OUVERTURE_USER** [DATETIME] : DEFAULT CURRENT_TIMESTAMP NOT NULL
     - **HORODATAGE_DERNIERE_CONNECTION_USER** [DATETIME] : DEFAULT CURRENT_TIMESTAMP NOT NULL
     - **IP_DERNIERE_CONNECTION_USER** [VARCHAR 15]
