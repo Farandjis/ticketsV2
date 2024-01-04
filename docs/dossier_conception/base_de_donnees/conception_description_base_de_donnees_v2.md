@@ -476,8 +476,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - UPDATE TITRE_TICKET en "[!] Autre problème" de toute les lignes de TICKET où le titre sera supprimé.
     - Empêche la suppression du titre "[!] Autre problème"
 
-
-
+    
 
 ## <a name="p8"></a> VIII - Les Évènements
   - ### SUPPRESSION_AUTO_COMPTES_INACTIFS
