@@ -170,7 +170,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - ### vue_Ticket_visiteur
     Permet au visiteur de voir les 10 derniers tickets postés sur la plateforme (tous sauf ceux en attente)
     - Sélectionne les 10 derniers tickets(ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET, ETAT_TICKET, HORODATAGE_CREATION_TICKET)
-    - Triés par HORODATAGE_CREATION_TICKET DESC
+    - Triés par TITRE_TICKET DESC
     - Qui ne sont pas en attente
     
   - ### vue_Utilisateur_client
