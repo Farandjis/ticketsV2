@@ -143,7 +143,9 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **HORODATAGE_DEBUT_TRAITEMENT_TICKET** [DATETIME]
     - **HORODATAGE_RESOLUTION_TICKET** [DATETIME]
     - **HORODATAGE_DERNIERE_MODIF_TICKET** [DATETIME] DEFAULT CURRENT_TIMESTAMP NOT NULL
-    - **ID_USER_DERNIERE_MODIF_TICKET** foreign key (Utilisateur.ID_USER), NOT NULL, DEFAULT (SUBSTRING_INDEX(USER(),'@',1))
+    - **ID_USER_DERNIERE_MODIF_TICKET** foreign key (Utilisateur.ID_USER), DEFAULT (SUBSTRING_INDEX(USER(),'@',1))
+      - NULL si c'est notre compte administrateur BD qui a modifié le ticket
+      - ID USER si c'est un utilisateur de la plateforme qui a modifié le ticket
 
   - ### TitreTicket
     - **TitreTicket** [VARCHAR 60] Primary Key
