@@ -404,7 +404,8 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       FOR EACH ROW
     - Si un technicien est définie, on s'assure que l'utilisateur exécutant la commande est soit l'admin web, soit le technicien défini.
       Si c'est un technicien qui s'attribue le ticket, on vérifie que le ticket est Ouvert.
-      Sinon, il n'est pas autorisé à attribuer le ticket, on annule le changement
+      Sinon, il n'est pas autorisé à attribuer le ticket, on annule le changement.
+      Si c'est l'admin web, on vérifie que le ticket n'est pas fermé.
     
   - ### MajHorodatageModifTicket
     Si un changement a été effectué sur un ticket, on met à jour l'horodatage de dernière modification
@@ -441,12 +442,18 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - AFTER INSERT ON RelationTicketsMotscles<br>
       FOR EACH ROW
     - Met à jour l'horodatage du ticket
-
+    - Met à jour l'ID de la personne ayant modifié dernièrement le ticket
+        - Si c'est l'administrateur de la BD, la valeur est NULL
+        - La valeur est le nom du compte MariaDB (donc un ID_USER)
+      
   - ### MajHorodatageModifMotsclesTicket_DELETE
     Met à jour l'horodatage de modification du ticket dont on lui a retiré un ou plusieurs mots clés
     - AFTER DELETE ON RelationTicketsMotscles<br>
       FOR EACH ROW
     - Met à jour l'horodatage du ticket
+    - Met à jour l'ID de la personne ayant modifié dernièrement le ticket
+      - Si c'est l'administrateur de la BD, la valeur est NULL
+      - La valeur est le nom du compte MariaDB (donc un ID_USER)
   
   - ### EMPECHE_InsertionMotclesTicket
     Annule l'insertion d'un mot clé si l'utilisateur MariaDB n'a pas la permission de modifier ce ticket.

@@ -62,7 +62,7 @@ BEFORE UPDATE ON Ticket
 FOR EACH ROW
 BEGIN
     IF (IFNULL(NEW.ID_TECHNICIEN, 0) <> IFNULL(OLD.ID_TECHNICIEN, 0)) THEN
-        IF ((ObtenirRoleUtilisateur() = ("role_admin_web" COLLATE utf8mb4_general_ci)) OR (NEW.ID_TECHNICIEN = substring_index(user(),'@',1) AND (ObtenirRoleUtilisateur() = ("role_technicien" COLLATE utf8mb4_general_ci) AND OLD.ETAT_TICKET = 'Ouvert'))) THEN
+        IF ((ObtenirRoleUtilisateur() = ("role_admin_web" COLLATE utf8mb4_general_ci) AND OLD.ETAT_TICKET != 'Fermé') OR (NEW.ID_TECHNICIEN = substring_index(user(),'@',1) AND (ObtenirRoleUtilisateur() = ("role_technicien" COLLATE utf8mb4_general_ci) AND OLD.ETAT_TICKET = 'Ouvert'))) THEN
             SET NEW.ID_TECHNICIEN = NEW.ID_TECHNICIEN;
         ELSE
             SET NEW.ID_TECHNICIEN = OLD.ID_TECHNICIEN;
@@ -192,7 +192,11 @@ AFTER INSERT ON RelationTicketsMotscles
 FOR EACH ROW
 BEGIN
     UPDATE Ticket SET HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET = NEW.ID_TICKET;
-
+    IF(SUBSTRING_INDEX(USER(),'@',1) = "phpmyfteam") THEN
+        UPDATE Ticket SET ID_USER_DERNIERE_MODIF_TICKET = NULL WHERE ID_TICKET = NEW.ID_TICKET;
+    ELSE
+        UPDATE Ticket SET ID_USER_DERNIERE_MODIF_TICKET = SUBSTRING_INDEX(USER(),'@',1) WHERE ID_TICKET = NEW.ID_TICKET;
+    END IF;
 END //
 DELIMITER ;
 
@@ -209,7 +213,11 @@ AFTER DELETE ON RelationTicketsMotscles
 FOR EACH ROW
 BEGIN
     UPDATE Ticket SET HORODATAGE_DERNIERE_MODIF_TICKET = CURRENT_TIMESTAMP() WHERE ID_TICKET = OLD.ID_TICKET;
-
+    IF(SUBSTRING_INDEX(USER(),'@',1) = "phpmyfteam") THEN
+        UPDATE Ticket SET ID_USER_DERNIERE_MODIF_TICKET = NULL WHERE ID_TICKET = OLD.ID_TICKET;
+    ELSE
+        UPDATE Ticket SET ID_USER_DERNIERE_MODIF_TICKET = SUBSTRING_INDEX(USER(),'@',1) WHERE ID_TICKET = OLD.ID_TICKET;
+    END IF;
 END //
 DELIMITER ;
 
