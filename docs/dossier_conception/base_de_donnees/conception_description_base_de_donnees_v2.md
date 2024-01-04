@@ -185,11 +185,16 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     
   - ### vue_Ticket_client
     Permet à l'utilisateur de voir tous leurs tickets qu'ils soient en attentes, ouverts, en cours ou fermés.
-    - Sélectionne ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_ESTIMER_TICKET, NIV_URGENCE_DEFINITIF_TICKET,
-      ETAT_TICKET, HORODATAGE_CREATION_TICKET, HORODATAGE_DEBUT_TRAITEMENT_TICKET, HORODATAGE_RESOLUTION_TICKET de Ticket
+    - Tickets : -> ID Ticket, Titre Ticket, Description Ticket, Urgence Definitif, Etat Ticket, Horodatage création, Horodatage résolution, Horodatage modification
+    - (LEFT OUTER JOIN 1) Utilisateurs : -> Prénom, nom et adresse email du technicien
+    - (LEFT OUTER JOIN 2) Utilisateurs : Nom, prénom et adresse email de la personne ayant modifié le ticket
     - Trié par ID_TICKET DESC
     - Où ID_USER des tickets correspond à l'utilisateur qui exécute le SELECT (SUBSTRING_INDEX(USER(), '@', 1))
     
+  - ### vue_tv_relation_ticket_motcle
+    - Sélectionne ID_TICKET, NOM_MOCLE
+    - Où ce sont les tickets du client (vue_Ticket_client)
+
   - ### vue_technicien
     Liste les techniciens de la plateforme
     - Sélectionne ID_USER, PRENOM_USER, NOM_USER, EMAIL_USER de la table Utilisateur
@@ -429,6 +434,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - S'il y a un quelconque changement de valeur pour une ou plusieurs valeurs d'un ticket fermé
       - On annule le changement
       - SAUF pour le Titre s'il prend la valeur "[!] Autre problème" (à cause du trigger de suppression des titres)
+      - SAUF pour les infos de de modification si c'est l'Administrateur de la base de données (à cause des triggers modifiant le ticket)
 
   - ### MajHorodatageModifMotsclesTicket_INSERT
     Met à jour l'horodatage de modification du ticket dont on lui a associé un ou plusieurs mots clés
@@ -491,6 +497,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - SELECT
         - DB_TIX.vue_Utilisateur_client
         - DB_TIX.vue_Ticket_client
+        - DB_TIX.vue_tv_relation_ticket_motcle
         - DB_TIX.TitreTicket
         - DB_TIX.MotcleTicket
         - DB_TIX.vue_tableau_bord
