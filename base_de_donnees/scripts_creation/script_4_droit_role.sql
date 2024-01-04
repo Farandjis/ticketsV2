@@ -15,6 +15,9 @@ GRANT SELECT ON DB_TIX.vue_Utilisateur_client TO 'role_utilisateur';
 -- tous ses tickets
 GRANT SELECT ON DB_TIX.vue_Ticket_client TO 'role_utilisateur';
 
+-- Voir les mots-clés associés à ses tickets
+GRANT SELECT ON vue_tv_relation_ticket_motcle TO 'role_utilisateur';
+
 -- Mettre à jour son adresse email
 GRANT UPDATE(EMAIL_USER) ON DB_TIX.vue_Utilisateur_maj_email TO 'role_utilisateur';
 
