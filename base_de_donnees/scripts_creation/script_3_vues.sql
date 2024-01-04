@@ -9,6 +9,11 @@ AND ETAT_TICKET != "En attente"
 ORDER BY HORODATAGE_CREATION_TICKET DESC
 LIMIT 10;
 
+CREATE OR REPLACE VIEW vue_tv_relation_ticket_motcle AS
+SELECT RTM.ID_TICKET, RTM.NOM_MOTCLE
+FROM RelationTicketsMotscles AS RTM
+    JOIN vue_Ticket_visiteur AS TV ON RTM.ID_TICKET = TV.ID_TICKET;
+
 -- Utilisateur
 CREATE OR REPLACE VIEW vue_Utilisateur_client AS
 SELECT
