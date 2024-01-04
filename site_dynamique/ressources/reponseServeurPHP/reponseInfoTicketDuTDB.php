@@ -47,8 +47,13 @@ try {
                 if ($cestLeCreateur or recupererRoleDe($connexionUtilisateur) == "Technicien" or recupererRoleDe($connexionUtilisateur) == "Administrateur Site") {
                     // ===================== PRÉNOM ET NOM DE LA DERNIERE PERSONNE A MODIFIER LE TICKET (tech, adm w, créateur uniquement)
                     $dernierePersonneModifDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_MODIFIEUR, NOM_MODIFIEUR, EMAIL_MODIFIEUR FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
-                    $personneAyantModifierLeTicket = " par $dernierePersonneModifDuTicket[0] $dernierePersonneModifDuTicket[1] ($dernierePersonneModifDuTicket[2])"; // Prénom et nom du technicien
-                }
+                    if ($dernierePersonneModifDuTicket[0] != NULL){
+                        $personneAyantModifierLeTicket = " par $dernierePersonneModifDuTicket[0] $dernierePersonneModifDuTicket[1] ($dernierePersonneModifDuTicket[2])"; // Prénom et nom du technicien
+                    }
+                    else{
+                        $personneAyantModifierLeTicket = " par Administrateur BASE DE DONNEES"; // Si c'est NULL, c'est alors le compte administrateur de la base de données
+                    }
+               }
 
                 // ===================== DATE DE LA DERNIÈRE MODIFICATION DU TICKET (tout le monde)
                 $dateDerniereModifTicket = mysqli_fetch_row(executeSQL("SELECT DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i') FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
