@@ -74,22 +74,38 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ### <a name="1a"></a>Table Utilisateur
 
-| Cas n° | Critère                                                                                                                                                                                                                                                                                                                           | Résultat attendu | Résultat obtenu |
-|:-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
-| 1      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DDupont', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);   | OK               | OK              |
-| 2      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DD', 'Didier', 'Dupont', 'utilisateur', 'ddupont@gmail.com', current_timestamp(), NULL, NULL);        | KO               | KO              |
-| 3      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL); | OK               | OK              |
-| 4      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.com', current_timestamp(), NULL, NULL); | KO               | KO              |
-| 5      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont#gmail.com', current_timestamp(), NULL, NULL); | KO               | KO              |
-| 6      | INSERT INTO `UTILISATEUR` (`ID_USER`, `LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `ROLE_USER`, `EMAIL_USER`, `HORODATAGE_OUVERTURE_USER`, `HORODATAGE_DERNIERE_CONNECTION_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES (NULL, 'DiDupont', 'Didier', 'Dupont', 'utilisateur', 'd.dupont@gmail.fr', current_timestamp(), NULL, NULL);  | OK               | OK              |
+| Cas n° | Critère                                                                                                                                                                                          | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@gmail.com', '192.168.1.30');    | OK               | OK              |
+| 2      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DD', 'Didier', 'Dupont', 'ddupont@gmail.com', '192.168.1.30');         | KO               | KO              |
+| 3      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont', 'd.dupont@gmail.com', '192.168.1.30');  | OK               | OK              |
+| 4      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont','d.dupont@gmail.com', '192.168.1.30');   | KO               | KO              |
+| 5      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont', 'd.dupont#gmail.com', '192.168.1.30');  | KO               | KO              |
+| 6      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont','d.dupont@gmail.fr', '192.168.1.30');    | OK               | OK              |
+| 7      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@..gmail.com', '192.168.1.30');  | KO               | OK              |
+| 8      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont',  'd..dupont@gmail.com', '192.168.1.30'); | KO               | OK              |
 
 ### <a name="1b"></a>Table Ticket
 
-| Cas n° | Critère                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Résultat attendu | Résultat obtenu |
-|:-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
-| 1      | INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);                      | OK               | OK              |
-| 2      | INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Ordinateur cassé', 'L\'ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL);                                     | OK               | OK              |
-| 3      | INSERT INTO `TICKET` (`ID_TICKET`, `ID_USER`, `OBJET_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`, `HORODATAGE_CREATION_TICKET`, `HORODATAGE_DEBUT_TRAITEMENT_TICKET`, `HORODATAGE_RESOLUTION_TICKET`, `HORODATAGE_DERNIERE_MODIF_TICKET`) VALUES (NULL, '1', 'Problème de connexion', 'Personne ne peut se connecter sur les PC de la salle G23', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement', current_timestamp(), NULL, NULL, NULL); | OK               | OK              |
+| Cas n° | Critère                                                                                                                                                                                                                                                                                                           | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', '[MATERIEL] Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'En cours de traitement'); | OK               | OK              |
+| 2      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', '[MATERIEL] Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'en_cours_de_traitement'); | KO               | KO              |
+| 3      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', 'Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'Urgent', 'En cours de traitement');            | KO               | KO              |
+| 4      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', '[MATERIEL] Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'urgent', 'Urgent', 'En cours de traitement'); | KO               | KO              |
+| 5      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', '[MATERIEL] Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'urgent', 'En cours de traitement'); | KO               | KO              |
+
+### <a name="1b"></a>Table TitreTicket
+
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
+
+### <a name="1b"></a>Table MotClesTicket
+
+| Cas n° | Critère | Résultat attendu | Résultat obtenu |
+|:-------|---------|------------------|-----------------|
+| 1      |         |                  |                 |
 
 ## <a name="2"></a>Role
 
@@ -605,10 +621,11 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ### <a name="3d"></a>FermerUnTicket
 
-| Cas n° | Critère                                                            | Résultat attendu | Résultat obtenu |
-|:-------|--------------------------------------------------------------------|------------------|-----------------|
-| 1      | Le ticket se trouve dans la vue `vue_modif_ticket_adm_tech`        | True             | True            |
-| 2      | Le ticket ne se trouve pas dans la vue `vue_modif_ticket_adm_tech` | False            | False           |
+| Cas n° | Critère                                                                    | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------------------------------------------------|------------------|-----------------|
+| 1      | Le ticket se trouve dans la vue `vue_modif_ticket_adm_tech`                | True             | True            |
+| 2      | Le ticket ne se trouve pas dans la vue `vue_modif_ticket_adm_tech`         | False            | False           |
+| 1      | Le ticket se trouve dans la vue `vue_modif_ticket_adm_tech` et est modifié | OK               | OK              |
 
 ## <a name="4"></a>Procédure
 
@@ -625,30 +642,76 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ### <a name="5a"></a>PasseTicketAEnCours
 
-| Cas n° | Critère                                                      | Résultat attendu                       | Résultat obtenu                        |
-|:-------|--------------------------------------------------------------|----------------------------------------|----------------------------------------|
-| 1      | Le ticket est ouvert                                         | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
-| 2      | Le ticket est en attente et un niv d'urgence est défini      | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
-| 3      | Le ticket est en attente mais aucun niv d'urgence est défini | Le ticket reste en attente             | Le ticket reste en attente             |
+| Cas n° | Critère                                                                                      | Résultat attendu                       | Résultat obtenu                        |
+|:-------|----------------------------------------------------------------------------------------------|----------------------------------------|----------------------------------------|
+| 1      | Le ticket est ouvert + un technicien est associé au ticket                                   | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
+| 2      | Le ticket est en attente + un niv d'urgence est défini + un technicien est associé au ticket | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
+| 3      | Le ticket est en attente mais aucun niv d'urgence est défini                                 | Le ticket reste en attente             | Le ticket reste en attente             |
 
 ### <a name="5b"></a>PasseTicketAOuvert
 
-| Cas n° | Critère                                                      | Résultat attendu                       | Résultat obtenu                        |
-|:-------|--------------------------------------------------------------|----------------------------------------|----------------------------------------|
-| 1      | Le ticket est en attente et un niv d'urgence est défini      | Le ticket passe ouvert                 | Le ticket passe ouvert                 |
+| Cas n° | Critère                                                                 | Résultat attendu                       | Résultat obtenu        |
+|:-------|-------------------------------------------------------------------------|----------------------------------------|------------------------|
+| 1      | Le ticket est en attente et un niv d'urgence est défini                 | Le ticket passe ouvert                 | Le ticket passe ouvert |
+| 1      | Le ticket est en cours de traitement et le niveau d'urgence est modifié | Le ticket reste en cours de traitement |                        |
 
 ### <a name="5c"></a>VerifQuiCestLeTechDuTicket
 
-| Cas n° | Critère                                               | Résultat attendu | Résultat obtenu |
-|:-------|-------------------------------------------------------|------------------|-----------------|
-| 1      | Si l'admin web veut changer le technicien             | OK               | OK              |
-| 1      | Si le technien veut changer le technicien d'un ticket | KO               | KO              |
-| 1      | Si le technicien veut s'attribuer un ticket           | OK               | OK              |
+| Cas n° | Critère                                                                 | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------------------------|------------------|-----------------|
+| 1      | Si l'admin web veut changer le technicien d'un ticket                   | OK               | OK              |
+| 2      | Si le technien veut attribuer à un autre technicien le ticket           | KO               | KO              |
+| 3      | Si le technicien veut s'attribuer un ticket                             | OK               | OK              |
+| 4      | Si le technicien veut s'attribuer un ticket dans n'importe qu'elle état | KO               | OK              |
+| 5      | Si l'admin web veut attribuer un ticket fermée                          | KO               | OK              |
 
-### <a name="5c"></a>VerifQuiCestLeTechDuTicket
+### <a name="5d"></a>MajHorodatageModifTicket
 
-| Cas n° | Critère                                               | Résultat attendu | Résultat obtenu |
-|:-------|-------------------------------------------------------|------------------|-----------------|
-| 1      | Si l'admin web veut changer le technicien             | OK               | OK              |
-| 1      | Si le technien veut changer le technicien d'un ticket | KO               | KO              |
-| 1      | Si le technicien veut s'attribuer un ticket           | OK               | OK              |
+| Cas n° | Critère                                        | Résultat attendu                                                                | Résultat obtenu                                                                 |
+|:-------|------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| 1      | Si une modification est opéré sur un ticket    | changement de l'horodatage de dernière modif et de l'id du user qui l'a modifié | changement de l'horodatage de dernière modif et de l'id du user qui l'a modifié |
+| 2      | Si aucune modification est opéré sur un ticket | rien ne se passe                                                                | rien ne se passe                                                                |
+
+### <a name="5e"></a>EMPECHE_modifUtilisateurQuelquesInfos
+
+| Cas n° | Critère                                         | Résultat attendu                                                      | Résultat obtenu                                                       |
+|:-------|-------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 1      | Si modification d'une infos utilisateurs        | Empeche la modification de l'id et l'horodatege de création de compte | Empeche la modification de l'id et l'horodatege de création de compte |
+| 2      | Si aucune modification d'une infos utilisateurs | Rien ne se passe                                                      | Rien ne se passe                                                      |
+
+### <a name="5f"></a>EMPECHE_modifTicketQuelquesInfos
+
+| Cas n° | Critère                                         | Résultat attendu                                                      | Résultat obtenu                                                       |
+|:-------|-------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 1      | Si modification d'une infos utilisateurs        | Empeche la modification de l'id et l'horodatege de création de compte | Empeche la modification de l'id et l'horodatege de création de compte |
+| 2      | Si aucune modification d'une infos utilisateurs | Rien ne se passe                                                      | Rien ne se passe                                                      |
+
+### <a name="5f"></a>EMPECHE_modifTicketFermer
+
+| Cas n° | Critère                                  | Résultat attendu                   | Résultat obtenu                    |
+|:-------|------------------------------------------|------------------------------------|------------------------------------|
+| 1      | Si modification d'un ticket fermé        | Empeche les modification du ticket | Empeche les modification du ticket |
+| 2      | Si aucune modification d'un ticket fermé | Rien ne se passe                   | Rien ne se passe                   |
+
+### <a name="5f"></a>MajHorodatageModifMotsclesTicket_INSERT
+
+| Cas n° | Critère                                | Résultat attendu                                         | Résultat obtenu                                          |
+|:-------|----------------------------------------|----------------------------------------------------------|----------------------------------------------------------|
+| 1      | Si ajout d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket | modification de l'horodatage de dernière modif du ticket |
+| 2      | Si aucune ajout n'est opéré            | Rien ne se passe                                         | Rien ne se passe                                         |
+
+### <a name="5f"></a>MajHorodatageModifMotsclesTicket_DELETE
+
+| Cas n° | Critère                                     | Résultat attendu                                         | Résultat obtenu                                          |
+|:-------|---------------------------------------------|----------------------------------------------------------|----------------------------------------------------------|
+| 1      | Si suppresion d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket | modification de l'horodatage de dernière modif du ticket |
+| 2      | Si aucune suppression n'est opéré           | Rien ne se passe                                         | Rien ne se passe                                         |
+
+### <a name="5f"></a>EMPECHE_InsertionMotsclesTicket
+
+| Cas n° | Critère                                                              | Résultat attendu               | Résultat obtenu                |
+|:-------|----------------------------------------------------------------------|--------------------------------|--------------------------------|
+| 1      | Si le ticket se trouve dans la vue_modif_creation_ticket_utilisateur | modification du ticket         | modification du ticket         |
+| 2      | Si le ticket se trouve dans la vue_modif_ticket_adm_tech             | modification du ticket         | modification du ticket         |
+| 3      | Si le ticket se trouve dans aucune vue de modification               | empechement de la modification | empechement de la modification |
+
