@@ -428,6 +428,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       FOR EACH ROW
     - S'il y a un quelconque changement de valeur pour une ou plusieurs valeurs d'un ticket fermé
       - On annule le changement
+      - SAUF pour le Titre s'il prend la valeur "[!] Autre problème" (à cause du trigger de suppression des titres)
 
   - ### MajHorodatageModifMotsclesTicket_INSERT
     Met à jour l'horodatage de modification du ticket dont on lui a associé un ou plusieurs mots clés
@@ -459,6 +460,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - BEFORE DELETE ON TitreTicket<br>
       FOR EACH ROW
     - UPDATE TITRE_TICKET en "[!] Autre problème" de toute les lignes de TICKET où le titre sera supprimé.
+    - Empêche la suppression du titre "[!] Autre problème"
 
 
 

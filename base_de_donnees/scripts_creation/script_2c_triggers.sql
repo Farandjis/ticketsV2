@@ -159,7 +159,9 @@ BEFORE UPDATE ON Ticket
 FOR EACH ROW
 BEGIN
     IF OLD.ETAT_TICKET = 'Fermé' THEN
-        SET NEW.TITRE_TICKET = OLD.TITRE_TICKET;
+        IF NEW.TITRE_TICKET != "[!] Autre problème" THEN
+            SET NEW.TITRE_TICKET = OLD.TITRE_TICKET;
+        END IF;
         SET NEW.DESCRIPTION_TICKET = OLD.DESCRIPTION_TICKET;
         SET NEW.ID_TECHNICIEN = OLD.ID_TECHNICIEN;
         SET NEW.NIV_URGENCE_ESTIMER_TICKET = OLD.NIV_URGENCE_ESTIMER_TICKET;
@@ -227,5 +229,39 @@ BEGIN
         SET MESSAGE_TEXT = 'ERREUR (EMPECHE_InsertionMotsclesTicket): Vous n\'êtes pas autorisé à associer un mot-clé à ce ticket.';
     END IF;
 
+END //
+DELIMITER ;
+
+
+
+-- ========= [TITRETICKET] : SUPPRIME LES ASSOCIATIONS MOTCLE-TICKET LORS DE LA SUPPRESSION D'UN MOT-CLE =========
+-- SupprRTMQuandSupprMotcle
+
+DROP TRIGGER IF EXISTS SupprRTMQuandSupprMotcle;
+
+DELIMITER //
+CREATE TRIGGER SupprRTMQuandSupprMotcle
+BEFORE DELETE ON MotcleTicket
+FOR EACH ROW
+BEGIN
+	DELETE FROM RelationTicketsMotscles WHERE NOM_MOTCLE = OLD.NOM_MOTCLE;
+END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS SupprTTQuandSupprTitre;
+
+DELIMITER //
+CREATE TRIGGER SupprTTQuandSupprTitre
+BEFORE DELETE ON TitreTicket
+FOR EACH ROW
+BEGIN
+	IF (OLD.TITRE_TICKET = "[!] Autre problème") THEN
+		SIGNAL SQLSTATE '45000'
+        	SET MESSAGE_TEXT = 'ERREUR (SupprTTQuandSupprTitre): Il est impossible de supprimer le titre [!] Autre problème.';
+        ELSE
+		UPDATE Ticket SET TITRE_TICKET = '[!] Autre problème' WHERE TITRE_TICKET = OLD.TITRE_TICKET;
+	END IF;
 END //
 DELIMITER ;
