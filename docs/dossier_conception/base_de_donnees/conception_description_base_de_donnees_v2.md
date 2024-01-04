@@ -404,7 +404,8 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     Si un changement a été effectué sur un ticket, on met à jour l'horodatage de dernière modification
     - BEFORE UPDATE ON Ticket<br>
       FOR EACH ROW
-    - S'il y a un UPDATE pour une quelconque valeur d'un quelconque attribut (sauf horodatage modif), on met à jour l'horodatage modif et l'ID de celui qui le modifie 
+    - S'il y a un UPDATE pour une quelconque valeur d'un quelconque attribut (sauf horodatage modif), on met à jour l'horodatage modif et l'ID de celui qui le modifie
+      - Si c'est le compte administrateur BD, on insère NULL, sinon on insère l'ID USER (nom du compte MariaDB ayant provoqué la modification)
     
   - ### EMPECHE_modifUtilisateurQuelquesInfos
     En cas de modification de certaines infos d'un Utilisateur, on remplace les nouvelles valeurs par les anciennes pour annuler l'effet du changement
