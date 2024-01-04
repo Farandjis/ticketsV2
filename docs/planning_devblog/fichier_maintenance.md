@@ -14,6 +14,59 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## le Jeudi 04/01/2024 13h26 - État des lieux du projet
+
+Il sera mis à jour d'ici le dimanche 7 janvier. C'est juste pour faire un bilan de l'état actuel du projet.
+
+#### Etat des lieux
+- **Pages web**
+  - Accueil OK
+  - Tableau de bord OK
+  - Administration
+    - Pas possible d'enlever un technicien
+    - On peut créer un ticket " "
+    - **MANQUE TRY DANS PHP**
+    - Manque vérif JS
+    - Les admins apparaissent dans la liste des techniciens à ajouter/enlever
+    - Manque suppr mot clé
+    - Manque crétion/suppr titre
+    - Journal d'activité ne fonctionne pas
+    - "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" par ex comme description d'un ticket casse l'affichage
+    - Manque pop-up pour le tableau
+    - Tableau avec des dates non formatées
+  - Création Ticket
+    - Mauvaise taille case pour "titre du problème"
+    - Manque une vérif JS pour la taille (min et max) de la description
+    - Manque une vérif PHP pour liste des Urgences : On peut bidouiller afin de mettre "Non complété !" comme urgence estimée
+  - Modification Ticket
+    - Modifier si possible la taille des cases
+    - Manque les tests de vérifications du formulaire côté JS (genre min max description)
+    - Note : je n'ai pas testé si on peut bidouiller genre pour la liste d'Urgence
+    - **MANQUE TRY DANS PHP**
+  - Connexion / changement mdp, email:
+    - Pb bouton oeil mdp
+    - Pb taille case (sauf pour mdp)
+  - Inscription
+    - En cours de création
+  - Profil
+    - Le bouton désinscription est rouge, pas de demande de confirmation je suppose aussi
+    - "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" par ex comme description d'un ticket casse l'affichage
+  - POP-UP
+    - "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" par ex comme description d'un ticket dépasse du pop-up
+  - Liste mot clé
+    - '" -> &#039;&quot; comme rendu
+- **Conception**
+  - Je ne suis pas allé voir
+- **Base de donnée**
+  - Probablement des modifs à faire côté historique
+- **Cahier des charges**
+  - Je ne suis pas allé voir
+- **Test**
+  - Je vais voir
+
+
+
+
 ## Lundi 01/01/2024 - Bilan du travail du 26/12/2023 au 31/12/2023, J-9 fin de TIX
 
 Bonne année !<br>
