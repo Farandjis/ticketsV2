@@ -325,6 +325,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - ### FermerUnTicket(id_ticket_param INT) RETURNS BOOLEAN
     Fonction qui ferme un ticket (une demande de dépannage)
     - Le ticket doit être dans vue_modif_ticket_adm_tech
+    - Met à jour la fin de traitement du ticket
     - Renvoi True s'il a pu changer l'état du Ticket en fermé
     - Renvoi False sinon
 
@@ -446,6 +447,20 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       FOR EACH ROW
     - Si l'utilisateur MariaDB ne peut modifier ce ticket
         - Bloque le changement
+
+  - ### SupprRTMQuandSupprMotcle
+    Supprime toute les associations entre le mot-clé qui va être supprimé et les tickets
+    - BEFORE DELETE ON MotcleTicket<br>
+      FOR EACH ROW
+    - On supprime toute les lignes de RelationTicketsMotscles où le mot-clé est celui qui va être supprimé
+    
+  - ### SupprTTQuandSupprTitre
+    Remplace le titre des tickets par "[!] Autre problème" en cas de suppression d'un Titre de la base de données
+    - BEFORE DELETE ON TitreTicket<br>
+      FOR EACH ROW
+    - UPDATE TITRE_TICKET en "[!] Autre problème" de toute les lignes de TICKET où le titre sera supprimé.
+
+
 
 
 ## <a name="p8"></a> VIII - Les Évènements
