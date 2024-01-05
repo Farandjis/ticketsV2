@@ -180,34 +180,21 @@ function valideEMAIL($email){
 
 function operationCAPTCHA()
 {
-    /**
-     * Affiche un champs de formulaire servant de captcha.
-     * Ce captcha est un calcul dont le résultat est enregistré sur ...
-     */
-    $chiffre1 = rand(-20, 20);
-    $chiffre2 = rand(-20, 20);
-    $operateur = array("+", "*")[rand(0, 1)];
+    $chiffre1 = rand(0, 20);
+    $chiffre2 = rand(0, 20);
+    $operateur = "+";
 
     $_SESSION['chiffre1'] = $chiffre1;
     $_SESSION['chiffre2'] = $chiffre2;
     $_SESSION['operateur'] = $operateur;
 
-	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
-	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
-}
-function verifyCAPTCHA($userAnswer)
-{
-    // Vous pouvez ajuster la logique de vérification en fonction de la réponse attendue
-    // Par exemple, si la réponse attendue est le résultat du calcul, vous pouvez le recalculer et le comparer à la réponse de l'utilisateur.
-    $chiffre1 = $_SESSION['chiffre1'];
-    $chiffre2 = $_SESSION['chiffre2'];
-    $operateur = $_SESSION['operateur'];
-
-    $expectedResult = ($operateur == "+") ? $chiffre1 + $chiffre2 : $chiffre1 * $chiffre2;
-
-    return $userAnswer == $expectedResult;
+    $calcul = strval($_SESSION['chiffre1']) . $_SESSION['operateur'] . strval($_SESSION['chiffre2']);
+    echo "<input id='captcha' type='text' name ='captcha' placeholder=$calcul>";
 }
 
+function verifyCAPTCHA($reponseUtilisateur, $chiffre1, $chiffre2){
+    return ($reponseUtilisateur == ($chiffre1 + $chiffre2));
+}
 function dechiffre($mdpchiffre){
     /**
      * Cette fonction ne déchiffre rien pour le moment.
@@ -421,12 +408,12 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                         // Si la personne est connectée...
                         $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
 
+                        echo "<a href='" . $empSite . "/authentification/action_deconnexion.php' class='deconnexion-desinscription'> Déconnexion </a>";
+
                         if ($pageActuelle == "profil" && $roleUtilisateur != "Administrateur Site" && $roleUtilisateur != "Administrateur Système") {
                             echo "<a href='" . $empSite . "/authentification/action_desinscription.php' class='deconnexion-desinscription'> Désinscription </a>";
                         }
-
-                        echo "<a href='" . $empSite . "/authentification/action_deconnexion.php' class='deconnexion-desinscription'> Déconnexion </a>";
-
+                        
                         if ($pageActuelle != "profil") {
                             echo "<a href='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
                         }
@@ -465,19 +452,30 @@ function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACoche
 */
 
 function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
-	$libellesACocher = array();
-	/*while($n = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_technicien;"))){
-		array_push($libellesACocher,$n[0]);
-	}*/
-    $resSQL = mysqli_query($connexionUtilisateur, "SELECT ID_USER, NOM_USER, PRENOM_USER FROM affiche_utilisateurs_pour_adm_web;");
-    while($unLibelle = mysqli_fetch_row($resSQL)){
-        if (in_array($unLibelle[0], $libellesACocher)){ $cestCocher = "checked"; }
-        else { $cestCocher = ""; }
-		echo "<label><input type='checkbox' name='tech_option[]' value='1'>AAAAA</label>";
-        echo "<label><input type='checkbox' name='tech_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[1]) . " " . htmlspecialchars($unLibelle[2]) . " </label>";
+    $libellesACocher = array();
+    
+    $resultLibellesACocher = mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_technicien");
+
+    if ($resultLibellesACocher) {
+        while ($n = mysqli_fetch_row($resultLibellesACocher)) {
+            array_push($libellesACocher, $n[0]);
+        }
+    } else {
+        die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
     }
-	echo "<label><input type='checkbox' name='tech_option[]' value='1'>AAAAA</label>";
+
+    $resultUtilisateurs = mysqli_query($connexionUtilisateur, "SELECT ID_USER, NOM_USER, PRENOM_USER FROM affiche_utilisateurs_pour_adm_web");
+    if ($resultUtilisateurs) {
+        while ($unLibelle = mysqli_fetch_row($resultUtilisateurs)) {
+            $cestCocher = (in_array($unLibelle[0], $libellesACocher)) ? "checked" : "";
+
+            echo "<label><input type='checkbox' name='tech_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[1]) . " " . htmlspecialchars($unLibelle[2]) . " </label>";
+        }
+    } else {
+        die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
+    }
 }
+
 /*
 function menuDeroulantTousLesTitres($connexionUtilisateur, $titreACocher = array()){
 
@@ -507,12 +505,12 @@ function menuDeroulant($resultatSQL, $attributListe, $elementsACocher = array())
     if (strcasecmp($attributListe, "selected") == 0) {
 
         // Tant qu'il y a des éléments dans le résultat SQL (donc à mettre dans la liste
-        while ($unElement = mysqli_fetch_row($resultatSQL)[0]) {
+        while ($unElement = mysqli_fetch_row($resultatSQL)) {
 
             // On vérifie qu'il y a bien un seul élément et on le prend pour le sélectionner
-            if (count($elementsACocher) == 1 and $unElement == $elementsACocher[0]) { $cestCocher = "selected"; }
+            if (count($elementsACocher) == 1 and $unElement[0] == $elementsACocher[0]) { $cestCocher = "selected"; }
             else { $cestCocher = ""; } // Il n'y en a pas, ou ce n'est pas possible d'en sélectionner qu'un
-            echo "<option value='$unElement' $cestCocher>$unElement</option>"; // On ajoute l'élément à la liste
+            echo "<option value='$unElement[0]' $cestCocher>$unElement[0]</option>"; // On ajoute l'élément à la liste
         }
     }
     elseif (strcasecmp($attributListe, "checked") == 0) {
