@@ -1,29 +1,33 @@
+<?php
+require '../ressources/fonctions/PHPfunctions.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-      <meta charset="UTF-8">
-      <title>Inscription</title>
-      <link href="../ressources/style/style.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
-      <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link href="../ressources/style/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
 
-      <script src="../ressources/script/afficheMDP.js"></script>
-      <script src="../ressources/script/verifChamp.js"></script>
-      <script src="../ressources/script/infoChamps.js"></script>
+    <script src="../ressources/script/afficheMDP.js"></script>
+    <script src="../ressources/script/verifChamp.js"></script>
+    <script src="../ressources/script/infoChamps.js"></script>
 </head>
 <body>
 <header>
-  <div class="retour">
-    <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt="bouton retour"> Retour</a>
-  </div>
+    <div class="retour">
+        <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+    </div>
 </header>
-    <div class="page_authentification_modif_perso">
-        <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
+<div class="page_authentification_modif_perso">
+    <img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site">
 
-      <div role="form" class="formAuthentification formInscription">
+    <div class="formAuthentification formInscription">
 
-        <form action='action_inscription.php' method='post' id='inscriptionForm'>
-            <h1>Je m'inscris !</h1><br>
+        <form action='action_inscription.php' method='post' id="inscriptionForm">
+            <h1>Je m'inscris !</h1>
             <?php
 
             if (isset($_GET['id'])) {
@@ -56,7 +60,8 @@
                 else if ($_GET['id'] == '13') { echo "ERREUR : Le nom doit être compris entre 1 et 30 caractère."; }
                 else if ($_GET['id'] == '14') { echo "ERREUR : Le login doit être compris entre 5 et 20 caractère."; }
                 else if ($_GET['id'] == '15') { echo "ERREUR : L'adresse email doit être compris entre 5 et 100 caractère."; }
-
+                else if ($_GET['id'] == '16') { echo "ERREUR : Le captcha n'est pas correcte, recommencez."; }
+                else if ($_GET['id'] == '17') { echo "ERREUR : Le captcha doit être complété !"; }
                 else { echo "ERREUR : Une erreur est survenue."; }
                 echo '</p>';
                 echo '</div>';
@@ -64,64 +69,101 @@
             ?>
             <div id="conteneur_infoChamps">
             </div>
-
             <div class="champs-inscription">
-               <div class="inscription-gauche">
-                  <label for='login'>Login</label> <span id="infoLogin" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
-                  <input id='login' type='text' name ='login' ><br>
-                  <br>
-                  <label for='mdp'>Mot de passe</label> <span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
-                   <div class="champs-password">
-                        <input id='mdp' type='password' name ='mdp'>
+                <div class="inscription-gauche">
 
-                       <div class="password-show" onclick="showPassword(this)">
-                           <img src="../ressources/images/visible.png">
-                       </div>
-                       <div class="password-hide" onclick="hidePassword(this)">
-                           <img src="../ressources/images/hidden.png">
-                       </div>
-                   </div>
-                  <br>
-                  <label for='verifMdp'>Vérificaction mot de passe</label> <span id="infoVerifMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
 
-                   <div class="champs-password">
-                       <input id="verifMdp" type='password' name ='verifMdp'>
+                    <div class="info-bulle">
+                        <label for='login'>Login <br>
+                            <input id='login' type='text' name ='login'>
+                            <span class="text-info-bulle">Le login doit contenir<br> entre <span>5 et 32 caractères</span>.</span>
+                        </label>
+                    </div><span id="infoLogin" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
 
-                       <div class="password-show" onclick="showPassword(this)">
-                           <img src="../ressources/images/visible.png">
-                       </div>
-                       <div class="password-hide" onclick="hidePassword(this)">
-                           <img src="../ressources/images/hidden.png">
-                       </div>
-                   </div>
+                    <br>
 
-               </div>
+                    <div class="champs-password">
+                        <div class="info-bulle">
+                            <label for='mdp'>Mot de passe <br>
+                                <input id='mdp' type='password' name ='mdp'>
+                                <span class="text-info-bulle">Le mot de passe doit contenir entre <span>12 et 32 caractères</span> et au moins une <span>minuscule</span>, <br>une <span>majuscule</span>, un <span>chiffre</span>, <br>un <span> spécial</span>.</span>
+                            </label>
+                        </div><span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
 
-               <div class="inscription-droite">
-                  <label for='nom'>Nom</label> <span id="infoNom" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
-                  <input id='nom' type='text' name ='nom'>
-                  <br><br>
-                   <label for='prenom'>Prénom</label> <span id="infoPrenom" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
-                  <input id='prenom' type='text' name ='prenom'>
 
-                  <br><br>
-                  <label for='email'>Email</label> <span id="infoEmail" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
-                  <input id='email' type='text' name ='email'>
-               </div>
-           </div>
-          <br>
-            <div class ="capcha">
-              <label for='capcha'>Capcha</label>
-              <input id='capcha' type='text' name ='capcha' placeholder="3*5">
+                        <div class="password-show" onclick="showPassword(this)">
+                            <img src="../ressources/images/visible.png">
+                        </div>
+                        <div class="password-hide" onclick="hidePassword(this)">
+                            <img src="../ressources/images/hidden.png">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="champs-password">
+
+                        <div class="info-bulle">
+                            <label for='verifMdp'>Vérification mot de passe <br>
+                                <input id="verifMdp" type='password' name ='verifMdp'>
+                                <span class="text-info-bulle">La vérification du mot de passe <span>doit être identique au mot de passe</span>.</span>
+                            </label>
+                        </div> <span id="infoVerifMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+
+                        <div class="password-show" onclick="showPassword(this)">
+                            <img src="../ressources/images/visible.png">
+                        </div>
+                        <div class="password-hide" onclick="hidePassword(this)">
+                            <img src="../ressources/images/hidden.png">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="inscription-droite">
+
+
+                    <div class="info-bulle">
+                        <label for='nom'>Nom <br>
+                            <input id='nom' type='text' name ='nom'>
+                            <span class="text-info-bulle">Le Nom ne doit contenir <span><br>que des lettres ou le caractère "-"</span> et posséder entre <span>2 et 50 caractères</span>.</span>
+                        </label>
+                    </div> <span id="infoNom" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+                    <br>
+
+
+                    <div class="info-bulle">
+                        <label for='prenom'>Prénom <br>
+                            <input id='prenom' type='text' name ='prenom'>
+                            <span class="text-info-bulle">Le Prénom ne doit contenir <span>que des lettres ou le caractère "-"</span> et posséder entre <span>2 et 50 caractères</span>.</span>
+                        </label>
+                    </div> <span id="infoPrenom" class="infosChamps" onclick="afficheInfo(this)">?</span> <br>
+
+                    <br>
+
+
+                    <div class="info-bulle">
+                        <label for='email'>Email <br>
+                            <input id='email' type='text' name ='email'>
+                            <span class="text-info-bulle">L'email doit avoir<br>un <span>format standard</span><br>(ex: etudiant@ens.uvsq.fr)</span>
+                        </label>
+                    </div> <span id="infoEmail" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
+                </div>
             </div>
-            <a href="connexion.php" class="oublie">Déjà un compte ?</a>
+            <br>
+                <div class="capcha">
+                    <label for="captcha">Captcha</label>
 
-          <input type='submit' name='Connexion' value='Inscription'>
+                    <p><?php operationCAPTCHA(); ?></p>
+                </div>
+
+                <a href="connexion.php" class="oublie">Déjà un compte ?</a>
+
+                <input type='submit' name='Connexion' value='Inscription'>
 
         </form>
 
-      </div>
     </div>
+</div>
 
 </body>
 </html>
