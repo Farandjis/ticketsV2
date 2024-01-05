@@ -86,7 +86,9 @@ BEGIN
 
     -- Si le ticket est présent la liste des tickets pouvant être modifié par l'admin web ou le technicien, on peut le fermer
     IF (ticketPeutEtreFermer = 1) THEN
+        UPDATE DB_TIX.Ticket SET DB_TIX.Ticket.HORODATAGE_RESOLUTION_TICKET = CURRENT_TIMESTAMP() WHERE DB_TIX.Ticket.ID_TICKET = id_ticket_param;
         UPDATE DB_TIX.Ticket SET DB_TIX.Ticket.ETAT_TICKET = 'Fermé' WHERE DB_TIX.Ticket.ID_TICKET = id_ticket_param;
+
         RETURN True;
     ELSE
         RETURN False; -- Le ticket n'a pas été fermé
