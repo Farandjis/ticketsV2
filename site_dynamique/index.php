@@ -95,9 +95,9 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                     if ($infoTDB_TOTAL > 0) {
                         echo "<p>";
                         if ($infoTDB_TOTAL > 1) { echo "Sur les <strong>$infoTDB_TOTAL</strong> ticket$s[0] de votre tableau de bord, vous avez "; } else { echo "Sur votre tableau de bord, vous avez ";}
-                        if ($infoTDB_OUVERT > 0) { echo "<strong>$infoTDB_OUVERT</strong> ticket$s[1] en attente de prise en charge"; }
+                        if ($infoTDB_OUVERT > 0) { echo "<strong>$infoTDB_OUVERT</strong> ticket$s[2] en attente de prise en charge"; }
                         if ($infoTDB_OUVERT > 0 and $infoTDB_ENCOURS > 0) { echo " et "; }
-                        if ($infoTDB_ENCOURS > 0) { echo "<strong>$infoTDB_ENCOURS</strong> ticket$s[2] à traiter"; }
+                        if ($infoTDB_ENCOURS > 0) { echo "<strong>$infoTDB_ENCOURS</strong> ticket$s[3] à traiter"; }
                         if ($infoTDB_ENCOURS = 0 and $infoTDB_OUVERT = 0) { "aucune action à faire"; }
                         echo ".</p>";
                     }
