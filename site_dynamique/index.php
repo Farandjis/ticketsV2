@@ -82,6 +82,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                         if ($infoTDB_ENATTENTE > 0) { echo "<strong>$infoTDB_ENATTENTE</strong> ticket$s[1] en attente de validation"; }
                         if ($infoTDB_ENATTENTE > 0 and $infoTDB_OUVERT > 0) { echo " et "; }
                         if ($infoTDB_OUVERT > 0) { echo "<strong>$infoTDB_OUVERT</strong> ticket$s[2] à attribuer"; }
+                        if ($infoTDB_ENATTENTE = 0 and $infoTDB_OUVERT = 0) { "aucune action à faire"; }
                         echo ".</p>";
                     }
                     else { echo "<p>Aucune demande en cours de la part des utilisateurs.</p>"; }
@@ -97,6 +98,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                         if ($infoTDB_OUVERT > 0) { echo "<strong>$infoTDB_OUVERT</strong> ticket$s[1] en attente de prise en charge"; }
                         if ($infoTDB_OUVERT > 0 and $infoTDB_ENCOURS > 0) { echo " et "; }
                         if ($infoTDB_ENCOURS > 0) { echo "<strong>$infoTDB_ENCOURS</strong> ticket$s[2] à traiter"; }
+                        if ($infoTDB_ENCOURS = 0 and $infoTDB_OUVERT = 0) { "aucune action à faire"; }
                         echo ".</p>";
                     }
                     else { echo "<p>Aucune demande en cours de la part des utilisateurs.</p>"; }
