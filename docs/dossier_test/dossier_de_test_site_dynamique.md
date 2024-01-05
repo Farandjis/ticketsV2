@@ -8,7 +8,7 @@ INF2-A
 ## Base de données
 
 <br><br>
-Ce document permet de s'assurer que la base de données soit conforme à ce qui à été conçu.
+Ce document permet de s'assurer que la base de données soit conforme à ce qui a été conçu.
 
 </div>
 
@@ -42,12 +42,12 @@ Ce document permet de s'assurer que la base de données soit conforme à ce qui 
 
 ## <a name="I"></a>I - Introduction
 
-Le document suivant à pour but de tester la base de données du site dynamique.
+Le document suivant a pour but de tester la base de données du site dynamique.
 <br>
 
 ## <a name="II"></a>II - Description de la procédure de test
 
-Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi que les différents droit des rôles au niveau des vues
+Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi que les différents droits des rôles au niveau des vues
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
@@ -97,15 +97,17 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ### <a name="1b"></a>Table TitreTicket
 
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
+| Cas n° | Critère                                                                             | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('[MATERIEL] Matériel manquant'); | OK               | OK              |
+| 2      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('<b>Salut</b>');                 | KO               | OK              |
 
 ### <a name="1b"></a>Table MotClesTicket
 
-| Cas n° | Critère | Résultat attendu | Résultat obtenu |
-|:-------|---------|------------------|-----------------|
-| 1      |         |                  |                 |
+| Cas n° | Critère                                                                  | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('Logiciel : Firefox'); | OK               | OK              |
+| 2      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('<b>Salut</b>');       | KO               | OK              |
 
 ## <a name="2"></a>Role
 
@@ -597,7 +599,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | On se connecte en temps que gestion à la base de données | role_admin_web   | role_admin_web   |
 | 4      | On se connecte en temps que admin à la base de données   | role_admin_sys   | role_admin_sys   |
 
-### <a name="3b"></a>verifier_id_ticket_dans_vue_tdb
+### <a name="3b"></a>verifTicketPeutEtreModif
 
 | Cas n° | Critère                                                             | Résultat attendu | Résultat obtenu |
 |:-------|---------------------------------------------------------------------|------------------|-----------------|
@@ -638,6 +640,27 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | On se connecte en temps que gestion à la base de données | KO               | KO              |
 | 4      | On se connecte en temps que admin à la base de données   | KO               | KO              |
 
+### <a name="4b"></a>ATTENTION_SupprimerTousLesComptesInutilises
+
+| Cas n° | Critère                                                     | Résultat attendu | Résultat obtenu |
+|:-------|-------------------------------------------------------------|------------------|-----------------|
+| 1      | Le compte d'alice est inactif depuis moins de 36 mois       | KO               | KO              |
+| 2      | Le compte d'alice est inactif depuis au moins de 36 mois    | OK               | OK              |
+| 3      | Le compte de gordon est inactif depuis moins de 36 mois     | KO               | KO              |
+| 4      | Le compte de gordon est inactif depuis au moins de 36 mois  | OK               | OK              |
+| 5      | Le compte de gestion est inactif depuis moins de 36 mois    | KO               | KO              |
+| 6      | Le compte de gestion est inactif depuis au moins de 36 mois | KO               | KO              |
+| 7      | Le compte de admin est inactif depuis moins de 36 mois      | KO               | KO              |
+| 8      | Le compte de admin est inactif depuis au moins de 36 mois   | KO               | KO              |
+
+### <a name="4b"></a>activerUnRoleTechOuUtiParAdminWeb
+
+| Cas n° | Critère                                                           | Résultat attendu                                            | Résultat obtenu                                             |
+|:-------|-------------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
+| 1      | L'admin web veut passer un utilisateur en technicien              | Le rôle par défaut de l'utilisateur devient role_technicien | Le rôle par défaut de l'utilisateur devient role_technicien |
+| 2      | L'admin web veut passer un technicien en utilisateur              | Le rôle par défaut du technicien devient role_utilisateur   | Le rôle par défaut du technicien devient role_utilisateur   |
+| 3      | L'admin web veut passer un admin sys en technicien ou utilisateur | KO                                                          | KO                                                          |
+
 ## <a name="5"></a>Trigger
 
 ### <a name="5a"></a>PasseTicketAEnCours
@@ -646,14 +669,13 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 |:-------|----------------------------------------------------------------------------------------------|----------------------------------------|----------------------------------------|
 | 1      | Le ticket est ouvert + un technicien est associé au ticket                                   | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
 | 2      | Le ticket est en attente + un niv d'urgence est défini + un technicien est associé au ticket | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
-| 3      | Le ticket est en attente mais aucun niv d'urgence est défini                                 | Le ticket reste en attente             | Le ticket reste en attente             |
 
 ### <a name="5b"></a>PasseTicketAOuvert
 
 | Cas n° | Critère                                                                 | Résultat attendu                       | Résultat obtenu        |
 |:-------|-------------------------------------------------------------------------|----------------------------------------|------------------------|
 | 1      | Le ticket est en attente et un niv d'urgence est défini                 | Le ticket passe ouvert                 | Le ticket passe ouvert |
-| 1      | Le ticket est en cours de traitement et le niveau d'urgence est modifié | Le ticket reste en cours de traitement |                        |
+| 2      | Le ticket est en cours de traitement et le niveau d'urgence est modifié | Le ticket reste en cours de traitement |                        |
 
 ### <a name="5c"></a>VerifQuiCestLeTechDuTicket
 
@@ -662,52 +684,59 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 1      | Si l'admin web veut changer le technicien d'un ticket                   | OK               | OK              |
 | 2      | Si le technien veut attribuer à un autre technicien le ticket           | KO               | KO              |
 | 3      | Si le technicien veut s'attribuer un ticket                             | OK               | OK              |
-| 4      | Si le technicien veut s'attribuer un ticket dans n'importe qu'elle état | KO               | OK              |
-| 5      | Si l'admin web veut attribuer un ticket fermée                          | KO               | OK              |
+| 4      | Si le technicien veut s'attribuer un ticket dans n'importe qu'elle état | KO               | KO              |
+| 5      | Si l'admin web veut attribuer un ticket fermée                          | KO               | KO              |
+| 6      | Si l'utilisateur veut attribuer un ticket à un technicien               | KO               | KO              |
+| 7      | Si l'admin sys veut attribuer un ticket à un technicien                 | KO               | KO              |
 
 ### <a name="5d"></a>MajHorodatageModifTicket
 
-| Cas n° | Critère                                        | Résultat attendu                                                                | Résultat obtenu                                                                 |
-|:-------|------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| 1      | Si une modification est opéré sur un ticket    | changement de l'horodatage de dernière modif et de l'id du user qui l'a modifié | changement de l'horodatage de dernière modif et de l'id du user qui l'a modifié |
-| 2      | Si aucune modification est opéré sur un ticket | rien ne se passe                                                                | rien ne se passe                                                                |
+| Cas n° | Critère                                                                                       | Résultat attendu                                                                | Résultat obtenu                                                                 |
+|:-------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| 1      | Si une modification est opéré sur un ticket                                                   | changement de l'horodatage de dernière modif et de l'id du user qui l'a modifié | changement de l'horodatage de dernière modif et de l'id du user qui l'a modifié |
+| 2      | Si l'admin de la BD fait une modification sur un ticket                                       | changement de l'horodatage de dernière modif et de l'id du user passe en NULL   | changement de l'horodatage de dernière modif et de l'id du user passe en NULL   |
+| 2      | Si une personne non enregistrer dans la table Utilisateur fait une modification sur un ticket | Message d'erreur                                                                | Message d'erreur                                                                |
+| 3      | Si aucune modification est opéré sur un ticket                                                | rien ne se passe                                                                | rien ne se passe                                                                |
 
 ### <a name="5e"></a>EMPECHE_modifUtilisateurQuelquesInfos
 
-| Cas n° | Critère                                         | Résultat attendu                                                      | Résultat obtenu                                                       |
-|:-------|-------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| 1      | Si modification d'une infos utilisateurs        | Empeche la modification de l'id et l'horodatege de création de compte | Empeche la modification de l'id et l'horodatege de création de compte |
-| 2      | Si aucune modification d'une infos utilisateurs | Rien ne se passe                                                      | Rien ne se passe                                                      |
+| Cas n° | Critère                                               | Résultat attendu              | Résultat obtenu               |
+|:-------|-------------------------------------------------------|-------------------------------|-------------------------------|
+| 1      | Si modification de l'ID du user                       | Annulation de la modification | Annulation de la modification |
+| 2      | Si modification de l'horodatage de création de compte | Annulation de la modification | Annulation de la modification |
+| 3      | Si aucune modification d'une info utilisateur         | Rien ne se passe              | Rien ne se passe              |
 
 ### <a name="5f"></a>EMPECHE_modifTicketQuelquesInfos
 
-| Cas n° | Critère                                         | Résultat attendu                                                      | Résultat obtenu                                                       |
-|:-------|-------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| 1      | Si modification d'une infos utilisateurs        | Empeche la modification de l'id et l'horodatege de création de compte | Empeche la modification de l'id et l'horodatege de création de compte |
-| 2      | Si aucune modification d'une infos utilisateurs | Rien ne se passe                                                      | Rien ne se passe                                                      |
+| Cas n° | Critère                                               | Résultat attendu              | Résultat obtenu               |
+|:-------|-------------------------------------------------------|-------------------------------|-------------------------------|
+| 1      | Si modification de l'ID du ticket                     | Annulation de la modification | Annulation de la modification |
+| 2      | Si modification de l'ID du user qui a créé le ticket  | Annulation de la modification | Annulation de la modification |
+| 3      | Si modification de l'horodatage de création de ticket | Annulation de la modification | Annulation de la modification |
+| 4      | Si aucune modification d'une info ticket              | Rien ne se passe              | Rien ne se passe              |
 
-### <a name="5f"></a>EMPECHE_modifTicketFermer
+### <a name="5g"></a>EMPECHE_modifTicketFermer
 
-| Cas n° | Critère                                  | Résultat attendu                   | Résultat obtenu                    |
-|:-------|------------------------------------------|------------------------------------|------------------------------------|
-| 1      | Si modification d'un ticket fermé        | Empeche les modification du ticket | Empeche les modification du ticket |
-| 2      | Si aucune modification d'un ticket fermé | Rien ne se passe                   | Rien ne se passe                   |
+| Cas n° | Critère                                  | Résultat attendu              | Résultat obtenu               |
+|:-------|------------------------------------------|-------------------------------|-------------------------------|
+| 1      | Si modification d'un ticket fermé        | Annulation de la modification | Annulation de la modification |
+| 2      | Si aucune modification d'un ticket fermé | Rien ne se passe              | Rien ne se passe              |
 
-### <a name="5f"></a>MajHorodatageModifMotsclesTicket_INSERT
+### <a name="5h"></a>MajHorodatageModifMotsclesTicket_INSERT
 
-| Cas n° | Critère                                | Résultat attendu                                         | Résultat obtenu                                          |
-|:-------|----------------------------------------|----------------------------------------------------------|----------------------------------------------------------|
-| 1      | Si ajout d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket | modification de l'horodatage de dernière modif du ticket |
-| 2      | Si aucune ajout n'est opéré            | Rien ne se passe                                         | Rien ne se passe                                         |
+| Cas n° | Critère                                | Résultat attendu                                                                            | Résultat obtenu                                                                                |
+|:-------|----------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| 1      | Si ajout d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket et de l'id du user qui l'a modifié | modification de l'horodatage de dernière modif du ticket et de de l'id du user qui l'a modifié |
+| 2      | Si aucune ajout n'est opéré            | Rien ne se passe                                                                            | Rien ne se passe                                                                               |
 
-### <a name="5f"></a>MajHorodatageModifMotsclesTicket_DELETE
+### <a name="5i"></a>MajHorodatageModifMotsclesTicket_DELETE
 
-| Cas n° | Critère                                     | Résultat attendu                                         | Résultat obtenu                                          |
-|:-------|---------------------------------------------|----------------------------------------------------------|----------------------------------------------------------|
-| 1      | Si suppresion d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket | modification de l'horodatage de dernière modif du ticket |
-| 2      | Si aucune suppression n'est opéré           | Rien ne se passe                                         | Rien ne se passe                                         |
+| Cas n° | Critère                                     | Résultat attendu                                                                            | Résultat obtenu                                                                             |
+|:-------|---------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| 1      | Si suppresion d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket et de l'id du user qui l'a modifié | modification de l'horodatage de dernière modif du ticket et de l'id du user qui l'a modifié |
+| 2      | Si aucune suppression n'est opéré           | Rien ne se passe                                                                            | Rien ne se passe                                                                            |
 
-### <a name="5f"></a>EMPECHE_InsertionMotsclesTicket
+### <a name="5j"></a>EMPECHE_InsertionMotsclesTicket
 
 | Cas n° | Critère                                                              | Résultat attendu               | Résultat obtenu                |
 |:-------|----------------------------------------------------------------------|--------------------------------|--------------------------------|
