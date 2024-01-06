@@ -19,6 +19,8 @@ Nous définirons également ce qu'est une fonction de hachage cryptographique, l
 # Plan
 - ## Algorithme RC4
   - ### Présentation
+  - ### Key Scheduling Algorithm (KSA)
+  - ### Génération suite chiffrante - Pseudo Random Generator (PRGA)
   - ### Module de chiffrement
   - ### Module de déchiffrement
 - ## Fonction de hachage cryptographique
