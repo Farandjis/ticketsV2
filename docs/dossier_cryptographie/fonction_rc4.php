@@ -1,9 +1,87 @@
 <?php
-// Vide pour le moment
 
 
-function generation_suite_chiffrante($clef){
+function convertionArrayDeBytesEnHexadecimal($arr){
+    // fonction entièrement recopié de :
+    // https://stackoverflow.com/questions/31211772/how-to-convert-an-array-of-bytes-to-a-hex-string
+    // Et fonctionne parfaitement !
 
+    $hex_str = "";
+    foreach ($arr as $byte)
+    {
+        $hex_str .= sprintf("%02X", $byte);
+        // echo sprintf("%02X", $byte); echo "<br>";
+    }
+
+    return $hex_str;
+}
+
+
+/** Principe :
+ *      Génère une permutation à partir de la clef.
+ *      Fondé sur l'algorithme 2 donné dans le sujet.
+ *  Paramètre :
+ *      - @param string $clefK : la clé dont on génère la permutation
+ *  Renvoi :
+ *      - @return array $permutationS : la permutation de la clé
+ */
+function KSA(string $clefK): array{
+    // https://www.php.net/manual/en/function.ord.php
+    // ord — Convert the first byte of a string to a value between 0 and 255
+
+    $permutationS = array();
+    $l = strlen($clefK); // taille de la clé
+
+    $clefKbin = array(); // Liste représentant la clef où chaque valeur correspond à la convertion charactère -> int de la clef.
+    for ($i = 0; $i < $l; $i++){
+        $clefKbin[] = ord($clefK[$i]);
+    }
+
+    for ($i = 0; $i < 256; $i++){
+        $permutationS[] = $i;
+    }
+
+    $j = 0;
+    for ($i = 0; $i < 256; $i++){
+        $j = ($j + $permutationS[$i] + $clefKbin[$i % $l]) % 256;
+
+        // On permute
+        // https://jf-blog.fr/comment-permuter-des-variables-en-php/
+        [$permutationS[$i], $permutationS[$j]] = [$permutationS[$j], $permutationS[$i]];
+    }
+
+    return $permutationS;
+}
+
+/** Principe :
+ *      Génère une suite chiffrante de RC4 à partir de la permutationS de la clefK.
+ *      Fondé sur l'algorithme 1 donné dans le sujet.
+ *  Paramètre :
+ *      - @param array $permutationS : la clé permuté dont on va générer la suite chiffrante
+ *  Renvoi :
+ *      - @return array $suiteChiffranteK : la suite chiffrante
+ */
+
+function suite_chiffrante(array $permutationS): array{
+    $i = 0; $j = 0;
+
+    $n = 256;
+
+    $suiteChiffranteK = array();
+
+    $parcours = 0;
+    while ($parcours < $n){
+        // Tant que nous avons pas traité tous les octets du messages
+
+        $i = ($i + 1) % 256;
+        $j = ($j + $permutationS[$i]) % 256;
+        [$permutationS[$i], $permutationS[$j]] = [$permutationS[$j], $permutationS[$i]];
+        // var_dump([$permutationS[$j], $permutationS[$i]]); echo "<br>";
+        $suiteChiffranteK[] = $permutationS[($permutationS[$i] + $permutationS[$j]) % 256];
+
+        $parcours += 1;
+    }
+    return $suiteChiffranteK;
 }
 
 function rc4_chiffrement($clef, $texte){
@@ -13,42 +91,3 @@ function rc4_chiffrement($clef, $texte){
 function rc4_dechiffrement($clef, $texteChiffre){
 
 }
-
-function tests(){
-
-    echo "<h1>Bienvenue sur cette page de test de notre fonction RC4 !</h1>";
-
-    $clef = array("Key", "Wiki", "Secret");
-    $suiteChiffrante = array("", "", "04D46B053CA87B59");
-    $texte = array("Plaintext", "pedia", "Attack at down");
-    $texteChiffre = array("BBF316E8D940AF0AD3", "1021BF0420", "45A01F645FC35B383552544B9BF5");
-
-    var_dump($clef); echo "<br>";
-    var_dump($suiteChiffrante); echo "<br>";
-    var_dump($texte); echo "<br>";
-    var_dump($texteChiffre); echo "<br>";
-
-    echo "<br><br><h4>Test 0</h4>";
-    $res0 = rc4_chiffrement($clef[0], $texte[0]) == $texteChiffre[0];
-    echo "<p>Génération de la suite chiffrante <b>$clef[2]</b> : " . generation_suite_chiffrante($clef[2]) . "</b> - <b>" . $suiteChiffrante[2] . "</b></p>";
-    if ($res0){ echo "<p>Succès !</p>"; } else { echo "<p> Échec !</p>"; }
-    
-    echo "<br><br><h4>Test 1</h4>";
-    $res1 = rc4_chiffrement($clef[0], $texte[0]) == $texteChiffre[0];
-    echo "<p>Chiffrement de <b>$texte[0]</b> avec la clef <b>$clef[0]</b> : <b>" . rc4_chiffrement($clef[0], $texte[0]) . "</b> - <b>" . $texteChiffre[0] . "</b></p>";
-    if ($res1){ echo "<p>Succès !</p>"; } else { echo "<p> Échec !</p>"; }
-
-    echo "<br><br><h4>Test 2</h4>";
-    $res2 = rc4_chiffrement($clef[1], $texte[1]) == $texteChiffre[1];
-    echo "<p>Chiffrement de <b>$texte[1]</b> avec la clef <b>$clef[1]</b> : <b>" . rc4_chiffrement($clef[1], $texte[1]) . "</b> - <b>" . $texteChiffre[1] . "</b></p>";
-    if ($res2){ echo "<p>Succès !</p>"; } else { echo "<p> Échec !</p>"; }
-
-    echo "<br><br><h4>Test 2</h4>";
-    $res3 = rc4_chiffrement($clef[2], $texte[2]) == $texteChiffre[2];
-    echo "<p>Chiffrement de <b>$texte[2]</b> avec la clef <b>$clef[2]</b> : <b>" . rc4_chiffrement($clef[2], $texte[2]) . "</b> - <b>" . $texteChiffre[2] . "</b></p>";
-    if ($res3){ echo "<p>Succès !</p>"; } else { echo "<p> Échec !</p>"; }
-
-}
-
-
-tests();
