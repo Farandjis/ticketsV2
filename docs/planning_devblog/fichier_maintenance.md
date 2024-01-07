@@ -14,15 +14,24 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
-## le Jeudi 04/01/2024 13h26 - État des lieux du projet
+## Dimanche 07/01/2024 - Bilan du travail du 01/01/2024 au 07/01/2024, J-3 fin de TIX
 
-Il sera mis à jour d'ici le dimanche 7 janvier. C'est juste pour faire un bilan de l'état actuel du projet.
+Par rapport à ma programmation imaginée avant les vacances, nous avons 1 semaine de retard. Cependant, notre situation est encourageante pour la suite.<br>
+Nous sommes sur le point d'avoir toutes les pages fonctionnelles, il manque plus qu'administration.<br>
+Après ça, il manquera plus qu'intégrer nos travaux de cryptographies et de proba-stats, la correction des bugs (fonctionnel, HTML/CSS/JavaScript, Accessibilité),
+ainsi que la vidéo. Malheureusement, à cause de la poursuite tardive du dossier de test, l'équipe ne connait pas l'intégralité des bugs de la plateforme.<br>
+<br>
+Si le planning ci-dessous est respecté, nous aurons rattrapé en grande partie le retard. Sauf pour la vidéo (causé par la fin tardive du site).<br>
+Cela signifie que je ne pourrais pas être très impliqué dans la création de la présentation. Je veillerais à son contenu toutefois.<br>
+Ce document sera mis à jour durant la journée (pour les "Je ne suis pas allé voir").<br>
+<br>
 
 #### Etat des lieux
 - **Pages web**
   - Accueil OK
   - Tableau de bord OK
-  - Administration
+  - Administration (le 07/01/2023 : bugs toujours présent)
+    - **Fonctionnalités manquantes intégrés en HTML/CSS, manque plus que leur implémentation (note : mot-clé et non pas libellé !).**
     - Pas possible d'enlever un technicien
     - On peut créer un ticket " "
     - **MANQUE TRY DANS PHP**
@@ -34,27 +43,23 @@ Il sera mis à jour d'ici le dimanche 7 janvier. C'est juste pour faire un bilan
     - "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" par ex comme description d'un ticket casse l'affichage
     - Manque pop-up pour le tableau
     - Tableau avec des dates non formatées
-  - Création Ticket
-    - Mauvaise taille case pour "titre du problème"
+  - Création Ticket (le 07/01/2023 : bugs toujours présent)
     - Manque une vérif JS pour la taille (min et max) de la description
     - Manque une vérif PHP pour liste des Urgences : On peut bidouiller afin de mettre "Non complété !" comme urgence estimée
-  - Modification Ticket
+  - Modification Ticket (le 07/01/2023 : bugs toujours présent)
     - Modifier si possible la taille des cases
     - Manque les tests de vérifications du formulaire côté JS (genre min max description)
     - Note : je n'ai pas testé si on peut bidouiller genre pour la liste d'Urgence
     - **MANQUE TRY DANS PHP**
-  - Connexion / changement mdp, email:
-    - Pb bouton oeil mdp
-    - Pb taille case (sauf pour mdp)
-  - Inscription
-    - En cours de création
+  - Connexion / changement mdp, email: quasi OK
+    - "un spécial" ??? -> "un caractère spécial" ! Info bulle pour le mdp
+  - Désinscription
+    - Ne supprime pas le compte
+    - Mauvaise redirection
   - Profil
-    - Le bouton désinscription est rouge, pas de demande de confirmation je suppose aussi
-    - "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" par ex comme description d'un ticket casse l'affichage
-  - POP-UP
-    - "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" par ex comme description d'un ticket dépasse du pop-up
+    - Le bouton désinscription est rouge
   - Liste mot clé
-    - '" -> &#039;&quot; comme rendu
+    - '" -> `&#039;&quot;` comme rendu
 - **Conception**
   - Je ne suis pas allé voir
 - **Base de donnée**
@@ -62,10 +67,82 @@ Il sera mis à jour d'ici le dimanche 7 janvier. C'est juste pour faire un bilan
 - **Cahier des charges**
   - Je ne suis pas allé voir
 - **Test**
-  - Je vais voir
+  - Je ne suis pas allé voir
+
+#### Répartition des tâches
+- A terminer en ce dimanche 7 janvier :
+  - CDC Assia : Cas d'utilisation
+    - Repasse-moi l'emplacement de ton document brouiller, s'il te plaît.
+  - PHP Assia/Tom : Bugs que je reporte si-dessus
+  - PHP Enzo : Les tests
+  - BD Enzo : Les tests
+    - Mise à jour suite aux corrections pour les tables
+    - Ajouter l'email dont je parlais pour les caractères spéciaux. Cet email comporte l'intégralité des caractères acceptés.
+    - Donner une explication de ce qui cloche à chaque fois. Ca serait plus simple qu'un jeu des 7 différences (pardon)
+    - VALUES ('Salut'); pour les deux tables -> res attendu OK, c'est normal
+    - Qu'en est-il des tables RelationBiduleMachin ?
+    - Il faudrait vérifier le contenu des vues. Par exemple, que tableau de bord et les pages pour l'update correspondent bien à ce qui est prévu.<br>
+      Qu'un technicien ne peut pas modifier le ticket de son collègue parce qu'ils sont techniciens, par exemple.
+  - PHP etc Florent : Conception
+  - PHP Florent : Fin de l'implémentation de la page Adm (hors pop up) possible ?
+- Lundi 8 janvier :
+  - PHP Matthieu : Intégration pop up page adm
+  - PHP Enzo : Début de la revérification entière de la SAÉ (côté test)
+  - PHP Matthieu/Florent/Tom : Suite des travaux de proba-stat/crypto
+  - BD Matthieu : Conception pour la BD des jetons
+  - PHP Assia ? : faire en sorte que les cases cochées/sélectionnés apparaissent en haut des listes des menuDeroulant
+- Mardi 9 janvier :
+  - PHP Enzo : Fin de la verification entière de la SAÉ (côté test)
+  - BD Enzo/Matthieu : Début et fin tests et correction BD jeton
+  - PHP Assia : Correction des bugs/défaut découverts
+  - Matthieu/Florent/Tom : Suite des travaux de proba-stat/crypto/vidéo
+  - Rendez-vous vocal Discord pour faire une mise au point de la situation ?
+- Mercredi 10 janvier :
+  - Florent/Matthieu : Fin travail de crypto
+  - Tom : Fin travail de proba-stat si possible
+  - PHP Florent/Matthieu : Intégration du travail de crypto
+  - PHP Tom/Matthieu : Intégration du travail de proba-stat si possible
+  - PHP Enzo : Test suite à l'intégration du travail
+  - Matthieu : Suite de la vidéo
+- À partir du jeudi 11 janvier :
+  - Préparation de la présentation face au jury
+  - Matthieu : Fin de la vidéo
 
 
+#### Travail effectué
+- **Florent**<br>
+  - Suite d'Administration, recréation du code perdu
+  - Conception action_modificationTicket, suite des conceptions pour administration (et une autre je crois)
 
+- **Tom**<br>
+  - Correction des problèmes de HTML/CSS
+  - Ajout HTML/CSS des fonctionnalités manquante pour la page Administration (côté admin web)
+  - Début sujet proba-stat
+
+- **Enzo** :<br>
+  - Suite des tests de la BD
+  - Début tests rendu code HTML généré par PHP
+  - Début tests Accessibilité
+
+- **Assia**<br>
+  - Correction problèmes d'affichage des mots-clés + vérification des titres côté php (uniquement ceux présents da la liste de la BD sont autorisés)
+  - PHP : Fermeture d'un ticket
+  - PHP : Captcha
+
+- **Matthieu (chef de projet)**<br>
+  - fin tableau de bord (principalement pop-up, bugs)
+  - Fusion des fonctions menuDeroulant
+  - Finalisation de la fonctionnalité de fermeture d'un ticket (aide pour Assia)
+  - Finalisation BD TIX (tables, vues, triggers...) et de sa conception
+  - Correction des bugs causés par la page modif (incompatibilité version 2 de la BD)
+  - Nouveauté pour la page accueil : Bilan de la situation de l'utilisateur de la plateforme (simple utilisateur, tech, adm web et sys)
+  - Finalisation du captcha (aide pour Assia)
+  - Début sujet crypto
+  - Suite de la vidéo (j'en suis à 3-5 secondes par jour, pour une vidéo de plus d'1min actuellement) 
+
+<br><br><br>
+
+---
 
 ## Lundi 01/01/2024 - Bilan du travail du 26/12/2023 au 31/12/2023, J-9 fin de TIX
 
@@ -174,6 +251,7 @@ Il y a donc du travail...
   - Correction problèmes CSS pages création et modification ticket
   - Désormais le bouton désinscription ne s'affiche plus pour les admins
   - Importation du travail de droit sur le site
+  - **Note : il manque des tâches effectuées par Assia.**
   
 - **Matthieu (chef de projet)**<br>
   - (rappel) Indisponibilité 1 ou 2 jours dans la semaine
