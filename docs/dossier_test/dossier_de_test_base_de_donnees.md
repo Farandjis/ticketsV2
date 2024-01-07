@@ -25,6 +25,7 @@ Ce document permet de s'assurer que la base de données soit conforme à ce qui 
     - #### [Ticket](#1b)
     - #### [TitreTicket](#1c)
     - #### [MotClesTicket](#1d)
+    - #### [RelationTicketsMotscles](#1e)
   - #### [Role](#2)
     - #### [role_utilisateur](#2a)
     - #### [role_technicien](#2b)
@@ -92,16 +93,18 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ### <a name="1a"></a>Utilisateur
 
-| Cas n° | Critère                                                                                                                                                                                          | Résultat attendu | Résultat obtenu |
-|:-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
-| 1      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@gmail.com', '192.168.1.30');    | OK               | OK              |
-| 2      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DD', 'Didier', 'Dupont', 'ddupont@gmail.com', '192.168.1.30');         | KO               | KO              |
-| 3      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont', 'd.dupont@gmail.com', '192.168.1.30');  | OK               | OK              |
-| 4      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont','d.dupont@gmail.com', '192.168.1.30');   | KO               | KO              |
-| 5      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont', 'd.dupont#gmail.com', '192.168.1.30');  | KO               | KO              |
-| 6      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont','d.dupont@gmail.fr', '192.168.1.30');    | OK               | OK              |
-| 7      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@..gmail.com', '192.168.1.30');  | KO               | OK              |
-| 8      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont',  'd..dupont@gmail.com', '192.168.1.30'); | KO               | OK              |
+| Cas n° | Critère                                                                                                                                                                                                    | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@gmail.com', '192.168.1.30');              | OK               | OK              |
+| 2      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DD', 'Didier', 'Dupont', 'ddupont@gmail.com', '192.168.1.30');                   | KO               | KO              |
+| 3      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont', 'd.dupont@gmail.com', '192.168.1.30');            | OK               | OK              |
+| 4      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont','d.dupont@gmail.com', '192.168.1.30');             | KO               | KO              |
+| 5      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont', 'd.dupont#gmail.com', '192.168.1.30');            | KO               | KO              |
+| 6      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DiDupont', 'Didier', 'Dupont','d.dupont@gmail.fr', '192.168.1.30');              | OK               | OK              |
+| 7      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@..gmail.com', '192.168.1.30');            | KO               | KO              |
+| 8      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont',  'd..dupont@gmail.com', '192.168.1.30');           | KO               | KO              |
+| 9      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont',  'alice_DU-q%78@moiEns-uvsq.cOm', '192.168.1.30'); | KO               | OK              |
+
 
 ### <a name="1b"></a>Ticket
 
@@ -118,14 +121,21 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | Cas n° | Critère                                                                             | Résultat attendu | Résultat obtenu |
 |:-------|-------------------------------------------------------------------------------------|------------------|-----------------|
 | 1      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('[MATERIEL] Matériel manquant'); | OK               | OK              |
-| 2      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('<b>Salut</b>');                 | KO               | OK              |
+| 2      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('<b>Salut</b>');                 | OK               | OK              |
 
 ### <a name="1d"></a>MotClesTicket
 
 | Cas n° | Critère                                                                  | Résultat attendu | Résultat obtenu |
 |:-------|--------------------------------------------------------------------------|------------------|-----------------|
 | 1      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('Logiciel : Firefox'); | OK               | OK              |
-| 2      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('<b>Salut</b>');       | KO               | OK              |
+| 2      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('<b>Salut</b>');       | OK               | OK              |
+
+### <a name="1e"></a>RelationTicketsMotscles
+
+| Cas n° | Critère                                                                  | Résultat attendu | Résultat obtenu |
+|:-------|--------------------------------------------------------------------------|------------------|-----------------|
+| 1      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('Logiciel : Firefox'); | OK               | OK              |
+| 2      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('<b>Salut</b>');       | OK               | OK              |
 
 ## <a name="2"></a>Role
 
@@ -221,6 +231,15 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
 
+#### vue_tv_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
 
 ### <a name="2b"></a>role_technicien
 
@@ -306,6 +325,15 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
 
 #### vue_technicien
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tv_relation_ticket_motcle
 
 | Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
 |:-------|------------------------------------------|------------------|-----------------|
@@ -442,6 +470,15 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
 
+#### vue_tv_relation_ticket_motcle
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
 #### vue_modif_ticket_adm_tech
 
 | Cas n° | Critère                                                                    | Résultat attendu | Résultat obtenu |
@@ -544,6 +581,15 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 4      | L'utilisateur tente un DELETE sur la vue | OK               | OK              |
 
 #### vue_technicien
+
+| Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
+|:-------|------------------------------------------|------------------|-----------------|
+| 1      | L'utilisateur tente un SELECT sur la vue | OK               | OK              |
+| 2      | L'utilisateur tente un INSERT sur la vue | KO               | KO              |
+| 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
+| 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
+
+#### vue_tv_relation_ticket_motcle
 
 | Cas n° | Critère                                  | Résultat attendu | Résultat obtenu |
 |:-------|------------------------------------------|------------------|-----------------|
@@ -738,6 +784,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | Cas n° | Critère                                  | Résultat attendu              | Résultat obtenu               |
 |:-------|------------------------------------------|-------------------------------|-------------------------------|
 | 1      | Si modification d'un ticket fermé        | Annulation de la modification | Annulation de la modification |
+| 1      | Si phpmyfteam modifie un ticket fermé    | La modification opère         | La modification opère         |
 | 2      | Si aucune modification d'un ticket fermé | Rien ne se passe              | Rien ne se passe              |
 
 ### <a name="5h"></a>MajHorodatageModifMotsclesTicket_INSERT
@@ -761,4 +808,18 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 1      | Si le ticket se trouve dans la vue_modif_creation_ticket_utilisateur | modification du ticket         | modification du ticket         |
 | 2      | Si le ticket se trouve dans la vue_modif_ticket_adm_tech             | modification du ticket         | modification du ticket         |
 | 3      | Si le ticket se trouve dans aucune vue de modification               | empechement de la modification | empechement de la modification |
+
+### <a name="5k"></a>SupprRTMQuandSupprMotcle
+
+| Cas n° | Critère                                                  | Résultat attendu                                 | Résultat obtenu                                  |
+|:-------|----------------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
+| 1      | Si on supprime un mot clés                               | toute les relations de ce mot clés sont supprimé | toute les relations de ce mot clés sont supprimé |
+
+### <a name="5l"></a>SupprTTQuandSupprTitre
+
+| Cas n° | Critère                                                | Résultat attendu               | Résultat obtenu                |
+|:-------|--------------------------------------------------------|--------------------------------|--------------------------------|
+| 1      | Si le titre supprimé est [!] Autre problème            | Empeche la suppression         | Empeche la suppression         |
+| 2      | Si le titre supprimé n'est pas [!] Autre problème      | La suppression opère           | La suppression opère           |
+
 
