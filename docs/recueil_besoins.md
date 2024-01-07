@@ -695,22 +695,27 @@ Acteur principal : Utilisateur
 Précondition :
     - L'utilisateur doit être connecté
     - L'utilisateur doit avoir inscrit (créer) des tickets pour les consulter
-Déclencheur :
+Déclencheurs :
     - Le bouton "Mon espace" est sélectionné
+    - Le bouton "Recherche" est sélectionné (dans le formulaire de recherche)
 
 Garantie en cas de succès :
     - Que le bouton "Mon espace" renvoie vers la page de profil
+    - Que le bouton "Recherche" renvoie les tickets avec le type "Mes demandes actuelles"
 
 Scénario nominal :
-    - L'utilisateur se connecte à la plateforme
     - L'utilisateur appuie sur le bouton "Mon espace"
     - L'utilisateur est renvoyé vers la page de profil
-    - L'utilisateur peut consulter ses demandes
+    - L'utilisateur peut consulter ses demandes 
 
-Extension :
-    - L'utilisateur se connecte à la plateforme
+Scénario 2 :
+    - L'utilisateur choisit le type de ticket "Mes demandes actuelles" dans le formulaire de recherche dans la page tableau de bord 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur obtient ses demandes actuelles dans le tableau
+
+Echec :
     - L'utilisateur appuie sur le bouton "Mon espace"
-    - L'utilisateur est renvoyé vers la page de profil
+    - L'utilisateur est renvoyé vers la page profil
     - L'utilisateur remarque que le tableau de ses demandes est vide
 ```
 - #### <a name="a1cu9"> Nom : Créer un ticket 
@@ -724,24 +729,31 @@ Déclencheur :
     - Le bouton "Créer" est sélectionné
 
 Garantie en cas de succès :
-    - Que la page de création de ticket renvoie la page tableau de bord 
+    - Que le bouton "créer" renvoie la page tableau de bord 
 
 Scénario nominal :
-    - L'utilisateur entre la nature du problème 
+    - L'utilisateur entre le titre du problème 
     - L'utilisateur définit le niveau d'urgence du problème
     - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
     - L'utilisateur rédige une explication détaillée du problème survenu
     - L'utilisateur appuie sur le bouton "Créer"
     - L'utilisateur est renvoyé vers la page du tableau de bord
 
-Echec :
-    - L'utilisateur entre la nature du problème 
-    - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
+Scénario 2 :
+    - L'utilisateur entre le titre du problème 
+    - L'utilisateur définit le niveau d'urgence du problème
     - L'utilisateur rédige une explication détaillée du problème survenu
     - L'utilisateur appuie sur le bouton "Créer"
-    - L'utilisateur reçoit une alerte lui affirmant que des données essentielles sont manquantes
-    - L'utilisateur est renvoyé vers la page de création ticket
+    - L'utilisateur est renvoyé vers la page du tableau de bord
 
+Echec :
+    - L'utilisateur entre le titre du problème
+    - L'utilisateur définit le niveau d'urgence du problème
+    - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
+    - L'utilisateur appuie sur le bouton "Créer"
+    - L'utilisateur est renvoyé vers la page de création ticket
+    - L'utilisateur reçoit une alerte lui affirmant que des données essentielles sont manquantes
+    
 ```
 - #### <a name="a1cu10"> Nom : Rechercher un ticket
 ```
@@ -758,6 +770,7 @@ Garantie en cas de succès :
     - Que le tableau des demandes affiche les tickets selon les spécifications qui ont été donné 
 
 Scénario nominal :
+    - L'utilisateur entre le type de ticket 
     - L'utilisateur entre les dates d'intervalles des tickets  
     - L'utilisateur entre le titre du ticket 
     - L'utilisateur sélectionne le ou les libellés
@@ -765,19 +778,25 @@ Scénario nominal :
     - L'utilisateur est renvoyé vers la page tableau de bord
     - L'utilisateur obtient dans le tableau, les tickets selon les caractéristiques entrées dans le formulaire de recherche
 
-Extension 1 :
-    - L'utilisateur entre les dates d'intervalles des tickets  
+Scénario 2 :
+    - L'utilisateur choisit le type de ticket 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon le type de ticket sélectionné dans le formulaire de recherche
+
+Scénario 3 :
+    - L'utilisateur entre les dates d'intervalles des tickets 
     - L'utilisateur appuie sur le bouton "Recherche"
     - L'utilisateur est renvoyé vers la page tableau de bord
     - L'utilisateur obtient les tickets selon les dates entrées dans le formulaire de recherche
 
-Extension 2 :
-    - L'utilisateur entre le titre du ticket 
+Scénario 4 :
+    - L'utilisateur entre le titre du ticket  
     - L'utilisateur appuie sur le bouton "Recherche"
     - L'utilisateur est renvoyé vers la page tableau de bord
     - L'utilisateur obtient les tickets selon le titre entré dans le formulaire de recherche
 
-Extension 3 :
+Scénario 5 :
     - L'utilisateur sélectionne le ou les libellés  
     - L'utilisateur appuie sur le bouton "Recherche"
     - L'utilisateur est renvoyé vers la page tableau de bord
@@ -789,6 +808,7 @@ Echec 1 :
     - L'utilisateur obtient le même tableau qu'avant l'exécution du bouton puisqu'aucune recherche n'a été effectué 
 
 Echec 2 :
+    - L'utilisateur choisit le type de ticket 
     - L'utilisateur entre les dates d'intervalles des tickets
     - L'utilisateur entre le titre du ticket
     - L'utilisateur sélectionne le ou les libellés 
@@ -797,6 +817,7 @@ Echec 2 :
     - L'utilisateur obtient le même tableau qu'avant l'exécution du bouton puisqu'aucune recherche n'a été effectué 
 
 Echec 3 :
+    - L'utilisateur choisit le type de ticket 
     - L'utilisateur entre les dates d'intervalles des tickets
     - L'utilisateur entre le titre du ticket
     - L'utilisateur sélectionne le ou les libellés 
