@@ -506,16 +506,16 @@ Acteur principal : Utilisateur
 Précondition :
     - L'utilisateur doit être inscrit dans la base de données 
 Déclencheur :
-    - Le bouton connexion est séléctionné 
+    - Le bouton "connexion" est séléctionné 
 Garantie en cas de succès :
-    - Que la page de connexion renvoie vers la page tableau de bord 
+    - Que le bouton "connexion" renvoie vers la page tableau de bord 
 Scénario nominal :
     - Le système récupère les informations entrées par l'utilisateur
     - Le système trouve l'identifiant utilisateur associé au login
     - Le système connecte l'utilisateur à la base de donnée à l'aide de l'identifiant et du mot de passe
     - Le système créer un cookie de connexion
     - Le système enregistre la dernière connexion dans la base de données
-    - (BONUS) : Le système note la connexion dans un journal spécial.
+    - Le système note la connexion dans un journal spécial.
     - Le système compare ses données avec celles entrées dans la base de données
     - Le système recherche le fichier HTML correspondant à la page
     - Le système redirige l'utilisateur vers le tableau de bord
@@ -535,6 +535,12 @@ Echec 2 :
     - Le système enregistre cette tentative de connexion dans le journal d'activité
     - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
 
+Echec 3 :
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système echoue lors de la récupération de l'identifiant utilisateur 
+    - Le système enregistre cette tentative de connexion dans le journal d'activité
+    - Le système renvoie une erreur en avertissant l'utilisateur que les données n'existent pas dans la base de données
+
 ```
 - #### <a name="a1cu4"> Nom : Authentifier (déconnexion) 
 ```
@@ -544,13 +550,13 @@ Acteur principal : Utilisateur
 Précondition :
     - L'utilisateur doit être connecté
 Déclencheur :
-    - Le bouton déconnexion est séléctionné 
+    - Le bouton "déconnexion" est séléctionné 
 Garantie en cas de succès :
-    - Que la page de déconnexion renvoie vers la page d'accueil 
+    - Que le bouton "déconnexion" renvoie vers la page d'accueil 
 Scénario nominal :
     - Le système récupère la demande de l'utilisateur
-    - Le système supprime le cookie de session de chez l'utilisateur
-    - (BONUS) : Le système note la déconnexion de l'utilisateur dans un journal spécial.
+    - Le système supprime le cookie de session de l'utilisateur
+    - Le système note la déconnexion de l'utilisateur dans un journal spécial.
     - Le système recherche le fichier HTML correspondant à la page
     - Le système affiche la page d'accueil dans le navigateur de l'utilisateur
 
@@ -569,9 +575,10 @@ Acteur principal : Utilisateur
 Précondition :
     - Le visiteur ne doit pas avoir de profil utilisateur
 Déclencheur :
-    - L'utilisateur charge la page d'inscription
+    - Le bouton "inscription" est sélectionné
+
 Garantie en cas de succès :
-    - Que la page d'inscription renvoie vers la page tableau de bord
+    - Que le bouton "inscription" renvoie vers la page tableau de bord
 
 Scénario nominal :
     - L'utilisateur entre les données dans le formulaire d'inscription
@@ -583,23 +590,29 @@ Echec 1 :
     - L'utilisateur entre les données dans le formulaire d'inscription
     - L'utilisateur remplit le captcha
     - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
-    - L'utilisateur reçoit une alerte affirmant que le format d'une donnée est incorrecte
     - L'utilisateur est renvoyé vers la page d'inscription
-
+    - L'utilisateur reçoit une alerte affirmant que le format d'une donnée est incorrecte
+    
 Echec 2 :
     - L'utilisateur entre les données dans le formulaire d'inscription
     - L'utilisateur remplit le captcha
     - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
-    - L'utilisateur reçoit une alerte affirmant que les données sont déjà existantes
     - L'utilisateur est renvoyé vers la page d'inscription
-
+    - L'utilisateur reçoit une alerte affirmant que les données sont déjà existantes
+    
 Echec 3 :
     - L'utilisateur entre les données dans le formulaire d'inscription
     - L'utilisateur remplit le captcha
     - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page d'inscription
     - L'utilisateur reçoit une alerte affirmant que le captcha est incorrecte
-    - L'utilisateur possède de nouvelles tentatives pour s'inscrire
 
+Echec 4 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page d'inscription
+    - L'utilisateur reçoit une alerte affirmant que le champ captcha est manquant
+    
 ```
 - #### <a name="a1cu6"> Nom : Modifier son mot de passe
 ```
@@ -609,9 +622,9 @@ Acteur principal : Utilisateur
 Précondition :
     - L'utilisateur doit être connecté
 Déclencheur :
-    - Le bouton modification est déclenché
+    - Le bouton "modification" est déclenché
 Garantie en cas de succès :
-    - Que la page modification du mot de passe renvoie vers la page profil
+    - Que le bouton "modification" renvoie vers la page profil
 
 Scénario nominal :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
@@ -623,22 +636,23 @@ Echec 1 :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
     - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
-    - L'utilisateur reçoit une alerte affirmant que le mot de passe actuel est incorrect
     - L'utilisateur est renvoyé vers la page modification du mot de passe
+    - L'utilisateur reçoit une alerte affirmant que le mot de passe actuel est incorrect
 
 Echec 2 :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
     - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
-    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe et sa confirmation sont différents
     - L'utilisateur est renvoyé vers la page modification du mot de passe
-
+    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe et sa confirmation sont différents
+   
 Echec 3 :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
     - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
-    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe entré ne respecte pas le format permis
     - L'utilisateur est renvoyé vers la page modification du mot de passe
+    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe entré ne respecte pas le format permis
+    
 ```
 - #### <a name="a1cu7"> Nom : Modifier son Email
 ```
@@ -648,9 +662,9 @@ Acteur principal : Utilisateur
 Précondition :
     - L'utilisateur doit être connecté
 Déclencheur :
-    - Le bouton modification est déclenché
+    - Le bouton "modification" est déclenché
 Garantie en cas de succès :
-    - Que la page modification de l'Email renvoie vers la page profil
+    - Que le bouton "modification" renvoie vers la page profil
 
 Scénario nominal :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification de l'Email
@@ -662,15 +676,16 @@ Echec 1 :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification de l'Email
     - L'utilisateur tape son nouveau Email
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
-    - L'utilisateur reçoit une alerte affirmant que le mot de passe actuel est incorrect
     - L'utilisateur est renvoyé vers la page modification de l'Email
+    - L'utilisateur reçoit une alerte affirmant que le mot de passe actuel est incorrect
 
 Echec 2 :
     - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification de l'Email
     - L'utilisateur tape son nouveau Email
     - L'utilisateur appuie sur le bouton modification pour valider sa demande
-    - L'utilisateur reçoit une alerte affirmant que l'Email ne respecte pas le format permis
     - L'utilisateur est renvoyé vers la page modification de l'Email
+    - L'utilisateur reçoit une alerte affirmant que l'Email ne respecte pas le format permis
+    
 ```
 - #### <a name="a1cu8"> Nom : Consulter ses demandes 
 ```
