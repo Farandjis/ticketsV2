@@ -30,8 +30,9 @@ global $database, $host;
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/motcle.js"></script>
+    <script src="../ressources/script/menuCheckbox.js"></script>
     <script src="../ressources/script/infoLigneTab.js"></script>
+    <script src="../ressources/script/hamburger.js"></script>
     <script src="../ressources/script/demandeServeurPourBoutonPOP-UP_TDB.js"></script>
 
 
@@ -202,7 +203,7 @@ global $database, $host;
             <form action='#' method='POST'>
                 <div class="custom-select">
                     <label for='selectionPossible'>Type de ticket</label><br>
-                    <select name="selectionPossible" id="">
+                    <select name="selectionPossible" id="selectionPossible">
 
                         <?php
                         echo "<option value=''>-- Choisir un type de ticket --</option>"; // tt
@@ -252,13 +253,13 @@ global $database, $host;
                 ?>
                 <br><br>
                 <span>Mots-clés</span><br>
-                <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
+                <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
                     <?php
                     if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Sélectionner des mots-clés --"; }
                     elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
                     else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
 
-                    echo "<span class='entete_menu_checkbox' onclick='toggleDropdown()'>$texteBouton</span>";
+                    echo "<span class='entete_menu_checkbox' onclick='" . 'toggleDropdown(document.getElementById("menu_deroulant_motcle"))' . "'>$texteBouton</span>";
                     ?>
                     <div class="option_checkbox">
                         <?php
@@ -282,7 +283,7 @@ global $database, $host;
     <div class="overlay" id="overlay" onclick="closePopup()">
         <!-- Contenu de la pop-up -->
 
-        <div role="form" id="pop-up" class="formModifTicket formAuthentification formConnexion popupInfo">
+        <div role="form" id="pop-up" class="formModifTicket popupInfo">
 
             <div id="informations_ticket_popup">
 
