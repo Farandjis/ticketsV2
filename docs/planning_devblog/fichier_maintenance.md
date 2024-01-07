@@ -53,9 +53,9 @@ Ce document sera mis à jour durant la journée (pour les "Je ne suis pas allé 
     - **MANQUE TRY DANS PHP**
   - Connexion / changement mdp, email: quasi OK
     - "un spécial" ??? -> "un caractère spécial" ! Info bulle pour le mdp
-  - Désinscription
-    - Ne supprime pas le compte
-    - Mauvaise redirection
+  - Désinscription OK
+  - Inscription
+    - Les accents ne sont pas autorisés pour les noms, prénoms (peut concerner aussi la BD)
   - Profil
     - Le bouton désinscription est rouge
   - Liste mot clé
@@ -65,9 +65,9 @@ Ce document sera mis à jour durant la journée (pour les "Je ne suis pas allé 
 - **Base de donnée**
   - Probablement des modifs à faire côté historique
 - **Cahier des charges**
-  - Je ne suis pas allé voir
+  - CU : Manque administration, sinon c'est bien, mais ce n'est pas terminé
 - **Test**
-  - Je ne suis pas allé voir
+  - C'est bien, mais ce n'est pas terminé.
 
 #### Répartition des tâches
 - A terminer en ce dimanche 7 janvier :
@@ -127,6 +127,7 @@ Ce document sera mis à jour durant la journée (pour les "Je ne suis pas allé 
 - **Assia**<br>
   - Correction problèmes d'affichage des mots-clés + vérification des titres côté php (uniquement ceux présents da la liste de la BD sont autorisés)
   - PHP : Fermeture d'un ticket
+  - PHP : Désinscription
   - PHP : Captcha
 
 - **Matthieu (chef de projet)**<br>
@@ -249,8 +250,11 @@ Il y a donc du travail...
 - **Assia**<br>
   - (rappel) Indisponibilité 1 ou 2 jours dans la semaine
   - Correction problèmes CSS pages création et modification ticket
+  - Vérification que le titre est bien présent dans la liste des titres disponibles (creerTicket, modifTicket)
   - Désormais le bouton désinscription ne s'affiche plus pour les admins
+  - Réalisation de la page action_desinscription
   - Importation du travail de droit sur le site
+  - Ajout des infobulles dans le formulaire d'inscription
   - **Note : il manque des tâches effectuées par Assia.**
   
 - **Matthieu (chef de projet)**<br>
