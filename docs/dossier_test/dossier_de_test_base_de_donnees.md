@@ -21,8 +21,10 @@ Ce document permet de s'assurer que la base de données soit conforme à ce qui 
 - ### [IV - Test PHP](#IV)
 - ### [V - Test](#V)
   - #### [Table](#1)
-    - #### [Table Utilisateur](#1a)
-    - #### [Table Ticket](#1b)
+    - #### [Utilisateur](#1a)
+    - #### [Ticket](#1b)
+    - #### [TitreTicket](#1c)
+    - #### [MotClesTicket](#1d)
   - #### [Role](#2)
     - #### [role_utilisateur](#2a)
     - #### [role_technicien](#2b)
@@ -30,8 +32,24 @@ Ce document permet de s'assurer que la base de données soit conforme à ce qui 
     - #### [role_admin_web](#2d)
   - #### [Fonction](#3)
     - #### [ObtenirRoleUtilisateur](#3a)
+    - #### [verifTicketPeutEtreModif](#3b)
+    - #### [recup_etat_ticket_tdb](#3c)
+    - #### [FermerUnTicket](#3d)
   - #### [Procédure](#4)
+    - #### [ATTENTION_SupprimerSonCompte](#4a)
+    - #### [ATTENTION_SupprimerTousLesComptesInutilises](#4b)
+    - #### [activerUnRoleTechOuUtiParAdminWeb](#4c)
   - #### [Trigger](#5)
+    - #### [PasseTicketAEnCours](#5a)
+    - #### [PasseTicketAOuvert](#5b)
+    - #### [VerifQuiCestLeTechDuTicket](#5c)
+    - #### [MajHorodatageModifTicket](#5d)
+    - #### [EMPECHE_modifUtilisateurQuelquesInfos](#5e)
+    - #### [EMPECHE_modifTicketQuelquesInfos](#5f)
+    - #### [EMPECHE_modifTicketFermer](#5g)
+    - #### [MajHorodatageModifMotsclesTicket_INSERT](#5h)
+    - #### [MajHorodatageModifMotsclesTicket_DELETE](#5i)
+    - #### [EMPECHE_InsertionMotsclesTicket](#5j)
 
 
 <br><br><br>
@@ -72,7 +90,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 
 ## <a name="1"></a>Table
 
-### <a name="1a"></a>Table Utilisateur
+### <a name="1a"></a>Utilisateur
 
 | Cas n° | Critère                                                                                                                                                                                          | Résultat attendu | Résultat obtenu |
 |:-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
@@ -85,7 +103,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 7      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont', 'ddupont@..gmail.com', '192.168.1.30');  | KO               | OK              |
 | 8      | INSERT INTO `UTILISATEUR` (`LOGIN_USER`, `PRENOM_USER`, `NOM_USER`, `EMAIL_USER`, `IP_DERNIERE_CONNECTION_USER`) VALUES ('DDupont', 'Didier', 'Dupont',  'd..dupont@gmail.com', '192.168.1.30'); | KO               | OK              |
 
-### <a name="1b"></a>Table Ticket
+### <a name="1b"></a>Ticket
 
 | Cas n° | Critère                                                                                                                                                                                                                                                                                                           | Résultat attendu | Résultat obtenu |
 |:-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|
@@ -95,14 +113,14 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 4      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', '[MATERIEL] Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'urgent', 'Urgent', 'En cours de traitement'); | KO               | KO              |
 | 5      | INSERT INTO `Ticket` (`ID_USER`, `TITRE_TICKET`, `DESCRIPTION_TICKET`, `ID_TECHNICIEN`, `NIV_URGENCE_ESTIMER_TICKET`, `NIV_URGENCE_DEFINITIF_TICKET`, `ETAT_TICKET`) VALUES ('1', '[MATERIEL] Matériel en panne', 'Le moniteur d\'un ordinateur a été cassé', '3', 'Urgent', 'urgent', 'En cours de traitement'); | KO               | KO              |
 
-### <a name="1b"></a>Table TitreTicket
+### <a name="1c"></a>TitreTicket
 
 | Cas n° | Critère                                                                             | Résultat attendu | Résultat obtenu |
 |:-------|-------------------------------------------------------------------------------------|------------------|-----------------|
 | 1      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('[MATERIEL] Matériel manquant'); | OK               | OK              |
 | 2      | INSERT INTO `TitreTicket` (`TITRE_TICKET`) VALUES ('<b>Salut</b>');                 | KO               | OK              |
 
-### <a name="1b"></a>Table MotClesTicket
+### <a name="1d"></a>MotClesTicket
 
 | Cas n° | Critère                                                                  | Résultat attendu | Résultat obtenu |
 |:-------|--------------------------------------------------------------------------|------------------|-----------------|
