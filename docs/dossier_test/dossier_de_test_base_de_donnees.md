@@ -26,31 +26,37 @@ Ce document permet de s'assurer que la base de données soit conforme à ce qui 
     - #### [TitreTicket](#1c)
     - #### [MotClesTicket](#1d)
     - #### [RelationTicketsMotscles](#1e)
-  - #### [Role](#2)
-    - #### [role_utilisateur](#2a)
-    - #### [role_technicien](#2b)
-    - #### [role_admin_sys](#2c)
-    - #### [role_admin_web](#2d)
-  - #### [Fonction](#3)
-    - #### [ObtenirRoleUtilisateur](#3a)
-    - #### [verifTicketPeutEtreModif](#3b)
-    - #### [recup_etat_ticket_tdb](#3c)
-    - #### [FermerUnTicket](#3d)
-  - #### [Procédure](#4)
-    - #### [ATTENTION_SupprimerSonCompte](#4a)
-    - #### [ATTENTION_SupprimerTousLesComptesInutilises](#4b)
-    - #### [activerUnRoleTechOuUtiParAdminWeb](#4c)
-  - #### [Trigger](#5)
-    - #### [PasseTicketAEnCours](#5a)
-    - #### [PasseTicketAOuvert](#5b)
-    - #### [VerifQuiCestLeTechDuTicket](#5c)
-    - #### [MajHorodatageModifTicket](#5d)
-    - #### [EMPECHE_modifUtilisateurQuelquesInfos](#5e)
-    - #### [EMPECHE_modifTicketQuelquesInfos](#5f)
-    - #### [EMPECHE_modifTicketFermer](#5g)
-    - #### [MajHorodatageModifMotsclesTicket_INSERT](#5h)
-    - #### [MajHorodatageModifMotsclesTicket_DELETE](#5i)
-    - #### [EMPECHE_InsertionMotsclesTicket](#5j)
+  - #### [Vue](#2)
+    - #### [vue_Utilisateur_client](#2a)
+    - #### [vue_Utilisateur_maj_email](#2b)
+    - #### [vue_Ticket_client](#2c)
+    - #### [vue_tableau_bord](#2d)
+    - #### [vue_modif_ticket_adm_tech](#2e)
+  - #### [Role](#3)
+    - #### [role_utilisateur](#3a)
+    - #### [role_technicien](#3b)
+    - #### [role_admin_sys](#3c)
+    - #### [role_admin_web](#3d)
+  - #### [Fonction](#4)
+    - #### [ObtenirRoleUtilisateur](#4a)
+    - #### [verifTicketPeutEtreModif](#4b)
+    - #### [recup_etat_ticket_tdb](#4c)
+    - #### [FermerUnTicket](#4d)
+  - #### [Procédure](#5)
+    - #### [ATTENTION_SupprimerSonCompte](#5a)
+    - #### [ATTENTION_SupprimerTousLesComptesInutilises](#5b)
+    - #### [activerUnRoleTechOuUtiParAdminWeb](#5c)
+  - #### [Trigger](#6)
+    - #### [PasseTicketAEnCours](#6a)
+    - #### [PasseTicketAOuvert](#6b)
+    - #### [VerifQuiCestLeTechDuTicket](#6c)
+    - #### [MajHorodatageModifTicket](#6d)
+    - #### [EMPECHE_modifUtilisateurQuelquesInfos](#6e)
+    - #### [EMPECHE_modifTicketQuelquesInfos](#6f)
+    - #### [EMPECHE_modifTicketFermer](#6g)
+    - #### [MajHorodatageModifMotsclesTicket_INSERT](#6h)
+    - #### [MajHorodatageModifMotsclesTicket_DELETE](#6i)
+    - #### [EMPECHE_InsertionMotsclesTicket](#6j)
 
 
 <br><br><br>
@@ -137,9 +143,47 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 1      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('Logiciel : Firefox'); | OK               | OK              |
 | 2      | INSERT INTO `MotcleTicket` (`NOM_MOTCLE`) VALUES ('<b>Salut</b>');       | OK               | OK              |
 
-## <a name="2"></a>Role
+## <a name="2"></a>Vues
 
-### <a name="2a"></a>role_utilisateur
+### <a name"2a"></a>vue_Utilisateur_client
+
+| Cas n° | Critère                                     | Résultat attendu                                         | Résultat obtenu                                          |
+|:-------|---------------------------------------------|----------------------------------------------------------|----------------------------------------------------------|
+| 1      | Si un utilisateur fait un SELECT sur la vue | Il y a que les données personnelles de cette utilisateur | Il y a que les données personnelles de cette utilisateur |
+
+### <a name"2b"></a>vue_Ticket_client
+
+| Cas n° | Critère                                     | Résultat attendu                            | Résultat obtenu                             |
+|:-------|---------------------------------------------|---------------------------------------------|---------------------------------------------|
+| 1      | Si un utilisateur fait un SELECT sur la vue | Il y a que les tickets de cette utilisateur | Il y a que les tickets de cette utilisateur |
+
+### <a name"2c"></a>vue_Utilisateur_maj_email
+
+| Cas n° | Critère                                     | Résultat attendu                                 | Résultat obtenu                                  |
+|:-------|---------------------------------------------|--------------------------------------------------|--------------------------------------------------|
+| 1      | Si un utilisateur fait un SELECT sur la vue | Il y a que l'ID_USER et l'email de l'utilisateur | Il y a que l'ID_USER et l'email de l'utilisateur |
+
+### <a name"2d"></a>vue_tableau_bord
+
+| Cas n° | Critère                                                         | Résultat attendu                                                       | Résultat obtenu                                            |
+|:-------|-----------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------|
+| 1      | Si un utilisateur, technicien ou l'admin système créé un ticket | Il apparaît dans son tableau de bord                                   | Il apparaît dans son tableau de bord                       |
+| 2      | Si nous avons des tickets ouvert                                | Ils apparaissent dans tout les tableaux de bord de chaque utilisateurs | Il apparaît dans son tableau de bord de chaque utilisateur |
+| 3      | Si nous avons des tickets en cours de traitement                | Ils apparaissent dans tout les tableaux de bord de chaque utilisateurs | Il apparaît dans son tableau de bord de chaque utilisateur |
+| 4      | Si nous avons des tickets fermés                                | Ils n'apparaîssent dans aucun tableau de bord                          |                                                            |
+
+### <a name"2e"></a>vue_modif_ticket_adm_tech
+
+| Cas n° | Critère                                | Résultat attendu                                     | Résultat obtenu                                      |
+|:-------|----------------------------------------|------------------------------------------------------|------------------------------------------------------|
+| 1      | Si un technicien traite un ticket      | Le ticket apparaît dans la vue                       | Le ticket apparaît dans la vue                       |
+| 2      | Si l'admin web veut modifier un ticket | Le ticket doit être non fermés pour être dans la vue | Le ticket doit être non fermés pour être dans la vue |
+
+
+
+## <a name="3"></a>Role
+
+### <a name="3a"></a>role_utilisateur
 
 #### vue_Utilisateur_client
 
@@ -241,7 +285,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
 
 
-### <a name="2b"></a>role_technicien
+### <a name="3b"></a>role_technicien
 
 #### vue_Utilisateur_client
 
@@ -378,7 +422,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | KO              |
 
-### <a name="2c"></a>role_admin_sys
+### <a name="3c"></a>role_admin_sys
 
 #### vue_Utilisateur_client
 
@@ -497,7 +541,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE(ID_TECHNICIEN) sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue                | KO               | KO              |
 
-### <a name="2d"></a>role_admin_web
+### <a name="3d"></a>role_admin_web
 
 #### vue_Utilisateur_client
 
@@ -652,9 +696,9 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | L'utilisateur tente un UPDATE sur la vue | KO               | KO              |
 | 4      | L'utilisateur tente un DELETE sur la vue | KO               | OK              |
 
-## <a name="3"></a>Fonction
+## <a name="4"></a>Fonction
 
-### <a name="3a"></a>ObtenirRoleUtilisateur
+### <a name="4a"></a>ObtenirRoleUtilisateur
 
 | Cas n° | Critère                                                  | Résultat attendu | Résultat obtenu  |
 |:-------|----------------------------------------------------------|------------------|------------------|
@@ -663,7 +707,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | On se connecte en temps que gestion à la base de données | role_admin_web   | role_admin_web   |
 | 4      | On se connecte en temps que admin à la base de données   | role_admin_sys   | role_admin_sys   |
 
-### <a name="3b"></a>verifTicketPeutEtreModif
+### <a name="4b"></a>verifTicketPeutEtreModif
 
 | Cas n° | Critère                                                             | Résultat attendu | Résultat obtenu |
 |:-------|---------------------------------------------------------------------|------------------|-----------------|
@@ -676,7 +720,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 7      | Le ticket se trouve dans le tableau de bord d'un admin sys          | 1                | 1               |
 | 8      | Le ticket ne se trouve pas dans le tableau de bord d'un admin Sys   | 0                | 0               |
 
-### <a name="3c"></a>recup_etat_ticket_tdb
+### <a name="4c"></a>recup_etat_ticket_tdb
 
 | Cas n° | Critère                                             | Résultat attendu       | Résultat obtenu        |
 |:-------|-----------------------------------------------------|------------------------|------------------------|
@@ -685,7 +729,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | Demande l'état d'un ticket `en cours de traitement` | en cours de traitement | en cours de traitement |
 | 4      | Demande l'état d'un ticket `fermé`                  | fermé                  | fermé                  |
 
-### <a name="3d"></a>FermerUnTicket
+### <a name="4d"></a>FermerUnTicket
 
 | Cas n° | Critère                                                                    | Résultat attendu | Résultat obtenu |
 |:-------|----------------------------------------------------------------------------|------------------|-----------------|
@@ -693,9 +737,9 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 2      | Le ticket ne se trouve pas dans la vue `vue_modif_ticket_adm_tech`         | False            | False           |
 | 1      | Le ticket se trouve dans la vue `vue_modif_ticket_adm_tech` et est modifié | OK               | OK              |
 
-## <a name="4"></a>Procédure
+## <a name="5"></a>Procédure
 
-### <a name="4a"></a>ATTENTION_SupprimerSonCompte
+### <a name="5a"></a>ATTENTION_SupprimerSonCompte
 
 | Cas n° | Critère                                                  | Résultat attendu | Résultat obtenu |
 |:-------|----------------------------------------------------------|------------------|-----------------|
@@ -704,7 +748,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | On se connecte en temps que gestion à la base de données | KO               | KO              |
 | 4      | On se connecte en temps que admin à la base de données   | KO               | KO              |
 
-### <a name="4b"></a>ATTENTION_SupprimerTousLesComptesInutilises
+### <a name="5b"></a>ATTENTION_SupprimerTousLesComptesInutilises
 
 | Cas n° | Critère                                                     | Résultat attendu | Résultat obtenu |
 |:-------|-------------------------------------------------------------|------------------|-----------------|
@@ -717,7 +761,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 7      | Le compte de admin est inactif depuis moins de 36 mois      | KO               | KO              |
 | 8      | Le compte de admin est inactif depuis au moins de 36 mois   | KO               | KO              |
 
-### <a name="4b"></a>activerUnRoleTechOuUtiParAdminWeb
+### <a name="5c"></a>activerUnRoleTechOuUtiParAdminWeb
 
 | Cas n° | Critère                                                           | Résultat attendu                                            | Résultat obtenu                                             |
 |:-------|-------------------------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|
@@ -725,23 +769,23 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 2      | L'admin web veut passer un technicien en utilisateur              | Le rôle par défaut du technicien devient role_utilisateur   | Le rôle par défaut du technicien devient role_utilisateur   |
 | 3      | L'admin web veut passer un admin sys en technicien ou utilisateur | KO                                                          | KO                                                          |
 
-## <a name="5"></a>Trigger
+## <a name="6"></a>Trigger
 
-### <a name="5a"></a>PasseTicketAEnCours
+### <a name="6a"></a>PasseTicketAEnCours
 
 | Cas n° | Critère                                                                                      | Résultat attendu                       | Résultat obtenu                        |
 |:-------|----------------------------------------------------------------------------------------------|----------------------------------------|----------------------------------------|
 | 1      | Le ticket est ouvert + un technicien est associé au ticket                                   | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
 | 2      | Le ticket est en attente + un niv d'urgence est défini + un technicien est associé au ticket | Le ticket passe en cours de traitement | Le ticket passe en cours de traitement |
 
-### <a name="5b"></a>PasseTicketAOuvert
+### <a name="6b"></a>PasseTicketAOuvert
 
 | Cas n° | Critère                                                                 | Résultat attendu                       | Résultat obtenu        |
 |:-------|-------------------------------------------------------------------------|----------------------------------------|------------------------|
 | 1      | Le ticket est en attente et un niv d'urgence est défini                 | Le ticket passe ouvert                 | Le ticket passe ouvert |
 | 2      | Le ticket est en cours de traitement et le niveau d'urgence est modifié | Le ticket reste en cours de traitement |                        |
 
-### <a name="5c"></a>VerifQuiCestLeTechDuTicket
+### <a name="6c"></a>VerifQuiCestLeTechDuTicket
 
 | Cas n° | Critère                                                                 | Résultat attendu | Résultat obtenu |
 |:-------|-------------------------------------------------------------------------|------------------|-----------------|
@@ -753,7 +797,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 6      | Si l'utilisateur veut attribuer un ticket à un technicien               | KO               | KO              |
 | 7      | Si l'admin sys veut attribuer un ticket à un technicien                 | KO               | KO              |
 
-### <a name="5d"></a>MajHorodatageModifTicket
+### <a name="6d"></a>MajHorodatageModifTicket
 
 | Cas n° | Critère                                                                                       | Résultat attendu                                                                | Résultat obtenu                                                                 |
 |:-------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
@@ -762,7 +806,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 2      | Si une personne non enregistrer dans la table Utilisateur fait une modification sur un ticket | Message d'erreur                                                                | Message d'erreur                                                                |
 | 3      | Si aucune modification est opéré sur un ticket                                                | rien ne se passe                                                                | rien ne se passe                                                                |
 
-### <a name="5e"></a>EMPECHE_modifUtilisateurQuelquesInfos
+### <a name="6e"></a>EMPECHE_modifUtilisateurQuelquesInfos
 
 | Cas n° | Critère                                               | Résultat attendu              | Résultat obtenu               |
 |:-------|-------------------------------------------------------|-------------------------------|-------------------------------|
@@ -770,7 +814,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 2      | Si modification de l'horodatage de création de compte | Annulation de la modification | Annulation de la modification |
 | 3      | Si aucune modification d'une info utilisateur         | Rien ne se passe              | Rien ne se passe              |
 
-### <a name="5f"></a>EMPECHE_modifTicketQuelquesInfos
+### <a name="6f"></a>EMPECHE_modifTicketQuelquesInfos
 
 | Cas n° | Critère                                               | Résultat attendu              | Résultat obtenu               |
 |:-------|-------------------------------------------------------|-------------------------------|-------------------------------|
@@ -779,7 +823,7 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 3      | Si modification de l'horodatage de création de ticket | Annulation de la modification | Annulation de la modification |
 | 4      | Si aucune modification d'une info ticket              | Rien ne se passe              | Rien ne se passe              |
 
-### <a name="5g"></a>EMPECHE_modifTicketFermer
+### <a name="6g"></a>EMPECHE_modifTicketFermer
 
 | Cas n° | Critère                                  | Résultat attendu              | Résultat obtenu               |
 |:-------|------------------------------------------|-------------------------------|-------------------------------|
@@ -787,21 +831,21 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 1      | Si phpmyfteam modifie un ticket fermé    | La modification opère         | La modification opère         |
 | 2      | Si aucune modification d'un ticket fermé | Rien ne se passe              | Rien ne se passe              |
 
-### <a name="5h"></a>MajHorodatageModifMotsclesTicket_INSERT
+### <a name="6h"></a>MajHorodatageModifMotsclesTicket_INSERT
 
 | Cas n° | Critère                                | Résultat attendu                                                                            | Résultat obtenu                                                                                |
 |:-------|----------------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | 1      | Si ajout d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket et de l'id du user qui l'a modifié | modification de l'horodatage de dernière modif du ticket et de de l'id du user qui l'a modifié |
 | 2      | Si aucune ajout n'est opéré            | Rien ne se passe                                                                            | Rien ne se passe                                                                               |
 
-### <a name="5i"></a>MajHorodatageModifMotsclesTicket_DELETE
+### <a name="6i"></a>MajHorodatageModifMotsclesTicket_DELETE
 
 | Cas n° | Critère                                     | Résultat attendu                                                                            | Résultat obtenu                                                                             |
 |:-------|---------------------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | 1      | Si suppresion d'une relation ticket-motclés | modification de l'horodatage de dernière modif du ticket et de l'id du user qui l'a modifié | modification de l'horodatage de dernière modif du ticket et de l'id du user qui l'a modifié |
 | 2      | Si aucune suppression n'est opéré           | Rien ne se passe                                                                            | Rien ne se passe                                                                            |
 
-### <a name="5j"></a>EMPECHE_InsertionMotsclesTicket
+### <a name="6j"></a>EMPECHE_InsertionMotsclesTicket
 
 | Cas n° | Critère                                                              | Résultat attendu               | Résultat obtenu                |
 |:-------|----------------------------------------------------------------------|--------------------------------|--------------------------------|
@@ -809,13 +853,13 @@ Nous testerons les insertions dans les tables ayant beaucoup de condition ainsi 
 | 2      | Si le ticket se trouve dans la vue_modif_ticket_adm_tech             | modification du ticket         | modification du ticket         |
 | 3      | Si le ticket se trouve dans aucune vue de modification               | empechement de la modification | empechement de la modification |
 
-### <a name="5k"></a>SupprRTMQuandSupprMotcle
+### <a name="6k"></a>SupprRTMQuandSupprMotcle
 
 | Cas n° | Critère                                                  | Résultat attendu                                 | Résultat obtenu                                  |
 |:-------|----------------------------------------------------------|--------------------------------------------------|--------------------------------------------------|
 | 1      | Si on supprime un mot clés                               | toute les relations de ce mot clés sont supprimé | toute les relations de ce mot clés sont supprimé |
 
-### <a name="5l"></a>SupprTTQuandSupprTitre
+### <a name="6l"></a>SupprTTQuandSupprTitre
 
 | Cas n° | Critère                                                | Résultat attendu               | Résultat obtenu                |
 |:-------|--------------------------------------------------------|--------------------------------|--------------------------------|
