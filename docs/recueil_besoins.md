@@ -168,7 +168,7 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | Stocker et répertorier des tickets       | Créer un ticket                                                                                                                                                                                                 |      |
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur                                                                                                  | Authentifier (connexion et déconnexion)                     |
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                               | Authentifier (connexion et déconnexion)                     |
 | Gérer les demandes de tickets            | - Consulter ses demandes <br><br> -Rechercher un ticket |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
@@ -254,7 +254,7 @@ Par ordre alphabétique.
 - #### 🔴 <a name="p3b"></a>b) CU stratégique
 - <b>c) Les cas d’utilisation système.</b>
   - [Afficher une page](#a1cu1)
-  - [Sélectionner une page](#a1cu2)
+  - [Ouvrir une page](#a1cu2)
   - [Authentifier(connexion)](#a1cu3)
   - [Authentifier(déconnexion)](#a1cu4)
   - [Inscrire un visiteur](#a1cu5)
@@ -263,6 +263,7 @@ Par ordre alphabétique.
   - [Consulter ses demandes](#a1cu8)
   - [Créer un ticket](#a1cu9)
   - [Rechercher un ticket](#a1cu10)
+  - [Se désinscrire](#a1cu11)
     
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -830,4 +831,61 @@ Echec 4 :
     - L'utilisateur appuie sur le bouton "Recherche"
     - L'utilisateur est renvoyé vers la page tableau de bord
     - L'utilisateur obtient un tableau vide puisque aucuns ticket n'a été formulé à ses dates là
+
+```
+- #### <a name="a1cu11"> Nom : Se désinscrire
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur ne doit pas être administrateur de la plateforme
+Déclencheur :
+    - Le bouton "Valider" est sélectionné
+
+Garantie en cas de succès :
+    - Qu'après la sélection du bouton "Valider" la page index.php soit renvoyée
+    - Que dans la base de données, l'utilisateur soit marqué supprimer
+
+Scénario nominal :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe   
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers la page index.php et est désinscrit de la plateforme
+
+Echec 1 : 
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant qu'un ou plusieurs champs sont vides 
+
+Echec 2 :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe 
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant que le champ login ou mot de passe ou les deux sont incorrects
+
+Echec 3 :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe 
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant que le champ captcha est vide
+
+Echec 4 :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe 
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant que le champ captcha est incorrect
 
