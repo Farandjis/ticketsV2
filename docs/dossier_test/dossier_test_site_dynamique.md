@@ -81,6 +81,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 alertes                                  |
 
 - ### profile.php
@@ -89,6 +90,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 4 alertes                     |
 - 
 - ### inscription.php
@@ -97,6 +99,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 erreurs et 16 alertes                    |
 - 
 - ### connexion.php
@@ -105,6 +108,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 2 alertes                     |
 
 - ### modifmdp.php
@@ -113,6 +117,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |                                            |
 
 - ### modifemail.php
@@ -121,6 +126,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 4 alertes                     |
 
 - ### creerticket.php
@@ -129,6 +135,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 6 erreurs et 6 alertes                     |
 
 - ### administration.php
@@ -136,8 +143,9 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges |                                            |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |                                            |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 9 alertes                                  |
 
 - ### tableaubord.php
 
@@ -145,6 +153,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 6 alertes                                  |
 
 <br><br><br>
