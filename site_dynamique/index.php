@@ -31,11 +31,11 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     <script src="ressources/script/infoLigneTab.js"></script>
     <script src="ressources/script/hamburger.js"></script>
 </head>
-<body class="body_accueil">
+<main class="body_accueil">
 
 <?php affichageMenuDuHaut("index", $connexionUtilisateur);?>
 
-<div class="hero">
+<div class="hero"  style="background-color: white">
     <div class="presentation">
         <div class="texte-presentation">
             <?php
@@ -141,8 +141,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
             ?>
         </div>
         <div class="video-presentation">
-            <!--<iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
-            <video controls autoplay muted loop controlsList="nodownload">
+            <video controls autoplay muted loop>
                 <source src="ressources/video/presentation_tix.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -209,5 +208,5 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
         </div>
     </div>
 
-</body>
+</main>
 </html>
