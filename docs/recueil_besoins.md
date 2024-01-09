@@ -169,7 +169,7 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | Stocker et répertorier des tickets       | Créer un ticket                                                                                                                                                                                                 |      |
 | Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                               | Authentifier (connexion et déconnexion)                     |
-| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> -Rechercher un ticket |                                              |
+| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> -Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
 
@@ -264,7 +264,11 @@ Par ordre alphabétique.
   - [Créer un ticket](#a1cu9)
   - [Rechercher un ticket](#a1cu10)
   - [Se désinscrire](#a1cu11)
-    
+  - [Affecter un ticket](#a1cu12)
+  - [S'attribuer un ticket](#a1cu13)
+  - [Définir un niveau d'urgence définitif](#a1cu14)
+  - [Fermer un ticket](#a1cu15)
+  
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -889,3 +893,93 @@ Echec 4 :
     - L'utilisateur est renvoyé vers le formulaire de désinscription
     - L'utilisateur reçoit un message lui affirmant que le champ captcha est incorrect
 
+```
+- #### <a name="a1cu12"> Nom : Affecter un ticket
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web  
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - L'utilisateur doit être un administrateur web
+Déclencheur :
+    - Le bouton "Modifier le ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Modifier le ticket" renvoie vers la page tableau de bord
+
+Scénario nominal :
+    - L'administrateur web clique sur un ticket dans la page tableau de bord
+    - L'administrateur web appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
+    - L'administrateur web affecte le ticket à un technicien
+    - L'administrateur web appuie sur le bouton "Modifier le ticket"
+    - L'administrateur web est renvoyé vers la page tableau de bord
+
+```
+- #### <a name="a1cu13"> Nom : S'attribuer un ticket 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Le technicien 
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - Le ticket ne doit pas être déjà attribué
+    - L'utilisateur doit être un technicien
+Déclencheur :
+    - Le bouton "S'attribuer ce ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Modifier le ticket" apparaisse pour ce ticket à la place du bouton "S'attribuer ce ticket"
+
+Scénario nominal :
+    - Le technicien clique sur un ticket dans la page tableau de bord qui n'est pas affecté encore
+    - Le technicien appuie sur le bouton "S'attribuer ce ticket"
+    - Le technicien aperçoit désormais le bouton "Modifier ce ticket"
+
+```
+- #### <a name="a1cu14"> Nom : Définir un niveau d'urgence définitif 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - L'utilisateur doit être un administrateur 
+Déclencheur :
+    - Le bouton "Modifier le ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Modifier le ticket" renvoie la page tableau de bord
+
+Scénario nominal :
+    - L'administrateur web clique sur un ticket dans la page tableau de bord
+    - L'administrateur web appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
+    - L'administrateur web définit le niveau d'urgence définitif
+    - L'administrateur appuie sur le bouton "Modifier le ticket"
+    - L'administrateur web est renvoyé vers la page tableau de bord
+
+```
+- #### <a name="a1cu15"> Nom : Fermer un ticket
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web et le technicien 
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - L'utilisateur doit être un administrateur ou le technicien a qui on a affecté le ticket sélectionné
+
+Déclencheur :
+    - Le bouton "Fermeture du ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Fermeture du ticket" renvoie la page tableau de bord
+
+Scénario nominal :
+    - L'utilisateur clique sur un ticket dans la page tableau de bord
+    - L'utilisateur appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
+    - L'utilisateur appuie sur le bouton "Fermeture du ticket"
+    - L'utilisateur est renvoyé vers la page tableau de bord 
