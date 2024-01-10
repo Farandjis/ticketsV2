@@ -167,7 +167,7 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                                  | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - S'inscrire <br><br> - Se désinscrire                                                                                                             | - Se connecter <br><br> - Se déconnecter     |
-| Gérer les demandes de tickets            | - Créer un ticket <br><br> - Consulter ses demandes <br><br> - Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
+| Gérer les demandes de tickets            | - Créer un ticket <br><br> - Modifier un ticket <br><br> - Consulter ses demandes <br><br> - Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
 | Administrer la plateforme                | - Ajouter un technicien <br><br> - Supprimer un technicien <br><br> - Ajouter un titre <br><br> - Supprimer un titre <br><br> - Ajouter un mot-clé <br><br> - Supprimer un libellé                                              |                                              |
 |                                          | - Ouvrir une page                                                                                                                                                                                                               | - Afficher une page                          |
 
@@ -268,6 +268,7 @@ Par ordre alphabétique.
   - [Modifier son Email](#a1cu7)
   - [Consulter ses demandes](#a1cu8)
   - [Créer un ticket](#a1cu9)
+  - [Modifier un ticket](#a1cu25)
   - [Rechercher un ticket](#a1cu10)
   - [Se désinscrire](#a1cu11)
   - [Affecter un ticket](#a1cu12)
@@ -812,7 +813,73 @@ Echec :
     - L'utilisateur appuie sur le bouton "Créer"
     - L'utilisateur est renvoyé vers la page de création ticket
     - L'utilisateur reçoit une alerte lui affirmant que des données essentielles sont manquantes
-    
+
+```
+- #### <a name="a1cu25"> Nom : Modifier un ticket 
+``` 
+Portée : Utilisateur  
+Niveau : Utilisateur 
+Acteur principal : Utilisateur 
+Précondition :   
+    - L’utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - Le ticket doit nous appartenir (nous devions être à l’origine de ce         ticket) sauf pour l’administrateur web et le technicien
+
+Déclencheur :  
+    - Le bouton “Modifier le ticket” est sélectionné
+Garantie en cas de succès : 
+    - Que le bouton “Modifier le ticket” renvoie la page tableau de bord
+    - Que les informations du ticket soient modifiées
+
+Scénario nominal :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur appuie sur le bouton “Modifier le ticket” (il est             visible que si on possède la permission de modifier le ticket)
+    - L’utilisateur modifie le titre du problème 
+    - L’utilisateur change le niveau d’urgence estimé du problème
+    - L’utilisateur modifie le niveau d’urgence (administrateur web)
+    - L’utilisateur change le technicien affecté (administrateur web)
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son          problème
+    - L’utilisateur transforme l’explication détaillée du problème survenu
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 2 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur modifie le titre du problème 
+    - L’utilisateur change le niveau d’urgence estimé du problème
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son         problème
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 3 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur change le niveau d’urgence estimé du problème
+    - L’utilisateur change le technicien affecté (administrateur web)
+    - L’utilisateur transforme l’explication détaillée du problème survenu 
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 4 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son         problème
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 5 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur modifie le niveau d’urgence (administrateur web)
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Echec 1 : 
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord mais son ticket n’a pas été modifié car aucunes données n’a été changé
+
+Echec 2 : 
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur n’a pas la possibilité de modifier son ticket car il a été ouvert ou est en cours de traitement 
+
 ```
 - #### <a name="a1cu10"> Nom : Rechercher un ticket
 ```
