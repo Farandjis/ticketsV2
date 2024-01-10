@@ -163,12 +163,15 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 <br>
 
 - - <a name="p1bii"></a>ii) Les différents niveaux
-                                                                              
+
+    
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                                  | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                                                                                                                                      | - Se connecter <br><br> - Se déconnecter     |
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                                                                                                             | - Se connecter <br><br> - Se déconnecter     |
 | Gérer les demandes de tickets            | - Créer un ticket <br><br> - Consulter ses demandes <br><br> - Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
-|                                          | - Ouvrir une page                                                                                                                                                                                                               | - Afficher une page                          |                                                  
+| Administrer la plateforme                | - Ajouter un technicien <br><br> - Supprimer un technicien <br><br> - Ajouter un titre <br><br> - Supprimer un titre <br><br> - Ajouter un mot-clé <br><br> - Supprimer un libellé                                              |                                              |
+|                                          | - Ouvrir une page                                                                                                                                                                                                               | - Afficher une page                          |
+
                                                                             
 <br>
 
@@ -267,6 +270,12 @@ Par ordre alphabétique.
   - [S'attribuer un ticket](#a1cu13)
   - [Définir un niveau d'urgence définitif](#a1cu14)
   - [Fermer un ticket](#a1cu15)
+  - [Ajouter un technicien](#a1cu16)
+  - [Supprimer un technicien](#a1cu17)
+  - [Ajouter un titre](#a1cu18)
+  - [Supprimer un titre](#a1cu19)
+  - [Ajouter un mot-clé](#a1cu20)
+  - [Supprimer un libellé](#a1cu21)
   
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -982,3 +991,228 @@ Scénario nominal :
     - L'utilisateur appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
     - L'utilisateur appuie sur le bouton "Fermeture du ticket"
     - L'utilisateur est renvoyé vers la page tableau de bord 
+
+```
+- #### <a name="a1cu16"> Nom : Ajouter un technicien
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+    - La liste des techniciens ne doit pas être vide (contenir aucuns techniciens)
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le ou les techniciens ajoutés soient présents dans la liste "Technicien affecté" dans la page modification de ticket
+
+Scénario nominal :
+    - L'administrateur web coche le technicien ou les techniciens qu'il veut ajouter
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web peut remarquer que les techniciens ont été ajouté à la liste "Technicien affecté"
+
+Echec :
+    - L'administrateur web coche le technicien ou les techniciens qu'il veut ajouter
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+```
+- #### <a name="a1cu17"> Nom : Supprimer un technicien
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+    - Plusieurs techniciens doivent être sélectionnés dans administration
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le ou les techniciens supprimés ne soient plus présents dans la liste "Technicien affecté" dans la page modification de ticket
+
+Scénario nominal :
+    - L'administrateur web décoche le technicien ou les techniciens qu'il veut supprimer
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit que les techniciens ajoutés sont cochés dans la liste
+
+Echec 1 :
+   - L'administrateur web décoche le technicien ou les techniciens qu'il veut supprimer
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+Echec 2 :
+   - L'administrateur web aperçoit que dans la liste seulement un technicien est coché
+    - L'administrateur web décoche le technicien 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste que le technicien n'a pas été supprimé (puisque minimum un technicien est nécessaire)
+
+```
+- #### <a name="a1cu18"> Nom : Ajouter un titre
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le titre soit présent dans la liste des titres du problème
+
+Scénario nominal :
+    - L'administrateur web tape un titre dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste du dessous que le titre a été ajouté
+
+Echec :
+    - L'administrateur web tape un titre dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+```
+- #### <a name="a1cu19"> Nom : Supprimer un titre
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+    - La liste des titres ne doit pas être vide
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le titre ne soit plus présent dans la liste des titres du problème
+
+Scénario nominal :
+    - L'administrateur web coche le titre ou les titres qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste que les titres supprimés ne sont plus présents 
+
+Echec :
+    - L'administrateur web coche le titre ou les titres qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+```
+- #### <a name="a1cu20"> Nom : Ajouter un mot-clé 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le mot-clé soit présent dans la liste des libellés
+
+Scénario nominal :
+    - L'administrateur web tape un mot-clé dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste que le mot-clé est présent
+
+Echec :
+    - L'administrateur web tape un mot-clé dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+```
+- #### <a name="a1cu21"> Nom : Supprimer un libellé 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le mot-clé ne soit plus présent dans la liste des libellés
+
+Scénario nominal :
+    - L'administrateur web coche le ou les mots-clés qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit que le ou les mots-clés supprimés ne sont plus présents dans la liste 
+
+Echec :
+    - L'administrateur web coche le ou les mots-clés qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
