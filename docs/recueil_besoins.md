@@ -163,14 +163,10 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 <br>
 
 - - <a name="p1bii"></a>ii) Les différents niveaux
-
-
-| Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
-|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
                                                                               
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                                  | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur                                                                                                                                       | - Se connecter <br><br> - Se déconnecter     |
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                                                                                                                                      | - Se connecter <br><br> - Se déconnecter     |
 | Gérer les demandes de tickets            | - Créer un ticket <br><br> - Consulter ses demandes <br><br> - Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
 |                                          | - Ouvrir une page                                                                                                                                                                                                               | - Afficher une page                          |                                                  
                                                                             
