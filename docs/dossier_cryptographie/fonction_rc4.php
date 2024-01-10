@@ -2,7 +2,7 @@
 
 
 function convertionArrayDeBytesEnHexadecimal($arr){
-    // fonction entièrement recopié de :
+    // fonction entiÃ¨rement recopiÃ© de :
     // https://stackoverflow.com/questions/31211772/how-to-convert-an-array-of-bytes-to-a-hex-string
     // Et fonctionne parfaitement !
 
@@ -18,21 +18,21 @@ function convertionArrayDeBytesEnHexadecimal($arr){
 
 
 /** Principe :
- *      Génère une permutation à partir de la clef.
- *      Fondé sur l'algorithme 2 donné dans le sujet.
- *  Paramètre :
- *      - @param string $clefK : la clé dont on génère la permutation
+ *      GÃ©nÃ¨re une permutation Ã  partir de la clef.
+ *      FondÃ© sur l'algorithme 2 donnÃ© dans le sujet.
+ *  ParamÃ¨tre :
+ *      - @param string $clefK : la clÃ© dont on gÃ©nÃ¨re la permutation
  *  Renvoi :
- *      - @return array $permutationS : la permutation de la clé
+ *      - @return array $permutationS : la permutation de la clÃ©
  */
 function KSA(string $clefK): array{
     // https://www.php.net/manual/en/function.ord.php
-    // ord — Convert the first byte of a string to a value between 0 and 255
+    // ord â€” Convert the first byte of a string to a value between 0 and 255
 
     $permutationS = array();
-    $l = strlen($clefK); // taille de la clé
+    $l = strlen($clefK); // taille de la clÃ©
 
-    $clefKbin = array(); // Liste représentant la clef où chaque valeur correspond à la convertion charactère -> int de la clef.
+    $clefKbin = array(); // Liste reprÃ©sentant la clef oÃ¹ chaque valeur correspond Ã  la convertion charactÃ¨re -> int de la clef.
     for ($i = 0; $i < $l; $i++){
         $clefKbin[] = ord($clefK[$i]);
     }
@@ -54,24 +54,22 @@ function KSA(string $clefK): array{
 }
 
 /** Principe :
- *      Génère une suite chiffrante de RC4 à partir de la permutationS de la clefK.
- *      Fondé sur l'algorithme 1 donné dans le sujet.
- *  Paramètre :
- *      - @param array $permutationS : la clé permuté dont on va générer la suite chiffrante
+ *      GÃ©nÃ¨re une suite chiffrante de RC4 Ã  partir de la permutationS de la clefK.
+ *      FondÃ© sur l'algorithme 1 donnÃ© dans le sujet.
+ *  ParamÃ¨tre :
+ *      - @param array $permutationS : la clÃ© permutÃ© dont on va gÃ©nÃ©rer la suite chiffrante
  *  Renvoi :
  *      - @return array $suiteChiffranteK : la suite chiffrante
  */
 
-function suite_chiffrante(array $permutationS): array{
+function suite_chiffrante(array $permutationS, $n): array{
     $i = 0; $j = 0;
-
-    $n = 256;
 
     $suiteChiffranteK = array();
 
     $parcours = 0;
     while ($parcours < $n){
-        // Tant que nous avons pas traité tous les octets du messages
+        // Tant que nous avons pas traitÃ© tous les octets du messages
 
         $i = ($i + 1) % 256;
         $j = ($j + $permutationS[$i]) % 256;
@@ -84,10 +82,28 @@ function suite_chiffrante(array $permutationS): array{
     return $suiteChiffranteK;
 }
 
-function rc4_chiffrement($clef, $texte){
 
+function rc4_chiffrement($clef, $texte){
+    $S = KSA($clef);
+
+    // GÃ©nÃ©ration du texte chiffrÃ©
+    $res = '';
+    $i = 0;
+    foreach (suite_chiffrante($S,strlen($texte)) as $k) {
+        $nOctet = ord($texte[$i]) ^ $k;
+        $res .= chr($nOctet);
+        $i++;
+    }
+
+    return strtoupper(bin2hex($res));
 }
 
-function rc4_dechiffrement($clef, $texteChiffre){
 
+function rc4_dechiffrement($clef, $texteChiffre){
+    // On convertit l'entrÃ©e en binaire.
+    $texteChiffre = hex2bin($texteChiffre);
+
+    // La fonction de dÃ©chiffrement de RC4 est la mÃªme que la fonction de chiffrement car RC4 est un algorithme symÃ©trique.
+    return hex2bin(rc4_chiffrement($clef, $texteChiffre));
+    // On convertit la sortie en binaire.
 }
