@@ -11,7 +11,6 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
 
 </div>
 
-### Les remarques de M. DJERROUD sont marquées via un "🔴".
 
 <br><br><br><br><br><br><br>
 
@@ -42,7 +41,6 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
     - <u>[iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?](#p5aiv)</u>
     - <u>[v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)](#p5av)</u>
     - <u>[vi. À quelle dépendance le projet est-il soumis ?](#p5avi)</u>
-- <b>[b) Règles métier](#p5b)</b>
 - <b>[c) Performances](#p5c)</b>
 - <b>[d) Opérations, sécurité, documentation](#p5d)</b>
 - <b>[e) Utilisation et utilisabilité](#p5e)</b>
@@ -168,7 +166,7 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
     
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                                  | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                                                                                                             | - Se connecter <br><br> - Se déconnecter     |
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - S'inscrire <br><br> - Se désinscrire                                                                                                             | - Se connecter <br><br> - Se déconnecter     |
 | Gérer les demandes de tickets            | - Créer un ticket <br><br> - Consulter ses demandes <br><br> - Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
 | Administrer la plateforme                | - Ajouter un technicien <br><br> - Supprimer un technicien <br><br> - Ajouter un titre <br><br> - Supprimer un titre <br><br> - Ajouter un mot-clé <br><br> - Supprimer un libellé                                              |                                              |
 |                                          | - Ouvrir une page                                                                                                                                                                                                               | - Afficher une page                          |
@@ -265,7 +263,7 @@ Par ordre alphabétique.
   - [Ouvrir une page](#a1cu2)
   - [Se connecter](#a1cu3)
   - [Se déconnecter](#a1cu4)
-  - [Inscrire un visiteur](#a1cu5)
+  - [S'inscrire](#a1cu5)
   - [Modifier son mot de passe](#a1cu6)
   - [Modifier son Email](#a1cu7)
   - [Consulter ses demandes](#a1cu8)
@@ -345,9 +343,6 @@ Par ordre alphabétique.
     - <u><a name="p5avi"></a>vi. À quelle dépendance le projet est-il soumis ?</u><br>
       Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL.
 
-- <b><a name="pb"></a>b) Règles métier</b><br>
-  #### 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?). Poser les questions à M. Hoguin
-
 <br>
 
 - <b><a name="p5c"></a>c) Performances</b><br>
@@ -367,8 +362,7 @@ Par ordre alphabétique.
 - <b><a name="p5e"></a>e) Utilisation et utilisabilité</b><br>
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
-
-  #### 🔴 e) Demander à M. Dufaud peut être
+  
 <br>
 
 - <b><a name="p5f"></a>f) Maintenance et portabilité</b><br>
@@ -632,7 +626,7 @@ Echec :
     - Le système renvoie une erreur en avertissant l'utilisateur qu'une erreur de déconnexion s'est produite
 
 ```
-- #### <a name="a1cu5"> Nom : Inscrire un visiteur
+- #### <a name="a1cu5"> Nom : S'inscrire
 ```
 Portée : Utilisateur
 Niveau : Utilisateur
