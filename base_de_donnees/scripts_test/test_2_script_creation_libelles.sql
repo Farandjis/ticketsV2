@@ -10,10 +10,10 @@ INSERT INTO RelationTicketsMotscles VALUES(3, "Salle INFO : G24");
 INSERT INTO RelationTicketsMotscles VALUES(3, "Matériel : Souris");
 
 -- L'ordinateur ne s'allume plus
-INSERT INTO RelationTicketsMotscles VALUES(4, 'Matériel : Ordinateur')
-INSERT INTO RelationTicketsMotscles VALUES(4, 'Matériel : Câble Moniteur')
-INSERT INTO RelationTicketsMotscles VALUES(4, 'Matériel : Câble Alimentation')
-INSERT INTO RelationTicketsMotscles VALUES(4, 'Salle INFO : E51')
+INSERT INTO RelationTicketsMotscles VALUES(4, 'Matériel : Ordinateur');
+INSERT INTO RelationTicketsMotscles VALUES(4, 'Matériel : Câble Moniteur');
+INSERT INTO RelationTicketsMotscles VALUES(4, 'Matériel : Câble Alimentation');
+INSERT INTO RelationTicketsMotscles VALUES(4, 'Salle INFO : E51');
 
 --  Impossible de démarrer SQL Developper.
 INSERT INTO RelationTicketsMotscles VALUES(5, 'Logiciel : Autre');
