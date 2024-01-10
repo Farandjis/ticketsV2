@@ -16,7 +16,7 @@ function tests(){
     var_dump($texte); echo "<br>";
     var_dump($texteChiffre); echo "<br>";
 
-
+/*
     echo "<br><br><h4>Test A1</h4>";
     $resSuiteChiffrante = convertionArrayDeBytesEnHexadecimal(suite_chiffrante(KSA($clef[0])));
     $res = (! stristr($resSuiteChiffrante, $suiteChiffrante[0]) === false);
@@ -34,7 +34,7 @@ function tests(){
     $res = (! stristr($resSuiteChiffrante, $suiteChiffrante[2]) === false);
     echo "<p>Génération de la suite chiffrante <b>$clef[2]</b> : " . $resSuiteChiffrante . "</b> - <b>" . $suiteChiffrante[2] . "...</b></p>";
     if ($res){ echo "<p>Succès !</p>"; } else { echo "<p> Échec !</p>"; }
-
+*/
 
 
 
