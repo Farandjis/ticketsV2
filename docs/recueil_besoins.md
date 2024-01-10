@@ -459,11 +459,11 @@ Niveau : Stratégique
 Acteur principal : Les utilisateurs
 
 Scénario :
-    - Un visiteur <u> s'inscrit </u> sur la plateforme pour devenir utilisateur
-    - L'utilisateur commence par <u> se connecter </u>
-    - L'utilisateur peut <u> modifier son mot de passe </u> et <u> modifier son Email </u> pour personnaliser son expérience
-    - L'utilisateur peut <u> se désinscrire </u> de la plateforme s'il ne souhaite plus être présent dessus
-    - L'utilisateur finit par <u> se déconnecter </u> de la plateforme 
+    - Un visiteur s'inscrit sur la plateforme pour devenir utilisateur
+    - L'utilisateur commence par se connecter
+    - L'utilisateur peut modifier son mot de passe et modifier son Email pour personnaliser son expérience
+    - L'utilisateur peut se désinscrire de la plateforme s'il ne souhaite plus être présent dessus
+    - L'utilisateur finit par se déconnecter de la plateforme 
 
  ```
 - #### <a name="a1cu23"> Nom : Gérer les demandes de tickets  
@@ -473,15 +473,15 @@ Niveau : Stratégique
 Acteur principal : Les utilisateurs
 
 Scénario :
-    - L'utilisateur commence par <u> se connecter </u> à la plateforme
-    - L'utilisateur peut <u> créer un ticket </u> afin de renseigner ses demandes de dépannages et qu'elles soient prises en charge
-    - L'utilisateur a la possibilité de <u> consulter ses demandes </u>
-    - L'utilisateur peut <u> rechercher un ticket </u> selon des caractéristiques spécifiques
-    - L'administrateur web <u> affecte un ticket </u> à un technicien pour qu'il le prenne en charge
-    - Le technicien est autorisé à <u> s'attribuer un ticket </u> s'il n'a été pris en charge par personne
-    - L'administrateur web <u> définit un niveau d'urgence définitif </u> aux tickets
-    - L'administrateur web et le technicien à qui on a attribué le ticket peuvent <u> fermer un ticket </u> une fois résolu
-    - L'utilisateur finit par <u> se déconnecter </u> de la plateforme   
+    - L'utilisateur commence par se connecter à la plateforme
+    - L'utilisateur peut créer un ticket afin de renseigner ses demandes de dépannages et qu'elles soient prises en charge
+    - L'utilisateur a la possibilité de consulter ses demandes 
+    - L'utilisateur peut rechercher un ticket selon des caractéristiques spécifiques
+    - L'administrateur web affecte un ticket à un technicien pour qu'il le prenne en charge
+    - Le technicien est autorisé à s'attribuer un ticket s'il n'a été pris en charge par personne
+    - L'administrateur web définit un niveau d'urgence définitif aux tickets
+    - L'administrateur web et le technicien à qui on a attribué le ticket peuvent fermer un ticket une fois résolu
+    - L'utilisateur finit par se déconnecter de la plateforme   
 
 ```
 - #### <a name="a1cu24"> Nom : Administrer la plateforme  
@@ -491,11 +491,11 @@ Niveau : Stratégique
 Acteur principal : L'administrateur web 
 
 Scénario :
-    - L'administrateur web commence par <u> se connecter </u> à la plateforme
-    - L'administrateur web peut <u> ajouter un titre </u> aux tickets ou <u> supprimer un titre </u>
-    - L'administrateur web a la possibilité d'<u> ajouter un technicien qui pourra traiter des demandes ou <u> supprimer un technicien </u>
-    - L'administrateur web peut <u> ajouter un mot-clé </u> à la liste des libellés ou <u> supprimer des libellés </u> 
-    - L'administrateur web finit par <u> se déconnecter </u> de la plateforme 
+    - L'administrateur web commence par se connecter à la plateforme
+    - L'administrateur web peut ajouter un titre aux tickets ou supprimer un titre
+    - L'administrateur web a la possibilité d'ajouter un technicien qui pourra traiter des demandes ou supprimer un technicien
+    - L'administrateur web peut ajouter un mot-clé à la liste des libellés ou supprimer des libellés 
+    - L'administrateur web finit par se déconnecter de la plateforme 
  ```
 - #### <a name="a1cu1">Nom : Afficher une page
 ```
