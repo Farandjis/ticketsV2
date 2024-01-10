@@ -256,6 +256,10 @@ Par ordre alphabétique.
 - <b>b) <a name="p3b"></a> Les cas d’utilisation métier (concepts opérationnels).</b>
 
 - <b>c) <a name="p3c"></a> Les cas d'utilisation stratégique <b>
+    - [Gérer les profils utilisateurs](#a1cu22)
+    - [Gérer les demandes de tickets](#a1cu23)
+    - [Administrer la plateforme](#a1cu24)
+    
 - <b>d) <a name="p3d"></a> Les cas d’utilisation utilisateur et système.</b>
   - [Afficher une page](#a1cu1)
   - [Ouvrir une page](#a1cu2)
@@ -448,6 +452,51 @@ Par ordre alphabétique.
 
 ### <a name="a1"></a>Annexe 1 – Cas d'utilisation
 
+- #### <a name="a1cu22"> Nom : Gérer les profils utilisateurs  
+```
+Portée : Utilisateur
+Niveau : Stratégique 
+Acteur principal : Les utilisateurs
+
+Scénario :
+    - Un visiteur <u> s'inscrit </u> sur la plateforme pour devenir utilisateur
+    - L'utilisateur commence par <u> se connecter </u>
+    - L'utilisateur peut <u> modifier son mot de passe </u> et <u> modifier son Email </u> pour personnaliser son expérience
+    - L'utilisateur peut <u> se désinscrire </u> de la plateforme s'il ne souhaite plus être présent dessus
+    - L'utilisateur finit par <u> se déconnecter </u> de la plateforme 
+
+ ```
+- #### <a name="a1cu23"> Nom : Gérer les demandes de tickets  
+```
+Portée : Utilisateur
+Niveau : Stratégique 
+Acteur principal : Les utilisateurs
+
+Scénario :
+    - L'utilisateur commence par <u> se connecter </u> à la plateforme
+    - L'utilisateur peut <u> créer un ticket </u> afin de renseigner ses demandes de dépannages et qu'elles soient prises en charge
+    - L'utilisateur a la possibilité de <u> consulter ses demandes </u>
+    - L'utilisateur peut <u> rechercher un ticket </u> selon des caractéristiques spécifiques
+    - L'administrateur web <u> affecte un ticket </u> à un technicien pour qu'il le prenne en charge
+    - Le technicien est autorisé à <u> s'attribuer un ticket </u> s'il n'a été pris en charge par personne
+    - L'administrateur web <u> définit un niveau d'urgence définitif </u> aux tickets
+    - L'administrateur web et le technicien à qui on a attribué le ticket peuvent <u> fermer un ticket </u> une fois résolu
+    - L'utilisateur finit par <u> se déconnecter </u> de la plateforme   
+
+```
+- #### <a name="a1cu24"> Nom : Administrer la plateforme  
+```
+Portée : Utilisateur
+Niveau : Stratégique 
+Acteur principal : L'administrateur web 
+
+Scénario :
+    - L'administrateur web commence par <u> se connecter </u> à la plateforme
+    - L'administrateur web peut <u> ajouter un titre </u> aux tickets ou <u> supprimer un titre </u>
+    - L'administrateur web a la possibilité d'<u> ajouter un technicien qui pourra traiter des demandes ou <u> supprimer un technicien </u>
+    - L'administrateur web peut <u> ajouter un mot-clé </u> à la liste des libellés ou <u> supprimer des libellés </u> 
+    - L'administrateur web finit par <u> se déconnecter </u> de la plateforme 
+ ```
 - #### <a name="a1cu1">Nom : Afficher une page
 ```
 Portée : Serveur
@@ -458,7 +507,7 @@ Précondition :
 Déclencheur :
     - le navigateur de l'utilisateur demande de charger une page
 Garantie en cas de succès :
-    - Que la page demander s'affiche dans le navigateur
+    - Que la page demandée s'affiche dans le navigateur
 Scénario nominal :
     - Le système récupère la demande
     - Le système recherche le fichier HTML correspondant à la page
@@ -471,12 +520,13 @@ Extension :
     - Le système recherche le fichier HTML correspondant à la page
     - Le système ne trouve pas un ou plusieurs fichiers composants la page 
     - Le système affiche la page avec du texte alternatif à la place des composants 
-Echec :
+Echec 1 :
     - L'utilisateur demande l'affichage d'une page
     - Le système récupère la demande
     - Le système recherche le fichier correspondant à la page
     - Le système ne trouve pas le fichier correspondant
     - Le système affiche une erreur dans le navigateur de l'utilisateur
+
 ```
 
 
@@ -1203,18 +1253,3 @@ Echec :
     - L'administrateur web appuie sur le bouton "Annuler"
     - L'administrateur web est renvoyé vers la page administration
     - L'administrateur web s'aperçoit que rien n'a été fait
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
