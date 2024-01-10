@@ -167,9 +167,9 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 
 | Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
 |------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Stocker et répertorier des tickets       | Créer un ticket                                                                                                                                                                                                 |      |
-| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                               | Authentifier (connexion et déconnexion)                     |
-| Gérer les demandes de tickets            | - Consulter ses demandes <br><br> -Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
+                                                                                                                                
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - Inscrire un visiteur <br><br> - Se désinscrire                               | - Se connecter <br><br> - Se déconnecter                    |
+| Gérer les demandes de tickets            | - Créer un ticket <br><br> - Consulter ses demandes <br><br> -Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
 |                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
 <br>
 
@@ -255,8 +255,8 @@ Par ordre alphabétique.
 - <b>c) Les cas d’utilisation système.</b>
   - [Afficher une page](#a1cu1)
   - [Ouvrir une page](#a1cu2)
-  - [Authentifier(connexion)](#a1cu3)
-  - [Authentifier(déconnexion)](#a1cu4)
+  - [Se connecter](#a1cu3)
+  - [Se déconnecter](#a1cu4)
   - [Inscrire un visiteur](#a1cu5)
   - [Modifier son mot de passe](#a1cu6)
   - [Modifier son Email](#a1cu7)
@@ -503,7 +503,7 @@ Echec 3 :
     - Le logiciel ne comprend, n'arrive pas à lancer le chargement 
 ```
 
-- #### <a name="a1cu3"> Nom : Authentifier (connexion) 
+- #### <a name="a1cu3"> Nom : Se connecter
 ```
 Portée : Serveur
 Niveau : Sous-fonction
@@ -547,7 +547,7 @@ Echec 3 :
     - Le système renvoie une erreur en avertissant l'utilisateur que les données n'existent pas dans la base de données
 
 ```
-- #### <a name="a1cu4"> Nom : Authentifier (déconnexion) 
+- #### <a name="a1cu4"> Nom : Se déconnecter
 ```
 Portée : Serveur
 Niveau : Sous-fonction
