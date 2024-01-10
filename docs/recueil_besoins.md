@@ -27,7 +27,8 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
 ### [III – Les cas d’utilisation](#p3)
 - <b>[a) Les acteurs principaux et leurs objectifs généraux](#p3a).</b>
 - <b>[b) Les cas d’utilisation métier (concepts opérationnels).](#p3b)</b>
-- <b>[c) Les cas d’utilisation système.](#p3c)</b>
+- <b>[c) Les cas d’utilisation stratégique.](#p3c)</b>
+- <b>[d) Les cas d’utilisation utilisateur et système.](#p3d)</b>
 ### [IV – La technologie employée](#p4)
 - <b>[a) Quelles sont les exigences technologiques pour ce système ?](#p4a)</b>
 - <b>[b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?](#p4b)</b>
@@ -252,9 +253,10 @@ Par ordre alphabétique.
       > - Est un technicien, mais avec en plus des droits d'administration
       > - Accède et utilise les journaux d'activités
 
-- <b>b) Les cas d’utilisation métier (concepts opérationnels).</b>
-- #### 🔴 <a name="p3b"></a>b) CU stratégique
-- <b>c) Les cas d’utilisation système.</b>
+- <b>b) <a name="p3b"></a> Les cas d’utilisation métier (concepts opérationnels).</b>
+
+- <b>c) <a name="p3c"></a> Les cas d'utilisation stratégique <b>
+- <b>d) <a name="p3d"></a> Les cas d’utilisation utilisateur et système.</b>
   - [Afficher une page](#a1cu1)
   - [Ouvrir une page](#a1cu2)
   - [Se connecter](#a1cu3)
