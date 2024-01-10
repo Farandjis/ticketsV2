@@ -22,6 +22,7 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
     - <u>[i. Liste des objets, acteurs et actions](#p1bi) </u>
     - <u>[ii. Les différents niveaux](#p1bii) </u>
     - <u>[iii. Un schéma descriptif des niveaux](#p1biii) </u>
+    - <u>[iiii. Le diagramme des cas d'utilisation](#p1biiii) </u>
 ### [II – Terminologie employée / Glossaire](#p2)
 ### [III – Les cas d’utilisation](#p3)
 - <b>[a) Les acteurs principaux et leurs objectifs généraux](#p3a).</b>
@@ -178,6 +179,9 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 
 ![](img/schema_lecture_cahier_charges.PNG "Schema de la lecture du cahier des charges")
 
+- - <a name="p1biiii"></a>iiii) Le diagramme des cas d'utilisation
+
+![](img/SAE_diagramme_cas_utilisation.PNG "Diagramme des cas d'utilisation")
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
