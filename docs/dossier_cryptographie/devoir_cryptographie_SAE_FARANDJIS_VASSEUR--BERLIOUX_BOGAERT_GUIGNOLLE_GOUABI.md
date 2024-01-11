@@ -20,77 +20,68 @@ Nous définirons également ce qu'est une fonction de hachage cryptographique, l
 - ## Algorithme RC4
   - ### Présentation
 
-  L'algorithme RC4 (Rivest Cipher 4) est un algorithme de chiffrement, créé par le cryptologue Ronald Rivest en 1987.
+L'algorithme RC4 (Rivest Cipher 4) est un algorithme de chiffrement, créé par le cryptologue Ronald Rivest en 1987.
 
-  L'algorithme RC4 utilise une clé secrète pour générer une séquence "pseudo-aléatoire" appelée suite chiffrante. Cette suite est ensuite combinée avec les données à chiffrer en utilisant l'opérateur XOR sur chaque octet un à un.
+L'algorithme RC4 utilise une clé secrète pour générer une séquence "pseudo-aléatoire" appelée suite chiffrante. Cette suite est ensuite combinée avec les données à chiffrer en utilisant l'opérateur XOR sur chaque octet un à un.
 
-  C'est un algorithme symétrique, seul un clée est nécessaire pour le chiffrement et le déchiffrement.
+C'est un algorithme symétrique, seule une clé est nécessaire pour le chiffrement et le déchiffrement.
 
   - ### Key Scheduling Algorithm (KSA)
 
-  La première étape de l'algorithme consiste à créer un tableau (ici appelé A) de la longueur de la clé (ici appelé K) entrée en paramètre et contenant chacun de ses octets un à un dans chaque cellule.
+ La première étape de l'algorithme consiste à créer un tableau (ici appelé A) de la longueur de la clé (ici appelé K) entrée en paramètre et contenant chacun de ses octets un à un dans chaque cellule.
 
-  Un deuxième tableau (ici appelé B) de taille 256 (pour les caractères ASCII). Chaque élément dans le tableau porte une numération allant de 0 à 255.
+Un deuxième tableau (ici appelé B) de taille 256 (pour les caractères ASCII). Chaque élément dans le tableau porte une numération allant de 0 à 255.
 
+Ensuite, pour chaque valeur x de 0 à 255, on inverse la valeur du tableau B à l'indice x avec l'indice correspondant au calcul suivant :
 
-
-  Ensuite, pour chaque valeur x de 0 à 255, on inverse la valeur du tableau B à l'indice x avec l'indice correspondant au calcul suivant : 
-
-  ('précédent résultat de ce calcul (valeur initial = 0)' + A[x] + K[x % 'longueur de K']) % 256
+('précédent résultat de ce calcul (valeur initiale = 0)' + A[x] + K[x % 'longueur de K']) % 256
 
 
 
   - ### Génération suite chiffrante - Pseudo Random Generator (PRGA)
 
-  Un tableau est d'abord généré pour stocker la future séquence chiffrante. 
-  Ce tableau est rempli progressivement.
+Un tableau est d'abord généré pour stocker la future séquence chiffrante. Ce tableau est rempli progressivement.
 
-  Pour autant d'octets présents dans le message à crypter, ont interverti le code de l'octet avec celui associé dans le B (de l'algorithme KSA).
+Pour autant d'octets présents dans le message à crypter, ont interverti le code de l'octet avec celui associé dans le B (de l'algorithme KSA).
+
 
   - ### Module de chiffrement
-  L'algorithme de chiffrement RC4 combien l'algorithme KSA, puis PRGA afin d'obtenir la suite chiffrante associé à la clé de départ.
-  Cette suite chiffrant est de même taille que la longueur du message.
+L'algorithme de chiffrement RC4 combien l'algorithme KSA, puis PRGA afin d'obtenir la suite chiffrante associé à la clé de départ. Cette suite chiffrant est de même taille que la longueur du message.
 
-  Il ne reste alors plus qu'a effectué pour chaque octet un à un de la suite chiffrante et du message l'opération XOR.
+Il ne reste alors plus qu'a effectué pour chaque octet un à un de la suite chiffrante et du message l'opération XOR.
 
-  On obtient alors le message chiffré.
-
+On obtient alors le message chiffré.
   - ### Module de déchiffrement
-  La méthode de déchiffrement est identique à celle de chiffrement.
-  On pense juste à convertir l'entrée et la sortie du message en binaire.
-
+La méthode de déchiffrement est identique à celle de chiffrement. On pense juste à convertir l'entrée et la sortie du message en binaire.
 - ## Fonction de hachage cryptographique
   - ### Présentation
     - ##### Définition
-    Le terme fonction de hachage vient de l'anglais "hash function".
-    Il s'agit d'une fonction mathématique prend en entrée une valeur de taille variable qu'elle altère pour lui donner une taille uniforme.
-    Selon le site ionos.fr : "La fonction de hachage convertit des séquences de caractères de différentes longueurs en séquences de même longueur."
+Le terme fonction de hachage vient de l'anglais "hash function". Il s'agit d'une fonction mathématique prend en entrée une valeur de taille variable qu'elle altère pour lui donner une taille uniforme. Selon le site ionos.fr : "La fonction de hachage convertit des séquences de caractères de différentes longueurs en séquences de même longueur."
+
 
     - ##### Propriétés
-  On peut se référer au site Wikipedia pour trouver les propriétés suivantes :
-  - Uniformité : La fonction de hachage doit répartir uniformément les entrées dans sa plage de sortie afin de limiter les coliisions.
+On peut se référer au site Wikipedia pour trouver les propriétés suivantes :
 
-  - Efficacité : Une fonction de hachage doit être le plus efficace possible est limité le temps de recherche d'une valeur.
+    - Uniformité : La fonction de hachage doit répartir uniformément les entrées dans sa plage de sortie afin de limiter les collisions.
 
-  - Universalité : Une fonction de hachage doit limité la probabilité d'index identiques pour des clés différentes. L'objectif est encore de limiter les collisions.
+    - Efficacité : Une fonction de hachage doit être le plus efficace possible est limité le temps de recherche d'une valeur.
 
-  - Applicabilité : La fonction de hachage doit être adaptée à l'application qui l'utilise en terme de taille de la table, de longueur des chaînes...
+    - Universalité : Une fonction de hachage doit limiter la probabilité d'index identiques pour des clés différentes. L'objectif est encore de limiter les collisions.
 
-  - Déterminisme : Une fonction de hachage doit toujours produire le même résultat pour une une certaine entrée.
+    - Applicabilité : La fonction de hachage doit être adaptée à l'application qui l'utilise en termes de taille de la table, de longueur des chaînes...
 
-  - Plage définie : Une fonction de hachage doit avoir une taille (plage d'indexation) fixe.
+    - Déterminisme : Une fonction de hachage doit toujours produire le même résultat pour une certaine entrée.
 
-  - Normalisation des données : La fonction de hachage doit normaliser les données indexés selon certaines critères.
+    - Plage définie : Une fonction de hachage doit avoir une taille (plage d'indexation) fixe.
+
+    - Normalisation des données : La fonction de hachage doit normaliser les données indexées selon certains critères.
 
   - ### Fonction de hachage MD5
-  La fonction MD5 est d'abord constitué d'une partie de normalisation de l'entrée.
-  Le texte en entrée est complété par un bit '1' suivi de plusieurs$ bits '0' afin de donner à l'entrée une taille étant un multiple de 512. La taille total du message est aussi ajouter au message lui même sur les 64 derniers bits.
+La fonction MD5 est d'abord constituée d'une partie de normalisation de l'entrée. Le texte en entrée est complété par un bit '1' suivi de plusieurs bits '0' afin de donner à l'entrée une taille étant un multiple de 512. La taille totale du message est aussi ajoutée au message lui-même sur les 64 derniers bits.
 
-  Ensuite, le MD5 traite les octets par pack de 128 (soit 512 bits). Ces pack de 128 bits sont répartis sur 4 zones A,B,C et D. Chaque zone traitant alors 32 octets. Ces zones contiennent lors de l'initialisation des constantes sur lesquels seront effectués plusieurs calculs avec les octets du message afin d'en tiré une sorite chiffrée.
-  Les résultats de chaques zones sont ensuites copiés sur la zone qui suit pour la prochaine itération de 512 octets. Les résultats de la boucle précédente deviennent alors les valeurs de base de la nouvelle boucle.
+Ensuite, le MD5 traite les octets par pack de 128 (soit 512 bits). Ces packs de 128 bits sont répartis sur 4 zones A, B, C et D. Chaque zone traitant alors 32 octets. Ces zones contiennent, lors de l'initialisation, des constantes sur lesquelles seront effectués plusieurs calculs avec les octets du message afin d'en tirer une sortie chiffrée. Les résultats de chaque zone sont ensuite copiés sur la zone qui suit pour la prochaine itération de 512 octets. Les résultats de la boucle précédente deviennent alors les valeurs de base de la nouvelle boucle.
 
-  Les calculs pouvant être effectués sur une zone sont :
-  
+Les calculs pouvant être effectués sur une zone sont :
 ```
 F(B,C,D) = (B ∧ C) ∨ (¬B ∧ D) ;
 
@@ -113,7 +104,7 @@ I(B,C,D) = C ⊕ (B ∨ ¬D).
 
 ```
   function convertionArrayDeBytesEnHexadecimal($arr){
-    // fonction entiÃ¨rement recopiÃ© de :
+    // fonction entierement recopié de :
     // https://stackoverflow.com/questions/31211772/how-to-convert-an-array-of-bytes-to-a-hex-string
     // Et fonctionne parfaitement !
 
@@ -129,12 +120,12 @@ I(B,C,D) = C ⊕ (B ∨ ¬D).
 
 
 /** Principe :
- *      GÃ©nÃ¨re une permutation Ã  partir de la clef.
- *      FondÃ© sur l'algorithme 2 donnÃ© dans le sujet.
- *  ParamÃ¨tre :
- *      - @param string $clefK : la clÃ© dont on gÃ©nÃ¨re la permutation
+ *      Génére une permutation à  partir de la clef.
+ *      Fondé sur l'algorithme 2 donné dans le sujet.
+ *  Paramètre :
+ *      - @param string $clefK : la clÃ© dont on génère la permutation
  *  Renvoi :
- *      - @return array $permutationS : la permutation de la clÃ©
+ *      - @return array $permutationS : la permutation de la clé
  */
 function KSA(string $clefK): array{
     // https://www.php.net/manual/en/function.ord.php
@@ -143,7 +134,7 @@ function KSA(string $clefK): array{
     $permutationS = array();
     $l = strlen($clefK); // taille de la clÃ©
 
-    $clefKbin = array(); // Liste reprÃ©sentant la clef oÃ¹ chaque valeur correspond Ã  la convertion charactÃ¨re -> int de la clef.
+    $clefKbin = array(); // Liste représentant la clef oÃ¹ chaque valeur correspond Ã  la convertion charactÃ¨re -> int de la clef.
     for ($i = 0; $i < $l; $i++){
         $clefKbin[] = ord($clefK[$i]);
     }
@@ -165,10 +156,10 @@ function KSA(string $clefK): array{
 }
 
 /** Principe :
- *      GÃ©nÃ¨re une suite chiffrante de RC4 Ã  partir de la permutationS de la clefK.
- *      FondÃ© sur l'algorithme 1 donnÃ© dans le sujet.
- *  ParamÃ¨tre :
- *      - @param array $permutationS : la clÃ© permutÃ© dont on va gÃ©nÃ©rer la suite chiffrante
+ *      Génère une suite chiffrante de RC4 à  partir de la permutationS de la clefK.
+ *      Fondé sur l'algorithme 1 donné dans le sujet.
+ *  Paramètre :
+ *      - @param array $permutationS : la clé permuté dont on va générer la suite chiffrante
  *  Renvoi :
  *      - @return array $suiteChiffranteK : la suite chiffrante
  */
@@ -180,7 +171,7 @@ function suite_chiffrante(array $permutationS, $n): array{
 
     $parcours = 0;
     while ($parcours < $n){
-        // Tant que nous avons pas traitÃ© tous les octets du messages
+        // Tant que nous avons pas traité tous les octets du messages
 
         $i = ($i + 1) % 256;
         $j = ($j + $permutationS[$i]) % 256;
@@ -197,7 +188,7 @@ function suite_chiffrante(array $permutationS, $n): array{
 function rc4_chiffrement($clef, $texte){
     $S = KSA($clef);
 
-    // GÃ©nÃ©ration du texte chiffrÃ©
+    // Génération du texte chiffré
     $res = '';
     $i = 0;
     foreach (suite_chiffrante($S,strlen($texte)) as $k) {
@@ -211,10 +202,10 @@ function rc4_chiffrement($clef, $texte){
 
 
 function rc4_dechiffrement($clef, $texteChiffre){
-    // On convertit l'entrÃ©e en binaire.
+    // On convertit l'entrée en binaire.
     $texteChiffre = hex2bin($texteChiffre);
 
-    // La fonction de dÃ©chiffrement de RC4 est la mÃªme que la fonction de chiffrement car RC4 est un algorithme symÃ©trique.
+    // La fonction de déchiffrement de RC4 est la même que la fonction de chiffrement car RC4 est un algorithme symétrique.
     return hex2bin(rc4_chiffrement($clef, $texteChiffre));
     // On convertit la sortie en binaire.
 }
