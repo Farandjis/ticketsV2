@@ -72,6 +72,7 @@ Nous allons définir tous les retours possibles que peut renvoyer cette page en 
 | 1      | On entre dans le champ [SESSION] Autre problème | OK               | OK              |
 | 2      | On entre dans le champ <b>Salut<b>              | OK               | OK              |
 | 3      | On entre dans le champ 'Salut'                  | OK               | OK              |
+| 4      | On ajoute un titre déjà existant                | KO               | KO              |
 
 #### <a name="1c"></a>Suppression d'un titre
 
@@ -88,6 +89,7 @@ Nous allons définir tous les retours possibles que peut renvoyer cette page en 
 | 1      | On entre dans le champ [SESSION] Autre problème | OK               | OK              |
 | 2      | On entre dans le champ <b>Salut<b>              | OK               | OK              |
 | 3      | On entre dans le champ 'Salut'                  | OK               | OK              |
+| 4      | On ajoute un mot clés déjà existant             | KO               | KO              |
 
 #### <a name="1e"></a>Suppression d'un mot clés
 
