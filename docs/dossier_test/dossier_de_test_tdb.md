@@ -81,6 +81,8 @@ La page tester est la page tableau de bord, nous testerons que chaque utilisateu
 | 9      | On entre dans le champs titre "ee"                                                                                                                                             | 0 ticket         | 1 ticket        | On trouve les différents tickets qui ont dans leur titre est "ee"                                |
 | 10     | On entre dans le champs titre "Besoin" <br> On met dans le champ date min "08/12/2023" et max "10/12/2023" <br>  On coche "Mot de passe Windows oublié" dans le champ mot-clés | 1 ticket         | 1 ticket        | On trouve les différents tickets qui ont tout ces différentes conditions validé                  |
 | 11     | On entre dans le champs titre "Besoin' OR ID_TICKET = 5"                                                                                                                       | 0 ticket         | 0 ticket        | Tentative d'injection SQL échoué                                                                 |
+| 12     | On clique sur "Tous les tickets de TIX" dans le champ Type de ticket                                                                                                                  | 7 tickets         | 7 tickets        | Nous obtenons tout les tickets formulés par les utilisateurs                                                               |
+| 13     | On clique sur "Mes demandes actuelles" dans le champ Type de ticket                                                                                                                     | 1 ticket         | 1 ticket        | Nous obtenons le ticket le plus actuel non traité        
 
 <br>
 
