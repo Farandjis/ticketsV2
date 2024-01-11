@@ -23,9 +23,8 @@ BEGIN
 
 	    -- On retire l'utilisateur de la liste des utilisateurs de la plateforme TIX.
         UPDATE DB_TIX.Utilisateur SET login_user = NULL, prenom_user = 'Utilisateur', nom_user = 'SUPPRIMÉ', email_user = 'supprimer@tix.fr', HORODATAGE_DERNIERE_CONNECTION_USER = current_timestamp() WHERE ID_USER = SUBSTRING_INDEX(USER(), '@', 1);
-
 	-- On met à jour les tickets si l'utilisateur était technicien et qu'ils sont toujours en cours.
-	UPDATE Ticket SET ID_TECHNICIEN = parID_USER, ETAT_TICKET = "Ouvert" WHERE ID_TECHNICIEN = parID_USER AND ETAT_TICKET = "En cours de traitement";
+	UPDATE DB_TIX.Ticket SET ID_TECHNICIEN = NULL, ETAT_TICKET = "Ouvert" WHERE ID_TECHNICIEN = SUBSTRING_INDEX(USER(), '@', 1) AND ETAT_TICKET = "En cours de traitement";
 
 	    -- On retire l'intégralité des droits au compte MariaDB de l'utilisateur.
 	    SET @suppression_droits = CONCAT('REVOKE ALL ON *.* FROM ', QUOTE(SUBSTRING_INDEX(USER(), '@', 1)),'@',QUOTE(SUBSTRING_INDEX(USER(), '@', -1)));
@@ -48,7 +47,7 @@ END //
 DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
 
 GRANT EXECUTE ON PROCEDURE ATTENTION_SupprimerSonCompte TO role_utilisateur;
-
+GRANT EXECUTE ON PROCEDURE ATTENTION_SupprimerSonCompte TO role_technicien;
 
 
 
@@ -109,7 +108,7 @@ BEGIN
         UPDATE DB_TIX.Utilisateur SET login_user = NULL, prenom_user = 'Utilisateur', nom_user = 'SUPPRIMÉ AUTO', email_user = 'supprimer.automatiquement@tix.fr', IP_DERNIERE_CONNECTION_USER = '0.0.0.0' WHERE ID_USER = unIDUtilisateur;
 
 	-- On met à jour les tickets si l'utilisateur était technicien et qu'ils sont toujours en cours.
-	UPDATE Ticket SET ID_TECHNICIEN = parID_USER, ETAT_TICKET = "Ouvert" WHERE ID_TECHNICIEN = parID_USER AND ETAT_TICKET = "En cours de traitement";
+	UPDATE Ticket SET ID_TECHNICIEN = NULL, ETAT_TICKET = "Ouvert" WHERE ID_TECHNICIEN = parID_USER AND ETAT_TICKET = "En cours de traitement";
 
         -- On retire l'intégralité des droits au compte MariaDB de l'utilisateur.
 	SET @suppression_droits = CONCAT('REVOKE ALL ON *.* FROM ', QUOTE(unIDUtilisateur),'@',QUOTE('localhost'));
@@ -167,7 +166,7 @@ BEGIN
 		START TRANSACTION;
 
 		-- On met tous les tickets du technicien à Ouvert (pour qu'un autre technicien puisse les récupérers).
-		UPDATE Ticket SET ID_TECHNICIEN = parID_USER, ETAT_TICKET = "Ouvert" WHERE ID_TECHNICIEN = parID_USER AND ETAT_TICKET = "En cours de traitement";
+		UPDATE Ticket SET ID_TECHNICIEN = NULL, ETAT_TICKET = "Ouvert" WHERE ID_TECHNICIEN = parID_USER AND ETAT_TICKET = "En cours de traitement";
 
 	    	-- On active le rôle utilisateur
 	    	SET @activeRole = CONCAT('SET DEFAULT ROLE "role_utilisateur" FOR ', QUOTE(parID_USER),'@',QUOTE("localhost"));
