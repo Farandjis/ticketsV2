@@ -827,7 +827,7 @@ Acteur principal : Utilisateur
 Précondition :   
     - L’utilisateur doit être connecté
     - Le tableau des demandes ne doit pas être vide
-    - Le ticket doit nous appartenir (nous devions être à l’origine de ce         ticket) sauf pour l’administrateur web et le technicien
+    - Le ticket doit nous appartenir (nous devions être à l’origine de ce ticket) sauf pour l’administrateur web et le technicien
 
 Déclencheur :  
     - Le bouton “Modifier le ticket” est sélectionné
@@ -837,12 +837,12 @@ Garantie en cas de succès :
 
 Scénario nominal :  
     - L’utilisateur clique sur le ticket qu’il veut modifier 
-    - L’utilisateur appuie sur le bouton “Modifier le ticket” (il est             visible que si on possède la permission de modifier le ticket)
+    - L’utilisateur appuie sur le bouton “Modifier le ticket” (il est visible que si on possède la permission de modifier le ticket)
     - L’utilisateur modifie le titre du problème 
     - L’utilisateur change le niveau d’urgence estimé du problème
     - L’utilisateur modifie le niveau d’urgence (administrateur web)
     - L’utilisateur change le technicien affecté (administrateur web)
-    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son          problème
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son problème
     - L’utilisateur transforme l’explication détaillée du problème survenu
     - L’utilisateur appuie sur le bouton “Modifier le ticket”
     - L’utilisateur est renvoyé vers la page du tableau de bord
@@ -851,7 +851,7 @@ Scénario 2 :
     - L’utilisateur clique sur le ticket qu’il veut modifier 
     - L’utilisateur modifie le titre du problème 
     - L’utilisateur change le niveau d’urgence estimé du problème
-    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son         problème
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son problème
     - L’utilisateur appuie sur le bouton “Modifier le ticket”
     - L’utilisateur est renvoyé vers la page du tableau de bord
 
@@ -865,7 +865,7 @@ Scénario 3 :
 
 Scénario 4 :  
     - L’utilisateur clique sur le ticket qu’il veut modifier 
-    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son         problème
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son problème
     - L’utilisateur appuie sur le bouton “Modifier le ticket”
     - L’utilisateur est renvoyé vers la page du tableau de bord
 
