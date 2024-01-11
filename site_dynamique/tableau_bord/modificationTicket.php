@@ -63,7 +63,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/motcle.js"></script>
+    <script src="../ressources/script/menuCheckbox.js"></script>
 </head>
 <body>
 <header>
@@ -80,6 +80,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
             echo '<p>';
             if ($_POST['id'] == 1) { echo "ERREUR : Des données du formulaire sont manquantes"; }
             else if ($_POST['id'] == 2) { echo "ERREUR : Des données essentielles du formulaire sont manquantes ou incohérentes"; }
+            else if ($_POST['id'] == 4) { echo "ERREUR : Le niveau d'urgence est pas complété "; }
             else if ($_POST['id'] == 99) { echo "ERREUR : Impossible de fermer le ticket, vous n'avez pas les droits ou il est déjà fermé."; }
             else { echo "ERREUR : Une erreur est survenue"; }
             echo '</p>';
@@ -127,7 +128,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     <br><br>
 
                     <label for='explication2'>Description du problème</label><br>
-                    <textarea id="explication2" name="explication2" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer des mots-clés à votre ticket si besoin."><?php
+                    <textarea id="explication2" name="explication2" minlength="5" maxlength="250" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer au moins un mot-clé à votre ticket."><?php
                         echo "$info_ticket[7]";
                         ?></textarea><br>
                 </div>
@@ -151,7 +152,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							";
                     }
                     else{
-                        echo '<input type="hidden" name="nivUrg" value="<?php echo $info_ticket[8]; ?>">';
+                        echo '<input type="hidden" id="nivUrg" name="nivUrg" value=' . $info_ticket[8] .'>';
                         echo "<p id='champLocked'>$info_ticket[8]</p>";
                     }
                     ?>
@@ -209,9 +210,9 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     }
                     ?>
                     <br>
-                    <div class="droite"
+                    <div>
                     <span>Mots-clés</span><br>
-                    <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
+                    <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
                         <?php
 
                         $lesMotcleTicketsCoches = array();
@@ -226,7 +227,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés à l'origine";}
 
 
-                        echo "<span class='entete_menu_checkbox' onclick='toggleDropdown()'>$texteBouton</span>";
+                        echo "<span class='entete_menu_checkbox' onclick=toggleDropdown(document.getElementById('menu_deroulant_motcle'))>$texteBouton</span>";
                         ?>
                         <div class="option_checkbox">
                             <?php
