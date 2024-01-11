@@ -21,6 +21,7 @@ Nous définirons également ce qu'est une fonction de hachage cryptographique, l
   - ### Key Scheduling Algorithm (KSA)
   - ### Génération suite chiffrante - Pseudo Random Generator (PRGA)
   - ### Module de chiffrement
+  - ### Module de déchiffrement
 - ## Fonction de hachage cryptographique
   - ### Présentation
     - ##### Définition
@@ -71,6 +72,28 @@ Nous définirons également ce qu'est une fonction de hachage cryptographique, l
   On obtient alors le message chiffré.
   - ### Module de déchiffrement
   La méthode de déchiffrement est identique à celle de chiffrement. On pense juste à convertir l'entrée et la sortie du message en binaire.
+
+  - ### Test du RC4
+
+  Le chiffrement RC4 a été testé sur un fichier de test appelé test_rc4.php.
+  Ce document comparait alors des messages chiffrés obtenus par notre module avec ceux donnés en exemple sur le sujet.
+
+  Extrait du document :
+  ```
+    $clef = array("Key", "Wiki", "Secret");
+    $suiteChiffrante = array("EB9F7781B734CA72A719", "6044DB6D41B7", "04D46B053CA87B59");
+    $texte = array("Plaintext", "pedia", "Attack at down");
+    $texteChiffre = array("BBF316E8D940AF0AD3", "1021BF0420", "45A01F645FC35B383552544B9BF5");
+  ...
+  
+    echo "<br><br><h4>Test B1</h4>";
+    $res = rc4_chiffrement($clef[0], $texte[0]) == $texteChiffre[0];
+    echo "<p>Chiffrement de <b>$texte[0]</b> avec la clef <b>$clef[0]</b> : <b>" . rc4_chiffrement($clef[0], $texte[0]) . "</b> - <b>" . $texteChiffre[0] . "</b></p>";
+    if ($res){ echo "<p>Succès !</p>"; } else { echo "<p> Échec !</p>"; }
+  
+  ...
+  ```
+  
 - ## Fonction de hachage cryptographique
   - ### Présentation
     - ##### Définition
@@ -118,6 +141,18 @@ Nous définirons également ce qu'est une fonction de hachage cryptographique, l
 
   Les méthodes de hachage comme la fonction RC4 assurent la confidentialité d'une donnée, en la chiffrant à partir d'une clé. Le message ne peut alors être déchiffré qu'avec la clé de chiffrement.
   Ainsi, les fonctions de hachages sont une composantes essdenciel du domaine de la cryptographie.
+
+  - ### La cryptographie dans notre SAE
+  <br>
+  Dans notre cas, les mots de passes stockées dans la base de données sont gérés par MariaDB.<br>
+  Le Système de Gestion de Bases de données (SGBD) s'occupe lui même du chiffrement et du déchiffrement via son protocole de hachage "caching_sha2_password" utilisant le mécanisme SHA-256. On peut l'utiliser via l'appel à la fonction MariaDB password().<br>
+  <br>
+  Nous utiliserons le RC4 pour chiffrer le mot de passe stocké dans le cookie session de l'utilisateur. Ce fichier permet la reconnexion automatique de l'utilisateur à la plateforme lors des changements de pages.<br>
+  Cependant, si côté utilisateur le fichier est supprimé à la fin de la navigation de l'utilisateur sur le site, côté serveur, il existe toujours. Ainsi, un pirate peut récupérer le fichier cookie et se pirater le compte de la plateforme.<br>
+  Notre clé sera donc un jeton de connexion. Stocké sur la base de donnée, ce jeton sera issu du calcul entre l'adresse IP de l'utilisateur, l'horodatage de connexion et un nombre aléatoire, après leur conversion de string en hexadecimal. La clé devant être un string, il y aura une dernière convertion avec le résultat du calcul.<br>
+  Ainsi, cette clé sera unique, et propre à l'utilisateur. Un pirate ne pourra pas utiliser le cookie pour se connecter sur une autre machine ou après le délai permis par le site. On peut supposer qu'au bout de 1h après la dernière modification de l'horodatage du jeton, celui-ci ne soit plus du tout utilisable. <br>
+  De notre côté, on aura juste à faire le calcul inverse puis déchiffrer, pour pouvoir reconnecter au site l'utilisateur.<br>
+    
 - ## Annexe
   - ### Code de chiffrement/déchiffrement RC4
 
