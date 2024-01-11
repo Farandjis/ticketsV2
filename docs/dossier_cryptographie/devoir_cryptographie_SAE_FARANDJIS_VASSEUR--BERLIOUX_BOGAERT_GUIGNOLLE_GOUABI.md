@@ -60,6 +60,7 @@ Le terme fonction de hachage vient de l'anglais "hash function". Il s'agit d'une
 
 
     - ##### Propriétés
+    
 On peut se référer au site Wikipedia pour trouver les propriétés suivantes :
 
     - Uniformité : La fonction de hachage doit répartir uniformément les entrées dans sa plage de sortie afin de limiter les collisions.
