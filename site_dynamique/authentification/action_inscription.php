@@ -3,6 +3,9 @@
 require '../ressources/fonctions/PHPfunctions.php';
 global $host, $database, $USER_FICTIF_MDP; // Viennent de connexion_db.php (importé grâce à PHPfunctions.php)
 
+if (! isset($_SESSION["login"], $_SESSION["mdp"], $_SESSION["verifMdp"], $_SESSION["nom"], $_SESSION["prenom"], $_SESSION["email"])) {
+    session_destroy();
+}
 session_start();
 
 
@@ -19,6 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['captcha'])) {
             return;
         }
     } else {
+        $_SESSION['login'] = $_POST['login'];
+        $_SESSION['mdp'] = $_POST['mdp'];
+        $_SESSION['verifMdp'] = $_POST['verifMdp'];
+        $_SESSION['nom'] = $_POST['nom'];
+        $_SESSION['prenom'] = $_POST['prenom'];
+        $_SESSION['email'] = $_POST['email'];
         header('Location: inscription.php?id=17'); // ERREUR : La case CAPTCHA doit être remplie.
         return;
     }

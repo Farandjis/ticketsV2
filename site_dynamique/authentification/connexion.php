@@ -1,3 +1,8 @@
+<?php
+require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
+
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,7 +10,7 @@
     <title>Connexion</title>
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../ressources/logo_sans_texte.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
 
     <script src="../ressources/script/afficheMDP.js"></script>
 </head>
@@ -40,23 +45,21 @@
                 ?>
 
 
-
-
-
                 <label for='login'>Login</label><br>
                 <input id='login' type='text' name ='login'>
                 <br><br>
-                <label for='mdp'>Mdp</label><br>
+                
                 <div class="champs-password">
+		    <label for='mdp'>Mot de passe</label><br>
                     <input id='mdp' type='password' name ='mdp'><br>
                     <div class="password-show" onclick="showPassword(this)">
-                        <img src="../ressources/images/visible.png">
+                        <img src="../ressources/images/visible.png" alt="mot de passe est visible">
                     </div>
                     <div class="password-hide" onclick="hidePassword(this)">
-                        <img src="../ressources/images/hidden.png">
+                        <img src="../ressources/images/hidden.png" alt="Le mot de pass est caché">
                     </div>
                 </div>
-                
+
                 <a href="../erreurs/404.html" class="oublie">Mot de passe oublié ?</a>
                 <input type='submit' name='Connexion' value='Connexion'><br>
                 <a href="inscription.php" class="oublie">Pas de compte ?</a>
