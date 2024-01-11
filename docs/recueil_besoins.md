@@ -1294,6 +1294,14 @@ Echec 1 :
     - L'administrateur web est renvoyé vers la page administration
     - L'administrateur web s'aperçoit que rien n'a été fait
 
+Echec 2 :
+    - L'administrateur web tape un mot-clé dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web reçoit une erreur car le mot-clé est déjà présent dans la liste des libellés
+
 ```
 - #### <a name="a1cu21"> Nom : Supprimer un libellé 
 ```
