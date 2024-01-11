@@ -17,7 +17,7 @@ BEGIN
     -- Mettre à jour l'attribut ETAT_TICKET à "En cours de traitement" quand l'ID_TECHNICIEN change si:
     --  - le ticket est Ouvert
     --  - le ticket est En attente MAIS qu'un niveau d'urgence est indiqué dans l'update.
-    IF (NEW.ID_TECHNICIEN IS NOT NULL AND ((IFNULL(NEW.ID_TECHNICIEN, 0) <> IFNULL(OLD.ID_TECHNICIEN, 0)) AND (OLD.ETAT_TICKET = 'Ouvert' OR (OLD.ETAT_TICKET = 'En attente' AND NEW.NIV_URGENCE_DEFINITIF_TICKET != NULL)))) THEN
+    IF (NEW.ID_TECHNICIEN IS NOT NULL AND (NEW.ID_TECHNICIEN IS NOT NULL AND ((IFNULL(NEW.ID_TECHNICIEN, 0) <> IFNULL(OLD.ID_TECHNICIEN, 0)) AND (OLD.ETAT_TICKET = 'Ouvert' OR (OLD.ETAT_TICKET = 'En attente' AND NEW.NIV_URGENCE_DEFINITIF_TICKET != NULL))))) THEN
         SET NEW.ETAT_TICKET = 'En cours de traitement';
         SET NEW.HORODATAGE_DEBUT_TRAITEMENT_TICKET = CURRENT_TIMESTAMP();
     END IF;
