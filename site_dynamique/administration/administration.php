@@ -27,13 +27,13 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
 	if (recupererRoleDe($connection) == 'Administrateur Site'){
 	  echo '
-<div class="conteneur_administration">
+<div class="conteneur_administration_general conteneur_administration">
     <div class="conteneur_ajout_administration">
         <form action="action_ajouttechnicien.php" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-          <label for="ajout_technicien">Ajout de Technicien :</label><br><br>
+          <label for="ajout_technicien">Gestion de Technicien :</label><br>
           <div class="conteneur_ajout_technicien">
-          <div class="menu_checkbox" id="menu_deroulant_checkbox">
-            <span class="entete_menu_checkbox modif_entete_checkbox" onclick="toggleDropdown()">--Liste des Utilisateurs--</span>
+          <div class="menu_checkbox" id="menu_deroulant_checkbox" tabindex="0" onkeydown="toggleDropdown(this)">
+            <span class="entete_menu_checkbox modif_entete_checkbox" onclick= toggleDropdown(document.getElementById("menu_deroulant_checkbox"))>--Liste des Utilisateurs--</span>
             <div class="option_checkbox" id="ajout_technicien">';
 				
 				menuDeroulantTousLesUtilisateurs($connection);
@@ -41,10 +41,37 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			echo '
              </div>
           </div>
-          <input type="submit" name="submit_ajout_technicien" value="Ajouter">
+          <input type="submit" name="submit_ajout_technicien" value="Modifier">
           </div>
         </form>
 		</div>';
+		    echo '<div class="conteneur_ajout_administration">
+                          <form action="action_ajouttitre.php" method="post" name="Ajout Titre" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+                              <label for="ajout_titre">Ajout de Titre :</label><br><br>
+                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre">
+                              <input type="submit" name="ajouter_titre" value="Ajouter">
+                          </form>
+
+                          <form action="action_supptitre.php" method="post" name="Suppression Titre" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
+                              <label>Suppression de Titre :</label><br>
+
+                              <div class="conteneur_administration">
+                                  <div class="menu_checkbox" id="menu_deroulant_titre" tabindex="0" onkeydown="toggleDropdown(this)" >
+                                      <span class="entete_menu_checkbox" onclick=toggleDropdown(document.getElementById("menu_deroulant_titre"))>Sélectionnez un/des titre(s)</span>
+                                      <div class="option_checkbox">';
+									  menuDeroulant(mysqli_query($connection, "SELECT TITRE_TICKET FROM TitreTicket"),"checked");
+
+									echo '
+                                      </div>
+
+                                  </div>
+
+                                  <input type="submit" name="suppression_titre" value="Supprimer">
+                              </div>
+                          </form>
+
+                      </div>';
+
 			echo ' 
 		    <div class="conteneur_ajout_administration">
       <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
@@ -52,6 +79,24 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
         <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé">
         <input type="submit" name="submit_ajout_motcle" value="Ajouter">
       </form>
+      <form action="action_suppmotcle.php" method="post" name="Suppression Motcle" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
+                  <label>Suppression de Mots-clés :</label><br>
+
+                  <div class="conteneur_administration">
+                      <div class="menu_checkbox" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown(this)" >
+                          <span class="entete_menu_checkbox" onclick=toggleDropdown(document.getElementById("menu_deroulant_libelle"))>Sélectionnez un/des mot-clé(s)</span>
+                          <div class="option_checkbox">';
+
+						  menuDeroulant(mysqli_query($connection, "SELECT NOM_MOTCLE FROM MotcleTicket"),"checked");
+
+						echo '
+                          </div>
+
+                      </div>
+
+                      <input type="submit" name="suppression_motcle" value="Supprimer">
+                  </div>
+              </form>
     </div>
   </div>';
 	}
@@ -69,16 +114,16 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				<tr>
 				  <th>Date</th>
 				  <th>Date Résolution</th>
-				  <th>Objet</th>
+				  <th>Titre</th>
 				  <th>Niv.Urgence</th>
 				  <th>Description</th>
 				  <th>ID Utilisateur</th>
-				  <th>Technicien</th>
+				  <th>ID Technicien</th>
 				</tr>
 				</thead>
 				<tbody>
 				';
-				$historique_res = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
+				$historique_res = $connection->query("SELECT DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'),DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i'),TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
 				tableGenerate($historique_res);
 				echo '
 				</tbody>
@@ -160,10 +205,6 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
       </div>
 
-      <form action="modificationTicket.html" method="post">
-
-        <input type="submit" name="modif" value="Modifier le ticket"><br>
-      </form>
 
       <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
     </div>
