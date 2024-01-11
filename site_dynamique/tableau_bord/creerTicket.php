@@ -14,7 +14,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/motcle.js"></script>
+    <script src="../ressources/script/menuCheckbox.js"></script>
 </head>
 <body>
 <header>
@@ -33,6 +33,8 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                 if ($_GET['id'] == 1) { echo "ERREUR : Des données du formulaire sont manquantes"; }
                 else if ($_GET['id'] == 2) { echo "ERREUR : Des données essentielles du formulaire sont manquantes ou incohérentes"; }
                 else if ($_GET['id'] == 3) { echo "ERREUR : Le titre du problème n'existe pas "; }
+                else if ($_GET['id'] == 4) { echo "ERREUR : Le niveau d'urgence est pas complété "; }
+                else if ($_GET['id'] == 5) { echo "ERREUR : Aucun mot clé n'est sélectionné "; }
                 else { echo "ERREUR : Une erreur est survenue"; }
                 echo '</p>';
                 echo '</div>';
@@ -43,51 +45,67 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                 <select name="titre" id="titre" class="creer_select" required>
                     <?php
                     echo "<option value=''>--Choisir une option--</option>";
+
                     $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
-                    menuDeroulant($resSQL, "selected");
+                    while ($row = mysqli_fetch_assoc($resSQL)) {
+                        $titre = $row['TITRE_TICKET'];
+                        $selected = (isset($_SESSION['titre']) && $_SESSION['titre'] == $titre) ? 'selected' : '';
+                        echo "<option value='$titre' $selected>$titre</option>";
+                    }
                     ?>
                 </select>
             </div>
 
-            <br><br>
+            <br>
             <div class="div_separ">
                 <div class="gauche">
-                    <label for='nivUrg'>Niveau d'urgence</label><br>
+                    <label for='nivUrg'>Niveau d'urgence estimé</label><br>
                     <div class="custom-select">
-                        <select name="nivUrg" id="nivUrg" class="creer_select" required>
-                            <option value="">--Choisir une option--</option>
-                            <?php
-                            $resSQL = mysqli_query($connexionUtilisateur, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
-                            menuDeroulant($resSQL, "selected");
-                            ?>
+                            <select name="nivUrg" id="nivUrg" class="creer_select" required>
+                                <?php
+                                echo "<option value=''>--Choisir une option--</option>";
+
+                                $resSQL = mysqli_query($connexionUtilisateur, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
+
+                                while ($row = mysqli_fetch_assoc($resSQL)) {
+                                    $nivUrg = $row['VALEUR_URGENCE_TICKET'];
+                                    $selected = (isset($_SESSION['nivUrg']) && $_SESSION['nivUrg'] == $nivUrg) ? 'selected' : '';
+                                    echo "<option value='$nivUrg' $selected>$nivUrg</option>";
+                                }
+                                ?>
                         </select>
                     </div>
                 </div>
-             <div class="droite"
-                <span>Mots-clés</span><br>
-                <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown()">
-                    <?php
-                    if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Sélectionner des mots-clés --"; }
-                    elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
-                    else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
+             <div class="droite">
+                 <span>Mots-clés</span><br>
+                 <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
+                     <?php
+                     if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Sélectionner des mots-clés --"; }
+                     elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
+                     else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
 
-                    echo "<span class='entete_menu_checkbox' onclick='toggleDropdown()'>$texteBouton</span>";
-                    ?>
-                    <div class="option_checkbox">
-                        <?php
-                        $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
-                        menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
-                        ?>
+                     echo "<span class='entete_menu_checkbox' onclick=toggleDropdown(document.getElementById('menu_deroulant_motcle'))>$texteBouton</span>";
+                     ?>
+                     <div class="option_checkbox">
+                         <?php
+                         $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+                         menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
+                         ?>
 
-                    </div>
+                     </div>
 
-                </div>
-            </div>
+                 </div>
+
+
+             </div>
             </div>
 
             <br>
             <label for='explication'>Description du problème</label><br>
-            <textarea id="explication" name="explication" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer des mots-clés à votre ticket si besoin."></textarea><br>
+            <?php
+            $explicationValue = $_SESSION['explication'] ?? '';
+            echo "<textarea id='explication' name='explication' minlength='5' maxlength='250' placeholder=\"Expliquez ici votre problème. N'oubliez pas d'associer au moins un mot-clé à votre ticket.\">$explicationValue</textarea><br>";
+            ?>
 
             <input type='submit' name='cree' value='Créer'><br>
         </form>
