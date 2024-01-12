@@ -1,6 +1,24 @@
 -- Note du 23/12/23 à 10h53 : les endroits où le nom d'une vue doit être modifier dans le code est marqué part // ABCDEF
 -- SUPPR si des attributs ont été supprimés
 
+-- ==================
+
+-- LISTE DES TECHNICIENS DE TIX
+CREATE OR REPLACE VIEW vue_technicien AS
+SELECT ID_USER,
+    CONCAT(UPPER(SUBSTRING(PRENOM_USER, 1, 1)), LOWER(SUBSTRING(PRENOM_USER, 2))) as PRENOM_USER,
+    UCASE(NOM_USER) AS `NOM_USER`,
+    EMAIL_USER
+FROM DB_TIX.Utilisateur
+JOIN mysql.user ON mysql.user.User = ID_USER
+WHERE mysql.user.default_role = "role_technicien";
+
+
+
+-- ================================
+
+
+
 CREATE OR REPLACE VIEW vue_Ticket_visiteur AS
 SELECT ID_TICKET, TITRE_TICKET, DESCRIPTION_TICKET, NIV_URGENCE_DEFINITIF_TICKET, ETAT_TICKET, HORODATAGE_CREATION_TICKET
 FROM Ticket
@@ -52,16 +70,6 @@ LEFT OUTER JOIN vue_technicien AS TECH ON T.ID_TECHNICIEN = TECH.ID_USER
 LEFT OUTER JOIN Utilisateur AS MODIFIEUR ON T.ID_USER_DERNIERE_MODIF_TICKET = MODIFIEUR.ID_USER
 WHERE T.ID_USER = SUBSTRING_INDEX(USER(), '@', 1)
 ORDER BY ID_TICKET DESC;
-
-
--- ==================
-
--- LISTE DES TECHNICIENS DE TIX
-CREATE OR REPLACE VIEW vue_technicien AS
-SELECT ID_USER, PRENOM_USER, NOM_USER, EMAIL_USER
-FROM DB_TIX.Utilisateur
-JOIN mysql.user ON mysql.user.User = ID_USER
-WHERE mysql.user.default_role = "role_technicien";
 
 -- LISTE DE TOUS LES UTILISATEURS DE TIX POUR L'ADMINISTRATEUR WEB
 CREATE OR REPLACE VIEW affiche_utilisateurs_pour_adm_web AS
