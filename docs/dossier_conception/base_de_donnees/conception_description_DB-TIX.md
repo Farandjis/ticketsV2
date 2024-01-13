@@ -135,7 +135,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **ID_USER** [INT 11] : foreign key (Utilisateur.ID_USER), NOT NULL, DEFAULT (SUBSTRING_INDEX(USER(),'@',1))
       - Par défaut, l'utilisateur exécutant la requête est le créateur du ticket ex : utilisateur "3" si c'est 3@localhost (on récupère que le nom avant l'arobase). 
     - **TITRE_TICKET** [VARCHAR 60] foreign key (TitreTicket.TITRE_TICKET) NOT NULL
-    - **DESCRIPTION_TICKET** [VARCHAR 250] NOT NULL
+    - **DESCRIPTION_TICKET** [VARCHAR 1500] NOT NULL
     - **ID_TECHNICIEN** [INT] : foreign key (Utilisateur.ID_USER), default (NULL)
     - **NIV_URGENCE_ESTIMER_TICKET** [VARCHAR 15] : foreign key (UrgenceTicket.VALEUR_URGENCE_TICKET), default (Non complété !), NOT NULL
     - **NIV_URGENCE_DEFINITIF_TICKET** [VARCHAR 15] : foreign key (UrgenceTicket.VALEUR_URGENCE_TICKET), default (Non complété !)
