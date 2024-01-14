@@ -2,10 +2,11 @@
 
 // Info BDD
 
+require (dirname(__FILE__) . "/CRYPTOfunctions.php");
 require (dirname(__FILE__) . "/../info_db/connexion_db.php");
 require (dirname(__FILE__) . "/../info_db/user_fictif.php");
 
-$empSite = "/sitefteam";
+$empSite = "";
 
 function connectUser($loginMariaDB, $loginSite, $mdpMariaDB){
     /**
@@ -41,17 +42,45 @@ function connectUser($loginMariaDB, $loginSite, $mdpMariaDB){
             // On met à jour les colonnes liées à la dernière connexion et l'IP du serveur de l'utilisateur
           
             $arguments = array($dateConnexion, $ipUtilisateur, $loginMariaDB);
-            executeSQL("UPDATE UserFictif_updateDB1 SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
+            executeSQL("UPDATE UserFictif_maj_derniere_co SET HORODATAGE_DERNIERE_CONNECTION_USER = ?, IP_DERNIERE_CONNECTION_USER = ? WHERE ID_USER = ?",$arguments,$connectionUserFictifConnexion); // Insère des infos sur la connexion de l'utilisateur
 
             // On démarre la session
             session_start();
+
             $_SESSION['login'] = $loginSite;
             $_SESSION['mdp'] = $mdpMariaDB;
+            updateJeton();
 
             return true;
         }
     }
     return false;
+}
+
+function updateJeton(){
+    global $host, $USER_FICTIF_MDP;
+    $conexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], 'DB_JETONS_TIX');
+    $ip = getIp();
+    $login = $_SESSION['login'];
+    $random = rand(1,1000000);
+    $conexion->query("DELETE FROM `stockage_jeton` WHERE jeton_login_user = '$login'");
+    $conexion->query("INSERT INTO `stockage_jeton` (`JETON_LOGIN_USER`, `JETON_IP_USER`, `JETON_VALEUR`) VALUES('$login', '$ip', '$random')");
+    $date = mysqli_fetch_array($conexion->query("SELECT jeton_horodatage_user FROM `stockage_jeton` WHERE jeton_login_user = '$login'"))['jeton_horodatage_user'];
+    $_SESSION['jeton'] = jetonGenerate($_SESSION['mdp'],$random,$date);
+}
+
+function jetonGenerate($motDePasse,$random,$date){
+    $cle = $date.strval($random).getIp();
+    $jeton = rc4_chiffrement($cle,$motDePasse);
+    echo $motDePasse;
+    return $jeton;
+}
+
+function estDansLaLimite($heureLimite) {
+    $heureLimiteObj = DateTime::createFromFormat('Y-m-d H:i:s', $heureLimite);
+    $heureActuelle = new DateTime();
+    $heureLimiteObj->add(new DateInterval('PT30M'));
+    return $heureActuelle <= $heureLimiteObj;
 }
 
 function executeSQL($reqSQL,$params,$connection){
@@ -180,23 +209,21 @@ function valideEMAIL($email){
 
 function operationCAPTCHA()
 {
-    /**
-     * Affiche un champs de formulaire servant de captcha.
-     * Ce captcha est un calcul dont le résultat est enregistré sur ...
-     */
-    $chiffre1 = rand(-20, 20);
-    $chiffre2 = rand(-20, 20);
-    $operateur = array("+", "*")[rand(0, 1)];
-    if ($operateur == "+") {
-        $res = $chiffre1 + $chiffre2;
-	}
-	else{
-		$res = $chiffre1 * $chiffre2;
-	}
-	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
-	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
+    $chiffre1 = rand(0, 20);
+    $chiffre2 = rand(0, 20);
+    $operateur = "+";
+
+    $_SESSION['chiffre1'] = $chiffre1;
+    $_SESSION['chiffre2'] = $chiffre2;
+    $_SESSION['operateur'] = $operateur;
+
+    $calcul = strval($_SESSION['chiffre1']) . $_SESSION['operateur'] . strval($_SESSION['chiffre2']);
+    echo "<input id='captcha' type='text' name ='captcha' placeholder=$calcul>";
 }
 
+function verifyCAPTCHA($reponseUtilisateur, $chiffre1, $chiffre2){
+    return ($reponseUtilisateur == ($chiffre1 + $chiffre2));
+}
 function dechiffre($mdpchiffre){
     /**
      * Cette fonction ne déchiffre rien pour le moment.
@@ -243,10 +270,10 @@ function pageAccess($listeDesRolesAutoriser){
     session_start();
 
     try {
-        if (isset($_SESSION['login'], $_SESSION['mdp'])) {
+        if (isset($_SESSION['login'], $_SESSION['jeton'])) {
             // Vérifie que le login et le mot de passe est bien définit
 
-            if (!empty($_SESSION['login']) && !empty($_SESSION['mdp'])) {
+            if (!empty($_SESSION['login']) && !empty($_SESSION['jeton'])) {
                 // Vérifie que ce n'est pas vide
 
 
@@ -258,39 +285,44 @@ function pageAccess($listeDesRolesAutoriser){
                     return false;
                 }
 
+                global $host, $USER_FICTIF_MDP;
+                $conexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], 'DB_JETONS_TIX');
+
 
                 // RECUPERATION DES DONNEES DU COOKIE SESSION
                 $loginSite = htmlspecialchars(htmlspecialchars_decode($_SESSION['login']));
-                $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode(dechiffre($_SESSION['mdp']))); // On vire le htmlspecialchars d'avant pour le refaire (mesure de protection)
+                $donnees = mysqli_fetch_array($conexion->query("SELECT * FROM `stockage_jeton` WHERE jeton_login_user = '$loginSite'"));
+                $mdpMariaDB = rc4_dechiffrement($donnees['JETON_HORODATAGE_USER'].strval($donnees['JETON_VALEUR']).$donnees['JETON_IP_USER'],$_SESSION['jeton']);
+
+                if (getIp()==$donnees['JETON_IP_USER'] && estDansLaLimite($donnees['JETON_HORODATAGE_USER'])){
+                    // RECUPERATION DE L'ID_USER DE L'UTILISATEUR PAR RAPPORT A SON LOGIN
+                    $connexionUFConnect = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
+                    $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?", array($loginSite), $connexionUFConnect));
+                    mysqli_close($connexionUFConnect);
+
+                    if ($resSQL === null) {
+                        return false;
+                    } // Mauvais login (la requête SQL n'a rien renvoyé)
+                    else {
+                        $loginMariaDB = $resSQL[0];
+                    } // On récupère l'ID_USER qui est le login MariaDB.
 
 
-                // RECUPERATION DE L'ID_USER DE L'UTILISATEUR PAR RAPPORT A SON LOGIN
-                $connexionUFConnect = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
-                $resSQL = mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexionDB1 WHERE login_user = ?", array($loginSite), $connexionUFConnect));
-                mysqli_close($connexionUFConnect);
-
-                if ($resSQL === null) {
-                    return false;
-                } // Mauvais login (la requête SQL n'a rien renvoyé)
-                else {
-                    $loginMariaDB = $resSQL[0];
-                } // On récupère l'ID_USER qui est le login MariaDB.
+                    // TENTATIVE DE CONNEXION DE L'UTILISATEUR A LA BASE DE DONNEES
+                    $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
+                    if ($connexionUtilisateur) {
+                        // CONNEXION DE L'UTILISATEUR A LA PLATEFORME POSSIBLE
 
 
-                // TENTATIVE DE CONNEXION DE L'UTILISATEUR A LA BASE DE DONNEES
-                $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
-                if ($connexionUtilisateur) {
-                    // CONNEXION DE L'UTILISATEUR A LA PLATEFORME POSSIBLE
+                        // VERIFICATION SI L'UTILISATEUR A LE DROIT D'ACCEDER A LA PAGE
+                        $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
+                        if (in_array($roleUtilisateur, $listeDesRolesAutoriser)) {
 
+                            miseAJourJeton($loginSite, $mdpMariaDB);
+                            session_abort();
+                            return $connexionUtilisateur;
 
-                    // VERIFICATION SI L'UTILISATEUR A LE DROIT D'ACCEDER A LA PAGE
-                    $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
-                    if (in_array($roleUtilisateur, $listeDesRolesAutoriser)) {
-
-                        miseAJourJeton($loginSite, $mdpMariaDB);
-                        session_abort();
-                        return $connexionUtilisateur;
-
+                        }
                     }
                 }
             }
@@ -306,38 +338,38 @@ function pageAccess($listeDesRolesAutoriser){
     }
 }
 
-function libelleGenerate($id_ticket, $connexion) {
+function motcleGenerate($id_ticket, $connexion) {
     /**
-     * Génère la liste des libellés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
-     * Si un id de ticket est passé en paramètre, les libellés associés à ce ticket sont en état checked.
-     * @param $id_ticket = null/integer - Id du ticket dont on veut voir les libellés checkés.
+     * Génère la liste des mots-clés présents dans la base de données sous la forme d'une liste d'objets input checkbox HTML.
+     * Si un id de ticket est passé en paramètre, les mots-clés associés à ce ticket sont en état checked.
+     * @param $id_ticket = null/integer - Id du ticket dont on veut voir les mots-clés checkés.
      * @return void
      */
-    $unchecked_libelle = executeSQL("SELECT nom_libelle FROM Libelle WHERE nom_libelle NOT IN (SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?);", array($id_ticket), $connexion);
-    $checked_libelle = executeSQL("SELECT nom_libelle FROM vue_tdb_relation_ticket_libelle WHERE id_ticket = ?;", array($id_ticket), $connexion);
+    $unchecked_motcle = executeSQL("SELECT nom_motcle FROM MotcleTicket WHERE nom_motcle NOT IN (SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?);", array($id_ticket), $connexion);
+    $checked_motcle = executeSQL("SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?;", array($id_ticket), $connexion);
 
-    while ($row = mysqli_fetch_row($checked_libelle)) {
-        echo "<label><input type='checkbox' name='libelle_option[]' checked> $row[0]</label>";
+    while ($row = mysqli_fetch_row($checked_motcle)) {
+        echo "<label><input type='checkbox' name='motcle_option[]' checked> $row[0]</label>";
     }
 
-    while ($row = mysqli_fetch_row($unchecked_libelle)) {
-        echo "<label><input type='checkbox' name='libelle_option[]'> $row[0] </label>";
+    while ($row = mysqli_fetch_row($unchecked_motcle)) {
+        echo "<label><input type='checkbox' name='motcle_option[]'> $row[0] </label>";
     }
 }
 
 
 
-function libelleUpdate($id_ticket,$libelle_option, $connexion){
+function motcleUpdate($id_ticket,$motcle_option, $connexion){
 	/**
  	* Pour un ticket dont l'id est donnée :
-  	* Remplace ses libellés en effaçant ses anciens libéllés puis en lui associant ceux dans la liste en paramètre.
-   	* @param $id_ticket - Id du ticket dont on veut remplacer les libéllés.
-       	* @param $libelle_option - Liste des libéllés du ticket.
+  	* Remplace ses mots-clés en effaçant ses anciens mots-clés puis en lui associant ceux dans la liste en paramètre.
+   	* @param $id_ticket - Id du ticket dont on veut remplacer les mots-clés.
+       	* @param $motcle_option - Liste des mots-clés du ticket.
     	* @return void
     	*/
-	executeSQL("DELETE FROM vue_suppr_rtl_tdb WHERE id_ticket = ?;", array($id_ticket), $connexion);
-	for ($n=0;$n<count($libelle_option);$n++){
-		executeSQL("INSERT INTO RelationTicketsLibelles (ID_TICKET, NOM_LIBELLE) VALUES (?,?);",array($id_ticket,$libelle_option[$n]), array($id_ticket, $libelle_option[$n]));
+	executeSQL("DELETE FROM vue_suppr_RTM_tdb WHERE id_ticket = ?;", array($id_ticket), $connexion);
+	for ($n=0;$n<count($motcle_option);$n++){
+		executeSQL("INSERT INTO RelationTicketsMotscles (ID_TICKET, NOM_MOTCLE) VALUES (?,?);",array($id_ticket,$motcle_option[$n]), array($id_ticket, $motcle_option[$n]));
 	}
 }
 
@@ -356,7 +388,10 @@ function deconnexionSite(){
             // Supprime les variables de session 'login' et 'mdp'
             unset($_SESSION['login'], $_SESSION['mdp']);
         }
-
+        global $host, $USER_FICTIF_MDP;
+        $conexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], 'DB_JETONS_TIX');
+        $login = $_SESSION['login'];
+        $conexion->query("DELETE FROM `stockage_jeton` WHERE jeton_login_user = '$login'");
     // Détruit toutes les données de session existantes.
         session_destroy();
 }
@@ -393,7 +428,10 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                     if ($pageActuelle == "administration") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
                 }
                 elseif (recupererRoleDe($connexionUtilisateur) == "Administrateur Système"){
-                    if ($pageActuelle == "administration") { echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>'; } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
+                    if ($pageActuelle == "administration") {
+                     echo '<a href="administration.php" aria-current="page" id="page_actuelle">Administration</a>';
+                    } else { echo '<a href="' . $empSite . '/administration/administration.php" aria-current="page">Administration</a>'; }
+                    echo '<a href="https://bogaert-tom.shinyapps.io/my_app/">Statistique</a>';
                 }
 
                 echo '</div>';
@@ -402,50 +440,130 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 
             <div class="nav-authentification">
                 <a href="profil/profil.php" class="user-icon" aria-label="Page de connexion">
-                    <img src="ressources/images/user.svg" alt="icone utilisateur">
+                <img src="ressources/images/user.svg" alt="icone utilisateur">
                 </a>
-                <div class="authentification">
-                    <?php
+                <?php
                     if ($connexionUtilisateur != null) {
-                        // Si la personne est connecté...
-                        echo "<a href ='" . $empSite . "/authentification/action_deconnexion.php'> Déconnexion </a>";
+                        // Si la personne est connectée...
+                        $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
+
+                        if ($pageActuelle == "profil" && $roleUtilisateur != "Administrateur Site" && $roleUtilisateur != "Administrateur Système") {
+                            echo "<div class='deconnexion-desinscription'>";
+                            echo "<a href='" . $empSite . "/authentification/desinscription.php' id='desinscription'> Désinscription </a>";
+                        } else {
+                            echo "<div class='authentification'>";
+                        }
+
 
                         if ($pageActuelle != "profil") {
-                            echo "<a href ='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
+                            echo "<a href='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
                         }
-                    }
-                    else {
+
+                        echo "<a href='" . $empSite . "/authentification/action_deconnexion.php' id='boutonDeconnexion'> Déconnexion </a>";
+
+                    } else {
                         // Sinon, c'est un visiteur
-                        echo '<a href = "' . $empSite . '/authentification/connexion.php"> Connexion</a>';
-                        echo '<a href = "' . $empSite . '/authentification/inscription.php"> Inscription</a>';
+                        echo "<div class='authentification'>";
+                        echo '<a href="' . $empSite . '/authentification/inscription.php"> Inscription</a>';
+                        echo '<a href="' . $empSite . '/authentification/connexion.php"> Connexion</a>';
                     }
-                    ?>
+                ?>
                 </div>
+
+            </div>
+
+            <div class="hamburger-menu" tabindex="0" onclick="hamburger()">
+                <div class="slice"></div>
+                <div class="slice"></div>
+                <div class="slice"></div>
             </div>
         </nav>
-        <div class="hamburger-menu">
-            <div class="slice"></div>
-            <div class="slice"></div>
-            <div class="slice"></div>
-        </div>
     </header>
 
 <?php
 }
 
+/*
+function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACocher = array()){
 
-function menuDeroulantTousLesLibelles($connexionUtilisateur, $libellesACocher = array()){
+
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+    while($unMotcleTicket = mysqli_fetch_row($resSQL)){
+        if (in_array($unMotcleTicket[0], $motclesACocher)){ $cestCocher = "checked"; }
+        else { $cestCocher = ""; }
+        echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unMotcleTicket[0]) . "' $cestCocher> " . htmlspecialchars($unMotcleTicket[0]) . " </label>";
+    }
+}
+*/
+
+function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
+    $libellesACocher = array();
+    
+    $resultLibellesACocher = mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_technicien");
+
+    if ($resultLibellesACocher) {
+        while ($n = mysqli_fetch_row($resultLibellesACocher)) {
+            array_push($libellesACocher, $n[0]);
+        }
+    } else {
+        die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
+    }
+
+    $resultUtilisateurs = mysqli_query($connexionUtilisateur, "SELECT ID_USER, NOM_USER, PRENOM_USER FROM affiche_utilisateurs_pour_adm_web");
+    if ($resultUtilisateurs) {
+        while ($unLibelle = mysqli_fetch_row($resultUtilisateurs)) {
+            $cestCocher = (in_array($unLibelle[0], $libellesACocher)) ? "checked" : "";
+
+            echo "<label><input type='checkbox' name='tech_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[0]) . " " . htmlspecialchars($unLibelle[1]) . " " . htmlspecialchars($unLibelle[2]) . " </label>";
+        }
+    } else {
+        die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
+    }
+}
+
+/*
+function menuDeroulantTousLesTitres($connexionUtilisateur, $titreACocher = array()){
+
+
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
+    while($unTitre = mysqli_fetch_row($resSQL)[0]){
+        if (count($titreACocher) == 1 and $unTitre == $titreACocher[0]){ $cestCocher = "selected"; }
+        else { $cestCocher = ""; }
+        echo "<option value='$unTitre' $cestCocher>$unTitre</option>";
+    }
+}
+*/
+function menuDeroulant($resultatSQL, $attributListe = "", $elementsACocher = array()){
     /**
-     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les libellés disponible dans la BD.
-     *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     * @param array libellesACocher -> les libellés à cocher par défaut
+     *  Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant sélectionnable ou cochable).
+     *  Elle récupère le resultat de la requête SQL, génère la liste déroulante cochable (si $attribut == "checked") ou sélectionnable (si $attribut == "selected").
+     *  Elle cochera tous les éléments contenus dans la liste ou sélectionnera le premier élément de celle-ci.
+     *  Le contenu de la liste correspondra à la première valeur du SELECT.
+     *  @param mysqli $resultatSQL -> Le résultat de la requête SQL (mysqli_result d'une requête SELECT attention !)
+     *  @param string $attributListe -> L'attribut de la liste (selected, checked)
+     *  @param array $elementsACocher -> L'élement à sélectionner, les éléments à cochers (par défaut : aucun)
+     *
+     * Remarque : nous utilisons une liste pour titreACocher en prévision d'une fusion des 3 fonctions menuDeroulantTousLes
      */
 
-    $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_LIBELLE FROM `Libelle` ORDER BY NOM_LIBELLE ASC;");
-    while($unLibelle = mysqli_fetch_row($resSQL)){
-        if (in_array($unLibelle[0], $libellesACocher)){ $cestCocher = "checked"; }
-        else { $cestCocher = ""; }
-        echo "<label><input type='checkbox' name='libelle_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[0]) . " </label>";
+    // Si $attributListe == "selected" sans prendre compte de la casse
+    if (strcasecmp($attributListe, "selected") == 0) {
+
+        // Tant qu'il y a des éléments dans le résultat SQL (donc à mettre dans la liste
+        while ($unElement = mysqli_fetch_row($resultatSQL)) {
+
+            // On vérifie qu'il y a bien un seul élément et on le prend pour le sélectionner
+            if (count($elementsACocher) == 1 and $unElement[0] == $elementsACocher[0]) { $cestCocher = "selected"; }
+            else { $cestCocher = ""; } // Il n'y en a pas, ou ce n'est pas possible d'en sélectionner qu'un
+            echo "<option value='$unElement[0]' $cestCocher>$unElement[0]</option>"; // On ajoute l'élément à la liste
+        }
+    }
+    elseif (strcasecmp($attributListe, "checked") == 0) {
+        while ($unElement = mysqli_fetch_row($resultatSQL)) {
+            if (in_array($unElement[0], $elementsACocher)){ $cestCocher = "checked"; }
+            else { $cestCocher = ""; }
+            echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars_decode(htmlspecialchars($unElement[0])) . "' $cestCocher> " . htmlspecialchars_decode(htmlspecialchars($unElement[0])). " </label>";
+        }
     }
 }
 
@@ -454,3 +572,52 @@ function isSelected($value,$comp){
 		return "selected";
 	}
 }
+
+function appendToCSV($filename, $data) {
+    $file = fopen($filename, 'a');
+	flock($file, LOCK_EX);
+	fputcsv($file, $data);
+	flock($file, LOCK_UN);
+	fclose($file);
+}
+
+
+function csvToHtmlTable($filename) {
+	$file = fopen($filename, 'r');
+
+	$lines = [];
+	$isHeader = true;
+	while (($data = fgetcsv($file, 2048, ',')) !== false) {
+        if ($isHeader) {
+            $isHeader = false;
+            continue;
+        }
+        $lines[] = $data;
+    }
+
+    fclose($file);
+
+    // Inverser l'ordre des lignes
+    $lines = array_reverse($lines);
+
+  
+    foreach ($lines as $data) {
+        echo '<tr>';
+        foreach ($data as $cell) {
+            echo '<td>' . htmlspecialchars($cell) . '</td>';
+        }
+        echo '</tr>';
+    }
+}
+
+
+function getIp(){
+    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+		$ip = $_SERVER['HTTP_CLIENT_IP'];
+    }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }else{
+		$ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+  }

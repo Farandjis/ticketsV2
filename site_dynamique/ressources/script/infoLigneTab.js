@@ -70,7 +70,7 @@ function init(){
 
         // Rendre toutes les lignes focusables lors du chargement du document
         for (let i = 0; i < rows.length; i++) {
-            rows[i].setAttribute("tabindex", "1");
+            rows[i].setAttribute("tabindex", "0");
         }
 
 
@@ -79,12 +79,18 @@ function init(){
             (function (index) {
                 // Fonction pour gérer le clic ou la touche "Entrée"
                 function handleClickOrEnter(event) {
+                    /*
+                    Note de Matthieu :
+                    J'ai ajouté le `&& rows[index].className != "pasLigneHover"`.
+                    On ne prend pas en compte l'interraction si c'est la ligne informant l'utilisateur de l'absence de données.
+                     */
+
                     // Vérifier si la touche "Entrée" a été pressée ou si c'est un clic
-                    if (event.type === 'click') {
+                    if (event.type === 'click' && rows[index].className != "pasLigneHover") {
                         // Appelez la fonction showPopup avec la ligne actuelle
                         showPopup(rows[index], tableAct);
                     }
-                    if (event.type === 'keydown' && event.keyCode === 13){
+                    if (event.type === 'keydown' && event.keyCode === 13  && rows[index].className != "pasLigneHover"){
 
                         let popupAct = document.getElementById("informations_ticket_popup");
 
