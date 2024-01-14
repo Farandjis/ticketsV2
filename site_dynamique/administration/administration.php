@@ -2,27 +2,6 @@
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Administrateur Site', 'Administrateur Système'));
-	
-	
-function tableCSV($filename,$colonnes){
-	$fp = fopen($filename,"r",True);
-	$notHeader = False;
-	while($data = fgetcsv($fp,1024,";")){
-		if ($notHeader){
-			echo "<tr>";
-			$n = 0;
-			foreach ($data as $cell){
-				$n++;
-				if (in_array($n,$colonnes)){
-					echo "<td>$cell</td>";
-				}
-			}
-			echo "</tr>";
-		}
-		$notHeader = True;
-	}
-	fclose($fp);
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,6 +15,7 @@ function tableCSV($filename,$colonnes){
   <script src="../ressources/script/infoLigneTab.js"></script>
   <script src="../ressources/script/hamburger.js"></script>
   <script src="../ressources/script/confirmation.js"></script>
+  <script src="../ressources/script/menuCheckbox.js"></script>
 </head>
 <body>
 <?php affichageMenuDuHaut("administration", $connection);?>
@@ -44,39 +24,81 @@ function tableCSV($filename,$colonnes){
     Administration
   </h1>
    <?php
-	/*
+
 	if (recupererRoleDe($connection) == 'Administrateur Site'){
 	  echo '
-	  <div class="conteneur_administration">
-		<div class="conteneur_ajout_administration">
-			<form action="#" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-                <span class="entete_motcle modif_entete_motcle" onclick="toggleDropdown()">-- Liste des utilisateurs --</span>
-                <div class="option_technicien">';
+<div class="conteneur_administration_general conteneur_administration">
+    <div class="conteneur_ajout_administration">
+        <form action="action_ajouttechnicien.php" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+          <label for="ajout_technicien">Gestion de Technicien :</label><br>
+          <div class="conteneur_ajout_technicien">
+          <div class="menu_checkbox" id="menu_deroulant_checkbox" tabindex="0" onkeydown="toggleDropdown(this)">
+            <span class="entete_menu_checkbox modif_entete_checkbox" onclick= toggleDropdown(document.getElementById("menu_deroulant_checkbox"))>--Liste des Utilisateurs--</span>
+            <div class="option_checkbox" id="ajout_technicien">';
 				
-				menuDeroulantTousLesMotcleTickets($connection);
+				menuDeroulantTousLesUtilisateurs($connection);
 				
 			echo '
-            <option value="tec_1">Technicien 1</option>
-            <option value="tec_2">Technicien 2</option>
-          </select>
-
-          <input type="submit" name="ajout_technicien" value="Ajouter">
+             </div>
+          </div>
+          <input type="submit" name="submit_ajout_technicien" value="Modifier">
+          </div>
         </form>
-		</div>
 		</div>';
-	}
-	*/
+		    echo '<div class="conteneur_ajout_administration">
+                          <form action="action_ajouttitre.php" method="post" name="Ajout Titre" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+                              <label for="ajout_titre">Ajout de Titre :</label><br><br>
+                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre">
+                              <input type="submit" name="ajouter_titre" value="Ajouter">
+                          </form>
 
-	if (recupererRoleDe($connection) == 'Administrateur Site'){
-		echo ' 
-		<div class="conteneur_ajout_administration">
-		  <form action="action_ajoutmotcle.php" method="post" name="Ajout MotcleTicket" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-			<label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
-			<input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un Mot-clé">
-			<input type="submit" name="ajout" value="Ajouter">
-		  </form>
-		</div>
-	  </div>';
+                          <form action="action_supptitre.php" method="post" name="Suppression Titre" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
+                              <label>Suppression de Titre :</label><br>
+
+                              <div class="conteneur_administration">
+                                  <div class="menu_checkbox" id="menu_deroulant_titre" tabindex="0" onkeydown="toggleDropdown(this)" >
+                                      <span class="entete_menu_checkbox" onclick=toggleDropdown(document.getElementById("menu_deroulant_titre"))>Sélectionnez un/des titre(s)</span>
+                                      <div class="option_checkbox">';
+									  menuDeroulant(mysqli_query($connection, "SELECT TITRE_TICKET FROM TitreTicket"),"checked");
+
+									echo '
+                                      </div>
+
+                                  </div>
+
+                                  <input type="submit" name="suppression_titre" value="Supprimer">
+                              </div>
+                          </form>
+
+                      </div>';
+
+			echo ' 
+		    <div class="conteneur_ajout_administration">
+      <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+        <label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
+        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé">
+        <input type="submit" name="submit_ajout_motcle" value="Ajouter">
+      </form>
+      <form action="action_suppmotcle.php" method="post" name="Suppression Motcle" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
+                  <label>Suppression de Mots-clés :</label><br>
+
+                  <div class="conteneur_administration">
+                      <div class="menu_checkbox" id="menu_deroulant_libelle" tabindex="0" onkeydown="toggleDropdown(this)" >
+                          <span class="entete_menu_checkbox" onclick=toggleDropdown(document.getElementById("menu_deroulant_libelle"))>Sélectionnez un/des mot-clé(s)</span>
+                          <div class="option_checkbox">';
+
+						  menuDeroulant(mysqli_query($connection, "SELECT NOM_MOTCLE FROM MotcleTicket"),"checked");
+
+						echo '
+                          </div>
+
+                      </div>
+
+                      <input type="submit" name="suppression_motcle" value="Supprimer">
+                  </div>
+              </form>
+    </div>
+  </div>';
 	}
 
 
@@ -92,26 +114,23 @@ function tableCSV($filename,$colonnes){
 				<tr>
 				  <th>Date</th>
 				  <th>Date Résolution</th>
-				  <th>Objet</th>
+				  <th>Titre</th>
 				  <th>Niv.Urgence</th>
 				  <th>Description</th>
 				  <th>ID Utilisateur</th>
-				  <th>Technicien</th>
+				  <th>ID Technicien</th>
 				</tr>
 				</thead>
 				<tbody>
 				';
-				$historique_res = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
+				$historique_res = $connection->query("SELECT DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'),DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i'),TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
 				tableGenerate($historique_res);
 				echo '
 				</tbody>
 			  </table>
 			</div>
 		  </div>';
-	}
-
-	if (recupererRoleDe($connection) == 'Administrateur Système'){
-		echo ' 
+		  echo ' 
 		  <h1 class="titre_page">
 			Journal d\'activité
 		  </h1>
@@ -130,7 +149,7 @@ function tableCSV($filename,$colonnes){
 				  </tr>
 				  </thead>
 				  <tbody>';
-					tableCSV("logs/journauxActvCoInf.csv",array(1,2,3,4));
+					csvToHtmlTable("logs/journauxActvCoInf.csv");
 					echo '
 				  </tr>
 				  </tbody>
@@ -152,17 +171,16 @@ function tableCSV($filename,$colonnes){
 				  </thead>
 				  <tbody>';
 					
-					tableCSV("logs/journauxActvCreTck.csv",array(1,2,3,4));
+					csvToHtmlTable("logs/journauxActvCreTck.csv");
 					echo '
 				  </tbody>
 				</table>
 			  </div>
 			</div>
 		  </div>';
-	}
-?>
-  <form action='action_telechargement.php' method='post' class="telechargement">
-    <label for='journal'>Sélection</label><br>
+		  
+		    echo '<form action="action_telechargement.php" method="post" class="telechargement">
+    <label for="journal">Sélection</label><br>
 
     <div class="custom-select">
       <select name="journal" id="journal">
@@ -174,7 +192,7 @@ function tableCSV($filename,$colonnes){
       </select>
     </div>
 
-    <input type='submit' name='Telecharger' value='Télécharger'><br>
+    <input type="submit" name="Telecharger" value="Télécharger"><br>
 
   </form>
 
@@ -187,17 +205,14 @@ function tableCSV($filename,$colonnes){
 
       </div>
 
-      <form action='modificationTicket.html' method='post'>
-
-        <input type='submit' name='modif' value='Modifier le ticket'><br>
-      </form>
 
       <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
     </div>
 
 
-  </div>
-
+  </div>';
+	}
+?>
 
 </body>
 </html>

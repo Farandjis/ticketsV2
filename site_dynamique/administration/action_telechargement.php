@@ -3,13 +3,14 @@
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 $connection = pageAccess(array('Administrateur Site', 'Administrateur Système'));
 
+try{
 if (isset($_POST["journal"]) && !empty($_POST["journal"])){
 	if (recupererRoleDe($connection) == 'Administrateur Système'){
 		if ($_POST["journal"] == "connexion_infructueuse"){
-			header('Location: journauxActvCreTck.csv');
+			header('Location: logs/journauxActvCoInf.csv');
 		}
 		if ($_POST["journal"] == "ouverture_ticket"){
-			header('Location: journauxActvCoInf.csv');
+			header('Location: logs/journauxActvCreTck.csv');
 		}
 		if ($_POST["journal"] == "historique"){
 			$result = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
@@ -32,4 +33,10 @@ if (isset($_POST["journal"]) && !empty($_POST["journal"])){
 		}
 	}
 }
+}
+catch(Exception $e){
+	header('Location: administration.php?id=1');
+	return;
+}
+
 ?>
