@@ -10,7 +10,6 @@ INF2-A
 Ce document décrit en détail le processus d'installation du RPi4, de son serveur LAMP, de sa mise en réseau, du ssh et de sa sécurisation.<br>
 Les étapes décrites sont également appliquées au serveur de secours. Ce document aborde aussi la configuration du routeur.<br>
 <br>
-Rapport entièrement rédigé par Matthieu FARANDJIS.
 
 </div>
 
@@ -45,14 +44,19 @@ Rapport entièrement rédigé par Matthieu FARANDJIS.
   - [**d) Résolution du problème**](#p4d)
 
 - ### [V - Sécurisation](#p5)
-  - [**a) Changement des ports**](#p5a)
-  - [**b) Pare feu**](#p5b)
-    - [i) Pare feu du routeur](#p5bi)
-    - [ii) Pare feu du RPi 4](#p5c5bii)
-  - [**c) Emplacement des fichiers et alias**](#p5c)
-  - [**c) Les utilisateurs et leurs droits**](#p5d)
-    - [i) Liste des utilisateurs](#p5di)
-    - [ii) Droits des utilisateurs](#p5dii)
+  - [**a) Les utilisateurs, les groupes et leurs droits**](#p5a)
+      - [i) Liste des utilisateurs et des groupes](#p5ai)
+      - [ii) Droits des utilisateurs](#p5aii)
+  - [**b) Limitation des intrusions**](#p5b)
+    - [i) Présentation de Fail2Ban](#p5bi)
+    - [ii) Installation de Fail2Ban](#p5bii)
+  - [**c) Le pare-feu**](#p5c)
+      - [i) Présentation de UFW](#p5ci)
+      - [ii) Installation de UFW](#p5cii)
+  - [**d) PHPMyAdmin**](#p5d)
+      - [i) Limitation des connexions aux comptes](#p5di)
+      - [ii) Changement de l'alias](#p5dii)
+
 
 - ### [VI - Faire une sauvegarde du serveur](#p6)
   - [**a) Créer et restaurer une image**](#p6a)
@@ -555,8 +559,166 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
         <img src="img\IV_Hamachi\pare-feu.webp" title="Pare-feu de la Livebox 2 avec les différents ports utilisés" width="500"/><br>
         <i>Pare-feu personnalisable de la Livebox 2</i>
     </div>
+
+
+## <a name="p5"></a> V - Sécurisation
+Si avoir un beau projet correspondant aux attentes du client est notre objectif premier, la sécurisation du système informatique n'est pas à négliger.<br>
+Rien que depuis le moteur de recherche Google, nous pouvons accéder à des moteurs de recherches d'appareils connectés. Beaucoup de ces appareils sont peu sécurisés si ce n'est pas du tout.<br>
+Il existe des robots spécialisés dans le piratage d'appareils connectés. Certains cherchent à craquer les mots de passe SSH, d'autres à craquer les mots de passe PHPMyAdmin.<br>
+<br>
+Notre système informatique est conçu pour être utilisé sur le réseau local de l'IUT, mais cela n'épargne pas pour autant le risque de piratage.<br>
+Si le risque d'intrusion dans ce réseau par un ordinateur distant est peu probable, le piratage par l'un de nos camarades est en revanche très probable.<br>
+<br><br>
+Ainsi, cette partie explique comment nous avons sécurisé notre RaspberryPi.<br>
+Pour rappel, le RaspberryPi ne possède pas de système de sécurité outre celui du noyaux Linux.<br>
+<br><br>
+Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_content=cmp-true <br>
+
+- ### <a name="p5a"></a> a) Les utilisateurs, les groupes et leurs droits
+    - #### <a name="p5ai"></a> i) Liste des utilisateurs et des groupes
+        Plutôt que d'utiliser une seule session pour tout le monde, nous avons préféré créer une session pour chacun d'entre nous et une pour notre client.<br>
+        Nous avons rassemblé nos sessions dans un groupe "FTEAM" et la session de notre client dans un groupe "PROF".<br>
+        <br>
+        Cela nous permet de limiter le risque de fuite des identifiants de la session sudoer vu que nous l'utiliserons uniquement pour la configuration du système.<br>
+        Cela nous permet de limiter le risque de fuite des identifiants de la session sudoer vu que nous l'utiliserons uniquement pour la configuration du système.<br>
+        Nos sessions permettent uniquement de modifier le répertoire /var/www/html où est situé le site. Avec la session sudoer, il est possible de limiter davantage les accès.<br>
+        En cas de piratage, nous pouvons neutraliser le mot de passe la session infectée tout en étant assurer que le pirate a été limité dans ses actions.<br>
+        Notre client à sa propre session sudoer.<br>
+        <br><br>
+        **Remarque :**<br>
+        Une session "sudoer" est une session capable d'utiliser la commande `sudo`. Cette commande permet d'user les droits administrateurs pour exécuter une commande.<br>
+        La commande sudo est très dangereuse ! Elle permet d'avoir un contrôle total de la machine, il est donc possible de détruire toute la protection du serveur avec !<br>
+        <br>
+        **Créer un utilisateur et lui affecter un groupe :** `sudo useradd [UTILISATEUR] -G [GROUPE]`<br>
+        L'option -G précise le groupe à attribuer.<br>
+        **Créer un groupe :** `sudo groupdel [GROUPE]`<br>
+        **Supprimer un groupe :** `sudo groupadd [GROUPE]`<br>
+        **Définir le groupe principal d'un utilisateur :** `sudo usermod --gid [GROUPE] [UTILISATEUR]`<br>
+        **Afficher les groupes :** `getent group`<br>
+        **Afficher les membres d'un groupe :** `getent group [GROUPE]`<br>
+        **Afficher les utilisateurs :** `cut -d: -f1 /etc/passwd`<br>
+        **Changer le mot de passe d'un utilisateur :** `passwd [UTILISATEUR]`<br>
+        <br>
+    - #### <a name="p5aii"></a> ii) Droits des utilisateurs
+        Nous avons créé des utilisateurs affectés à chaque membre du groupe de travail. Ces utilisateurs appartiennent au groupe fteam. 
+        <br>
+        <br>
+        Par la suite, nous avons accordé les droits administratifs de lecture, d'écriture et d’exécution aux membres de ce groupe. Pendant que les membres du groupe pourront écrire et lire l’ensemble des fichiers du répertoire /var/www/html, les autres pourront simplement les visionner. 
+        <br><br>
+        Pour ce faire, nous avons utilisé la commande : `sudo chown -R :team /var/www/html`.<br>Cette commande a permis de changer le propriétaire du répertoire et des fichiers qui le compose. Ainsi, le groupe fteam est propriétaire de /var/www/html. 
+        <br><br>
+        Pour vérifier que le résultat de cette commande est bien celui voulu, on a effectué la commande : <br>`ls -l dans /var/www`. <br>On observe le résultat suivant : `drwxrwxr-x`
+        <br>Le propriétaire et le groupe possèdent tous les droits tandis que les autres ne peuvent que lire et exécuter. Si nous voulions changer les permissions, nous aurions pu utiliser la commande `sudo chmod`.<br>
+        <br>
+        `d` signifie "directory", `r` pour "read", `w` pour `write`, `x` pour exécution. `-` signifie qu'il n'y a pas de droit. Les droits sont dans l'ordre User, Group, Other.<br>
+        <br>
+        <br>
+        Pour ajouter les droits administratifs à l’utilisateur hoguin. Il suffit d’accéder au fichier contenant les accès à `sudo` avec la commande : `sudo nano /etc/sudoers`.<br>
+        Dans ce fichier, on y ajoute la ligne suivante permettant de donner la possibilité d'exécuter toutes les commandes avec le privilège administrateur (root) à l’utilisateur hoguin : `hoguin ALL=(ALL:ALL) ALL`
+        <br>
+        <br>
+        Pour vérifier qu’il possède la permission d’exécuter n’importe quelle commande. On peut se connecter au compte hoguin et exécuter une commande avec sudo.<br>
+        <br>
+        <br>
+        Remarque : "hoguin" n'est pas le nom de la véritable session de Monsieur HOGUIN.
+
+
+
+- ### <a name="p5b"></a> b) Limitation des intrusions
+    - #### <a name="p5bi"></a> i) Présentation de Fail2Ban
+        Fail2Ban est un programme indispensable qui analyse les journaux d'activité pour bannir les adresses IP en cas de tentative répété de connexions infructueuse.<br>
+        Avec un mot de passe fort, nous sommes protégés des attaques de type "brute-force".<br>
+        <br>
+        **Sources supplémentaires :**
+      - https://www.provya.net/?d=2019/04/04/10/24/18
+      - https://doc.ubuntu-fr.org/fail2ban
+      <br>
+    - #### <a name="p5bii"></a> ii) Installation de Fail2Ban
+        **Commande d'installation :** `sudo apt install fail2ban`<br>
+        Les commandes systemctl peuvent être utilisées.<br>
+        <br>
+        Le fichier de configuration principale de fail2ban est `/etc/fail2ban/jail.local`.
+        Nous avons laissé les paramètres par défaut pour le moment, on a seulement demandé à Fail2Ban d'ignorer les tentatives infructueuse de connexion sur localhost.<br>
+        Ce n'est pas la meilleure des idées, mais nous sommes assurés d'avoir accès au système en cas de mauvaise configuration.<br>
+        Par défaut, Fail2Ban banni 10 minutes l'adresse IP ayant fait 5 tentatives infructueuses dans les 10 minutes de la première tentative.<br>
+        <br>
+        Malheureusement, nous avons rencontré un problème lors du démarrage de Fail2Ban.<br>
+        Nous avons suivi les indications de https://github.com/fail2ban/fail2ban/issues/3292#issuecomment-1142503461 pour résoudre le problème.<br>
+        Il suffisait juste de préciser `backend=systemd` dans le fichier de configuration Fail2Ban jail.local.<br>
+        <br>
+        <div align="center">
+            <img src="img\V_Securisation\fail2ban.webp" title="Erreurs lors du démarrage de Fail2Ban" width="700"/><br>
+            <i>Erreurs lors du démarrage de Fail2Ban</i>
+        </div>
+        <br>
+        Nous n'avons pas eu l'occasion de tester l'efficacité du programme pour le moment.<br>
+    <br>
+        
+- ### <a name="p5c"></a> c) Le pare-feu
+    - #### <a name="p5ci"></a> i) Présentation de UFW
+        UFW pour "Uncomplicated FireWall" est un pare-feu qui comme son nom l'indique est facile d'utilisation.<br>
+        Cela empêche que n'importe qui se connecte au serveur.<br>
+        <br>
+        Un pare-feu permet d'interdire ou autoriser l'utilisation des ports en entrées et/ou en sortir pour tout le monde ou pour certaines adresses IP.<br>
+        <br>
+        Par exemple, Apache écoute sur le port 80 (HTTP). Lorsqu'un ordinateur veut se connecter au site, il se connecte sur ce port pour communiquer avec Apache.<br>
+        Inversement, le serveur peut se connecter à un site en passant par ce port.<br>
+        Si nous ne voulons pas qu'un utilisateur accède au site, nous pouvons bannir le port 80 en entrée.<br>
+        Si nous voulons interdire le serveur d'accéder à un site en particulier, nous pouvons bannir le port 80 en sortie pour une IP en particulier.<br>
+        <br>
+
+    - #### <a name="p5cii"></a> ii) Installation de UFW
+        **Commande d'installation :** `sudo apt install ufw`<br>
+        Les commandes systemctl peuvent être utilisées.<br>
+        <br>
+        Par défaut, UFW bloque les connexions en entrer et autorise les connexions en sortie.<br>
+        Nous avons autorisé l'accès en entrée sur les ports 80 (HTTP), 443 (HTTPS) et 22 (SSH).<br>
+        Pour assurer la sécurité, il est possible que nous limitions l'accès au serveur à seulement quelques machines.<br>
+        <br>
+        Actuellement, le port 443 n'est pas utilisé. Nous l'enlèverons sûrement.<br>
+        Ce n'est peut-être pas une bonne idée d'autoriser l'accès de tous les ports en sorties, cependant nous craignons de bloquer le système si nous les interdisons tous.<br>
+        <br>
+  
+        <div align="center">
+            <img src="img\V_Securisation\ufw.webp" title="la commande sudo ufw status verbose montre les ports ouverts" width="350"/><br>
+            <i>Résultat de la commande "sudo ufw status verbose"</i>
+        </div>
+        <br>
+      
+        **Vérifier les règles et l'activité d'UFW :** `sudo ufw status verbose`<br>
+        **Activer la protection d'UFW (désactivé par défaut) :** `sudo ufw enable`<br>
+        **Autoriser les connexions sur le port 22 (SSH) :** `sudo ufw allow 22`<br>
+        **Interdire une connexion sur le port 22 (SSH) :** `sudo ufw deny 22`<br>
+        **Interdire par défaut les connexions entrante sur tous les ports :** `sudo ufw default deny incoming`<br>
+        **Autoriser par défaut les connexions sortantes sur tous les ports :** `sudo ufw default allow outgoing`<br>
+        <br>
+        Note : "entrante" signifie Client -> Serveur, "sortante" signifie Serveur -> Client.<br>
+        <br>
+        <br>
+        **Source :**
+      - https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04
+      - https://doc.ubuntu-fr.org/ufw
+
+- ### <a name="p5d"></a> d) PHPMyAdmin
+    - #### <a name="p5di"></a> i) Limitation des connexions aux comptes
+        Depuis l'interface administrateur de PHPMyAdmin, nous pouvons interdire des connexions aux comptes utilisateur MariaDB.<br>
+        Nous avons bloqué l'accès aux comptes par défaut root et phpmyadmin qui sont les plus recherchés par les pirates.<br>
+        <br>
+    - #### <a name="p5dii"></a> ii) Changement de l'alias
+        L'alias `/phpmyadmin` se situe dans le répertoire `/etc/phpmyadmin/apache2.conf`.<br>
+        A l'aide de l'éditeur de texte nano et à avec les droits administrateurs en utilisant sudo, nous pouvons modifier l'alias.<br>
+        <br>
+        Par défaut, l'alias est /phpmyadmin ([IP DU SERVEUR]/phpmyadmin).<br>
+        Il est dangereux de ne pas le changer car celui-ci mène vers la page de connexion à PHPMyAdmin. Vu qu'il est connu de tous, nous devons le changer.<br>
+        <br>
+        <br>
+        **Sources :**
+      - https://blog.seboss666.info/2018/12/quelles-methodes-pour-proteger-un-acces-phpmyadmin/
+      - https://forum.vestacp.com/viewtopic.php?t=5264
+
+    
 ## <a name="p6"></a> VI - Faire une sauvegarde du serveur
-- ### a) Créer et restaurer une image
+- ### <a name="p6a"></a> a) Créer et restaurer une image
     
     Il doit probablement exister des outils similaires sous Windows, mais voici comment faire sous Linux (Ubuntu) via l'interface graphique :<br>
 
@@ -580,7 +742,6 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
         <i>Logiciel "Disques" d'Ubuntu avec le menu</i>
     </div>
 
-
   Note :
     - une image peut être restaurée sur un autre lecteur que celui d'origine.
     - Le lecteur avec l'image restauré sera dans le même état que le lecteur pendant la création de l'image.
@@ -590,7 +751,7 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     - L'image comportera toutes les partitions du lecteur.
 
 
-- ### b) Dossiers et fichiers à sauvegarder
+- ### <a name="p6b"></a> b) Dossiers et fichiers à sauvegarder
 
     Cette liste de répertoires et de fichiers peut être mise à jour.<br>
     <br>
@@ -605,5 +766,8 @@ Interdiction de la partager à quiconque en dehors de la FTEAM ou de nos profess
     - Attention ! Elle n'a pas encore été testé.
     <br><br>
 
-    **Pare-feu**<br>
-    À voir lors de la sécurisation du serveur<br>
+  **Autre**<br>
+  Les fichiers de configurations qui ont été modifiés sont :
+    - `/etc/fail2ban/jail.local` (fail2ban)
+    - `/etc/default/ufw` (UFW)
+    - `/etc/phpmyadmin/apache2.conf` (alias PHPMyAdmin)
