@@ -14,6 +14,43 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
+## Dimanche 14/01/2024 - Bilan du travail du 07/01/2024 au 14/01/2024, Fin de TIX
+
+Au final, la fin de la SAÉ n'était pas la veille de la présentation mais vendredi 12 janvier.<br>
+La fin de la SAÉ, notamment pour clôturer la vidéo à temps a été très compliqué.
+
+#### Travail effectué
+- **Florent**<br>
+  - Création du système de jeton (version 1, raté)
+  - Compte rendu et fin du sujet de cryptographie
+
+- **Tom**<br>
+  - Finition sujet proba-stat, création d'un bouton Statistique redirigeant vers une version en ligne de Shiny
+  - Correction de la maquette web
+  - Correction problème d'accessibilité : inscription (couleurs vertes/rouge)
+
+- **Enzo** :<br>
+  - Remise au propre de l'installation sur le RPi
+  - Quelques tests supplémentaires effectués
+  - Remise des données dans le formulaire en cas d'erreur (pages inscriptions, création/modification ticket.)
+
+- **Assia**<br>
+  - Finition et ajout de nouveaux cas d'utilisation
+
+- **Matthieu (chef de projet)**<br>
+  - fin de la vidéo
+  - très très légère contribution pour le compte rendu de crypto
+  - Installation et correction des fonctionnalités lors de l'installation finale vendredi sur le RPi
+  - Test global de la plateforme TIX
+  - Mise au propre de la conception du système de jeton (version 1, raté)
+  - Correction de la base de données
+
+
+
+<br><br><br>
+
+---
+
 ## Dimanche 07/01/2024 - Bilan du travail du 01/01/2024 au 07/01/2024, J-3 fin de TIX
 
 Par rapport à ma programmation imaginée avant les vacances, nous avons 1 semaine de retard. Cependant, notre situation est encourageante pour la suite.<br>
