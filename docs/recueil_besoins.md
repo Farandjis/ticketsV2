@@ -11,7 +11,6 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
 
 </div>
 
-### Les remarques de M. DJERROUD sont marquées via un "🔴".
 
 <br><br><br><br><br><br><br>
 
@@ -23,11 +22,13 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
     - <u>[i. Liste des objets, acteurs et actions](#p1bi) </u>
     - <u>[ii. Les différents niveaux](#p1bii) </u>
     - <u>[iii. Un schéma descriptif des niveaux](#p1biii) </u>
+    - <u>[iiii. Le diagramme des cas d'utilisation](#p1biiii) </u>
 ### [II – Terminologie employée / Glossaire](#p2)
 ### [III – Les cas d’utilisation](#p3)
 - <b>[a) Les acteurs principaux et leurs objectifs généraux](#p3a).</b>
 - <b>[b) Les cas d’utilisation métier (concepts opérationnels).](#p3b)</b>
-- <b>[c) Les cas d’utilisation système.](#p3c)</b>
+- <b>[c) Les cas d’utilisation stratégique.](#p3c)</b>
+- <b>[d) Les cas d’utilisation utilisateur et système.](#p3d)</b>
 ### [IV – La technologie employée](#p4)
 - <b>[a) Quelles sont les exigences technologiques pour ce système ?](#p4a)</b>
 - <b>[b) Avec quels systèmes ce système s’interfacera-t-il et avec quelles exigences ?](#p4b)</b>
@@ -41,7 +42,6 @@ Ce document rassemble toutes les informations importantes que nous devrons respe
     - <u>[iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?](#p5aiv)</u>
     - <u>[v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)](#p5av)</u>
     - <u>[vi. À quelle dépendance le projet est-il soumis ?](#p5avi)</u>
-- <b>[b) Règles métier](#p5b)</b>
 - <b>[c) Performances](#p5c)</b>
 - <b>[d) Opérations, sécurité, documentation](#p5d)</b>
 - <b>[e) Utilisation et utilisabilité](#p5e)</b>
@@ -164,19 +164,24 @@ Ce n'est pas un système purement interne ne concernant que les techniciens et l
 
 - - <a name="p1bii"></a>ii) Les différents niveaux
 
+    
+| Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                                  | Niveau sous-fonctions (en-dessous de la mer) |
+|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| Gérer les profils utilisateurs           | - Modifier son mot de passe <br><br> - Modifier son Email <br><br> - S'inscrire <br><br> - Se désinscrire                                                                                                             | - Se connecter <br><br> - Se déconnecter     |
+| Gérer les demandes de tickets            | - Créer un ticket <br><br> - Modifier un ticket <br><br> - Consulter ses demandes <br><br> - Rechercher un ticket <br><br> - Affecter un ticket <br><br> - S'attribuer un ticket <br><br> - Définir un niveau d'urgence définitif <br><br> - Fermer un ticket |                                              |
+| Administrer la plateforme                | - Ajouter un technicien <br><br> - Supprimer un technicien <br><br> - Ajouter un titre <br><br> - Supprimer un titre <br><br> - Ajouter un mot-clé <br><br> - Supprimer un libellé                                              |                                              |
+|                                          | - Ouvrir une page                                                                                                                                                                                                               | - Afficher une page                          |
 
-| Niveau stratégique (au-dessus de la mer) | Niveau utilisateur (de la mer)                                                                                                                                                                                           | Niveau sous-fonctions (en-dessous de la mer) |
-|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Stocker et répertorier des tickets       | Ouvrir (créer) un ticket                                                                                                                                                                                                 | Authentifier (connexion et déconnexion)      |
-| Gérer les profils utilisateurs           | - Réinitialiser ou modifier leur mot de passe <br><br> - Créer un utilisateur <br><br> - Accéder à son tableau de bord                                                                                                   | Identifier un utilisateur                    |
-| Gérer les demandes de tickets            | - Consulter les demandes faites et leurs statuts <br><br> - Afficher les demandes de dépannages <br><br> - Changer l'état d'un ticket <br><br> - Modifier le niveau d'urgence d'un ticket <br><br> - Modifier un libellé |                                              |
-|                                          | Ouvrir une page                                                                                                                                                                                                          | Afficher une page                            |
+                                                                            
 <br>
 
 - - <a name="p1biii"></a>iii) Un schéma descriptif des niveaux
 
 ![](img/schema_lecture_cahier_charges.PNG "Schema de la lecture du cahier des charges")
 
+- - <a name="p1biiii"></a>iiii) Le diagramme des cas d'utilisation
+
+![](img/SAE_diagramme_cas_utilisation.PNG "Diagramme des cas d'utilisation")
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -250,12 +255,37 @@ Par ordre alphabétique.
       > - Est un technicien, mais avec en plus des droits d'administration
       > - Accède et utilise les journaux d'activités
 
-- <b>b) Les cas d’utilisation métier (concepts opérationnels).</b>
-- #### 🔴 <a name="p3b"></a>b) CU stratégique
-- <b>c) Les cas d’utilisation système.</b>
-  - [Afficher une page](#a1cu1)
-  - [Sélectionner une page](#a1cu2)
+- <b>b) <a name="p3b"></a> Les cas d’utilisation métier (concepts opérationnels).</b>
 
+- <b>c) <a name="p3c"></a> Les cas d'utilisation stratégique <b>
+    - [Gérer les profils utilisateurs](#a1cu22)
+    - [Gérer les demandes de tickets](#a1cu23)
+    - [Administrer la plateforme](#a1cu24)
+    
+- <b>d) <a name="p3d"></a> Les cas d’utilisation utilisateur et système.</b>
+  - [Afficher une page](#a1cu1)
+  - [Ouvrir une page](#a1cu2)
+  - [Se connecter](#a1cu3)
+  - [Se déconnecter](#a1cu4)
+  - [S'inscrire](#a1cu5)
+  - [Modifier son mot de passe](#a1cu6)
+  - [Modifier son Email](#a1cu7)
+  - [Consulter ses demandes](#a1cu8)
+  - [Créer un ticket](#a1cu9)
+  - [Modifier un ticket](#a1cu25)
+  - [Rechercher un ticket](#a1cu10)
+  - [Se désinscrire](#a1cu11)
+  - [Affecter un ticket](#a1cu12)
+  - [S'attribuer un ticket](#a1cu13)
+  - [Définir un niveau d'urgence définitif](#a1cu14)
+  - [Fermer un ticket](#a1cu15)
+  - [Ajouter un technicien](#a1cu16)
+  - [Supprimer un technicien](#a1cu17)
+  - [Ajouter un titre](#a1cu18)
+  - [Supprimer un titre](#a1cu19)
+  - [Ajouter un mot-clé](#a1cu20)
+  - [Supprimer un libellé](#a1cu21)
+  
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -318,9 +348,6 @@ Par ordre alphabétique.
     - <u><a name="p5avi"></a>vi. À quelle dépendance le projet est-il soumis ?</u><br>
       Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL.
 
-- <b><a name="pb"></a>b) Règles métier</b><br>
-  #### 🔴 b) Date limite des tickets, combien de ticket par technicien, par utilisateur blablabla... Les contraintes d'utilisation (?). Poser les questions à M. Hoguin
-
 <br>
 
 - <b><a name="p5c"></a>c) Performances</b><br>
@@ -340,8 +367,7 @@ Par ordre alphabétique.
 - <b><a name="p5e"></a>e) Utilisation et utilisabilité</b><br>
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
-
-  #### 🔴 e) Demander à M. Dufaud peut être
+  
 <br>
 
 - <b><a name="p5f"></a>f) Maintenance et portabilité</b><br>
@@ -425,6 +451,51 @@ Par ordre alphabétique.
 
 ### <a name="a1"></a>Annexe 1 – Cas d'utilisation
 
+- #### <a name="a1cu22"> Nom : Gérer les profils utilisateurs  
+```
+Portée : Utilisateur
+Niveau : Stratégique 
+Acteur principal : Les utilisateurs
+
+Scénario :
+    - Un visiteur s'inscrit sur la plateforme pour devenir utilisateur
+    - L'utilisateur commence par se connecter
+    - L'utilisateur peut modifier son mot de passe et modifier son Email pour personnaliser son expérience
+    - L'utilisateur peut se désinscrire de la plateforme s'il ne souhaite plus être présent dessus
+    - L'utilisateur finit par se déconnecter de la plateforme 
+
+ ```
+- #### <a name="a1cu23"> Nom : Gérer les demandes de tickets  
+```
+Portée : Utilisateur
+Niveau : Stratégique 
+Acteur principal : Les utilisateurs
+
+Scénario :
+    - L'utilisateur commence par se connecter à la plateforme
+    - L'utilisateur peut créer un ticket afin de renseigner ses demandes de dépannages et qu'elles soient prises en charge
+    - L'utilisateur a la possibilité de consulter ses demandes 
+    - L'utilisateur peut rechercher un ticket selon des caractéristiques spécifiques
+    - L'administrateur web affecte un ticket à un technicien pour qu'il le prenne en charge
+    - Le technicien est autorisé à s'attribuer un ticket s'il n'a été pris en charge par personne
+    - L'administrateur web définit un niveau d'urgence définitif aux tickets
+    - L'administrateur web et le technicien à qui on a attribué le ticket peuvent fermer un ticket une fois résolu
+    - L'utilisateur finit par se déconnecter de la plateforme   
+
+```
+- #### <a name="a1cu24"> Nom : Administrer la plateforme  
+```
+Portée : Utilisateur
+Niveau : Stratégique 
+Acteur principal : L'administrateur web 
+
+Scénario :
+    - L'administrateur web commence par se connecter à la plateforme
+    - L'administrateur web peut ajouter un titre aux tickets ou supprimer un titre
+    - L'administrateur web a la possibilité d'ajouter un technicien qui pourra traiter des demandes ou supprimer un technicien
+    - L'administrateur web peut ajouter un mot-clé à la liste des libellés ou supprimer des libellés 
+    - L'administrateur web finit par se déconnecter de la plateforme 
+ ```
 - #### <a name="a1cu1">Nom : Afficher une page
 ```
 Portée : Serveur
@@ -435,7 +506,7 @@ Précondition :
 Déclencheur :
     - le navigateur de l'utilisateur demande de charger une page
 Garantie en cas de succès :
-    - Que la page demander s'affiche dans le navigateur
+    - Que la page demandée s'affiche dans le navigateur
 Scénario nominal :
     - Le système récupère la demande
     - Le système recherche le fichier HTML correspondant à la page
@@ -448,12 +519,13 @@ Extension :
     - Le système recherche le fichier HTML correspondant à la page
     - Le système ne trouve pas un ou plusieurs fichiers composants la page 
     - Le système affiche la page avec du texte alternatif à la place des composants 
-Echec :
+Echec 1 :
     - L'utilisateur demande l'affichage d'une page
     - Le système récupère la demande
     - Le système recherche le fichier correspondant à la page
     - Le système ne trouve pas le fichier correspondant
     - Le système affiche une erreur dans le navigateur de l'utilisateur
+
 ```
 
 
@@ -489,3 +561,776 @@ Echec 3 :
     - L'utilisateur demande l'affichage d'une page à son logiciel de reconnaissance vocal
     - Le logiciel ne comprend, n'arrive pas à lancer le chargement 
 ```
+
+- #### <a name="a1cu3"> Nom : Se connecter
+```
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être inscrit dans la base de données 
+Déclencheur :
+    - Le bouton "connexion" est séléctionné 
+Garantie en cas de succès :
+    - Que le bouton "connexion" renvoie vers la page tableau de bord 
+Scénario nominal :
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système trouve l'identifiant utilisateur associé au login
+    - Le système connecte l'utilisateur à la base de donnée à l'aide de l'identifiant et du mot de passe
+    - Le système créer un cookie de connexion
+    - Le système enregistre la dernière connexion dans la base de données
+    - Le système note la connexion dans un journal spécial.
+    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système redirige l'utilisateur vers le tableau de bord
+    
+Echec 1 : 
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système échoue lors de la récupération de l'identifiant utilisateur : mauvais login
+    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système enregistre cette tentative de connexion dans le journal d'activité
+    - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
+    
+Echec 2 :
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système trouve l'identifiant utilisateur associé au login
+    - Le système échoue lors de la connexion de l'utilisateur à la base de donnée : mauvais mot de passe
+    - Le système compare ses données avec celles entrées dans la base de données
+    - Le système enregistre cette tentative de connexion dans le journal d'activité
+    - Le système renvoie une erreur en avertissant l'utilisateur que le login ou le mot de passe est incorrecte
+
+Echec 3 :
+    - Le système récupère les informations entrées par l'utilisateur
+    - Le système echoue lors de la récupération de l'identifiant utilisateur 
+    - Le système enregistre cette tentative de connexion dans le journal d'activité
+    - Le système renvoie une erreur en avertissant l'utilisateur que les données n'existent pas dans la base de données
+
+```
+- #### <a name="a1cu4"> Nom : Se déconnecter
+```
+Portée : Serveur
+Niveau : Sous-fonction
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+Déclencheur :
+    - Le bouton "déconnexion" est séléctionné 
+Garantie en cas de succès :
+    - Que le bouton "déconnexion" renvoie vers la page d'accueil 
+Scénario nominal :
+    - Le système récupère la demande de l'utilisateur
+    - Le système supprime le cookie de session de l'utilisateur
+    - Le système note la déconnexion de l'utilisateur dans un journal spécial.
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système affiche la page d'accueil dans le navigateur de l'utilisateur
+
+Echec :
+    - Le système récupère la demande de l'utilisateur
+    - Le système échoue lors de la suppression du cookie de session
+    - Le système recherche le fichier HTML correspondant à la page
+    - Le système renvoie une erreur en avertissant l'utilisateur qu'une erreur de déconnexion s'est produite
+
+```
+- #### <a name="a1cu5"> Nom : S'inscrire
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - Le visiteur ne doit pas avoir de profil utilisateur
+Déclencheur :
+    - Le bouton "inscription" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "inscription" renvoie vers la page tableau de bord
+
+Scénario nominal :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page tableau de bord
+
+Echec 1 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page d'inscription
+    - L'utilisateur reçoit une alerte affirmant que le format d'une donnée est incorrecte
+    
+Echec 2 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page d'inscription
+    - L'utilisateur reçoit une alerte affirmant que les données sont déjà existantes
+    
+Echec 3 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur remplit le captcha
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page d'inscription
+    - L'utilisateur reçoit une alerte affirmant que le captcha est incorrecte
+
+Echec 4 :
+    - L'utilisateur entre les données dans le formulaire d'inscription
+    - L'utilisateur appuie sur le bouton d'inscription pour exécuter sa demande
+    - L'utilisateur est renvoyé vers la page d'inscription
+    - L'utilisateur reçoit une alerte affirmant que le champ captcha est manquant
+    
+```
+- #### <a name="a1cu6"> Nom : Modifier son mot de passe
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+Déclencheur :
+    - Le bouton "modification" est déclenché
+Garantie en cas de succès :
+    - Que le bouton "modification" renvoie vers la page profil
+
+Scénario nominal :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
+    - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page profil
+
+Echec 1 :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
+    - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page modification du mot de passe
+    - L'utilisateur reçoit une alerte affirmant que le mot de passe actuel est incorrect
+
+Echec 2 :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
+    - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page modification du mot de passe
+    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe et sa confirmation sont différents
+   
+Echec 3 :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification
+    - L'utilisateur tape son nouveau mot de passe et la confirmation de celui-ci
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page modification du mot de passe
+    - L'utilisateur reçoit une alerte affirmant que le nouveau mot de passe entré ne respecte pas le format permis
+    
+```
+- #### <a name="a1cu7"> Nom : Modifier son Email
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+Déclencheur :
+    - Le bouton "modification" est déclenché
+Garantie en cas de succès :
+    - Que le bouton "modification" renvoie vers la page profil
+
+Scénario nominal :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification de l'Email
+    - L'utilisateur tape son nouveau Email
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page profil
+
+Echec 1 :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification de l'Email
+    - L'utilisateur tape son nouveau Email
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page modification de l'Email
+    - L'utilisateur reçoit une alerte affirmant que le mot de passe actuel est incorrect
+
+Echec 2 :
+    - L'utilisateur entre le mot de passe qui lui permet de se connecter à la plateforme dans le formulaire de modification de l'Email
+    - L'utilisateur tape son nouveau Email
+    - L'utilisateur appuie sur le bouton modification pour valider sa demande
+    - L'utilisateur est renvoyé vers la page modification de l'Email
+    - L'utilisateur reçoit une alerte affirmant que l'Email ne respecte pas le format permis
+    
+```
+- #### <a name="a1cu8"> Nom : Consulter ses demandes 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit avoir inscrit (créer) des tickets pour les consulter
+Déclencheurs :
+    - Le bouton "Mon espace" est sélectionné
+    - Le bouton "Recherche" est sélectionné (dans le formulaire de recherche)
+
+Garantie en cas de succès :
+    - Que le bouton "Mon espace" renvoie vers la page de profil
+    - Que le bouton "Recherche" renvoie les tickets avec le type "Mes demandes actuelles"
+
+Scénario nominal :
+    - L'utilisateur appuie sur le bouton "Mon espace"
+    - L'utilisateur est renvoyé vers la page de profil
+    - L'utilisateur peut consulter ses demandes 
+
+Scénario 2 :
+    - L'utilisateur choisit le type de ticket "Mes demandes actuelles" dans le formulaire de recherche dans la page tableau de bord 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur obtient ses demandes actuelles dans le tableau
+
+Echec :
+    - L'utilisateur appuie sur le bouton "Mon espace"
+    - L'utilisateur est renvoyé vers la page profil
+    - L'utilisateur remarque que le tableau de ses demandes est vide
+```
+- #### <a name="a1cu9"> Nom : Créer un ticket 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+Déclencheur :
+    - Le bouton "Créer" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "créer" renvoie la page tableau de bord 
+
+Scénario nominal :
+    - L'utilisateur entre le titre du problème 
+    - L'utilisateur définit le niveau d'urgence du problème
+    - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
+    - L'utilisateur rédige une explication détaillée du problème survenu
+    - L'utilisateur appuie sur le bouton "Créer"
+    - L'utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 2 :
+    - L'utilisateur entre le titre du problème 
+    - L'utilisateur définit le niveau d'urgence du problème
+    - L'utilisateur rédige une explication détaillée du problème survenu
+    - L'utilisateur appuie sur le bouton "Créer"
+    - L'utilisateur est renvoyé vers la page du tableau de bord
+
+Echec :
+    - L'utilisateur entre le titre du problème
+    - L'utilisateur définit le niveau d'urgence du problème
+    - L'utilisateur sélectionne un ou plusieurs libellés qui caractérisent son problème
+    - L'utilisateur appuie sur le bouton "Créer"
+    - L'utilisateur est renvoyé vers la page de création ticket
+    - L'utilisateur reçoit une alerte lui affirmant que des données essentielles sont manquantes
+
+```
+- #### <a name="a1cu25"> Nom : Modifier un ticket 
+``` 
+Portée : Utilisateur  
+Niveau : Utilisateur 
+Acteur principal : Utilisateur 
+Précondition :   
+    - L’utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - Le ticket doit nous appartenir (nous devions être à l’origine de ce ticket) sauf pour l’administrateur web et le technicien
+
+Déclencheur :  
+    - Le bouton “Modifier le ticket” est sélectionné
+Garantie en cas de succès : 
+    - Que le bouton “Modifier le ticket” renvoie la page tableau de bord
+    - Que les informations du ticket soient modifiées
+
+Scénario nominal :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur appuie sur le bouton “Modifier le ticket” (il est visible que si on possède la permission de modifier le ticket)
+    - L’utilisateur modifie le titre du problème 
+    - L’utilisateur change le niveau d’urgence estimé du problème
+    - L’utilisateur modifie le niveau d’urgence (administrateur web)
+    - L’utilisateur change le technicien affecté (administrateur web)
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son problème
+    - L’utilisateur transforme l’explication détaillée du problème survenu
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 2 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur modifie le titre du problème 
+    - L’utilisateur change le niveau d’urgence estimé du problème
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son problème
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 3 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur change le niveau d’urgence estimé du problème
+    - L’utilisateur change le technicien affecté (administrateur web)
+    - L’utilisateur transforme l’explication détaillée du problème survenu 
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 4 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur ajoute un ou plusieurs libellé qui caractérisent son problème
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Scénario 5 :  
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur modifie le niveau d’urgence (administrateur web)
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord
+
+Echec 1 : 
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur appuie sur le bouton “Modifier le ticket”
+    - L’utilisateur est renvoyé vers la page du tableau de bord mais son ticket n’a pas été modifié car aucunes données n’a été changé
+
+Echec 2 : 
+    - L’utilisateur clique sur le ticket qu’il veut modifier 
+    - L’utilisateur n’a pas la possibilité de modifier son ticket car il a été ouvert ou est en cours de traitement 
+
+```
+- #### <a name="a1cu10"> Nom : Rechercher un ticket
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide 
+Déclencheur :
+    - Le bouton "Recherche" est sélectionné
+
+Garantie en cas de succès :
+    - Que le tableau des demandes affiche les tickets selon les spécifications qui ont été donné 
+
+Scénario nominal :
+    - L'utilisateur entre le type de ticket 
+    - L'utilisateur entre les dates d'intervalles des tickets  
+    - L'utilisateur entre le titre du ticket 
+    - L'utilisateur sélectionne le ou les libellés
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient dans le tableau, les tickets selon les caractéristiques entrées dans le formulaire de recherche
+
+Scénario 2 :
+    - L'utilisateur choisit le type de ticket 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon le type de ticket sélectionné dans le formulaire de recherche
+
+Scénario 3 :
+    - L'utilisateur entre les dates d'intervalles des tickets 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon les dates entrées dans le formulaire de recherche
+
+Scénario 4 :
+    - L'utilisateur entre le titre du ticket  
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon le titre entré dans le formulaire de recherche
+
+Scénario 5 :
+    - L'utilisateur sélectionne le ou les libellés  
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient les tickets selon le ou les libellés entrés dans le formulaire de recherche
+
+Echec 1 :
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient le même tableau qu'avant l'exécution du bouton puisqu'aucune recherche n'a été effectué 
+
+Echec 2 :
+    - L'utilisateur choisit le type de ticket 
+    - L'utilisateur entre les dates d'intervalles des tickets
+    - L'utilisateur entre le titre du ticket
+    - L'utilisateur sélectionne le ou les libellés 
+    - L'utilisateur appuie sur le bouton "Annuler"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient le même tableau qu'avant l'exécution du bouton puisqu'aucune recherche n'a été effectué 
+
+Echec 3 :
+    - L'utilisateur choisit le type de ticket 
+    - L'utilisateur entre les dates d'intervalles des tickets
+    - L'utilisateur entre le titre du ticket
+    - L'utilisateur sélectionne le ou les libellés 
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient un tableau vide puisque les données entrées sont inexistantes
+
+Echec 4 :
+    - L'utilisateur entre les dates d'intervalles des tickets
+    - L'utilisateur appuie sur le bouton "Recherche"
+    - L'utilisateur est renvoyé vers la page tableau de bord
+    - L'utilisateur obtient un tableau vide puisque aucuns ticket n'a été formulé à ses dates là
+
+```
+- #### <a name="a1cu11"> Nom : Se désinscrire
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Utilisateur  
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur ne doit pas être administrateur de la plateforme
+Déclencheur :
+    - Le bouton "Valider" est sélectionné
+
+Garantie en cas de succès :
+    - Qu'après la sélection du bouton "Valider" la page index.php soit renvoyée
+    - Que dans la base de données, l'utilisateur soit marqué supprimer
+
+Scénario nominal :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe   
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers la page index.php et est désinscrit de la plateforme
+
+Echec 1 : 
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant qu'un ou plusieurs champs sont vides 
+
+Echec 2 :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe 
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant que le champ login ou mot de passe ou les deux sont incorrects
+
+Echec 3 :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe 
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant que le champ captcha est vide
+
+Echec 4 :
+    - L'utilisateur entre son login
+    - L'utilisateur renseigne son mot de passe 
+    - L'utilisateur répond au captcha
+    - L'utilisateur confirme la demande de suppression en cochant "OUI" dans le formulaire
+    - L'utilisateur valide les données en appuyant sur le bouton "Valider"
+    - L'utilisateur est renvoyé vers le formulaire de désinscription
+    - L'utilisateur reçoit un message lui affirmant que le champ captcha est incorrect
+
+```
+- #### <a name="a1cu12"> Nom : Affecter un ticket
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web  
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - L'utilisateur doit être un administrateur web
+Déclencheur :
+    - Le bouton "Modifier le ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Modifier le ticket" renvoie vers la page tableau de bord
+
+Scénario nominal :
+    - L'administrateur web clique sur un ticket dans la page tableau de bord
+    - L'administrateur web appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
+    - L'administrateur web affecte le ticket à un technicien
+    - L'administrateur web appuie sur le bouton "Modifier le ticket"
+    - L'administrateur web est renvoyé vers la page tableau de bord
+
+```
+- #### <a name="a1cu13"> Nom : S'attribuer un ticket 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : Le technicien 
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - Le ticket ne doit pas être déjà attribué
+    - L'utilisateur doit être un technicien
+Déclencheur :
+    - Le bouton "S'attribuer ce ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Modifier le ticket" apparaisse pour ce ticket à la place du bouton "S'attribuer ce ticket"
+
+Scénario nominal :
+    - Le technicien clique sur un ticket dans la page tableau de bord qui n'est pas affecté encore
+    - Le technicien appuie sur le bouton "S'attribuer ce ticket"
+    - Le technicien aperçoit désormais le bouton "Modifier ce ticket"
+
+```
+- #### <a name="a1cu14"> Nom : Définir un niveau d'urgence définitif 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - L'utilisateur doit être un administrateur 
+Déclencheur :
+    - Le bouton "Modifier le ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Modifier le ticket" renvoie la page tableau de bord
+
+Scénario nominal :
+    - L'administrateur web clique sur un ticket dans la page tableau de bord
+    - L'administrateur web appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
+    - L'administrateur web définit le niveau d'urgence définitif
+    - L'administrateur appuie sur le bouton "Modifier le ticket"
+    - L'administrateur web est renvoyé vers la page tableau de bord
+
+```
+- #### <a name="a1cu15"> Nom : Fermer un ticket
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web et le technicien 
+Précondition :
+    - L'utilisateur doit être connecté
+    - Le tableau des demandes ne doit pas être vide
+    - L'utilisateur doit être un administrateur ou le technicien a qui on a affecté le ticket sélectionné
+
+Déclencheur :
+    - Le bouton "Fermeture du ticket" est sélectionné
+
+Garantie en cas de succès :
+    - Que le bouton "Fermeture du ticket" renvoie la page tableau de bord
+
+Scénario nominal :
+    - L'utilisateur clique sur un ticket dans la page tableau de bord
+    - L'utilisateur appuie sur le bouton qui apparaît lorsqu'il clique sur le ticket
+    - L'utilisateur appuie sur le bouton "Fermeture du ticket"
+    - L'utilisateur est renvoyé vers la page tableau de bord 
+
+```
+- #### <a name="a1cu16"> Nom : Ajouter un technicien
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+    - La liste des techniciens ne doit pas être vide (contenir aucuns techniciens)
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le ou les techniciens ajoutés soient présents dans la liste "Technicien affecté" dans la page modification de ticket
+
+Scénario nominal :
+    - L'administrateur web coche le technicien ou les techniciens qu'il veut ajouter
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web peut remarquer que les techniciens ont été ajouté à la liste "Technicien affecté"
+
+Echec :
+    - L'administrateur web coche le technicien ou les techniciens qu'il veut ajouter
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+```
+- #### <a name="a1cu17"> Nom : Supprimer un technicien
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+    - Plusieurs techniciens doivent être sélectionnés dans administration
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le ou les techniciens supprimés ne soient plus présents dans la liste "Technicien affecté" dans la page modification de ticket
+
+Scénario nominal :
+    - L'administrateur web décoche le technicien ou les techniciens qu'il veut supprimer
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit que les techniciens ajoutés sont cochés dans la liste
+
+Echec 1 :
+   - L'administrateur web décoche le technicien ou les techniciens qu'il veut supprimer
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+Echec 2 :
+   - L'administrateur web aperçoit que dans la liste seulement un technicien est coché
+    - L'administrateur web décoche le technicien 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste que le technicien n'a pas été supprimé (puisque minimum un technicien est nécessaire)
+
+```
+- #### <a name="a1cu18"> Nom : Ajouter un titre
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le titre soit présent dans la liste des titres du problème
+
+Scénario nominal :
+    - L'administrateur web tape un titre dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste du dessous que le titre a été ajouté
+
+Echec 1 :
+    - L'administrateur web tape un titre dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+Echec 2 :
+    - L'administrateur web tape un titre dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web reçoit une erreur car le titre est déjà présent dans la liste des titres
+
+```
+- #### <a name="a1cu19"> Nom : Supprimer un titre
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+    - La liste des titres ne doit pas être vide
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications 
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le titre ne soit plus présent dans la liste des titres du problème
+
+Scénario nominal :
+    - L'administrateur web coche le titre ou les titres qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste que les titres supprimés ne sont plus présents 
+
+Echec :
+    - L'administrateur web coche le titre ou les titres qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+```
+- #### <a name="a1cu20"> Nom : Ajouter un mot-clé 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le mot-clé soit présent dans la liste des libellés
+
+Scénario nominal :
+    - L'administrateur web tape un mot-clé dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit dans la liste que le mot-clé est présent
+
+Echec 1 :
+    - L'administrateur web tape un mot-clé dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
+
+Echec 2 :
+    - L'administrateur web tape un mot-clé dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Ajouter"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web reçoit une erreur car le mot-clé est déjà présent dans la liste des libellés
+
+```
+- #### <a name="a1cu21"> Nom : Supprimer un libellé 
+```
+Portée : Utilisateur
+Niveau : Utilisateur
+Acteur principal : L'administrateur web 
+Précondition :
+    - L'utilisateur doit être connecté
+    - L'utilisateur doit être un administrateur web
+
+Déclencheur :
+    - Le bouton "OK" est sélectionné lors de la confirmation des modifications
+
+Garantie en cas de succès :
+    - Que le bouton "OK" renvoie la page administration
+    - Que le mot-clé ne soit plus présent dans la liste des libellés
+
+Scénario nominal :
+    - L'administrateur web coche le ou les mots-clés qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "OK"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web aperçoit que le ou les mots-clés supprimés ne sont plus présents dans la liste 
+
+Echec :
+    - L'administrateur web coche le ou les mots-clés qu'il veut supprimer dans le formulaire 
+    - L'administrateur web appuie sur le bouton "Supprimer"
+    - L'administrateur web reçoit un message demandant la confirmation des modifications faites
+    - L'administrateur web appuie sur le bouton "Annuler"
+    - L'administrateur web est renvoyé vers la page administration
+    - L'administrateur web s'aperçoit que rien n'a été fait
