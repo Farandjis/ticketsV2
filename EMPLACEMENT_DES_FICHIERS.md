@@ -37,9 +37,9 @@
 
 ## Base de données
 - #### La conception
-  - https://github.com/Farandjis/ticketsV2/tree/main/docs/dossier_conception/base_de_donnes
+  - https://github.com/Farandjis/ticketsV2/tree/main/docs/dossier_conception/base_de_donnees
 - #### Les scripts
-  - https://github.com/Farandjis/ticketsV2/tree/main/base_de_donnes
+  - https://github.com/Farandjis/ticketsV2/tree/main/base_de_donnees
 - #### Les tests
   - https://github.com/Farandjis/ticketsV2/tree/main/docs/dossier_test/dossier_de_test_base_de_donnees.md
 
