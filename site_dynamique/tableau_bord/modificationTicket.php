@@ -1,4 +1,7 @@
 <?php
+global $technicien;
+global $infoTicket;
+global $etatDuTicket;
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
@@ -60,7 +63,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     <link rel="stylesheet" href="../ressources/style/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
-    <script src="../ressources/script/motcle.js"></script>
+    <script src="../ressources/script/menuCheckbox.js"></script>
 </head>
 <body>
 <header>
@@ -69,8 +72,21 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     </div>
 </header>
 <div class="page_cree-modif_ticket">
-    <h1 class="h1Creation">Modification de Ticket (le 19/12 à 09h53 : tout fonctionne)</h1>
+    <h1 class="h1Creation">Modification du Ticket</h1>
     <div role="form" class="formModifTicket formAuthentification formConnexion">
+        <?php
+        if(isset($_POST['id'])) {
+            echo '<div class="erreur">';
+            echo '<p>';
+            if ($_POST['id'] == 1) { echo "ERREUR : Des données du formulaire sont manquantes"; }
+            else if ($_POST['id'] == 2) { echo "ERREUR : Des données essentielles du formulaire sont manquantes ou incohérentes"; }
+            else if ($_POST['id'] == 4) { echo "ERREUR : Le niveau d'urgence est pas complété "; }
+            else if ($_POST['id'] == 99) { echo "ERREUR : Impossible de fermer le ticket, vous n'avez pas les droits ou il est déjà fermé."; }
+            else { echo "ERREUR : Une erreur est survenue"; }
+            echo '</p>';
+            echo '</div>';
+        }
+        ?>
         <?php
         echo "
             <div class='informations_ticket'>
@@ -100,13 +116,19 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
         <form action='action_modificationTicket.php' method='post'>
             <div class="form-modif-ticket">
                 <div class="champs_ticket_gauche">
-                    <label for='login'>Nature du problème *</label><br>
-                    <input id='nature' type='text' name='nature' value="<?php echo htmlspecialchars(htmlspecialchars_decode($info_ticket[6]));?>">
-
+                    <label for='titre'>Titre du problème</label><br>
+                    <div class="custom-select">
+                        <select name="titre" id="titre" class="creer_select" required>
+                            <?php
+                            $resSQL = mysqli_query($connection, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
+                            menuDeroulant($resSQL, "selected", array($info_ticket[6]))
+                            ?>
+                        </select>
+                    </div>
                     <br><br>
 
-                    <label for='explication2'>Explication</label><br>
-                    <textarea id="explication2" name="explication2" ><?php
+                    <label for='explication2'>Description du problème</label><br>
+                    <textarea id="explication2" name="explication2" minlength="5" maxlength="250" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer au moins un mot-clé à votre ticket."><?php
                         echo "$info_ticket[7]";
                         ?></textarea><br>
                 </div>
@@ -121,32 +143,16 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         echo "
 							<div class='custom-select'>
 							<select name='nivUrg' id='nivUrg' required>
-								<option value=''>--Choisir une option--</option>
-								<option value='Faible'";
-                        echo isSelected('Faible',$info_ticket[8]);
-                        echo " 
-								>Faible</option>
-								<option value='Moyen'
-								";
-                        echo isSelected('Moyen',$info_ticket[8]);
-                        echo " 
-								>Moyen</option>
-								<option value='Important'
-								";
-                        echo isSelected('Important',$info_ticket[8]);
+							";
+						$resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
+                        menuDeroulant($resSQL, "selected", array($info_ticket[8]));
                         echo "
-								>Important</option>
-								<option value='Urgent'
-								";
-                        echo isSelected('Urgent',$info_ticket[8]);
-                        echo " 
-								>Urgent</option>
 							</select>
 							</div>
 							";
                     }
                     else{
-                        echo '<input type="hidden" name="nivUrg" value="<?php echo $info_ticket[8]; ?>">';
+                        echo '<input type="hidden" id="nivUrg" name="nivUrg" value=' . $info_ticket[8] .'>';
                         echo "<p id='champLocked'>$info_ticket[8]</p>";
                     }
                     ?>
@@ -157,26 +163,11 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         echo "
 							<div class='custom-select'>
 							<select name='nivUrg2' id='nivUrg2' required>
-								<option value=''>--Choisir une option--</option>
-								<option value='Faible'";
-                        echo isSelected('Faible',$info_ticket[9]);
-                        echo " 
-								>Faible</option>
-								<option value='Moyen'
-								";
-                        echo isSelected('Moyen',$info_ticket[9]);
-                        echo " 
-								>Moyen</option>
-								<option value='Important'
-								";
-                        echo isSelected('Important',$info_ticket[9]);
+							";
+                        if ($info_ticket[9] == "Non complété !") { echo "<option value=''>--Choisir une option--</option>"; }
+                        $resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
+                        menuDeroulant($resSQL, "selected", array($info_ticket[9]));
                         echo "
-								>Important</option>
-								<option value='Urgent'
-								";
-                        echo isSelected('Urgent',$info_ticket[9]);
-                        echo " 
-								>Urgent</option>
 							</select>
 							</div>
 							";
@@ -195,8 +186,8 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                         echo "
 							<div class='custom-select'>
 								<select name='ch_technicien' id='ch_technicien'>
-									<option value=''>--Choisir une option--</option>
-									";
+						";
+                        if ($info_ticket[10] == Null) { echo "<option value=''>--Choisir une option--</option>"; }
                         while ($row = mysqli_fetch_row($liste_technicien)){
                             echo "<option value='$row[0]'";
                             echo isSelected($row[0],$info_ticket[10]);
@@ -219,28 +210,56 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     }
                     ?>
                     <br>
+                    <div>
+                    <span>Mots-clés</span><br>
+                    <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
+                        <?php
 
-                    <span>Mot-clé</span><br>
-                    <div class="menu_motcle" id="menu_deroulant_motcle">
-                        <span class="entete_motcle modif_entete_motcle" onclick="toggleDropdown()">--Liste des mots-clés--</span>
-                        <div class="option_motcle">
+                        $lesMotcleTicketsCoches = array();
+                        $resSQL = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?", array($id_ticket), $connection);
+                        while($unMotcleTicket = mysqli_fetch_row($resSQL)){
+                            $lesMotcleTicketsCoches[] = $unMotcleTicket[0];
+                        }
+
+
+                        if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Listes des mots-clés --"; }
+                        elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné à l'origine";}
+                        else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés à l'origine";}
+
+
+                        echo "<span class='entete_menu_checkbox' onclick=toggleDropdown(document.getElementById('menu_deroulant_motcle'))>$texteBouton</span>";
+                        ?>
+                        <div class="option_checkbox">
                             <?php
-                            $listeMotcleTicket = array();
-                            $result = executeSQL("SELECT nom_motcle FROM vue_tdb_relation_ticket_motcle WHERE id_ticket = ?",array($id_ticket),$connection);
-                            while($row = mysqli_fetch_array($result)){
-                                array_push($listeMotcleTicket,$row[0]);
-                            }
-                            menuDeroulantTousLesMotcleTickets($connection,$listeMotcleTicket);
+                            $resSQL = mysqli_query($connection, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
+                            menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
                             ?>
 
-
                         </div>
+
                     </div>
+                </div>
                 </div>
             </div>
             <input type="hidden" name="id_ticket" value='<?php echo $id_ticket; ?>'>
             <input type='submit' name='modif' value='Modifier le ticket'><br>
         </form>
+    <form action='action_modificationTicket.php' method='post' name="Finir le ticket" onsubmit="return confirmerAvantEnvoi(this.name)">
+        <?php
+            $estAdmin = (recupererRoleDe($connection) == 'Administrateur Site');
+            $estTech = (recupererRoleDe($connection) == 'Technicien');
+            if($estAdmin || $estTech){
+                // True si le ticket peut être fermé (il peut user de ses privilèges de technicien/administrateur pour le fermer)
+                $ticketPeutEtreFermer = (bool) mysqli_fetch_row(executeSQL("SELECT COUNT(*) FROM vue_modif_ticket_adm_tech WHERE ID_TICKET = ?", array($id_ticket), $connection))[0];
+
+                if ($ticketPeutEtreFermer) {
+                    echo "<input type='hidden' name='id_ticket' value=$id_ticket>";
+                    echo '<input type="submit" name="fermer_ticket" value="Fermeture du Ticket" id="boutonFermerTicket"><br>';
+                }
+            }
+            ?>
+
+    </form>
     </div>
 </div>
 </body>
