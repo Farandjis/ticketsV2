@@ -24,7 +24,7 @@
 ## Cahier des charges et recueil des besoins
 - #### Cahier des charges (plus mis à jour depuis 3 mois)
   - https://github.com/Farandjis/ticketsV2/blob/main/docs/cahier_charges.md
-- #### Recueil des besoins (régulièrement mis à jour
+- #### Recueil des besoins (régulièrement mis à jour)
   - https://github.com/Farandjis/ticketsV2/blob/main/docs/recueil_besoins.md
 
 <br><br><br>
