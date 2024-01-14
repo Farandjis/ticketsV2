@@ -3,6 +3,36 @@
 require '../ressources/fonctions/PHPfunctions.php';
 global $host, $database, $USER_FICTIF_MDP; // Viennent de connexion_db.php (importé grâce à PHPfunctions.php)
 
+if (! isset($_SESSION["login"], $_SESSION["mdp"], $_SESSION["verifMdp"], $_SESSION["nom"], $_SESSION["prenom"], $_SESSION["email"])) {
+    session_destroy();
+}
+session_start();
+
+
+// operationCAPTCHA();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['captcha'])) {
+    $reponseUtilisateur = $_POST['captcha'];
+
+    if (!empty($reponseUtilisateur)) {
+        $estValideCAPTCHA = verifyCAPTCHA($reponseUtilisateur, $_SESSION['chiffre1'], $_SESSION['chiffre2']);
+
+        if (!$estValideCAPTCHA) {
+            header('Location: inscription.php?id=16'); // ERREUR : Captcha incorrect.
+            return;
+        }
+    } else {
+        $_SESSION['login'] = $_POST['login'];
+        $_SESSION['mdp'] = $_POST['mdp'];
+        $_SESSION['verifMdp'] = $_POST['verifMdp'];
+        $_SESSION['nom'] = $_POST['nom'];
+        $_SESSION['prenom'] = $_POST['prenom'];
+        $_SESSION['email'] = $_POST['email'];
+        header('Location: inscription.php?id=17'); // ERREUR : La case CAPTCHA doit être remplie.
+        return;
+    }
+}
+
 if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_POST['prenom'], $_POST['email'])) {
     if (!empty($_POST['login']) & !empty($_POST['mdp']) & !empty($_POST['verifMdp']) & !empty($_POST['nom']) & !empty($_POST['prenom']) & !empty($_POST['email'])) {
         if ($_POST['mdp'] == $_POST['verifMdp']) {
