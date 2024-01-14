@@ -84,7 +84,6 @@ La page tester est la page tableau de bord, nous testerons que chaque utilisateu
 | 12     | On clique sur "Tous les tickets de TIX" dans le champ Type de ticket                                                                                                                  | 7 tickets         | 7 tickets        | Nous obtenons tout les tickets formulés par les utilisateurs                                                               |
 | 13     | On clique sur "Mes demandes actuelles" dans le champ Type de ticket                                                                                                                     | 1 ticket         | 1 ticket        | Nous obtenons le ticket le plus actuel non traité        
 
-
 <br>
 
 ### <a name="b"></a>Bouton de modification d'un ticket
