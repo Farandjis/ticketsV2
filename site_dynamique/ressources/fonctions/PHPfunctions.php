@@ -180,23 +180,21 @@ function valideEMAIL($email){
 
 function operationCAPTCHA()
 {
-    /**
-     * Affiche un champs de formulaire servant de captcha.
-     * Ce captcha est un calcul dont le résultat est enregistré sur ...
-     */
-    $chiffre1 = rand(-20, 20);
-    $chiffre2 = rand(-20, 20);
-    $operateur = array("+", "*")[rand(0, 1)];
-    if ($operateur == "+") {
-        $res = $chiffre1 + $chiffre2;
-	}
-	else{
-		$res = $chiffre1 * $chiffre2;
-	}
-	$calcul = strval($chiffre1).$operateur.strval($chiffre2);
-	echo "<input id='capcha' type='text' name ='capcha' placeholder=$calcul>";
+    $chiffre1 = rand(0, 20);
+    $chiffre2 = rand(0, 20);
+    $operateur = "+";
+
+    $_SESSION['chiffre1'] = $chiffre1;
+    $_SESSION['chiffre2'] = $chiffre2;
+    $_SESSION['operateur'] = $operateur;
+
+    $calcul = strval($_SESSION['chiffre1']) . $_SESSION['operateur'] . strval($_SESSION['chiffre2']);
+    echo "<input id='captcha' type='text' name ='captcha' placeholder=$calcul>";
 }
 
+function verifyCAPTCHA($reponseUtilisateur, $chiffre1, $chiffre2){
+    return ($reponseUtilisateur == ($chiffre1 + $chiffre2));
+}
 function dechiffre($mdpchiffre){
     /**
      * Cette fonction ne déchiffre rien pour le moment.
@@ -407,20 +405,27 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
                 <div class="authentification">
                     <?php
                     if ($connexionUtilisateur != null) {
-                        // Si la personne est connecté...
-                        echo "<a href ='" . $empSite . "/authentification/action_deconnexion.php'> Déconnexion </a>";
+                        // Si la personne est connectée...
+                        $roleUtilisateur = recupererRoleDe($connexionUtilisateur);
 
-                        if ($pageActuelle != "profil") {
-                            echo "<a href ='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
+                        echo "<a href='" . $empSite . "/authentification/action_deconnexion.php' class='deconnexion-desinscription'> Déconnexion </a>";
+
+                        if ($pageActuelle == "profil" && $roleUtilisateur != "Administrateur Site" && $roleUtilisateur != "Administrateur Système") {
+                            echo "<a href='" . $empSite . "/authentification/action_desinscription.php' class='deconnexion-desinscription'> Désinscription </a>";
                         }
-                    }
-                    else {
+                        
+                        if ($pageActuelle != "profil") {
+                            echo "<a href='" . $empSite . "/profil/profil.php'> Mon Espace </a>";
+                        }
+                    } else {
                         // Sinon, c'est un visiteur
-                        echo '<a href = "' . $empSite . '/authentification/connexion.php"> Connexion</a>';
-                        echo '<a href = "' . $empSite . '/authentification/inscription.php"> Inscription</a>';
+                        echo '<a href="' . $empSite . '/authentification/connexion.php"> Connexion</a>';
+                        echo '<a href="' . $empSite . '/authentification/inscription.php"> Inscription</a>';
                     }
                     ?>
                 </div>
+
+
             </div>
         </nav>
         <div class="hamburger-menu">
@@ -433,19 +438,87 @@ function affichageMenuDuHaut($pageActuelle, $connexionUtilisateur = null){
 <?php
 }
 
-
+/*
 function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACocher = array()){
-    /**
-     * Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant cochable) avec TOUS les mots-clés disponible dans la BD.
-     *  @param mysqli $connexionUtilisateur -> la connexion mysqli de l'utilisateur qui va exécuter la requête
-     * @param array motclesACocher -> les mots-clés à cocher par défaut
-     */
+
 
     $resSQL = mysqli_query($connexionUtilisateur, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
     while($unMotcleTicket = mysqli_fetch_row($resSQL)){
         if (in_array($unMotcleTicket[0], $motclesACocher)){ $cestCocher = "checked"; }
         else { $cestCocher = ""; }
         echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unMotcleTicket[0]) . "' $cestCocher> " . htmlspecialchars($unMotcleTicket[0]) . " </label>";
+    }
+}
+*/
+
+function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
+    $libellesACocher = array();
+    
+    $resultLibellesACocher = mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_technicien");
+
+    if ($resultLibellesACocher) {
+        while ($n = mysqli_fetch_row($resultLibellesACocher)) {
+            array_push($libellesACocher, $n[0]);
+        }
+    } else {
+        die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
+    }
+
+    $resultUtilisateurs = mysqli_query($connexionUtilisateur, "SELECT ID_USER, NOM_USER, PRENOM_USER FROM affiche_utilisateurs_pour_adm_web");
+    if ($resultUtilisateurs) {
+        while ($unLibelle = mysqli_fetch_row($resultUtilisateurs)) {
+            $cestCocher = (in_array($unLibelle[0], $libellesACocher)) ? "checked" : "";
+
+            echo "<label><input type='checkbox' name='tech_option[]' value='" . htmlspecialchars($unLibelle[0]) . "' $cestCocher> " . htmlspecialchars($unLibelle[1]) . " " . htmlspecialchars($unLibelle[2]) . " </label>";
+        }
+    } else {
+        die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
+    }
+}
+
+/*
+function menuDeroulantTousLesTitres($connexionUtilisateur, $titreACocher = array()){
+
+
+    $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
+    while($unTitre = mysqli_fetch_row($resSQL)[0]){
+        if (count($titreACocher) == 1 and $unTitre == $titreACocher[0]){ $cestCocher = "selected"; }
+        else { $cestCocher = ""; }
+        echo "<option value='$unTitre' $cestCocher>$unTitre</option>";
+    }
+}
+*/
+function menuDeroulant($resultatSQL, $attributListe, $elementsACocher = array()){
+    /**
+     *  Même principe que tableGenerate, sauf que génère une liste HTML (menu déroulant sélectionnable ou cochable).
+     *  Elle récupère le resultat de la requête SQL, génère la liste déroulante cochable (si $attribut == "checked") ou sélectionnable (si $attribut == "selected").
+     *  Elle cochera tous les éléments contenus dans la liste ou sélectionnera le premier élément de celle-ci.
+     *  Le contenu de la liste correspondra à la première valeur du SELECT.
+     *  @param mysqli $resultatSQL -> Le résultat de la requête SQL (mysqli_result d'une requête SELECT attention !)
+     *  @param string $attributListe -> L'attribut de la liste (selected, checked)
+     *  @param array $elementsACocher -> L'élement à sélectionner, les éléments à cochers (par défaut : aucun)
+     *
+     * Remarque : nous utilisons une liste pour titreACocher en prévision d'une fusion des 3 fonctions menuDeroulantTousLes
+     */
+
+    // Si $attributListe == "selected" sans prendre compte de la casse
+    if (strcasecmp($attributListe, "selected") == 0) {
+
+        // Tant qu'il y a des éléments dans le résultat SQL (donc à mettre dans la liste
+        while ($unElement = mysqli_fetch_row($resultatSQL)) {
+
+            // On vérifie qu'il y a bien un seul élément et on le prend pour le sélectionner
+            if (count($elementsACocher) == 1 and $unElement[0] == $elementsACocher[0]) { $cestCocher = "selected"; }
+            else { $cestCocher = ""; } // Il n'y en a pas, ou ce n'est pas possible d'en sélectionner qu'un
+            echo "<option value='$unElement[0]' $cestCocher>$unElement[0]</option>"; // On ajoute l'élément à la liste
+        }
+    }
+    elseif (strcasecmp($attributListe, "checked") == 0) {
+        while ($unElement = mysqli_fetch_row($resultatSQL)) {
+            if (in_array($unElement[0], $elementsACocher)){ $cestCocher = "checked"; }
+            else { $cestCocher = ""; }
+            echo "<label><input type='checkbox' name='motcle_option[]' value='" . htmlspecialchars($unElement[0]) . "' $cestCocher> " . htmlspecialchars($unElement[0]) . " </label>";
+        }
     }
 }
 
