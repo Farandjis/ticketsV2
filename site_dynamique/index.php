@@ -31,11 +31,11 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     <script src="ressources/script/infoLigneTab.js"></script>
     <script src="ressources/script/hamburger.js"></script>
 </head>
-<body class="body_accueil">
+<main class="body_accueil">
 
 <?php affichageMenuDuHaut("index", $connexionUtilisateur);?>
 
-<div class="hero">
+<div class="hero"  style="background-color: white">
     <div class="presentation">
         <div class="texte-presentation">
             <?php
@@ -56,15 +56,92 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
             }
             ?>
 
-            <p>
-            La plateforme <strong>TIX</strong> vous permet de reporter les problèmes des salles machines de l'IUT de Vélizy-Villacoublay.<br><br>
-            Signalez avec facilité les problèmes que vous rencontrez aux techniciens de votre parc, puis constatez leur résolution à l'aide du tableau de bord.<br><br>
-            La vidéo ci-contre vous présente <strong>TIX</strong> dans les moindres détails.<br><br>
-            </p>
+            <?php
+            if ($connexionUtilisateur != null){
+                setlocale(LC_TIME, 'fr_FR.utf8', 'fra'); // Définir la localisation en français
+                $date = ucfirst(strftime('%A %e %B %Y et il est %Hh%M')); // Formatage de la date
+                echo "
+                <p>
+                Nous sommes le $date.
+                </p>
+                ";
+
+                $s = array(); // pour placer le pluriel
+                $infoTDB_TOTAL = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_tableau_bord"))[0];
+                if ($infoTDB_TOTAL > 1) { $s[] = "s"; } else { $s[] = ""; }
+                $infoTDB_ENATTENTE = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_tableau_bord WHERE ETAT_TICKET = 'En attente'"))[0];
+                if ($infoTDB_ENATTENTE > 1) { $s[] = "s"; } else { $s[] = ""; }
+                $infoTDB_OUVERT = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_tableau_bord WHERE ETAT_TICKET = 'Ouvert'"))[0];
+                if ($infoTDB_OUVERT > 1) { $s[] = "s"; } else { $s[] = ""; }
+
+                if (recupererRoleDe($connexionUtilisateur) == "Administrateur Site"){
+
+                    if ($infoTDB_TOTAL > 0) {
+                        echo "<p>";
+                        if ($infoTDB_TOTAL > 1) { echo "Sur les <strong>$infoTDB_TOTAL</strong> ticket$s[0] de votre tableau de bord, vous avez "; } else { echo "Sur votre tableau de bord, vous avez ";}
+                        if ($infoTDB_ENATTENTE > 0) { echo "<strong>$infoTDB_ENATTENTE</strong> ticket$s[1] en attente de validation"; }
+                        if ($infoTDB_ENATTENTE > 0 and $infoTDB_OUVERT > 0) { echo " et "; }
+                        if ($infoTDB_OUVERT > 0) { echo "<strong>$infoTDB_OUVERT</strong> ticket$s[2] à attribuer"; }
+                        if ($infoTDB_ENATTENTE = 0 and $infoTDB_OUVERT = 0) { "aucune action à faire"; }
+                        echo ".</p>";
+                    }
+                    else { echo "<p>Aucune demande en cours de la part des utilisateurs.</p>"; }
+                }
+                elseif (recupererRoleDe($connexionUtilisateur) == "Technicien"){
+
+                    $infoTDB_ENCOURS = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_tableau_bord JOIN vue_Utilisateur_client ON ID_TECHNICIEN = ID_USER WHERE ETAT_TICKET = 'En cours de traitement'"))[0];
+                    if ($infoTDB_ENCOURS > 1) { $s[] = "s"; } else { $s[] = ""; }
+
+                    if ($infoTDB_TOTAL > 0) {
+                        echo "<p>";
+                        if ($infoTDB_TOTAL > 1) { echo "Sur les <strong>$infoTDB_TOTAL</strong> ticket$s[0] de votre tableau de bord, vous avez "; } else { echo "Sur votre tableau de bord, vous avez ";}
+                        if ($infoTDB_OUVERT > 0) { echo "<strong>$infoTDB_OUVERT</strong> ticket$s[2] en attente de prise en charge"; }
+                        if ($infoTDB_OUVERT > 0 and $infoTDB_ENCOURS > 0) { echo " et "; }
+                        if ($infoTDB_ENCOURS > 0) { echo "<strong>$infoTDB_ENCOURS</strong> ticket$s[3] à traiter"; }
+                        if ($infoTDB_ENCOURS = 0 and $infoTDB_OUVERT = 0) { "aucune action à faire"; }
+                        echo ".</p>";
+                    }
+                    else { echo "<p>Aucune demande en cours de la part des utilisateurs.</p>"; }
+                }
+
+                $s = array(); // pour placer le pluriel
+                $infoMesTickets_TOTAL = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_Ticket_client WHERE ETAT_TICKET != 'Fermé'"))[0];
+                if ($infoMesTickets_TOTAL > 1) { $s[] = "s"; } else { $s[] = ""; }
+                $infoMesTickets_ENATTENTE = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_Ticket_client WHERE ETAT_TICKET = 'En attente'"))[0];
+                if ($infoMesTickets_ENATTENTE > 1) { $s[] = "sont"; } else { $s[] = "est"; }
+                $infoMesTickets_OUVERT = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_Ticket_client WHERE ETAT_TICKET = 'Ouvert'"))[0];
+                if ($infoMesTickets_OUVERT > 1) { $s[] = "sont"; } else { $s[] = "est"; }
+                $infoMesTickets_ENCOURS = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT COUNT(*) FROM vue_Ticket_client WHERE ETAT_TICKET = 'En cours de traitement'"))[0];
+                if ($infoMesTickets_ENCOURS > 1) { $s[] = "sont"; } else { $s[] = "est"; }
+
+                if ($infoMesTickets_TOTAL > 0) {
+                    echo "<p>";
+
+                    if ($infoMesTickets_TOTAL > 1) { echo "Sur vos <strong>$infoMesTickets_TOTAL</strong> demandes en cours,<br>"; } else { echo "<strong>Votre demande</strong> "; }
+                    if ($infoMesTickets_TOTAL > 1 and $infoMesTickets_ENATTENTE > 0) { echo "<strong>$infoMesTickets_ENATTENTE</strong> "; } if ($infoMesTickets_ENATTENTE > 0 ) { echo "$s[1] en attente de validation"; }
+                    if ($infoMesTickets_ENATTENTE > 0 and $infoMesTickets_OUVERT > 0 and $infoMesTickets_ENCOURS > 0) { echo ", "; } elseif ($infoMesTickets_ENATTENTE > 0 and $infoMesTickets_OUVERT > 0 and $infoMesTickets_ENCOURS = 0) { echo " et "; }
+                    if ($infoMesTickets_TOTAL > 1 and $infoMesTickets_OUVERT > 0) { echo "<strong>$infoMesTickets_OUVERT</strong> "; }if ($infoMesTickets_OUVERT > 0 ) { echo "$s[2] en attente de prise en charge"; }
+                    if (($infoMesTickets_ENATTENTE > 0 or $infoMesTickets_OUVERT > 0) and $infoMesTickets_ENCOURS > 0) { echo " et "; }
+                    if ($infoMesTickets_TOTAL > 1 and $infoMesTickets_ENCOURS > 0 ) { echo "<strong>$infoMesTickets_ENCOURS</strong> "; } if ($infoMesTickets_ENCOURS > 0 ) { echo "$s[3] en cours de traitement"; }
+                    echo ".</p>";
+                }
+                else { echo "<p>Vous n'avez pas de demande en cours.</p>"; }
+
+            }
+            else{
+                // Visiteur
+                echo "
+                    <p>
+                    La plateforme <strong>TIX</strong> vous permet de reporter les problèmes des salles machines de l'IUT de Vélizy-Villacoublay.<br><br>
+                    Signalez avec facilité les problèmes que vous rencontrez aux techniciens de votre parc, puis constatez leur résolution à l'aide du tableau de bord.<br><br>
+                    La vidéo ci-contre vous présente <strong>TIX</strong> dans les moindres détails.<br><br>
+                    </p>
+                ";
+            }
+            ?>
         </div>
         <div class="video-presentation">
-            <!--<iframe src="https://www.youtube.com/embed/UKRYHQALlAI?si=RteuZWQKMDy-d63F" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
-            <video controls autoplay muted loop controlsList="nodownload">
+            <video controls autoplay muted loop>
                 <source src="ressources/video/presentation_tix.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -116,6 +193,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                 ?>
 <footer>
     <a href="https://www.uvsq.fr/" target="_blank"><img src="ressources/images/logo-UVSQ.png" alt="redirige vers site UVSQ"></a>
+    <a href="ressources/documents/SAE_droit.pdf" target="_blank"><img src="ressources/images/donnee.png" alt="redirige vers travail Droit"></a>
 </footer>
 
 <div class="overlay" id="overlay" onclick="closePopup()">
@@ -130,5 +208,5 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
         </div>
     </div>
 
-</body>
+</main>
 </html>

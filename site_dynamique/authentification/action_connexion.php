@@ -16,7 +16,7 @@ try {
     if (isset($_POST['login'], $_POST['mdp'])) {
 
         // Vérifie si les champs 'login' et 'mdp' sont vides
-
+	
 	$loginSite = htmlspecialchars($_POST['login']);
 	$mdpMariaDB = htmlspecialchars($_POST['mdp']);
 
@@ -62,6 +62,8 @@ try {
     if ("Access denied" == substr($msg_erreur, 0, 13)) {
         // Si MariaDB refuse la connexion de l'utilisateur (normalement, cela signifie mauvais mot de passe
         $msg_erreur = 2; // Erreur : login ou mdp incorrecte
+	date_default_timezone_set('Europe/Paris');
+	appendToCSV("../administration/logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
     }
     header('Location: connexion.php?id=' . urlencode($msg_erreur));
 }

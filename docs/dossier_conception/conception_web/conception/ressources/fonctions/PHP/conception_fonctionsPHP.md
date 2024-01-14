@@ -88,38 +88,66 @@ Affiche un champs de formualire pour le captcha, indique dans ce champs un calcu
 
 x : void
 </pre>
-#### <i>x = libelleGenerate()</i>
+#### <i>x = verifyCAPTCHA(a, b, c)</i>
+<pre>
+Retourne un boolean décrivant l'indentité entre le calcul proposé à l'utilisateur et sa réponse.
+
+a : int (La réponse de l'utilisateur)
+b : int (Le premier chiffre du calcul)
+c : int (Le deuxième chiffre du calcul)
+x : bool (true si identique, false sinon)
+</pre>
+#### <i>x = miseAJourJeton(a, b)</i>
 <pre>
 
+a : str (Login de l'utilisateur sur le site)
+b : str (Mot de pass en clair de l'utilisateur à la base de données)
 x : void
 </pre>
-#### <i>x = libelleUpdate()</i>
+#### <i>x = verifJeton()</i>
 <pre>
-
+    
+x : void
+</pre>
+#### <i>x = motcleGenerate(a, b)</i>
+<pre>
+Génère une liste d'objets input de type checkbox en HTML représentant les mots-clés présents dans la base de données.
+Si un identifiant de ticket est spécifié, les mots-clés associés à ce ticket seront cochés par défaut.
+    
+a : int (Id du ticket dont on veut générer les mots clés)
+b : mysqli (Connexion de l'utilisateur à la base de données)
+x : void
+</pre>
+#### <i>x = motcleUpdate($id_ticket,$motcle_option, $connexion)</i>
+<pre>
+Met à jour les mots-clés d'un ticket en remplaçant ses anciens mots-clés par ceux fournis dans la liste.
+    
+a : int (Id du ticket dont on veut modifier les mots clés)
+b : array (Nouvelle liste des mots clées du ticket)
+c : mysqli (Connexion de l'utilisateur à la base de données)
 x : void
 </pre>
 #### <i>x = deconnexionSite()</i>
 <pre>
-
+Déconnecte l'utilisateur du site en supprimant les variables de session 'login' et 'mdp' et détruisant toutes les données de session.
+    
 x : void
 </pre>
-#### <i>x = affichageMenuDuHaut()</i>
+#### <i>x = affichageMenuDuHaut(a, b)</i>
 <pre>
+Affiche la barre de naviguation en fonction du rôle de l'utilisateur et de la page sur laquelle il se trouve.
 
+a : str (Nom de la page actuelle sur laquelle se trouve l'utilisateur)
+b : mysqli (Connexion de l'utilisateur à la base de données)
 x : void
 </pre>
-#### <i>x = dechiffre()</i>
+#### <i>x = menuDeroulant(a, b, c)</i>
 <pre>
+Génère une liste d'éléments de checkbox HTML à selon le résultat d'une requête SQL.
+Parmis les éléments du résultat, certains peuvent écoper d'un attribut supplémentaire précisé.
 
-x : void
-</pre>
-#### <i>x = miseAJourJeton()</i>
-<pre>
-
-x : void
-</pre>
-#### <i>x = vetifJeton()</i>
-<pre>
-
+a : mysqli_result (Résultat d'une commande de séléction SQL)
+b : str (Attribut HTML à appliqué aux éléments de la checkbox)
+c : array (Liste des éléments sur lesquels appliquer l'attribut  désigné par b)
 x : void
 </pre>
