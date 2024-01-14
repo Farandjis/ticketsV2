@@ -1,3 +1,5 @@
+-- Attention ! A exécuter avant de créer les triggers si on utilise le compte admin BD.
+
 -- Je n'arrive pas à me connecter à ma session
 INSERT INTO RelationTicketsMotscles VALUES(1, 'Matériel : Ordinateur');
 INSERT INTO RelationTicketsMotscles VALUES(1, 'Système : Windows');
