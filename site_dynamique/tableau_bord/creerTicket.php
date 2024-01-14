@@ -4,6 +4,9 @@ $lesMotcleTicketsCoches = array();
 require '../ressources/fonctions/PHPfunctions.php';
 
 $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
+
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +22,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
 <body>
 <header>
     <div class="retour">
-        <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt=""> Retour</a>
+        <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt=""> Tableau de bord</a>
     </div>
 </header>
 <div class="page_cree-modif_ticket">
@@ -44,14 +47,15 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
             <div class="custom-select">
                 <select name="titre" id="titre" class="creer_select" required>
                     <?php
-                    echo "<option value=''>--Choisir une option--</option>";
-
                     $resSQL = mysqli_query($connexionUtilisateur, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
-                    while ($row = mysqli_fetch_assoc($resSQL)) {
-                        $titre = $row['TITRE_TICKET'];
-                        $selected = (isset($_SESSION['titre']) && $_SESSION['titre'] == $titre) ? 'selected' : '';
-                        echo "<option value='$titre' $selected>$titre</option>";
+
+                    echo "<option value=''>--Choisir une option--</option>";
+                    if (isset($_SESSION['titre'])) {
+                        menuDeroulant($resSQL, "selected", array($_SESSION['titre']));
+                    }else{
+                        menuDeroulant($resSQL, "selected");
                     }
+
                     ?>
                 </select>
             </div>
@@ -63,15 +67,16 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                     <div class="custom-select">
                             <select name="nivUrg" id="nivUrg" class="creer_select" required>
                                 <?php
-                                echo "<option value=''>--Choisir une option--</option>";
 
                                 $resSQL = mysqli_query($connexionUtilisateur, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
 
-                                while ($row = mysqli_fetch_assoc($resSQL)) {
-                                    $nivUrg = $row['VALEUR_URGENCE_TICKET'];
-                                    $selected = (isset($_SESSION['nivUrg']) && $_SESSION['nivUrg'] == $nivUrg) ? 'selected' : '';
-                                    echo "<option value='$nivUrg' $selected>$nivUrg</option>";
+                                echo "<option value=''>--Choisir une option--</option>";
+                                if (isset($_SESSION['nivUrg'])) {
+                                    menuDeroulant($resSQL, "selected", array($_SESSION['nivUrg']));
+                                }else{
+                                    menuDeroulant($resSQL, "selected");
                                 }
+
                                 ?>
                         </select>
                     </div>
@@ -80,6 +85,9 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                  <span>Mots-clés</span><br>
                  <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
                      <?php
+                     if (isset($_SESSION['motcle'])) {
+                         $lesMotcleTicketsCoches = $_SESSION['motcle'];
+                     }
                      if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Sélectionner des mots-clés --"; }
                      elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné";}
                      else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés";}
@@ -105,6 +113,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
             <?php
             $explicationValue = $_SESSION['explication'] ?? '';
             echo "<textarea id='explication' name='explication' minlength='5' maxlength='250' placeholder=\"Expliquez ici votre problème. N'oubliez pas d'associer au moins un mot-clé à votre ticket.\">$explicationValue</textarea><br>";
+            unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSION["motcle"]);
             ?>
 
             <input type='submit' name='cree' value='Créer'><br>

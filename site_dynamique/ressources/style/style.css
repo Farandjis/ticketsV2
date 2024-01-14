@@ -111,8 +111,6 @@ nav {
   font-size: 24px;
   font-weight: 700;
 
-  width: 300px;
-  height: auto;
   min-width: 90px;
   padding: 10px 5px;
   margin: 0 5px;
@@ -121,7 +119,7 @@ nav {
   border-radius: 5px;
   cursor: pointer;
 }
-.authentification a, .deconnexion-desinscription a:nth-child(2){
+.authentification a, .deconnexion-desinscription a:nth-child(2), #boutonDeconnexion{
   color: #1c1c1c;
   background: #ECECEC;
 }
@@ -141,17 +139,17 @@ nav {
   color: #ECECEC;
 }
 
-.authentification a:nth-child(2) {
+.authentification a:nth-child(1) {
   color: #ECECEC;
   background: linear-gradient(84.12deg, #522FCF -24.93%, #9271E8 139.25%);
 }
 
 
-.authentification a:nth-child(1):hover {
+.authentification a:nth-child(2):hover, #boutonDeconnexion:hover{
   background: #1c1c1c;
   color: #ECECEC;
 }
-.authentification a:nth-child(2):hover {
+.authentification a:nth-child(1):hover {
   background: linear-gradient( 135deg, #cf8ae5 10%, #6018DC 100%);
   color: #e3e3e3;
 }
@@ -232,7 +230,6 @@ nav .hamburger-menu.active .slice:nth-child(3) {
   transform: rotate(-135deg);
 
 }
-
 
 
 
@@ -526,9 +523,9 @@ footer img {
 
 .formAuthentification input[type="submit"]{
   position: relative;
-  left: 25%;
+  left: 30%;
   cursor: pointer;
-  width: 50%;
+  width: 40%;
   font-weight: 700;
 }
 
@@ -590,7 +587,7 @@ input[type="submit"]:hover, input[type="reset"]:hover, input[type="submit"]:focu
 
 input[type="date"] {
   width: 150px;
-  height: 50px;
+  height: 44px;
   font-size: 14px;
   border-radius: 15px;
   padding: 10px;
@@ -611,6 +608,10 @@ input[type="date"] {
 .info-bulle {
   position: relative;
   display: inline-block;
+  cursor: initial;
+}
+
+.text-info-bulle {
   cursor: help;
 }
 
@@ -631,8 +632,8 @@ input[type="date"] {
   transition: opacity 0.3s;
 }
 
-.info-bulle:hover .text-info-bulle/*,
-.info-bulle:focus-within .text-info-bulle*/ {
+/*.info-bulle:hover .text-info-bulle,*/
+.info-bulle:focus-within .text-info-bulle {
 
   visibility: visible;
   opacity: 1;
@@ -702,7 +703,21 @@ input[type="date"] {
   width: 250px;
 }
 
+.champs-inscription .info-bulle:has(input[type="text"].champValide)::after , .champs-inscription .info-bulle:has(input[type="password"].champValide)::after {
+  content: url("../images/valide32px.png");
+  cursor: initial;
+  position:absolute;
+  left:255px;
+  top:30px;
+}
 
+.champs-inscription .info-bulle:has(input[type="text"].champInvalide)::after , .champs-inscription .info-bulle:has(input[type="password"].champInvalide)::after {
+  content: url("../images/invalide32px.png");
+  cursor: initial;
+  position:absolute;
+  left:255px;
+  top:30px;
+}
 
 /* ======== DISPOSITION DES CHAMPS DU FORMULAIRE D'INSCRIPTION ======== */
 .champs-inscription {
@@ -731,7 +746,7 @@ input[type="date"] {
   right: 15px;
 }
 
-.champs-password input {
+.champs-password .input {
   width: calc(100% - 40px);
   padding-right: 40px;
 }
@@ -745,7 +760,6 @@ input[type="date"] {
 .champs-password .password-hide{
   display: none;
 }
-
 
 .infosChamps{
   font-weight: 500;
@@ -867,13 +881,18 @@ input[type="date"] {
 }
 
 
+/* ======== MODIFICATION EMAIL ========== */
+.formModifEmail .info-bulle{
+  width: 100%;
+}
+
 /* ======== ADMINISTRATION ======== */
 
 .conteneur_administration{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 
@@ -937,6 +956,9 @@ input[type="date"] {
   overflow-y: auto;
   background-color: white;
   border: 2px solid #555555;
+}
+.conteneur_table-infructueuse_ouverture-tickets td {
+  text-align: center;
 }
 
 .table-infructueuse thead, .table-ouverture-tickets thead{
@@ -1101,7 +1123,7 @@ input[type="date"] {
   flex-direction: column;
   background: #211a43;
   width: 400px;
-  height: 500px;
+  height: 550px;
   border-radius: 15px;
   margin-bottom: 25px;
 }
@@ -1118,6 +1140,10 @@ input[type="date"] {
   width: 100%;
 }
 
+.form-recherche select {
+  width: 350px;
+  height: 44px;
+}
 
 .menu_checkbox {
   position: relative;
@@ -1134,7 +1160,7 @@ input[type="date"] {
   text-align: center;
   background-color: #ECECEC;
   color: #450001;
-  width: 350px;
+  width: 300px;
 }
 
 .option_checkbox {
@@ -1226,6 +1252,7 @@ input[type="date"] {
   margin-bottom: 10px;
   padding: 5px;
   box-shadow: 0 0px 10px #FFC5C5FF;
+  overflow-x: auto;
 }
 
 #informations_ticket_popup > p{
@@ -1294,12 +1321,16 @@ input[type="date"] {
 .formCreeTicket {
   width: 600px;
 }
+
 .formModifTicket {
-  width: 800px;
+  width: 900px;
 }
 
 .formCreeTicket > select{
   width: 100px;
+}
+.formCreeTicket #titre{
+    width: 560px;
 }
 
 .modif_entete_checkbox {
@@ -1375,7 +1406,7 @@ select {
 }
 
 .form-modif-ticket select{
-  width: 100%;
+  width: 89%;
 }
 
 .champs_ticket_gauche {
@@ -1456,7 +1487,7 @@ select {
 
 
 
-@media (max-width: 850px) {
+@media (max-width: 928px) {
 
   nav .hamburger-menu {
     display: block;
@@ -1548,8 +1579,8 @@ select {
 }
 
 
-@media  screen and  (max-width: 1020px){
-  .conteneur_administration {
+@media  screen and  (max-width: 1500px){
+  .conteneur_administration_general {
     flex-direction: column;
   }
 

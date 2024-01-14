@@ -66,7 +66,6 @@ try {
                     $createurDuTicket = mysqli_fetch_row(executeSQL("SELECT PRENOM_CREA, NOM_CREA, EMAIL_CREA FROM vue_tableau_bord WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur));
                     $dicoDesInfosSupplementaires["Créateur"] = "$createurDuTicket[0] $createurDuTicket[1] ($createurDuTicket[2])"; // Prénom et nom du technicien
 
-                    // ===================== PRÉNOM ET NOM DE LA DERNIERE PERSONNE A MODIFIER LE TICKET (tech, adm w, créateur uniquement)
                 }
 
 

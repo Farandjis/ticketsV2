@@ -28,6 +28,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
     <div class="info_profile">
         <div class="info_perso">
             <h2>Informations Personnelles</h2>
+            <div class="conteneur_table">
             <?php
             $entete_profile = array('Login', 'Nom Complet', 'Email', 'Role','Mot de passe');
             $requete = "SELECT login_user,  nom_user, email_user, role_user,  prenom_user FROM vue_Utilisateur_client;";
@@ -43,9 +44,9 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                                     <td class='entete_profile' >$entete_profile[$i]</td >
                                     <td > $row[$i]</td >";
                         if ($i == 2){
-                            echo "<td><a href='modifEmail.php'><img src='../ressources/images/icone_modif.svg' class='iconeModif'></a></td>";
+                            echo "<td><a href='modifEmail.php'><img src='../ressources/images/icone_modif.svg' class='iconeModif' alt='icone de modification'></a></td>";
                         }else if ($i == 4 && !in_array($row[3], ['Administrateur Site', 'Administrateur Système'])){
-                            echo "<td><a href='modifMdp.php'><img src='../ressources/images/icone_modif.svg' class='iconeModif'></a></td>";
+                            echo "<td><a href='modifMdp.php'><img src='../ressources/images/icone_modif.svg' class='iconeModif' alt='icone de modification'></a></td>";
                         }else{
                             echo "<td></td>";
                         }
@@ -54,6 +55,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                    echo"</tbody>
             </table>";
             ?>
+            </div>
         </div>
 
         <div class="demandes">
@@ -70,7 +72,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                         <th>État</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-ticket-profil">
                     <?php
                         $reqSQL = "SELECT ID_TICKET, TITRE_TICKET, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'),NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_client ORDER BY HORODATAGE_CREATION_TICKET DESC";
 

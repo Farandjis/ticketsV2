@@ -4,6 +4,9 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
 
 global $database, $host;
 
+session_start();
+unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSION["motcle"]);
+
 /*
  * Par rapport à au bouton modifier :
  *
@@ -206,7 +209,7 @@ global $database, $host;
                     <select name="selectionPossible" id="selectionPossible">
 
                         <?php
-                        echo "<option value=''>-- Choisir un type de ticket --</option>"; // tt
+                        echo "<option value=''>(par défaut) Tous les tickets de TIX</option>"; // tt
                         if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsPerso"){ echo "<option value='ticketsPerso' selected>Mes demandes actuelles</option>"; }
                         else { echo "<option value='ticketsPerso'>Mes demandes actuelles</option>"; }
 

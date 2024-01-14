@@ -49,33 +49,34 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
                 }
                 ?>
 
-                <label for='Amdp'>Mot de passe</label><br>
+
                 <br>
                 <div class="champs-password">
+                    <label for='Amdp'>Mot de passe</label>
                     <input id='Amdp' type='password' name ='Amdp'>
 
                     <div class="password-show" onclick="showPassword(this)">
-                        <img src="../ressources/images/visible.png">
+                        <img src="../ressources/images/visible.png" alt="mot de passe est visible">
                     </div>
                     <div class="password-hide" onclick="hidePassword(this)">
-                        <img src="../ressources/images/hidden.png">
+                        <img src="../ressources/images/hidden.png" alt="Le mot de passe est caché">
                     </div>
                 </div>
                 <br>
-                <label for='Nmdp'>Nouveau mot de passe</label><br>
                 <div class="champs-password">
+                    <label for='Nmdp'>Nouveau mot de passe</label>
                     <input id='Nmdp' type='password' name ='Nmdp'>
 
                     <div class="password-show" onclick="showPassword(this)">
-                        <img src="../ressources/images/visible.png">
+                        <img src="../ressources/images/visible.png" alt="mot de passe est visible">
                     </div>
                     <div class="password-hide" onclick="hidePassword(this)">
-                        <img src="../ressources/images/hidden.png">
+                        <img src="../ressources/images/hidden.png" alt="Le mot de passe est caché">
                     </div>
                 </div>
                 <br>
-                <label for='Cmdp'>Confirmation mot de passe</label><br>
                 <div class="champs-password">
+                    <label for='Cmdp'>Confirmation mot de passe</label>
                     <input id='Cmdp' type='password' name ='Cmdp'>
 
                     <div class="password-show" onclick="showPassword(this)">

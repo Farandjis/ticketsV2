@@ -164,11 +164,5 @@ function ajoutDesInfosDansPOP_UP(){
             infoAAjouter_NomTexte.innerText = cle + " : "; // on insère la clé
             infoAAjouter_ContenuTexte.innerText = dicoDesInfosSupplementaires[cle]; // on insère la valeur associé à la clé
         })
-
-
-
-
-
-
     }
 }

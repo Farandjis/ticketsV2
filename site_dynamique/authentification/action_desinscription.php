@@ -66,6 +66,7 @@ try{
         exit;
     }
 } catch (Exception $e) {
+
     header('Location: desinscription.php?id=6&error=' . urlencode($e->getMessage()));
     exit;
 }

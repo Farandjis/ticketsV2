@@ -166,7 +166,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 					<th>Date</th>
 					<th>Login</th>
 					<th>IP</th>
-					<th>Niv.Urgence</th>
+					<th>ID Ticket</th>
 				  </tr>
 				  </thead>
 				  <tbody>';

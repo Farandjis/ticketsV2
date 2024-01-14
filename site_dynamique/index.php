@@ -1,6 +1,11 @@
 <?php
 require (dirname(__FILE__) . "/ressources/fonctions/PHPfunctions.php");
+
 session_start();
+
+if(isset($_SESSION["preLogin"])){
+    unset($_SESSION["preLogin"]);
+}
 
 $connexionUtilisateur = null; // On part du principe que c'est in visiteur (donc non connecté)
 
@@ -58,6 +63,7 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
 
             <?php
             if ($connexionUtilisateur != null){
+				date_default_timezone_set('Europe/Paris');
                 setlocale(LC_TIME, 'fr_FR.utf8', 'fra'); // Définir la localisation en français
                 $date = ucfirst(strftime('%A %e %B %Y et il est %Hh%M')); // Formatage de la date
                 echo "

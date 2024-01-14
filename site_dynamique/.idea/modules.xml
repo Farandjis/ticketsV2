@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/site_dynamique.iml" filepath="$PROJECT_DIR$/.idea/site_dynamique.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/html.iml" filepath="$PROJECT_DIR$/.idea/html.iml" />
     </modules>
   </component>
 </project>

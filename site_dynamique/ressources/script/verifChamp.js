@@ -44,7 +44,7 @@ function validateField(fieldName) {
 
 function getValidationPattern(fieldName) {
     // Ajoutez ici la logique pour retourner le motif de validation en fonction du champ
-	// Les mêmes que pour la base de données.
+    // Les mêmes que pour la base de données.
     switch(fieldName) {
         case 'login':
             return /^.{5,32}$/;
@@ -53,11 +53,11 @@ function getValidationPattern(fieldName) {
         case 'verifMdp':
             return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%.&*])(.{12,32})$/;
         case 'prenom':
-			// avant correction :  return rien
-			return /^[A-Za-zÀ-ÖØ-öø-ÿ\\-]{2,50}$/;
+            // avant correction :  return rien
+            return /^[A-Za-zÀ-ÖØ-öø-ÿ\\-]{2,50}$/;
         case 'nom':
             // avant correction :  return /^[a-zA-Z\-]{2,50}$/;
-			return /^[A-Za-zÀ-ÖØ-öø-ÿ\\-]{2,50}$/;
+            return /^[A-Za-zÀ-ÖØ-öø-ÿ\\-]{2,50}$/;
         case 'email':
             return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         default:

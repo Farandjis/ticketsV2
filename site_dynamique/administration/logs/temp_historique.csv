@@ -1,2 +1,5 @@
 HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN
-"2024-01-11 11:42:37","2024-01-11 11:52:48","N&#039;allez pas chez moi s&#039;il vous plaît !!","Non complété !",&lt;b&gt;ddd&lt;/b&gt;,4,
+"2024-01-04 17:11:35","2024-01-10 23:26:20","[MATERIEL] Matériel manquant",Moyen,"Il manque une souris en G24",3,4
+"2024-01-09 17:50:57","2024-01-10 17:39:51","[MATERIEL] Matériel en panne",Important,"Impossible de brancher en HDMI le vidéoprojecteur de la salle G24 (non reconnu)
+
+Note de l&#039;admin web : les vidéoprojecteurs ont été changés recemment.",33,4

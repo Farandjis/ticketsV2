@@ -74,7 +74,7 @@ session_start();
 
                     <div class="info-bulle">
                         <label for="login">Login <br>
-                            <input id="login" type="text" name="login" ' . (isset($_SESSION['login']) ? 'value="' . $_SESSION["login"] . '"' : '') . '>
+                            <input id="login" type="text" name="login" ' . (isset($_SESSION['preLogin']) ? 'value="' . $_SESSION["preLogin"] . '"' : '') . '>
                             <span class="text-info-bulle">Le login doit contenir<br> Entre <span>5 et 32 caractères</span>.</span>
                         </label>
                     </div><span id="infoLogin" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
@@ -84,7 +84,7 @@ session_start();
                     <div class="champs-password">
                         <div class="info-bulle">
                             <label for="mdp">Mot de passe <br>
-                                <input id="mdp" type="password" name ="mdp" ' . (isset($_SESSION['mdp']) ? 'value="' . $_SESSION["mdp"] . '"' : '') . '>
+                                <input id="mdp" type="password" name ="mdp">
                                 <span class="text-info-bulle">Le mot de passe doit contenir entre <span>12 et 32 caractères</span> et au moins une <span>minuscule</span>, <br>une <span>majuscule</span>, un <span>chiffre</span> et <br>un <span> caractère spécial</span>.</span>
                             </label>
                         </div><span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>
@@ -103,7 +103,7 @@ session_start();
 
                         <div class="info-bulle">
                             <label for="verifMdp">Vérification mot de passe <br>
-                                <input id="verifMdp" type="password" name ="verifMdp" ' . (isset($_SESSION['verifMdp']) ? 'value="' . $_SESSION["verifMdp"] . '"' : '') . '>
+                                <input id="verifMdp" type="password" name ="verifMdp">
                                 <span class="text-info-bulle">La vérification du mot de passe <span>doit être identique au mot de passe</span>.</span>
                             </label>
                         </div> <span id="infoVerifMdp" class="infosChamps" onclick="afficheInfo(this)">?</span><br>

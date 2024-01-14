@@ -33,7 +33,7 @@ try {
                         //$infoBouton[0] = "S'attribuer ce ticket";
 
                         $ID_USER = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_USER FROM vue_Utilisateur_client;"))[0];
-                        executeSQL("UPDATE vue_associe_ticket_tech SET ID_TECHNICIEN = ?, HORODATAGE_DEBUT_TRAITEMENT_TICKET = current_timestamp() WHERE ID_TICKET = ?", array($ID_USER, $ID_TICKET), $connexionUtilisateur);
+                        executeSQL("UPDATE vue_associe_ticket_tech SET ID_TECHNICIEN = ? WHERE ID_TICKET = ?", array($ID_USER, $ID_TICKET), $connexionUtilisateur);
 
                         header('Content-Type: application/json');
                         echo json_encode(array("Modifier ce ticket", $ID_TICKET));

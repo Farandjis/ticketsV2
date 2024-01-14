@@ -1,0 +1,3 @@
+Pensez à supprimer TOUS les utilisateurs MariaDB et de faire un DROP DATABASE DB_TIX, si vous voulez tout réinstaller !
+
+Il faut suivre l'ordre des fichiers pour la réinstallation (1a puis 1b puis 2a, puis 2b...)

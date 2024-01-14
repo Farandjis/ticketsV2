@@ -5,11 +5,11 @@ require '../ressources/fonctions/PHPfunctions.php';
 // Vérification des droits d'accès
 $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
 
-if (isset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"])) {
-    session_destroy();
-}
 // Démarrage de la session
 session_start();
+if (isset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSION["motcle"])) {
+    unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSION["motcle"]);
+}
 
 try {
     // Vérification de l'existence des paramètres
@@ -64,12 +64,14 @@ try {
                     $_SESSION["titre"] = $_POST['titre'];
                     $_SESSION["nivUrg"] = $_POST['nivUrg'];
                     $_SESSION["explication"] = $_POST['explication'];
+                    $_SESSION["motcle"] = $_POST['motcle_option'];
                     header('Location: creerTicket.php?id=3'); // Le titre n'existe pas
                 }
             } else {
                 $_SESSION["titre"] = $_POST['titre'];
                 $_SESSION["nivUrg"] = $_POST['nivUrg'];
                 $_SESSION["explication"] = $_POST['explication'];
+                $_SESSION["motcle"] = $_POST['motcle_option'];
                 header('Location: creerTicket.php?id=4'); // Niveau d'urgence est incorrect
             }
 
@@ -77,20 +79,19 @@ try {
             $_SESSION["titre"] = $_POST['titre'];
             $_SESSION["nivUrg"] = $_POST['nivUrg'];
             $_SESSION["explication"] = $_POST['explication'];
+            $_SESSION["motcle"] = $_POST['motcle_option'];
             header('Location: creerTicket.php?id=2'); // Données essentielles ne sont pas fournies ou incohérentes
         }
     } else {
-        $_SESSION["titre"] = $_POST['titre'];
-        $_SESSION["nivUrg"] = $_POST['nivUrg'];
-        $_SESSION["explication"] = $_POST['explication'];
         header('Location: creerTicket.php?id=1'); // Données manquantes
     }
 } catch (Exception $ex) {
     $_SESSION["titre"] = $_POST['titre'];
     $_SESSION["nivUrg"] = $_POST['nivUrg'];
     $_SESSION["explication"] = $_POST['explication'];
+    $_SESSION["motcle"] = $_POST['motcle_option'];
     // Affichage de l'erreur générale
     echo "Erreur générale : " . $ex->getMessage();
     header('Location: creerTicket.php?id=-1'); // Erreur générale
 }
-?>
+

@@ -1,6 +1,6 @@
 <?php
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
-$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvoi vers e403 si la personne n'a pas accès
+$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système')); // Renvoi vers e403 si la personne n'a pas accès
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
     <div class="page_authentification_modif_perso">
         <a href="../index.php"><img src="../ressources/images/logo.png" class="logo_plein" alt="logo du site"></a>
 
-        <div role="form" class="formAuthentification formConnexion">
+        <div role="form" class="formModifEmail formAuthentification formConnexion">
 
             <form action='action_modifEmail.php' method='post'>
                 <h1 class="h1Conexion">Modification : Email</h1><br>
@@ -44,26 +44,28 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien')); // Renvo
                 }
                 ?>
 
-                <label for='mdp'>Mot de passe</label><br>
+
                 <div class="champs-password">
-                    <input id='mdp' type='password' name ='mdp'>
+                    <div class="info-bulle">
+                        <label for='mdp'>Mot de passe </label><br>
+                        <input id='mdp' type='password' name ='mdp'>
+                        <span class="text-info-bulle">Le mot de passe doit être similaire au mot de passe inscrit lors de l'inscription <span>s'il n'a pas été changé</span>.</span>
+                    </div><span id="infoMdp" class="infosChamps" onclick="afficheInfo(this)"></span><br>
 
                     <div class="password-show" onclick="showPassword(this)">
-                        <img src="../ressources/images/visible.png">
+                        <img src="../ressources/images/visible.png" alt="mot de passe est visible">
                     </div>
                     <div class="password-hide" onclick="hidePassword(this)">
-                        <img src="../ressources/images/hidden.png">
+                        <img src="../ressources/images/hidden.png" alt="Le mot de passe est caché">
                     </div>
                 </div>
                 <br>
-                
+
                 <label for='Nemail'>Nouvel email</label><br>
                 <input id='Nemail' type='text' name ='Nemail'><br>
                 <br>
 
                 <input type='submit' name='Modification' value='Modification'><br>
-
-
 
             </form>
         </div>

@@ -70,7 +70,7 @@ function init(){
 
         // Rendre toutes les lignes focusables lors du chargement du document
         for (let i = 0; i < rows.length; i++) {
-            rows[i].setAttribute("tabindex", "1");
+            rows[i].setAttribute("tabindex", "0");
         }
 
 
