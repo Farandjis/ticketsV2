@@ -1,1 +1,0 @@
-Dossier comportant des sauvegardes régulières de la base de données du serveur correspondant au nom du répertoire.
