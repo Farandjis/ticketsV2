@@ -3,6 +3,12 @@ Florent VASSEUR--BERLIOUX, Tom BOGAERT, Enzo GUIGNOLLE, Assia GOUABI, Matthieu F
 
 <br><br><br>
 
+## Rapport globale SAE
+  Attention ! Les rapports de l'installation du serveur, de cryptographie et de probas-stats sont dans les sections en dessous.<br>
+  https://github.com/Farandjis/ticketsV2/blob/main/compte_rendu_sae_fteam.pdf
+
+<br><br><br>
+  
 ## Gestion du projet
 - #### Bilan de chaque semaine
   - https://github.com/Farandjis/ticketsV2/blob/main/docs/planning_devblog/fichier_maintenance.md <br>
