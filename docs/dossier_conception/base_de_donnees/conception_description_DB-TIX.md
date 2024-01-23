@@ -341,7 +341,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
   - ### ATTENTION_SupprimerSonCompte()
     Supprime un compte TIX et l'utilisateur MariaDB associé
-    - L'utilisateur à supprimer est soit un utilisateur, soit un technicien obligatoirement
+    - L'utilisateur à supprimer est un utilisateur.
     - Début de la transaction
     - On retire les données personnel de l'utilisateur de la liste des utilisateurs de la plateforme TIX.
       - login -> NULL, prénom -> 'Utilisateur', nom -> 'SUPPRIMÉ', email -> 'supprimer@tix.fr'
@@ -351,7 +351,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Validation de la transaction
 
   - ### ATTENTION_SupprimerTousLesComptesInutilises()
-    Procédure qui supprime tous les comptes utilisateurs et techniciens inactifs depuis au moins 36 mois.<br>
+    Procédure qui supprime tous les comptes utilisateurs inactifs depuis au moins 36 mois.<br>
     ATTENTION ! CETTE PROCÉDURE N'UTILISE PAS ATTENTION_SupprimerSonCompte !!<br>
     Si le système de suppression de compte est modifié sur l'une des deux, il faut également le modifier sur l'autre !<br>
     - On récupère tous les identifiants des comptes qui ne se sont pas connecté depuis au moins 36 mois (et qui sont soit des utilisateurs, soit des techniciens).
