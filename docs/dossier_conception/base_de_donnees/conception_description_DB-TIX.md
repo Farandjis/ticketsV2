@@ -175,7 +175,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - ### Categorie
     - **NOM_CATEGORIE** [VARCHAR 10] : primary key NOT NULL
 
-  - ### Categorie_associés
+  - ### CategorieAssocies
       - **NOM_CATEGORIE** [VARCHAR 10] : primary key foreign key (Categorie.NOM_CATEGORIE) NOT NULL
       - **NOM_CATEGORIE_ASSOCIER** [VARCHAR 10] : primary key foreign key (Categorie.NOM_CATEGORIE) NOT NULL
 
