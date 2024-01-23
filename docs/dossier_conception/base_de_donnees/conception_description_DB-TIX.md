@@ -105,6 +105,12 @@ Ce document est complété par les différents diagrammes montrant la mise en re
   - ### RelationTicketMotscles
     La table RELATIONTICKETMOTSCLES permet de faire le lien entre les mots-clés et les tickets.
 
+  - ### Categorie
+    La table CATEGORIE comporte toutes les catégories pouvant être associée à un titre ou à un mot-clé.
+
+  - ### Categorie_associe
+    La table CATEGORIE_ASSOCIÉ associe chaque mot-clé à une liste de mots-clés similaire (par ex : logiciel -> système, salle)
+
 
 
 ## <a name="p3"></a> III - Les attributs des tables
@@ -149,7 +155,8 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - ID USER si c'est un utilisateur de la plateforme qui a modifié le ticket
 
   - ### TitreTicket
-    - **TitreTicket** [VARCHAR 60] Primary Key
+    - **TITRETICKET** [VARCHAR 60] Primary Key
+    - **NOM_CATEGORIE** [VARCHAR 10] : foreign key (Categorie.NOM_CATEGORIE) NOT NULL
 
   - ### EtatTicket
     - **VALEUR_ETAT_TICKET** [VARCHAR 30] : primary key // valeurs qui seront stockées : En attente, Ouvert, En cours de traitement, Fermé
@@ -159,12 +166,18 @@ Ce document est complété par les différents diagrammes montrant la mise en re
 
   - ### MotcleTicket
     - **NOM_MOTCLE** [VARCHAR 30] : primary key
+    - **NOM_CATEGORIE** [VARCHAR 10] : foreign key (Categorie.NOM_CATEGORIE) NOT NULL
 
   - ### RelationTicketsMotscles
     - **ID_TICKET** [INT] : primary key, foreign key (Ticket.ID_TICKET) NOT NULL
     - **NOM_MOTCLE** [VARCHAR 30] : primary key, foreign key (MotcleTicket.NOM_MOTCLE) NOT NULL
 
+  - ### Categorie
+    - **NOM_CATEGORIE** [VARCHAR 10] : primary key NOT NULL
 
+  - ### Categorie_associés
+      - **NOM_CATEGORIE** [VARCHAR 10] : primary key foreign key (Categorie.NOM_CATEGORIE) NOT NULL
+      - **NOM_CATEGORIE_ASSOCIER** [VARCHAR 10] : primary key foreign key (Categorie.NOM_CATEGORIE) NOT NULL
 
 ## <a name="p4"></a> IV - Les vues
   - ### vue_Ticket_visiteur
