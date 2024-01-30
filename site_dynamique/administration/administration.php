@@ -23,6 +23,10 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
   <h1 class="titre_page">
     Administration
   </h1>
+  <div class="ancreAdmini">
+	  <a href="#historique">Historique</a>
+	  <a href="#jounalActivite">Journal d'activité</a>
+  </div>
    <?php
 
 	if (recupererRoleDe($connection) == 'Administrateur Site'){
@@ -124,8 +128,8 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
 	if (recupererRoleDe($connection) == 'Administrateur Système'){
 		echo ' 
-		  <h1 class="titre_page">
-			Historique
+		  <h1 class="titre_page" id="historique">
+			Historique des tickets
 		  </h1>
 		  <div class="historique">
 			<div class="conteneur_table conteneur_table-historique">
@@ -151,7 +155,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			</div>
 		  </div>';
 		  echo ' 
-		  <h1 class="titre_page">
+		  <h1 class="titre_page" id="jounalActivite">
 			Journal d\'activité
 		  </h1>
 		  <div class="activite">
@@ -161,15 +165,14 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				<table class="table-infructueuse table-popup">
 				  <thead>
 				  <tr>
-					<th>Date</th>
-					<th>Login</th>
-					<th>IP</th>
-					<th>Tentative</th>
-					<th class="ligneCacher">Test</th>
+					<th>Nom fichier</th>
+					<th>Télécharger</th>
+					<th>Supprimer</th>
+					
 				  </tr>
 				  </thead>
 				  <tbody>';
-					csvToHtmlTable("logs/journauxActvCoInf.csv");
+					//csvToHtmlTable("logs/journauxActvCoInf.csv");
 					echo '
 				  </tr>
 				  </tbody>
@@ -183,15 +186,14 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				<table class="table-ouverture-tickets table-popup">
 				  <thead>
 				  <tr>
-					<th>Date</th>
-					<th>Login</th>
-					<th>IP</th>
-					<th>ID Ticket</th>
+					<th>Nom fichier</th>
+					<th>Télécharger</th>
+					<th>Supprimer</th>
 				  </tr>
 				  </thead>
 				  <tbody>';
 					
-					csvToHtmlTable("logs/journauxActvCreTck.csv");
+					//csvToHtmlTable("logs/journauxActvCreTck.csv");
 					echo '
 				  </tbody>
 				</table>
