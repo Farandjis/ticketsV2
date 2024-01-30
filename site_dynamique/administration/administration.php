@@ -30,25 +30,45 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 <div class="conteneur_administration_general conteneur_administration">
     <div class="conteneur_ajout_administration">
         <form action="action_ajouttechnicien.php" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-          <label for="ajout_technicien">Gestion de Technicien :</label><br>
+          <label for="ajout_technicien">Ajout de Technicien :</label><br>
           <div class="conteneur_ajout_technicien">
-          <div class="menu_checkbox" id="menu_deroulant_checkbox" tabindex="0" onkeydown="toggleDropdown(this)">
-            <span class="entete_menu_checkbox modif_entete_checkbox" onclick= toggleDropdown(document.getElementById("menu_deroulant_checkbox"))>--Liste des Utilisateurs--</span>
-            <div class="option_checkbox" id="ajout_technicien">';
-				
-				menuDeroulantTousLesUtilisateurs($connection);
-				
-			echo '
-             </div>
-          </div>
-          <input type="submit" name="submit_ajout_technicien" value="Modifier">
+          <div class="custom-select">
+
+                <select name="selectionPossible" id="selectionPossible" required>';
+                      echo '<option value="" selected>Selectioner un utilisateur</option>';
+
+                    $resSQL = mysqli_query($connection, "SELECT CONCAT(ID_USER,\" \",NOM_USER,\" \",PRENOM_USER) FROM affiche_utilisateurs_pour_adm_web ORDER BY ID_USER ASC;");
+                    menuDeroulant($resSQL,"selected");
+
+                 echo '
+                </select>
+            </div><br>
+          <input type="submit" name="submit_ajout_technicien" value="Ajouter">
           </div>
         </form>
-		</div>';
+
+        <form action="action_supptechnicien.php" method="post" name="Suppression Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+		  <label for="suppression_technicien">Suppression de Technicien :</label><br>
+		  <div class="conteneur_ajout_technicien">
+		  <div class="custom-select">
+
+			  <select name="selectionPossible" id="selectionPossible" required>';
+					echo '<option value="" selected>Selectioner un technicien</option>';
+
+				$resSQL = mysqli_query($connection, "SELECT CONCAT(ID_USER,\" \",NOM_USER,\" \",PRENOM_USER) FROM vue_technicien ORDER BY ID_USER ASC;");
+				menuDeroulant($resSQL,"selected");
+
+			   echo '
+			  </select>
+		  </div><br>
+			<input type="submit" name="submit_suppression_technicien" value="Supprimer">
+		  </div>
+        </form>
+	</div>';
 		    echo '<div class="conteneur_ajout_administration">
                           <form action="action_ajouttitre.php" method="post" name="Ajout Titre" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
                               <label for="ajout_titre">Ajout de Titre :</label><br><br>
-                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre">
+                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre" required>
                               <input type="submit" name="ajouter_titre" value="Ajouter">
                           </form>
 
@@ -76,7 +96,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 		    <div class="conteneur_ajout_administration">
       <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
         <label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
-        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé">
+        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé" required>
         <input type="submit" name="submit_ajout_motcle" value="Ajouter">
       </form>
       <form action="action_suppmotcle.php" method="post" name="Suppression Motcle" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
