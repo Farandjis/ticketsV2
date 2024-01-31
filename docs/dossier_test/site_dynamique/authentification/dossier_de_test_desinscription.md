@@ -59,10 +59,9 @@ Nous allons tester tous les cas possibles qui permettent à la page de donner un
 
 | Cas n° | Critère                                                   | Résultat attendu                                     | Résultat obtenu                                      | Commentaires |
 |:-------|-----------------------------------------------------------|------------------------------------------------------|------------------------------------------------------|--------------|
-| 1      | Si nous allons directement sur la page d'action           | Redirection sur la page de désincription avec id = 1 | Redirection sur la page de désincription avec id = 1 |              |
-| 2      | Si au moins un champ est vide                             | Redirection sur la page de désincription avec id = 2 | Redirection sur la page de désincription avec id = 2 |              |
-| 3      | Si le login ou le mot de passe ne correpond pas au compte | Redirection sur la page de désincription avec id = 3 | Redirection sur la page de désincription avec id = 3 |              |
-| 4      | Si le capcha est vide                                     | Redirection sur la page de désincription avec id = 4 | Redirection sur la page de désincription avec id = 4 |              |
-| 5      | Si le capcha n'est pas correct                            | Redirection sur la page de désincription avec id = 5 | Redirection sur la page de désincription avec id = 5 |              |
-| 5      | Si le capcha n'est pas correct                            | Redirection sur la page de désincription avec id = 5 | Redirection sur la page de désincription avec id = 5 |              |
-| 5      | Si la désincription s'est passé comme prévu               | Redirection sur la page d'accueil'                   | Redirection sur la page d'accueil                    |              |
+| 1      | Si nous allons directement sur la page d'action           | KO (redirection id=1) | KO (redirection id=1)  | Les données ne sont pas définies              |
+| 2      | $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 11 <br> la case confirmation a été validé                             | OK | OK | La déconnexion a bien été effectué             |
+| 3      |  $login = " " <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 11 <br> la case confirmation a été validé | KO (redirection id=2) | KO (redirection id=2) | $login vide             |
+| 4      | $login = "alice" <br> $mdp = " " <br> $captcha (3+8) = 11 <br> la case confirmation a été validé        | Ko (redirection id=2) | Ko (redirection id=2) | $mdp est vide              |
+| 5      |  $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = " " <br> la case confirmation a été validé             | KO (redirection id=3) | KO (redirection id=3)  | $captcha est vide              |
+| 6      | $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 45 <br> la case confirmation a été validé      | KO (redirection id = 3) | KO (redirection id = 3) | $captcha est incorrect              |
