@@ -63,5 +63,9 @@ Nous allons tester tous les cas possibles qui permettent à la page de donner un
 | 2      | $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 11 <br> la case confirmation a été validé                             | OK | OK | La déconnexion a bien été effectué             |
 | 3      |  $login = " " <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 11 <br> la case confirmation a été validé | KO (redirection id=2) | KO (redirection id=2) | $login vide             |
 | 4      | $login = "alice" <br> $mdp = " " <br> $captcha (3+8) = 11 <br> la case confirmation a été validé        | Ko (redirection id=2) | Ko (redirection id=2) | $mdp est vide              |
-| 5      |  $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = " " <br> la case confirmation a été validé             | KO (redirection id=3) | KO (redirection id=3)  | $captcha est vide              |
-| 6      | $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 45 <br> la case confirmation a été validé      | KO (redirection id = 3) | KO (redirection id = 3) | $captcha est incorrect              |
+| 5      |  $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = " " <br> la case confirmation a été validé             | KO (redirection id=4) | KO (redirection id=4)  | $captcha est vide              |
+| 6      | $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 45 <br> la case confirmation a été validé      | KO (redirection id = 5) | KO (redirection id = 5) | $captcha est incorrect              |
+| 7      | $login = "alice" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = !! <br> la case confirmation a été validé      | KO (redirection id = 5) | KO (redirection id = 5) | $captcha est incorrect              |
+| 8      | $login = "alic" <br> $mdp = "Azertyyy!123" <br> $captcha (3+8) = 11 <br> la case confirmation a été validé      | KO (redirection id = 3) | KO (redirection id = 3) | $login incorrect             |
+| 9      | $login = "alice" <br> $mdp = "Azertyyy!" <br> $captcha (3+8) = 11 <br> la case confirmation a été validé      | KO (redirection id = 3) | KO (redirection id = 3) | $mdp incorrect             |
+
