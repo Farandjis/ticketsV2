@@ -495,7 +495,7 @@ function menuDeroulantTousLesMotcleTickets($connexionUtilisateur, $motclesACoche
     }
 }
 */
-
+/*
 function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
     $libellesACocher = array();
     
@@ -520,6 +520,7 @@ function menuDeroulantTousLesUtilisateurs($connexionUtilisateur){
         die("Erreur lors de l'ex�cution de la requ�te : " . mysqli_error($connexionUtilisateur));
     }
 }
+*/
 
 /*
 function menuDeroulantTousLesTitres($connexionUtilisateur, $titreACocher = array()){
