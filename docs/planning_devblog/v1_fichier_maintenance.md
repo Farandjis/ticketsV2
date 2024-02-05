@@ -14,11 +14,43 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
-
-## Lundi 05/02/2024 - Bilan du travail du 30/01/2024 au 05/01/2024
+## Lundi 12/02/2024 - Bilan du travail du 06/01/2024 au 12/01/2024
 
 Semaine en cours.
 
+<br><br><br>
+
+---
+
+## Lundi 05/02/2024 - Bilan du travail du 30/01/2024 au 05/01/2024
+
+#### Travaux restants (fondé selon le PDF résumant les remarques de M Hoguin):
+- Matthieu - Associer aux titres/mots-clés un tag (ex [AUTRE] [MATERIEL]...)
+  - -> En cours, fin prévu pour le 06/02/2024
+- Assia - Le technicien ne doit pas pouvoir se désinscrire
+- Niveau d'urgence « En attente » devient « En vérification »
+- Les cases cochées repassent en haut de la liste
+- Retirer les administrateurs de la liste des utilisateurs pour gestion tech
+- Faire un menu sous ADM SYS pour afficher 2 ancres : Historique et J. A.
+- Journaux d'activités
+- Modération
+- Statistique
+- Régler pb retour des données inscription quand erreur
+- Système jeton à revoir
+
+
+#### Travail effectué
+- **Florent** et **Tom**<br>
+  - Préparation de l'installation de CRON sur le RPi4
+  - Préparation des scripts d'automatisation
+  - Fin gestion des techniciens v2 (voir pdf)
+- **Enzo**<br>
+  - Aide pour le récapitulatif "Travail effectué"
+- **Assia**<br>
+  - Révision dossier de tests : pages d'authentifications, index et création de ticket
+- **Matthieu**
+  - Gestion du projet
+  - Légère avancé pour le système de catégorie
 <br><br><br>
 
 ---
@@ -38,11 +70,11 @@ Exceptionnellement, l'équipe avance en autonomie.
 
 #### Travail effectué
 - **Florent** et **Tom**<br>
-  - Mise en place de la nouvelle façon de gérer les techiciens (avec Tom)
+  - Mise en place de la nouvelle façon de gérer les techniciens (avec Tom)
   - Correction des erreurs textuelles discussion_autour_des_ameliorations_m_hoguin.pdf
 
 - **Enzo** :<br>
-  - Correction des redirections vers le tableau de bord (modif/creetTicket) : redirige directement vers la page
+  - Correction des redirections vers le tableau de bord (modif/creerTicket) : redirige directement vers la page
   - Récapitulatif "Travail effectué"
 
 - **Assia**<br>
