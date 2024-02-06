@@ -21,6 +21,12 @@ GRANT SELECT ON vue_tv_relation_ticket_motcle TO 'role_utilisateur';
 -- Mettre à jour son adresse email
 GRANT UPDATE(EMAIL_USER) ON DB_TIX.vue_Utilisateur_maj_email TO 'role_utilisateur';
 
+-- Voir les différentes catégories des titres/mots-clés
+GRANT SELECT ON Categorie TO role_utilisateur;
+
+-- Voir les différentes catégories associées à chaque catégorie
+GRANT SELECT ON CategorieAssocies TO role_utilisateur;
+
 -- Voir les différents mots-clés disponibles pour un ticket
 GRANT SELECT ON DB_TIX.MotcleTicket TO 'role_utilisateur';
 
