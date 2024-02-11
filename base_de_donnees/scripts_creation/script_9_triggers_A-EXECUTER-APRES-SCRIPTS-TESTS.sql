@@ -159,7 +159,7 @@ BEFORE UPDATE ON Ticket
 FOR EACH ROW
 BEGIN
     IF OLD.ETAT_TICKET = 'Fermé' THEN
-        IF NEW.TITRE_TICKET != "[!] Autre problème" THEN
+        IF NEW.TITRE_TICKET != "! : Autre problème" THEN
             SET NEW.TITRE_TICKET = OLD.TITRE_TICKET;
         END IF;
         SET NEW.DESCRIPTION_TICKET = OLD.DESCRIPTION_TICKET;
@@ -268,11 +268,11 @@ CREATE TRIGGER SupprTTQuandSupprTitre
 BEFORE DELETE ON TitreTicket
 FOR EACH ROW
 BEGIN
-	IF (OLD.TITRE_TICKET = "[!] Autre problème") THEN
+	IF (OLD.TITRE_TICKET = "! : Autre problème") THEN
 		SIGNAL SQLSTATE '45000'
-        	SET MESSAGE_TEXT = 'ERREUR (SupprTTQuandSupprTitre): Il est impossible de supprimer le titre [!] Autre problème.';
+        	SET MESSAGE_TEXT = 'ERREUR (SupprTTQuandSupprTitre): Il est impossible de supprimer le titre ! : Autre problème.';
         ELSE
-		UPDATE Ticket SET TITRE_TICKET = '[!] Autre problème' WHERE TITRE_TICKET = OLD.TITRE_TICKET;
+		UPDATE Ticket SET TITRE_TICKET = '! : Autre problème' WHERE TITRE_TICKET = OLD.TITRE_TICKET;
 	END IF;
 END //
 DELIMITER ;
