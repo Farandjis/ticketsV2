@@ -18,6 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['captcha'])) {
         $estValideCAPTCHA = verifyCAPTCHA($reponseUtilisateur, $_SESSION['chiffre1'], $_SESSION['chiffre2']);
 
         if (!$estValideCAPTCHA) {
+            $_SESSION['preLogin'] = $_POST['login'];
+            $_SESSION['nom'] = $_POST['nom'];
+            $_SESSION['prenom'] = $_POST['prenom'];
+            $_SESSION['email'] = $_POST['email'];
             header('Location: inscription.php?id=16'); // ERREUR : Captcha incorrect.
             return;
         }
