@@ -42,7 +42,7 @@ try {
 
                 // ===================== DATE DE LA DERNIÈRE MODIFICATION DU TICKET
                 $nivUEstimer = mysqli_fetch_row(executeSQL("SELECT NIV_URGENCE_ESTIMER_TICKET FROM vue_Ticket_client WHERE ID_TICKET = ?;", array($ID_TICKET), $connexionUtilisateur))[0];
-                $dicoDesInfosSupplementaires["Niv. Urgence estimée"] = $nivUEstimer ;
+                $dicoDesInfosSupplementaires["Niv. Urgence estimé"] = $nivUEstimer ;
 
 
                 // ===================== PRÉNOM ET NOM DE LA DERNIERE PERSONNE A MODIFIER LE TICKET
