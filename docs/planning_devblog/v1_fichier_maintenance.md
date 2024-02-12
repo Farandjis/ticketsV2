@@ -18,6 +18,16 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 Semaine en cours.
 
+#### Travail effectué
+- **Florent**
+- **Tom**
+- **Enzo**<br>
+- **Assia**<br>
+- **Matthieu**
+  - BD : la vue "affiche_utilisateurs_pour_adm_web" liste désormais uniquement les enregistrement de la table Utilisateur associé à un compte MariaDB avec un rôle par défaut 'role_utilisateur'
+  - PHP : Modification fonction menuDeroulant : les éléments cochés ou l'élément sélectionné passe désormait tout en haut du menu. Ces éléments sont affichés avec un chevron.
+  - 
+
 <br><br><br>
 
 ---
