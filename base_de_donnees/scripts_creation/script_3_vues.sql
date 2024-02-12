@@ -77,8 +77,11 @@ CREATE OR REPLACE VIEW affiche_utilisateurs_pour_adm_web AS
     ID_USER,
     UCASE(`DB_TIX`.`Utilisateur`.`NOM_USER`) AS `NOM_USER`,
     CONCAT(UPPER(SUBSTRING(PRENOM_USER, 1, 1)), LOWER(SUBSTRING(PRENOM_USER, 2))) AS PRENOM_USER
-    FROM Utilisateur WHERE login_user IS NOT NULL;
-
+    FROM Utilisateur
+    JOIN mysql.user ON
+        `user`.`User` = `DB_TIX`.`Utilisateur`.`ID_USER`
+    WHERE
+        `user`.default_role = 'role_utilisateur';
 -- LE TABLEAU DE BORD
 
 /*Note pour les case : pour chaque case pour la colonne indiqué, si c'est le bon rôle alors on affiche la valeur, sinon, on affiche "ACCÈS INTERDIT" à l'emplacement de la colonne.
