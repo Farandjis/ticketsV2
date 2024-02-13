@@ -68,21 +68,48 @@ La page tester est la page tableau de bord, nous testerons que chaque utilisateu
 
 <br>
 
+Ces tests sont appropriés à tous les utilisateurs de l'application. Cependant, les techniciens et l'administrateur web ont accès à des fonctionnalités supplémentaires. 
+
 | Cas n° | Critère                                                                                                                                                                        | Résultat attendu | Résultat obtenu | Commentaires                                                                                     |
 |:-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|--------------------------------------------------------------------------------------------------|
-| 1      | On entre dans le champs titre "Problème"                                                                                                                                       | 5 tickets        | 5 tickets       | On trouve les différents tickets qui ont dans leur titre est "Problème"                          |
-| 2      | On coche "Moniteur HS" dans le champ mot-clés                                                                                                                                  | 2 tickets        | 2 tickets       | On trouve les différents tickets qui ont comme mot-clés "Moniteur HS"                            |
-| 3      | On met dans le champ date max "10/12/2023"                                                                                                                                     | 14 tickets       | 14 tickets      | On trouve les différents tickets qui ont été crée avant le "10/12/2023"                          |
-| 4      | On met dans le champ date min "08/12/2023"                                                                                                                                     | 14 tickets       | 14 tickets      | On trouve les différents tickets qui ont été crée après le "08/12/2023"                          |
-| 5      | On met dans le champ date min "08/12/2023" et max "10/12/2023"                                                                                                                 | 14 tickets       | 14 tickets      | On trouve les différents tickets qui ont été crée avant le "10/12/2023" et après le "08/12/2023" |
-| 6      | On entre dans le champs titre "Problème d'affichage"                                                                                                                           | 1 tickets        | 1 tickets       | On trouve les différents tickets qui ont dans leur titre est "Problème d'affichage"              |
-| 7      | On met dans le champ date min "10/12/2023" et max "08/12/2023"                                                                                                                 | KO               | KO              | On ne peut pas avoir la date min supérieur à la date max                                         |
+| 1      | On entre dans le champs titre "Problème"                                                                                                                                       | 1 ticket        | 1 ticket       | On trouve les différents tickets qui ont dans leur titre est "Problème"                          |
+| 2      | On coche "Autre mot-clé" dans le champ mot-clés                                                                                                                                  | 1 ticket        | 1 ticket       | On trouve les différents tickets qui ont comme mot-clés "Autre mot-clé"                            |
+| 3      | On met dans le champ date max "14/02/2024"                                                                                                                                     | 1 ticket       | 1 ticket     | On trouve les différents tickets qui ont été crée avant le "14/02/2024"                          |
+| 4      | On met dans le champ date min "08/02/2024"                                                                                                                                     | 1 ticket       | 1 ticket      | On trouve les différents tickets qui ont été crée après le "08/02/2024"                          |
+| 5      | On met dans le champ date min "08/02/2024" et max "14/02/2024"                                                                                                                 | 1 ticket       | 1 ticket      | On trouve les différents tickets qui ont été crée avant le "14/02/2024" et après le "08/02/2024" |
+| 6      | On entre dans le champs titre "matériel"                                                                                                                           | 2 tickets        | 2 tickets       | On trouve les différents tickets qui ont dans leur titre est "matériel"              |
+| 7      | On met dans le champ date min "14/02/2024" et max "08/02/2024"                                                                                                                 | KO               | KO              | On ne peut pas avoir la date min supérieur à la date max                                         |
 | 8      | On entre dans le champs titre "ée"                                                                                                                                             | 1 ticket         | 1 ticket        | On trouve les différents tickets qui ont dans leur titre est "ée"                                |
-| 9      | On entre dans le champs titre "ee"                                                                                                                                             | 0 ticket         | 1 ticket        | On trouve les différents tickets qui ont dans leur titre est "ee"                                |
-| 10     | On entre dans le champs titre "Besoin" <br> On met dans le champ date min "08/12/2023" et max "10/12/2023" <br>  On coche "Mot de passe Windows oublié" dans le champ mot-clés | 1 ticket         | 1 ticket        | On trouve les différents tickets qui ont tout ces différentes conditions validé                  |
-| 11     | On entre dans le champs titre "Besoin' OR ID_TICKET = 5"                                                                                                                       | 0 ticket         | 0 ticket        | Tentative d'injection SQL échoué                                                                 |
-| 12     | On clique sur "Tous les tickets de TIX" dans le champ Type de ticket                                                                                                                  | 7 tickets         | 7 tickets        | Nous obtenons tout les tickets formulés par les utilisateurs                                                               |
-| 13     | On clique sur "Mes demandes actuelles" dans le champ Type de ticket                                                                                                                     | 1 ticket         | 1 ticket        | Nous obtenons le ticket le plus actuel non traité        
+| 9      | On entre dans le champs titre "ee"                                                                                                                                             | 0 ticket         | 0 ticket        | On trouve les différents tickets qui ont dans leur titre est "ee"                                |
+| 10     | On entre dans le champs titre "matériel" <br> On met dans le champ date min "03/01/2024" et max "14/01/2024" <br>  On coche "Matériel : Souris" dans le champ mot-clés | 1 ticket         | 1 ticket        | On trouve les différents tickets qui ont tout ses différentes conditions validées                  |
+| 11     | On entre dans le champs titre "matériel' OR ID_TICKET = 5"                                                                                                                       | 0 ticket         | 0 ticket        | Tentative d'injection SQL échoué                                                                 |
+| 12     | On clique sur "Tous les tickets de TIX" dans le champ Sélection                                                                                                                  | 7 tickets         | 7 tickets        | Nous obtenons tout les tickets formulés par les utilisateurs                                                               |
+| 13     | On clique sur "Mes demandes actuelles" dans le champ Sélection                                                                                                                    | 1 ticket         | 1 ticket        | Nous obtenons le ticket le plus actuel non traité        
+
+<br>
+
+## Formulaire de recherche vu d'un technicien
+
+<br>
+
+Le technicien a accès à des fonctionnalités supplémentaires, elles seront listées ci-dessous. 
+
+| Cas n° | Critère                                                                                                                                                                        | Résultat attendu | Résultat obtenu | Commentaires                                                                                     |
+|:-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|--------------------------------------------------------------------------------------------------|
+| 1      | On clique sur "Tickets ouvert" dans le champ                                                                                                                                       | 2 tickets        | 2 tickets       | Nous obtenons tout les tickets ouverts                           |
+| 2      | On clique sur "Tickets en cours à gérer" dans le champ                                                                                                                                   | 4 tickets        | 4 tickets       | Nous obtenons tout les tickets en cours                             |
+
+<br>
+
+## Formulaire de recherche vu d'un administrateur web
+
+<br>
+
+L'administrateur web a accès aux mêmes fonctionnalités que les techniciens mais il peut également consulter les tickets en attente. 
+
+| Cas n° | Critère                                                                                                                                                                        | Résultat attendu | Résultat obtenu | Commentaires                                                                                     |
+|:-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|--------------------------------------------------------------------------------------------------|
+| 1      | On clique sur "Tickets en attente" dans le champ                                                                                                                                       | 2 tickets        | 2 tickets       | Nous obtenons tout les tickets en attente                          |
 
 <br>
 
