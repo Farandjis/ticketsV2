@@ -131,7 +131,7 @@ L'administrateur web a accès aux mêmes fonctionnalités que les techniciens ma
 
 | Cas n° | Critère                                              | Résultat attendu               | Résultat obtenu                | Commentaires                                                                                               |
 |:-------|------------------------------------------------------|--------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------|
-| 1      | Etat du ticket = en attente + un ticket qu'il a créé | Un bouton "Modifier ce ticket" | Un bouton "Modifier ce ticket" | En appuyant sur un ticket en attente et qui est son propre ticket, un bouton "Modifier ce ticket" apparaît |
+| 1      | Etat du ticket = en attente + un ticket qu'il a créé | Un bouton "Modifier mon ticket" | Un bouton "Modifier mon ticket" | En appuyant sur un ticket en attente et qui est son propre ticket, un bouton "Modifier mon ticket" apparaît |
 | 2      | Tout les autres état de ticket                       | Aucun bouton n'apparaît        | Aucun bouton n'apparaît        | En appuyant sur un ticket avec un autre etat , aucun bouton n'apparaît                                     |
 
 <br>
@@ -140,7 +140,7 @@ L'administrateur web a accès aux mêmes fonctionnalités que les techniciens ma
 
 | Cas n° | Critère                                              | Résultat attendu               | Résultat obtenu                | Commentaires                                                                                               |
 |:-------|------------------------------------------------------|--------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------|
-| 1      | Etat du ticket = en attente + un ticket qu'il a créé | Un bouton "Modifier ce ticket" | Un bouton "Modifier ce ticket" | En appuyant sur un ticket en attente et qui est son propre ticket, un bouton "Modifier ce ticket" apparaît |
+| 1      | Etat du ticket = en attente + un ticket qu'il a créé | Un bouton "Modifier mon ticket" | Un bouton "Modifier mon ticket" | En appuyant sur un ticket en attente et qui est son propre ticket, un bouton "Modifier mon ticket" apparaît |
 | 2      | Tout les autres état de ticket                       | Aucun bouton n'apparaît        | Aucun bouton n'apparaît        | En appuyant sur un ticket avec un autre etat , aucun bouton n'apparaît                                     |
 
 <br>
