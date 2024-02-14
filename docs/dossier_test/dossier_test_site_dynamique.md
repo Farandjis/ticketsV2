@@ -83,7 +83,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 alertes                                  |
 
-- ### profil.php
+### <a name="b"></a>profil.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -91,8 +91,8 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 3 alertes                                  |
-- 
-- ### inscription.php
+
+### <a name="c"></a>inscription.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -100,8 +100,8 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |  16 alertes                    |
-- 
-- ### connexion.php
+
+### <a name="d"></a>connexion.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -110,7 +110,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 alertes                     |
 
-- ### modifmdp.php
+### <a name="e"></a>modifMdp.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -119,7 +119,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                        |  2 erreurs et 6 alertes                                             |
 
-- ### modifemail.php
+### <a name="f"></a>modifEmail.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -128,7 +128,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |  4 alertes                     |
 
-- ### creerticket.php
+### <a name="g"></a>creerTicket.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -137,8 +137,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 1 alerte                     |
 
-
-- ### modificationTicket.php
+### <a name="h"></a>modificationTicket.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -147,7 +146,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 6 alertes                     |
 
-- ### administration.php
+### <a name="j"></a>administration.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -156,7 +155,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 12 alertes (admin web) et 8 erreurs et 2 alertes (admin système)               |
 
-- ### tableaudebord.php
+### <a name="k"></a>tableaudebord.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
