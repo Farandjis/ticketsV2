@@ -18,18 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['captcha'])) {
         $estValideCAPTCHA = verifyCAPTCHA($reponseUtilisateur, $_SESSION['chiffre1'], $_SESSION['chiffre2']);
 
         if (!$estValideCAPTCHA) {
-            $_SESSION['preLogin'] = $_POST['login'];
-            $_SESSION['nom'] = $_POST['nom'];
-            $_SESSION['prenom'] = $_POST['prenom'];
-            $_SESSION['email'] = $_POST['email'];
+            saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
             header('Location: inscription.php?id=16'); // ERREUR : Captcha incorrect.
             return;
         }
     } else {
-        $_SESSION['preLogin'] = $_POST['login'];
-        $_SESSION['nom'] = $_POST['nom'];
-        $_SESSION['prenom'] = $_POST['prenom'];
-        $_SESSION['email'] = $_POST['email'];
+        saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
         header('Location: inscription.php?id=17'); // ERREUR : La case CAPTCHA doit être remplie.
         return;
     }
@@ -49,18 +43,12 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_P
             $coUFConnexion = mysqli_connect($host, 'fictif_connexionDB', $USER_FICTIF_MDP['fictif_connexionDB'], $database);
             $res = mysqli_fetch_row(executeSQL("SELECT COUNT(LOGIN_USER) FROM UserFictif_connexion WHERE LOGIN_USER = ?", array($login), $coUFConnexion))[0];
             if ($res == 1) { // login déjà présent dans la BD
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 $coUFInscription->close(); $coUFConnexion->close();
                 header('Location: inscription.php?id=7'); return; // ERREUR : Le login est déjà utilisé.
             } else { $coUFConnexion->close(); }
             if (! (strlen($login) >= 5 and strlen($login) <= 30)) {
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=14');
                 return;
             }
@@ -68,42 +56,27 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_P
             // VERIF MDP
             $resvalidemdp = valideMDP($mdp);
             if ($resvalidemdp == 0){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=8a');
                 return;
             } // ERREUR : Mot de passe invalide taille
             if ($resvalidemdp == -1){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=8b');
                 return;
             } // manque maj
             if ($resvalidemdp == -2){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=8c');
                 return;
             } // manque min
             if ($resvalidemdp == -3){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=8d');
                 return;
             } // manque chiffre
             if ($resvalidemdp == -4){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=8e');
                 return;
             } // manque caractère spécial
@@ -111,18 +84,12 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_P
             // VERIF PRENOM
             $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$/u'; // "u" indique qu'il faut utilisé UTF-8. Il autorise uniquement les caractères alphabêtique, les accents et les tirets
             if (! preg_match($pattern, $prenom)){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=9');
                 return;
             }
             if (! (strlen($prenom) >= 1 and strlen($prenom) <= 30)) {
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=12');
                 return;
             }
@@ -130,36 +97,24 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_P
             // VERIF NOM
             $pattern = '/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]+$/u'; // de même que pour prénom mais l'espace est autorisé en plus
             if (! preg_match($pattern, $nom)){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=10');
                 return;
             }
             if (! (strlen($nom) >= 1 and strlen($nom) <= 30)) {
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=13');
                 return;
             }
 
             // VERIF EMAIL
             if (! valideEMAIL($email)) { // Vérification que l'email est valide.
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=11'); // Si l'email n'est pas valide
                 return;
             }
             if (! (strlen($email) >= 5 and strlen($email) <= 100)) {
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: inscription.php?id=15');
                 return;}
 
@@ -202,10 +157,7 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_P
                 $coUFDroit->close();
                 $coUFInscription->close(); // L'utilisateur fictif inscription se déconnecte de la base de donnée
 
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
 
                 header('Location: inscription.php?id=6'); // ERREUR : Une erreur interne est survenue, votre compte n'a pas pu être créer.
                 return;
@@ -216,32 +168,20 @@ if (isset($_POST['login'], $_POST['mdp'], $_POST['verifMdp'], $_POST['nom'], $_P
                 if(!$res) { header('Location: connexion.php?id=4'); return;} // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
                 header('Location: ../tableau_bord/tableaudebord.php'); return;
             }catch(Exception $e){
-                $_SESSION['preLogin'] = $_POST['login'];
-                $_SESSION['nom'] = $_POST['nom'];
-                $_SESSION['prenom'] = $_POST['prenom'];
-                $_SESSION['email'] = $_POST['email'];
+                saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
                 header('Location: connexion.php?id=4'); // ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté
                 return;
             }
 
         } else {
-            $_SESSION['preLogin'] = $_POST['login'];
-            $_SESSION['nom'] = $_POST['nom'];
-            $_SESSION['prenom'] = $_POST['prenom'];
-            $_SESSION['email'] = $_POST['email'];
+            saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
             header('Location: inscription.php?id=3'); return;
         }
     } else {
-        $_SESSION['preLogin'] = $_POST['login'];
-        $_SESSION['nom'] = $_POST['nom'];
-        $_SESSION['prenom'] = $_POST['prenom'];
-        $_SESSION['email'] = $_POST['email'];
+        saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
         header('Location: inscription.php?id=2'); return;
     }
 } else {
-    $_SESSION['preLogin'] = $_POST['login'];
-    $_SESSION['nom'] = $_POST['nom'];
-    $_SESSION['prenom'] = $_POST['prenom'];
-    $_SESSION['email'] = $_POST['email'];
+    saveToSessionSignUp($_POST["login"], $_POST["nom"], $_POST["prenom"], $_POST["email"]);
     header('Location: inscription.php?id=1'); return;
 }

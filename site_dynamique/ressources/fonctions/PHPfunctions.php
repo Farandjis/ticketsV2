@@ -564,3 +564,19 @@ function getIp(){
     }
     return $ip;
   }
+
+function DirToTable($dirname){
+    foreach (scandir($dirname) as $fichier) {
+        if ($fichier != '.' && $fichier != '..') {
+        	echo '<tr><td>' . $fichier . '</td></tr>';
+	}
+    }
+}
+
+function saveToSessionSignUp($login, $nom, $prenom, $email){
+    session_start();
+    $_SESSION['preLogin'] = $login;
+    $_SESSION['nom'] = $nom;
+    $_SESSION['prenom'] = $prenom;
+    $_SESSION['email'] = $email;
+}
