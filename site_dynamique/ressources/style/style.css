@@ -264,8 +264,8 @@ nav .hamburger-menu.active .slice:nth-child(3) {
   height: 600px;
   width: 1700px;
 
-  /*background: radial-gradient(circle, rgba(115,103,240,1) 0%, rgba(206,159,252,1) 50%);*/
-  backdrop-filter: blur(25px);
+  background: #e7d0fc;
+  /*backdrop-filter: blur(25px);*/
   border: thick double #681dd6;
   border-radius: 15px;
 
@@ -895,7 +895,6 @@ input[type="date"] {
   margin-top: 20px;
 }
 
-
 .conteneur_ajout_administration{
   margin: 0 auto;
   padding: 50px;
@@ -903,7 +902,7 @@ input[type="date"] {
   border-radius: 15px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
   color: #ECECEC;
-  width: 500px;
+  width: 550px;
 }
 
 .conteneur_ajout_administration > form > label{
@@ -936,6 +935,12 @@ input[type="date"] {
 }
 
 
+.conteneur_categorie{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ======== JOURNAL D'ACTIVITE ======== */
 
 .activite{
@@ -959,6 +964,9 @@ input[type="date"] {
 }
 .conteneur_table-infructueuse_ouverture-tickets td {
   text-align: center;
+}
+.conteneur_table-infructueuse_ouverture-tickets td:hover {
+  background-color: #00b01d;
 }
 
 .table-infructueuse thead, .table-ouverture-tickets thead{
@@ -997,6 +1005,33 @@ input[type="date"] {
 }
 
 /* ======== HISTORIQUE ======== */
+.ancreAdmin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ancreAdmin a {
+  text-align: center;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+
+  min-width: 90px;
+  padding: 10px 5px;
+  margin: 0 5px;
+  border: solid 1px #1c1c1c;
+  background: #8258f2;
+  color: #ECECEC;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ancreAdmin a:hover, .ancreAdmin a:focus{
+  background: #ECECEC;
+  color: #8258f2;
+}
 
 .historique{
   display: flex;
@@ -1024,7 +1059,115 @@ input[type="date"] {
 }
 
 
+/* ======== MODERATION ============= */
 
+.moderation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conteneur_table-moderation {
+  height: 595px;
+  overflow-y: auto;
+  background-color: white;
+  border: 2px solid #555555;
+}
+
+.table-moderation {
+  width: 1200px;
+  border-collapse: collapse;
+}
+
+.table-historique thead{
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+}
+
+
+.conteneur_config-ban{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+
+/* Style pour un input de type "number" */
+.conteneur_config-ban input[type="number"] {
+  width: 350px; /* Ajustez la largeur selon vos besoins */
+  padding: 8px;
+  margin: 15px 0 15px 40px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+/* Style pour le survol de l'input */
+.conteneur_config-ban input[type="number"]:hover {
+  border-color: #333;
+}
+
+/* Style pour l'input en focus */
+.conteneur_config-ban input[type="number"]:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+}
+
+.config-prison select {
+  width: 350px;
+  height: 44px;
+  margin: 15px 0 15px 40px;
+}
+.config-prison label{
+  font-size: 18px;
+}
+
+.config-prison-submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.config-prison input[type="submit"] {
+  margin: 15px auto;
+  width: 200px;
+}
+
+.conteneur_config-prison{
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #211a43;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  color: #ECECEC;
+  width: 550px;
+}
+
+.conteneur_ban-deban_IP{
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #211a43;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  color: #ECECEC;
+  width: 550px;
+}
+
+.conteneur_ban-deban_IP select, .conteneur_ban-deban_IP input[type="text"]{
+  margin: 15px 10px 15px 40px;
+  width: 250px;
+}
+
+.ban-deban_ip {
+  display: flex;
+  align-items: center;
+}
 
 /* ======== TABLEAU DE BORD ======== */
 
@@ -1579,7 +1722,7 @@ select {
 }
 
 
-@media  screen and  (max-width: 1500px){
+@media  screen and  (max-width: 1635px){
   .conteneur_administration_general {
     flex-direction: column;
   }
