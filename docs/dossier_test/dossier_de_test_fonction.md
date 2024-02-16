@@ -8,7 +8,7 @@ INF2-A
 ## Site dynamique
 
 <br><br>
-Ce document permet de s'assurer que les focntions soit bien fonctionnel comme souhaité.
+Ce document permet de s'assurer que les fonctions soient bien fonctionnelles comme souhaité.
 
 </div>
 
@@ -69,14 +69,15 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 ### <a name="1a"></a>connectUser
 
-| Cas n° | Critère                                                    | Résultat attendu | Résultat obtenu | Commentaires                                   |
-|:-------|------------------------------------------------------------|------------------|-----------------|------------------------------------------------|
-| 1      | $loginMariaDB = "alice" <br> $mdpMariaDB = "azerty!123"    | OK               | OK              | $loginMariaDB et $mdpMariaDB correct           |
-| 2      | $loginMariaDB = " " <br> $mdpMariaDB = "azerty!123"        | KO               | KO              | $loginMariaDB vide et $mdpMariaDB correct      |
-| 3      | $loginMariaDB = "alice" <br> $mdpMariaDB = "123!azerty"    | KO               | KO              | $loginMariaDB correct et $mdpMariaDB incorrect |
-| 4      | $loginMariaDB = "alice" <br> $mdpMariaDB = " "             | KO               | KO              | $loginMariaDB correct et $mdpMariaDB vide      |
-| 5      | $loginMariaDB = "alix" <br> $mdpMariaDB = "azerty!123"     | KO               | KO              | $loginMariaDB incorrect et $mdpMariaDB correct |
-| 6      | $loginMariaDB = "alie" <br> $mdpMariaDB = "123!azerty"     | KO               | KO              | $loginMariaDB et $mdpMariaDB incorrect         |
+| Cas n° | Critère                                                 | Résultat attendu | Résultat obtenu | Commentaires                                   |
+|:-------|---------------------------------------------------------|------------------|-----------------|------------------------------------------------|
+| 1      | $loginMariaDB = "alice" <br> $mdpMariaDB = "azerty!123" | OK               | OK              | $loginMariaDB et $mdpMariaDB correct           |
+| 2      | $loginMariaDB = " " <br> $mdpMariaDB = "azerty!123"     | KO               | KO              | $loginMariaDB vide et $mdpMariaDB correct      |
+| 3      | $loginMariaDB = "alice" <br> $mdpMariaDB = "123!azerty" | KO               | KO              | $loginMariaDB correct et $mdpMariaDB incorrect |
+| 4      | $loginMariaDB = "alice" <br> $mdpMariaDB = " "          | KO               | KO              | $loginMariaDB correct et $mdpMariaDB vide      |
+| 5      | $loginMariaDB = "alix" <br> $mdpMariaDB = "azerty!123"  | KO               | KO              | $loginMariaDB incorrect et $mdpMariaDB correct |
+| 6      | $loginMariaDB = "alie" <br> $mdpMariaDB = "123!azerty"  | KO               | KO              | $loginMariaDB et $mdpMariaDB incorrect         |
+| 7      | $loginMariaDB = " " <br> $mdpMariaDB = " "              | KO               | KO              | $loginMariaDB et $mdpMariaDB sont vides        |
 
 
 
@@ -90,28 +91,33 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 4      | Azertyalice!                      | KO               | KO              | Absence de chiffres                                   |
 | 5      | Azerty!123                        | KO               | KO              | Taille non conforme aux restrictions (inférieur à 12) |
 | 6      | Azertyaliceavrilbonjourrrr!123456 | KO               | KO              | Taille non conforme aux restrictions (supérieur à 32) |
+| 7      | AZERTYALICE!123                   | KO               | KO              | Absence de minuscule                                  |
 
 - ### <a name="3a"></a>executeSQL
 
-| Cas n° | Critère                                                                                                                                                                                                                                                                       | Résultat attendu | Résultat obtenu | Commentaires                                                           |
-|:-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|------------------------------------------------------------------------|
-| 1      | $reqSQL = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ? " <br> $params = array(loginSite) <br> $connection                                                                                                                                            | OK               | OK              | La requête de sélection fonctionne                                     |
-| 2      | $reqSQL = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ? " <br> $params = array(1) <br> $connection                                                                                                                                                    | KO               | KO              | Le login étant un char nous ne pouvons pas récupérer le login_user = 1 |
-| 3      | $reqSQL = "SELECT COUNT(LOGIN_USER) FROM vue_UserFictif_connexionDB1 WHERE Email_USER = ?" <br> $params = array($login) <br> $coUFConnexion                                                                                                                                   | KO               | KO              | Le $login ne correspond pas à l'Email_user                             |
-| 4      | $reqSQL = "INSERT INTO vue_UserFictif_inscriptionDB1 (LOGIN_USER, PRENOM_USER, NOM_USER, ROLE_USER, EMAIL_USER, HORODATAGE_OUVERTURE_USER) VALUES (?, ?, ?, 'utilisateur', ?, current_timestamp())" <br> $params = array($login, $prenom, $nom, $email) <br> $coUFInscription | OK               | OK              | La requête d'insertion fonctionne                                      |
-| 5      | $reqSQL = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ? " <br> $params = array() <br> $connection                                                                                                                                                     | KO               | KO              | Aucun paramètre n'est identiqué                                        |
-| 6      | $reqSQL = "UPDATE vue_utilisateur_insertion_client SET email_user= ? WHERE ID_USER = ?" <br> $params = array($nouvEmail, $login) <br> $connexion                                                                                                                              | KO               | KO              | Le paramètre nouvEmail n'existe pas                                    |
-| 7      | $reqSQL = "SELECT ID_USER FROM vue_UserFictif_connexionDB1 WHERE login_user = ?" <br> $params = array("--") <br> $connection                                                                                                                                                  | KO               | KO              | Impossible de tenter une injection SQL                                 |
+| Cas n° | Critère                                                                                                                                                                                      | Résultat attendu | Résultat obtenu | Commentaires                                                           |
+|:-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|------------------------------------------------------------------------|
+| 1      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? " <br> $params = array(loginSite) <br> $connection                                                                  | OK               | OK              | La requête de sélection fonctionne                                     |
+| 2      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? " <br> $params = array(1) <br> $connection                                                                          | KO               | KO              | Le login étant un char nous ne pouvons pas récupérer le login_user = 1 |
+| 3      | $reqSQL = "SELECT COUNT(LOGIN_USER) FROM UserFictif_connexion WHERE Email_USER = ?" <br> $params = array($login) <br> $coUFConnexion                                                         | KO               | KO              | Le $login ne correspond pas à l'Email_user                             |
+| 4      | $reqSQL = "INSERT INTO UserFictif_inscription (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?)" <br> $params = array($login, $prenom, $nom, $email) <br> $coUFInscription | OK               | OK              | La requête d'insertion fonctionne                                      |
+| 5      | $reqSQL = "INSERT INTO UserFictif_inscription (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?)" <br> $params = array($login, $prenom, $nom) <br> $coUFInscription         | KO               | KO              | Manque l'email dans le array                                           |
+| 6      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? " <br> $params = array() <br> $connection                                                                           | KO               | KO              | Aucun paramètre n'est identiqué                                        |
+| 7      | $reqSQL = "UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?", array($nouveEmail, $loginMariaDB), $connexionUtilisateur"                                                  | KO               | KO              | Le paramètre nouveEmail n'existe pas                                   |
+| 8      | $reqSQL = "UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?", array($nouvelEmail, $loginMariaDB), $connexionUtilisateur"                                                 | OK               | OK              | La requête permet bien une modification de l'Email                     |
+| 9      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?" <br> $params = array("--") <br> $connection                                                                        | KO               | KO              | Impossible de tenter une injection SQL                                 |
+| 10     | $reqSQL = "DELETE FROM `MotcleTicket` WHERE NOM_MOTCLE = ? ;",array($titre),$connection                                                                                                      | OK               | OK              | Le mot-clé est bien supprimé                                           |
+| 11     | $reqSQL = "DELETE FROM `MotcleTicket` WHERE NOM_MOTCLE = ? ;",array($titre)                                                                                                                  | KO               | KO              | Absence de la connexion                                                |
 
 - ### <a name="4a"></a>recupereRoleDE
 
-| Cas n° | Critère                               | Résultat attendu | Résultat obtenu  | Commentaires                            |
-|:-------|---------------------------------------|------------------|------------------|-----------------------------------------|
-| 1      | je me connecte en temps que alice     | role_utilisateur | role_utilisateur | récupération du rôle d'alice            |
-| 2      | je me connecte en temps que admin web | role_admin_web   | role_admin_web   | récupération du rôle d'admin web        |
-| 3      | je me connecte en temps que admin sys | role_admin_sys   | role_admin_sys   | récupération du rôle d'admin sys        |
-| 4      | je me connecte en temps que visiteur  | aucun rôle       | aucun rôleA      | Aucun rôle n'a été attribué au visiteur |
-| 5      | je me connecte en temps que roberto   | technicien       | technicien       | récupération du rôle de roberto         |
+| Cas n° | Critère                                                    | Résultat attendu | Résultat obtenu  | Commentaires                                  |
+|:-------|------------------------------------------------------------|------------------|------------------|-----------------------------------------------|
+| 1      | je me connecte en temps que alice (utilisateur)            | role_utilisateur | role_utilisateur | récupération du rôle d'utilisateur d'alice    |
+| 2      | je me connecte en temps que gestion (administrateur web)   | role_admin_web   | role_admin_web   | récupération du rôle d'administrateur web     |
+| 3      | je me connecte en temps que admin (administrateur système) | role_admin_sys   | role_admin_sys   | récupération du rôle d'administrateur système |
+| 4      | j'accède à la plateforme en tant que visiteur              | aucun rôle       | aucun rôle       | Aucun rôle n'a été attribué au visiteur       |
+| 5      | je me connecte en temps que gordon (technicien)            | role_technicien  | role_technicien  | récupération du rôle de technicien            |
 
 - ### <a name="5a"></a>tablegenerate
 
