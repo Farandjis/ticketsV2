@@ -12,7 +12,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
 
-  <script src="../ressources/script/infoLigneTab.js"></script>
+  <script src="../ressources/script/infoLogTab.js"></script>
   <script src="../ressources/script/hamburger.js"></script>
   <script src="../ressources/script/confirmation.js"></script>
   <script src="../ressources/script/menuCheckbox.js"></script>
@@ -23,10 +23,6 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
   <h1 class="titre_page">
     Administration
   </h1>
-  <div class="ancreAdmini">
-	  <a href="#historique">Historique</a>
-	  <a href="#jounalActivite">Journal d'activité</a>
-  </div>
    <?php
 
 	if (recupererRoleDe($connection) == 'Administrateur Site'){
@@ -37,7 +33,6 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
           <label for="ajout_technicien">Ajout de Technicien :</label><br>
           <div class="conteneur_ajout_technicien">
           <div class="custom-select">
-
                 <select name="selectionPossible" id="selectionPossible" required>';
                       echo '<option value="" selected>Selectioner un utilisateur</option>';
 
@@ -68,12 +63,20 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			<input type="submit" name="submit_suppression_technicien" value="Supprimer">
 		  </div>
         </form>
-	</div>';
+		</div>';
 		    echo '<div class="conteneur_ajout_administration">
                           <form action="action_ajouttitre.php" method="post" name="Ajout Titre" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-                              <label for="ajout_titre">Ajout de Titre :</label><br><br>
-                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre" required>
+                              <label for="ajout_titre">Ajout de Titre :</label><br>
+                              <div class="conteneur_categorie">
+                              <select name="categorieMc" id="categorieMc" class="creer_select" required>';
+
+                              menuDeroulant(mysqli_query($connection, "SELECT NOM_CATEGORIE FROM Categorie"),"selected");
+
+                              echo '
+                              </select>
+                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre">
                               <input type="submit" name="ajouter_titre" value="Ajouter">
+                              </div>
                           </form>
 
                           <form action="action_supptitre.php" method="post" name="Suppression Titre" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
@@ -99,9 +102,17 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			echo ' 
 		    <div class="conteneur_ajout_administration">
       <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
-        <label for="ajout_motcle">Ajout de Mots-clés :</label><br><br>
-        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé" required>
+        <label for="ajout_motcle">Ajout de Mots-clés :</label><br>
+        <div class="conteneur_categorie">
+        <select name="categorieMc" id="categorieMc" class="creer_select" required>';
+
+            menuDeroulant(mysqli_query($connection, "SELECT NOM_CATEGORIE FROM Categorie"),"selected");
+
+            echo '
+        </select>
+        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé">
         <input type="submit" name="submit_ajout_motcle" value="Ajouter">
+        </div>
       </form>
       <form action="action_suppmotcle.php" method="post" name="Suppression Motcle" class="suppression" onsubmit="return confirmerAvantEnvoi(this.name)">
                   <label>Suppression de Mots-clés :</label><br>
@@ -122,13 +133,46 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
                   </div>
               </form>
     </div>
-  </div>';
+  </div>
+  <div class="conteneur_ban-deban_IP">
+            <form action="#" method="post" name="Bannir IP" onsubmit="return confirmerAvantEnvoi(this.name)">
+                <h1>SSH / SFTP</h1>
+                <label for="bannir_ip">Bannir une IP :</label><br>
+                <div class="ban-deban_ip">
+                    <input type="text">
+                    <br>
+                    <input type="submit" name="submit_bannir_ip" value="Bannir">
+                </div>
+            </form>
+
+            <form action="#" method="post" name="Debannir IP" onsubmit="return confirmerAvantEnvoi(this.name)">
+                <label for="debannir_ip">Débannir une IP :</label><br>
+                <div class="ban-deban_ip">
+                    <div class="custom-select">
+                        <select name="selectionPossible" id="selectionPossible" required>
+                            <option value="" selected>Selectioner une IP</option>
+                            <option value="" >192.168.15.63</option>
+                            <option value="" >192.168.80.152</option>
+                        </select>
+                    </div><br>
+                    <input type="submit" name="submit_debannir_ip" value="Débannir">
+                </div>
+            </form>
+        </div>
+  
+  ';
 	}
 
 
 	if (recupererRoleDe($connection) == 'Administrateur Système'){
 		echo ' 
-		  <h1 class="titre_page" id="historique">
+          <div class="ancreAdmin">
+              <a href="#historique" id="historique">Historique</a>
+              <a href="#activite">Journal d\'activité</a>
+              <a href="moderation.php">Modération</a>
+              
+          </div>
+		  <h1 class="titre_page">
 			Historique des tickets
 		  </h1>
 		  <div class="historique">
@@ -155,45 +199,45 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			</div>
 		  </div>';
 		  echo ' 
-		  <h1 class="titre_page" id="jounalActivite">
+		  <h1 class="titre_page">
 			Journal d\'activité
 		  </h1>
-		  <div class="activite">
+		  <div class="activite" id="activite">
 			<div class="connexInfructeurse">
 			  <h2>Connexions infructueuses</h2>
 			  <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
 				<table class="table-infructueuse table-popup">
 				  <thead>
 				  <tr>
-					<th>Nom fichier</th>
+					<th>Archive</th>
+					<th>Suppression</th>
 					<th>Télécharger</th>
-					<th>Supprimer</th>
-					
 				  </tr>
 				  </thead>
 				  <tbody>';
-					//csvToHtmlTable("logs/journauxActvCoInf.csv");
+                        		dirToTable("../../../logs/archives/","ActvCoInf");
 					echo '
 				  </tr>
 				  </tbody>
 				</table>
 			  </div>
 			</div>
-
+            
+           
 			<div class="ouvertureTickets">
 			  <h2>Ouvertures de tickets</h2>
 			  <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
 				<table class="table-ouverture-tickets table-popup">
 				  <thead>
 				  <tr>
-					<th>Nom fichier</th>
+					<th>Archive</th>
+					<th>Suppression</th>
 					<th>Télécharger</th>
-					<th>Supprimer</th>
 				  </tr>
 				  </thead>
 				  <tbody>';
-					
-					//csvToHtmlTable("logs/journauxActvCreTck.csv");
+					csvToHtmlTable(extractFile("../../../logs/archives/ActvCreTck/archive_20240214_020001.tar.gz"));
+					//dirToTable("../../../logs/archives/","ActvCreTck");
 					echo '
 				  </tbody>
 				</table>
@@ -223,18 +267,53 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
     <div role="form" id="test" class="formAuthentification formConnexion popupInfo">
 
-      <div id="informations_ticket_popup">
-
-      </div>
+      <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
+            <table class="table-infructueuse table-archive-popup">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Login</th>
+                    <th>IP</th>
+                    <th>Tentative</th>
+                    <th class="ligneCacher">Test</th>
+                </tr>
+                </thead>
+                <tbody>';
+                // csvToHtmlTable("logs/");
+                echo '
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
 
       <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
     </div>
 
-
   </div>';
 	}
 ?>
+<!--
+<div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
+    <table class="table-infructueuse table-popup">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Tentative</th>
+            <th class="ligneCacher">Test</th>
+        </tr>
+        </thead>
+        <tbody>';
+        csvToHtmlTable("logs/journauxActvCoInf.csv");
+        echo '
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>-->
+
 
 </body>
 </html>
