@@ -59,22 +59,29 @@ Nous allons définir tous les retours possibles que peut renvoyer cette page en 
 
 #### <a name="1a"></a>Ajout d'un technicien
 
-| Cas n° | Critère                                                                   | Résultat attendu                            | Résultat obtenu                             |
-|--------|---------------------------------------------------------------------------|---------------------------------------------|---------------------------------------------|
-| 1      | On coche une ou plusieurs nouvelles personnes dans la liste des personnes | Modifie leur rôle utilisateur en technicien | Modifie leur rôle utilisateur en technicien |
-| 2      | On decoche une ou plusieurs personnes dans la liste des personnes         | Modifie leur rôle technicien en utilisateur | Modifie leur rôle technicien en utilisateur |
-| 3      | On ne coche ni décoche personne dans la liste                             | Aucun rôle n'est modifié                    |                                             |
+| Cas n° | Critère                                                            | Résultat attendu                          | Résultat obtenu                           |
+|--------|--------------------------------------------------------------------|-------------------------------------------|-------------------------------------------|
+| 1      | On sélectionne Hongo Roberto                                       | Modifie le rôle utilisateur en technicien | Modifie le rôle utilisateur en technicien |
+| 2      | On sélectionne Shumway Gordon (déjà dans la liste des techniciens) | Rien n'a été fait                         | Rien n'a été fait                         |
+| 3      | On ne sélectionne personne dans la liste                           | Aucun rôle n'est modifié                  | Aucun rôle n'est modifié                  |
 
-#### <a name="1b"></a>Ajout d'un titre
+#### <a name="1b"></a>Suppression d'un technicien
 
-| Cas n° | Critère                                         | Résultat attendu | Résultat obtenu |
-|--------|-------------------------------------------------|------------------|-----------------|
-| 1      | On entre dans le champ [SESSION] Autre problème | OK               | OK              |
-| 2      | On entre dans le champ <b>Salut<b>              | OK               | OK              |
-| 3      | On entre dans le champ 'Salut'                  | OK               | OK              |
-| 4      | On ajoute un titre déjà existant                | KO               | KO              |
+| Cas n° | Critère                                                                  | Résultat attendu                                   | Résultat obtenu                                   |
+|--------|--------------------------------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
+| 1      | On sélectionne Hongo Roberto                                             | Son rôle utilisateur en technicien lui est enlevé  | Son rôle utilisateur en technicien lui est enlevé |
+| 2      | On Sélectionne Shumway Gordon (qui est le seul technicien dans la liste) | Son rôle utilisateur en technicien lui est enlevé  | Son rôle utilisateur en technicien lui est enlevé |
+| 3      | On ne sélectionne personne dans la liste                                 | Aucun rôle n'est modifié                           | Aucun rôle n'est modifié                          |
 
-#### <a name="1c"></a>Suppression d'un titre
+#### <a name="2a"></a>Ajout d'un titre
+
+| Cas n° | Critère                                                      | Résultat attendu | Résultat obtenu |
+|--------|--------------------------------------------------------------|------------------|-----------------|
+| 1      | On entre dans le mot LOGICIEL et on inscrit le titre bonjour | OK               | OK              |
+| 2      | On entre dans le mot MATERIEL et on inscrit le titre pc      | OK               | OK              |
+| 3      | On ajoute un titre déjà existant                             | KO               | KO              |
+
+#### <a name="2b"></a>Suppression d'un titre
 
 | Cas n° | Critère                         | Résultat attendu               | Résultat obtenu                |
 |--------|---------------------------------|--------------------------------|--------------------------------|
@@ -82,16 +89,15 @@ Nous allons définir tous les retours possibles que peut renvoyer cette page en 
 | 2      | On ne coche rien dans la liste  | Aucun titre n'est supprimé     | Aucun titre n'est supprimé     |
 
 
-#### <a name="1d"></a>Ajout d'un mot clés
+#### <a name="3a"></a>Ajout d'un mot clé
 
-| Cas n° | Critère                                         | Résultat attendu | Résultat obtenu |
-|--------|-------------------------------------------------|------------------|-----------------|
-| 1      | On entre dans le champ [SESSION] Autre problème | OK               | OK              |
-| 2      | On entre dans le champ <b>Salut<b>              | OK               | OK              |
-| 3      | On entre dans le champ 'Salut'                  | OK               | OK              |
-| 4      | On ajoute un mot clés déjà existant             | KO               | KO              |
+| Cas n° | Critère                                                   | Résultat attendu | Résultat obtenu |
+|--------|-----------------------------------------------------------|------------------|-----------------|
+| 1      | On entre dans le mot SALLE et on inscrit le mot-clé I20   | OK               | OK              |
+| 2      | On entre dans le mot AUTRE et on inscrit le mot-clé hello | OK               | OK              |
+| 3      | On ajoute un mot clés déjà existant                       | KO               | KO              |
 
-#### <a name="1e"></a>Suppression d'un mot clés
+#### <a name="3b"></a>Suppression d'un mot clé
 
 | Cas n° | Critère                           | Résultat attendu                 | Résultat obtenu                  |
 |--------|-----------------------------------|----------------------------------|----------------------------------|
