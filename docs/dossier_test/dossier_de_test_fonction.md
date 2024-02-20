@@ -29,6 +29,8 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
         - #### [valideEmail](#7a)
         - #### [deconnexionSite](#8a)
         - #### [affichageMenuDuHaut](#9a)
+        - #### [operationCAPTCHA](#10a)
+        - #### [verifyCAPTCHA](#11a)
 
 
 <br><br><br>
@@ -39,7 +41,7 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
 
 ## <a name="I"></a>I - Introduction
 
-Le document suivant à pour but de tester les différentes différentes fonctions créer pour permettre l'utilisations plus simple de même ligne de code.
+Le document suivant à pour but de tester les différentes fonctions crées pour permettre une utilisation plus simple de ses mêmes lignes de code.
 <br>
 
 ## <a name="II"></a>II - Description de la procédure de test
@@ -184,4 +186,20 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 8      | Bouton 4 : Profil                     | Retourne la page profil               | Retourne la page profil              | 
 
 
+- ### <a name="10a"></a>operationCAPTCHA
+
+| Cas n° | Critère                                                  | Résultat attendu | Résultat obtenu |
+|:-------|----------------------------------------------------------|------------------|-----------------|
+| 1      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $operateur = "+" | 32               | 32              | 
+| 2      | $chiffre1 = 16 <br> $chiffre2 = 2 <br> $operateur = "+"  | 18               | 18              | 
+| 3      | $chiffre1 = 0 <br> $chiffre2 = 19 <br> $operateur = "+"  | 19               | 19              |
+
+- ### <a name="11a"></a>verifyCAPTCHA
+
+| Cas n° | Critère                                                           | Résultat attendu | Résultat obtenu | Commentaires                 |
+|:-------|-------------------------------------------------------------------|------------------|-----------------|------------------------------|
+| 1      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = " " | KO               | KO              | Aucune réponse n'a été donné | 
+| 2      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = !!  | KO               | KO              | Tentative échouée            | 
+| 3      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = 45  | KO               | KO              | Captcha incorrect            |
+| 4      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = 32  | OK               | OK              | Captcha correct              |
   
