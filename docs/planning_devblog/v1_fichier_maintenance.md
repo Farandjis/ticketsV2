@@ -52,6 +52,16 @@ Ce bilan compte le travail effectué la semaine avant et pendant les vacances.
   - Début de la configuration de fail2ban pour le système de modération de TIX
   - Fin Retirer les administrateurs de la liste des utilisateurs pour gestion tech
 
+#### Travail effectué
+- **Florent**
+- **Tom**
+- **Enzo**<br>
+- **Assia**<br>
+- **Matthieu**
+  - BD : la vue "affiche_utilisateurs_pour_adm_web" liste désormais uniquement les enregistrement de la table Utilisateur associé à un compte MariaDB avec un rôle par défaut 'role_utilisateur'
+  - PHP : Modification fonction menuDeroulant : les éléments cochés ou l'élément sélectionné passe désormait tout en haut du menu. Ces éléments sont affichés avec un chevron.
+  - 
+
 <br><br><br>
 
 ---
