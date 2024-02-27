@@ -11,12 +11,46 @@ Ce document permet de récapituler la progression de chacun et de l'avancée du 
 Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, nos discussions ou encore nos prévisions.
 </div>
 
+<br><br><br>
+
+## Dimanche 03/03/2024 - Bilan du travail du 26/02/2024 au 03/03/2024
+
+Semaine en cours.
 
 <br><br><br>
 
-## Dimanche 18/02/2024 - Bilan du travail du 12/02/2024 au 18/02/2024
+---
 
-Semaine en cours.
+<br><br><br>
+
+## Mardi 27/02/2024 - Bilan du travail du 12/02/2024 au 25/02/2024
+
+Document discussion_autour_des_ameliorations_m_hoguin (version odt et pdf) mis à jour<br>
+<br>
+<br>
+Ce bilan compte le travail effectué la semaine avant et pendant les vacances.
+
+#### Travaux restants
+  - Consultez discussion_autour_des_ameliorations_m_hoguin
+#### Travail effectué
+
+- **Florent**
+  - Fin archivage et extractions des données
+- **Tom**
+  - Fin Création page modération
+  - Amélioration page administration
+  - Fin Menu sous ADM SYS pour afficher 2 ancres : Historique et J. A.
+- **Enzo**<br>
+  - ...
+- **Assia**<br>
+  - Fin Tests des différentes pages terminées
+  - Fin Ajout des cas de tests pour executeSQL, validemdp, valideEmail
+  - Fin Réalisation des tests pour operationCaptcha et verifyCaptcha
+- **Matthieu**
+  - Gestion du projet
+  - Fin Les cases cochés apparaissent en haut de la liste déroulante
+  - Début de la configuration de fail2ban pour le système de modération de TIX
+  - Fin Retirer les administrateurs de la liste des utilisateurs pour gestion tech
 
 <br><br><br>
 
