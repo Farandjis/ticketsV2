@@ -31,6 +31,7 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
         - #### [affichageMenuDuHaut](#9a)
         - #### [operationCAPTCHA](#10a)
         - #### [verifyCAPTCHA](#11a)
+        - #### [saveToSessionSignUp](#12a)
 
 
 <br><br><br>
@@ -203,3 +204,13 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 3      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = 45  | KO               | KO              | Captcha incorrect            |
 | 4      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = 32  | OK               | OK              | Captcha correct              |
   
+- ### <a name="12a"></a>saveToSessionSignUp 
+
+| Cas n° | Critère                                                                                                               | Résultat attendu                                                                                                                                    | Résultat obtenu                                                                                                                                     | Commentaires                      |
+|:-------|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| 1      | $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " " | L'enregistrement des données suivantes : <br><br> $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" | L'enregistrement des données suivantes : <br><br> $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" | La sauvegarde a bien été effectué | 
+| 2      | $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " "                       | KO                                                                                                                                                  | KO                                                                                                                                                  | le champ login n'a pas été entré  | 
+| 3      | $login = "alice" <br> $nom = "alice"  <br> $email = "alice.avril@email.com" <br> $captcha = " "                       | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ prénom n'a pas été entré |
+| 4      | $login = "alice" <br>  $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " "                    | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ nom n'a pas été entré    |
+| 5      | $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $captcha = " "                                       | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ email n'a pas été entré  |
+
