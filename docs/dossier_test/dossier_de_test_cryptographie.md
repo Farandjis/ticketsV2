@@ -271,7 +271,7 @@ function rc4_chiffrement($clef, $texte){
 
 ### <a name="IIIDa"></a>a - Schéma des chemins indépendants
 
-<img height="300" width="122" src="crypto.png" title="logo uvsq vélizy"/>
+<img height="300" width="122" src="src/crypto.png" title="logo uvsq vélizy"/>
 
 ### <a name="IIIDb"></a>b - Différents chemins
 
