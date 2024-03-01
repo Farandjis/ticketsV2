@@ -1,14 +1,12 @@
 Florent VASSEUR--BERLIOUX, Tom BOGAERT, Assia GOUABI, Enzo GUIGNOLLE, Matthieu FARANDJIS<br>
 INF2-A
-<br>
-<h1 style="color:red">Le 01/03/2024 en cours</h1><br>
-<br>
+
 <div align="center">
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test
 ## Site dynamique
-
+<h3 style="color:red">Le 01/03/2024 en cours</h3><br>
 <br><br>
 Ce document permet de s'assurer que les focntions soit bien fonctionnel comme souhaité.
 
@@ -44,7 +42,7 @@ Ce document permet de s'assurer que les focntions soit bien fonctionnel comme so
 
 <br><br><br><br><br><br><br>
 
-#  <a name="I"></a> Fonction convertionArrayDeBytesEnHexadecimal
+#  <a id="I"></a> Fonction convertionArrayDeBytesEnHexadecimal
 
 ## Code de la fonction :
 
@@ -171,11 +169,11 @@ puisque le code est assez simpliste donc facile à réaliser de plus en cas de m
 | 3      | Array non vide avec que des éléments non int   | ""               | ""              | OK          |
 
 
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 ----------------
 
-# <a name="II"></a> fonction KSA
+# <a id="II"></a> fonction KSA
 
 - ### Méthodologie employé
 Nous allons tester la fonction KSA à l'aide de tests boîtes blanche et noir.<br>
@@ -215,24 +213,24 @@ ici débat avantage/inconvénient d'un test b noir/blanche pour ce test là
 
 
 
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 ----------------
 
-# <a name="III"></a> fonction rc4_chiffrement
+# <a id="III"></a> fonction rc4_chiffrement
 
 
-## <a name="IIIA"></a>I - Introduction
+## <a id="IIIA"></a>A - Introduction
 
 Durant les travaux pratiques en qualité de développement, nous avons pu réaliser des tests boites blanches et boites noires sur des méthodes des classes que nous avions conçu l'année passée. Cependant, lors de cette dernière séance, nous nous sommes rasssemblés en groupe afin de réaliser des tests boites blanches et noires sur le projet en cours de développement. Ainsi, dans ce dossier de test, nous avons pu effectuer des cas de tests pour la fonction rc4_chiffrement du fichier Cryptofunctions.php.
 <br>
 
-## <a name="IIIB"></a>II - Description de la procédure de test
+## <a id="IIIB"></a>B - Description de la procédure de test
 
 Nous allons réaliser les tests boites blanches sur les méthodes Ajout et toString de la classe Planning qui ont été développées l’an passé en TP. Dans un premier temps, nous analysons et décortiquons la méthode en relevant les différentes conditions et instructions qui la compose. On réalise par la suite un schéma qui nous permet de visualiser et mieux comprendre la situation. Les conditions sont représentées par des losanges tandis que les instructions par des cercles. Ensuite, je définis les cycles visibles sur la figure. Enfin, nous terminons avec la conception et la réalisation des tests boites blanches.
 <br>
 
-## <a name="IIIC"></a>III - Contexte des tests
+## <a id="IIIC"></a>C - Contexte des tests
 
 | Critères                    | Données                  |
 |-----------------------------|--------------------------|
@@ -241,9 +239,6 @@ Nous allons réaliser les tests boites blanches sur les méthodes Ajout et toStr
 | Date de finalisation        | 01/03/24                 |
 | Responsable de la campagne  | Fteam                    |
 
-<br><br><br>
-
-----------
 
 <br><br><br>
 
@@ -267,37 +262,35 @@ function rc4_chiffrement($clef, $texte){
     return strtoupper(bin2hex($res));
 }
 ```
-## <a name="IIID"></a>IV - Test boite blanche
+## <a id="IIID"></a>D - Test boite blanche
 
-### <a name="IIIDa"></a>a - Schéma des chemins indépendants
+### <a id="IIIDa"></a>a - Schéma des chemins indépendants
 
 <img height="300" width="122" src="src/crypto.png" title="logo uvsq vélizy"/>
 
-### <a name="IIIDb"></a>b - Différents chemins
+### <a id="IIIDb"></a>b - Différents chemins
 
 C1 = {1,2,3,7} <br>
 C2 = {1,2,3,4,5,6,3,7}
 
 
-### <a name="IIIDc"></a>c - Conception des tests boite blanche
+### <a id="IIIDc"></a>c - Conception des tests boite blanche
 
 | Chemin | Clef | texte | Résultat         |
 |--------|------|-------|------------------|
 | C1     | clé  | texte | char hexadécimal |
 | C2     | clé  | vide  | null             |
 
-### <a name="IIIDd"></a>d - Exécution des tests boite blanche
+### <a id="IIIDd"></a>d - Exécution des tests boite blanche
 
 | Chemin | Clef  | texte       | Résultat           |
 |--------|-------|-------------|--------------------|
 | C1     | "Key" | "Plaintext" | BBF316E8D940AF0AD3 |
 | C2     | "Key" | " "         | null               |
 
-----------
-
 <br><br><br>
 
-## <a name="IIIE"></a>V - Test boite noire
+## <a id="IIIE"></a>E- Test boite noire
 
 ### Conception des tests boîte noire
 
@@ -321,11 +314,10 @@ C2 = {1,2,3,4,5,6,3,7}
 | P5     | "Secret" | "Attack at dawn" | 45A01F645FC35B383552544B9BF5 | 45A01F645FC35B383552544B9BF5 |            |
 | P6     | " "      | "Attack at dawn" | "Attack at dawn"             | "Attack at dawn"             |            |
 
-----------
 
 <br><br><br>
 
-## <a name="IIIF"></a>VI - Avantages et inconvénients
+## <a id="IIIF"></a>F - Avantages et inconvénients
 
 Avantages des tests boite noire : <br> Les tests boites noires sont plus stables face aux changements internes dans le code. Ainsi, si l'on modifie la fonction ça n'aura pas le même impact sur les tests que si c'était des tests boites blanches.
 <br>
