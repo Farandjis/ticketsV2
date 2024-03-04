@@ -13,15 +13,44 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
-## Dimanche 03/03/2024 - Bilan du travail du 26/02/2024 au 03/03/2024
+## Dimanche 10/03/2024 - Bilan du travail du 04/03/2024 au 10/03/2024
 
 Semaine en cours.
+
+- **Florent**
+  - ...
+- **Tom**
+  - ...
+- **Enzo**<br>
+  - ...
+- **Assia**<br>
+  - ...
+- **Matthieu**
+  - ...
 
 <br><br><br>
 
 ---
 
+## Dimanche 03/03/2024 - Bilan du travail du 26/02/2024 au 03/03/2024
+
+Rien de spécial cette semaine, nous continuons nos travaux.
+Objectif prochaine fois : terminer toutes les tâches indiquées dans le pdf
+
+- **Florent**
+  - ...
+- **Tom**
+  - En cours : Archiver/Désarchiver via JavaScript sur l'interface web
+- **Enzo**<br>
+  - Aucune avancée
+- **Assia**<br>
+  - Fin Tests saveToSessionSignUp
+- **Matthieu**
+  - Fin : bannissement auto en fonction des échecs d'authentification (logs .csv de Florent)
+  - En cours : voir comment juste bloquer l'accès à la page d'authentification, et pas tout le site...
 <br><br><br>
+
+---
 
 ## Mardi 27/02/2024 - Bilan du travail du 12/02/2024 au 25/02/2024
 
@@ -41,7 +70,7 @@ Ce bilan compte le travail effectué la semaine avant et pendant les vacances.
   - Amélioration page administration
   - Fin Menu sous ADM SYS pour afficher 2 ancres : Historique et J. A.
 - **Enzo**<br>
-  - ...
+  - Retour des données entrées dans le formulaire d'inscription en cas d'erreur
 - **Assia**<br>
   - Fin Tests des différentes pages terminées
   - Fin Ajout des cas de tests pour executeSQL, validemdp, valideEmail
