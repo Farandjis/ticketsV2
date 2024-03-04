@@ -5,6 +5,7 @@ global $etatDuTicket;
 require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 
 $connection = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
+session_start();
 if (!isset($_POST["id_ticket"]) || empty($_POST["id_ticket"])){
     header('Location: tableaudebord.php');
 }
@@ -35,22 +36,6 @@ if(! ($modifPossibleUti or $modifPossibleAdmTech)){ // TRUE (avec ! -> False) s'
     pageAccess(array()); // A remplacer par un vrai truc au propre mais c'est juste pour que ça fonctionne
 }
 
-
-
-
-/*
-	// $echo var_dump(array($info_ticket[0],$user_id[0]));
-	// return;
-	if ($info_ticket[0] == $user_id[0] && $info_ticket[1] == "En attente"){
-		$connection = pageAccess(array('Utilisateur','Administrateur Système','Technicien','Administrateur Site'));
-	}
-	elseif($user_id[0] == $info_ticket[10]){
-		$connection = pageAccess(array('Technicien','Administrateur Site'));
-	}
-	else{
-		$connection = pageAccess(array('Administrateur Site'));
-	}
-*/
 //$user_id = array_merge(mysqli_fetch_array($connection->query("SELECT substring_index(user(),'@',1);")),mysqli_fetch_array($connection->query("SELECT prenom_user, nom_user FROM vue_Utilisateur_client;")));
 $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, nom_user FROM vue_Utilisateur_client;"));
 ?>
@@ -64,13 +49,32 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../ressources/images/logo_sans_texte.png" type="image/x-icon">
     <script src="../ressources/script/menuCheckbox.js"></script>
+    <script src="../ressources/script/demandeMajMotsClesEnFonctionDeTitre.js"></script>
 </head>
 <body>
 <header>
     <div class="retour">
-        <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt="bouton retour"> Tableau de bord</a>
+        <a href="tableaudebord.php"><img src="../ressources/images/fleche_retour.png" alt="bouton retour"> Tableau de bord</a>
     </div>
 </header>
+
+<script>
+    window.onload = init;
+
+    function init(){
+        let contenuDuBoutonTitre = document.getElementById("titre").value;
+        demandeLesMotsClesAAfficher(contenuDuBoutonTitre);
+    }
+</script>
+<?php
+$lesMotcleTicketsCoches = array();
+$resSQL = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?", array($id_ticket), $connection);
+while($unMotcleTicket = mysqli_fetch_row($resSQL)){
+    $lesMotcleTicketsCoches[] = $unMotcleTicket[0];
+}
+$_SESSION['motcle'] = $lesMotcleTicketsCoches;
+?>
+
 <div class="page_cree-modif_ticket">
     <h1 class="h1Creation">Modification du Ticket</h1>
     <div role="form" class="formModifTicket formAuthentification formConnexion">
@@ -79,8 +83,13 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
             echo '<div class="erreur">';
             echo '<p>';
             if ($_POST['id'] == 1) { echo "ERREUR : Des données du formulaire sont manquantes"; }
-            else if ($_POST['id'] == 2) { echo "ERREUR : Des données essentielles du formulaire sont manquantes ou incohérentes"; }
-            else if ($_POST['id'] == 4) { echo "ERREUR : Le niveau d'urgence est pas complété "; }
+            else if ($_POST['id'] == 21) { echo "ERREUR : La description n'est pas complété"; }
+            else if ($_POST['id'] == 22) { echo "ERREUR : Le niveau d'urgence n'a pas été sélectionné"; }
+            else if ($_POST['id'] == 23) { echo "ERREUR : Le titre n'a pas été sélectionné"; }
+            else if ($_POST['id'] == 24) { echo "ERREUR : Aucun mot-clés n'a été sélectionné"; }
+            else if ($_POST['id'] == 3) { echo "ERREUR : Le niveau d'urgence entré n'est pas autorisé "; }
+            else if ($_POST['id'] == 4) { echo "ERREUR : Le titre entré n'est pas autorisé "; }
+            else if ($_POST['id'] == 6) { echo "ERREUR : Un des mots-clés cochés n'est pas disponible pour ce titre."; }
             else if ($_POST['id'] == 99) { echo "ERREUR : Impossible de fermer le ticket, vous n'avez pas les droits ou il est déjà fermé."; }
             else { echo "ERREUR : Une erreur est survenue"; }
             echo '</p>';
@@ -118,10 +127,14 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                 <div class="champs_ticket_gauche">
                     <label for='titre'>Titre du problème</label><br>
                     <div class="custom-select">
-                        <select name="titre" id="titre" class="creer_select" required>
+                        <select name="titre" id="titre" class="creer_select" onchange="demandeLesMotsClesAAfficher(value)" required>
                             <?php
                             $resSQL = mysqli_query($connection, "SELECT TITRE_TICKET FROM `TitreTicket` ORDER BY TITRE_TICKET ASC;");
-                            menuDeroulant($resSQL, "selected", array($info_ticket[6]))
+                            if(isset($_SESSION['titre'])){
+                                menuDeroulant($resSQL, "selected", array($_SESSION['titre']));
+                            }else{
+                                menuDeroulant($resSQL, "selected", array($info_ticket[6]));
+                            }
                             ?>
                         </select>
                     </div>
@@ -129,7 +142,11 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 
                     <label for='explication2'>Description du problème</label><br>
                     <textarea id="explication2" name="explication2" minlength="5" maxlength="250" placeholder="Expliquez ici votre problème. N'oubliez pas d'associer au moins un mot-clé à votre ticket."><?php
-                        echo "$info_ticket[7]";
+                        if(isset($_SESSION['explication'])){
+                            echo $_SESSION['explication'];
+                        }else{
+                            echo $info_ticket[7];
+                        }
                         ?></textarea><br>
                 </div>
 
@@ -145,7 +162,11 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							<select name='nivUrg' id='nivUrg' required>
 							";
 						$resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
-                        menuDeroulant($resSQL, "selected", array($info_ticket[8]));
+                        if(isset($_SESSION['nivUrg'])){
+                            menuDeroulant($resSQL, "selected", array($_SESSION['nivUrg']));
+                        }else{
+                            menuDeroulant($resSQL, "selected", array($info_ticket[8]));
+                        }
                         echo "
 							</select>
 							</div>
@@ -166,7 +187,11 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							";
                         if ($info_ticket[9] == "Non complété !") { echo "<option value=''>--Choisir une option--</option>"; }
                         $resSQL = mysqli_query($connection, "SELECT VALEUR_URGENCE_TICKET FROM `UrgenceTicket` WHERE IMPORTANCE_URGENCE != '999' ORDER BY IMPORTANCE_URGENCE DESC;");
-                        menuDeroulant($resSQL, "selected", array($info_ticket[9]));
+                        if(isset($_SESSION['nivUrg2'])){
+                            menuDeroulant($resSQL, "selected", array($_SESSION['nivUrg2']));
+                        }else{
+                            menuDeroulant($resSQL, "selected", array($info_ticket[9]));
+                        }
                         echo "
 							</select>
 							</div>
@@ -187,10 +212,14 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 							<div class='custom-select'>
 								<select name='ch_technicien' id='ch_technicien'>
 						";
-                        if ($info_ticket[10] == Null) { echo "<option value=''>--Choisir une option--</option>"; }
+                        if ($info_ticket[10] == null) { echo "<option value=''>--Choisir une option--</option>"; }
                         while ($row = mysqli_fetch_row($liste_technicien)){
                             echo "<option value='$row[0]'";
-                            echo isSelected($row[0],$info_ticket[10]);
+                            if (isset($_SESSION['tech'])){
+                                echo isSelected($_SESSION["tech"],$info_ticket[10]);
+                            }else {
+                                echo isSelected($row[0], $info_ticket[10]);
+                            }
                             echo "
 										>$row[1] $row[2]</option>";
                         }
@@ -214,26 +243,41 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
                     <span>Mots-clés</span><br>
                     <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
                         <?php
-
-                        $lesMotcleTicketsCoches = array();
-                        $resSQL = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?", array($id_ticket), $connection);
-                        while($unMotcleTicket = mysqli_fetch_row($resSQL)){
+                        if(isset($_SESSION['motcle'])) {
+                            $lesMotcleTicketsCoches = $_SESSION['motcle'];
+                        } else {
+                            // Exécutez les lignes de code pour récupérer les mots-clés à partir de la base de données
+                            $lesMotcleTicketsCoches = array();
+                            $resSQL = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?", array($id_ticket), $connection);
+                            while ($unMotcleTicket = mysqli_fetch_row($resSQL)) {
                             $lesMotcleTicketsCoches[] = $unMotcleTicket[0];
                         }
 
+                        $_SESSION['motcle'] = $lesMotcleTicketsCoches;
+                        }
 
-                        if (count($lesMotcleTicketsCoches) == 0){ $texteBouton = "-- Listes des mots-clés --"; }
-                        elseif (count($lesMotcleTicketsCoches) == 1) { $texteBouton = "1 mot-clé sélectionné à l'origine";}
-                        else { $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés à l'origine";}
-
+                        // Maintenant, vous pouvez utiliser $lesMotcleTicketsCoches pour afficher les mots-clés
+                        if (count($lesMotcleTicketsCoches) == 0) {
+                            $texteBouton = "-- Listes des mots-clés --";
+                        } elseif (count($lesMotcleTicketsCoches) == 1) {
+                            $texteBouton = "1 mot-clé sélectionné à l'origine";
+                        } else {
+                            $texteBouton = count($lesMotcleTicketsCoches) . " mots-clés sélectionnés à l'origine";
+                        }
 
                         echo "<span class='entete_menu_checkbox' onclick=toggleDropdown(document.getElementById('menu_deroulant_motcle'))>$texteBouton</span>";
                         ?>
+
                         <div class="option_checkbox">
                             <?php
+                            /*
                             $resSQL = mysqli_query($connection, "SELECT NOM_MOTCLE FROM `MotcleTicket` ORDER BY NOM_MOTCLE ASC;");
                             menuDeroulant($resSQL, "checked", $lesMotcleTicketsCoches);
+                            */
                             ?>
+
+                            <span>ERREUR : Activez JavaScript !</span> <!-- Texte par défaut. Remplacé automatiquement par JavaScript-->
+
 
                         </div>
 
