@@ -5,7 +5,7 @@ INF2-A
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test
-## Site dynamique
+## Site dynamique Boite noire
 
 <br><br>
 Ce document permet de s'assurer que les fonctions soient bien fonctionnelles comme souhaité.
@@ -32,6 +32,7 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
         - #### [operationCAPTCHA](#10a)
         - #### [verifyCAPTCHA](#11a)
         - #### [saveToSessionSignUp](#12a)
+        - #### [MenuDeroulant](#13a)
 
 
 <br><br><br>
@@ -47,7 +48,7 @@ Le document suivant à pour but de tester les différentes fonctions crées pour
 
 ## <a name="II"></a>II - Description de la procédure de test
 
-Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL.
+Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL, recupererRoleDe, tableGenerate, ValideEmail, operationCAPTCHA, verifyCAPTCHA, pageAccess, deconnexionSite, affichageMenuDuHaut, menuDeroulant.
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
@@ -175,16 +176,16 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 - ### <a name="9a"></a>affichageMenuDuHaut
 
-| Cas n° | Critère                               | Résultat attendu | Résultat obtenu |
-|:-------|----------------------------------     |------------------|-----------------|
-| 1      | $pageActuelle = "index"               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets             | 
-| 2      | $pageActuelle = "profil"              | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion               | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion              | 
-| 3      | $pageActuelle = "tableaudebord"       | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil               | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil             | 
-| 4      | $pageActuelle = "administration"      | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil               | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil              | 
-| 5      | Bouton 1 : Inscription (menu du haut) | Retourne la page inscription               | Retourne la page inscription              | 
-| 6      | Bouton 2 : Connexion                  | Retourne la page connexion               | Retourne la page connexion              | 
-| 7      | Bouton 3 : Déconnexion                | Retourne la page index                | Retourne la page index               | 
-| 8      | Bouton 4 : Profil                     | Retourne la page profil               | Retourne la page profil              | 
+| Cas n° | Critère                               | Résultat attendu | Résultat obtenu                                                                                                                                                                                                                                                                                                                                                                                                |
+|:-------|----------------------------------     |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1      | $pageActuelle = "index"               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets | 
+| 2      | $pageActuelle = "profil"              | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion               | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion                                                     | 
+| 3      | $pageActuelle = "tableaudebord"       | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil               | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil                                                                                                                                                                            | 
+| 4      | $pageActuelle = "administration"      | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil               | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil                                                                                                                                                                                                                                                                                        | 
+| 5      | Bouton 1 : Inscription (menu du haut) | Retourne la page inscription               | Retourne la page inscription                                                                                                                                                                                                                                                                                                                                                                                   | 
+| 6      | Bouton 2 : Connexion                  | Retourne la page connexion               | Retourne la page connexion                                                                                                                                                                                                                                                                                                                                                                                     | 
+| 7      | Bouton 3 : Déconnexion                | Retourne la page index                | Retourne la page index                                                                                                                                                                                                                                                                                                                                                                                         | 
+| 8      | Bouton 4 : Profil                     | Retourne la page profil               | Retourne la page profil                                                                                                                                                                                                                                                                                                                                                                                        | 
 
 
 - ### <a name="10a"></a>operationCAPTCHA
@@ -214,3 +215,6 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | 4      | $login = "alice" <br>  $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " "                    | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ nom n'a pas été entré    |
 | 5      | $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $captcha = " "                                       | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ email n'a pas été entré  |
 
+- ### <a name="13a"></a>MenuDeroulant
+
+Les tests boites noires sur les fonctions isSelected, appendToCSV, csvToHtmlTable, getIP, DirToTable n'ont pas été effectué volontairement puisque ce sont des fonctions d'affichages
