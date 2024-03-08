@@ -57,10 +57,10 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | Produit testé                      | Site dynamique (PHP)                                             |
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                               |
-| Date de début                      | 21/11/2023                                                       |
-| Date de finalisation               | 24/11/2023                                                       |
+| Date de début                      | 04/03/2024                                                       |
+| Date de finalisation               |                                                                  |
 | Test à appliquer                   | Vérification du bon fonctionnement des fonctions                 |
-| Responsable de la campagne de test | GUIGNOLLE Enzo, Gouabi Assia                                     |
+| Responsable de la campagne de test | Gouabi Assia                                                     |
 
 <br><br><br>
 
@@ -74,4 +74,27 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 Pour le schéma, dans l'instruction 10 nous avons regrouper les données de session (login et mdp)
 
-<img height="750" width="300" src="../img/connectUser.png" title="connectUser"/>
+<img height="700" width="300" src="../img/connectUser.png" title="connectUser"/>
+
+# Les chemins que nous proposons pour ce schéma 
+
+### C1 = {1,7} <br>
+### C2 = {1,2,3,6} <br>
+### C3 = {1,2,3,4,5}
+
+# Conception des tests boites blanches de la fonction ConnectUser
+
+| Chemin | $loginMariaDB                                      | $loginSite | $mdpMariaDB | $connexionUtilisateur                                 | Résultat |
+|--------|----------------------------------------------------|------------|-------------|-------------------------------------------------------|----------|
+| C1     | l'utilisateur n'existe pas dans la base de données |            |             |                                                       | false    |
+| C2     | l'utilisateur existe dans la base de données       | correct    | incorrect   | la connexion à la base de données n'a pas été établie | false    |
+| C3     | l'utilisateur existe dans la base de données       |            |             | la connexion à la base de données a bien été établie  | true     |
+
+# Réalisation des tests boites blanches de la fonction ConnectUser
+
+| Chemin | $loginMariaDB | $loginSite | $mdpMariaDB | $connexionUtilisateur                                 | Résultat |
+|--------|---------------|------------|-------------|-------------------------------------------------------|----------|
+| C1     | 12222002      |            |             |                                                       | false    |
+| C2     | 1             | alice      | azerty!     | la connexion à la base de données n'a pas été établie | false    |
+| C3     | 1             | alice      | azerty!123  | la connexion à la base de données a bien été établie  | true     |
+
