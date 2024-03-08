@@ -18,15 +18,17 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 Semaine en cours.
 
 - **Florent**
-  - ...
+  - En cours : Vérification du bon fonctionnement automatique Kron
+  - Fin : Téléchargement/Suppression des archives via TIX
 - **Tom**
-  - ...
+  - En cours : Archiver/Désarchiver via JavaScript sur l'interface web
 - **Enzo**<br>
-  - ...
+  - A Copier-coller 5 lignes de code à chaque redirection dans action_modif_ticket un lundi soir mais c'est pas 100% fonctionnel
 - **Assia**<br>
-  - ...
+  - En cours tests boîtes blanches pour toute les fonctions utilisées
 - **Matthieu**
-  - ...
+  - Fin : voir comment juste bloquer l'accès aux pages page d'authentifications lors d'un ban f2b (manque inscript)
+  - en cours : voir comment juste débloquer l'accès aux pages page d'authentifications lors d'un déban f2b
 
 <br><br><br>
 
@@ -38,7 +40,7 @@ Rien de spécial cette semaine, nous continuons nos travaux.
 Objectif prochaine fois : terminer toutes les tâches indiquées dans le pdf
 
 - **Florent**
-  - ...
+  - Fin : Listage des archives connexions infructueuses et derniers tickets
 - **Tom**
   - En cours : Archiver/Désarchiver via JavaScript sur l'interface web
 - **Enzo**<br>
@@ -70,7 +72,7 @@ Ce bilan compte le travail effectué la semaine avant et pendant les vacances.
   - Amélioration page administration
   - Fin Menu sous ADM SYS pour afficher 2 ancres : Historique et J. A.
 - **Enzo**<br>
-  - Retour des données entrées dans le formulaire d'inscription en cas d'erreur
+  - En cours : retour des données entrées dans le formulaire d'inscription en cas d'erreur
 - **Assia**<br>
   - Fin Tests des différentes pages terminées
   - Fin Ajout des cas de tests pour executeSQL, validemdp, valideEmail
