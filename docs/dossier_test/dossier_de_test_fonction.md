@@ -75,13 +75,14 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 | Cas n° | Critère                                                 | Résultat attendu | Résultat obtenu | Commentaires                                   |
 |:-------|---------------------------------------------------------|------------------|-----------------|------------------------------------------------|
-| 1      | $loginMariaDB = "alice" <br> $mdpMariaDB = "azerty!123" | OK               | OK              | $loginMariaDB et $mdpMariaDB correct           |
-| 2      | $loginMariaDB = " " <br> $mdpMariaDB = "azerty!123"     | KO               | KO              | $loginMariaDB vide et $mdpMariaDB correct      |
-| 3      | $loginMariaDB = "alice" <br> $mdpMariaDB = "123!azerty" | KO               | KO              | $loginMariaDB correct et $mdpMariaDB incorrect |
-| 4      | $loginMariaDB = "alice" <br> $mdpMariaDB = " "          | KO               | KO              | $loginMariaDB correct et $mdpMariaDB vide      |
-| 5      | $loginMariaDB = "alix" <br> $mdpMariaDB = "azerty!123"  | KO               | KO              | $loginMariaDB incorrect et $mdpMariaDB correct |
-| 6      | $loginMariaDB = "alie" <br> $mdpMariaDB = "123!azerty"  | KO               | KO              | $loginMariaDB et $mdpMariaDB incorrect         |
-| 7      | $loginMariaDB = " " <br> $mdpMariaDB = " "              | KO               | KO              | $loginMariaDB et $mdpMariaDB sont vides        |
+| 1      | $loginSite = "alice" <br> $mdpMariaDB = "azerty!123" | OK               | OK              | $loginSite et $mdpMariaDB correct           |
+| 2      | $loginSite = " " <br> $mdpMariaDB = "azerty!123"     | KO               | KO              | $loginSite vide et $mdpMariaDB correct      |
+| 3      | $loginSite = "alice" <br> $mdpMariaDB = "123!azerty" | KO               | KO              | $loginSite correct et $mdpMariaDB incorrect |
+| 4      | $loginSite = "alice" <br> $mdpMariaDB = " "          | KO               | KO              | $loginSite correct et $mdpMariaDB vide      |
+| 5      | $loginSite = "alix" <br> $mdpMariaDB = "azerty!123"  | KO               | KO              | $loginSite incorrect et $mdpMariaDB correct |
+| 6      | $loginSite = "alie" <br> $mdpMariaDB = "123!azerty"  | KO               | KO              | $loginSite et $mdpMariaDB incorrect         |
+| 7      | $loginSite = " " <br> $mdpMariaDB = " "              | KO               | KO              | $loginSite et $mdpMariaDB sont vides        |
+| 8      | $loginMariaDB = " "                                  | KO               | KO              | $loginMariaDB n'existe pas                  |
 
 
 
