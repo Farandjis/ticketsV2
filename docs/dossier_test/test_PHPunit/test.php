@@ -35,3 +35,24 @@ assert(recupererRoleDe(mysqli_connect($host, "5", "Assuranc3t0ur!x", $database))
 assert(recupererRoleDe(mysqli_connect($host, "6", "P0rqu3p!x", $database)) == "Administrateur Site");
 assert(recupererRoleDe(mysqli_connect($host, "visiteur", "t9t+<Q33Pe%o4woPNwDhNdhZBz", $database)) == "Rôle manquant");
 assert(recupererRoleDe(mysqli_connect($host, "4", "azerty!123", $database)) == "Technicien");
+
+/*
+Test de la fonction valideEMAIL
+*/
+
+assert(valideEMAIL("alice@email.com") == true);
+assert(valideEMAIL("alice.avril@email.com") == true);
+assert(valideEMAIL(" ") == false);
+assert(valideEMAIL("alice#email.com") == false);
+assert(valideEMAIL("alicé@email.com") == false);
+assert(valideEMAIL("alice@email.c") == false);
+assert(valideEMAIL("alice@email.cooom") == false);
+assert(valideEMAIL("alice.avrilemail.com") == false);
+assert(valideEMAIL("@email.com") == false);
+assert(valideEMAIL("alice.avril@") == false);
+assert(valideEMAIL("alice.avril@.com") == false);
+assert(valideEMAIL("alice.avril@email") == false);
+assert(valideEMAIL("@emailalice.avril.fr") == false);
+assert(valideEMAIL("alice.avril@.fremail") == false);
+assert(valideEMAIL("avril@email.fr.de") == false);
+assert(valideEMAIL("alice.avril@email.fr.de") == false);
