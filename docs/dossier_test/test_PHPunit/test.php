@@ -56,3 +56,12 @@ assert(valideEMAIL("@emailalice.avril.fr") == false);
 assert(valideEMAIL("alice.avril@.fremail") == false);
 assert(valideEMAIL("avril@email.fr.de") == false);
 assert(valideEMAIL("alice.avril@email.fr.de") == false);
+
+/*
+Test de la fonction verifyCAPCHAT
+*/
+
+assert(verifyCAPTCHA(" ", 12, 20 ) == false);
+assert(verifyCAPTCHA("!!", 12, 20 ) == false);
+assert(verifyCAPTCHA("45", 12, 20 ) == false);
+assert(verifyCAPTCHA("32", 12, 20 ) == true);
