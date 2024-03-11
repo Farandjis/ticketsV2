@@ -6,6 +6,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
 
 session_start();
 
+
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['fermer_ticket'])) {
@@ -43,7 +44,9 @@ try {
                 $_SESSION['titre'] = $_POST['titre'];
                 $_SESSION['nivUrg'] = $_POST['nivUrg'];
                 $_SESSION['nivUrg2'] = $_POST['nivUrg2'];
-                $_SESSION['tech'] = $_POST['ch_technicien'];
+                if (recupererRoleDe($connexionUtilisateur) == 'Administrateur Site') {
+                    $_SESSION['tech'] = $_POST['ch_technicien'];
+                }
                 $_SESSION['motcle'] = $_POST['motcle_option'];
                 echo "
                             <form id='retourPageModifTicket' action='modificationTicket.php' method='post'>

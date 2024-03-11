@@ -198,7 +198,7 @@ $_SESSION['motcle'] = $lesMotcleTicketsCoches;
 							";
                     }
                     else{
-                        echo '<input type="hidden" name="nivUrg2" value="<?php echo $info_ticket[9]; ?>">';
+                        echo '<input type="hidden" name="nivUrg2" value='. $info_ticket[9] . '>';
                         echo "<p id='champLocked'>$info_ticket[9]</p>";
                     }
                     ?>
@@ -216,7 +216,7 @@ $_SESSION['motcle'] = $lesMotcleTicketsCoches;
                         while ($row = mysqli_fetch_row($liste_technicien)){
                             echo "<option value='$row[0]'";
                             if (isset($_SESSION['tech'])){
-                                echo isSelected($_SESSION["tech"],$info_ticket[10]);
+                                echo isSelected($_SESSION["tech"],$row[0]);
                             }else {
                                 echo isSelected($row[0], $info_ticket[10]);
                             }
@@ -243,17 +243,14 @@ $_SESSION['motcle'] = $lesMotcleTicketsCoches;
                     <span>Mots-clés</span><br>
                     <div class="menu_checkbox" id="menu_deroulant_motcle" tabindex="0" onkeydown="toggleDropdown(this)">
                         <?php
-                        if(isset($_SESSION['motcle'])) {
-                            $lesMotcleTicketsCoches = $_SESSION['motcle'];
-                        } else {
+                        if (isset($_SESSION['motcle']) == 0){
                             // Exécutez les lignes de code pour récupérer les mots-clés à partir de la base de données
                             $lesMotcleTicketsCoches = array();
                             $resSQL = executeSQL("SELECT NOM_MOTCLE FROM vue_tdb_relation_ticket_motcle WHERE ID_TICKET = ?", array($id_ticket), $connection);
                             while ($unMotcleTicket = mysqli_fetch_row($resSQL)) {
-                            $lesMotcleTicketsCoches[] = $unMotcleTicket[0];
-                        }
-
-                        $_SESSION['motcle'] = $lesMotcleTicketsCoches;
+                                $lesMotcleTicketsCoches[] = $unMotcleTicket[0];
+                            }
+                            $_SESSION['motcle'] = $lesMotcleTicketsCoches;
                         }
 
                         // Maintenant, vous pouvez utiliser $lesMotcleTicketsCoches pour afficher les mots-clés
@@ -266,6 +263,8 @@ $_SESSION['motcle'] = $lesMotcleTicketsCoches;
                         }
 
                         echo "<span class='entete_menu_checkbox' onclick=toggleDropdown(document.getElementById('menu_deroulant_motcle'))>$texteBouton</span>";
+
+                        unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["nivUrg2"], $_SESSION["explication2"]);
                         ?>
 
                         <div class="option_checkbox">
@@ -301,6 +300,8 @@ $_SESSION['motcle'] = $lesMotcleTicketsCoches;
                     echo '<input type="submit" name="fermer_ticket" value="Fermeture du Ticket" id="boutonFermerTicket"><br>';
                 }
             }
+
+            $_SESSION['motcletest'] = $lesMotcleTicketsCoches;
             ?>
 
     </form>
