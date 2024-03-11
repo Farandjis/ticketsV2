@@ -106,9 +106,9 @@ Nous allons utiliser fail2ban pour limiter le nombre de tentatives de connexion 
       action = TIX_connexionSite_ACTION<br>
     >
     > \# Nb max tentative, pendant cmb de temps, durée du ban<br>
-      maxretry = 2<br>
-      findtime = 3600<br>
-      bantime = 120<br>
+      maxretry = 4<br>
+      findtime = 600 # 10min<br>
+      bantime = 300 # 5min<br>
     
     <br><br>
   - **ii) Action fail2ban : TIX_connexionSite_ACTION.conf**<br>
@@ -121,8 +121,8 @@ Nous allons utiliser fail2ban pour limiter le nombre de tentatives de connexion 
 
       _Fichier /etc/fail2ban/action.d/TIX_connexionSite_ACTION.conf_
       > [Definition]<br>
-        actionban = sh /var/www/autorisation_acces/ajout_acces_connexion.sh <ip><br>
-        actionunban = sh /var/www/autorisation_access/retire_acces_connexion.sh <ip>
+        actionban = sh /var/www/autorisation_acces/connexionSite/ajout_acces_connexion.sh <ip><br>
+        actionunban = sh /var/www/autorisation_access/connexionSite/retire_acces_connexion.sh <ip>
 
     <br><br>
   - **iii) Droits d'accès Apache**<br>
@@ -178,14 +178,14 @@ Nous allons utiliser fail2ban pour limiter le nombre de tentatives de connexion 
         fi
         
         # Retirer la dernière ligne du fichier (le </Directory>
-        sudo sed '$d' -i /var/www/autorisation_acces/acces_connexion.conf
-        sudo sed '$d' -i /var/www/autorisation_acces/acces_connexion.conf
+        sudo sed '$d' -i /var/www/autorisation_acces/connexionSite/acces_connexion.conf
+        sudo sed '$d' -i /var/www/autorisation_acces/connexionSite/acces_connexion.conf
         
         # Ajoute ladresse IP à la liste daccès restreint
-        echo "Deny from $1" >> /var/www/autorisation_acces/acces_connexion.conf
+        echo "Deny from $1" >> /var/www/autorisation_acces/connexionSite/acces_connexion.conf
 
-        echo "</FilesMatch>" >> /var/www/autorisation_acces/acces_connexion.conf
-        echo "</Directory>" >> /var/www/autorisation_acces/acces_connexion.conf
+        echo "</FilesMatch>" >> /var/www/autorisation_acces/connexionSite/acces_connexion.conf
+        echo "</Directory>" >> /var/www/autorisation_acces/connexionSite/acces_connexion.conf
         
         # Recharge les fichiers de configurations Apache déjà chargé
         sudo apachectl -k graceful
@@ -215,7 +215,7 @@ Nous allons utiliser fail2ban pour limiter le nombre de tentatives de connexion 
         # Retire ladresse IP de la liste daccès restreint
         # voir : https://forum.ubuntu-fr.org/viewtopic.php?id=807231
         
-        sed -i "/Deny from $1/d" "/var/www/autorisation_acces/acces_connexion.conf"
+        sed -i "/Deny from $1/d" "/var/www/autorisation_acces/connexionSite/acces_connexion.conf"
   
         # Recharge les fichiers de configurations Apache déjà chargé
         sudo apachectl -k
