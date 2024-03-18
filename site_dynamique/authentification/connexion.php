@@ -38,6 +38,8 @@ session_start()
                     else if ($_GET['id'] == 4) { echo "ERREUR : Votre compte à été créer, mais vous n'avez pas pu être connecté."; }
                     else if ($_GET['id'] == 5) { echo "ERREUR : Vous n'avez aucun rôle pour accéder au site."; }
                     else if ($_GET['id'] == 6) { echo "ERREUR : Votre rôle ne permet par la connexion."; }
+                    elseif ($_GET['id'] == 7) { echo "ERREUR : Impossible de de vérifier que vous n'êtes pas bannis"; }
+                    elseif ($_GET['id'] == 8) { echo "ERREUR : Vous n'êtes pas autorisé à vous connecter à votre compte. Veuillez vous rapprocher de l'administrateur du site."; }
                     else { echo "ERREUR : Une erreur est survenue"; }
                     echo '</p>';
                     echo '</div>';
