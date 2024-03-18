@@ -13,9 +13,53 @@ Chaque semaine, il y a un bilan expliquant ce qui fonctionne, nos problèmes, no
 
 <br><br><br>
 
-## Dimanche 10/03/2024 - Bilan du travail du 04/03/2024 au 10/03/2024
+
+## Dimanche 24/03/2024 - Bilan du travail du 18/03/2024 au 24/03/2024
 
 Semaine en cours.
+
+- **Florent**
+  - Fin : Archivage des tentatives d'inscription réussites et échoués (note au moment d'écrire : en cours)
+- **Tom**
+  - Fin : afficher le fichier csv directement dans une pop-up (note au moment d'écrire : en cours)
+- **Enzo**<br>
+  - ...
+- **Assia**<br>
+  - ...
+- **Matthieu**
+  - Fin : Intégration de fail2ban à la plateforme TIX (note au moment d'écrire : en cours)
+  - Fin : Bannissement/Débannissement de compte (modif BD + intégration à la plateforme TIX)  (note au moment d'écrire : en cours)
+
+<br><br><br>
+
+---
+
+
+
+## Lundi 18/03/2024 - Bilan du travail du 11/03/2024 au 17/03/2024
+
+- **Florent**
+  - Fin : Vérification du bon fonctionnement automatique Kron
+  - Fin : Rédaction du document d'installation de Kron
+
+- **Tom**
+  - Fin : Archiver/Désarchiver via JavaScript sur l'interface web
+  - En cours : afficher le fichier csv directement dans une pop-up
+
+- **Enzo**<br>
+  - En cours : Mise en code des tests pour les fonctions à l'aide de PHP Unit (manque plus que 2 fonctions)
+- **Assia**<br>
+  - ...
+- **Matthieu**
+  - Fin : débloquage de l'accès aux pages lors d'un débannissement
+  - En cours : Intégration de fail2ban à la plateforme TIX
+
+
+<br><br><br>
+
+---
+
+## Dimanche 10/03/2024 - Bilan du travail du 04/03/2024 au 10/03/2024
 
 - **Florent**
   - En cours : Vérification du bon fonctionnement automatique Kron
@@ -23,7 +67,7 @@ Semaine en cours.
 - **Tom**
   - En cours : Archiver/Désarchiver via JavaScript sur l'interface web
 - **Enzo**<br>
-  - A Copier-coller 5 lignes de code à chaque redirection dans action_modif_ticket un lundi soir mais c'est pas 100% fonctionnel
+  - A Copier-coller 5 lignes de code à chaque redirection dans action_modif_ticket un lundi soir mais c'est pas 100% fonctionnel (pb avec les mots-clés)
 - **Assia**<br>
   - En cours tests boîtes blanches pour toute les fonctions utilisées
 - **Matthieu**
