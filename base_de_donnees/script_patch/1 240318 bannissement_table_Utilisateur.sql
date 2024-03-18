@@ -1,0 +1,5 @@
+ALTER TABLE Utilisateur
+ADD COLUMN banni VARCHAR(5) DEFAULT 'FALSE',
+ADD COLUMN banni_jusqua VARCHAR(20);
+
+
