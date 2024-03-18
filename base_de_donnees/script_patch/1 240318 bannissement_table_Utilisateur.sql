@@ -3,3 +3,11 @@ ADD COLUMN banni VARCHAR(5) DEFAULT 'FALSE',
 ADD COLUMN banni_jusqua VARCHAR(20);
 
 
+CREATE OR REPLACE VIEW UserFictif_connexion AS
+SELECT ID_USER, LOGIN_USER, BANNI, BANNI_JUSQUA
+FROM Utilisateur
+WHERE LOGIN_USER IS NOT NULL;
+
+GRANT SELECT ON UserFictif_connexion TO 'fictif_connexionDB'@'localhost';
+
+

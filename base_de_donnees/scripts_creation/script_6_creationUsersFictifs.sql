@@ -8,7 +8,7 @@ CREATE USER 'fictif_droitDB'@'localhost' IDENTIFIED BY 't!nt1n_droitDB45987645';
 -- Accès à tous les identifiants et les logins des utilisateurs
 -- ABCDEF UserFictif_connexionDB1
 CREATE OR REPLACE VIEW UserFictif_connexion AS
-SELECT ID_USER, LOGIN_USER
+SELECT ID_USER, LOGIN_USER, BANNI, BANNI_JUSQUA
 FROM Utilisateur
 WHERE LOGIN_USER IS NOT NULL;
 
@@ -41,7 +41,7 @@ GRANT SHOW VIEW ON DB_TIX.* TO 'fictif_droitDB'@'localhost';
 
 -- Ajout des droit pour l'utilisateurs fictif_connexionDB
 GRANT SELECT ON UserFictif_connexion TO 'fictif_connexionDB'@'localhost';
-GRANT UPDATE (HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER) ON UserFictif_maj_derniere_co TO 'fictif_connexionDB'@'localhost';
+GRANT UPDATE (HORODATAGE_DERNIERE_CONNECTION_USER, IP_DERNIERE_CONNECTION_USER, BANNI, BANNI_JUSQUA) ON UserFictif_maj_derniere_co TO 'fictif_connexionDB'@'localhost';
 
 -- Pour l'administrateur de la BD, pour qu'il puisse continuer à donner le rôle utilisateur lui aussi
 GRANT 'role_utilisateur' TO phpmyfteam@localhost WITH ADMIN OPTION;
