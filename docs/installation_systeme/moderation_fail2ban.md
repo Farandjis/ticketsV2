@@ -30,7 +30,6 @@ Ce document fait suite au document installation.md présentant et montrant l'ins
 - ## [III - Interface](#p3)
     - ### [a) Administrateur Web (gestion)](#p3a)
     - ### [b) Administrateur Système (admin)](#p3b)
-- ## [I – Modération des connexions/inscriptions à TIX](#p4)
 
 <br><br><br>
 
@@ -241,8 +240,28 @@ Nous allons utiliser fail2ban pour limiter le nombre de tentatives de connexion 
 
 
 ## <a name="p2"></a> II – Modération des comptes TIX
-
+Pour bannir et débannir des comptes TIX nous n'utiliserons pas fail2ban mais la base de données.<br>
+Sur la ligne de l'utilisateur, nous indiquerons si l'utilisateur est banni ou non, et jusqu'à quand il l'est.<br>
+A sa connexion, nous vérifierons s'il a le droit d'accéder à son compte, s'il n'a pas le droit, il aura un message d'erreur l'invitant à aller consulter l'Administrateur Web.<br>
 
 ## <a name="p3"></a> III - Interface
+  TIX doit permettre de reconfigurer les prisons fail2ban mais également bannir et débannir manuellement des IP et des comptes via une interface graphique.<br> 
+  Cette section présente les pages.<br>
 - ### <a name="p3a"></a> a) Administrateur Web (gestion)
+  L'administrateur Web ne peut que bannir et débannir des comptes hors Administrateurs et techniciens. 
+
 - ### <a name="p3b"></a> b) Administrateur Système (admin)
+  Côté Administrateur Système, il gère tout ce qui concerne fail2ban.<br>
+  Il a accès aux logs du logiciel, il peut paramétrer les prisons liées à TIX et et bannir/débannir pour toute les prisons.<br>
+  <br>
+  <b>Accéder à la page :</b> Se connecter en tant que "admin" > Page Administration > Modération > Entrez le login et mdp de la session RPi4 associée.<br>
+  <b>Note :</b> S'il y a un quelconque problème lors de l'authentification à la session Linux lors de l'exécution d'une action, l'utilisateur est déconnecté de TIX par précaution.<br>
+  <br>
+  <br>
+  <b>Fonctionnement :</b><br>
+  Depuis PHP on peu exécuter des commandes Linux entant que l'utilisateur Linux d'Apache.<br>
+  Nous avons créer un compte administrateur associé à la plateforme. Il a quelques droits sudo.<br>
+  Avec la commande `su`, on devient ce compte pour exécuter des commandes à l'aide de sudo.<br>
+  <br>
+  Pour le chargement automatique des données des prisons, un script JavaScript demande à une page PHP du serveur les données nécessaire.<br>
+  Le serveur lui répond, et JavaScript ajuste la page avec ces données.
