@@ -25,6 +25,13 @@ assert(valideMDP("AZERTYALICE!123") == -2);
 /*
 Test de la fonction executeSQL (à faire)
 */
+$connexion = mysqli_connect($host, "root", "", $database);
+assert(mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? ", array("alice"), $connexion)) == array(1));
+assert(mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? ", array(1), $connexion)) == array());
+assert(mysqli_fetch_row(executeSQL("SELECT LOGIN_USER FROM UserFictif_connexion WHERE id_user = ?", array("alice"), $connexion)) == array());
+assert(executeSQL("INSERT INTO UTILISATEUR (ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?, ?)", array(10000, "jmarc", "JeanMarc", "DELAVILLE", "jmarc@gmail.com"), $connexion) == false);
+assert(executeSQL("UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?", array("jeanmarc@gmail.com", 10000), $connexion) == false);
+assert(executeSQL( "DELETE FROM Utilisateur WHERE ID_USER = ? ;", array(10000), $connexion) == false);
 
 /*
 Test de la fonction recupereRoleDe
