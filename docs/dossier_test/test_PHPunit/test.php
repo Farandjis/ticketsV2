@@ -9,6 +9,13 @@ global $host, $database;
 Test de la fonction connectUser (à faire)
 */
 
+assert(connectUser(1, "alice", "azerty!123") == true);
+assert(connectUser(0, "alice", "azerty!123") == false);
+assert(connectUser(1, "alice", "123!azerty") == false);
+assert(connectUser(1, "alice", "") == false);
+assert(connectUser(145689, "alice", "azerty!123") == false);
+assert(connectUser(145689, "alice", "123!azerty") == false);
+assert(connectUser(0, "alice", "") == false);
 
 /*
 Test de la fonction valideMDP
@@ -23,7 +30,7 @@ assert(valideMDP("Azertyaliceavrilbonjourrrr!123456") == 0);
 assert(valideMDP("AZERTYALICE!123") == -2);
 
 /*
-Test de la fonction executeSQL (à faire)
+Test de la fonction executeSQL
 */
 $connexion = mysqli_connect($host, "root", "", $database);
 assert(mysqli_fetch_row(executeSQL("SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? ", array("alice"), $connexion)) == array(1));

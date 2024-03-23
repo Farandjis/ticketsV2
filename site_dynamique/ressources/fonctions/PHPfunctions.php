@@ -21,11 +21,14 @@ function connectUser($loginMariaDB, $loginSite, $mdpMariaDB){
     
     
     // Vérifie si l'utilisateur existe dans la base de données
-    if ($loginMariaDB) { // true si le $loginMariaDB contient quelque chose
+    if ($loginMariaDB && $mdpMariaDB) { // true si le $loginMariaDB contient quelque chose
 
         // Connexion à la base de données en tant que l'utilisateur
-        $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
-
+        try {
+            $connexionUtilisateur = mysqli_connect($host, $loginMariaDB, $mdpMariaDB, $database);
+        }catch (Exception $e){
+            return false;
+        }
         // Vérifie si la connexion a été établie (donc que le mdp est valide (et l'id aussi, mais normalement ça c'est OK))
         if ($connexionUtilisateur) {
 
@@ -565,12 +568,21 @@ function getIp(){
     return $ip;
   }
 
-function DirToTable($dirname){
-    foreach (scandir($dirname) as $fichier) {
+function dirToTable($path,$dirname){
+    foreach (scandir($path.$dirname) as $fichier) {
         if ($fichier != '.' && $fichier != '..') {
-        	echo '<tr><td>' . $fichier . '</td></tr>';
-	}
+            echo '<tr>
+		<td class="archive '.$dirname.'">' . $fichier . '</td>
+		<td><img src="../ressources/images/supprimer.png" /></td>
+		<td><img src="../ressources/images/telecharger.png" /></td>
+	    </tr>';
+        }
     }
+}
+
+function extractFile($dirname){
+    $command = "echo \"Aster!xx1900/2000\" | su administration_tix -c 'echo \"Aster!xx1900/2000\" | sudo -S tar -xvf $dirname -C ./temp'";
+    shell_exec($command);
 }
 
 function saveToSessionSignUp($login, $nom, $prenom, $email){
@@ -579,4 +591,12 @@ function saveToSessionSignUp($login, $nom, $prenom, $email){
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
     $_SESSION['email'] = $email;
+}
+
+function saveToSessionCreateTicket($titre, $nivUrg, $explication, $motcle){
+    session_start();
+    $_SESSION["titre"] = $titre;
+    $_SESSION["nivUrg"] = $nivUrg;
+    $_SESSION["explication"] = $explication;
+    $_SESSION["motcle"] = $motcle;
 }
