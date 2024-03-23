@@ -4,8 +4,8 @@ INF2-A
 <div align="center">
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
-# SAÉ S3 - Dossier de test
-## Site dynamique Boite noire
+# SAÉ S3 - Dossier de test Boite noire
+## Site dynamique (fonctions)
 
 <br><br>
 Ce document permet de s'assurer que les fonctions soient bien fonctionnelles comme souhaité.
@@ -24,15 +24,8 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
         - #### [valideMDP](#2a)
         - #### [executeSQL](#3a)
         - #### [recupererRoleDe](#4a)
-        - #### [tablegenerate](#5a)
-        - #### [pageAccess](#6a)
-        - #### [valideEmail](#7a)
-        - #### [deconnexionSite](#8a)
-        - #### [affichageMenuDuHaut](#9a)
-        - #### [operationCAPTCHA](#10a)
-        - #### [verifyCAPTCHA](#11a)
-        - #### [saveToSessionSignUp](#12a)
-        - #### [MenuDeroulant](#13a)
+        - #### [valideEmail](#5a)
+        - #### [verifyCAPTCHA](#6a)
 
 
 <br><br><br>
@@ -43,12 +36,12 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
 
 ## <a name="I"></a>I - Introduction
 
-Le document suivant à pour but de tester les différentes fonctions crées pour permettre une utilisation plus simple de ses mêmes lignes de code.
+Le document suivant a pour but de tester les différentes fonctions créées pour permettre une utilisation plus simple de ses mêmes lignes de code.
 <br>
 
 ## <a name="II"></a>II - Description de la procédure de test
 
-Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL, recupererRoleDe, tableGenerate, ValideEmail, operationCAPTCHA, verifyCAPTCHA, pageAccess, deconnexionSite, affichageMenuDuHaut, menuDeroulant.
+Les fonctions que nous allons tester seront connectUser, valideMDP, executeSQL, recupererRoleDe, ValideEmail, verifyCAPTCHA.
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
@@ -59,7 +52,7 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                               |
 | Date de début                      | 21/11/2023                                                       |
-| Date de finalisation               | 24/11/2023                                                       |
+| Date de finalisation               | 23/03/2024                                                       |
 | Test à appliquer                   | Vérification du bon fonctionnement des fonctions                 |
 | Responsable de la campagne de test | GUIGNOLLE Enzo, Gouabi Assia                                     |
 
@@ -71,200 +64,205 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 
 ## <a name="IV"></a>IV - Test
 
-### <a name="1a"></a>connectUser
+- ### <a name="1a"></a>connectUser
 
-| Cas n° | Critère                                              | Résultat attendu | Résultat obtenu | Commentaires                                |
-|:-------|------------------------------------------------------|------------------|-----------------|---------------------------------------------|
-| 1      | $loginSite = "alice" <br> $mdpMariaDB = "azerty!123" | OK               | OK              | $loginSite et $mdpMariaDB correct           |
-| 2      | $loginSite = " " <br> $mdpMariaDB = "azerty!123"     | KO               | KO              | $loginSite vide et $mdpMariaDB correct      |
-| 3      | $loginSite = "alice" <br> $mdpMariaDB = "123!azerty" | KO               | KO              | $loginSite correct et $mdpMariaDB incorrect |
-| 4      | $loginSite = "alice" <br> $mdpMariaDB = " "          | KO               | KO              | $loginSite correct et $mdpMariaDB vide      |
-| 5      | $loginSite = "alix" <br> $mdpMariaDB = "azerty!123"  | KO               | KO              | $loginSite incorrect et $mdpMariaDB correct |
-| 6      | $loginSite = "alie" <br> $mdpMariaDB = "123!azerty"  | KO               | KO              | $loginSite et $mdpMariaDB incorrect         |
-| 7      | $loginSite = " " <br> $mdpMariaDB = " "              | KO               | KO              | $loginSite et $mdpMariaDB sont vides        |
-| 8      | $loginMariaDB = " "                                  | KO               | KO              | $loginMariaDB n'existe pas                  |
+### Partitions d'équivalence 
 
+Les données utilisées pour réaliser cette fonction sont le loginMariaDB qui est l'identifiant d'un utilisateur dans la base de données. Il peut exister dans la base de données ou au contraire être inexistant. 
+<br>
+Mais il a également le mdpMariaDB qui peut être correct ou incorrect. De plus, si l'utilisateur n'entre aucune valeur, il ne sera pas authentifier et le retour de cette fonction sera faux. Dans le cas contraire, il sera vrai. 
 
+### Conception des tests 
+
+| Cas | $loginMariaDB       | $mdpMariaDB | Résultat attendu | Résultat obtenu | Commentaires                                |
+|:----|---------------------|-------------|------------------|-----------------|---------------------------------------------|
+| P1  | Existant            | Correct     | true             | true            | Les données sont correctement entrées       |
+| P2  | vide                | Correct     | false            | false           | $loginMariaDB est vide                      |
+| P3  | Existant            | Incorrect   | false            | false           | $mdpMariaDB est incorrect                   |
+| P4  | Existant            | Vide        | false            | false           | $mdpMariaDB est vide                        |
+| P5  | Inexistant          | Correct     | false            | false           | $loginMariaDB n'existe pas                  |
+| P6  | Inexistant          | Incorrect   | false            | false           | Les données sont incorrects et inexistantes |
+| P7  | Vide                | Vide        | false            | false           | Aucunes données n'est entré                 |
+
+### Exécution des tests  
+
+| Cas  | $loginMariaDB       | $mdpMariaDB | Résultat attendu | Résultat obtenu |
+|:-----|---------------------|-------------|------------------|-----------------|
+| P1   | 1                   | azerty!123  | true             | true            |
+| P2   | " "                 | azerty!123  | false            | false           |
+| P3   | 1                   | 123!azerty  | false            | false           |
+| P4   | 1                   | " "         | false            | false           |
+| P5   | 145689              | azerty!123  | false            | false           |
+| P6   | 145689              | 123!azerty  | false            | false           |
+| P7   | " "                 | " "         | false            | false           |
 
 - ### <a name="2a"></a>valideMDP
 
-| Cas n° | Critère                           | Résultat attendu | Résultat obtenu | Commentaires                                          |
-|:-------|-----------------------------------|------------------|-----------------|-------------------------------------------------------|
-| 1      | Azertyalice!123                   | OK               | OK              | Le format du mdp est correct                          |
-| 2      | azertyalice!123                   | KO               | KO              | Absence de majuscule                                  |
-| 3      | Azertyalice123                    | KO               | KO              | Absence d'un caractère spécial                        |
-| 4      | Azertyalice!                      | KO               | KO              | Absence de chiffres                                   |
-| 5      | Azerty!123                        | KO               | KO              | Taille non conforme aux restrictions (inférieur à 12) |
-| 6      | Azertyaliceavrilbonjourrrr!123456 | KO               | KO              | Taille non conforme aux restrictions (supérieur à 32) |
-| 7      | AZERTYALICE!123                   | KO               | KO              | Absence de minuscule                                  |
+### Partitions d'équivalence
+
+Pour vérifier la validité d'un mot de passe, nous allons nous appuyer sur les caractères qui le compose. 
+<br>
+Il peut être valide ce qui veut dire qu'il respecte toutes les caractéristiques d'un mot de passe correct, mais peut être au contraire incorrect
+
+Les différents cas de tests renvoient des valeurs entre : 0, -1, 1, -4, -3 et -2. 
+
+### Conception des tests 
+
+| Cas | $mdp      | Résultat attendu | Résultat obtenu | Commentaires                                          |
+|:----|-----------|------------------|-----------------|-------------------------------------------------------|
+| P1  | Valide    | 1                | 1               | Le format du mdp est valide                           |
+| P2  | Incorrect | -1               | -1              | Absence de majuscule                                  |
+| P3  | Incorrect | -4               | -4              | Absence d'un caractère spécial                        |
+| P4  | Incorrect | -3               | -3              | Absence de chiffres                                   |
+| P5  | Incorrect | 0                | 0               | Taille non conforme aux restrictions (inférieur à 12) |
+| P6  | Incorrect | 0                | 0               | Taille non conforme aux restrictions (supérieur à 32) |
+| P7  | Incorrect | -2               | -2              | Absence de minuscule                                  |
+
+### Exécution des tests  
+
+| Cas | $mdp                              | Résultat attendu | Résultat obtenu |
+|:----|-----------------------------------|------------------|-----------------|
+| P1  | Azertyalice!123                   | 1                | 1               |
+| P2  | azertyalice!123                   | -1               | -1              |
+| P3  | Azertyalice123                    | -4               | -4              |
+| P4  | Azertyalice!                      | -3               | -3              |
+| P5  | Azerty!123                        | 0                | 0               |
+| P6  | Azertyaliceavrilbonjourrrr!123456 | 0                | 0               |
+| P7  | AZERTYALICE!123                   | -2               | -2              |
 
 - ### <a name="3a"></a>executeSQL
 
-| Cas n° | Critère                                                                                                                                                                                      | Résultat attendu | Résultat obtenu | Commentaires                                                           |
-|:-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|-----------------|------------------------------------------------------------------------|
-| 1      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? " <br> $params = array(loginSite) <br> $connection                                                                  | OK               | OK              | La requête de sélection fonctionne                                     |
-| 2      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? " <br> $params = array(1) <br> $connection                                                                          | KO               | KO              | Le login étant un char nous ne pouvons pas récupérer le login_user = 1 |
-| 3      | $reqSQL = "SELECT COUNT(LOGIN_USER) FROM UserFictif_connexion WHERE Email_USER = ?" <br> $params = array($login) <br> $coUFConnexion                                                         | KO               | KO              | Le $login ne correspond pas à l'Email_user                             |
-| 4      | $reqSQL = "INSERT INTO UserFictif_inscription (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?)" <br> $params = array($login, $prenom, $nom, $email) <br> $coUFInscription | OK               | OK              | La requête d'insertion fonctionne                                      |
-| 5      | $reqSQL = "INSERT INTO UserFictif_inscription (LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?)" <br> $params = array($login, $prenom, $nom) <br> $coUFInscription         | KO               | KO              | Manque l'email dans le array                                           |
-| 6      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ? " <br> $params = array() <br> $connection                                                                           | KO               | KO              | Aucun paramètre n'est identiqué                                        |
-| 7      | $reqSQL = "UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?", array($nouveEmail, $loginMariaDB), $connexionUtilisateur"                                                  | KO               | KO              | Le paramètre nouveEmail n'existe pas                                   |
-| 8      | $reqSQL = "UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?", array($nouvelEmail, $loginMariaDB), $connexionUtilisateur"                                                 | OK               | OK              | La requête permet bien une modification de l'Email                     |
-| 9      | $reqSQL = "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?" <br> $params = array("--") <br> $connection                                                                        | KO               | KO              | Impossible de tenter une injection SQL                                 |
-| 10     | $reqSQL = "DELETE FROM `MotcleTicket` WHERE NOM_MOTCLE = ? ;",array($titre),$connection                                                                                                      | OK               | OK              | Le mot-clé est bien supprimé                                           |
-| 11     | $reqSQL = "DELETE FROM `MotcleTicket` WHERE NOM_MOTCLE = ? ;",array($titre)                                                                                                                  | KO               | KO              | Absence de la connexion                                                |
+### Partitions d'équivalence
+
+Nous avons testé la fonction executeSQL avec les opérations de sélection, de modification, d'insertion et suppression. 
+<br> Les résultats que nous pouvons obtenir sont un booléen (false) ou un array. 
+<br> $connexion fait référence à la connexion à la base de données avec les informations suivantes : <br> $host, "root", " ", $database
+
+### Conception des tests 
+
+| Cas | $reqSQL                                                                                                   | $params                                                        | $connexion | Résultat attendu | Résultat obtenu |
+|-----|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|------------|------------------|-----------------|
+| P1  | "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?                                            | array(loginSite)                                               | $connexion | array(ID_USER)   | array(ID_USER)  |
+| P2  | "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?                                            | array(loginMariaDB)                                            | $connexion | array()          | array()         |
+| P3  | "SELECT LOGIN_USER FROM UserFictif_connexion WHERE id_user = ?"                                           | array(loginSite)                                               | $connexion | array()          | array()         |
+| P4  | "INSERT INTO UTILISATEUR (ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?, ?)" | array(ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER ) | $connexion | false            | false           |
+| P5  | "UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?"                                    | array( EMAIL_USER, ID_USER )                                   | $connexion | false            | false           |
+| P6  | "DELETE FROM Utilisateur WHERE ID_USER = ? ;"                                                             | array(ID_USER)                                                 | $connexion | false            | false           |
+
+
+### Exécution des tests 
+
+| Cas | $reqSQL                                                                                                   | $params                                                           | $connexion | Résultat attendu | Résultat obtenu |
+|-----|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|------------|------------------|-----------------|
+| P1  | "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?                                            | array("alice")                                                    | $connexion | array(1)         | array(1)        |
+| P2  | "SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?                                            | array(1)                                                          | $connexion | array()          | array()         |
+| P3  | "SELECT LOGIN_USER FROM UserFictif_connexion WHERE id_user = ?"                                           | array("alice")                                                    | $connexion | array()          | array()         |
+| P4  | "INSERT INTO UTILISATEUR (ID_USER, LOGIN_USER, PRENOM_USER, NOM_USER, EMAIL_USER) VALUES (?, ?, ?, ?, ?)" | array(10000, "jmarc", "JeanMarc", "DELAVILLE", "jmarc@gmail.com") | $connexion | false            | false           |
+| P5  | "UPDATE vue_Utilisateur_maj_email SET email_user= ? WHERE ID_USER = ?"                                    | array("jeanmarc@gmail.com", 10000)                                | $connexion | false            | false           |
+| P6  | "DELETE FROM Utilisateur WHERE ID_USER = ? ;"                                                             | array(10000)                                                      | $connexion | false            | false           |
+
 
 - ### <a name="4a"></a>recupereRoleDE
 
-| Cas n° | Critère                                                    | Résultat attendu | Résultat obtenu  | Commentaires                                  |
-|:-------|------------------------------------------------------------|------------------|------------------|-----------------------------------------------|
-| 1      | je me connecte en temps que alice (utilisateur)            | role_utilisateur | role_utilisateur | récupération du rôle d'utilisateur d'alice    |
-| 2      | je me connecte en temps que gestion (administrateur web)   | role_admin_web   | role_admin_web   | récupération du rôle d'administrateur web     |
-| 3      | je me connecte en temps que admin (administrateur système) | role_admin_sys   | role_admin_sys   | récupération du rôle d'administrateur système |
-| 4      | j'accède à la plateforme en tant que visiteur              | aucun rôle       | aucun rôle       | Aucun rôle n'a été attribué au visiteur       |
-| 5      | je me connecte en temps que gordon (technicien)            | role_technicien  | role_technicien  | récupération du rôle de technicien            |
+### Partitions d'équivalence
 
-- ### <a name="5a"></a>tablegenerate
+Nous avons 4 rôles : l'utilisateur, l'administrateur système et web et le technicien. Cependant, le visiteur peut aussi avoir accès à la page d'accueil de la plateforme. 
+Nous avons décidé de prendre l'utilisateur Alice, l'administrateur web de la plateforme Gestion, l'administrateur système Admin et le technicien Gordon pour matérialiser nos cas de tests. 
 
-| Cas n° | Critère                                                                                                                                                                    | Résultat attendu  | Résultat obtenu    | Commentaires                            |
-|:-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|--------------------|-----------------------------------------|
-| 1      | Affichage avec la requête suivante "SELECT * FROM vue_Ticket_visiteur"                                                                                                     | 4 colonne affiché | 4 colonnes affiché | Affichage de 4 colonnes dans un tableau |
-| 2      | Affichage avec la requête suivante "SELECT OBJET_TICKET NIV_URGENCE_ESTIMER_TICKET DESCRIPTION_TICKET FROM vue_Ticket_visiteur"                                            | 3 colonne affiché | 3 colonnes affiché | Affichage de 3 colonnes dans un tableau |
-| 3      | Affichage avec la requête suivante "SELECT NIV_URGENCE_ESTIMER_TICKET DESCRIPTION_TICKET FROM vue_Ticket_visiteur"                                                         | 2 colonne affiché | 2 colonnes affiché | Affichage de 3 colonnes dans un tableau |
-| 4      | Affichage avec la requête suivante "SELECT DESCRIPTION_TICKET FROM vue_Ticket_visiteur"                                                                                    | 1 colonne affiché | 1 colonne affiché  | Affichage de 1 colonne dans un tableau  |
-| 5      | Affichage avec la requête suivante "SELECT LOGIN_USER OBJET_TICKET NIV_URGENCE_ESTIMER_TICKET DESCRIPTION_TICKETFROM Ticket t JOIN Utilisateur u ON t.ID_USER = u.ID_USER" | 5 colonne affiché | 5 colonne affiché  | Affichage de 5 colonnes dans un tableau |
+### Conception des tests 
 
-- ### <a name="6a"></a>pageAccess
+| Cas | $loginMariaDB                                 | $mdpMariaDB          | Résultat attendu       | Résultat obtenu        | Commentaires                                        |
+|:----|-----------------------------------------------|----------------------|------------------------|------------------------|-----------------------------------------------------|
+| P1  | Identifiant d'Alice                           | Mot de passe d'Alice | Utilisateur            | Utilisateur            | récupération du rôle d'utilisateur d'alice          |
+| P2  | Identifiant Admin                             | Mot de passe Admin   | Administrateur Système | Administrateur Système | récupération du rôle d'administrateur système Admin |
+| P3  | Identifiant Gestion                           | Mot de passe Gestion | Administrateur Site    | Administrateur Site    | récupération du rôle d'administrateur web Gestion   |
+| P4  | j'accède à la plateforme en tant que visiteur | " "                  | Rôle manquant          | Rôle manquant          | Aucun rôle n'a été attribué au visiteur             |
+| P5  | Identifiant Gordon                            | Mot de passe Gordon  | Technicien             | Technicien             | récupération du rôle de technicien de Gordon        |
 
-| Cas n° | Critère                                         | Résultat attendu | Résultat obtenu | Commentaires                                 |
-|:-------|-------------------------------------------------|------------------|-----------------|----------------------------------------------|
-| 1      | Le fichier de session n'existe pas              | KO               | KO              | La personne ne s'est pas connecté au site    |
-| 2      | Les valeurs du fichier de session sont vides    | KO               | KO              | La session de l'utilisateur n'a aucune infos |
-| 3      | L'utilisateur n'est pas dans la base de données | KO               | KO              | La personne ne s'est pas inscrit             |
-| 4      | L'utilisateur n'a pas de compte                 | KO               | KO              | La personne ne s'est pas inscrit             |
-| 5      | La connexion de l'utilisateur à échoué          | KO               | KO              | Le mot de passe à été modifié                |
-| 6      | L'utilisateur n'a pas de rôle                   | KO               | KO              | Aucun rôle est associé à l'utilisateur       |
-| 7      | Tout est valide                                 | OK               | OK              | Aucune erreur n'a été signalé                |
+### Exécution des tests 
 
-- ### <a name="7a"></a>valideEmail
-
-| Cas n° | Critère                          | Résultat attendu | Résultat obtenu | Commentaires                  |
-|:-------|----------------------------------|------------------|-----------------|-------------------------------|
-| 1      | $email = "alice@email.com"       | OK               | OK              | $email est conforme           |
-| 2      | $email = "alice.avril@email.com" | KO               | KO              | $email est conforme           |
-| 3      | $email = " "                     | KO               | KO              | $email est vide               |
-| 4      | $email = "alice#email.com"       | KO               | KO              | L'email n'est pas conforme    |
-| 5      | $email = "alicé@email.com"       | KO               | KO              | Il y a un accent dans l'email |
-| 6      | $email = "alice@email.c"         | KO               | KO              | Il y a un accent dans l'email |
-| 7      | $email = "alice@email.coom"      | KO               | KO              | Il y a un accent dans l'email |
-| 8      | $email = "alice@.coom"           | KO               | KO              | Il y a un accent dans l'email |
-| 9      | $email = alice.avrilemail.com    | KO               | KO              | Il manque un @                |
-| 10     | $email = @email.com              | KO               | KO              | Manque de caractère avant @   |
-| 11     | $email = alice.avril@            | KO               | KO              | Manque de caractère après @   |
-| 12     | $email = alice.avril@.com        | KO               | KO              | Manque un nom de domaine      |
-| 13     | $email = alice.avril@email       | KO               | KO              | Manque le ".com" ou ".fr" etc |
-| 14     | $email = @emailalice.avril.fr    | KO               | KO              | Mauvais ordre                 |
-| 15     | $email = alice.avril@.fremail    | KO               | KO              | Mauvais ordre                 |
-| 16     | $email = avril@email.fr.de       | KO               | KO              | pas de "x.x", directement "x" |
-| 17     | $email = alice.avril@email.fr.de | KO               | KO              | sous domaine                  |
-
-- ### <a name="8a"></a>deconnexionSite
-
-| Cas n° | Critère                                   | Résultat attendu                                  | Résultat obtenu                                   | Commentaires                                                                                  |
-|:-------|-------------------------------------------|---------------------------------------------------|---------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| 1      | $login = "alice" <br> $mdp = "azerty!123" | Déconnexion et suppression des données de session | Déconnexion et suppression des données de session | La session d'Alice a été déconnectée avec succès et les données de session ont été supprimées |
-| 2      | Aucune session en cours                   | Aucune action n'est effectuée                     | Aucune action n'est effectuée                     | Aucune session en cours                                                                       |
-
-- ### <a name="9a"></a>affichageMenuDuHaut
-
-| Cas n° | Critère                               | Résultat attendu                                                                                                                                                                                                                                                                                                                                                                                               | Résultat obtenu                                                                                                                                                                                                                                                                                                                                                                                                |
-|:-------|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1      | $pageActuelle = "index"               | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets | Les administrateurs système et web ont accès à : La page administration, tableau de bord, profil, les 10 derniers tickets et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page de profil, tableau de bord, les 10 derniers tickets et le bouton de déconnexion <br><br> Les visiteurs ont accès aux : boutons d'inscription, de connexion et aux 10 derniers tickets | 
-| 2      | $pageActuelle = "profil"              | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion                                                     | L'administrateur web a accès à : La page index, tableau de bord et le bouton de déconnexion <br><br> L'administrateur système a accès à : La page index, tableau de bord, historique, journal d'activité et le bouton de déconnexion <br><br> Les techniciens et les utilisateurs ont accès à : La page index, tableau de bord et le bouton de déconnexion                                                     | 
-| 3      | $pageActuelle = "tableaudebord"       | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil                                                                                                                                                                            | Les administrateurs web et système ont accès à : La page index, administration et aux boutons de déconnexion et profil <br><br> Les techniciens et utilisateurs ont accès à : La page index et aux boutons de déconnexion et profil                                                                                                                                                                            | 
-| 4      | $pageActuelle = "administration"      | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil                                                                                                                                                                                                                                                                                        | Les administrateurs web et système ont accès à : La page index, tableau de bord et aux boutons de déconnexion et profil                                                                                                                                                                                                                                                                                        | 
-| 5      | Bouton 1 : Inscription (menu du haut) | Retourne la page inscription                                                                                                                                                                                                                                                                                                                                                                                   | Retourne la page inscription                                                                                                                                                                                                                                                                                                                                                                                   | 
-| 6      | Bouton 2 : Connexion                  | Retourne la page connexion                                                                                                                                                                                                                                                                                                                                                                                     | Retourne la page connexion                                                                                                                                                                                                                                                                                                                                                                                     | 
-| 7      | Bouton 3 : Déconnexion                | Retourne la page index                                                                                                                                                                                                                                                                                                                                                                                         | Retourne la page index                                                                                                                                                                                                                                                                                                                                                                                         | 
-| 8      | Bouton 4 : Profil                     | Retourne la page profil                                                                                                                                                                                                                                                                                                                                                                                        | Retourne la page profil                                                                                                                                                                                                                                                                                                                                                                                        | 
+| Cas | $loginMariaDB | $mdpMariaDB                | Résultat attendu       | Résultat obtenu        |
+|:----|---------------|----------------------------|------------------------|------------------------|
+| P1  | 1             | azerty!123                 | Utilisateur            | Utilisateur            |
+| P2  | 5             | Assuranc3t0ur!x            | Administrateur Système | Administrateur Système |
+| P3  | 6             | P0rqu3p!x                  | Administrateur Site    | Administrateur Site    |
+| P4  | visiteur      | t9t+<Q33Pe%o4woPNwDhNdhZBz | Rôle manquant          | Rôle manquant          |
+| P5  | 4             | azerty!123                 | Technicien             | Technicien             |
 
 
-- ### <a name="10a"></a>operationCAPTCHA
+- ### <a name="5a"></a>valideEmail
 
-| Cas n° | Critère                                                  | Résultat attendu | Résultat obtenu |
-|:-------|----------------------------------------------------------|------------------|-----------------|
-| 1      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $operateur = "+" | 32               | 32              | 
-| 2      | $chiffre1 = 16 <br> $chiffre2 = 2 <br> $operateur = "+"  | 18               | 18              | 
-| 3      | $chiffre1 = 0 <br> $chiffre2 = 19 <br> $operateur = "+"  | 19               | 19              |
+### Partitions d'équivalence 
 
-- ### <a name="11a"></a>verifyCAPTCHA
-
-| Cas n° | Critère                                                           | Résultat attendu | Résultat obtenu | Commentaires                 |
-|:-------|-------------------------------------------------------------------|------------------|-----------------|------------------------------|
-| 1      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = " " | KO               | KO              | Aucune réponse n'a été donné | 
-| 2      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = !!  | KO               | KO              | Tentative échouée            | 
-| 3      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = 45  | KO               | KO              | Captcha incorrect            |
-| 4      | $chiffre1 = 12 <br> $chiffre2 = 20 <br> $reponseUtilisateur = 32  | OK               | OK              | Captcha correct              |
-  
-- ### <a name="12a"></a>saveToSessionSignUp 
-
-| Cas n° | Critère                                                                                                               | Résultat attendu                                                                                                                                    | Résultat obtenu                                                                                                                                     | Commentaires                      |
-|:-------|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| 1      | $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " " | L'enregistrement des données suivantes : <br><br> $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" | L'enregistrement des données suivantes : <br><br> $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" | La sauvegarde a bien été effectué | 
-| 2      | $nom = "alice" <br> $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " "                       | KO                                                                                                                                                  | KO                                                                                                                                                  | le champ login n'a pas été entré  | 
-| 3      | $login = "alice" <br> $nom = "alice"  <br> $email = "alice.avril@email.com" <br> $captcha = " "                       | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ prénom n'a pas été entré |
-| 4      | $login = "alice" <br>  $prenom = "Alice" <br> $email = "alice.avril@email.com" <br> $captcha = " "                    | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ nom n'a pas été entré    |
-| 5      | $login = "alice" <br> $nom = "alice" <br> $prenom = "Alice" <br> $captcha = " "                                       | KO                                                                                                                                                  | KO                                                                                                                                                  | Le champ email n'a pas été entré  |
-
-- ### <a name="13a"></a>MenuDeroulant
-
+L'email doit respecter certaines caractéritisques. Dependant de celles-ci, il peut être correct, vide ou incorrect. 
+On obtiendra ainsi un booléen true ou false.
 
 ### Conception des tests
 
-Les partitions d'équivalence de chaque paramètre sont :
-- pour $resultatSQL : 
-  - vide
-  - rempli
-- pour $attributListe
-  - selected
-  - checked
-  - vide
-- pour $elementACocher :
-  - vide
-  - rempli
-
-| Cas n° | $resultatSQL | $attributListe | $elementACocher | Résultat attendu                                                                                           |
-|:-------|--------------|----------------|-----------------|------------------------------------------------------------------------------------------------------------|
-| 1      | vide         | selected       | vide            | un menu déroulant vide                                                                                     |
-| 2      | vide         | selected       | rempli          | un menu déroulant vide                                                                                     | 
-| 3      | rempli       | selected       | rempli          | un menu déroulant selectionnable avec les information de $resultatSQL et l'élément sélectionne de celle ci |
-| 4      | rempli       | selected       | vide            | un menu déroulant selectionnable avec les information de $resultatSQL                                      |
-| 5      | vide         | checked        | vide            | un menu déroulant vide                                                                                     | 
-| 6      | vide         | checked        | rempli          | un menu déroulant vide                                                                                     | 
-| 7      | rempli       | checked        | rempli          | un menu déroulant cochable avec les information de $resultatSQL et les éléments cocher de celle ci         | 
-| 8      | rempli       | checked        | vide            | un menu déroulant cochable avec les information de $resultatSQL                                            | 
-| 9      | vide         | vide           | vide            | Aucun menu déroulant                                                                                       | 
-| 10     | vide         | vide           | rempli          | Aucun menu déroulant                                                                                       |
-| 11     | rempli       | vide           | rempli          | Aucun menu déroulant                                                                                       |
-| 9      | rempli       | vide           | vide            | Aucun menu déroulant                                                                                       |
-
-### Execution des tests
-
-| Cas n° | $resultatSQL                                          | $attributListe | $elementACocher                                     | Résultat attendu                                                                                                | Résultat obtenu                                                                                                 | Validation |
-|:-------|-------------------------------------------------------|----------------|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------|
-| 1      | Aucun résultat                                        | "selected"     | array()                                             | un menu déroulant vide                                                                                          | un menu déroulant vide                                                                                          | OK         |
-| 2      | Aucun résultat                                        | "selected"     | array("[MATERIEL] Matériel manquant")               | un menu déroulant vide                                                                                          | un menu déroulant vide                                                                                          | OK         |
-| 3      | Résultat d'une requête sur la table <br> TitreTicket  | "selected"     | array("[MATERIEL] Matériel manquant")               | un menu déroulant selectionnable avec les information de $resultatSQL <br> et l'élément sélectionne de celle ci | un menu déroulant selectionnable avec les information de $resultatSQL <br> et l'élément sélectionne de celle ci | OK         |
-| 4      | Résultat d'une requête sur la table <br> TitreTicket  | "selected"     | array()                                             | un menu déroulant selectionnable avec les information de $resultatSQL                                           | un menu déroulant selectionnable avec les information de $resultatSQL                                           | OK         |
-| 5      | Aucun résultat                                        | "checked"      | array()                                             | un menu déroulant vide                                                                                          | un menu déroulant vide                                                                                          | OK         |
-| 6      | Aucun résultat                                        | "checked"      | array("Salle R&T : Autre", "Matériel : Ordinateur") | un menu déroulant vide                                                                                          | un menu déroulant vide                                                                                          | OK         |
-| 7      | Résultat d'une requête sur la table <br> MotcleTicket | "checked"      | array("Salle R&T : Autre", "Matériel : Ordinateur") | un menu déroulant cochable avec les information de $resultatSQL <br> et les éléments cocher de celle ci         | un menu déroulant cochable avec les information de $resultatSQL <br> et les éléments cocher de celle ci         | OK         |
-| 8      | Résultat d'une requête sur la table <br> MotcleTicket | "checked"      | array()                                             | un menu déroulant cochable avec les information de $resultatSQL                                                 | un menu déroulant cochable avec les information de $resultatSQL                                                 | OK         |
-| 9      | Aucun résultat                                        | vide           | array()                                             | Aucun menu déroulant                                                                                            | Aucun menu déroulant                                                                                            | OK         |
-| 10     | Aucun résultat                                        | vide           | array("[MATERIEL] Matériel manquant")               | Aucun menu déroulant                                                                                            | Aucun menu déroulant                                                                                            | OK         |
-| 11     | Résultat d'une requête sur la table <br> TitreTicket  | vide           | array("[MATERIEL] Matériel manquant")               | Aucun menu déroulant                                                                                            | Aucun menu déroulant                                                                                            | OK         |
-| 12     | Résultat d'une requête sur la table <br> MotcleTicket | vide           | array()                                             | Aucun menu déroulant                                                                                            | Aucun menu déroulant                                                                                            | OK         |
+| Cas | $email    | Résultat attendu | Résultat obtenu | Commentaires                             |
+|:----|-----------|------------------|-----------------|------------------------------------------|
+| P1  | Correct   | true             | true            | $email est conforme                      |
+| P2  | Correct   | true             | true            | $email est conforme                      |
+| P3  | Vide      | false            | false           | $email est vide                          |
+| P4  | Incorrect | false            | false           | L'email contient un #                    |
+| P5  | Incorrect | false            | false           | Il y a un accent dans l'email            |
+| P6  | Incorrect | false            | false           | Il n'y a pas assez de lettres après le . |
+| P7  | Incorrect | false            | false           | Il y a trop de lettres après le .        |
+| P8  | Incorrect | false            | false           | Il manque un @                           |
+| P9  | Incorrect | false            | false           | pas de lettres avant le @                |
+| P10 | Incorrect | false            | false           | pas de lettres après le @                |
+| P11 | Incorrect | false            | false           | Manque de caractère après @              |
+| P12 | Incorrect | false            | false           | Manque un nom de domaine                 |
+| P13 | Incorrect | false            | false           | $email dans le désordre                  |
+| P14 | Incorrect | false            | false           | $email non conforme                      |
+| P15 | Incorrect | false            | false           | pas de "x.x", directement "x"            |
+| P16 | Incorrect | false            | false           | pas de "x.x", directement "x"            |
 
 
+### Exécution des tests  
 
-Les tests boites noires sur les fonctions isSelected, appendToCSV, csvToHtmlTable, getIP, DirToTable n'ont pas été effectué volontairement puisque ce sont des fonctions d'affichages
+| Cas | $email                  | Résultat attendu | Résultat obtenu |
+|:----|-------------------------|------------------|-----------------|
+| P1  | alice@email.com         | true             | true            |
+| P2  | alice.avril@email.com   | true             | true            |
+| P3  | " "                     | false            | false           |
+| P4  | alice#email.com         | false            | false           |
+| P5  | alicé@email.com         | false            | false           |
+| P6  | alice@email.c           | false            | false           |
+| P7  | alice@email.cooom       | false            | false           |
+| P8  | alice.avrilemail.com    | false            | false           |
+| P9  | @email.com              | false            | false           |
+| P10 | alice.avril@            | false            | false           |
+| P11 | alice.avril@.com        | false            | false           |
+| P12 | alice.avril@email       | false            | false           |
+| P13 | @emailalice.avril.fr    | false            | false           |
+| P14 | alice.avril@.fremail    | false            | false           |
+| P15 | avril@email.fr.de       | false            | false           |
+| P16 | alice.avril@email.fr.de | false            | false           |
+
+
+- ### <a name="6a"></a>verifyCAPTCHA
+
+### Partitions d'équivalence 
+
+Les données utilisées pour vérifier la validité d'un captcha sont des chiffres ou nombres qui doivent être compris entre 0 et 20 et la réponse de l'utilisateur face au captcha. 
+Si la réponse se révèle être incorrecte, on retournera false sinon true. 
+
+### Conception des tests 
+
+| Cas | $chiffre1           | $chiffre2           | $reponseUtilisateur   | Résultat attendu | Résultat obtenu | Commentaires                 |
+|:----|---------------------|---------------------|-----------------------|------------------|-----------------|------------------------------|
+| P1  | 0 <= chiffre1 >= 20 | 0 <= chiffre2 >= 20 | Vide                  | false            | false           | Aucune réponse n'a été donné | 
+| P2  | 0 <= chiffre1 >= 20 | 0 <= chiffre2 >= 20 | Tentative d'injection | false            | false           | Tentative échouée            | 
+| P3  | 0 <= chiffre1 >= 20 | 0 <= chiffre2 >= 20 | Incorrect             | false            | false           | Réponse incorrect            |
+| P4  | 0 <= chiffre1 >= 20 | 0 <= chiffre2 >= 20 | Correct               | true             | true            | Captcha correct              |
+
+### Exécution des tests 
+
+| Cas | $chiffre1 | $chiffre2 | $reponseUtilisateur | Résultat attendu | Résultat obtenu |
+|:----|-----------|-----------|---------------------|------------------|-----------------|
+| P1  | 12        | 20        | " "                 | false            | false           | 
+| P2  | 12        | 20        | !!                  | false            | false           | 
+| P3  | 12        | 20        | 45                  | false            | false           |
+| P4  | 12        | 20        | 32                  | true             | true            |
+
