@@ -160,3 +160,34 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 | C3     | 6             | P0rqu3p!x                   | Administrateur Site    |
 | C4     | 5             | Assuranc3t0ur!x             | Administrateur Système |
 | C5     | visiteur      | t9t+<Q33Pe%o4woPNwDhNdhZBz  | Rôle manquant          |
+
+### <a name="5a"></a>valideEmail
+
+<img height="700" width="500" src="../img/valideEmail.png" title="valideEmail"/>
+
+## Les chemins que nous proposons pour ce schéma
+
+### C1 = {1,2} <br>
+### C2 = {1,3,4} <br>
+### C3 = {1,3,5,6} <br>
+### C4 = {1,3,5,7} 
+
+## Conception des tests boites blanches de la fonction valideEmail
+
+| Chemin | $email                                                                           | Résultat |
+|--------|----------------------------------------------------------------------------------|----------|
+| C1     | l'email est non conforme                                                         | false    |
+| C2     | l'email est non conforme car il y a un point avant le dernier caractère          | false    |
+| C3     | l'email est non conforme car il n'y a pas de point sur les 4 derniers caractères | false    |
+| C4     | l'email est conforme                                                             | true     |
+
+## Réalisation des tests boites blanches de la fonction valideEmail
+
+
+| Chemin | $email            | Résultat |
+|--------|-------------------|----------|
+| C1     | alice#email.com   | false    |
+| C2     | alice@email.c     | false    |
+| C3     | alice@email.cooom | false    |
+| C4     | alice@email.com   | true     |
+
