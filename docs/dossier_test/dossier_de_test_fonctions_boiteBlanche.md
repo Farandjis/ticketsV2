@@ -127,3 +127,36 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 | C4     | Azerty!salutt                      | -3       |
 | C5     | Azerty1123456                      | -4       |
 | C6     | Azerty!123456                      | 1        |
+
+### <a name="4a"></a>recupererRoleDe
+
+<img height="700" width="500" src="../img/recupererRoleDe.png" title="recupererRoleDe"/>
+
+## Les chemins que nous proposons pour ce schéma
+
+### C1 = {1,2,3} <br>
+### C2 = {1,4,5} <br>
+### C3 = {1,6,7} <br>
+### C4 = {1,8,9} <br>
+### C5 = {1,10,11}
+
+## Conception des tests boites blanches de la fonction recupererRoleDe
+
+| Chemin | $loginMariaDB                           | $mdpMariaDB                              | Résultat               |
+|--------|-----------------------------------------|------------------------------------------|------------------------|
+| C1     | Identifiant d'un utilisateur            | Mot de passe d'un utilisateur            | Utilisateur            |
+| C2     | Identifiant d'un technicien             | Mot de passe d'un technicien             | Technicien             |
+| C3     | Identifiant de l'administrateur web     | Mot de passe de l'administrateur web     | Administrateur Site    |
+| C4     | Identifiant de l'administrateur système | Mot de passe de l'administrateur système | Administrateur Système |
+| C5     | Aucun role                              | Aucun role                               | Rôle manquant          |
+
+## Réalisation des tests boites blanches de la fonction recupererRoleDe
+
+
+| Chemin | $loginMariaDB | $mdpMariaDB                 | Résultat               |
+|--------|---------------|-----------------------------|------------------------|
+| C1     | 1             | azerty!123                  | Utilisateur            |
+| C2     | 4             | azerty!123                  | Technicien             |
+| C3     | 6             | P0rqu3p!x                   | Administrateur Site    |
+| C4     | 5             | Assuranc3t0ur!x             | Administrateur Système |
+| C5     | visiteur      | t9t+<Q33Pe%o4woPNwDhNdhZBz  | Rôle manquant          |
