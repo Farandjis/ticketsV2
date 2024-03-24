@@ -94,7 +94,7 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 
 ### <a name="2a"></a>valideMdp
 
-<img height="700" width="300" src="../img/valideMdp.png" title="valideMdp"/>
+<img height="700" width="500" src="../img/valideMdp.png" title="valideMdp"/>
 
 ## Les chemins que nous proposons pour ce schéma
 
