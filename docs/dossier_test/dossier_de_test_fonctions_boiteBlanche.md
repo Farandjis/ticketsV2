@@ -24,14 +24,8 @@ Ce document permet de s'assurer que les fonctions soient bien fonctionnelles com
         - #### [valideMDP](#2a)
         - #### [executeSQL](#3a)
         - #### [recupererRoleDe](#4a)
-        - #### [tablegenerate](#5a)
-        - #### [pageAccess](#6a)
-        - #### [valideEmail](#7a)
-        - #### [deconnexionSite](#8a)
-        - #### [affichageMenuDuHaut](#9a)
-        - #### [operationCAPTCHA](#10a)
-        - #### [verifyCAPTCHA](#11a)
-        - #### [saveToSessionSignUp](#12a)
+        - #### [valideEmail](#5a)
+        - #### [verifyCAPTCHA](#6a)
 
 
 <br><br><br>
@@ -98,3 +92,38 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 | C2     | 1             | alice      | azerty!     | la connexion à la base de données n'a pas été établie | false    |
 | C3     | 1             | alice      | azerty!123  | la connexion à la base de données a bien été établie  | true     |
 
+### <a name="2a"></a>valideMdp
+
+<img height="700" width="300" src="../img/valideMdp.png" title="valideMdp"/>
+
+## Les chemins que nous proposons pour ce schéma
+
+### C1 = {1,11} <br>
+### C2 = {1,2,10} <br>
+### C3 = {1,2,3,9} <br>
+### C4 = {1,2,3,4,8} <br>
+### C5 = {1,2,3,4,5,7} <br>
+### C6 = {1,2,3,4,5,6}
+
+## Conception des tests boites blanches de la fonction valideMdp
+
+| Chemin | $mdp                                                                                                        | Résultat |
+|--------|-------------------------------------------------------------------------------------------------------------|----------|
+| C1     | $mdp fait 34 caractères                                                                                     | 0        |
+| C2     | $mdp fait 13 caractères sans majuscule                                                                      | -1       |
+| C3     | $mdp fait 13 caractères, contient une majuscule mais pas de minuscule                                       | -2       |
+| C4     | $mdp fait 13 caractères, contient une majuscule, des minuscules mais pas de chiffres                        | -3       |
+| C5     | $mdp fait 13 caractères, contient une majuscule, des minuscules, des chiffres mais pas de caractère spécial | -4       |
+| C6     | $mdp est conforme                                                                                           | 1        |
+
+## Réalisation des tests boites blanches de la fonction valideMdp
+
+
+| Chemin | $mdp                               | Résultat |
+|--------|------------------------------------|----------|
+| C1     | Azertybonjourcava78913456767890864 | 0        |
+| C2     | azerty!123456                      | -1       |
+| C3     | AZERTY!123456                      | -2       |
+| C4     | Azerty!salutt                      | -3       |
+| C5     | Azerty1123456                      | -4       |
+| C6     | Azerty!123456                      | 1        |
