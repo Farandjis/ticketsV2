@@ -191,3 +191,24 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 | C3     | alice@email.cooom | false    |
 | C4     | alice@email.com   | true     |
 
+### <a name="6a"></a>verifyCAPTCHA
+
+<img height="150" width="150" src="../img/verifyCAPTCHA.png" title="verifyCAPTCHA"/>
+
+## Les chemins que nous proposons pour ce schéma
+
+### C1 = {1} 
+
+## Conception des tests boites blanches de la fonction verifyCAPTCHA
+
+| Chemin | $reponseUtilisateur                                               | $chiffre1          | $chiffre2          | Résultat |
+|--------|-------------------------------------------------------------------|--------------------|--------------------|----------|
+| C1     | la réponse de l'utilisateur est égale à l'addition des 2 chiffres | 0 < $chiffre1 < 20 | 0 < $chiffre2 < 20 | true     |
+
+## Réalisation des tests boites blanches de la fonction verifyCAPTCHA
+
+| Chemin | $reponseUtilisateur | $chiffre1 | $chiffre2 | Résultat |
+|--------|---------------------|-----------|-----------|----------|
+| C1     | 12                  | 4         | 8         | true     |
+
+
