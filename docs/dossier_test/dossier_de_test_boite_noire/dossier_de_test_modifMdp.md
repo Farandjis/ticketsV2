@@ -4,7 +4,7 @@ INF2-A
 <div align="center">
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
-# SAÉ S3 - Dossier de test
+# SAÉ S3 - Dossier de test Boite noire
 ## Page modifMdp
 
 <br><br>
@@ -43,7 +43,7 @@ Nous allons tester les différents cas où la page n'est pas censé changer de m
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                               |
 | Date de début                      | 21/11/2023                                                       |
-| Date de finalisation               | 23/11/2023                                                       |
+| Date de finalisation               | 24/03/2024                                                       |
 | Test à appliquer                   | Vérification du bon fonctionnement de la page modifMdp           |
 | Responsable de la campagne de test | Gouabi Assia                                                     |
 
@@ -55,16 +55,41 @@ Nous allons tester les différents cas où la page n'est pas censé changer de m
 
 ## <a name="IV"></a>IV - Test
 
-| Cas n° | Critère                                                                                              | Résultat attendu | Résultat obtenu | Commentaires                                                                               |
-|:-------|------------------------------------------------------------------------------------------------------|------------------|-----------------|--------------------------------------------------------------------------------------------|
-| 1      | $mdp = "azerty!123" <br> $nouveauMdp = "Boblebricoleur!123" <br> $confirmationMdp = "Boblebricoleur!123" | OK               | OK              | Les données sont toutes correctes et conformes                                             |
-| 2      | $mdp = "Azerty!123" <br> $nouveauMdp = "Boblebricoleur!123" <br> $confirmationMdp = "Boblebricoleur!123" | KO               | KO              | Le mdp est incorrect                                                                       |
-| 3      | $mdp = "azerty!123" <br> $nouveauMdp = "Boblebricoleur!123" <br> $confirmationMdp = "Boblebricoleur!12" | KO               | KO              | Le nouveauMdp et sa confirmation sont différents                                           |
-| 4      | $mdp = "azerty!123" <br> $nouveauMdp = "Bobleb!1" <br> $confirmationMdp = "Bobleb!1!"                   | KO               | KO              | La taille du nouveauMdp n'est pas conforme (trop court)                                                 |
-| 5      | $mdp = "azerty!123" <br> $nouveauMdp = "Boblebricoleurdecastorama!1234567" <br> $confirmationMdp = "Boblebricoleurdecastorama!1234567"                   | KO               | KO              | La taille du nouveauMdp n'est pas conforme (trop long)                                                 |
-| 6      | $mdp = "azerty!123" <br> $nouveauMdp = "BOBLEBRICOLEUR!123" <br> $confirmationMdp = "BOBLEBRICOLEUR!123" | KO               | KO              | Absence de lettres minuscules                                                              |
-| 7      | $mdp = "azerty!123" <br> $nouveauMdp = "boblebricoleur!123" <br> $confirmationMdp = "boblebricoleur!123" | KO               | KO              | Absence de lettres majuscules                                                             |
-| 8      | $mdp = "azerty!123" <br> $nouveauMdp = "Boblebricoleur!" <br> $confirmationMdp = "Boblebricoleur!" | KO               | KO              | Absence de chiffres dans le nouveauMdp                                                     |
-| 9      | $mdp = "azerty!123" <br> $nouveauMdp = "Boblebricoleur123" <br> $confirmationMdp = "Boblebricoleur123" | KO               | KO              | Absence de caractère spécial dans le nouveauMdp                                            |
-| 10      | $mdp = "azerty!" <br> $nouveauMdp = "boblebricoleur!123" <br> $confirmationMdp = "Boblebricoleur.123" | KO               | KO              | Les données sont toutes incorrectes et non conformes                                       |
-| 11      | $mdp = "azerty!123" <br> $nouveauMdp = "Boblebricoleur!123" <br> $confirmationMdp = "Boblébricoleur!123" | KO               | KO              | Le nouveauMdp et sa confirmation sont quasiment identiques sauf que l'un possède un accent |
+### Partitions d'équivalence 
+
+Les données permettant de modifier son mot de passe sont le mdp qui permet de se connecter à la plateforme, le nouveau mot de passe et sa confirmation. 
+<br> Le mdp peut être correct ou incorrect, le nouveau mot de passe peut être quant à lui conforme ou non conforme s'il ne respecte pas certaines caractéristiques. Enfin, la confirmation du mot de passe peut être aussi conforme ou non conforme, mais également incorrect si elle n'est pas identique au nouveau mdp. 
+<br> Le résultat que nous obtiendrons est OK si le mot de passe a bien été mis à jour ou KO s'il ne l'a pas été.
+
+### Conception des tests 
+
+| Cas | $mdp      | $nouveauMdp  | $confirmationMdp | Résultat attendu | Résultat obtenu | Commentaires                                                                                |
+|-----|-----------|--------------|------------------|------------------|-----------------|---------------------------------------------------------------------------------------------|
+| P1  | Correct   | Conforme     | Conforme         | OK               | OK              | Les données sont toutes correctes et conformes                                              |
+| P2  | Incorrect | Conforme     | Conforme         | KO               | KO              | Le mdp est incorrect                                                                        |
+| P3  | Correct   | Conforme     | Incorrect        | KO               | KO              | Le nouveauMdp et sa confirmation sont différents                                            |
+| P4  | Correct   | Non conforme | Non conforme     | KO               | KO              | La taille du nouveauMdp n'est pas conforme (trop court)                                     |
+| P5  | Correct   | Non conforme | Non conforme     | KO               | KO              | La taille du nouveauMdp n'est pas conforme (trop long)                                      |
+| P6  | Correct   | Non conforme | Non conforme     | KO               | KO              | Absence de lettres minuscules                                                               |
+| P7  | Correct   | Non conforme | Non conforme     | KO               | KO              | Absence de lettres majuscules                                                               |
+| P8  | Correct   | Non conforme | Non conforme     | KO               | KO              | Absence de chiffres dans le nouveauMdp                                                      |
+| P9  | Correct   | Non conforme | Non conforme     | KO               | KO              | Absence de caractère spécial dans le nouveauMdp                                             |
+| P10 | Incorrect | Non conforme | Incorrect        | KO               | KO              | Les données sont toutes incorrectes et non conformes                                        |
+| P11 | Correct   | Conforme     | Incorrect        | KO               | KO              | Le nouveauMdp et sa confirmation sont quasiment identiques sauf que l'un possède un accent  |
+
+### Exécution des tests 
+
+
+| Cas | $mdp        | $nouveauMdp                       | $confirmationMdp                  | Résultat attendu | Résultat obtenu |
+|-----|-------------|-----------------------------------|-----------------------------------|------------------|-----------------|
+| P1  | azerty!123  | Boblebricoleur!123                | Boblebricoleur!123                | OK               | OK              |
+| P2  | Azerty!123  | Boblebricoleur!123                | Boblebricoleur!123                | KO               | KO              |
+| P3  | azerty!123  | Boblebricoleur!123                | Boblebricoleur!12                 | KO               | KO              |
+| P4  | azerty!123  | Bobleb!1                          | Bobleb!1!                         | KO               | KO              |
+| P5  | azerty!123  | Boblebricoleurdecastorama!1234567 | Boblebricoleurdecastorama!1234567 | KO               | KO              |
+| P6  | azerty!123  | BOBLEBRICOLEUR!123                | BOBLEBRICOLEUR!123                | KO               | KO              |
+| P7  | azerty!123  | boblebricoleur!123                | boblebricoleur!123                | KO               | KO              |
+| P8  | azerty!123  | Boblebricoleur!                   | Boblebricoleur!                   | KO               | KO              |
+| P9  | azerty!123  | Boblebricoleur123                 | Boblebricoleur123                 | KO               | KO              |
+| P10 | azerty!     | boblebricoleur!123                | Boblebricoleur.123                | KO               | KO              |
+| P11 | azerty!123  | Boblebricoleur!123                | Boblébricoleur!123                | KO               | KO              |
