@@ -130,7 +130,7 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 
 ### <a name="4a"></a>recupererRoleDe
 
-<img height="700" width="500" src="../img/recupererRoleDe.png" title="recupererRoleDe"/>
+<img height="700" width="300" src="../img/recupererRoleDe.png" title="recupererRoleDe"/>
 
 ## Les chemins que nous proposons pour ce schéma
 
