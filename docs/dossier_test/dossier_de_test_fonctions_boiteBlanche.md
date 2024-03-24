@@ -41,7 +41,7 @@ Le document suivant à pour but de tester les différentes fonctions crées pour
 
 ## <a name="II"></a>II - Description de la procédure de test
 
-Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL, recupererRoleDe, tableGenerate, ValideEmail, operationCAPTCHA, verifyCAPTCHA, pageAccess, deconnexionSite, affichageMenuDuHaut, menuDeroulant.
+Les fonctions que nous allons tester seront connectUser, valideMDP, executeSQL, recupererRoleDe, ValideEmail et verifyCAPTCHA.
 <br>
 
 ## <a name="III"></a>III - Contexte des tests
@@ -52,7 +52,7 @@ Les fonctions que nous allons tester seront connectUser, valideMDP et executeSQL
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                               |
 | Date de début                      | 04/03/2024                                                       |
-| Date de finalisation               |                                                                  |
+| Date de finalisation               | 24/03/2024                                                       |
 | Test à appliquer                   | Vérification du bon fonctionnement des fonctions                 |
 | Responsable de la campagne de test | Gouabi Assia                                                     |
 
@@ -127,6 +127,26 @@ Pour le schéma, dans l'instruction 4 nous avons regrouper toutes les instructio
 | C4     | Azerty!salutt                      | -3       |
 | C5     | Azerty1123456                      | -4       |
 | C6     | Azerty!123456                      | 1        |
+
+### <a name="3a"></a>executeSQL
+
+<img height="700" width="300" src="../img/executeSQL.png" title="executeSQL"/>
+
+## Les chemins que nous proposons pour ce schéma
+
+### C1 = {1,2,3,4}
+
+## Conception des tests boites blanches de la fonction executeSQL
+
+| Chemin | $reqSQL                                | $params    | $connexion                    | Résultat       |
+|--------|----------------------------------------|------------|-------------------------------|----------------|
+| C1     | une requête de sélection de l'id_user  | login_user | connexion à la base de donnée | array(id_user) |
+
+## Réalisation des tests boites blanches de la fonction executeSQL
+
+| Chemin | $reqSQL                                                        | $params        | $connexion                    | Résultat |
+|--------|----------------------------------------------------------------|----------------|-------------------------------|----------|
+| C1     | SELECT ID_USER FROM UserFictif_connexion WHERE login_user = ?  | array("alice") | connexion à la base de donnée | array(1) |
 
 ### <a name="4a"></a>recupererRoleDe
 
