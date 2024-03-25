@@ -16,6 +16,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
   <script src="../ressources/script/hamburger.js"></script>
   <script src="../ressources/script/confirmation.js"></script>
   <script src="../ressources/script/menuCheckbox.js"></script>
+  <script src="../ressources/script/demandeInfoSurLeBanniAdministration.js"></script>
 </head>
 <body>
 <?php affichageMenuDuHaut("administration", $connection);?>
@@ -34,7 +35,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
           <div class="conteneur_ajout_technicien">
           <div class="custom-select">
                 <select name="selectionPossible" id="selectionPossible" required>';
-                      echo '<option value="" selected>Selectioner un utilisateur</option>';
+                      echo '<option value="" selected>Sélectionnez un utilisateur</option>';
 
                     $resSQL = mysqli_query($connection, "SELECT CONCAT(ID_USER,\" \",NOM_USER,\" \",PRENOM_USER) FROM affiche_utilisateurs_pour_adm_web ORDER BY ID_USER ASC;");
                     menuDeroulant($resSQL,"selected");
@@ -52,7 +53,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 		  <div class="custom-select">
 
 			  <select name="selectionPossible" id="selectionPossible" required>';
-					echo '<option value="" selected>Selectioner un technicien</option>';
+					echo '<option value="" selected>Sélectionnez un technicien</option>';
 
 				$resSQL = mysqli_query($connection, "SELECT CONCAT(ID_USER,\" \",NOM_USER,\" \",PRENOM_USER) FROM vue_technicien ORDER BY ID_USER ASC;");
 				menuDeroulant($resSQL,"selected");
@@ -135,32 +136,65 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
     </div>
   </div>
   <div class="conteneur_ban-deban_IP">
-            <form action="#" method="post" name="Bannir IP" onsubmit="return confirmerAvantEnvoi(this.name)">
-                <h1>SSH / SFTP</h1>
-                <label for="bannir_ip">Bannir une IP :</label><br>
+            <form action="action_bandeban.php" method="post" name="Bannir Compte" onsubmit="return confirmerAvantEnvoi(this.name)">
+                <h1>Comptes TIX</h1>
+                    <br><div class="erreur" id="divErreur1">
+                    ';
+                    if (isset($_GET["id"])) {
+                        if ($_GET['id'] == -100) {  echo "<p>ERREUR : Une erreur est survenue.</p>"; }
+                        elseif ($_GET['id'] == -101) { echo "<p>ERREUR : Impossible de satisfaire votre demande, l'action demandé n'existe pas.</p>"; }
+                        elseif ($_GET['id'] >= 100){
+                            echo '<p style="color:#00d900;">';
+                            if ($_GET['id'] == 100) { echo "SUCCÈS : L'utilisateur a bien été débanni !"; }
+                            else if ($_GET['id'] == 101) { echo "SUCCÈS : L'utilisateur a bien été banni !"; }
+                            echo '</p>';
+                        }
+                    }
+                   echo '</div><br>
+
+
+                <label for="bannir_ip">Bannir un compte :</label><br>
                 <div class="ban-deban_ip">
-                    <input type="text">
-                    <br>
-                    <input type="submit" name="submit_bannir_ip" value="Bannir">
+                    <div class="custom-select">
+                        <select name="selectionPossibleBan" id="selectionPossibleBan" required>
+                            <option value="" selected>Sélectionnez un utilisateur</option>
+                            ';
+                            $resSQL = mysqli_query($connection, "SELECT CONCAT(ID_USER,\" \",NOM_USER,\" \",PRENOM_USER) FROM affiche_utilisateurs_pour_adm_web WHERE BANNI = 'FALSE' ORDER BY ID_USER ASC;");
+                            menuDeroulant($resSQL,"selected");
+                            echo '
+                        </select>
+                    </div><br><br><br>
+                    
+                    
+                    ';
+
+                    // Pour 1 semaine de ban par défaut
+                    $dateAujourdhui = date('Y-m-d');
+                    $dateDansSeptJours = date('Y-m-d', strtotime('+7 days'));
+                    echo "
+                    <input type='date' value='$dateDansSeptJours' min='$dateAujourdhui' name='dateBanJusqua'>
+                    <input type='submit' name='submit_bannir_ip' value='Bannir'>
                 </div>
             </form>
 
-            <form action="#" method="post" name="Debannir IP" onsubmit="return confirmerAvantEnvoi(this.name)">
-                <label for="debannir_ip">Débannir une IP :</label><br>
-                <div class="ban-deban_ip">
-                    <div class="custom-select">
-                        <select name="selectionPossible" id="selectionPossible" required>
-                            <option value="" selected>Selectioner une IP</option>
-                            <option value="" >192.168.15.63</option>
-                            <option value="" >192.168.80.152</option>
+            <form action='action_bandeban.php' method='post' name='Debannir Compte' onsubmit='return confirmerAvantEnvoi(this.name)'>
+                <label for='debannir_ip'>Débannir un compte :</label><br>
+                <div class='ban-deban_ip'>
+                    <div class='custom-select'>
+                        <select name='selectionPossibleDeban' id='selectionPossibleDeban' onchange=\"demandeInfoSurLeBanni(this.value, 'compte', 'divErreur1')\" required>
+                            <option value='' selected>Sélectionnez un utilisateur</option>
+                            ";
+                            $resSQL = mysqli_query($connection, "SELECT CONCAT(ID_USER,\" \",NOM_USER,\" \",PRENOM_USER) FROM affiche_utilisateurs_pour_adm_web WHERE BANNI = 'TRUE' ORDER BY ID_USER ASC;");
+                            menuDeroulant($resSQL,'selected');
+                            echo "
                         </select>
                     </div><br>
-                    <input type="submit" name="submit_debannir_ip" value="Débannir">
+                    <input type='submit' name='submit_debannir_ip' value='Débannir'>
                 </div>
             </form>
         </div>
   
-  ';
+  ";
 	}
 
 
@@ -176,7 +210,22 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			Historique des tickets
 		  </h1>
 		  <div class="historique">
-			<div class="conteneur_table conteneur_table-historique">
+			<div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
+				<table class="table-ouverture-tickets table-popup">
+				  <thead>
+				  <tr>
+					<th>Archive</th>
+					<th>Suppression</th>
+					<th>Télécharger</th>
+				  </tr>
+				  </thead>
+				  <tbody>';
+					dirToTable("../../../logs/archives/","Histo");
+					echo '
+				  </tbody>
+				</table>';
+
+/*
 			  <table class="table-historique table-popup">
 				<thead>
 				<tr>
@@ -196,6 +245,8 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				echo '
 				</tbody>
 			  </table>
+*/
+			echo '
 			</div>
 		  </div>';
 		  echo ' 
@@ -236,59 +287,25 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				  </tr>
 				  </thead>
 				  <tbody>';
-					csvToHtmlTable(extractFile("../../../logs/archives/ActvCreTck/archive_20240214_020001.tar.gz"));
-					//dirToTable("../../../logs/archives/","ActvCreTck");
+					dirToTable("../../../logs/archives/","ActvCreTck");
 					echo '
 				  </tbody>
 				</table>
 			  </div>
 			</div>
-		  </div>';
-		  
-		    echo '<form action="action_telechargement.php" method="post" class="telechargement">
-    <label for="journal">Sélection</label><br>
-
-    <div class="custom-select">
-      <select name="journal" id="journal">
-        <option value="">--Choisir une option--</option>
-        <option value="historique">Historique</option>
-        <option value="connexion_infructueuse">Connexions infructueuses</option>
-        <option value="ouverture_ticket">Ouvertures de tickets</option>
-
-      </select>
-    </div>
-
-    <input type="submit" name="Telecharger" value="Télécharger"><br>
-
-  </form>
-
+		  </div>
   <div class="overlay" id="overlay" onclick="closePopup()">
     <!-- Contenu de la pop-up -->
 
-    <div role="form" id="test" class="formAuthentification formConnexion popupInfo">
+    <div role="form" id="test" class="formAuthentification popupInfo popupLog">
+       <div id="informations_ticket_popup_log">
 
-      <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
-            <table class="table-infructueuse table-archive-popup">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Login</th>
-                    <th>IP</th>
-                    <th>Tentative</th>
-                    <th class="ligneCacher">Test</th>
-                </tr>
-                </thead>
-                <tbody>';
-                // csvToHtmlTable("logs/");
-                echo '
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
+       </div>
+       
 
       <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
     </div>
+    
 
   </div>';
 	}
