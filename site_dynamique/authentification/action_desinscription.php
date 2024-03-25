@@ -48,7 +48,10 @@ try{
 
             //Requête pour se désinscrire de la plateforme
 
-            $resultatDesinsc = mysqli_query($connexionUtilisateur, "CALL ATTENTION_SupprimerSonCompte()");
+
+	    $IDuser = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_user FROM vue_Utilisateur_client;"))[0];
+	    appendToCSV("../../../logs/journauxActvDesinsc.csv",array(date("d/m/y H:i:s"),$_POST['login'],getIp(),$IDuser)); // Stockage du journal
+    	    $resultatDesinsc = mysqli_query($connexionUtilisateur, "CALL ATTENTION_SupprimerSonCompte()");
 
             if($resultatDesinsc){
                 header('Location: ../index.php');  //Si la desinscription a été effectuée

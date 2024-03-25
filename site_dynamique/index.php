@@ -145,13 +145,16 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
                 ";
             }
             ?>
-
         </div>
-        <div class="video-presentation">
-            <video controls autoplay muted loop>
-                <source src="ressources/video/presentation_tix.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="conteneur_video">
+            <div class="video-presentation">
+                <video controls autoplay muted loop>
+                    <source src="ressources/video/presentation_tix.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+            <a href="ressources/documents/manuel.pdf" id="retranscription" tabindex="0">Manuel d'utilisation</a>
         </div>
 
     </div>
@@ -169,7 +172,6 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
     $connexion = mysqli_connect($host, 'visiteur', $USER_FICTIF_MDP['visiteur'], $database);
 
     $reqSQL = "SELECT ID_Ticket, DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'), TITRE_TICKET, NIV_URGENCE_DEFINITIF_TICKET, DESCRIPTION_TICKET, ETAT_TICKET FROM vue_Ticket_visiteur";
-
 
     $getResultSQL = mysqli_query($connexion, $reqSQL);
     if (! (mysqli_num_rows($getResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
@@ -215,7 +217,6 @@ if (isset($_SESSION['login'], $_SESSION['mdp'])) {
             <button id="fermer_pop-up" onclick="closePopup()" tabindex="0">x</button>
         </div>
     </div>
-
 
 </main>
 </html>

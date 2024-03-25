@@ -120,7 +120,7 @@ unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSI
                     $valeurDejaDansWhere = true; // Indique qu'après le WHERE, il y a bien une valeur
                 }
 
-                // ======================================= LE TYPE DE TICKET =======================================
+                // ======================================= LA SELECTION =======================================
                 // ATTENTION ! Les joins sont séparés de cette partie.
                 if ($_POST["selectionPossible"]){
 
@@ -189,7 +189,7 @@ unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSI
                 $POSTResultSQL = mysqli_query($connexionUtilisateur, $reqSQL);
             }
             if (! (mysqli_num_rows($POSTResultSQL) == 0)){ // S'il y a au moins 1 ticket à affiché, on affiche la section
-                $attributsLignes = 'onclick="ligneTableauDeBord(this.id)"';
+                $attributsLignes = 'onclick="ligneTableauDeBord(this.id)" onkeydown="if (event.keyCode === 13) ligneTableauDeBord(this.id)"';
                 tableGenerate($POSTResultSQL, $attributsLignes);
             }
             else {
@@ -205,11 +205,11 @@ unset($_SESSION["titre"], $_SESSION["nivUrg"], $_SESSION["explication"], $_SESSI
             <h2>Recherche</h2>
             <form action='#' method='POST'>
                 <div class="custom-select">
-                    <label for='selectionPossible'>Type de ticket</label><br>
+                    <label for='selectionPossible'>Sélection</label><br>
                     <select name="selectionPossible" id="selectionPossible">
 
                         <?php
-                        echo "<option value=''>(par défaut) Tous les tickets de TIX</option>"; // tt
+                        echo "<option value=''>Tous les tickets de TIX (par défaut)</option>"; // tt
                         if (isset($_POST["selectionPossible"]) and $_POST["selectionPossible"] == "ticketsPerso"){ echo "<option value='ticketsPerso' selected>Mes demandes actuelles</option>"; }
                         else { echo "<option value='ticketsPerso'>Mes demandes actuelles</option>"; }
 

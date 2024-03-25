@@ -25,7 +25,7 @@ function convertionArrayDeBytesEnHexadecimal($arr){
  *  Renvoi :
  *      - @return array $permutationS : la permutation de la clé
  */
-function KSA(string $clefK): array{
+function KSA(string $clefK, int $referenciel = 256): array{
     // https://www.php.net/manual/en/function.ord.php
     // ord — Convert the first byte of a string to a value between 0 and 255
 
@@ -37,13 +37,13 @@ function KSA(string $clefK): array{
         $clefKbin[] = ord($clefK[$i]);
     }
 
-    for ($i = 0; $i < 256; $i++){
+    for ($i = 0; $i < $referenciel ; $i++){
         $permutationS[] = $i;
     }
 
     $j = 0;
-    for ($i = 0; $i < 256; $i++){
-        $j = ($j + $permutationS[$i] + $clefKbin[$i % $l]) % 256;
+    for ($i = 0; $i < $referenciel ; $i++){
+        $j = ($j + $permutationS[$i] + $clefKbin[$i % $l]) % $referenciel;
 
         // On permute
         // https://jf-blog.fr/comment-permuter-des-variables-en-php/

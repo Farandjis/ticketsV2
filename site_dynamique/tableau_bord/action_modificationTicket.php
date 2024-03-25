@@ -1,11 +1,10 @@
 <?php
 require '../ressources/fonctions/PHPfunctions.php';
 
-// VÃ©rifie l'accÃ¨s Ã  la page en fonction des rÃ´les
-$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur SystÃ¨me'));
+// Vérifie l'accès à la page en fonction des rôles
+$connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administrateur Site', 'Administrateur Système'));
 
 session_start();
-
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,15 +12,14 @@ try {
             if (!empty($_POST['id_ticket'])) {
                 $id_ticket = $_POST['id_ticket'];
 
-                // On ferme le ticket. Si c'est possible, renvoi 1, sinon 0. On convertit en boolÃ©en True/False
+                // On ferme le ticket. Si c'est possible, renvoi 1, sinon 0. On convertit en booléen True/False
                 $resultatFermeture = (bool) mysqli_fetch_row(executeSQL("SELECT FermerUnTicket(?)", array($id_ticket), $connexionUtilisateur))[0];
-
                 if ($resultatFermeture) {
-                    // SuccÃ¨s, on redirige vers le tableau de bord
+                    // Succès, on redirige vers le tableau de bord
                     header('Location: tableaudebord.php');
                     return;
                 } else {
-                    // Echec, on prÃ©pare la redirection vers la page modifTicket
+                    // Echec, on prépare la redirection vers la page modifTicket
                     // Source de l'envoi auto d'un formulaire : https://www.developpez.net/forums/d1589344/javascript/general-javascript/envoyer-automatiquement-formulaire/
 
                     echo "
@@ -44,9 +42,7 @@ try {
                 $_SESSION['titre'] = $_POST['titre'];
                 $_SESSION['nivUrg'] = $_POST['nivUrg'];
                 $_SESSION['nivUrg2'] = $_POST['nivUrg2'];
-                if (recupererRoleDe($connexionUtilisateur) == 'Administrateur Site') {
-                    $_SESSION['tech'] = $_POST['ch_technicien'];
-                }
+                $_SESSION['tech'] = $_POST['ch_technicien'];
                 $_SESSION['motcle'] = $_POST['motcle_option'];
                 echo "
                             <form id='retourPageModifTicket' action='modificationTicket.php' method='post'>
@@ -109,7 +105,7 @@ try {
 
             if (in_array($niveauUrgence, $niveauUrgenceAutorise)) {
 
-                // VÃ©rifie si le titre existe dÃ©jÃ 
+                // Vérifie si le titre existe déjà
                 $requeteVerifTitre = 'SELECT titre_ticket FROM TitreTicket WHERE titre_ticket = ?';
                 $resultVerifTitre = executeSQL($requeteVerifTitre, array($titre), $connexionUtilisateur);
                 $existingTitre = mysqli_fetch_assoc($resultVerifTitre);
@@ -118,7 +114,7 @@ try {
                     $infoTicket = mysqli_fetch_array(executeSQL("SELECT etat_ticket, id_technicien FROM vue_tableau_bord WHERE id_ticket = ?;", array($id_ticket), $connexionUtilisateur));
                     $etatDuTicket = $infoTicket[0];
 
-                    // Modifier le ticket en fonction des rÃ´les et de l'Ã©tat du ticket
+                    // Modifier le ticket en fonction des rôles et de l'état du ticket
                     if (($etatDuTicket == "En attente") && (recupererRoleDe($connexionUtilisateur) != 'Administrateur Site')) {
                         executeSQL("UPDATE vue_modif_creation_ticket_utilisateur SET TITRE_TICKET = ?,DESCRIPTION_TICKET = ?, NIV_URGENCE_ESTIMER_TICKET = ? WHERE ID_TICKET  = ?;", array($titre, $explication, $niveauUrgence, $id_ticket), $connexionUtilisateur);
                     }
@@ -142,17 +138,17 @@ try {
                             }
                         }
 
-                        // Supprimer les relations mots-clÃ©s existantes
+                        // Supprimer les relations mots-clés existantes
                         executeSQL("DELETE FROM vue_suppr_rtm_tdb WHERE id_ticket = ?;", array($id_ticket), $connexionUtilisateur);
 
                         $categorieDuTitre = mysqli_fetch_row(executeSQL("SELECT NOM_CATEGORIE FROM TitreTicket WHERE TITRE_TICKET = ?", array($titre), $connexionUtilisateur))[0];
 
-                        // Ajouter de nouvelles relations mots-clÃ©s
+                        // Ajouter de nouvelles relations mots-clés
                         foreach ($_POST["motcle_option"] as $unMotcleTicket) {
 
                             $verifExistenceMotClePourCeTitre = (boolean)mysqli_fetch_row(executeSQL("SELECT COUNT(mc.NOM_MOTCLE) FROM MotcleTicket AS mc WHERE mc.NOM_MOTCLE = ? AND (mc.NOM_CATEGORIE = ? OR mc.NOM_CATEGORIE IN (SELECT ca.NOM_CATEGORIE_ASSOCIER FROM CategorieAssocies AS ca WHERE ca.NOM_CATEGORIE = ?))", array($unMotcleTicket, $categorieDuTitre, $categorieDuTitre), $connexionUtilisateur))[0];
 
-                            // On s'assure que le mot-clÃ© Ã  ajouter existe bien
+                            // On s'assure que le mot-clé à ajouter existe bien
                             if ($verifExistenceMotClePourCeTitre) {
                                 executeSQL('INSERT INTO RelationTicketsMotscles (ID_TICKET, NOM_MOTCLE) VALUES (?, ?)', array($id_ticket, $unMotcleTicket), $connexionUtilisateur);
                             } else {
@@ -171,7 +167,7 @@ try {
                                 return;
                             }
                         }
-                        // Rediriger vers le tableau de bord aprÃ¨s la modification
+                        // Rediriger vers le tableau de bord après la modification
                         header('Location: tableaudebord.php');
                         return;
                     }
@@ -222,4 +218,3 @@ try {
     // Gestion des exceptions
     echo 'Erreur : ' . $e->getMessage();
 }
-

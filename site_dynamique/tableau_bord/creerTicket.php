@@ -45,10 +45,7 @@ session_start();
                 echo '<div class="erreur">';
                 echo '<p>';
                 if ($_GET['id'] == 1) { echo "ERREUR : Des données du formulaire sont manquantes."; }
-                else if ($_GET['id'] == 21) { echo "ERREUR : Le champ titre n'a pas été précisé."; }
-                else if ($_GET['id'] == 22) { echo "ERREUR : Le champ niveau d'urgence n'a pas été précisé."; }
-                else if ($_GET['id'] == 23) { echo "ERREUR : Le champ description du problème n'a pas été précisé."; }
-                else if ($_GET['id'] == 24) { echo "ERREUR : Aucun mot-clés n'a été cochés."; }
+                else if ($_GET['id'] == 2) { echo "ERREUR : Des données essentielles du formulaire sont manquantes ou incohérentes."; }
                 else if ($_GET['id'] == 3) { echo "ERREUR : Le titre du problème n'existe pas."; }
                 else if ($_GET['id'] == 4) { echo "ERREUR : Le niveau d'urgence est pas complété."; }
                 else if ($_GET['id'] == 5) { echo "ERREUR : Aucun mot clé n'est sélectionné."; }
