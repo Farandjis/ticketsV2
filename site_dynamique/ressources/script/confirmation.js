@@ -15,8 +15,11 @@ function confirmerAvantEnvoi(elName) {
             return window.confirm("Êtes-vous sûr de vouloir ajouter ce titre ?");
         case 'Suppression Titre':
             return window.confirm("Êtes-vous sûr de vouloir supprimer ce ou ces titre(s) ?");
+<<<<<<< HEAD
         case 'Suppresion Log':
             return window.confirm("Êtes-vous sûr de vouloir supprimer cette archive ?");
+=======
+>>>>>>> moderation
         case 'Bannir IP':
             return window.confirm("Êtes-vous sûr de vouloir bannir cette ip ?");
         case 'Debannir IP':

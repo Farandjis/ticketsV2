@@ -220,7 +220,11 @@ session_start();
                 }
                 else {
                     echo '<p style="color:#ffffff;">';
+<<<<<<< HEAD
                     echo "<b>IP :</b> XXX.XXX.XXX.XXX<br><b>Banni le :</b> XX/XX/XXXX à XXhXX<br><b>Tentatives :</b> XX";
+=======
+                    echo "Aucune information à afficher pour le moment.";
+>>>>>>> moderation
                     echo '</p>';
                 }
                 echo '</div><br>';
