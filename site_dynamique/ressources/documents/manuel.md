@@ -8,14 +8,15 @@ INF2-A
 
 - ### [I - Manuel d'Utilisation pour le Site Web de Ticketing "TIX"](#p1)
   - [**Introduction**](#p1a)
-  - [**Navigation**](#p1b)
+  - [**Accueil**](#p1b)
   - [**Inscription et Connexion**](#p1c)
-  - [**Tableau de Bord**](#p1d)
-  - [**Création d'un Ticket**](#p1e)
-  - [**Suivi des Tickets**](#p1f)
-  - [**Gestion de Profil et Paramètres**](#p1g)
-  - [**Désinscription**](#p1h)
-  - [**Assistance et Support**](#p1i)
+  - [**Navigation**](#p1d)
+  - [**Tableau de Bord**](#p1e)
+  - [**Création d'un Ticket**](#p1f)
+  - [**Suivi des Tickets**](#p1g)
+  - [**Gestion de Profil et Paramètres**](#p1h)
+  - [**Désinscription**](#p1i)
+  - [**Assistance et Support**](#p1j)
 
 - ### [II - Aide](#p2)
   - [**FAQ**](#p2a)
@@ -31,30 +32,33 @@ INF2-A
 ## <a name="p1a"></a> Introduction
 Bienvenue sur TIX, votre plateforme de support informatique pour la résolution des problèmes techniques. Ce manuel a été conçu pour vous guider à travers l'utilisation de notre système de ticketing en ligne afin de faciliter la résolution de vos problèmes informatiques.
 
-## <a name="p1b"></a> Navigation
+## <a name="p1b"></a> Accueil
 Sur la page d'accueil, vous trouverez un bref texte de présentation de TIX, avec une vidéo explicative qui vous permettra de compléter visuellement ce manuel d'utilisation.
 En dessous de cela se trouve les 10 derniers tickets de la plateforme qui corresponde à une mise en jambe de la présentation des tickets
-les catégories de problèmes courants, ainsi que les derniers tickets ouverts et les notifications importantes. Utilisez la barre de navigation en haut de la page pour accéder aux différentes sections telles que "Tickets","Mon Compte", "Aide", etc.
+les catégories de problèmes courants, ainsi que les derniers tickets ouverts et les notifications importantes.
 
 ## <a name="p1c"></a> Inscription et Connexion
 Pour ouvrir ou créer un ticket de support, vous devez d'abord créer un compte. Cliquez sur "Je m'inscris" en haut à droite de votre écran ou bien sur le bouton sous la section de présentation et remplissez le formulaire avec vos informations. Si vous avez déjà un compte, cliquez sur "Connexion" et saisissez vos identifiants.
 
-## <a name="p1d"></a> Tableau de Bord
+## <a name="p1d"></a> Navigation
+Utilisez la barre de navigation en haut de la page pour accéder aux différentes sections telles que "Tableau de Bord","Mon Espace".
+
+## <a name="p1e"></a> Tableau de Bord
 La section "Tableau de Bord" est la section principale du site TIX, elle vous permet de créer un ticket et de consulter l'ensemble des tickets. 
 
-## <a name="p1e"></a> Création d'un Ticket
+## <a name="p1f"></a> Création d'un Ticket
 Pour créer un nouveau ticket, cliquez sur "Créer Ticket" dans la section "Tableau de Bord". Remplissez le formulaire avec les détails du problème rencontré, y compris une description détaillée du problème et toute information pertinente.
 
-## <a name="p1f"></a> Suivi des Tickets
+## <a name="p1g"></a> Suivi des Tickets
 Dans la section "Mon Espace", vous pouvez consulter l'état de vos tickets ouverts, ajouter des commentaires supplémentaires en cliquant sur le bouton modifier de la pop up d'information du ticket et suivre les mises à jour de leur statut.
 
-## <a name="p1g"></a> Gestion de Profil et Paramètres
+## <a name="p1h"></a> Gestion de Profil et Paramètres
 Dans la section "Mon Espace", vous pouvez mettre à jour vos informations personnelles, ainsi que consulter l'historique de vos tickets précédents.
 
-## <a name="p1h"></a> Désinscription
+## <a name="p1i"></a> Désinscription
 Vous pouvez vous désinscrire du site dans la section "Mon Espace", toutes vos informations seront supprimées et vos tickets anonymisés.
 
-## <a name="p1i"></a> Assistance et Support
+## <a name="p1j"></a> Assistance et Support
 Pour obtenir de l'aide supplémentaire, consultez notre section d'aide ci-dessous où vous trouverez des réponses aux questions fréquemment posées. Si vous ne trouvez pas de réponse, vous pouvez nous contacter via le formulaire de contact ou par e-mail à support@tix.com.
 
 <br><br>
