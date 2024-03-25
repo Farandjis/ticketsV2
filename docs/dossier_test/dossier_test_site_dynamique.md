@@ -5,7 +5,7 @@ INF2-A
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test
-## Site dynamique
+## Site dynamique (pages PHP)
 
 <br><br>
 Ce document permet de s'assurer que les pages web dynamique soient conforme à ce qui est attendu.
@@ -23,16 +23,17 @@ Ce document permet de s'assurer que les pages web dynamique soient conforme à c
 
 
 ## <a name="IV"></a>Pages HTML
-- ### [index.html](#a)
-- ### [profil.html](#b)
-- ### [inscription.html](#c)
-- ### [connexion.html](#d)
-- ### [modifmdp.html](#e)
-- ### [modifemail.html](#f)
-- ### [creerticket.html](#g)
-- ### [modificationTicket.html](#h)
-- ### [administration.html](#j)
-- ### [tableaudebord.html](#k)
+- ### [index.php](#a)
+- ### [profil.php](#b)
+- ### [inscription.php](#c)
+- ### [connexion.php](#d)
+- ### [modifmdp.php](#e)
+- ### [modifemail.php](#f)
+- ### [creerticket.php](#g)
+- ### [modificationTicket.php](#h)
+- ### [administration.php](#j)
+- ### [tableaudebord.php](#k)
+- ### [desinscription.php](#L) 
 
 ## <a name="V"></a>Fichier CSS
 - ### [nomdufichier.css](#1)
@@ -62,7 +63,7 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et <br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                                |
 | Date de début                      | 06/01/2024                                                        |
-| Date de finalisation               | ../01/2024                                                        |
+| Date de finalisation               | 25/03/2024                                                        |
 | Test à appliquer                   | Vérification de la validité du site                               |
 | Responsable de la campagne de test | GUIGNOLLE Enzo, Gouabi Assia                                      |
 
@@ -164,6 +165,14 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 alertes                                  |
 
+### <a name="L"></a>desinscription.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 3 alertes                                  |
 
 
 <br><br><br>
