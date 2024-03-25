@@ -2,7 +2,7 @@ Florent VASSEUR--BERLIOUX, Tom BOGAERT, Assia GOUABI, Enzo GUIGNOLLE, Matthieu F
 INF2-A
 
 <div align="center">
-<img height="95" width="400" src="../../../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
+<img height="95" width="400" src="../../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test boite noire 
 ## Site dynamique - Authentification : Inscription
