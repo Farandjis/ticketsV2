@@ -36,7 +36,7 @@ INF2-A
 ### <a name="p2"></a>I – Conception Architecturale
 <br><br>
 
-<img height="1000" width="800" src="diagramme_composant.png" title="conception UML du site statique"/><br><br>
+<img height="1000" width="800" src="../diagramme_composant.png" title="conception UML du site statique"/><br><br>
 <i><a name="fg1"></a>Figure 1 : Diagramme de composants.</i>
 
 
