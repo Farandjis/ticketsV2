@@ -16,8 +16,19 @@ try {
     if (isset($_POST['titre'], $_POST['nivUrg'], $_POST['explication'])) {
 
         // Vérification que les paramètres ne sont pas vides
-        if (!empty($_SESSION['login']) && !empty($_SESSION['mdp']) && !empty($_POST['titre']) &&
-            !empty($_POST['nivUrg']) && !empty($_POST['explication']) && !empty($_POST['motcle_option'])) {
+        if (empty($_POST['titre'])) {
+            saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
+            header('Location: creerTicket.php?id=21');
+        }if (empty($_POST['nivUrg'])){
+            saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
+            header('Location: creerTicket.php?id=22');
+        }if (empty($_POST['explication'])){
+            saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
+            header('Location: creerTicket.php?id=23');
+        }if (empty($_POST['motcle_option'])){
+            saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
+            header('Location: creerTicket.php?id=24');
+        }
 
             // Récupération des données
             global $host, $database, $USER_FICTIF_MDP;
@@ -50,46 +61,40 @@ try {
 
                     // Ajout du journal d'activité
 		            date_default_timezone_set('Europe/Paris');
-                    appendToCSV("../administration/logs/journauxActvCreTck.csv",array(date("d/m/y H:i:s"),$id_user." ".$_SESSION['login'],getIp(),$idTicket));
+                    appendToCSV("../../../logs/journauxActvCreTck.csv",array(date("d/m/y H:i:s"),$id_user." ".$_SESSION['login'],getIp(),$idTicket));
+
+                    $categorieDuTitre = mysqli_fetch_row(executeSQL("SELECT NOM_CATEGORIE FROM TitreTicket WHERE TITRE_TICKET = ?", array($titre), $connexionUtilisateur))[0];
 
                     foreach ($_POST['motcle_option'] as $unMotcleTicket) {
-                        $requeteMotcleTicket = 'INSERT INTO RelationTicketsMotscles (ID_TICKET, NOM_MOTCLE) VALUES (?, ?)';
-                       	executeSQL($requeteMotcleTicket, array($idTicket, $unMotcleTicket), $connexionUtilisateur);
+                        $verifExistenceMotClePourCeTitre = (boolean) mysqli_fetch_row(executeSQL("SELECT COUNT(mc.NOM_MOTCLE) FROM MotcleTicket AS mc WHERE mc.NOM_MOTCLE = ? AND (mc.NOM_CATEGORIE = ? OR mc.NOM_CATEGORIE IN (SELECT ca.NOM_CATEGORIE_ASSOCIER FROM CategorieAssocies AS ca WHERE ca.NOM_CATEGORIE = ?))", array($unMotcleTicket, $categorieDuTitre, $categorieDuTitre), $connexionUtilisateur))[0];
+
+                        // On s'assure que le mot-clé à ajouter existe bien
+                        if ($verifExistenceMotClePourCeTitre) {
+                            $requeteMotcleTicket = 'INSERT INTO RelationTicketsMotscles (ID_TICKET, NOM_MOTCLE) VALUES (?, ?)';
+                            executeSQL($requeteMotcleTicket, array($idTicket, $unMotcleTicket), $connexionUtilisateur);
+                        }
+                        else {
+                            saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
+                            header('Location: creerTicket.php?id=6'); // Le titre n'existe pas
+                        }
                     }
 
                     // Redirection vers la page principale après la création du ticket
                     header('Location: tableaudebord.php');
 
                 } else {
-                    $_SESSION["titre"] = $_POST['titre'];
-                    $_SESSION["nivUrg"] = $_POST['nivUrg'];
-                    $_SESSION["explication"] = $_POST['explication'];
-                    $_SESSION["motcle"] = $_POST['motcle_option'];
+                    saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
                     header('Location: creerTicket.php?id=3'); // Le titre n'existe pas
                 }
             } else {
-                $_SESSION["titre"] = $_POST['titre'];
-                $_SESSION["nivUrg"] = $_POST['nivUrg'];
-                $_SESSION["explication"] = $_POST['explication'];
-                $_SESSION["motcle"] = $_POST['motcle_option'];
+                saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
                 header('Location: creerTicket.php?id=4'); // Niveau d'urgence est incorrect
             }
-
-        } else {
-            $_SESSION["titre"] = $_POST['titre'];
-            $_SESSION["nivUrg"] = $_POST['nivUrg'];
-            $_SESSION["explication"] = $_POST['explication'];
-            $_SESSION["motcle"] = $_POST['motcle_option'];
-            header('Location: creerTicket.php?id=2'); // Données essentielles ne sont pas fournies ou incohérentes
-        }
     } else {
         header('Location: creerTicket.php?id=1'); // Données manquantes
     }
 } catch (Exception $ex) {
-    $_SESSION["titre"] = $_POST['titre'];
-    $_SESSION["nivUrg"] = $_POST['nivUrg'];
-    $_SESSION["explication"] = $_POST['explication'];
-    $_SESSION["motcle"] = $_POST['motcle_option'];
+    saveToSessionCreateTicket($_POST['titre'], $_POST['nivUrg'], $_POST['explication'], $_POST['motcle_option']);
     // Affichage de l'erreur générale
     echo "Erreur générale : " . $ex->getMessage();
     header('Location: creerTicket.php?id=-1'); // Erreur générale
