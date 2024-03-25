@@ -11,7 +11,10 @@ INF2-A
 
 ## Plan
 
-### [I – Conception Détaillée](#p3)
+### [I – Conception Architectural](#p1)
+- <b>[Figure 1 : Diagramme des composants ](#fg1)</b>
+
+### [II – Conception Détaillée](#p3)
 - <b>[a) Conception de la page index.html ](#p1a)</b>
 - <b>[b) Conception de la page connexion.html ](#p1b)</b>
 - <b>[c) Conception de la page modifMdp.html ](#p1c)</b>
@@ -25,11 +28,38 @@ INF2-A
 - <b>[k) Conception de la page modificationTicket.html ](#p1k)</b>
 - <b>[k) Recueil de fonctions ](#p1l)</b>
 
-### [II – Conception Architectural](#p1)
-- <b>[Figure 1 : Diagramme des composants ](#fg1)</b>
-
 
 <br><br><br><br><br><br><br>
+
+
+------------------------------------------------------------------------------------------------------------------------
+### <a name="p2"></a>I – Conception Architecturale
+<br><br>
+
+<img height="1000" width="800" src="diagramme_composant.png" title="conception UML du site statique"/><br><br>
+<i><a name="fg1"></a>Figure 1 : Diagramme de composants.</i>
+
+
+La plateforme web est constitué de multiples pages (cf: spécification.md; les noms des pages de la plateforme web sont associés à leurs nom dans le dossier de spécification) :
+
+    - index.html : La page "Page d'accueil".
+    - connexion.html : La page "Page de réinitialisation de mot de passe (en maintenance)".
+    - modifMdp.html : La page "Modification mot de passe".
+    - incription.html : La page "Page d’inscription".
+    - journalActivite.html : La page "Journal d’activité".
+    - modifEmail.html : La page "Modification email".
+    - creerTicket.html : La Page "Demande de dépannage".
+    - profile.html : La page "Profil de l’utilisateur".
+    - historique.html : La page "Historique des tickets".
+    - tableauBord.html : La page "Tableau de bord ".
+    - oublieMdp.html : La page "Oublie mot de passe".
+    - modificationTicket.html : La page "Modification ticket".
+    - logo.png : image du logo de l'application web.
+    - fleche_retour.png : image de flèche de retour en arrière.
+    - user.png : image de profil des utilisateurs.
+    - logo_blanc.png : image du logo de l'application web en blanc.
+    - logo_UVSQ.png : image du logo de l'UVSQ.
+    - logo_sans_texte.png : image du logo de l'application web sans le texte.
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -426,31 +456,3 @@ Vérifiaction que l'email en paramètre est un email valide/possible.
 a : string (Email entrée par l'utilisateur)
 x : bool (Définie la validité de l'email entré)
 </pre>
-------------------------------------------------------------------------------------------------------------------------
-### <a name="p2"></a>I – Conception Architecturale
-<br><br>
-
-<img height="1000" width="800" src="diagramme_composant.png" title="conception UML du site statique"/><br><br>
-<i><a name="fg1"></a>Figure 1 : Diagramme de composants.</i>
-
-
-La plateforme web est constitué de multiples pages (cf: spécification.md; les noms des pages de la plateforme web sont associés à leurs nom dans le dossier de spécification) :
-
-    - index.html : La page "Page d'accueil".
-    - connexion.html : La page "Page de réinitialisation de mot de passe (en maintenance)".
-    - modifMdp.html : La page "Modification mot de passe".
-    - incription.html : La page "Page d’inscription".
-    - journalActivite.html : La page "Journal d’activité".
-    - modifEmail.html : La page "Modification email".
-    - creerTicket.html : La Page "Demande de dépannage".
-    - profile.html : La page "Profil de l’utilisateur".
-    - historique.html : La page "Historique des tickets".
-    - tableauBord.html : La page "Tableau de bord ".
-    - oublieMdp.html : La page "Oublie mot de passe".
-    - modificationTicket.html : La page "Modification ticket".
-    - logo.png : image du logo de l'application web.
-    - fleche_retour.png : image de flèche de retour en arrière.
-    - user.png : image de profil des utilisateurs.
-    - logo_blanc.png : image du logo de l'application web en blanc.
-    - logo_UVSQ.png : image du logo de l'UVSQ.
-    - logo_sans_texte.png : image du logo de l'application web sans le texte.
