@@ -18,8 +18,9 @@ INF2-A
 - ### [II - Contexte des tests](#II)
 - ### [IV - Test ](#III)
     - #### [Tests unitaires](#IV)
-        - #### [Boite noire](#1a)
-        - #### [Boite blanche](#2a)
+        - #### [Tests boite noire pour les pages](#1a)
+        - #### [Tests boite noire pour les fonctions](#2ab)
+        - #### [Tests Boite blanche](#2a)
     - #### [Tests PHPunits](#V)
     - #### [Tests Base de donnees](#VI)
     - #### [Tests d'affichage des pages du site statique](#VII)
@@ -59,17 +60,46 @@ Ce document a pour but principal de faciliter la navigation et la lecture des te
 
 ## <a name="IV"></a>IV - Tests unitaires 
 
-#### <a name="1a"></a>Boite noire
+Durant notre projet, nous avons réaliser des tests unitaires boites noires afin de vérifier la validité des pages PHP, les fonctions implémentées et de s'assurer que les messages d'erreurs soient bien retournés. Les tests boites noires servent à vérifier que l'application produise et retourne bien les sorties attendues à partir d'entrées. <br>
 
-Durant notre projet, nous avons réaliser des tests unitaires boites noires afin de vérifier la validité des pages PHP, les fonctions implémentées et de s'assurer que les messages d'erreurs soient bien retournés. 
+Des tests boites blanches ont également été réalisé dans un but de vérifier le bon fonctionnement de chaque composant du code. 
 
-Vous trouverez ci-dessous un lien permettant d'accéder aux tests unitaires boites noires pour chaque page et fonctions. 
+Ses deux types de test étaient nécessaires afin de produire une application cohérente et fonctionnelle dans l'ensemble. 
 
-[Tests page Connexion](dossier_de_test_boite_noire/dossier_de_test_connexion.md)
+### <a name="1a"></a> Tests boite noire pour les pages
 
-[Tests page connexion](dossier_de_test_administration.md#a-name1aaajout-dun-technicien)
+Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires boites noires pour chaque page. 
 
+[Tests boite noire page Connexion](dossier_de_test_boite_noire/dossier_de_test_connexion.md)
 
-### Ancre 
+[Tests boite noire page Déconnexion](dossier_de_test_boite_noire/dossier_de_test_deconnexion.md)
 
-[Tests page Administration](dossier_test_site_dynamique.md)
+[Tests boite noire page Inscription](dossier_de_test_boite_noire/dossier_de_test_inscription.md)
+
+[Tests boite noire page Désinscription](dossier_de_test_boite_noire/dossier_de_test_desinscription.md)
+
+[Tests boite noire page modification d'email](dossier_de_test_boite_noire/dossier_de_test_modifEmail.md)
+
+[Tests boite noire page modification de mot de passe](dossier_de_test_boite_noire/dossier_de_test_modifMdp.md)
+
+[Tests boite noire page création ticket](dossier_de_test_boite_noire/dossier_de_test_creerTicket.md)
+
+[Tests boite noire page modification de ticket](dossier_de_test_boite_noire/dossier_de_test_modification_ticket.md)
+
+[Tests boite noire page tableau de bord](dossier_de_test_boite_noire/dossier_de_test_tdb.md)
+
+[Tests boite noire page profil](dossier_de_test_boite_noire/dossier_test_dynamique_profil.md)
+
+[Tests boite noire page d'accueil](dossier_de_test_boite_noire/dossier_test_dynamique_index.md)
+
+[Tests boite noire page administration du point de vu de l'admin web](dossier_de_test_boite_noire/dossier_de_test_administration.md)
+
+[Tests boite noire page administration du point de vu de l'admin système](dossier_de_test_boite_noire/dossier_de_test_administrationSysteme.md)
+
+<br><br><br>
+
+### <a name="2ab"></a> Tests boite noire pour les fonctions
+
+Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires boites noires pour chaque fonction implémentée.
+
+[Tests boite noire fonction connectUser](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name1aaconnectUser)
