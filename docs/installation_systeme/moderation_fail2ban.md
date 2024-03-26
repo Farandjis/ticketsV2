@@ -241,15 +241,21 @@ Nous allons utiliser fail2ban pour limiter le nombre de tentatives de connexion 
 
 ## <a name="p2"></a> II – Modération des comptes TIX
 Pour bannir et débannir des comptes TIX nous n'utiliserons pas fail2ban mais la base de données.<br>
-Sur la ligne de l'utilisateur, nous indiquerons si l'utilisateur est banni ou non, et jusqu'à quand il l'est.<br>
+Sur la ligne de l'utilisateur, nous indiquons si l'utilisateur est banni ou non, et jusqu'à quand il l'est.<br>
 A sa connexion, nous vérifierons s'il a le droit d'accéder à son compte, s'il n'a pas le droit, il aura un message d'erreur l'invitant à aller consulter l'Administrateur Web.<br>
-
+<br>
+Même si sur la la ligne des techniciens et administrateurs, il y a un emplacement pour le bannissement, celles-ci sont ignorées.<br>
+<br>
 ## <a name="p3"></a> III - Interface
   TIX doit permettre de reconfigurer les prisons fail2ban mais également bannir et débannir manuellement des IP et des comptes via une interface graphique.<br> 
   Cette section présente les pages.<br>
 - ### <a name="p3a"></a> a) Administrateur Web (gestion)
-  L'administrateur Web ne peut que bannir et débannir des comptes hors Administrateurs et techniciens. 
-
+  L'administrateur Web ne peut que bannir et débannir des comptes hors Administrateurs et techniciens.<br>
+  <br>
+  Il peut sélectionner un utilisateur et préciser la date du bannissement. L'utilisateur est débanni le lendemain de la date indiquée à 1h du matin.<br>
+  L'administrateur peut débannir l'utilisateur, lors de la sélection de celui-ci, un rappel des informations le concernant est affiché. Notamment, la date limite du bannissement.<br>
+  Il n'y a aucun système de bannissement ou débannissement automatique des comptes.<br>
+<br>
 - ### <a name="p3b"></a> b) Administrateur Système (admin)
   Côté Administrateur Système, il gère tout ce qui concerne fail2ban.<br>
   Il a accès aux logs du logiciel, il peut paramétrer les prisons liées à TIX et et bannir/débannir pour toute les prisons.<br>
@@ -264,4 +270,11 @@ A sa connexion, nous vérifierons s'il a le droit d'accéder à son compte, s'il
   Avec la commande `su`, on devient ce compte pour exécuter des commandes à l'aide de sudo.<br>
   <br>
   Pour le chargement automatique des données des prisons, un script JavaScript demande à une page PHP du serveur les données nécessaire.<br>
-  Le serveur lui répond, et JavaScript ajuste la page avec ces données.
+  Le serveur lui répond, et JavaScript ajuste la page avec ces données.<br>
+  <br>
+  Le serveur enregistre à la fois à la volé ces informations (en exécutant une commande fail2ban) et à la fois dans le temps en modifiant le fichier de configuration.<br>
+  En cas de plantage de redémarrage de fail2ban, la configuration est chargé depuis les fichiers de configurations. La nouvelle configuration est disponible sans relancer fail2ban grâce à l'exécution des commandes à la voler.<br>
+  <br>
+  De même, on récupère la liste des bannis par prison grâce à JavaScript. Si c'est un utilisateur banni automatiquement, les informations issus du CSV concernant le bannissement de l'IP sont affichés. Notamment : la date et l'heure du bannissement.<br>
+  <br>
+  L'administrateur peut bannir et débannir manuellement l'utilisateur. Le temps du ban correspond à la durée inscrite dans la prison.<br>
