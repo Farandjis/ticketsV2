@@ -79,8 +79,14 @@ try {
                     $info2 = $parts[3];
 
                     if ($prison == "TIX_connexionSite_PRISON"){
+                        $cestUnVraiCompte = $parts[4]; // true si le login tenté correspond à un compte inscrit sur TIX
+
+                        if (stristr($cestUnVraiCompte, 'true')) { $cestUnVraiCompte = 'Oui'; }
+                        else { $cestUnVraiCompte = 'Non'; }
+
+
                         header('Content-Type: application/json');
-                        echo "<p style=\"color:white;\"><b><i>Dernière tentative</i></b><br><b>IP : </b>$infoIP<br><b>Banni le : </b>$infoHorodatage<br><b>Login tenté : </b>$info1<br><b>Mot de passe tenté : </b>$info2</p>";
+                        echo "<p style=\"color:white;\"><b><i>Dernière tentative</i></b><br><b>IP : </b>$infoIP<br><b>Banni le : </b>$infoHorodatage<br><b>Login tenté : </b>$info1<br><b>Mot de passe tenté : </b>$info2<br><b>Login d'un utilisateur inscrit : </b>$cestUnVraiCompte</p>";
                         return;
                     }
                     elseif ($prison == "TIX_inscriptFailSite_PRISON" or $prison == "TIX_inscriptOKSite_PRISON"){
@@ -104,13 +110,6 @@ try {
 
                 }
                 elseif ($quiCest == "compte"){
-<<<<<<< HEAD
-                    $idUserCompte = explode(' ', $nomOuIpDuBanni)[0]; // Pour que ce soit plus compréhensible
-
-                    $res = mysqli_fetch_row(executeSQL("SELECT BANNI_JUSQUA FROM affiche_utilisateurs_pour_adm_web WHERE ID_USER = ?", array($idUserCompte), $connexionUtilisateur))[0];
-
-                    echo $idUserCompte . " " . date("d/m/Y", strtotime($res));
-=======
                     $lesInfoUtilisateurs = explode(' ', $nomOuIpDuBanni); // Pour que ce soit plus compréhensible
 
                     if ($lesInfoUtilisateurs[0] == ""){
@@ -125,7 +124,6 @@ try {
                     $dateDeban = mysqli_fetch_row(executeSQL("SELECT BANNI_JUSQUA FROM affiche_utilisateurs_pour_adm_web WHERE ID_USER = ?", array($idUserCompte), $connexionUtilisateur))[0];
                     $dateDeban = date("d/m/Y", strtotime($dateDeban));
                     echo "<p style=\"color:white;\"><b><i>Information sur le bannissement</i></b><br><b>Identifiant : </b>$idUserCompte<br><b>Prénom : </b>$prenomCompte<br><b>Nom : </b>$nomCompte<br><b>Banni jusqu'au : </b>$dateDeban compris</p>";
->>>>>>> moderation
                     return;
                 }
 

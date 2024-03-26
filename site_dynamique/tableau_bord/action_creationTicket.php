@@ -16,7 +16,7 @@ try {
     if (isset($_POST['titre'], $_POST['nivUrg'], $_POST['explication'])) {
 
         // Vérification que les paramètres ne sont pas vides
-        if (!empty($_SESSION['login']) && !empty($_SESSION['mdp']) && !empty($_POST['titre']) &&
+        if (!empty($_SESSION["jeton"]['login']) && !empty($_SESSION["jeton"]['mdp']) && !empty($_POST['titre']) &&
             !empty($_POST['nivUrg']) && !empty($_POST['explication']) && !empty($_POST['motcle_option'])) {
 
             // Récupération des données
@@ -50,7 +50,7 @@ try {
 
                     // Ajout du journal d'activité
 		            date_default_timezone_set('Europe/Paris');
-                    appendToCSV("../../../logs/journauxActvCreTck.csv",array(date("d/m/y H:i:s"),$id_user." ".$_SESSION['login'],getIp(),$idTicket));
+                    appendToCSV("../../../logs/journauxActvCreTck.csv",array(date("d/m/y H:i:s"),$id_user." ".$_SESSION["jeton"]['login'],getIp(),$idTicket));
 
                     $categorieDuTitre = mysqli_fetch_row(executeSQL("SELECT NOM_CATEGORIE FROM TitreTicket WHERE TITRE_TICKET = ?", array($titre), $connexionUtilisateur))[0];
 

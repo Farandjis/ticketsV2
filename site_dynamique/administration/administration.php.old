@@ -30,18 +30,8 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 	  echo '
 <div class="conteneur_administration_general conteneur_administration">
     <div class="conteneur_ajout_administration">
-        <form action="action_ajouttechnicien.php" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">';
-
-      if(isset($_GET['id'])) {
-            echo '<div class="erreur">';
-            echo '<p>';
-            if ($_GET['id'] == 10){ echo "ERREUR : Une erreur est survenue"; }
-            echo '</p>';
-            echo '</div>';
-        }
-
-
-          echo '<label for="ajout_technicien">Ajout de Technicien :</label><br>
+        <form action="action_ajouttechnicien.php" method="post" name="Ajout Technicien" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+          <label for="ajout_technicien">Ajout de Technicien :</label><br>
           <div class="conteneur_ajout_technicien">
           <div class="custom-select">
                 <select name="selectionPossible" id="selectionPossible" required>';
@@ -76,23 +66,8 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
         </form>
 		</div>';
 		    echo '<div class="conteneur_ajout_administration">
-                          <form action="action_ajouttitre.php" method="post" name="Ajout Titre" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">';
-
-                            if(isset($_GET['id'])) {
-                                echo '<div class="erreur">';
-                                echo '<p>';
-                                if ($_GET['id'] == 301) { echo "ERREUR : Catégorie inexistante "; }
-                                else if ($_GET['id'] == 302) { echo "ERREUR : Texte trop court"; }
-                                else if ($_GET['id'] == 303) { echo "ERREUR : La combinaison du texte et de la catégorie est trop longue "; }
-                                else if ($_GET['id'] == 304) { echo "ERREUR : Le titre est déjà existant"; }
-                                else if ($_GET['id'] == 305) { echo "ERREUR : Option manquante"; }
-                                else if ($_GET['id'] == 300){ echo "ERREUR : Une erreur est survenue"; }
-                                echo '</p>';
-                                echo '</div>';
-                            }
-
-
-                              echo '<label for="ajout_titre">Ajout de Titre :</label><br>
+                          <form action="action_ajouttitre.php" method="post" name="Ajout Titre" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+                              <label for="ajout_titre">Ajout de Titre :</label><br>
                               <div class="conteneur_categorie">
                               <select name="categorieMc" id="categorieMc" class="creer_select" required>';
 
@@ -100,7 +75,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
                               echo '
                               </select>
-                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre" minlength="11">
+                              <input id="ajout_titre" type="text" name ="ajout_titre" placeholder="Écrire un titre">
                               <input type="submit" name="ajouter_titre" value="Ajouter">
                               </div>
                           </form>
@@ -127,22 +102,8 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
 			echo ' 
 		    <div class="conteneur_ajout_administration">
-      <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">';
-
-        if(isset($_GET['id'])) {
-            echo '<div class="erreur">';
-            echo '<p>';
-            if ($_GET['id'] == 201) { echo "ERREUR : Catégorie inexistante "; }
-            else if ($_GET['id'] == 202) { echo "ERREUR : Texte trop court"; }
-            else if ($_GET['id'] == 203) { echo "ERREUR : La combinaison du texte et de la catégorie est trop longue "; }
-            else if ($_GET['id'] == 204) { echo "ERREUR : Le titre est déjà existant"; }
-            else if ($_GET['id'] == 205) { echo "ERREUR : Option manquante"; }
-            else if ($_GET['id'] == 200){ echo "ERREUR : Une erreur est survenue"; }
-            echo '</p>';
-            echo '</div>';
-        }
-
-        echo '<label for="ajout_motcle">Ajout de Mots-clés :</label><br>
+      <form action="action_ajoutmotcle.php" method="post" name="Ajout Libelle" class="ajout" onsubmit="return confirmerAvantEnvoi(this.name)">
+        <label for="ajout_motcle">Ajout de Mots-clés :</label><br>
         <div class="conteneur_categorie">
         <select name="categorieMc" id="categorieMc" class="creer_select" required>';
 
@@ -150,7 +111,7 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 
             echo '
         </select>
-        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé" minlength="3">
+        <input id="ajout_motcle" type="text" name ="ajout_motcle" placeholder="Écrire un mot-clé">
         <input type="submit" name="submit_ajout_motcle" value="Ajouter">
         </div>
       </form>
@@ -189,9 +150,6 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
                             echo '</p>';
                         }
                     }
-					else {
-						echo "<p style='color:white;'>Aucune information à afficher.</p>"; 
-					}
                    echo '</div><br>
 
 
@@ -267,15 +225,35 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 				  </tbody>
 				</table>';
 
-
+/*
+			  <table class="table-historique table-popup">
+				<thead>
+				<tr>
+				  <th>Date</th>
+				  <th>Date Résolution</th>
+				  <th>Titre</th>
+				  <th>Niv.Urgence</th>
+				  <th>Description</th>
+				  <th>ID Utilisateur</th>
+				  <th>ID Technicien</th>
+				</tr>
+				</thead>
+				<tbody>
+				';
+				$historique_res = $connection->query("SELECT DATE_FORMAT(HORODATAGE_CREATION_TICKET, 'le %d/%m/%Y à %Hh%i'),DATE_FORMAT(HORODATAGE_DERNIERE_MODIF_TICKET, 'le %d/%m/%Y à %Hh%i'),TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
+				tableGenerate($historique_res);
+				echo '
+				</tbody>
+			  </table>
+*/
 			echo '
 			</div>
 		  </div>';
 		  echo ' 
-		  <h1 class="titre_page"  id="activite">
+		  <h1 class="titre_page">
 			Journal d\'activité
 		  </h1>
-		  <div class="activite" >
+		  <div class="activite" id="activite">
 			<div class="connexInfructeurse">
 			  <h2>Connexions infructueuses</h2>
 			  <div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
@@ -316,47 +294,6 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
 			  </div>
 			</div>
 		  </div>
-<div class="activite">
-    <div class="inscription-utilisateur">
-        <h2>Inscription</h2>
-        <div class="conteneur_table conteneur_table-inscription-desinscription">
-            <table class="table-inscription-desincription table-popup">
-                <thead>
-                <tr>
-                    <th>Archive</th>
-                    <th>Suppression</th>
-                    <th>Télécharger</th>
-                </tr>
-                </thead>
-                <tbody>';
-        dirToTable("../../../logs/archives/","ActvInsc");
-        echo '
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-
-    <div class="desinscription-utilisateur">
-        <h2>Désinscription</h2>
-        <div class="conteneur_table conteneur_table-inscription-desinscription">
-            <table class="table-inscription-desincription table-popup">
-                <thead>
-                <tr>
-                    <th>Archive</th>
-                    <th>Suppression</th>
-                    <th>Télécharger</th>
-                </tr>
-                </thead>
-                <tbody>';
-        dirToTable("../../../logs/archives/","ActvDesinsc");
-        echo '
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
   <div class="overlay" id="overlay" onclick="closePopup()">
     <!-- Contenu de la pop-up -->
 
@@ -373,7 +310,26 @@ $connection = pageAccess(array('Administrateur Site', 'Administrateur Système')
   </div>';
 	}
 ?>
-
+<!--
+<div class="conteneur_table conteneur_table-infructueuse_ouverture-tickets">
+    <table class="table-infructueuse table-popup">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Tentative</th>
+            <th class="ligneCacher">Test</th>
+        </tr>
+        </thead>
+        <tbody>';
+        csvToHtmlTable("logs/journauxActvCoInf.csv");
+        echo '
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>-->
 
 
 </body>

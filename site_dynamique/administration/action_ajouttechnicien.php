@@ -13,7 +13,7 @@ try{
 	}
 }
 catch(Exception $e){
-	header('Location: administration.php?id=1');
+	header('Location: administration.php?id=10');
 }
 
 header('Location: administration.php');

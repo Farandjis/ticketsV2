@@ -9,9 +9,9 @@ if(isset($_SESSION["preLogin"])){
 
 $connexionUtilisateur = null; // On part du principe que c'est in visiteur (donc non connecté)
 
-if (isset($_SESSION['login'], $_SESSION['mdp'])) {
+if (isset($_SESSION["jeton"]['login'], $_SESSION["jeton"]['mdp'])) {
     // Vérifie que le login et le mot de passe est bien définit
-    if (!empty($_SESSION['login']) && !empty($_SESSION['mdp'])) {
+    if (!empty($_SESSION["jeton"]['login']) && !empty($_SESSION["jeton"]['mdp'])) {
         // Vérifie que ce n'est pas vide
 
         session_abort();

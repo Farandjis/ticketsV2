@@ -18,10 +18,12 @@ try{
 
             // Récupération des données de session
             $mdpentre = htmlspecialchars($_POST['Amdp']);
+	    echo $mdpentre;
             $loginentre = htmlspecialchars($_POST['login']);
 
-            $loginSite = htmlspecialchars($_SESSION['login']);
-            $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode($_SESSION['mdp']));
+            $loginSite = htmlspecialchars($_SESSION["jeton"]['login']);
+            $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode(dechiffre()));
+	    echo $mdpMariaDB;
 
             // Vérification que le login et mdp entrés sont identiques à ceux inscrit lors de la connexion
             if ($mdpentre !== $mdpMariaDB || $loginentre !== $loginSite) {

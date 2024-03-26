@@ -692,7 +692,17 @@ input[type="date"] {
   width: 100%;
 }
 
-
+.easter_egg{
+  animation: rotate 6000s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* ======== LIEN VERS PAGE D'OUBLIE DE MDP ======== */
 
@@ -932,7 +942,7 @@ input[type="date"] {
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
   color: #ECECEC;
   width: 550px;
-  height: 340px;
+  height: 390px;
 
 }
 
@@ -991,7 +1001,7 @@ input[type="date"] {
   margin-bottom: 50px;
 }
 
-.table-infructueuse, .table-ouverture-tickets{
+.table-infructueuse, .table-ouverture-tickets, .table-inscription-desincription{
   border-collapse: collapse;
   width: 800px;
   font-size: 16px;
@@ -1015,6 +1025,20 @@ input[type="date"] {
   position: sticky;
   top: -1px;
   z-index: 10;
+}
+
+
+.conteneur_table-inscription-desinscription {
+  height: 500px;
+  overflow-y: auto;
+  background-color: white;
+  border: 2px solid #555555;
+}
+.conteneur_table-inscription-desinscription td {
+  text-align: center;
+}
+.conteneur_table-inscription-desinscription td:hover, .conteneur_table-inscription-desinscription td:focus {
+  background-color: rgba(130, 88, 242, 0.81);
 }
 
 
@@ -1751,14 +1775,14 @@ select {
     font-size: 60px;
   }
 
-  /*.table-tableau-bord,*/.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
+  /*.table-tableau-bord,*/.table-ouverture-tickets, .table-inscription-desincription, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
     width: 600px;
     height: 400px;
   }
 
 
 
-  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
+  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-inscription-desincription, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
     font-size: 12px;
   }
 }
@@ -1819,8 +1843,11 @@ select {
   .conteneur_table-infructueuse_ouverture-tickets{
     width: 1200px;
   }
+  .conteneur_table-inscription-desinscription{
+    width: 1200px;
+  }
 
-  .table-infructueuse, .table-ouverture-tickets{
+  .table-infructueuse, .table-ouverture-tickets, .table-inscription-desincription{
     width: 100%;
   }
 }

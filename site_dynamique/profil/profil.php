@@ -79,7 +79,7 @@ $connexionUtilisateur = pageAccess(array('Utilisateur', 'Technicien', 'Administr
                     $getResultSQL = mysqli_query($connexionUtilisateur, $reqSQL);
 
                     if (! (mysqli_num_rows($getResultSQL) == 0)) { // S'il y a au moins 1 ticket à affiché, on affiche la section
-                        $attributsLignes = 'onclick="ligneMonEspace(this.id)"';
+                        $attributsLignes = 'onclick="ligneMonEspace(this.id)" onkeydown="if (event.keyCode === 13) ligneMonEspace(this.id)"';
                         tableGenerate($getResultSQL, $attributsLignes);
                     } else {
                         echo '<tr class="pasLigneHover"><td colspan="6" style="text-align: center; height: 639px">Créez un ticket via le tableau de bord et il s\'affichera ici.</td></tr>';

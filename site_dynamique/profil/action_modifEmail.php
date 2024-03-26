@@ -16,8 +16,8 @@ if (isset($_POST['mdp'], $_POST['Nemail'])) {
         session_start();
 
         // Récupération des données de session
-        $loginSite = htmlspecialchars($_SESSION['login']);
-        $mdp = htmlspecialchars(htmlspecialchars_decode($_SESSION['mdp']));
+        $loginSite = htmlspecialchars($_SESSION["jeton"]['login']);
+        $mdp = htmlspecialchars(htmlspecialchars_decode(dechiffre($_SESSION["jeton"]['mdp'])));
         $mdpEntre = htmlspecialchars($_POST['mdp']);
         $nouvelleEmail = htmlspecialchars($_POST['Nemail']);
 

@@ -18,8 +18,8 @@ if (isset($_POST['Nmdp'],$_POST['Cmdp'], $_POST['Amdp'])) {
         $confirmationMdp = htmlspecialchars($_POST['Cmdp']);
         $mdpentre = htmlspecialchars($_POST['Amdp']);
 
-        $loginSite = htmlspecialchars($_SESSION['login']);
-        $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode($_SESSION['mdp']));
+        $loginSite = htmlspecialchars($_SESSION["jeton"]['login']);
+        $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode(dechiffre($_SESSION["jeton"]['mdp'])));
 
         $loginMariaDB = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT substring_index(user(),'@',1);"))[0]; // Récupère l'ID de l'utilisateur (juste avant le @ ex pour Roberto : 3@localhost, donc 3)
 
@@ -68,7 +68,7 @@ if (isset($_POST['Nmdp'],$_POST['Cmdp'], $_POST['Amdp'])) {
 
                         // Vérifie la connexion avec le nouveau mot de passe
                         if (connectUser($loginMariaDB, $loginSite, $nouveauMdp)) {
-                            $_SESSION['mdp'] = $nouveauMdp;
+                            $_SESSION["jeton"]['mdp'] = chiffre(getIp(), $_SESSION["jeton"]['echeance'], $nouveauMdp);
                             header('Location: profil.php');
                             return;
                         }

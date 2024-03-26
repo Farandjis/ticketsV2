@@ -32,34 +32,23 @@ try {
 
 
 
-<<<<<<< HEAD
 	if ($resSQL === null){
         date_default_timezone_set('Europe/Paris');
-        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
+        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB,"false" )); // Stockage du journal
         header('Location: connexion.php?id=2'); return; } // Mauvais login (la requête SQL n'a rien renvoyé)
 	else { $loginMariaDB = $resSQL[0]; } // On récupère l'ID_USER qui est le login MariaDB.
 
-    if ($resSQL === null){
+    if ($infoBannissement === null){
         date_default_timezone_set('Europe/Paris');
-        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
+        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB,false )); // Stockage du journal
         header('Location: connexion.php?id=7'); return; } // Impossible de savoir s'il n'est pas banni (la requête SQL n'a rien renvoyé)
     else { $estBanni = $infoBannissement[0]; $estBanniJusqua = $infoBannissement[1]; } // On récupère l'ID_USER qui est le login MariaDB.
 
     if ($estBanni == "TRUE"){
         header('Location: connexion.php?id=8');
         date_default_timezone_set('Europe/Paris');
-        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
+        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB,"true" )); // Stockage du journal
         return; // il est banni
-=======
-	if ($resSQL === null){ header('Location: connexion.php?id=2'); return; } // Mauvais login (la requête SQL n'a rien renvoyé)
-	else { $loginMariaDB = $resSQL[0]; } // On récupère l'ID_USER qui est le login MariaDB.
-
-    if ($resSQL === null){ header('Location: connexion.php?id=7'); return; } // Impossible de savoir s'il n'est pas banni (la requête SQL n'a rien renvoyé)
-    else { $estBanni = $infoBannissement[0]; $estBanniJusqua = $infoBannissement[1]; } // On récupère l'ID_USER qui est le login MariaDB.
-
-    if ($estBanni == "TRUE"){
-        header('Location: connexion.php?id=8'); return; // il est banni
->>>>>>> moderation
     }
 
 
@@ -78,7 +67,7 @@ try {
         }
         else{ // Echec de l'authentification de l'utilisateur
             date_default_timezone_set('Europe/Paris');
-            appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
+            appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB,"true" )); // Stockage du journal
 
             header('Location: connexion.php?id=2');
             return;
@@ -94,13 +83,8 @@ try {
     if ("Access denied" == substr($msg_erreur, 0, 13)) {
         // Si MariaDB refuse la connexion de l'utilisateur (normalement, cela signifie mauvais mot de passe
         $msg_erreur = 2; // Erreur : login ou mdp incorrecte
-<<<<<<< HEAD
         date_default_timezone_set('Europe/Paris');
-        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
-=======
-	date_default_timezone_set('Europe/Paris');
-	appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB )); // Stockage du journal
->>>>>>> moderation
+        appendToCSV("../../../logs/journauxActvCoInf.csv",array(date("d/m/y H:i:s"),$loginSite,getIp(),$mdpMariaDB,"true" )); // Stockage du journal
     }
     header('Location: connexion.php?id=' . urlencode($msg_erreur));
 }

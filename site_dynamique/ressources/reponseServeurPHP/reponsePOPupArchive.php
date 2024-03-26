@@ -40,7 +40,8 @@ if ($recupNom == "ActvCoInf") {
     echo '<th>Date</th>
       <th>Login</th>
       <th>IP</th>
-      <th>Tentative</th>';
+      <th>Tentative</th>
+      <th>Vrai Utilisateur</th>';
 }
 
 if ($recupNom == "ActvCreTck") {
@@ -48,6 +49,18 @@ if ($recupNom == "ActvCreTck") {
       <th>Login</th>
       <th>IP</th>
       <th>Niv.Urgence</th>';
+}
+if ($recupNom == "ActvDesinsc") {
+    echo '<th>Date</th>
+      <th>Login</th>
+      <th>IP</th>
+      <th>ID</th>';
+}
+if ($recupNom == "ActvInsc") {
+    echo '<th>Date</th>
+      <th>Echec</th>
+      <th>IP</th>
+      <th>CAPCHA</th>';
 }
 
 if ($recupNom == "Histo"){

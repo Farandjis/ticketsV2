@@ -6,7 +6,9 @@ function confirmerAvantEnvoi(elName) {
         case 'Finir le ticket':
             return window.confirm("Êtes-vous sûr de vouloir finir ce ticket ?");
         case 'Ajout Technicien':
-            return window.confirm("Êtes-vous sûr de vouloir modifier ce ou ces technicien(s) ?");
+            return window.confirm("Êtes-vous sûr de vouloir modifier ce technicien ?");
+        case 'Suppression Technicien':
+            return window.confirm("Êtes-vous sûr de vouloir supprimer ce technicien?");
         case 'Ajout Libelle':
             return window.confirm("Êtes-vous sûr de vouloir ajouter ce libellé ?");
         case 'Suppression Motcle':
@@ -15,11 +17,8 @@ function confirmerAvantEnvoi(elName) {
             return window.confirm("Êtes-vous sûr de vouloir ajouter ce titre ?");
         case 'Suppression Titre':
             return window.confirm("Êtes-vous sûr de vouloir supprimer ce ou ces titre(s) ?");
-<<<<<<< HEAD
         case 'Suppresion Log':
             return window.confirm("Êtes-vous sûr de vouloir supprimer cette archive ?");
-=======
->>>>>>> moderation
         case 'Bannir IP':
             return window.confirm("Êtes-vous sûr de vouloir bannir cette ip ?");
         case 'Debannir IP':
@@ -29,6 +28,6 @@ function confirmerAvantEnvoi(elName) {
         case 'Debannir Compte':
             return window.confirm("Êtes-vous sûr de vouloir DÉBANNIR cet utilisateur de la plateforme TIX ?");
         default:
-            return false;
+            return window.confirm("Problème nom formulaire");
     }
 }

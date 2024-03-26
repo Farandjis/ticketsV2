@@ -34,7 +34,7 @@ catch(Exception $e){
     if ($e->getMessage() == "erreur"){
         header('Location: administration.php?id=' . $e->getCode());
     } else {
-        header('Location: administration.php?id=100');
+        header('Location: administration.php?id=200');
     }
     return;
 }
