@@ -591,8 +591,8 @@ Notre travail se fonde sur https://raspberrytips.fr/securiser-raspberry-pi/?utm_
         <br>
         **Créer un utilisateur et lui affecter un groupe :** `sudo useradd [UTILISATEUR] -G [GROUPE]`<br>
         L'option -G précise le groupe à attribuer.<br>
-        **Créer un groupe :** `sudo groupdel [GROUPE]`<br>
-        **Supprimer un groupe :** `sudo groupadd [GROUPE]`<br>
+        **Créer un groupe :** `sudo groupadd [GROUPE]`<br>
+        **Supprimer un groupe :** `sudo groupdel [GROUPE]`<br>
         **Définir le groupe principal d'un utilisateur :** `sudo usermod --gid [GROUPE] [UTILISATEUR]`<br>
         **Afficher les groupes :** `getent group`<br>
         **Afficher les membres d'un groupe :** `getent group [GROUPE]`<br>
