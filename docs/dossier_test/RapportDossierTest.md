@@ -14,19 +14,19 @@ INF2-A
 <br><br><br><br><br><br><br>
 
 ## Plan
-- ### [I - Introduction](#I)
-- ### [II - Contexte des tests](#II)
-- ### [IV - Test ](#III)
-    - #### [Tests unitaires](#IV)
+- ### [I - Introduction](#1)
+- ### [II - Contexte des tests](#2)
+- ### [IV - Test ](#3)
+    - #### [Tests unitaires](#3a)
         - #### [Tests boite noire pour les pages](#1a)
         - #### [Tests boite noire pour les fonctions](#2ab)
         - #### [Tests Boite blanche](#2a)
-    - #### [Tests PHPunits](#V)
-    - #### [Tests Base de donnees](#VI)
-    - #### [Tests d'affichage des pages du site statique](#VII)
-    - #### [Tests d'affichage des pages du site dynamique](#VIII)
-    - #### [Tests des fonctions d'affichage](#IX)
-    - #### [Tests d'integration](#X)
+    - #### [Tests PHPunits](#4a)
+    - #### [Tests Base de donnees](#5a)
+    - #### [Tests d'affichage des pages du site statique](#6a)
+    - #### [Tests d'affichage des pages du site dynamique](#7a)
+    - #### [Tests des fonctions d'affichage](#8a)
+    - #### [Tests d'integration](#9a)
 
 <br><br><br>
 
@@ -34,12 +34,12 @@ INF2-A
 
 <br><br><br>
 
-## <a name="I"></a>I - Introduction
+## <a name="1"></a>I - Introduction
 
 Ce document a pour but principal de faciliter la navigation et la lecture des tests effectués sur les fonctions et les pages de notre application.
 <br>
 
-## <a name="II"></a>II - Contexte des tests
+## <a name="2"></a>II - Contexte des tests
 
 | Définition               | Situation pour le test                                           |
 |--------------------------|------------------------------------------------------------------|
@@ -56,9 +56,9 @@ Ce document a pour but principal de faciliter la navigation et la lecture des te
 
 <br><br><br>
 
-## <a name="III"></a>III - Test
+## <a name="3"></a>III - Test
 
-## <a name="IV"></a>IV - Tests unitaires 
+## <a name="3a"></a>IV - Tests unitaires 
 
 Durant notre projet, nous avons réaliser des tests unitaires boites noires afin de vérifier la validité des pages PHP, les fonctions implémentées et de s'assurer que les messages d'erreurs soient bien exploités. Les tests boites noires servent à vérifier que l'application produise et retourne bien les sorties attendues à partir d'entrées. <br>
 
@@ -116,7 +116,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests unitaires boit
 
 <br>
 
-### <a name="V"></a> Tests PHPUnits
+### <a name="4a"></a> Tests PHPUnits
 
 Des tests à l'aide de PHPUnits sur phpStorm ont été conçu dans un but d'aider à l'écriture des tests boites noires mais également de vérifier le bon fonctionnement et la qualité du code PHP. Ils ont été effectué seulement sur les fonctions implémentées 
 
@@ -126,7 +126,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests PHPUnits pour 
 
 <br>
 
-### <a name="VI"></a> Tests base de données 
+### <a name="5a"></a> Tests base de données 
 
 Pour s'assurer du bon fonctionnement de la base de données de l'application, nous avons réaliser des tests d'insertion, de suppression et de modification d'élements dans la base de données tels que des tickets ou utilisateurs. 
 
@@ -136,7 +136,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests de la base de 
 
 <br>
 
-### <a name="VII"></a> Tests d'affichage des pages du site statique
+### <a name="6a"></a> Tests d'affichage des pages du site statique
 
 Les premiers tests qui ont été conçu étaient ceux permettant l'affichage du site statique et dynamique. Ils permettent de s'assurer que les pages du site statique s'affiche bien en respectant des caractéristiques telles que la taille de l'écran ou encore l'accessibilité. 
 
@@ -146,7 +146,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage de
 
 <br>
 
-### <a name="VIII"></a> Tests d'affichage des pages du site dynamique 
+### <a name="7a"></a> Tests d'affichage des pages du site dynamique 
 
 Les tests d'affichage des pages PHP permettent également de s'assurer que les pages de la plateforme s'affiche bien en respectant des caractéristiques telles que la taille de l'écran, l'accessibilité ou encore qu'elles ne contiennent aucunes erreurs. 
 
@@ -156,7 +156,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage de
 
 <br>
 
-### <a name="IX"></a> Tests des fonctions d'affichage
+### <a name="8a"></a> Tests des fonctions d'affichage
 
 Pour certaines fonctions qui retournent simplement un affichage, il était pas nécessaire d'effectuer des tests boites blanches ou noires. Nous avons quand même tenu à les tester pour vérifier leur fonctionnement. 
 
@@ -166,7 +166,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage de
 
 <br>
 
-### <a name="X"></a> Tests d'integration
+### <a name="9a"></a> Tests d'integration
 
 Enfin, nous avons terminer par effectuer des tests d'intégration. Ils permettent de tester la manière dont différentes parties d'un système interagissent les unes avec les autres. Nous avons réaliser ses tests à l'aide du module de cryptographie puisque nous devions intégrer des fonctions de cryptage et décryptage à notre application. 
 <br> Ainsi, il fallait évaluer si les fonctions opérées ou au contraire provoquer des bugs dans le site web. 
