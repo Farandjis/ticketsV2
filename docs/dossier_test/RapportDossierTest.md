@@ -47,7 +47,7 @@ Ce document a pour but principal de faciliter la navigation et la lecture des te
 | Configuration logicielle | Firefox (118.0.1 et 64 bits) et<br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle | Dell Optiplex 9020                                               |
 | Date de début            | 26/03/2024                                                       |
-| Date de finalisation     |                                                                  |
+| Date de finalisation     | 26/03/2024                                                       |
 | Responsable du document  | Gouabi Assia                                                     |
 
 <br><br><br>
@@ -60,7 +60,7 @@ Ce document a pour but principal de faciliter la navigation et la lecture des te
 
 ## <a name="IV"></a>IV - Tests unitaires 
 
-Durant notre projet, nous avons réaliser des tests unitaires boites noires afin de vérifier la validité des pages PHP, les fonctions implémentées et de s'assurer que les messages d'erreurs soient bien retournés. Les tests boites noires servent à vérifier que l'application produise et retourne bien les sorties attendues à partir d'entrées. <br>
+Durant notre projet, nous avons réaliser des tests unitaires boites noires afin de vérifier la validité des pages PHP, les fonctions implémentées et de s'assurer que les messages d'erreurs soient bien exploités. Les tests boites noires servent à vérifier que l'application produise et retourne bien les sorties attendues à partir d'entrées. <br>
 
 Des tests boites blanches ont également été réalisé dans un but de vérifier le bon fonctionnement de chaque composant du code. 
 
@@ -108,7 +108,7 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests unitaires boit
 
 ### <a name="2a"></a> Tests boite blanche 
 
-Nous avons réalisé seulement les tests boites blanches pour les fonctions implémentées puisque nous jugeons pas nécessaire de faire de même pour les pages. De plus, certaines pages peuvent regrouper 30 lignes, il serait donc difficile de faire un test boite blanche avec 30 lignes. 
+Nous avons réalisé seulement les tests boites blanches pour les fonctions implémentées puisque nous jugeons pas nécessaire de faire de même pour les pages. De plus, certaines pages peuvent regrouper 30 lignes de code, il serait donc difficile de faire un test boite blanche avec 30 lignes. 
 
 Vous trouverez ci-dessous le lien permettant d'accéder aux tests unitaires boites blanches pour les fonctions implementées. 
 
@@ -130,11 +130,37 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests PHPUnits pour 
 
 Pour s'assurer du bon fonctionnement de la base de données de l'application, nous avons réaliser des tests d'insertion, de suppression et de modification d'élements dans la base de données tels que des tickets ou utilisateurs. 
 
-Pour consulter ses tests, il faut ouvrir le projet sur GitHub dans la branche base de données, accéder au répertoire docs puis dossier_test. Enfin, il faudra sélectionner dossier_de_test_base_de_donnees.md. 
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests de la base de données.
 
-En clair : base de donnees/docs/dossier_test/dossier_de_test_base_de_donnees.md
+[La base de donnees](dossier_de_test_base_de_donnees.md)
 
 <br>
 
 ### <a name="VII"></a> Tests d'affichage des pages du site statique
 
+Les premiers tests qui ont été conçu étaient ceux permettant l'affichage du site statique et dynamique. Ils permettent de s'assurer que les pages du site statique s'affiche bien en respectant des caractéristiques telles que la taille de l'écran ou encore l'accessibilité. 
+
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage des pages du site statique.
+
+[Site statique](dossier_test_site_statique.md)
+
+<br>
+
+### <a name="VIII"></a> Tests d'affichage des pages du site dynamique 
+
+Les tests d'affichage des pages PHP permettent également de s'assurer que les pages de la plateforme s'affiche bien en respectant des caractéristiques telles que la taille de l'écran, l'accessibilité ou encore qu'elles ne contiennent aucunes erreurs. 
+
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage des pages du site dynamique.
+
+[Site dynamique](dossier_test_site_dynamique.md)
+
+<br>
+
+### <a name="X"></a> Tests d'integration
+
+Enfin, nous avons terminer par effectuer des tests d'intégration. Ils permettent de tester la manière dont différentes parties d'un système interagissent les unes avec les autres. Nous avons réaliser ses tests à l'aide du module de cryptographie puisque nous devions intégrer des fonctions de cryptage et décryptage à notre application. 
+<br> Ainsi, il fallait évaluer si les fonctions opérées ou au contraire provoquer des bugs dans le site web. 
+
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'intégration du module de cryptographie.
+
+[Tests cryptographie](dossier_de_test_cryptographie.md)
