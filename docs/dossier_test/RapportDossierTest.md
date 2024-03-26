@@ -96,14 +96,45 @@ Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires bo
 
 [Administration du point de vu de l'admin système](dossier_de_test_boite_noire/dossier_de_test_administrationSysteme.md)
 
-<br><br><br>
+<br>
 
 ### <a name="2ab"></a> Tests boite noire pour les fonctions
 
-Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires boites noires pour chaque fonction implémentée.
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests unitaires boites noires pour les fonctions implémentées.
 
-[ConnectUser](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name1aaconnectuser)
+[Les fonctions en boite noire](dossier_de_test_boite_noire/dossier_de_test_fonction.md)
 
-[valideMdp](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name2aavalidemdp)
+<br>
 
-[executeSQL](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name3aaexecutesql)
+### <a name="2a"></a> Tests boite blanche 
+
+Nous avons réalisé seulement les tests boites blanches pour les fonctions implémentées puisque nous jugeons pas nécessaire de faire de même pour les pages. De plus, certaines pages peuvent regrouper 30 lignes, il serait donc difficile de faire un test boite blanche avec 30 lignes. 
+
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests unitaires boites blanches pour les fonctions implementées. 
+
+[Les fonctions en boite blanche](dossier_de_test_fonctions_boiteBlanche.md)
+
+<br>
+
+### <a name="V"></a> Tests PHPUnits
+
+Des tests à l'aide de PHPUnits sur phpStorm ont été conçu dans un but d'aider à l'écriture des tests boites noires mais également de vérifier le bon fonctionnement et la qualité du code PHP. Ils ont été effectué seulement sur les fonctions implémentées 
+
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests PHPUnits pour les fonctions implementées. 
+
+[Les fonctions à l'aide de PHPUnits](test_PHPunit/test.php)
+
+<br>
+
+### <a name="VI"></a> Tests base de données 
+
+Pour s'assurer du bon fonctionnement de la base de données de l'application, nous avons réaliser des tests d'insertion, de suppression et de modification d'élements dans la base de données tels que des tickets ou utilisateurs. 
+
+Pour consulter ses tests, il faut ouvrir le projet sur GitHub dans la branche base de données, accéder au répertoire docs puis dossier_test. Enfin, il faudra sélectionner dossier_de_test_base_de_donnees.md. 
+
+En clair : base de donnees/docs/dossier_test/dossier_de_test_base_de_donnees.md
+
+<br>
+
+### <a name="VII"></a> Tests d'affichage des pages du site statique
+
