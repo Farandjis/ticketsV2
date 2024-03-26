@@ -1,3 +1,6 @@
+<h1 style="color:red;">le 26/03/2024 : A l'intention de M. DUFAUD et M. HOGUIN</h1>
+Le GitHub du projet n'est pas encore terminé. Il sera terminé dans les prochains jours si cela ne pose aucun problème.
+
 # Emplacement des fichiers du projet TIX
 Florent VASSEUR--BERLIOUX, Tom BOGAERT, Enzo GUIGNOLLE, Assia GOUABI, Matthieu FARANDJIS INF2-A
 
