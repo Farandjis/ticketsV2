@@ -293,12 +293,14 @@ Par ordre alphabétique.
 - <b><a name="p4a"></a>a) Quelles sont les exigences technologiques pour ce système ?</b>
 
   L'application devra utiliser : SQL, HTML, CSS et PHP<br>
-    - SQL est le langage utilisé pour l'utilisation d'un SGBD comme MySQL<br>
+    - SQL est le langage utilisé pour l'utilisation d'un SGBD comme MariaDB<br>
     - HTML et CSS permettent la création des pages web du site internet.<br>
     - PHP permet de son côté de personnaliser les pages en fonction de l'utilisateur et des données de l'application.<br>
 
+  Le serveur devra être protégé des intrusions notamment SSH à l'aide du logiciel fail2ban, et devra faire automatiquement des archives des journaux d'activités à l'aide du logiciel KRON. 
+
   <br>
-  MySQL est le Système de Gestion de Base de Données (SGBD) proposé par le client.<br>
+  MariaDB est le Système de Gestion de Base de Données (SGBD) proposé par le client.<br>
   <br>
   Nous utiliserons les logiciels PHPStorm, WebStorm de Jetbrains.<br>
   Ces outils ne sont pas contraints mais nous permettrons d’améliorer la qualité du code rendu.<br>
@@ -310,6 +312,7 @@ Par ordre alphabétique.
   De plus, il sera nécessaire d’assurer le bon fonctionnement du site web sur les postes présents dans les salles machines de l’IUT de Vélizy.<br>
   La carte SD se devra de contenir un serveur web (Apache est conseillé) ainsi qu’un serveur SGBD.<br>
   Aussi, le serveur contenant l’application web sera porté sur Raspberry Pi 4 et sera accessible par connexion SSH.<br>
+  La plateforme TIX doit permettre de configurer à distance fail2ban et de gérer ses prisons. Apache doit donc être capable d'interagir avec le système pour fail2ban.
 
 <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
@@ -326,18 +329,29 @@ Par ordre alphabétique.
       <br>
     - <u><a name="p5aii"></a>ii. Quelles valeurs devront être privilégiées ? (exemple : simplicité, disponibilité,    rapidité, souplesse etc... )</u><br>
 
-      Nous priviligerons l'efficacité de nos algorithmes, mais egalement la sécurité de nos bases de données. Un point d'honeur sera egalement mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main. Nous favoriserons au mieux la conpréhension et la communication entre les utilisateurs, techniciens et administrateurs.<br>
-      1
+      Nous privilégierons l'efficacité de nos algorithmes, mais également la sécurité de nos bases de données. Un point d'honneur sera également mis sur la disponibilité de notre application web et, plus généralement, sur sa simplicité de prise en main. Nous favoriserons au mieux la compréhension et la communication entre les utilisateurs, techniciens et administrateurs.<br>
+      Outre la sécurité de la base de données que nous voulons, notre client nous demande l'installation de fail2ban pour pouvoir modérer les connexions SSH mais et tentatives de connexion et d'inscription au site.<br>
+      Pour clarifier l'utilisation de la plateforme, le client demande un guide d'utilisateur. Il demande égalemment que l'utilisateur soit prévenu des données et du format des données demandés dans les formulaires.<br>
+      Enfin, la plateforme se doit être accessible peu importe le handicape. Que l'on soit daltonien, deficient visuel, déficient auditif par exemple, TIX doit être entièrement utilisable.<br>
+      <br>
+      La plateforme TIX se doit être simple d'utilisation, disponible à tout moment, accessible et sécurisé.
+      
       <br>
     - <u><a name="p5aiii"></a>iii. Quels retours ou quelle visibilité sur le projet les utilisateurs et commanditaires
       souhaitent-ils ?</u><br>
 
-      Ce projet représentant un travail scolaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernants le projet et son avancée. La communication entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
+      Ce projet représentant un travail universitaire évalué, les commanditaires de ce projet sont nos enseignants. Ces derniers ont une grande visibilité sur l'avancée du projet et recevront à certaines dates des documents concernant le projet et son avancée. La communication entre les membres de l'équipe et les enseignants est recommandée afin d'assurer le rendu d'un projet fidèle aux attentes de ces derniers.<br>
+      La communication avec nos professeurs se fera par email mais également à l'oral.<br>
+      Notre client, M. HOGUIN doit avoir un accès général au projet : GitHub, compte administrateur (sudoers) Linux, comptes administrateurs sur TIX.<br>
+      Notre deuxième client, M. DUFAUD doit avoir accès au GitHub afin de suivre l'avancé de notre projet sans se connecter à TIX.<br>
       <br>
     - <u><a name="p5aiv"></a>iv. Que peut-on acheter ? Que doit-on construire ? Qui sont nos concurrents ?</u><br>
 
       Le projet est de concevoir et programmer un site web de gestion de tickets. Aucun achat n'est nécessaire à la création de la plateforme web, puisque le matériel (RPi4) est pris en charge par le client.
       Nous ne possédons pas de concurrents à proprement parlé.<br>
+      <br>
+      Outre l'aspect de demande de dépannage, l'administrateur web doit être capable de créer ou supprimer des titres et des mots-clés pour les tickets. Il doit pouvoir définir les techniciens et bannir et débannir des comptes d'utilisateurs TIX.<br>
+      L'administrateur système doit pouvoir consulter les journaux d'activités même archivé et les télécharger. Il doit pouvoir reconfigurer les prisons fail-ban et bannir/débannir les IP pour chaque prison.<br>
       <br>
     - <u><a name="p5av"></a>v. Quels sont les autres exigences du processus ? (exemple : tests, installation, etc...)</u><br>
 
@@ -346,13 +360,15 @@ Par ordre alphabétique.
       Les clients doivent avoir accès au dépôt Git afin de juger de l'évolution du projet et faire des critiques si nécessaire.
       <br>
     - <u><a name="p5avi"></a>vi. À quelle dépendance le projet est-il soumis ?</u><br>
-      Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MySQL.
+      Ce projet n'a pas de dépendance en raison de la stagnation des langages PHP et MariaDB.
+      Il utilise également les technologies HTML, CSS, JavaScript, Raspberry OS Lite, fail2ban et KRON.
 
 <br>
 
 - <b><a name="p5c"></a>c) Performances</b><br>
 
-  Le site web se devra d'être le plus performent possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme. Nous ne possédons pas de réelles contraintes de performances.
+  Le site web se devra d'être le plus performent possible afin d'en faciliter l'accès. Pour se faire, les programmes effectués en PHP seront optimisés et testés dans le but de limiter le nombre de boucles et d'actions. Les systèmes de stockages de données seront choisis en conséquences pour améliorer au mieux les performences de la plateforme. Nous ne possédons pas de réelles contraintes de performances.<br>
+  L'utilisation de commande Linux depuis le site ralenti le système et peut représenter un danger en matière de sécurité. Cette utilisation de PHP sera réservé pour l'administration du système. Un utilisateur Linux autre que celui d'Apache sera dédié à cette utilisation 
 
 <br>
 
@@ -361,25 +377,28 @@ Par ordre alphabétique.
   Tous le code étant utilisé pour mener le projet à bien se devra d'être documenté afin d'assurer la lisibilité du programme. Toutes les fonctions générées seront accompagnées d'une Docstring.
 
   L'ensemble du programme sera également rendu imperméable aux attaques de type Injection SQL. Le système sera protégé et restreindra les actions des utilisateurs afin de les empêcher de se détourner des indications de la plateforme web. Les mots de passe seront encryptés.
+  Le système et en partie TIX sera protégé par fail2ban, décrit plus tôt.
 
 <br>
 
 - <b><a name="p5e"></a>e) Utilisation et utilisabilité</b><br>
 
   Nous veillerons à rendre l’application accessible en se basant sur la norme UAAG 2.1 de W3C. Nous utiliserons l'extension de navigateur internet "Wave" pour s'en assurer.
+  Toute utilisation d'outil supplémentaire pour s'assurer davantage de l'accessibilité et le bienvenu.<br>
+  Un guide d'utilisation du site doit être disponible, tout comme la transcription visuel de la vidéo de présentation.<br>
   
 <br>
 
 - <b><a name="p5f"></a>f) Maintenance et portabilité</b><br>
 
   La portabilité et la maintenance de l'application web sera notamment vérifié en passant par le validateur de W3C. Il permet de s'assurer la compatibilité de la plateforme avec tous les navigateurs, et permet de s'assurer que le code est conforme avec les exigences actuels.
-  PHP et MySQL fonctionnent aussi bien sur un serveur Windows que sur un serveur Linux.
+  PHP et MariaDB fonctionnent aussi bien sur un serveur Windows que sur un serveur Linux. Nous devrons mener des tests d'intégration pour s'assurer l'intégration correcte des différents modules à notre projet.<br>
 
 <br>
 
 - <b><a name="p5g"></a>g) Questions non résolues ou reportées à plus tard</b><br>
 
-  La présence de Javascript n'étant pas demandée, nous ne prévoyons pas d'en utiliser sur les pages web. Cependant, nous nous octroyons la possibilité d'en faire usage si nécessaire lors de nos phases de conception et de programmation.
+  Nous n'avons pas de question pour le moment. Le 23/03/2024 à 09h09.
   <br><br><br><br><br><br><br>
 ------------------------------------------------------------------------------------------------------------------------
 
