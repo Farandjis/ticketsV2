@@ -11,6 +11,8 @@ CREATE OR REPLACE TABLE Utilisateur (
     HORODATAGE_OUVERTURE_USER DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     HORODATAGE_DERNIERE_CONNECTION_USER DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     IP_DERNIERE_CONNECTION_USER VARCHAR(15)
+	banni VARCHAR(5) DEFAULT 'FALSE',
+	banni_jusqua VARCHAR(20)
 );
 
 CREATE OR REPLACE TABLE UrgenceTicket(
@@ -25,9 +27,26 @@ CREATE OR REPLACE TABLE EtatTicket (
 );
 
 
-CREATE OR REPLACE TABLE TitreTicket (
-    TITRE_TICKET VARCHAR(60) PRIMARY KEY
+-- Création de la table "Categorie"
+CREATE OR REPLACE TABLE Categorie (
+    NOM_CATEGORIE VARCHAR(10) PRIMARY KEY NOT NULL
 );
+
+-- Création de la table "CategorieAssocies"
+CREATE OR REPLACE TABLE CategorieAssocies (
+    NOM_CATEGORIE VARCHAR(10) NOT NULL,
+    NOM_CATEGORIE_ASSOCIER VARCHAR(10) NOT NULL,
+    FOREIGN KEY (NOM_CATEGORIE) REFERENCES Categorie (NOM_CATEGORIE),
+    FOREIGN KEY (NOM_CATEGORIE_ASSOCIER) REFERENCES Categorie (NOM_CATEGORIE),
+    PRIMARY KEY (NOM_CATEGORIE, NOM_CATEGORIE_ASSOCIER)
+);
+
+CREATE OR REPLACE TABLE TitreTicket (
+    TITRE_TICKET VARCHAR(60) PRIMARY KEY,
+    NOM_CATEGORIE VARCHAR(10) NOT NULL,
+    FOREIGN KEY (NOM_CATEGORIE) REFERENCES Categorie (NOM_CATEGORIE)
+);
+
 
 
 -- Création de la table "Ticket"
@@ -56,7 +75,9 @@ CREATE OR REPLACE TABLE Ticket (
 
 -- Création de la table "MotcleTicket"
 CREATE OR REPLACE TABLE MotcleTicket (
-    NOM_MOTCLE VARCHAR(30) PRIMARY KEY
+    NOM_MOTCLE VARCHAR(30) PRIMARY KEY,
+    NOM_CATEGORIE VARCHAR(10) NOT NULL,
+    FOREIGN KEY (NOM_CATEGORIE) REFERENCES Categorie (NOM_CATEGORIE)
 );
 
 -- Création de la table "RelationTicketsMotscles"
@@ -86,54 +107,59 @@ INSERT INTO EtatTicket (VALEUR_ETAT_TICKET) VALUES
     ('Fermé');
 
 
-INSERT INTO MotcleTicket VALUES("Logiciel : WebStorm");
-INSERT INTO MotcleTicket VALUES("Logiciel : PHPStorm");
-INSERT INTO MotcleTicket VALUES("Logiciel : PyCharm");
-INSERT INTO MotcleTicket VALUES("Logiciel : IntelliJ");
-INSERT INTO MotcleTicket VALUES("Logiciel : Firefox");
-INSERT INTO MotcleTicket VALUES("Logiciel : Open Office");
-INSERT INTO MotcleTicket VALUES("Logiciel : WinSCP");
-INSERT INTO MotcleTicket VALUES("Logiciel : Autre");
-INSERT INTO MotcleTicket VALUES("Système : CentOS");
-INSERT INTO MotcleTicket VALUES("Système : Windows");
-INSERT INTO MotcleTicket VALUES("Système : Debian");
-INSERT INTO MotcleTicket VALUES("Système : Autre");
-INSERT INTO MotcleTicket VALUES("Matériel : Moniteur");
-INSERT INTO MotcleTicket VALUES("Matériel : Ordinateur");
-INSERT INTO MotcleTicket VALUES("Matériel : Clavier");
-INSERT INTO MotcleTicket VALUES("Matériel : Souris");
-INSERT INTO MotcleTicket VALUES("Matériel : Vidéoprojecteur");
-INSERT INTO MotcleTicket VALUES("Matériel : Câble Moniteur");
-INSERT INTO MotcleTicket VALUES("Matériel : Câble Alimentation");
-INSERT INTO MotcleTicket VALUES("Matériel : Câble Ethernet");
-INSERT INTO MotcleTicket VALUES("Matériel : Prise Électrique");
-INSERT INTO MotcleTicket VALUES("Matériel : Autre");
-INSERT INTO MotcleTicket VALUES("Salle INFO : G25");
-INSERT INTO MotcleTicket VALUES("Salle INFO : G24");
-INSERT INTO MotcleTicket VALUES("Salle INFO : G23");
-INSERT INTO MotcleTicket VALUES("Salle INFO : G22");
-INSERT INTO MotcleTicket VALUES("Salle INFO : G21");
-INSERT INTO MotcleTicket VALUES("Salle INFO : I21");
-INSERT INTO MotcleTicket VALUES("Salle INFO : E51");
-INSERT INTO MotcleTicket VALUES("Salle INFO : Autre");
-INSERT INTO MotcleTicket VALUES("Salle GEII : Autre");
-INSERT INTO MotcleTicket VALUES("Salle MMI : Autre");
-INSERT INTO MotcleTicket VALUES("Salle R&T : Autre");
-INSERT INTO MotcleTicket VALUES("[!] Aucun mot-clé");
+INSERT INTO Categorie VALUES("MATÉRIEL"),("SYSTÈME"),("LOGICIEL"),("AUTRE"),("SALLE"),("SESSION");
+INSERT INTO CategorieAssocies VALUES("MATÉRIEL", "SALLE");
+INSERT INTO CategorieAssocies VALUES("SYSTÈME","LOGICIEL"), ("SYSTÈME","SALLE");
+INSERT INTO CategorieAssocies VALUES("LOGICIEL","SYSTÈME"), ("LOGICIEL","SALLE");
+INSERT INTO CategorieAssocies VALUES("SALLE","MATERIEL");
+INSERT INTO CategorieAssocies VALUES("SESSION","SYSTÈME"), ("SESSION","LOGICIEL");
+INSERT INTO CategorieAssocies VALUES("AUTRE","MATÉRIEL"), ("AUTRE","SYSTÈME"), ("AUTRE","LOGICIEL"), ("AUTRE","SALLE"), ("AUTRE","SESSION");
 
-INSERT INTO TitreTicket VALUES("[MATERIEL] Matériel manquant");
-INSERT INTO TitreTicket VALUES("[MATERIEL] Matériel en panne");
-INSERT INTO TitreTicket VALUES("[MATERIEL] Autre problème");
-INSERT INTO TitreTicket VALUES("[SESSION] Taille de session");
-INSERT INTO TitreTicket VALUES("[SESSION] Mot de passe de session oublié");
-INSERT INTO TitreTicket VALUES("[SESSION] Autre problème");
-INSERT INTO TitreTicket VALUES("[LOGICIEL] Logiciel malveillant");
-INSERT INTO TitreTicket VALUES("[LOGICIEL] Problème de logiciel");
-INSERT INTO TitreTicket VALUES("[LOGICIEL] Mise à jour de logiciel");
-INSERT INTO TitreTicket VALUES("[LOGICIEL] Proposition de logiciel");
-INSERT INTO TitreTicket VALUES("[LOGICIEL] Autre problème");
-INSERT INTO TitreTicket VALUES("[SALLE] Problème de la salle");
-INSERT INTO TitreTicket VALUES("[!] Autre problème");
-INSERT INTO TitreTicket VALUES("[AUTRE] Problème pour se connecter");
-INSERT INTO TitreTicket VALUES("[AUTRE] Piratage");
-INSERT INTO TitreTicket VALUES("[AUTRE] Contacter un technicien ou un admnistrateur");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : WebStorm", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : PHPStorm", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : PyCharm", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : IntelliJ", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : Firefox", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : Open Office", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : WinSCP", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("LOGICIEL : Autre", "LOGICIEL");
+INSERT INTO MotcleTicket VALUES("SYSTÈME : CentOS", "SYSTÈME");
+INSERT INTO MotcleTicket VALUES("SYSTÈME : Windows", "SYSTÈME");
+INSERT INTO MotcleTicket VALUES("SYSTÈME : Debian", "SYSTÈME");
+INSERT INTO MotcleTicket VALUES("SYSTÈME : Autre", "SYSTÈME");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Moniteur", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Ordinateur", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Clavier", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Souris", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Vidéoprojecteur", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Câble Moniteur", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Câble Alimentation", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Câble Ethernet", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Prise Électrique", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("MATÉRIEL : Autre", "MATÉRIEL");
+INSERT INTO MotcleTicket VALUES("SALLE : G25", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : G24", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : G23", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : G22", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : G21", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : I21", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : E51", "SALLE");
+INSERT INTO MotcleTicket VALUES("SALLE : Autre salle", "SALLE");
+INSERT INTO MotcleTicket VALUES("! : Aucun mot-clé", "AUTRE");
+
+INSERT INTO TitreTicket VALUES("MATERIEL : MATÉRIEL manquant", "MATÉRIEL");
+INSERT INTO TitreTicket VALUES("MATERIEL : MATÉRIEL en panne", "MATÉRIEL");
+INSERT INTO TitreTicket VALUES("MATERIEL : Autre problème", "MATÉRIEL");
+INSERT INTO TitreTicket VALUES("SESSION : Taille de session", "SESSION");
+INSERT INTO TitreTicket VALUES("SESSION : Mot de passe de session oublié", "SESSION");
+INSERT INTO TitreTicket VALUES("SESSION : Autre problème", "SESSION");
+INSERT INTO TitreTicket VALUES("LOGICIEL : Logiciel malveillant", "LOGICIEL");
+INSERT INTO TitreTicket VALUES("LOGICIEL : Problème de logiciel", "LOGICIEL");
+INSERT INTO TitreTicket VALUES("LOGICIEL : Mise à jour de logiciel", "LOGICIEL");
+INSERT INTO TitreTicket VALUES("LOGICIEL : Proposition de logiciel", "LOGICIEL");
+INSERT INTO TitreTicket VALUES("LOGICIEL : Autre problème", "LOGICIEL");
+INSERT INTO TitreTicket VALUES("SALLE : Problème de la salle", "SALLE");
+INSERT INTO TitreTicket VALUES("! : Autre problème", "AUTRE");
+INSERT INTO TitreTicket VALUES("AUTRE : Problème pour se connecter", "AUTRE");
+INSERT INTO TitreTicket VALUES("AUTRE : Piratage", "AUTRE");
+INSERT INTO TitreTicket VALUES("AUTRE : Contacter un technicien ou un administrateur", "AUTRE");

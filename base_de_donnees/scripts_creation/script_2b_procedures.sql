@@ -12,8 +12,8 @@ BEGIN
 
     -- Note : USER() correspond à l'utilisateur qui a fait appel à la commande
 
-    -- On vérifie que c'est soit un utilisateur, soit un technicien
-    IF (monRole = 'role_utilisateur' OR monRole = 'role_technicien') THEN
+    -- On vérifie que c'est un utilisateur
+    IF (monRole = 'role_utilisateur') THEN
         -- Si oui, on supprime le compte
 
         -- En principe, les modifications sont prises en compte uniquement quand on atteint le commit.
@@ -80,7 +80,7 @@ BEGIN
     DECLARE lesIDUtilisateurs CURSOR FOR
         SELECT ID_USER
         FROM Utilisateur
-        JOIN mysql.user ON user.User = Utilisateur.ID_USER AND (default_role = 'role_utilisateur' OR default_role = 'role_technicien')
+        JOIN mysql.user ON user.User = Utilisateur.ID_USER AND default_role = 'role_utilisateur'
         WHERE DATEDIFF(CURDATE(), HORODATAGE_DERNIERE_CONNECTION_USER) >= 1095 AND LOGIN_USER IS NOT NULL; -- DATEDIFF : nombre de jours de différence
 
 
