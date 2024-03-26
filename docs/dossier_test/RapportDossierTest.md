@@ -102,4 +102,4 @@ Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires bo
 
 Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires boites noires pour chaque fonction implémentée.
 
-[Tests boite noire fonction connectUser](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name1aaconnectUser)
+[Tests boite noire fonction connectUser](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name1aaconnectuser)
