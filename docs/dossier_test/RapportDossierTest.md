@@ -156,6 +156,16 @@ Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage de
 
 <br>
 
+### <a name="IX"></a> Tests des fonctions d'affichage
+
+Pour certaines fonctions qui retournent simplement un affichage, il était pas nécessaire d'effectuer des tests boites blanches ou noires. Nous avons quand même tenu à les tester pour vérifier leur fonctionnement. 
+
+Vous trouverez ci-dessous le lien permettant d'accéder aux tests d'affichage des fonctions.
+
+[Tests d'affichage](dossier_de_test_fonction_affichage.md)
+
+<br>
+
 ### <a name="X"></a> Tests d'integration
 
 Enfin, nous avons terminer par effectuer des tests d'intégration. Ils permettent de tester la manière dont différentes parties d'un système interagissent les unes avec les autres. Nous avons réaliser ses tests à l'aide du module de cryptographie puisque nous devions intégrer des fonctions de cryptage et décryptage à notre application. 
