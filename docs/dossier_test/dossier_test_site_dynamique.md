@@ -5,7 +5,7 @@ INF2-A
 <img height="95" width="400" src="../img/IUT_Velizy_Villacoublay_logo_2020_ecran.png" title="logo uvsq vélizy"/>
 
 # SAÉ S3 - Dossier de test
-## Site dynamique
+## Site dynamique (pages PHP)
 
 <br><br>
 Ce document permet de s'assurer que les pages web dynamique soient conforme à ce qui est attendu.
@@ -23,17 +23,17 @@ Ce document permet de s'assurer que les pages web dynamique soient conforme à c
 
 
 ## <a name="IV"></a>Pages HTML
-- ### [index.html](#a)
-- ### [profile.html](#b)
-- ### [inscription.html](#c)
-- ### [connexion.html](#d)
-- ### [modifmdp.html](#e)
-- ### [modifemail.html](#f)
-- ### [creerticket.html](#h)
-- ### [maintenance.html](#i)
-- ### [journalactivte.html](#j)
-- ### [tableaubord.html](#k)
-- ### [historique.html](#l)
+- ### [index.php](#a)
+- ### [profil.php](#b)
+- ### [inscription.php](#c)
+- ### [connexion.php](#d)
+- ### [modifmdp.php](#e)
+- ### [modifemail.php](#f)
+- ### [creerticket.php](#g)
+- ### [modificationTicket.php](#h)
+- ### [administration.php](#j)
+- ### [tableaudebord.php](#k)
+- ### [desinscription.php](#L) 
 
 ## <a name="V"></a>Fichier CSS
 - ### [nomdufichier.css](#1)
@@ -63,9 +63,9 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 | Configuration logicielle           | Firefox (118.0.1 et 64 bits) et <br/>Windows 10 (64 bits et 22H2) |
 | Configuration matérielle           | Dell Optiplex 9020                                                |
 | Date de début                      | 06/01/2024                                                        |
-| Date de finalisation               | ../01/2024                                                        |
+| Date de finalisation               | 25/03/2024                                                        |
 | Test à appliquer                   | Vérification de la validité du site                               |
-| Responsable de la campagne de test | GUIGNOLLE Enzo                                                    |
+| Responsable de la campagne de test | GUIGNOLLE Enzo, Gouabi Assia                                      |
 
 <br><br><br>
 
@@ -79,82 +79,101 @@ Nous allons pour chaque page HTML construite, les comparer avec la maquette choi
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 alertes                                  |
+
+### <a name="b"></a>profil.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 3 alertes                                  |
+
+### <a name="c"></a>inscription.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |  16 alertes                    |
+
+### <a name="d"></a>connexion.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 alertes                     |
+
+### <a name="e"></a>modifMdp.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                        |  2 erreurs et 6 alertes                                             |
+
+### <a name="f"></a>modifEmail.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |  4 alertes                     |
+
+### <a name="g"></a>creerTicket.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 1 alerte                     |
+
+### <a name="h"></a>modificationTicket.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 14/02/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 6 alertes                     |
+
+### <a name="j"></a>administration.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
+| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
+| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 12 alertes (admin web) et 8 erreurs et 2 alertes (admin système)               |
+
+### <a name="k"></a>tableaudebord.php
+
+| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
+|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
 | 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 alertes                                  |
 
-- ### profile.php
+### <a name="L"></a>desinscription.php
 
 | Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
 |:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
 | 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
 | 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 4 alertes                     |
-- 
-- ### inscription.php
+| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 3 alertes                                  |
 
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 4 erreurs et 16 alertes                    |
-- 
-- ### connexion.php
-
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 2 alertes                     |
-
-- ### modifmdp.php
-
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 |                                            |
-
-- ### modifemail.php
-
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 2 erreurs et 4 alertes                     |
-
-- ### creerticket.php
-
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 6 erreurs et 6 alertes                     |
-
-- ### administration.php
-
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 9 alertes                                  |
-
-- ### tableaubord.php
-
-| Cas n° | Critère                                   | Résultat attendu                                                                                                        | Résultat obtenu                            |
-|:-------|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-| 1      | Comparaison Maquette - Résultat           | Les éléments sont placés au même endroit                                                                                | consulter la maquette finale du 06/01/2024 |
-| 2      | Adaptation à la dimension de l'écran (PC) | La page s'affiche correctement aux formats :<br/> - 1360\*768 (16/9)<br/> - 1920\*1080 (16/9)<br/> - Ecrans plus larges | OK                                         |
-| 3      | Validateur HTML W3C                       | Aucune erreur                                                                                                           | OK                                         |
-| 3      | Vérification de l'accessibilité           | Aucune erreur ou alerte                                                                                                 | 6 alertes                                  |
 
 <br><br><br>
 

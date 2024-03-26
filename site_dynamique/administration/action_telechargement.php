@@ -4,37 +4,22 @@ require (dirname(__FILE__) . "/../ressources/fonctions/PHPfunctions.php");
 $connection = pageAccess(array('Administrateur Site', 'Administrateur SystÃ¨me'));
 
 try{
-if (isset($_POST["journal"]) && !empty($_POST["journal"])){
-	if (recupererRoleDe($connection) == 'Administrateur SystÃ¨me'){
-		if ($_POST["journal"] == "connexion_infructueuse"){
-			header('Location: logs/journauxActvCoInf.csv');
-		}
-		if ($_POST["journal"] == "ouverture_ticket"){
-			header('Location: logs/journauxActvCreTck.csv');
-		}
-		if ($_POST["journal"] == "historique"){
-			$result = $connection->query("SELECT HORODATAGE_CREATION_TICKET,HORODATAGE_DERNIERE_MODIF_TICKET,TITRE_TICKET,NIV_URGENCE_DEFINITIF_TICKET,DESCRIPTION_TICKET,ID_USER,ID_TECHNICIEN FROM vue_historique");
+	if (isset($_POST["tele_arch"]) && !empty($_POST["tele_arch"])){
+		if (recupererRoleDe($connection) == 'Administrateur SystÃ¨me'){
+			$chemin_fichier = '../../../logs/archives/'.$_POST["tele_arch"];
+			if (file_exists($chemin_fichier)) {
+    				// Envoyer les en-têtes HTTP appropriés pour le téléchargement
+    				header('Content-Type: application/octet-stream');
+   				header('Content-Disposition: attachment; filename="' . basename($chemin_fichier) . '"');
+    				header('Content-Length: ' . filesize($chemin_fichier));
 
-			$csvFileName = "logs/temp_historique.csv";
-			$csvFile = fopen($csvFileName, 'w');
-
-			$fields = $result->fetch_fields();
-			$header = [];
-			foreach ($fields as $field) {
-				$header[] = $field->name;
+    				// Lire le fichier et l'envoyer au client
+    				readfile($chemin_fichier);
+    				exit;
 			}
-			fputcsv($csvFile, $header);
-			while ($row = $result->fetch_assoc()) {
-				fputcsv($csvFile, $row);
-			}
-			fclose($csvFile);
-			$connection->close();
-			header('Location: logs/temp_historique.csv');
 		}
 	}
-}
-}
-catch(Exception $e){
+}catch(Exception $e){
 	header('Location: administration.php?id=1');
 	return;
 }

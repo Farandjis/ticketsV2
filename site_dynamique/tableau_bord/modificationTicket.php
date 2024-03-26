@@ -68,7 +68,7 @@ $user_id = mysqli_fetch_array($connection->query("SELECT id_user, prenom_user, n
 <body>
 <header>
     <div class="retour">
-        <a href="javascript:window.history.go(-1)"><img src="../ressources/images/fleche_retour.png" alt="bouton retour"> Tableau de bord</a>
+        <a href="tableaudebord.php"><img src="../ressources/images/fleche_retour.png" alt="bouton retour"> Tableau de bord</a>
     </div>
 </header>
 <div class="page_cree-modif_ticket">

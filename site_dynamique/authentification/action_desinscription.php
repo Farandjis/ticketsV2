@@ -18,10 +18,12 @@ try{
 
             // Récupération des données de session
             $mdpentre = htmlspecialchars($_POST['Amdp']);
+	    echo $mdpentre;
             $loginentre = htmlspecialchars($_POST['login']);
 
-            $loginSite = htmlspecialchars($_SESSION['login']);
-            $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode($_SESSION['mdp']));
+            $loginSite = htmlspecialchars($_SESSION["jeton"]['login']);
+            $mdpMariaDB = htmlspecialchars(htmlspecialchars_decode(dechiffre()));
+	    echo $mdpMariaDB;
 
             // Vérification que le login et mdp entrés sont identiques à ceux inscrit lors de la connexion
             if ($mdpentre !== $mdpMariaDB || $loginentre !== $loginSite) {
@@ -48,7 +50,10 @@ try{
 
             //Requête pour se désinscrire de la plateforme
 
-            $resultatDesinsc = mysqli_query($connexionUtilisateur, "CALL ATTENTION_SupprimerSonCompte()");
+
+	    $IDuser = mysqli_fetch_row(mysqli_query($connexionUtilisateur, "SELECT ID_user FROM vue_Utilisateur_client;"))[0];
+	    appendToCSV("../../../logs/journauxActvDesinsc.csv",array(date("d/m/y H:i:s"),$_POST['login'],getIp(),$IDuser)); // Stockage du journal
+    	    $resultatDesinsc = mysqli_query($connexionUtilisateur, "CALL ATTENTION_SupprimerSonCompte()");
 
             if($resultatDesinsc){
                 header('Location: ../index.php');  //Si la desinscription a été effectuée

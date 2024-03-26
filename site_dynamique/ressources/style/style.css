@@ -86,7 +86,7 @@ nav {
   transition: transform 0.5s;
 }
 
-.nav-conteneur a:hover{
+.nav-conteneur a:hover, .nav-conteneur a:focus{
   color: #664dfd;
 }
 
@@ -101,7 +101,7 @@ nav {
   background: #664dfd;
   transition: transform 0.3s ease-out;
 }
-.nav-conteneur a:hover::before {
+.nav-conteneur a:hover::before, .nav-conteneur a:focus::before {
   transform: scaleX(1);
 }
 
@@ -129,12 +129,12 @@ nav {
 
 }
 
-.deconnexion-desinscription a:nth-child(1):hover{
+.deconnexion-desinscription a:nth-child(1):hover, .deconnexion-desinscription a:nth-child(1):focus{
   background: #cc1717;
   color: #ECECEC;
 }
 
-.deconnexion-desinscription a:nth-child(2):hover{
+.deconnexion-desinscription a:nth-child(2):hover, .deconnexion-desinscription a:nth-child(2):focus{
   background: #1c1c1c;
   color: #ECECEC;
 }
@@ -145,11 +145,11 @@ nav {
 }
 
 
-.authentification a:nth-child(2):hover, #boutonDeconnexion:hover{
+.authentification a:nth-child(2):hover, .authentification a:nth-child(2):focus, #boutonDeconnexion:hover, #boutonDeconnexion:focus{
   background: #1c1c1c;
   color: #ECECEC;
 }
-.authentification a:nth-child(1):hover {
+.authentification a:nth-child(1):hover, .authentification a:nth-child(1):focus {
   background: linear-gradient( 135deg, #cf8ae5 10%, #6018DC 100%);
   color: #e3e3e3;
 }
@@ -264,8 +264,8 @@ nav .hamburger-menu.active .slice:nth-child(3) {
   height: 600px;
   width: 1700px;
 
-  /*background: radial-gradient(circle, rgba(115,103,240,1) 0%, rgba(206,159,252,1) 50%);*/
-  backdrop-filter: blur(25px);
+  background: #e7d0fc;
+  /*backdrop-filter: blur(25px);*/
   border: thick double #681dd6;
   border-radius: 15px;
 
@@ -298,6 +298,12 @@ nav .hamburger-menu.active .slice:nth-child(3) {
 }
 
 /*video*/
+.conteneur_video{
+  display: flex;
+  flex-direction: column;
+}
+
+
 .video-presentation {
   max-width: 1080px;
 }
@@ -315,6 +321,29 @@ nav .hamburger-menu.active .slice:nth-child(3) {
   margin-top: 25px;
   box-shadow: 0 0 5px 5px #211a43;
 }
+
+#retranscription{
+  text-align: center;
+  text-decoration: none;
+  font-size: 24px;
+
+  width: fit-content;
+  min-width: 90px;
+  padding: 10px 20px;
+  margin: auto;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  color: #ECECEC;
+  background: #211A43FF;
+  box-shadow: 0px 2px 2px #46348a;
+}
+#retranscription:hover, #retranscription:focus {
+  background: #9271E8;
+}
+
 
 /*bouton*/
 .inscription{
@@ -349,8 +378,8 @@ nav .hamburger-menu.active .slice:nth-child(3) {
 }
 
 
-.inscription a:hover {
-  background: #664dfd;
+.inscription a:hover, .inscription a:focus {
+  background: #9271E8;
 }
 
 .inscription a:active {
@@ -529,7 +558,7 @@ footer img {
   font-weight: 700;
 }
 
-.formAuthentification input[type="submit"]:hover{
+.formAuthentification input[type="submit"]:hover, .formAuthentification input[type="submit"]:focus{
   color: #1c1c1c;
   background: linear-gradient(84.12deg, #9271E8 139.25%, #522FCF -24.93%) ;
 }
@@ -663,7 +692,17 @@ input[type="date"] {
   width: 100%;
 }
 
-
+.easter_egg{
+  animation: rotate 6000s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* ======== LIEN VERS PAGE D'OUBLIE DE MDP ======== */
 
@@ -823,7 +862,7 @@ input[type="date"] {
   height: 50px;
   transition: transform 0.3s;
 }
-.iconeModif:hover{
+.iconeModif:hover, .iconeModif:focus{
   transform: scale(1.2);
 }
 
@@ -895,7 +934,6 @@ input[type="date"] {
   margin-top: 20px;
 }
 
-
 .conteneur_ajout_administration{
   margin: 0 auto;
   padding: 50px;
@@ -903,7 +941,9 @@ input[type="date"] {
   border-radius: 15px;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
   color: #ECECEC;
-  width: 500px;
+  width: 550px;
+  height: 390px;
+
 }
 
 .conteneur_ajout_administration > form > label{
@@ -936,6 +976,22 @@ input[type="date"] {
 }
 
 
+.conteneur_categorie{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========== ARCHIVE ============== */
+
+.popupLog{
+  width: 1240px;
+  height: 540px;
+}
+
+
+
+
 /* ======== JOURNAL D'ACTIVITE ======== */
 
 .activite{
@@ -945,7 +1001,7 @@ input[type="date"] {
   margin-bottom: 50px;
 }
 
-.table-infructueuse, .table-ouverture-tickets{
+.table-infructueuse, .table-ouverture-tickets, .table-inscription-desincription{
   border-collapse: collapse;
   width: 800px;
   font-size: 16px;
@@ -960,12 +1016,29 @@ input[type="date"] {
 .conteneur_table-infructueuse_ouverture-tickets td {
   text-align: center;
 }
+.conteneur_table-infructueuse_ouverture-tickets td:hover, .conteneur_table-infructueuse_ouverture-tickets td:focus {
+  background-color: rgba(130, 88, 242, 0.81);
+}
 
 .table-infructueuse thead, .table-ouverture-tickets thead{
   position: -webkit-sticky;
   position: sticky;
   top: -1px;
   z-index: 10;
+}
+
+
+.conteneur_table-inscription-desinscription {
+  height: 500px;
+  overflow-y: auto;
+  background-color: white;
+  border: 2px solid #555555;
+}
+.conteneur_table-inscription-desinscription td {
+  text-align: center;
+}
+.conteneur_table-inscription-desinscription td:hover, .conteneur_table-inscription-desinscription td:focus {
+  background-color: rgba(130, 88, 242, 0.81);
 }
 
 
@@ -997,6 +1070,33 @@ input[type="date"] {
 }
 
 /* ======== HISTORIQUE ======== */
+.ancreAdmin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ancreAdmin a {
+  text-align: center;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+
+  min-width: 90px;
+  padding: 10px 5px;
+  margin: 0 5px;
+  border: solid 1px #1c1c1c;
+  background: #8258f2;
+  color: #ECECEC;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ancreAdmin a:hover, .ancreAdmin a:focus{
+  background: #ECECEC;
+  color: #8258f2;
+}
 
 .historique{
   display: flex;
@@ -1024,7 +1124,116 @@ input[type="date"] {
 }
 
 
+/* ======== MODERATION ============= */
 
+.moderation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conteneur_table-moderation {
+  height: 595px;
+  overflow-y: auto;
+  background-color: white;
+  border: 2px solid #555555;
+}
+
+.table-moderation {
+  width: 1200px;
+  border-collapse: collapse;
+}
+
+.table-historique thead{
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+}
+
+
+.conteneur_config-ban{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+
+/* Style pour un input de type "number" */
+.conteneur_config-ban input[type="number"] {
+  width: 350px; /* Ajustez la largeur selon vos besoins */
+  padding: 8px;
+  margin: 15px 0 15px 40px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+/* Style pour le survol de l'input */
+.conteneur_config-ban input[type="number"]:hover {
+  border-color: #333;
+}
+
+/* Style pour l'input en focus */
+.conteneur_config-ban input[type="number"]:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+}
+
+.config-prison select {
+  width: 350px;
+  height: 44px;
+  margin: 15px 0 15px 40px;
+}
+.config-prison label{
+  font-size: 18px;
+}
+
+.config-prison-submit {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.config-prison input[type="submit"] {
+  margin: 15px auto;
+  width: 200px;
+}
+
+.conteneur_config-prison{
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #211a43;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  color: #ECECEC;
+  width: 550px;
+}
+
+.conteneur_ban-deban_IP{
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 50px;
+  background-color: #211a43;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+  color: #ECECEC;
+  width: 600px;
+}
+
+.conteneur_ban-deban_IP select, .conteneur_ban-deban_IP input[type="text"]{
+  margin: 15px 10px 15px 40px;
+  width: 250px;
+}
+
+.ban-deban_ip {
+  display: flex;
+  align-items: center;
+}
 
 /* ======== TABLEAU DE BORD ======== */
 
@@ -1102,7 +1311,7 @@ input[type="date"] {
   transition: transform 0.3s;
 }
 
-.bouton_ticket > a:hover {
+.bouton_ticket > a:hover, .bouton_ticket > a:focus {
   transform: scale(1.05);
   background-color: #1a1b1c;
   color: #ECECEC;
@@ -1566,20 +1775,20 @@ select {
     font-size: 60px;
   }
 
-  /*.table-tableau-bord,*/.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
+  /*.table-tableau-bord,*/.table-ouverture-tickets, .table-inscription-desincription, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso {
     width: 600px;
     height: 400px;
   }
 
 
 
-  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
+  .table-tableau-bord,.table-accueil,.table-ouverture-tickets, .table-inscription-desincription, .table-infructueuse,.table-historique, .table-perso, .table-demandes-perso{
     font-size: 12px;
   }
 }
 
 
-@media  screen and  (max-width: 1500px){
+@media  screen and  (max-width: 1635px){
   .conteneur_administration_general {
     flex-direction: column;
   }
@@ -1616,8 +1825,11 @@ select {
   .info_profile{
     flex-direction: column;
   }
-  .conteneur_table{
+  .conteneur_table {
     margin-bottom: 50px;
+  }
+  .tableau_popup_log {
+    margin-bottom: 0 !important;
   }
 }
 
@@ -1627,14 +1839,15 @@ select {
     flex-direction: column;
     margin-bottom: 0;
   }
-  .conteneur_table-infructueuse_ouverture-tickets {
-    margin-bottom: 50px;
-  }
+
   .conteneur_table-infructueuse_ouverture-tickets{
     width: 1200px;
   }
+  .conteneur_table-inscription-desinscription{
+    width: 1200px;
+  }
 
-  .table-infructueuse, .table-ouverture-tickets{
+  .table-infructueuse, .table-ouverture-tickets, .table-inscription-desincription{
     width: 100%;
   }
 }
@@ -1694,4 +1907,11 @@ select {
 
 .ligneCacher {
   display: none;
+}
+
+.button-adm-tele-supp {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur au survol */
 }
