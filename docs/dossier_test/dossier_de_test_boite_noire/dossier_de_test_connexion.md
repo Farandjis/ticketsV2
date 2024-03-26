@@ -82,6 +82,8 @@ Cependant, s'il échoue parce qu'un des champs ou les deux sont vides ou incorre
 | P11 | Correct                   | Incorrect (injection SQL) | id = 2             | id = 2             | Tentative ratée d'injection SQL                            |
 | P12 | Incorrect (injection SQL) | Correct                   | id = 2             | id = 2             | Tentative ratée d'injection SQL                            |
 | P13 | Incorrect (injection SQL) | Correct                   | id = 2             | id = 2             | Tentative ratée d'injection SQL                            |
+| P14 | Correct | Correct                   | id = 10             | id = 10             | Vous avez été banni     |
+
 
 ### Exécution des tests 
 
@@ -100,6 +102,7 @@ Cependant, s'il échoue parce qu'un des champs ou les deux sont vides ou incorre
 | 11     | alice      | "';--"           | id = 2             | id = 2             |
 | 12     | '";--'     | Azertyalice!123  | id = 2             | id = 2             |
 | 13     | "';--"     | Azertyalice!123  | id = 2             | id = 2             |
+| 14     | alice      | Azertyalice!123  | id = 10            | id = 10            |
 
 Si le login et le mot de passe est bon, mais que l'utilisateur ne possède pas de rôle dans la base de donnée, l'accès lui est refusé avec un message d'erreur "Vous n'avez aucun rôle pour accéder au site."<br>
 Si le login et le mot de passe est bon, mais que le rôle de l'utilisateur ne permet pas l'accès, l'accès lui sera refusé avec un message d'erreur "Votre rôle ne permet par la connexion".<br>
