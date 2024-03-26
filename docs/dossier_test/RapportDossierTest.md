@@ -70,31 +70,31 @@ Ses deux types de test étaient nécessaires afin de produire une application co
 
 Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires boites noires pour chaque page. 
 
-[Tests boite noire page Connexion](dossier_de_test_boite_noire/dossier_de_test_connexion.md)
+[Connexion](dossier_de_test_boite_noire/dossier_de_test_connexion.md)
 
-[Tests boite noire page Déconnexion](dossier_de_test_boite_noire/dossier_de_test_deconnexion.md)
+[Déconnexion](dossier_de_test_boite_noire/dossier_de_test_deconnexion.md)
 
-[Tests boite noire page Inscription](dossier_de_test_boite_noire/dossier_de_test_inscription.md)
+[Inscription](dossier_de_test_boite_noire/dossier_de_test_inscription.md)
 
-[Tests boite noire page Désinscription](dossier_de_test_boite_noire/dossier_de_test_desinscription.md)
+[Désinscription](dossier_de_test_boite_noire/dossier_de_test_desinscription.md)
 
-[Tests boite noire page modification d'email](dossier_de_test_boite_noire/dossier_de_test_modifEmail.md)
+[Modification d'email](dossier_de_test_boite_noire/dossier_de_test_modifEmail.md)
 
-[Tests boite noire page modification de mot de passe](dossier_de_test_boite_noire/dossier_de_test_modifMdp.md)
+[Modification de mot de passe](dossier_de_test_boite_noire/dossier_de_test_modifMdp.md)
 
-[Tests boite noire page création ticket](dossier_de_test_boite_noire/dossier_de_test_creerTicket.md)
+[Création ticket](dossier_de_test_boite_noire/dossier_de_test_creerTicket.md)
 
-[Tests boite noire page modification de ticket](dossier_de_test_boite_noire/dossier_de_test_modification_ticket.md)
+[Modification de ticket](dossier_de_test_boite_noire/dossier_de_test_modification_ticket.md)
 
-[Tests boite noire page tableau de bord](dossier_de_test_boite_noire/dossier_de_test_tdb.md)
+[Tableau de bord](dossier_de_test_boite_noire/dossier_de_test_tdb.md)
 
-[Tests boite noire page profil](dossier_de_test_boite_noire/dossier_test_dynamique_profil.md)
+[Profil](dossier_de_test_boite_noire/dossier_test_dynamique_profil.md)
 
-[Tests boite noire page d'accueil](dossier_de_test_boite_noire/dossier_test_dynamique_index.md)
+[Accueil](dossier_de_test_boite_noire/dossier_test_dynamique_index.md)
 
-[Tests boite noire page administration du point de vu de l'admin web](dossier_de_test_boite_noire/dossier_de_test_administration.md)
+[Administration du point de vu de l'admin web](dossier_de_test_boite_noire/dossier_de_test_administration.md)
 
-[Tests boite noire page administration du point de vu de l'admin système](dossier_de_test_boite_noire/dossier_de_test_administrationSysteme.md)
+[Administration du point de vu de l'admin système](dossier_de_test_boite_noire/dossier_de_test_administrationSysteme.md)
 
 <br><br><br>
 
@@ -102,4 +102,8 @@ Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires bo
 
 Vous trouverez ci-dessous les liens permettant d'accéder aux tests unitaires boites noires pour chaque fonction implémentée.
 
-[Tests boite noire fonction connectUser](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name1aaconnectuser)
+[ConnectUser](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name1aaconnectuser)
+
+[valideMdp](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name2aavalidemdp)
+
+[executeSQL](dossier_de_test_boite_noire/dossier_de_test_fonction.md#a-name3aaexecutesql)
