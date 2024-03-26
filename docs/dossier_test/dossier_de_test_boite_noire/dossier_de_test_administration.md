@@ -120,16 +120,18 @@ Pour ajouter un titre, il faut sélectionner un tag dans la liste proposée puis
 | Cas n° | TAG                                       | Titre         | Résultat attendu | Résultat obtenu |
 |--------|-------------------------------------------|---------------|------------------|-----------------|
 | 1      | On choisit un mot dans la liste proposée  | Conforme      | OK               | OK              |
-| 2      | On choisit un mot dans la liste proposée  | Non conforme  | KO               | KO              |
-| 3      | On choisit un mot dans la liste proposée  | déjà existant | KO (id = 102)    | KO (id = 102)   |
+| 2      | On choisit un mot dans la liste proposée  | Non conforme (titre trop court <11)  | KO (id = 302)              | KO (id = 302)                |
+| 3      | On choisit un mot dans la liste proposée  | déjà existant | KO (id = 304)    | KO (id = 304)   |
+| 3      | On choisit un mot dans la liste proposée  | Non conforme (titre trop long > 60) | KO (id = 303)    | KO (id = 303)   |
 
 ### Exécution des tests
 
 | Cas n° | TAG    | Titre                      | Résultat attendu | Résultat obtenu |
 |--------|--------|----------------------------|------------------|-----------------|
 | 1      | Autre  | Administration             | OK               | OK              |
-| 2      | Autre  | Salut (trop petite taille) | KO               | KO              |
-| 3      | Autre  | Piratage                   | KO (id = 102)    | KO (id = 102)   |
+| 2      | Autre  | Salut                      | KO (id = 302)    | KO (id = 302)   |
+| 3      | Autre  | Piratage                   | KO (id = 304)    | KO (id = 304)   |
+| 4      | Autre  | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa                   | KO (id = 303)    | KO (id = 303)   |
 
 
 - ### <a name="4a"></a>Suppression d'un titre
@@ -164,6 +166,8 @@ Pour ajouter un mot-clé, il faut choisir un tag dans la liste et entrer un mot-
 |--------|-------------------------------------------|---------------------|------------------|-----------------|
 | 1      | On choisit un mot dans la liste proposée  | On entre un mot-clé | OK               | OK              |
 | 2      | On choisit un mot dans la liste proposée  | Déjà existant       | KO (id = 204)    | KO (id = 204)   |
+| 3      | On choisit un mot dans la liste proposée  | le mot-clé est trop long      | KO (id = 203)    | KO (id = 203)   |
+| 4      | On choisit un mot dans la liste proposée  | Le mot-clé est trop court       | KO (id = 202)    | KO (id = 202)   |
 
 ### Exécution des tests
 
@@ -171,6 +175,8 @@ Pour ajouter un mot-clé, il faut choisir un tag dans la liste et entrer un mot-
 |--------|--------|-----------|------------------|-----------------|
 | 1      | Autre  | salut     | OK               | OK              |
 | 2      | Autre  | salut     | KO (id = 204)    | KO (id = 204)   |
+| 3      | Autre  | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa     | KO (id = 203)    | KO (id = 203)   |
+| 4      | Autre  | a    | KO (id = 202)    | KO (id = 202)   |
 
 
 - ### <a name="6a"></a>Suppression d'un mot-clé
