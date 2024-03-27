@@ -396,6 +396,12 @@ Ce document est complété par les différents diagrammes montrant la mise en re
       - SET DEFAULT ROLE role_utilisateur
       - REVOKE role_technicien
       - Validation transaction
+      
+  - ### debanComptesEcheancePasser
+    Créer pour être exécuter via un évènement.
+    Il débanni tous les utilisateurs dont l'échéance de bannissement est passé. Il maintien la date du débanissement dans la BD mais elle n'est plus utilisé.<br>
+    <br>
+    Met à jour l'attribut BANNI en "False" pour tous les enregistrements de la table Utilisateur où BANNI est "True" et dont BANNI_JUSQUA correspond à un jour précédent aujourd'hui.
 
 
 
@@ -499,6 +505,12 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - À partir du lendemain de la création de l'évènement, à 1h du matin
     - Pour tous les jours à 1h du matin
     - Exécution de la procédure ATTENTION_SupprimerTousLesComptesInutilises()
+    
+  - ### DEBAN_AUTO_COMPTES_ECHEANCE_PASSER
+    Débannissement automatique des comptes à 1h du matin dont le bannissement prend fin.
+    - À partir du lendemain de la création de l'évènement, à 1h du matin
+    - Pour tous les jours à 1h du matin
+    - Exécution de la procédure debanComptesEcheancePasser()
 
 
 
