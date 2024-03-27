@@ -135,6 +135,8 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - **HORODATAGE_OUVERTURE_USER** [DATETIME] : DEFAULT CURRENT_TIMESTAMP NOT NULL
     - **HORODATAGE_DERNIERE_CONNECTION_USER** [DATETIME] : DEFAULT CURRENT_TIMESTAMP NOT NULL
     - **IP_DERNIERE_CONNECTION_USER** [VARCHAR 15]
+    - **BANNI**  [VARCHAR 5] DEFAULT FALSE
+    - **BANNI_JUSQUA** [VARCHAR 20]
 
   - ### Ticket
     - **ID_TICKET** [INT 11] : Primary key, autoincrement
