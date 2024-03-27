@@ -99,3 +99,23 @@ DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
 
 GRANT EXECUTE ON FUNCTION FermerUnTicket TO role_technicien;
 GRANT EXECUTE ON FUNCTION FermerUnTicket TO role_admin_web;
+
+
+DELIMITER //
+
+CREATE OR REPLACE FUNCTION ObtenirRoleDunUtilisateur(iduser VARCHAR(5))
+RETURNS VARCHAR(50)
+BEGIN
+    DECLARE role VARCHAR(50);
+
+    SELECT default_role INTO role
+    FROM mysql.user
+    WHERE User = (iduser COLLATE utf8mb4_unicode_ci);
+
+    RETURN role;
+END //
+
+DELIMITER ;
+
+
+GRANT EXECUTE ON FUNCTION ObtenirRoleDunUtilisateur TO role_admin_web;
