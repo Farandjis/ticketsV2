@@ -186,3 +186,21 @@ DELIMITER ; -- On remet le délimiteur par défaut pour les requêtes
 -- On autorise son utilisation par l'admin du Site
 GRANT EXECUTE ON PROCEDURE activerUnRoleTechOuUtiParAdminWeb TO 'role_admin_web';
 
+
+
+DROP PROCEDURE IF EXISTS debanComptesEcheancePasser;
+
+/*
+Créer pour être exécuter via un évènement.
+Il débanni tous les utilisateurs dont l'échéance de bannissement est passé. Il maintien la date du débanissement dans la BD mais elle n'est plus utilisé.
+*/
+DELIMITER //
+CREATE PROCEDURE debanComptesEcheancePasser()
+BEGIN
+    -- On récupère tous les identifiants des comptes qui ne se sont pas connecté depuis au moins 36 mois.
+    UPDATE affiche_utilisateurs_pour_adm_web
+        SET BANNI = "FALSE" -- On le définit comme débanni
+        WHERE BANNI = "TRUE" AND -- S'il est toujours ban
+        BANNI_JUSQUA < CURDATE(); -- et que l'échéance du ban est passé
+END //
+DELIMITER ;
