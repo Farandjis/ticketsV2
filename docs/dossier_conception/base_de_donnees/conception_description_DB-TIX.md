@@ -220,6 +220,7 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     Liste tous les utilisateurs de la plateforme
     - Sélectionne ID_USER, PRENOM_USER, NOM_USER de la table Utilisateur
     - Où LOGIN_USER n'est pas nul
+    - Où l'utilisateur est un utilisateur (et non un admin ou technicien). Vérification avec la fonction ObtenirRoleDunUtilisateur(ID_USER).
     
   - ### vue_tableau_bord
     Les tickets affichés dans le tableau de bord de l'usager. Le contenu de la vue varie en fonction de l'utilisateur, et du rôle de l'utilisateur.<br>
@@ -349,6 +350,11 @@ Ce document est complété par les différents diagrammes montrant la mise en re
     - Met à jour la fin de traitement du ticket
     - Renvoi True s'il a pu changer l'état du Ticket en fermé
     - Renvoi False sinon
+    
+  - ### ObtenirRoleDunUtilisateur(iduser VARCHAR(5)) RETURNS VARCHAR(50)
+    Fonction qui renvoi le rôle de l'Utilisateur MariaDB (l'ID User représente le nom d'un utilisateur MariaDB)
+    - Sélectionne le rôle par défaut de la ligne où User correspond à l'ID User dans la table mysql.user.
+    - Renvoi le résultat (donc le rôle)
 
 
 
